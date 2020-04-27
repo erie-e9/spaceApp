@@ -1,0 +1,18 @@
+{
+    "plugins": [
+        ["module-resolver", {
+            "root": ["./src"],
+            "alias": {
+                "@components": "./src/components",
+                "@commons": "./src/components/commons",
+                "@screens": "./src/screens",
+                "@etaui": "./src/etaui",
+                "@utils": "./src/utils",
+                "@graphql": "./src/graphql",
+                "@assets": "./assets",
+                "@context": "./src/context"
+            }
+            }
+        ]
+    ]
+}
