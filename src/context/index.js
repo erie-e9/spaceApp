@@ -1,30 +1,59 @@
-// import AsyncStorage from '@react-native-community/async-storage';
-import React from 'react';
+import React, { useEffect } from 'react';
 import createContext from '@context/createContext';
 import AsyncStorage from '@react-native-community/async-storage';
+// import { useNavigation } from '@react-navigation/native';
 
 const globalReducer = (state, action) => {
     console.log('state', state);
     console.log('action', action.payload);
 
     switch(action.type) {
+        case 'restoreToken':
+            console.log('restoreToken action', action.payload.data);
+            return {
+                ...state,
+                data: action.payload.data,
+                message: action.payload.message,
+                error: action.payload.error,
+                isLoading: false,
+                userToken: action.payload.userToken
+            };
         case 'signIn':
             return {
+                ...state,
+                data: action.payload.data,
                 message: action.payload.message,
-                error: action.payload.error
+                error: action.payload.error,
+                isLoading: false,
+                userToken: action.payload.userToken
             };
         case 'signUp':
             return {
+                ...state,
+                data: action.payload.data,
                 message: action.payload.message,
-                error: action.payload.error
+                error: action.payload.error,
+                isLoading: false,
+                userToken: action.payload.userToken
             };
         case 'logOut':
             return {
+                ...state,
+                data: null,
                 message: '',
-                error: action.payload.error
+                error: action.payload.error,
+                isLoading: false,
+                userToken: action.payload.userToken
             };
         case 'getMe':
             return {
+                ...state,
+                message: action.payload.message,
+                error: action.payload.error
+            };
+        case 'recoveryPass':
+            return {
+                ...state,
                 message: action.payload.message,
                 error: action.payload.error
             };
@@ -36,23 +65,54 @@ const globalReducer = (state, action) => {
         default:
             return state;
     }
+
+}
+
+const restoreToken = dispatch => async () => {
+    let userToken;
+
+    try {
+        userToken = await AsyncStorage.getItem('@userToken');
+        console.log('restoreToken try', userToken);
+    } catch (e) {
+        console.log('restoreToken catch');
+    }
+
+    const pay = {
+        data: '',
+        message: 'restoreToken message',
+        error: '',
+        userToken: userToken
+
+    }
+
+    dispatch({ 
+        type: 'restoreToken',
+        payload: pay 
+    });
 }
 
 const signIn = dispatch => async (...data) => {
+    // const navigation = useNavigation();
+
     try {
-        // setuserToken('token');
         let userToken = 'token';
         await AsyncStorage.setItem('@userToken', userToken)
         console.log('signIn context');
+
         const pay = {
-            message: userToken,
-            error: ''
+            data: '',
+            message: 'User looged',
+            error: '',
+            userToken: userToken,
         }
         
         dispatch({
             type: 'signIn',
             payload: pay
         })
+
+        // navigation.navigate('Menu')
 
     } catch (error) {
         console.log('signIn: ', error);
@@ -86,8 +146,10 @@ const signUp = dispatch => async (...data) => {
         await AsyncStorage.setItem('@userToken', userToken)
         console.log('signUp context');
         const pay = {
-            message: userToken,
-            error: ''
+            data: '',
+            message: '',
+            error: '',
+            userToken: userToken
         }
         
         dispatch({
@@ -108,20 +170,48 @@ const signUp = dispatch => async (...data) => {
 const logOut = dispatch => async () => {
     try {
         // setuserToken(null);
-        await AsyncStorage.removeItem('@userToken', error => {
-            console.log('Something went wrong removing from local storage:', error);
-            
-        })
+        await AsyncStorage.removeItem('@userToken')
         
         const pay = {
-            message: 'User log out',
-            error: ''
+            data: null,
+            message: 'User logged out',
+            error: '',
+            userToken: null
         }
         
         dispatch({
             type: 'logOut',
             payload: pay
         })
+        // navigation.navigate('AuthScreen')
+
+    } catch (error) {
+        console.log('logOut: ', error);
+        
+        dispatch({
+            type: 'add_error',
+            payload: error
+        })
+    }
+}
+
+const recoveryPass = dispatch => async () => {
+    try {
+        // setuserToken(null);
+        let token = await AsyncStorage.getItem('@userToken')
+
+        const pay = {
+            data: null,
+            message: 'recoveryPass',
+            error: '',
+            userToken: token
+        }
+        
+        dispatch({
+            type: 'recoveryPass',
+            payload: pay
+        })
+        // navigation.navigate('AuthScreen')
 
     } catch (error) {
         console.log('logOut: ', error);
@@ -135,6 +225,6 @@ const logOut = dispatch => async () => {
 
 export const { Provider, Context } = createContext(
      /* reducer */  globalReducer,
-    /* actions*/ { signIn, signUp, logOut },
-    /* defaultValues */ { message: '', error: '' }
+    /* actions*/ { restoreToken, signIn, getMe, signUp, logOut, recoveryPass },
+    /* defaultValues */ { data: null, message: null, error: null, isLoading: true, userToken: null }
 )

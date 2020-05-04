@@ -73,6 +73,7 @@ export const darkTheme = {
   REDGRAY: 'rgba(237, 41, 57, 1)',
   SUCCESS_COLOR: 'rgba(0, 255, 0, 1)',
   FAIL_COLOR: 'rgba(255, 0, 0, 1)',
+  LINK: '#2196F3',
 
   BACKGROUND_COLOR: '#333333',
 
@@ -104,6 +105,8 @@ export const lightTheme = {
   REDGRAY: 'rgba(141, 148, 158, 1)',
   SUCCESS_COLOR: 'rgba(0, 125, 0, 1)',
   FAIL_COLOR: 'rgba(255, 0, 0, 1)',
+  LINK: '#2196F3',
+
 
   BACKGROUND_COLOR: 'rgba(248, 248, 248, 0.82)',
 

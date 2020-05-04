@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components/native';
 import { Linking, TouchableWithoutFeedback, Text } from 'react-native';
-import ETASimpleText from '@etaui/texts/simple';
+import { ETASimpleText } from '@etaui';
 
 
 const ETALink = ({ url, text, size, weight, color, align }) => {

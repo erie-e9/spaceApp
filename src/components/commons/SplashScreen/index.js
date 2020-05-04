@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
+const icecreamLogoSize = 90;
+
 const Root = styled.View`
     flex: 1;
     flexDirection: column;

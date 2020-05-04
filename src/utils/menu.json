@@ -1,0 +1,163 @@
+{
+    "promos": [
+        {
+            "_id": 1,
+            "bannerImages": [
+                {
+                    "image": "image1.jpg"
+                }
+            ],
+            "bannerImageWebps": [
+                {
+                    "image": "image1.jpg"
+                }
+            ],
+            "link": "",
+            "price": "",
+            "disccount": 1
+        },
+        {
+            "_id": 2,
+            "bannerImages": [
+                {
+                    "image": "image1.jpg"
+                }
+            ],
+            "bannerImageWebps": [
+                {
+                    "image": "image1.jpg"
+                }
+            ],
+            "link": "",
+            "price": "",
+            "disccount": 1
+        },
+        {
+            "_id": 3,
+            "bannerImages": [
+                {
+                    "image": "image1.jpg"
+                }
+            ],
+            "bannerImageWebps": [
+                {
+                    "image": "image1.jpg"
+                }
+            ],
+            "link": "",
+            "price": "",
+            "disccount": 1
+        }
+    ],
+
+    "menu": [
+        {
+            "_id": 1,
+            "name": "item 1",
+            "images": [
+                {
+                    "imgae": "item1.jpg"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item1.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 2,
+            "name": "item 2",
+            "images": [
+                {
+                    "imgae": "item2.jpg"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item2.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 3,
+            "name": "item 3",
+            "images": [
+                {
+                    "imgae": "item3.jpg"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item3.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 4,
+            "name": "item 4",
+            "images": [
+                {
+                    "imgae": "item4.jpg"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item4.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 5,
+            "name": "item 4",
+            "images": [
+                {
+                    "imgae": "item4.jpg"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item4.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 6,
+            "name": "item 6",
+            "images": [
+                {
+                    "imgae": "item6.jpg"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item6.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        }
+    ]
+}

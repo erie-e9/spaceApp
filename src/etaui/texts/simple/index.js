@@ -14,8 +14,8 @@ const ETASimpleText = ({ children, size, weight, color, align, onPress }) => {
             style={{
                 textAlign: align ? align : 'center',
                 color: color ? color : 'black',
-                fontWeight: weight ? weight : 500,
-                fontSize: size ? size : '14px'
+                fontWeight: weight ? weight : '500',
+                fontSize: size ? size : 14
             }}>
             {children ? children : 'Text'}
         </Text>

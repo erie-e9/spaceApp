@@ -1,19 +1,18 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import ETASimpleText from '@etaui/texts/simple';
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components/native';
+import { ETASimpleText } from '@etaui';
 
 const Root = styled.View`
-    flex: 1;
-    marginVertical: 5px;
     paddingHorizontal: 10px;
 `;
 
-const ETAErrorMessage = ({ children }) => {
+const ETAErrorMessage = ({ children, size }) => {
+    const themeContext = useContext(ThemeContext);
 
     return (
         <>
             <Root>
-                <ETASimpleText size={12} weight='700' color={'brown'} align={'left'}>
+                <ETASimpleText size={size} weight='500' color={themeContext.FAIL_COLOR} align={'left'}>
                     {children}
                 </ETASimpleText>
             </Root>

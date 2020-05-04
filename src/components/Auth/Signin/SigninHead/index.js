@@ -1,5 +1,6 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import React, { useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components/native';
+import { ETASimpleText } from '@etaui';
 
 const icecreamLogoSize = 110;
 const avatarRadius = icecreamLogoSize / 2;
@@ -10,11 +11,6 @@ const Root = styled.View`
     flex: 0.3;
     justifyContent: center;
     alignItems: center;
-`;
-const CompanyName = styled.Text`
-    color: ${props => props.theme.PRIMARY_BACKGROUND_COLOR};
-    fontWeight: bold;
-    marginBottom: 5px;
 `;
 const Logo = styled.Image`
 
@@ -32,24 +28,17 @@ const LogoContainer = styled.View`
     borderWidth: 0.3px;
     borderColor: ${props => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
 `;
-const Slogan = styled.Text`
-    color: ${props => props.theme.PRIMARY_BACKGROUND_COLOR};
-    width: 190px;
-    textAlign: center;
-    fontSize: 14px;
-    fontStyle: italic;
-    fontWeight: 600;
-    marginTop: 15px;
-`;
 
 const SigninHead = () => {
+    const themeContext = useContext(ThemeContext);
+
     return (
         <Root>
             {
                 // fontLoaded ? (
-                // <CompanyName style={{fontFamily: 'Sacramento', fontSize: 37}}>
-                //     {NameCompany}
-                // </CompanyName>
+                <ETASimpleText size={25} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
+                    {NameCompany}
+                </ETASimpleText>
                 // ) : null
             }
             <LogoContainer>
@@ -58,10 +47,10 @@ const SigninHead = () => {
                         height: Platform.OS === 'ios' ? icecreamLogoSize : 90,
                         width: Platform.OS === 'ios' ? icecreamLogoSize : 90,}}
                     source={require('@assets/icons/app-icon.png')}/>
-            </LogoContainer>    
-            {/* <Slogan style={{letterSpacing: Platform.OS === 'ios' ? 1 : 2}}>
+            </LogoContainer>
+            <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
                 {slogan}
-            </Slogan> */}
+            </ETASimpleText>
         </Root>
     );
 }

@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
-import { TouchableWithoutFeedback, View, Alert, ScrollView } from 'react-native';
+import { TouchableOpacity, View, Alert, ScrollView } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { Ionicons, FontAwesome, AntDesign, Octicons } from '@commons/Icons';
 import { variables } from '@utils/constants';
 import { Context } from '@context';
+import { ETAAvatar } from '@etaui';
 
 const avatarSize = 50;
 const avatarRadius = avatarSize / 2;
@@ -36,21 +37,22 @@ const Card = styled.View`
     minHeight: 40px;
     flex: 1;
     alignItems: center;
+    paddingHorizontal: 10px;
 `;
 const Spacevertical = styled.View`
     marginTop: 40px;
 `;
-const ProfileImage = styled.Image`
-    height: ${avatarSize}px;
-    width: ${avatarSize}px;
-    borderRadius: ${avatarRadius}px;
-    marginBottom: 15px;
-    marginLeft: 5px;
-    marginRight: 10px;
-    opacity: 1;
-    marginTop: 13px;
-    justifyContent: center;
-`;
+// const ProfileImage = styled.Image`
+//     height: ${avatarSize}px;
+//     width: ${avatarSize}px;
+//     borderRadius: ${avatarRadius}px;
+//     marginBottom: 15px;
+//     marginLeft: 5px;
+//     marginRight: 10px;
+//     opacity: 1;
+//     marginTop: 13px;
+//     justifyContent: center;
+// `;
 const Metadata = styled.View`
     flex: 1;
     flexDirection: column;
@@ -61,7 +63,7 @@ const MetadataHeader = styled.View`
     flexDirection: column;
     justifyContent: center;
     minHeight: 100px;
-    marginHorizontal: 5px;
+    marginHorizontal: 10px;
 `;
 const MetadataInfo = styled.View`
     flexDirection: row;
@@ -76,8 +78,9 @@ const SettingsScreen = ({ navigation }) => {
     const { state, logOut, error } = useContext(Context);
     
     const logout = () => {
-        logOut();
-        Alert.alert('Log out', 'Adiós popo')
+        setTimeout(() => {
+            logOut();
+        }, 3000)
     }
 
     return (
@@ -85,7 +88,7 @@ const SettingsScreen = ({ navigation }) => {
             <ScrollView>
                 <Spacevertical>
                     <Card>
-                        <ProfileImage source={{uri: variables.AVATAR_USER_DEFAULT}} />
+                        <ETAAvatar size='middle' />
                         <MetadataHeader>
                             <TName>{firstname} {lastname}</TName>
                             <MetadataInfo>
@@ -106,13 +109,13 @@ const SettingsScreen = ({ navigation }) => {
                         </Metadata>
                     </Card>
                     <Card>
-                        <AntDesign name='logout' size={iconSize-5} style={{color: '#777', margin: 15}}/>  
                         <Metadata>
-                            <TouchableWithoutFeedback onPress={() => logout()}>
+                            <TouchableOpacity onPress={() => logout()} style={{ flexDirection: 'row' , justifyContent: 'flex-start', alignItems: 'center'}}>
+                                <AntDesign name='logout' size={iconSize-5} style={{color: '#777', margin: 15}}/>  
                                 <View>
                                     <T2 style={{ color: themeContext.PRIMARY_COLOR }}>Log out</T2>
                                 </View>
-                            </TouchableWithoutFeedback>
+                            </TouchableOpacity>
                         </Metadata>
                     </Card>
                     <Spacevertical>

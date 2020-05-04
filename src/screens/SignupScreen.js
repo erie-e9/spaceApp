@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
 import { Keyboard } from 'react-native';
 import styled from 'styled-components/native';
 import SignupForm from '@components/Auth/Signup/SignupForm';
 
+const KeyboardMisser = styled.TouchableWithoutFeedback``
 const Root = styled.View`
     flex: 1;
     backgroundColor: white;
@@ -15,19 +16,20 @@ const BackImage = styled.ImageBackground`
 `;
 // const InfoContainer = styled.View`
 const InfoContainer = styled.KeyboardAvoidingView.attrs({
-    behavior: 'height'
+    behavior: Platform.OS === 'ios' ? 'position' : 'height'
 })`
-    flex: 1;
+    flex: 0.6;
     alignItems: center;
     justifyContent: center;
+    zIndex: 10
 `;
 const Card = styled.View`
-    flex: 0.35;
+    flex: 1.2;
     flexDirection: column;
     justifyContent: center;
     alignItems: center;
     backgroundColor: ${props => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-    height: 290px;
+    height: 300px;
     minHeight: 240px;
     paddingHorizontal: 20px;
     marginHorizontal: 20px;
@@ -41,20 +43,20 @@ const Card = styled.View`
 `;
 
 const SignupScreen = ({ navigation }) => {
-    const _onOutSidePress = () => Keyboard.dismiss()
 
     return (
-        <Root
-            onPress={() => _onOutSidePress()}>
-            <BackImage style={{width: null, height: null}}
-                    source={require('@assets/background1.png')}>
-                <InfoContainer>
-                    <Card>
-                        <SignupForm navigation={navigation} />
-                    </Card>
-                </InfoContainer>
-            </BackImage>
-        </Root>
+        <KeyboardMisser onPress={() => Keyboard.dismiss()}>
+            <Root>
+                <BackImage style={{width: null, height: null}}
+                        source={require('@assets/background1.png')}>
+                        <InfoContainer>
+                            <Card>
+                                <SignupForm navigation={navigation} />
+                            </Card>
+                        </InfoContainer>
+                </BackImage>
+            </Root>
+        </KeyboardMisser>
     );
 }
 

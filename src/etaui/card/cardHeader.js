@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import React, { useContext } from 'react';
+import { Platform } from 'react-native';
+import styled, { ThemeContext } from 'styled-components/native';
+import { ETASimpleText, ETAAvatar } from '@etaui';
 // import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 // import eoLocale from 'date-fns/locale/es';
-import { fakeavatar } from '@utils/constants';
 
 const avatarSize = 35;
 const avatarRadius = avatarSize / 2;
@@ -18,11 +19,6 @@ const AvatarContainer = styled.View`
     justifyContent: center;
     alignSelf: stretch;
 `;
-const Avatar = styled.Image`
-    height: ${avatarSize}px;
-    width: ${avatarSize}px;
-    borderRadius: ${avatarRadius}px;
-`;
 const MetaContainer = styled.View`
     flex:1;
     alignSelf: stretch;
@@ -31,12 +27,10 @@ const MetaContainer = styled.View`
 const MetaTopContainer = styled.View`
     flex: 1;
     alignSelf: stretch;
-    flexDirection: row;
-    alignItems: center;
+    flexDirection: column;
+    alignItems: flex-start;
     justifyContent: flex-start;
-    borderBottomWidth: 0.3px;
-    borderBottomColor: ${props => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
-    marginVertical: 2px;
+    marginTop: 10px;
 `;
 const MetaBottomContainer = styled.View`
     flex: 0.8;
@@ -56,32 +50,31 @@ const MetaHeaderText = styled.Text`
     marginLeft: 5px;
 `;
 
-const CardHeader = ({ creditid, avatar, status }) => {
+const CardHeader = ({ username, firstname, lastname, avatar, createdAt }) => {
+    const themeContext = useContext(ThemeContext);
+
     return(
         <Root>
             <AvatarContainer>
-                <Avatar source={{ uri: avatar || fakeavatar }}/>
+              <ETAAvatar size='small' />
             </AvatarContainer>
             <MetaContainer>
                 <MetaTopContainer>
-                    <MetaHeaderTextTitle>
-                        {   status === 1
-                            ? 'Crédito: '
-                            : 'Sin renovación: '
-                        }
-                    </MetaHeaderTextTitle>
-                    <MetaHeaderText>
-                        {creditid}
-                    </MetaHeaderText>
+                    <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.LINK} align={'left'}>
+                        @{username}
+                    </ETASimpleText>
+                    <ETASimpleText size={16} weight={Platform.OS === 'ios' ? '600' : '500'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
+                        {firstname} {lastname}
+                    </ETASimpleText>
                 </MetaTopContainer>
-                {/* <MetaBottomContainer>
-                    <MetaHeaderText>
-                    hace {distanceInWordsToNow(createdAt, {locale: eoLocale})}
-                    </MetaHeaderText>
-                </MetaBottomContainer> */}
+                <MetaBottomContainer>
+                    {/* <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
+                        hace {distanceInWordsToNow(createdAt, {locale: eoLocale})}
+                    </ETASimpleText> */}
+                </MetaBottomContainer>
             </MetaContainer>
         </Root>
-    );
+    )
 }
 
 export default CardHeader;

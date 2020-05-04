@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { Platform, Keyboard } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import ETAInputOutline from '@etaui/inputs/inputOutline';
-import ETAButtonFilled from '@etaui/buttons/buttonFilled';
+import { ETATextInputOutline, ETAButtonFilled, ETAErrorMessage } from '@etaui';
+import { Context } from '@context';
 // import { graphql, compose } from 'react-apollo';
 // import { connect } from 'react-redux';
 // import signupMutation from '../graphql/mutations/signup'
@@ -26,77 +25,71 @@ const FormContainer = styled.View`
     alignItems: center;
     paddingHorizontal: 10px;
 `;
-const ErrorMessage = styled.Text`
-    color: #ff2075;
-    fontSize: 12px;
-    zIndex: 100;
-`;
 const ButtonSignupContainer = styled.View`
     height: 20px;
-    marginVertical: 20px;
 `;
 
 const validationSchema = yup.object().shape({
-    signupFullname: yup
+    fullname: yup
         .string()
         .matches(/^[A-Za-zÑñ ]*$/, 'Please do not insert special characters')
         .required('This field is required')
         .uppercase(),
-    signupUsername: yup
+    username: yup
         .string()
         .matches(/^[A-Za-z0-9]*$/, 'Please do not insert special characters')
         .required('This field is required')
         .uppercase(),
-    signupCellphone: yup
+    cellphone: yup
         .string()
         .matches(/^[0-9]*$/, 'Cellphone should has only numbers')
         .min(10, 'Cellphone should has 10 characters')
         .max(10, 'Cellphone should has 10 characters')
         .typeError('Phone should has only numbers')
         .required('This field is required'),
-    signupPassword: yup
+    password: yup
         .string()
         .matches(/^[A-Za-z0-9]*$/, 'Please do not insert special characters')
         .required('This field is required')
         .min(5, 'Password must be bigger')
         .uppercase(),
-    signupConfirmPassword: yup
+    confirmPassword: yup
         .string()
         .matches(/^[A-Za-z0-9]*$/, 'Please do not insert special characters')
         .required('This field is required')
         .min(5, 'Password must be bigger')
-        .oneOf([yup.ref('signupPassword'), null], 'Passwords must match')
+        .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
 const SignupForm = () => {
-    const [ loading, setloading ] = useState(false);
     const themeContext = useContext(ThemeContext);
+    const { signUp, state } = useContext(Context);
+    const [ loading, setloading ] = useState(false);
     const [ mysecureTextEntry, mysetSecureTextEntry ] = useState(true);
-
-    const _onOutSidePress = () => Keyboard.dismiss();
     
     return (
-      <Root onPress={() => _onOutSidePress()}>
+      <Root>
             <Formik
                 enableReinitialize={true}
                 initialValues={{
-                    signupFullname: '',
-                    signupUsername: '',
-                    signupCellphone: '',
-                    signupPassword: ''
+                    fullname: '',
+                    username: '',
+                    cellphone: '',
+                    password: ''
                 }}
                 onSubmit={(values, actions) => {
+                    signUp(values.fullname, values.username, values.cellphone, values.password);
                     setTimeout(() => {
                         actions.setSubmitting(false)
-                        alert(JSON.stringify(values))
+                        // alert(JSON.stringify(values))
                     }, 2000);
                 }}
                 validationSchema={validationSchema}
                 >
                 {({ handleChange, handleBlur, handleSubmit, values, isSubmitting, errors }) => (
                     <FormContainer>
-                        <ETAInputOutline
-                            value={values.signupFullname}
+                        <ETATextInputOutline
+                            value={values.fullname}
                             placeholder='Fullname'
                             placeholderTextColor='#777'
                             keyboardType='default'
@@ -123,8 +116,8 @@ const SignupForm = () => {
                             textsize={14}
                             height={40}
                             width={240}
-                            onChangeText={handleChange('signupFullname')}
-                            onBlur={handleBlur('signupFullname')}
+                            onChangeText={handleChange('fullname')}
+                            onBlur={handleBlur('fullname')}
                             // selection='1, 4'//? no sé we xd
                             // onBlur={text => this._onBlur(text)}
                             // onChangeText={onchangetext}
@@ -135,12 +128,12 @@ const SignupForm = () => {
                             // onScroll={}
                         />
                         {
-                            errors.signupFullname
-                            ? <ErrorMessage>{errors.signupFullname}</ErrorMessage>
+                            errors.fullname
+                            ? <ETAErrorMessage size={12}>{errors.fullname}</ETAErrorMessage>
                             : null
                         }
-                        <ETAInputOutline
-                            value={values.signupUsername}
+                        <ETATextInputOutline
+                            value={values.username}
                             placeholder='Username'
                             placeholderTextColor='#777'
                             keyboardType='default'
@@ -167,8 +160,8 @@ const SignupForm = () => {
                             textsize={14}
                             height={40}
                             width={240}
-                            onChangeText={handleChange('signupUsername')}
-                            onBlur={handleBlur('signupUsername')}
+                            onChangeText={handleChange('username')}
+                            onBlur={handleBlur('username')}
                             // selection='1, 4'//? no sé we xd
                             // onBlur={text => this._onBlur(text)}
                             // onChangeText={onchangetext}
@@ -179,12 +172,12 @@ const SignupForm = () => {
                             // onScroll={}
                         />
                         {
-                            errors.signupUsername
-                            ? <ErrorMessage>{errors.signupUsername}</ErrorMessage>
+                            errors.username
+                            ? <ETAErrorMessage size={12}>{errors.username}</ETAErrorMessage>
                             : null
                         }
-                        <ETAInputOutline
-                            value={values.signupCellphone}
+                        <ETATextInputOutline
+                            value={values.cellphone}
                             placeholder='Cellphone'
                             placeholderTextColor='#777'
                             keyboardType='phone-pad'
@@ -211,8 +204,8 @@ const SignupForm = () => {
                             textsize={14}
                             height={40}
                             width={240}
-                            onChangeText={handleChange('signupCellphone')}
-                            onBlur={handleBlur('signupCellphone')}
+                            onChangeText={handleChange('cellphone')}
+                            onBlur={handleBlur('cellphone')}
                             // selection='1, 4'//? no sé we xd
                             // onBlur={text => this._onBlur(text)}
                             // onChangeText={onchangetext}
@@ -223,12 +216,12 @@ const SignupForm = () => {
                             // onScroll={}
                         />
                         {
-                            errors.signupCellphone
-                            ? <ErrorMessage>{errors.signupCellphone}</ErrorMessage>
+                            errors.cellphone
+                            ? <ETAErrorMessage size={12}>{errors.cellphone}</ETAErrorMessage>
                             : null
                         }
-                        <ETAInputOutline
-                            value={values.signupPassword}
+                        <ETATextInputOutline
+                            value={values.password}
                             placeholder='Password'
                             placeholderTextColor='#777'
                             keyboardType='default'
@@ -255,8 +248,8 @@ const SignupForm = () => {
                             textsize={14}
                             height={40}
                             width={240}                        
-                            onChangeText={handleChange('signupPassword')}
-                            onBlur={handleBlur('signupPassword')}
+                            onChangeText={handleChange('password')}
+                            onBlur={handleBlur('password')}
                             // selection='1, 4'//? no sé we xd
                             // onBlur={text => this._onBlur(text)}
                             // onChangeText={onchangetext}
@@ -266,9 +259,15 @@ const SignupForm = () => {
                             // onKeyPress={}
                             // onScroll={}
                             // paddingHorizontal={60}
-                        />                                
-                        <ETAInputOutline
-                            value={values.signupConfirmPassword}
+                        />
+                                                       
+                        {
+                            errors.password
+                            ? <ETAErrorMessage size={12}>{errors.password}</ETAErrorMessage>
+                            : null
+                        }
+                        <ETATextInputOutline
+                            value={values.confirmPassword}
                             placeholder='Confirm password'
                             placeholderTextColor='#777'
                             keyboardType='default'
@@ -295,8 +294,8 @@ const SignupForm = () => {
                             textsize={14}
                             height={40}
                             width={240}                        
-                            onChangeText={handleChange('signupConfirmPassword')}
-                            onBlur={handleBlur('signupConfirmPassword')}
+                            onChangeText={handleChange('confirmPassword')}
+                            onBlur={handleBlur('confirmPassword')}
                             // selection='1, 4'//? no sé we xd
                             // onBlur={text => this._onBlur(text)}
                             // onChangeText={onchangetext}
@@ -306,10 +305,10 @@ const SignupForm = () => {
                             // onKeyPress={}
                             // onScroll={}
                             // paddingHorizontal={60}
-                        />                                
+                        />
                         {
-                            errors.signupConfirmPassword
-                            ? <ErrorMessage>{errors.signupConfirmPassword}</ErrorMessage>
+                            errors.confirmPassword
+                            ? <ETAErrorMessage size={12}>{errors.confirmPassword}</ETAErrorMessage>
                             : null
                         }
                         <ButtonSignupContainer>

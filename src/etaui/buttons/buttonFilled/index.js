@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled, { ThemeContext } from 'styled-components/native';
-import ETASimpleText from '@etaui/texts/simple';
+import { ETASimpleText } from '@etaui';
 
 const Root = styled.View`
     flex: 1;
@@ -11,9 +11,6 @@ const Root = styled.View`
 const TouchableOpacity = styled.TouchableOpacity`
     height: 40px;
     padding: 10px;
-    shadowOpacity: 0.20;
-    shadowRadius: 1.4px;
-    elevation: 2;
 `;
 
 const ETAButtonFilled = ({ title, onPress, disabled, colorButton, align, padding, borderRadius, width }) => {
@@ -24,7 +21,6 @@ const ETAButtonFilled = ({ title, onPress, disabled, colorButton, align, padding
             <Root>
                 <TouchableOpacity
                     style={{
-                        
                         width: width,
                         backgroundColor: colorButton,
                         paddingLeft: padding ? padding : 20,

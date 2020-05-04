@@ -29,7 +29,7 @@ const TextInput = styled.TextInput.attrs({
     alignContent: center;
 `;
 
-const ETATextInput = ({
+const ETATextInputOutLine = ({
     rightIcon,
     value,
     placeholder,
@@ -115,7 +115,7 @@ const ETATextInput = ({
     );
 }
 
-export default ETATextInput;
+export default ETATextInputOutLine;
 /*  Notes
 autoCapitalize enum:('none', 'sentences', 'words', 'characters')
 

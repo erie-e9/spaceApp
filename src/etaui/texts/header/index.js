@@ -9,10 +9,10 @@ const Text = styled.Text`
 const ETAHeaderText = ({ children, size, weight, color, align }) => (
     <Text
         style={{
-            textAlign: align ? align : 'center',
+            textAlign: align ? align : 'left',
             color: color ? color : 'black',
-            fontWeight: weight ? weight : 500,
-            fontSize: size ? size : '26px'
+            fontWeight: weight ? weight : '500',
+            fontSize: size ? size : 26
         }}>
         {children ? children : 'Text'}
     </Text>

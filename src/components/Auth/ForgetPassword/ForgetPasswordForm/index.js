@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components/native';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import ETAInputOutline from '@etaui/inputs/inputOutline';
-import ETAButtonFilled from '@etaui/buttons/buttonFilled';
+import { ETATextInputOutline, ETAButtonFilled, ETAErrorMessage } from '@etaui';
+import { Context } from '@context';
 
 const validationSchema = yup.object().shape({
-    forgetpasswordCellphone: yup
+    cellphone: yup
         .string()
         .matches(/^[0-9]*$/, 'Cellphone should has only numbers')
         .min(10, 'Cellphone should has 10 characters')
@@ -28,30 +28,26 @@ const FormContainer = styled.View`
     alignItems: center;
     paddingHorizontal: 10px;
 `;
-const ErrorMessage = styled.Text`
-    color: #ff2075;
-    fontSize: 12px;
-    zIndex: 100;
-`;
 const ButtonSigninContainer = styled.View`
     height: 20px;
-    marginVertical: 20px;
 `;
 
 const ForgetPasswordScreen = () => {
     const themeContext = useContext(ThemeContext);
+    const { recoveryPass, state } = useContext(Context);
+
     return (
         <Root>
             <Formik
                 enableReinitialize={true}
                 initialValues={{ 
-                    forgetpasswordCellphone: ''
+                    cellphone: ''
                 }}
                 onSubmit={(values, actions) => {
-                    signIn()
+                    recoveryPass(values.cellphone);
                     setTimeout(() => {
                         actions.setSubmitting(false)
-                        alert(JSON.stringify(values))
+                        // alert(JSON.stringify(values))
                     }, 2000);
                     
                 }}
@@ -59,8 +55,8 @@ const ForgetPasswordScreen = () => {
                 >
                 {({ handleChange, handleBlur, handleSubmit, values, isSubmitting, errors }) => (
                     <FormContainer>
-                        <ETAInputOutline
-                            value={values.forgetpasswordCellphone}
+                        <ETATextInputOutline
+                            value={values.cellphone}
                             placeholder='Cellphone'
                             placeholderTextColor='#777'
                             keyboardType='phone-pad'
@@ -87,8 +83,8 @@ const ForgetPasswordScreen = () => {
                             textsize={14}
                             height={40}
                             width={240}
-                            onChangeText={handleChange('forgetpasswordCellphone')}
-                            onBlur={handleBlur('forgetpasswordCellphone')}
+                            onChangeText={handleChange('cellphone')}
+                            onBlur={handleBlur('cellphone')}
                             // selection='1, 4'//? no sé we xd
                             // onBlur={text => this._onBlur(text)}
                             // onChangeText={onchangetext}
@@ -99,8 +95,8 @@ const ForgetPasswordScreen = () => {
                             // onScroll={}
                         />
                         {
-                            errors.forgetpasswordCellphone
-                            ? <ErrorMessage>{errors.forgetpasswordCellphone}</ErrorMessage>
+                            errors.cellphone
+                            ? <ETAErrorMessage size={12}>{errors.cellphone}</ETAErrorMessage>
                             : null
                         }
                         <ButtonSigninContainer>

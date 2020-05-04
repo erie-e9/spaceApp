@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components/native';
-import ETAButtonFilled from '@etaui/buttons/buttonFilled'
+import { ETAButtonFilled } from '@etaui';
 
 let isSubmitting = !true;
 

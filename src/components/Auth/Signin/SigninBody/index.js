@@ -1,40 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Platform } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { ThemeContext } from 'styled-components/native';
+import { ETASimpleText } from '@etaui';
 
 const Root = styled.View`
-    flex: 0.3;
-    justifyContent: center;
+    flex: 0.5;
+    justifyContent: flex-end;
+    marginTop: 24px;
 `;
 const ButtonForgetPassword = styled.TouchableOpacity`
     justifyContent: center;
     alignItems: center;
     zIndex: 1;
-    marginBottom: 10px
-`;
-const ButtonForgetPasswordText1 = styled.Text`
-    color: ${props => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
-    fontSize: 14px;
-    zIndex: 100;
+    marginBottom: 15px
 `;
 const ButtonSignup = styled.TouchableOpacity`
     justifyContent: center;
     alignItems: center;
     zIndex: 1;
-    marginBottom: 10px
-`;
-const ButtonSignupText1 = styled.Text`
-    color: ${props => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
-    fontSize: 14px;
-    zIndex: 100;
-`;
-const ButtonSignupText2 = styled.Text`
-    color: ${props => props.theme.PRIMARY_COLOR};
-    fontSize: 14px;
-    fontWeight: 500;
+    marginBottom: 15px
 `;
 
 const SignInBody = ({ navigation }) => {
+    const themeContext = useContext(ThemeContext);
+    const signup = 'Sign up';
     const dontaccount = 'Do not have an account? ';
     const forgetpass = 'Did you forget your password? ';
     const _onShowSignupPress = () => {
@@ -46,21 +35,18 @@ const SignInBody = ({ navigation }) => {
     return (
         <Root>
             <ButtonForgetPassword onPress={() => _onShowForgetPasswordPress()}>
-                <ButtonForgetPasswordText1 style={{
-                    fontWeight: Platform.OS === 'ios' ? '500' : '300'}}>
+                <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
                     {forgetpass}
-                </ButtonForgetPasswordText1>
+                </ETASimpleText>
             </ButtonForgetPassword>
             
             <ButtonSignup onPress={() => _onShowSignupPress()}>
-                <ButtonSignupText1 style={{
-                    fontWeight: Platform.OS === 'ios' ? '500' : '300'}}>
+                <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
                     {dontaccount}
-                    <ButtonSignupText2 style={{
-                        fontWeight: Platform.OS === 'ios' ? '600' : '400'}}>
-                            Sign up
-                    </ButtonSignupText2>
-                </ButtonSignupText1>
+                    <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '600' : '400'} color={themeContext.PRIMARY_COLOR} align={'left'}>
+                        {signup}
+                    </ETASimpleText>
+                </ETASimpleText>
             </ButtonSignup>
         </Root>
     );

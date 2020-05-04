@@ -2,38 +2,33 @@ import React from 'react';
 import styled from 'styled-components/native';
 import CardHeader from './cardHeader';
 import CardBody from './cardBody';
-import CardBottom from './cardBottom';
+// import CardBottom from './cardBottom';
 
 const Root = styled.View`
-    minHeight: 190px;
+    minHeight: 180px;
     backgroundColor: ${props => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-    width: 345px;
-    minWidth: 345px;
-    maxWidth: 345px;
-    padding: 10px;
-    shadowColor: ${props => props.theme.THIRD_BACKGROUND_COLOR};
-    shadowOpacity: 0.25;
+    minWidth: 350px;
+    maxWidth: 350px;
+    paddingHorizontal: 10px;
+    paddingVertical: 5px;
+    shadowColor: ${props => props.theme.SECONDARY_BACKGROUND_COLOR};
+    shadowOffset: 0px 2px;
     shadowRadius: 2px;
-    elevation: 5;
-    marginVertical: 2px;
-    borderTopWidth: 3px;
-    marginVertical: 7px;
+    shadowOpacity: 0.1;
     borderRadius: 5px;
+    marginVertical: 2px;
 `;
 
-const ETACard = ( props ) => {
+const ETACard = ({ text, client, createdAt, favoriteCount }) => {
     return (
-        <Root
-            style={{
-                borderTopColor: props.status === 1 ? 'green' : 'red'
-            }}>
-            <CardHeader creditid={props.creditid} status={props.status} />
-            <CardBody {...props}/>
-            {
+        <Root>
+            <CardHeader {...client} createdAt={createdAt} />
+            <CardBody text={text}/>
+            {/* {
                 props.status === 1
                 ? <CardBottom />
                 : null
-            }
+            } */}
         </Root>
     );
 }

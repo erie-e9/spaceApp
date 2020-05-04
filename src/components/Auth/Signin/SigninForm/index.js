@@ -4,9 +4,9 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Entypo } from '@commons/Icons';
-import ETAInputOutline from '@etaui/inputs/inputOutline';
-import ETAButtonFilled from '@etaui/buttons/buttonFilled';
+import { ETATextInputOutline, ETAButtonFilled, ETAErrorMessage } from '@etaui';
 import { Context } from '@context';
+import { useNavigation } from '@react-navigation/native';
 
 const FormContainer = styled.View`
     flex: 1;
@@ -16,26 +16,20 @@ const FormContainer = styled.View`
     alignItems: center;
     paddingHorizontal: 10px;
 `;
-const ErrorMessage = styled.Text`
-    color: #ff2075;
-    fontSize: 12px;
-    zIndex: 100;
-`;
 const TextInputIcon = styled.TouchableOpacity``;
 const ButtonSigninContainer = styled.View`
     height: 20px;
-    marginVertical: 20px;
 `;
 
 const validationSchema = yup.object().shape({
-    signinCellphone: yup
+    cellphone: yup
         .string()
         .matches(/^[0-9]*$/, 'Cellphone should has only numbers')
         .min(10, 'Cellphone should has 10 characters')
         .max(10, 'Cellphone should has 10 characters')
         .typeError('Phone should has only numbers')
         .required('This field is required'),
-    signinPassword: yup
+    password: yup
         .string()
         .matches(/^[A-Za-z0-9]*$/, 'Please do not insert special characters')
         .required('This field is required')
@@ -44,6 +38,7 @@ const validationSchema = yup.object().shape({
 
 
 const SigninForm = () => {
+    const navigation = useNavigation();
     const themeContext = useContext(ThemeContext);
     const { signIn, state } = useContext(Context);
     const [ toogleEye, settoogleEye ] = useState(true);
@@ -59,26 +54,27 @@ const SigninForm = () => {
             <Formik
                 enableReinitialize={true}
                 initialValues={{ 
-                    signinCellphone: '',
-                    signinPassword: ''
+                    cellphone: '1234567890',
+                    password: '312'
                 }}
                 onSubmit={(values, actions) => {
-                    signIn()
+                    signIn(values.cellphone , values.password);
                     setTimeout(() => {
                         actions.setSubmitting(false)
-                        alert(JSON.stringify(values))
+                        // alert(JSON.stringify(values))
                         AsyncStorage.getItem('@userToken', (err, result) => {
+                            // navigation.push('SignupScreen')
                             console.log('@userToken: ',result);
                           });
-                    }, 2000);
+                    }, 3000);
                     
                 }}
                 validationSchema={validationSchema}
                 >
                 {({ handleChange, handleBlur, handleSubmit, values, isSubmitting, errors }) => (
                     <FormContainer>
-                        <ETAInputOutline
-                            value={values.signinCellphone}
+                        <ETATextInputOutline
+                            value={values.cellphone}
                             placeholder='Cellphone'
                             placeholderTextColor='#777'
                             keyboardType='phone-pad'
@@ -105,8 +101,8 @@ const SigninForm = () => {
                             textsize={14}
                             height={40}
                             width={240}
-                            onChangeText={handleChange('signinCellphone')}
-                            onBlur={handleBlur('signinCellphone')}
+                            onChangeText={handleChange('cellphone')}
+                            onBlur={handleBlur('cellphone')}
                             // selection='1, 4'//? no sé we xd
                             // onBlur={text => this._onBlur(text)}
                             // onChangeText={onchangetext}
@@ -117,12 +113,12 @@ const SigninForm = () => {
                             // onScroll={}
                         />
                         {
-                            errors.signinCellphone
-                            ? <ErrorMessage>{errors.signinCellphone}</ErrorMessage>
+                            errors.cellphone
+                            ? <ETAErrorMessage size={12}>{errors.cellphone}</ETAErrorMessage>
                             : null
                         }
-                        <ETAInputOutline
-                            value={values.signinPassword}
+                        <ETATextInputOutline
+                            value={values.password}
                             placeholder='Password'
                             placeholderTextColor='#777'
                             keyboardType='default'
@@ -149,11 +145,11 @@ const SigninForm = () => {
                             textsize={14}
                             height={40}
                             width={240}                        
-                            onChangeText={handleChange('signinPassword')}
-                            onBlur={handleBlur('signinPassword')}
+                            onChangeText={handleChange('password')}
+                            onBlur={handleBlur('password')}
                             rightIcon={(
                                 <TextInputIcon onPress={() => _onPassPress()}>
-                                    <Entypo style={{ color: '#777', marginRight: 65 }} name={ toogleEye ? 'eye' : 'eye-with-line'} size={20} />
+                                    <Entypo style={{ color: '#777', marginRight: 65 }} name={ toogleEye ? 'eye' : 'eye-with-line'} size={18} />
                                 </TextInputIcon>
                             )}
                             // selection='1, 4'//? no sé we xd
@@ -167,8 +163,8 @@ const SigninForm = () => {
                             paddingHorizontal={60}
                         />                                
                         {
-                            errors.signinPassword
-                            ? <ErrorMessage>{errors.signinPassword}</ErrorMessage>
+                            errors.password
+                            ? <ETAErrorMessage size={12}>{errors.password}</ETAErrorMessage>
                             : null
                         }
                         <ButtonSigninContainer>
