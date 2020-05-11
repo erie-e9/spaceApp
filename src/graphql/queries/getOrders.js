@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export default gql`
-{
-getOrders {
+  {
+    getOrders {
       _id
       text
       createdAt

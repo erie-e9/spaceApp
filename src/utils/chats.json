@@ -1,0 +1,116 @@
+{
+    "getChats": [
+        {
+            "_id": 1,
+            "text": "Text 1",
+            "employee": {
+                "username": "username 1",
+                "firstname": "firstname 1",
+                "lastname": "lastname 1",
+                "avatar": false,
+                "createdAt": "test 1"
+            },
+            "favoriteCount": false
+        },
+        {
+            "_id": 2,
+            "text": "Text 2",
+            "employee": {
+                "username": "username 2",
+                "firstname": "firstname 2",
+                "lastname": "lastname 2",
+                "avatar": false,
+                "createdAt": "test 2"
+            }
+        },
+        {
+            "_id": 3,
+            "text": "Text 3",
+            "employee": {
+                "username": "username 3",
+                "firstname": "firstname 3",
+                "lastname": "lastname 3",
+                "avatar": false,
+                "createdAt": "test 2"
+            }
+        },
+        {
+            "_id": 4,
+            "text": "Text 4",
+            "employee": {
+                "username": "username 4",
+                "firstname": "firstname 4",
+                "lastname": "lastname 4",
+                "avatar": false,
+                "createdAt": "test 4"
+            },
+            "favoriteCount": false
+        },
+        {
+            "_id": 5,
+            "text": "Text 5",
+            "employee": {
+                "username": "username 5",
+                "firstname": "firstname 5",
+                "lastname": "lastname 5",
+                "avatar": false,
+                "createdAt": "test 5"
+            }
+        },
+        {
+            "_id": 6,
+            "text": "Text 6",
+            "employee": {
+                "username": "username 6",
+                "firstname": "firstname 6",
+                "lastname": "lastname 6",
+                "avatar": false,
+                "createdAt": "test 6"
+            }
+        },
+        {
+            "_id": 7,
+            "text": "Text 7",
+            "employee": {
+                "username": "username 7",
+                "firstname": "firstname 7",
+                "lastname": "lastname 7",
+                "avatar": false,
+                "createdAt": "test 7"
+            }
+        },
+        {
+            "_id": 8,
+            "text": "Text 8",
+            "employee": {
+                "username": "username 8",
+                "firstname": "firstname 8",
+                "lastname": "lastname 8",
+                "avatar": false,
+                "createdAt": "test 8"
+            }
+        },
+        {
+            "_id": 9,
+            "text": "Text 9",
+            "employee": {
+                "username": "username 9",
+                "firstname": "firstname 9",
+                "lastname": "lastname 9",
+                "avatar": false,
+                "createdAt": "test 9"
+            }
+        },
+        {
+            "_id": 10,
+            "text": "Text 10",
+            "employee": {
+                "username": "username 10",
+                "firstname": "firstname 10",
+                "lastname": "lastname 10",
+                "avatar": false,
+                "createdAt": "test 10"
+            }
+        }
+    ]
+}

@@ -9,17 +9,21 @@ import ETAHeaderText from '@etaui/texts/header';
 import ETASimpleText from '@etaui/texts/simple';
 import ETACard from '@etaui/card';
 import ETAAvatar from '@etaui/avatar';
+import ETANetInfo from '@etaui/netInfo';
+import ETACarousel from '@etaui/carousel';
 
 export {
-    ETAButtonFilled,
-    ETACheckBox,
-    ETATextInputFilled,
-    ETATextInputOutline,
-    ETALink,
-    // ETAPicker,
-    ETAErrorMessage,
-    ETAHeaderText,
-    ETASimpleText,
-    ETACard,
-    ETAAvatar
-}
+  ETAButtonFilled,
+  ETACheckBox,
+  ETATextInputFilled,
+  ETATextInputOutline,
+  ETALink,
+  // ETAPicker,
+  ETAErrorMessage,
+  ETAHeaderText,
+  ETASimpleText,
+  ETACard,
+  ETAAvatar,
+  ETANetInfo,
+  ETACarousel,
+};

@@ -8,12 +8,12 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 
 export {
-    Ionicons,
-    FontAwesome,
-    AntDesign,
-    Octicons,
-    Entypo,
-    EvilIcons,
-    MaterialIcons,
-    Feather
-}
+  Ionicons,
+  FontAwesome,
+  AntDesign,
+  Octicons,
+  Entypo,
+  EvilIcons,
+  MaterialIcons,
+  Feather,
+};

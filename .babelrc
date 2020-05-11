@@ -10,9 +10,9 @@
                 "@utils": "./src/utils",
                 "@graphql": "./src/graphql",
                 "@assets": "./assets",
-                "@context": "./src/context"
+                "@context": "./src/context",
+                "@icons": "./src/components/commons/Icons"
             }
-            }
-        ]
+        }]
     ]
 }

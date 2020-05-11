@@ -56,7 +56,7 @@
             "name": "item 1",
             "images": [
                 {
-                    "imgae": "item1.jpg"
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-BSDDazzler_Olo_0.png"
                 }
             ],
             "imageWebps": [
@@ -74,7 +74,7 @@
             "name": "item 2",
             "images": [
                 {
-                    "imgae": "item2.jpg"
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-cookies-n-cream.png"
                 }
             ],
             "imageWebps": [
@@ -92,7 +92,7 @@
             "name": "item 3",
             "images": [
                 {
-                    "imgae": "item3.jpg"
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-dulce-de-leche.png"
                 }
             ],
             "imageWebps": [
@@ -110,7 +110,7 @@
             "name": "item 4",
             "images": [
                 {
-                    "imgae": "item4.jpg"
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-midnight-cookies-n-cream.png"
                 }
             ],
             "imageWebps": [
@@ -128,7 +128,7 @@
             "name": "item 4",
             "images": [
                 {
-                    "imgae": "item4.jpg"
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-mint-chip%20%281%29.png"
                 }
             ],
             "imageWebps": [
@@ -146,12 +146,120 @@
             "name": "item 6",
             "images": [
                 {
-                    "imgae": "item6.jpg"
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png"
                 }
             ],
             "imageWebps": [
                 {
                     "imageWeb": "item6.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 7,
+            "name": "item 7",
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-belgian-chocolate.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item7.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 8,
+            "name": "item 8",
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-cookiesncream.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item8.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 9,
+            "name": "item 9",
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-dulcedeleche.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item9.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 10,
+            "name": "item 10",
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Smoothies.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item10.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 11,
+            "name": "item 11",
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Coffee-Frapee-.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item11.webp"
+                }
+            ],
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "disccount": 2
+        },
+        {
+            "_id": 12,
+            "name": "item 12",
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Brownie-Cookie-Ice-Cream-Sandwich.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item12.webp"
                 }
             ],
             "link": "",

@@ -1,0 +1,13 @@
+{
+  "plugins": ["stylelint-react-native"],
+  "rules": {
+    "react-native/css-property-no-unknown": true,
+    "indentation": "tab",
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  }
+}

@@ -1,34 +1,51 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, {Fragment} from 'react';
+import {UIManager, SafeAreaView, useColorScheme} from 'react-native';
+import {ThemeProvider} from 'styled-components';
+import {NavigationContainer} from '@react-navigation/native';
+import Navigation from '@components/commons/Navigation';
 import {
-  StatusBar,
-  UIManager, 
-  SafeAreaView
-} from 'react-native';
-import { ThemeProvider } from 'styled-components';
-import { NavigationContainer } from '@react-navigation/native';
-import NavBar from '@components/commons/Navbar';
-import { lightTheme } from '@utils/constants';
-import { Provider as AuthProvider } from '@context';
+  lightTheme,
+  darkTheme,
+  navLightMode,
+  navDarkMode,
+} from '@utils/constants';
+import {Provider as AuthProvider} from '@context';
 
 if (UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
 const App: () => React$Node = () => {
+  const colorSchema = useColorScheme();
 
   return (
     <Fragment>
-      <StatusBar barStyle='dark-content' backgroundColor='#FFF' />
-      <SafeAreaView style={{ flex: 0, backgroundColor: '#FFF' }} />
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFF' }}>
-          <ThemeProvider theme={lightTheme}>
-            <AuthProvider> 
-              <NavigationContainer>
-                <NavBar />
-              </NavigationContainer>
-            </AuthProvider>
-          </ThemeProvider>
-        </SafeAreaView>
+      <SafeAreaView
+        style={{
+          flex: 0,
+          backgroundColor:
+            colorSchema === 'dark'
+              ? darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR
+              : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR,
+        }}
+      />
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor:
+            colorSchema === 'dark'
+              ? darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR
+              : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR,
+        }}>
+        <ThemeProvider theme={colorSchema === 'dark' ? darkTheme : lightTheme}>
+          <AuthProvider>
+            <NavigationContainer
+              theme={colorSchema === 'dark' ? navDarkMode : navLightMode}>
+              <Navigation />
+            </NavigationContainer>
+          </AuthProvider>
+        </ThemeProvider>
+      </SafeAreaView>
     </Fragment>
   );
 };

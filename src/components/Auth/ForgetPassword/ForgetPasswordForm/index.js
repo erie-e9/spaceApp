@@ -1,112 +1,155 @@
-import React, { useContext } from 'react';
-import styled, { ThemeContext } from 'styled-components/native';
-import { Formik } from 'formik';
+import React, {useState, useContext} from 'react';
+import {Platform} from 'react-native';
+import styled, {ThemeContext} from 'styled-components/native';
+import {Formik} from 'formik';
 import * as yup from 'yup';
-import { ETATextInputOutline, ETAButtonFilled, ETAErrorMessage } from '@etaui';
-import { Context } from '@context';
+import {
+  ETATextInputOutline,
+  ETAButtonFilled,
+  ETAErrorMessage,
+  ETASimpleText,
+} from '@etaui';
+import {Context} from '@context';
 
 const validationSchema = yup.object().shape({
-    cellphone: yup
-        .string()
-        .matches(/^[0-9]*$/, 'Cellphone should has only numbers')
-        .min(10, 'Cellphone should has 10 characters')
-        .max(10, 'Cellphone should has 10 characters')
-        .typeError('Phone should has only numbers')
-        .required('This field is required')
+  cellphone: yup
+    .string()
+    .matches(/^[0-9]*$/, 'Cellphone should has only numbers')
+    .min(10, 'Cellphone should has 10 characters')
+    .max(10, 'Cellphone should has 10 characters')
+    .typeError('Phone should has only numbers')
+    .required('This field is required'),
 });
 
 const Root = styled.View`
-    flex: 1;
-    justifyContent: center;
-    alignItems: center;
+  flex: 1;
+  justifyContent: center;
+  alignItems: center;
 `;
 const FormContainer = styled.View`
-    flex: 1;
-    flexDirection: column;
-    display: flex;
-    justifyContent: center;
-    alignItems: center;
-    paddingHorizontal: 10px;
+  flex: 1;
+  flexDirection: column;
+  display: flex;
+  justifyContent: center;
+  alignItems: center;
+  paddingHorizontal: 10px;
 `;
 const ButtonSigninContainer = styled.View`
-    height: 20px;
+  height: 20px;
+`;
+const RecoverTextContainer = styled.View`
+  justifyContent: center;
+  alignItems: center;
+  marginHorizontal: 50px;
+  marginTop: 55px;
 `;
 
 const ForgetPasswordScreen = () => {
-    const themeContext = useContext(ThemeContext);
-    const { recoveryPass, state } = useContext(Context);
+  const themeContext = useContext(ThemeContext);
+  const {recoveryPass} = useContext(Context);
+  const [recoverytext, setrecoverytext] = useState(
+    'We will send you a SMS with instructions for recover your password.',
+  );
+  const [buttonrecoverytext, setbuttonrecoverytext] = useState(
+    'Recover password',
+  );
 
-    return (
-        <Root>
-            <Formik
-                enableReinitialize={true}
-                initialValues={{ 
-                    cellphone: ''
-                }}
-                onSubmit={(values, actions) => {
-                    recoveryPass(values.cellphone);
-                    setTimeout(() => {
-                        actions.setSubmitting(false)
-                        // alert(JSON.stringify(values))
-                    }, 2000);
-                    
-                }}
-                validationSchema={validationSchema}
-                >
-                {({ handleChange, handleBlur, handleSubmit, values, isSubmitting, errors }) => (
-                    <FormContainer>
-                        <ETATextInputOutline
-                            value={values.cellphone}
-                            placeholder='Cellphone'
-                            placeholderTextColor='#777'
-                            keyboardType='phone-pad'
-                            autoCapitalize='none'
-                            allowFontScaling={true}
-                            autoCorrect={true}
-                            autoFocus={true}
-                            blurOnSubmit={false}
-                            caretHidden={false}
-                            clearButtonMode='while-editing'
-                            contextMenuHidden={false}
-                            editable={true}
-                            enablesReturnKeyAutomatically={false}
-                            underlineColorAndroid='transparent'
-                            keyboardAppearance='dark'
-                            maxLength={10}
-                            multiline={false}
-                            numberOfLines={1} //android
-                            returnKeyLabel='next' //android
-                            secureTextEntry={false} //password
-                            spellCheck={true}
-                            textContentType='none'
-                            returnKeyType='next'
-                            textsize={14}
-                            height={40}
-                            width={240}
-                            onChangeText={handleChange('cellphone')}
-                            onBlur={handleBlur('cellphone')}
-                            // selection='1, 4'//? no sé we xd
-                            // onBlur={text => this._onBlur(text)}
-                            // onChangeText={onchangetext}
-                            // onEndEditing={text => this._onEndEditing(text)}
-                            // onFocus={text => this._onFocus(text)}
-                            // ref={(input) => {this.emailInput = input }}
-                            // onKeyPress={}
-                            // onScroll={}
-                        />
-                        {
-                            errors.cellphone
-                            ? <ETAErrorMessage size={12}>{errors.cellphone}</ETAErrorMessage>
-                            : null
-                        }
-                        <ButtonSigninContainer>
-                            <ETAButtonFilled title='Recover password' onPress={handleSubmit} disabled={isSubmitting ? true : false} colorButton={themeContext.SECONDARY_BACKGROUND_COLOR} padding={10} width={isSubmitting ? 40 : 240} borderRadius={isSubmitting ? 20 : 3} />
-                        </ButtonSigninContainer>
-                    </FormContainer>
-                )}
-            </Formik>
-        </Root>
-    );
-}
+  return (
+    <Root>
+      <Formik
+        enableReinitialize={true}
+        initialValues={{
+          cellphone: '',
+        }}
+        onSubmit={(values, actions) => {
+          recoveryPass({cellphone: values.cellphone});
+          setTimeout(() => {
+            actions.setSubmitting(false);
+            setbuttonrecoverytext('Send again');
+            setrecoverytext(
+              'We have sent you a SMS with instructions for recover your password. If you did not receive it, click to send again.',
+            );
+            // alert(JSON.stringify(values))
+          }, 2000);
+        }}
+        validationSchema={validationSchema}>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          isSubmitting,
+          errors,
+        }) => (
+          <FormContainer>
+            <ETATextInputOutline
+              value={values.cellphone}
+              placeholder="Cellphone"
+              placeholderTextColor="#777"
+              keyboardType="phone-pad"
+              autoCapitalize="none"
+              allowFontScaling={true}
+              autoCorrect={true}
+              autoFocus={true}
+              blurOnSubmit={false}
+              caretHidden={false}
+              clearButtonMode="while-editing"
+              contextMenuHidden={false}
+              editable={true}
+              enablesReturnKeyAutomatically={false}
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
+              maxLength={10}
+              multiline={false}
+              numberOfLines={1} //android
+              returnKeyLabel="next" //android
+              secureTextEntry={false} //password
+              spellCheck={true}
+              textContentType="none"
+              returnKeyType="next"
+              textsize={14}
+              height={40}
+              width={240}
+              onChangeText={handleChange('cellphone')}
+              onBlur={handleBlur('cellphone')}
+              selectionColor={themeContext.PRIMARY_COLOR}
+              // selection='1, 4'//? no sé we xd
+              // onBlur={text => this._onBlur(text)}
+              // onChangeText={onchangetext}
+              // onEndEditing={text => this._onEndEditing(text)}
+              // onFocus={text => this._onFocus(text)}
+              // ref={(input) => {this.emailInput = input }}
+              // onKeyPress={}
+              // onScroll={}
+            />
+            {errors.cellphone ? (
+              <ETAErrorMessage size={12}>{errors.cellphone}</ETAErrorMessage>
+            ) : null}
+            <ButtonSigninContainer>
+              <ETAButtonFilled
+                title={buttonrecoverytext}
+                onPress={handleSubmit}
+                disabled={isSubmitting ? true : false}
+                colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
+                padding={10}
+                width={isSubmitting ? 40 : 240}
+                borderRadius={isSubmitting ? 20 : 3}
+              />
+            </ButtonSigninContainer>
+          </FormContainer>
+        )}
+      </Formik>
+      <RecoverTextContainer>
+        <ETASimpleText
+          size={14}
+          weight={Platform.OS === 'ios' ? '500' : '300'}
+          color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+          align={'left'}>
+          {recoverytext}
+        </ETASimpleText>
+      </RecoverTextContainer>
+    </Root>
+  );
+};
 
 export default ForgetPasswordScreen;

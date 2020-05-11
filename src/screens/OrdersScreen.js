@@ -10,17 +10,16 @@ import data from '@utils/orders.json';
 // import orderAddedSubscription from '../graphql/subscriptions/orderAdded';
 
 const Root = styled.View`
-    flex:1;
+  flex: 1;
 `;
 
-const OrdersScreen = ()  => {
-    
-    return(
-        <Root>
-            <OrdersList data={data} />
-        </Root>
-    );
-}
+const OrdersScreen = () => {
+  return (
+    <Root>
+      <OrdersList data={data} />
+    </Root>
+  );
+};
 
 export default OrdersScreen;
 

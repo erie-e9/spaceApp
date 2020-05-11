@@ -12,18 +12,20 @@
     "androidbuildewe": "react-native run-android --variant=release --verbose --deviceId=192.168.229.102:5555"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.9.0",
+    "@react-native-community/async-storage": "^1.10.0",
     "@react-native-community/masked-view": "^0.1.10",
-    "@react-navigation/bottom-tabs": "^5.2.7",
-    "@react-navigation/native": "^5.1.6",
-    "@react-navigation/stack": "^5.2.13",
+    "@react-native-community/netinfo": "^5.8.0",
+    "@react-navigation/bottom-tabs": "^5.4.1",
+    "@react-navigation/native": "^5.2.6",
+    "@react-navigation/stack": "^5.3.1",
+    "axios": "^0.19.2",
     "formik": "^2.1.4",
-    "react": "16.11.0",
+    "react": "^16.13.1",
     "react-native": "0.62.2",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-reanimated": "^1.8.0",
-    "react-native-safe-area-context": "^0.7.3",
-    "react-native-screens": "^2.5.0",
+    "react-native-safe-area-context": "^1.0.0",
+    "react-native-screens": "^2.7.0",
     "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^6.6.0",
     "styled-components": "^5.1.0",
@@ -40,7 +42,9 @@
     "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.0.5",
     "react-native-svg-transformer": "^0.14.3",
-    "react-test-renderer": "16.11.0"
+    "react-test-renderer": "16.11.0",
+    "stylelint": "^13.3.3",
+    "stylelint-react-native": "^2.2.0"
   },
   "jest": {
     "preset": "react-native"

@@ -1,17 +1,14 @@
-import React, { useContext } from 'react';
-import { Platform } from 'react-native';
-import styled, { ThemeContext } from 'styled-components/native';
-import { ETASimpleText, ETAAvatar } from '@etaui';
+import React, {useContext} from 'react';
+import {Platform} from 'react-native';
+import styled, {ThemeContext} from 'styled-components/native';
+import {ETASimpleText, ETAAvatar} from '@etaui';
 // import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 // import eoLocale from 'date-fns/locale/es';
 
-const avatarSize = 35;
-const avatarRadius = avatarSize / 2;
-
 const Root = styled.View`
-    height: 50px;
-    flexDirection: row;
-    alignItems: center;
+  height: 50px;
+  flexDirection: row;
+  alignItems: center;
 `;
 const AvatarContainer = styled.View`
     flex: 0.2
@@ -20,61 +17,59 @@ const AvatarContainer = styled.View`
     alignSelf: stretch;
 `;
 const MetaContainer = styled.View`
-    flex:1;
-    alignSelf: stretch;
-    marginTop: 5px
+  flex: 1;
+  alignSelf: stretch;
+  marginTop: 5px;
 `;
 const MetaTopContainer = styled.View`
-    flex: 1;
-    alignSelf: stretch;
-    flexDirection: column;
-    alignItems: flex-start;
-    justifyContent: flex-start;
-    marginTop: 10px;
+  flex: 1;
+  alignSelf: stretch;
+  flexDirection: column;
+  alignItems: flex-start;
+  justifyContent: flex-start;
+  marginTop: 10px;
 `;
 const MetaBottomContainer = styled.View`
-    flex: 0.8;
-    alignSelf: stretch;
-    alignItems: flex-start;
-    justifyContent: center;
-`;
-const MetaHeaderTextTitle = styled.Text`
-    fontSize: 20px;
-    fontWeight: 700;
-    color: ${props => props.theme.PRIMARY_TEXT_COLOR};
-`;
-const MetaHeaderText = styled.Text`
-    fontSize: 18px;
-    fontWeight: 500;
-    color: ${props => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
-    marginLeft: 5px;
+  flex: 0.8;
+  alignSelf: stretch;
+  alignItems: flex-start;
+  justifyContent: center;
 `;
 
-const CardHeader = ({ username, firstname, lastname, avatar, createdAt }) => {
-    const themeContext = useContext(ThemeContext);
+const CardHeader = ({username, firstname, lastname}) => {
+  // , avatar, createdAt
+  const themeContext = useContext(ThemeContext);
 
-    return(
-        <Root>
-            <AvatarContainer>
-              <ETAAvatar size='small' />
-            </AvatarContainer>
-            <MetaContainer>
-                <MetaTopContainer>
-                    <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.LINK} align={'left'}>
-                        @{username}
-                    </ETASimpleText>
-                    <ETASimpleText size={16} weight={Platform.OS === 'ios' ? '600' : '500'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
-                        {firstname} {lastname}
-                    </ETASimpleText>
-                </MetaTopContainer>
-                <MetaBottomContainer>
-                    {/* <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
+  return (
+    <Root>
+      <AvatarContainer>
+        <ETAAvatar size="small" />
+      </AvatarContainer>
+      <MetaContainer>
+        <MetaTopContainer>
+          <ETASimpleText
+            size={14}
+            weight={Platform.OS === 'ios' ? '500' : '300'}
+            color={themeContext.LINK}
+            align={'left'}>
+            @{username}
+          </ETASimpleText>
+          <ETASimpleText
+            size={15}
+            weight={Platform.OS === 'ios' ? '500' : '400'}
+            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+            align={'left'}>
+            {firstname} {lastname}
+          </ETASimpleText>
+        </MetaTopContainer>
+        <MetaBottomContainer>
+          {/* <ETASimpleText size={14} weight={Platform.OS === 'ios' ? '500' : '300'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'left'}>
                         hace {distanceInWordsToNow(createdAt, {locale: eoLocale})}
                     </ETASimpleText> */}
-                </MetaBottomContainer>
-            </MetaContainer>
-        </Root>
-    )
-}
+        </MetaBottomContainer>
+      </MetaContainer>
+    </Root>
+  );
+};
 
 export default CardHeader;

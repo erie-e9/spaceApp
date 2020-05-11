@@ -1,0 +1,41 @@
+{
+    "data": [
+
+        {
+            "_id": 1,
+            "name": " cat 1",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_chocolateSeaSaltCaramel_thumb.png",
+            "link": ""
+        },
+        {
+            "_id": 2,
+            "name": " cat 2",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_coldBrewExpressoChip_thumb.png",
+            "link": ""
+        },
+        {
+            "_id": 3,
+            "name": " cat 3",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_peanutButterChip_thumb.png",
+            "link": ""
+        },
+        {
+            "_id": 4,
+            "name": " cat 4",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_strawberryWaffleCone_thumb.png",
+            "link": ""
+        },
+        {
+            "_id": 5,
+            "name": " cat 5",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD_WebPintCurl_HnySaltCarmAlmond_553x562.jpg",
+            "link": ""
+        },
+        {
+            "_id": 6,
+            "name": " cat 6",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD_WebPintCurl_TrioLemonRaspWhtChoc_553x562_0.jpg",
+            "link": ""
+        }
+    ]
+}
