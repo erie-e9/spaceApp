@@ -6,7 +6,6 @@ import {ETASimpleText} from '@etaui';
 const {width, height} = Dimensions.get('window');
 
 const Root = styled.View`
-  flex: 1;
   width: ${width - 20}px;
   height: ${height / 5}px;
   backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
@@ -16,7 +15,7 @@ const Root = styled.View`
   shadowColor: #000;
   shadowOpacity: 0;
   shadowRadius: 3px;
-  elevation: 5;
+  elevation: 0;
 `;
 // shadowOffset: ${{width: 0.5, height: 0.5}};
 const ItemImage = styled.Image`
@@ -41,31 +40,31 @@ const ETACarouselItem = ({item}) => {
       <ContentWrapper>
         <ETASimpleText
           size={18}
-          weight="700"
-          color="white"
+          weight='700'
+          color='white'
           align={'center'}
           style={{
             shadowColor: '#000',
-            shadowOffset: {width: 0.8, height: 0.8},
-            shadowOpacity: 0.7,
+            shadowOffset: {width: 1, height: 1.2},
+            shadowOpacity: 0.8,
             shadowRadius: 3,
             marginBottom: 2,
-            elevation: 5,
+            elevation: 4,
           }}>
           {item.title}
         </ETASimpleText>
         <ETASimpleText
           size={14}
-          weight="400"
-          color="white"
+          weight='400'
+          color='white'
           align={'center'}
           style={{
             shadowColor: '#000',
-            shadowOffset: {width: 0.8, height: 0.8},
-            shadowOpacity: 0.7,
-            shadowRadius: 3,
+            shadowOffset: {width: 1, height: 1.2},
+            shadowOpacity: 0.8,
+            shadowRadius: 2,
             marginBottom: 5,
-            elevation: 5,
+            elevation: 4,
           }}>
           {item.description}
         </ETASimpleText>

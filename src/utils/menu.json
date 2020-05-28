@@ -1,59 +1,16 @@
 {
-    "promos": [
+    "menu1": [
         {
             "_id": 1,
-            "bannerImages": [
-                {
-                    "image": "image1.jpg"
-                }
-            ],
-            "bannerImageWebps": [
-                {
-                    "image": "image1.jpg"
-                }
-            ],
+            "name": "Banana Split Dazzler",
+            "details": "Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.",
+            "rating": 5,
             "link": "",
-            "price": "",
-            "disccount": 1
-        },
-        {
-            "_id": 2,
-            "bannerImages": [
-                {
-                    "image": "image1.jpg"
-                }
-            ],
-            "bannerImageWebps": [
-                {
-                    "image": "image1.jpg"
-                }
-            ],
-            "link": "",
-            "price": "",
-            "disccount": 1
-        },
-        {
-            "_id": 3,
-            "bannerImages": [
-                {
-                    "image": "image1.jpg"
-                }
-            ],
-            "bannerImageWebps": [
-                {
-                    "image": "image1.jpg"
-                }
-            ],
-            "link": "",
-            "price": "",
-            "disccount": 1
-        }
-    ],
-
-    "menu": [
-        {
-            "_id": 1,
-            "name": "item 1",
+            "icon": "",
+            "price": 123,
+            "discount": 60,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-BSDDazzler_Olo_0.png"
@@ -63,15 +20,19 @@
                 {
                     "imageWeb": "item1.webp"
                 }
-            ],
-            "link": "",
-            "icon": "",
-            "price": 123,
-            "disccount": 2
+            ]
         },
         {
             "_id": 2,
-            "name": "item 2",
+            "name": "Cookies & Cream Dazzler",
+            "details": "Cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and cookie crunch. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 0,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-cookies-n-cream.png"
@@ -81,15 +42,19 @@
                 {
                     "imageWeb": "item2.webp"
                 }
-            ],
-            "link": "",
-            "icon": "",
-            "price": 123,
-            "disccount": 2
+            ]
         },
         {
             "_id": 3,
-            "name": "item 3",
+            "name": "Dulce de Leche Dazzler",
+            "details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 12,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-dulce-de-leche.png"
@@ -99,15 +64,19 @@
                 {
                     "imageWeb": "item3.webp"
                 }
-            ],
-            "link": "",
-            "icon": "",
-            "price": 123,
-            "disccount": 2
+            ]
         },
         {
             "_id": 4,
-            "name": "item 4",
+            "name": "Midnight Cookies & Cream Dazzler",
+            "details": "Midnight cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and hot fudge. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 15,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-midnight-cookies-n-cream.png"
@@ -117,15 +86,19 @@
                 {
                     "imageWeb": "item4.webp"
                 }
-            ],
-            "link": "",
-            "icon": "",
-            "price": 123,
-            "disccount": 2
+            ]
         },
         {
             "_id": 5,
-            "name": "item 4",
+            "name": "Mint Chip Dazzler",
+            "details": "Mint chip ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate sprinkles. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 0,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-mint-chip%20%281%29.png"
@@ -135,15 +108,19 @@
                 {
                     "imageWeb": "item4.webp"
                 }
-            ],
-            "link": "",
-            "icon": "",
-            "price": 123,
-            "disccount": 2
+            ]
         },
         {
             "_id": 6,
-            "name": "item 6",
+            "name": "Rocky Road Dazzler",
+            "details": "Rocky road ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate cookie crunch. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 2,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png"
@@ -153,15 +130,22 @@
                 {
                     "imageWeb": "item6.webp"
                 }
-            ],
+            ]
+        }
+    ],
+    "menu2": [],
+    "menu3": [
+        {
+            "_id": 1,
+            "name": "Belgian Chocolate Shake",
+            "details": "Belgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.",
+            "rating": 5,
             "link": "",
             "icon": "",
             "price": 123,
-            "disccount": 2
-        },
-        {
-            "_id": 7,
-            "name": "item 7",
+            "discount": 2,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-belgian-chocolate.png"
@@ -171,15 +155,19 @@
                 {
                     "imageWeb": "item7.webp"
                 }
-            ],
+            ]
+        },
+        {
+            "_id": 2,
+            "name": "Cookies and Cream Shake",
+            "details": "Pieces of crunchy chocolate cookies in vanilla ice cream blended and topped with whipped cream and cookie crunch. Served with toppings.",
+            "rating": 5,
             "link": "",
             "icon": "",
             "price": 123,
-            "disccount": 2
-        },
-        {
-            "_id": 8,
-            "name": "item 8",
+            "discount": 0,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-cookiesncream.png"
@@ -189,15 +177,19 @@
                 {
                     "imageWeb": "item8.webp"
                 }
-            ],
+            ]
+        },
+        {
+            "_id": 3,
+            "name": "Dulce de Leche Shake",
+            "details": "Sweet caramel ice cream blended and topped with whipped cream and warm caramel. Served with toppings.",
+            "rating": 5,
             "link": "",
             "icon": "",
             "price": 123,
-            "disccount": 2
-        },
-        {
-            "_id": 9,
-            "name": "item 9",
+            "discount": 0,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-dulcedeleche.png"
@@ -207,33 +199,21 @@
                 {
                     "imageWeb": "item9.webp"
                 }
-            ],
+            ]
+        }
+    ],
+    "menu4": [
+        {
+            "_id": 1,
+            "name": "Coffee Frappes",
+            "details": "Chilled beverage blending coffee ice cream with ice, milk, espresso and syrup. Finished with a chocolate or caramel drizzle. Available in Coffee, Dulce and Mocha.",
+            "rating": 5,
             "link": "",
             "icon": "",
             "price": 123,
-            "disccount": 2
-        },
-        {
-            "_id": 10,
-            "name": "item 10",
-            "images": [
-                {
-                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Smoothies.png"
-                }
-            ],
-            "imageWebps": [
-                {
-                    "imageWeb": "item10.webp"
-                }
-            ],
-            "link": "",
-            "icon": "",
-            "price": 123,
-            "disccount": 2
-        },
-        {
-            "_id": 11,
-            "name": "item 11",
+            "discount": 15,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Coffee-Frapee-.png"
@@ -243,15 +223,43 @@
                 {
                     "imageWeb": "item11.webp"
                 }
-            ],
+            ]
+        },
+        {
+            "_id": 2,
+            "name": "Aloha Mango",
+            "details": "Peaches and banana with mango sorbet and pineapple juice and vanilla yogurt.",
+            "rating": 5,
             "link": "",
             "icon": "",
             "price": 123,
-            "disccount": 2
-        },
+            "discount": 10,
+            "calories": 143,
+            "weight": 143,
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Smoothies.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item10.webp"
+                }
+            ]
+        }
+    ],
+    "menu5": [
         {
             "_id": 12,
-            "name": "item 12",
+            "name": "Brownie Cookie Sandwiches",
+            "details": "Brownie Cookies perfectly paired with the ice cream and topping of your choosing.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 20,
+            "calories": 143,
+            "weight": 143,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Brownie-Cookie-Ice-Cream-Sandwich.png"
@@ -261,11 +269,7 @@
                 {
                     "imageWeb": "item12.webp"
                 }
-            ],
-            "link": "",
-            "icon": "",
-            "price": 123,
-            "disccount": 2
+            ]
         }
     ]
 }

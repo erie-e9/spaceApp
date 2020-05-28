@@ -4,19 +4,18 @@ import {StatusBar, useColorScheme} from 'react-native';
 import {ETANetInfo} from '@etaui';
 import {Context} from '@context';
 import SigninStackScreen from './SigninStack';
-import BottomTabNavigator from './BottomTabNavigator';
+import ShopTabNavigator from './ShopTabNavigator';
 import SplashScreen from '@components/commons/SplashScreen';
 import {lightTheme, darkTheme} from '@utils/constants';
 
 ////////////////////////////////////////////////////////////
-const Navbar = () => {
+const Navigation = () => {
   const {restoreToken, state} = useContext(Context);
   const colorSchema = useColorScheme();
 
   useEffect(() => {
     setTimeout(() => {
       restoreToken();
-      console.warn('Navbar', state);
     }, 2000);
   }, []);
 
@@ -29,15 +28,19 @@ const Navbar = () => {
       <StatusBar
         backgroundColor={
           colorSchema === 'dark'
-            ? darkTheme.PRIMARY_COLOR
+            ? darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR
             : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR
         }
-        barStyle="dark-content"
+        barStyle={
+          colorSchema === 'dark'
+          ? 'light-content'
+          : 'dark-content'
+        }
         hidden={false}
       />
       <ETANetInfo />
       {state.userToken !== null ? (
-        <BottomTabNavigator />
+        <ShopTabNavigator />
       ) : (
         <SigninStackScreen />
       )}
@@ -45,4 +48,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navigation;

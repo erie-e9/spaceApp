@@ -27,7 +27,7 @@ const Root = styled.View`
   alignItems: center;
 `;
 const FormContainer = styled.View`
-  flex: 1;
+  flex: 0.7;
   flexDirection: column;
   display: flex;
   justifyContent: center;
@@ -40,8 +40,7 @@ const ButtonSigninContainer = styled.View`
 const RecoverTextContainer = styled.View`
   justifyContent: center;
   alignItems: center;
-  marginHorizontal: 50px;
-  marginTop: 55px;
+  marginTop: 15px;
 `;
 
 const ForgetPasswordScreen = () => {
@@ -84,29 +83,29 @@ const ForgetPasswordScreen = () => {
           <FormContainer>
             <ETATextInputOutline
               value={values.cellphone}
-              placeholder="Cellphone"
-              placeholderTextColor="#777"
-              keyboardType="phone-pad"
-              autoCapitalize="none"
+              placeholder='Cellphone'
+              placeholderTextColor='#777'
+              keyboardType='phone-pad'
+              autoCapitalize='none'
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={true}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode="while-editing"
+              clearButtonMode='while-editing'
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid="transparent"
-              keyboardAppearance="dark"
+              underlineColorAndroid='transparent'
+              keyboardAppearance='dark'
               maxLength={10}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel="next" //android
+              returnKeyLabel='next' //android
               secureTextEntry={false} //password
               spellCheck={true}
-              textContentType="none"
-              returnKeyType="next"
+              textContentType='none'
+              returnKeyType='next'
               textsize={14}
               height={40}
               width={240}

@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import styled, {ThemeContext} from 'styled-components/native';
 import {Easing} from 'react-native';
-import styled from 'styled-components/native';
 import {
   createStackNavigator,
   // TransitionPresets,
   // CardStyleInterpolators,
 } from '@react-navigation/stack';
 import {FontAwesome} from '@commons/Icons';
-import AuthScreen from '@screens/AuthScreen';
-import ForgetPasswordScreen from '@screens/ForgetPasswordScreen';
-import SignupScreen from '@screens/SignupScreen';
+import AuthScreen from '@screens/Auth/AuthScreen';
+import ForgetPasswordScreen from '@screens/Auth/ForgetPasswordScreen';
+import SignupScreen from '@screens/Auth/SignupScreen';
 
 const config = {
   animation: 'spring',
@@ -38,10 +38,12 @@ const Touchable = styled.TouchableOpacity`
 /** Auth screens - No logged */
 const SigninStack = createStackNavigator();
 const SigninStackScreen = () => {
+  const themeContext = useContext(ThemeContext);
+
   return (
     <SigninStack.Navigator
       // initialRouteName='Home'
-      mode="modal"
+      mode='modal'
       // headerMode='none'
       screenOptions={{
         gestureEnabled: true,
@@ -66,7 +68,7 @@ const SigninStackScreen = () => {
       // animation='fade'
     >
       <SigninStack.Screen
-        name="AuthScreen"
+        name='AuthScreen'
         component={AuthScreen}
         options={{
           title: 'AuthScreen',
@@ -77,7 +79,7 @@ const SigninStackScreen = () => {
       />
 
       <SigninStack.Screen
-        name="SignupScreen"
+        name='SignupScreen'
         component={SignupScreen}
         options={({navigation, route}) => ({
           title: 'New account',
@@ -85,7 +87,7 @@ const SigninStackScreen = () => {
           headerLeft: () => {
             return (
               <Touchable onPress={navigation.goBack}>
-                <FontAwesome name="angle-double-left" size={24} color="gray" />
+                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_BACKGROUND_COLOR}/>
               </Touchable>
             );
           },
@@ -95,7 +97,7 @@ const SigninStackScreen = () => {
       />
 
       <SigninStack.Screen
-        name="ForgetPasswordScreen"
+        name='ForgetPasswordScreen'
         component={ForgetPasswordScreen}
         options={({navigation, route}) => ({
           title: 'Forget Password',
@@ -103,7 +105,7 @@ const SigninStackScreen = () => {
           headerLeft: () => {
             return (
               <Touchable onPress={navigation.goBack}>
-                <FontAwesome name="angle-double-left" size={24} color="gray" />
+                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_BACKGROUND_COLOR}/>
               </Touchable>
             );
           },

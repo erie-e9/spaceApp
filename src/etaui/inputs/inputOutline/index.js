@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
 
 const TextInputContainer = styled.View`
-  backgroundColor: transparent;
+  borderRadius: 30px;
   marginVertical: 5px;
   marginHorizontal: 5px;
   paddingHorizontal: 5px;
@@ -11,17 +11,15 @@ const TextInputContainer = styled.View`
   alignItems: center;
   alignSelf: center;
   alignContent: center;
-  paddingHorizontal: 25px;
   borderWidth: 0.3px;
   borderColor: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
   borderRadius: 3px;
 `;
 const TextInput = styled.TextInput.attrs({})`
-  width: ${(props) => (props.width ? props.width : 300)}px;
+  width: ${(props) => (props.width ? props.width: 300)}px;
   height: ${(props) => (props.height ? props.height : 40)}px;
   fontSize: ${(props) => (props.textsize ? props.textsize : 14)}px;
   color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
-  margin: 5px;
   justifyContent: center;
   alignItems: center;
   alignSelf: center;

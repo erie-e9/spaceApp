@@ -21,7 +21,7 @@ const CardBottom = () => {
   return (
     <Root>
       <ETAButtonFilled
-        title="RENOVAR MI CRÉDITO"
+        title='RENOVAR MI CRÉDITO'
         onPress={handleSubmit}
         disabled={isSubmitting ? true : false}
         colorButton={themeContext.SUCCESS_COLOR}

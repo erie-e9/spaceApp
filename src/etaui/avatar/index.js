@@ -9,7 +9,7 @@ const AvatarContainer = styled.View``;
 const Avatar = styled.Image``;
 
 const ETAAvatar = ({avatar, size}) => {
-  const avatarSizeMiddle = 50;
+  const avatarSizeMiddle = 45;
   const avatarSizeSmall = 30;
 
   return (

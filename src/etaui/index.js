@@ -11,6 +11,7 @@ import ETACard from '@etaui/card';
 import ETAAvatar from '@etaui/avatar';
 import ETANetInfo from '@etaui/netInfo';
 import ETACarousel from '@etaui/carousel';
+import ETASearchBar from '@etaui/searchbar'
 
 export {
   ETAButtonFilled,
@@ -26,4 +27,5 @@ export {
   ETAAvatar,
   ETANetInfo,
   ETACarousel,
+  ETASearchBar
 };

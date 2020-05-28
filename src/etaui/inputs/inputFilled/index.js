@@ -6,7 +6,6 @@ const TextInputContainer = styled.View`
   borderRadius: 30px;
   marginVertical: 5px;
   marginHorizontal: 5px;
-  paddingHorizontal: 5px;
   flexDirection: row;
   justifyContent: center;
   alignItems: center;

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,useRef} from 'react';
 import {Animated, Dimensions} from 'react-native';
 import styled from 'styled-components';
 import ETACarouselItem from './item';
@@ -14,50 +14,53 @@ const DotCarousel = styled.View`
 `;
 const Touchable = styled.TouchableHighlight``;
 
-let flatList;
-const infiniteScroll = (dataList) => {
-  const numberOfData = dataList.length;
-  let scrollValue = 0,
-    scrolled = 0;
-
-  setInterval(function () {
-    scrolled++;
-    if (scrolled < numberOfData) {
-      scrollValue = scrollValue + width;
-    } else {
-      scrollValue = 0;
-      scrolled = 0;
-    }
-
-    this.flatList.scrollToOffset({animated: true, offset: scrollValue});
-  }, 5000);
-};
-
 const ETACarousel = ({posts}) => {
   const [dataList, setdataList] = useState([]);
   const scrollX = new Animated.Value(0);
+  const flatList = useRef(null)
   let position = Animated.divide(scrollX, width);
 
   useEffect(() => {
     setdataList(defaultData.data);
     infiniteScroll(dataList);
-  });
+  }, []);
+
+
+const infiniteScroll = (datalist) => {
+  const numberOfData = 4;
+  let scrollValue = 0
+  let scrolled = 0;
+
+  setInterval(function () {
+    
+    scrolled++;
+
+    if (scrolled < numberOfData) {
+      scrollValue = scrollValue + 1;
+      
+    } else {
+      scrollValue = 0;
+      scrolled = 0;
+    }
+
+    flatList.current.scrollToIndex({animated: true, index: scrollValue})
+    // flatList.scrollView({animated: true, offset: scrollValue});
+  }, 5000);
+};
 
   return (
     <Root>
       {dataList && dataList.length ? (
         <>
           <CarouselList
-            ref={(flatList) => {
-              this.flatList = flatList;
-            }}
+            ref={flatList}
             data={posts ? posts : dataList}
             keyExtractor={(item) => item._id.toString()}
             horizontal
             pagingEnabled
-            snapToAlignment="center"
+            snapToAlignment='center'
             scrollEventThrottle={16}
-            decelerationRate="fast"
+            decelerationRate='fast'
             showsHorizontalScrollIndicator={false}
             onScroll={Animated.event(
               [

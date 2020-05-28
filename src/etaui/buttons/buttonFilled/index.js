@@ -47,7 +47,7 @@ const ETAButtonFilled = ({
           ) : (
             <ETASimpleText
               size={14}
-              weight="500"
+              weight='500'
               color={colorButton === 'white' ? 'gray' : 'white'}
               align={align}>
               {title ? title : 'Text'}

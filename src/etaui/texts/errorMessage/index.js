@@ -14,7 +14,7 @@ const ETAErrorMessage = ({children, size}) => {
       <Root>
         <ETASimpleText
           size={size}
-          weight="500"
+          weight='500'
           color={themeContext.FAIL_COLOR}
           align={'left'}>
           {children}
