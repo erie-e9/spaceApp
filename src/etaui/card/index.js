@@ -16,10 +16,6 @@ const Root = styled.View`
   marginVertical: 0.5px;
 `;
 
-// shadowOffset: 0px 2px;
-// shadowRadius: 2px;
-// shadowOpacity: 0.1;
-
 const ETACard = ({text, client, createdAt, favoriteCount}) => {
   return (
     <Root>
