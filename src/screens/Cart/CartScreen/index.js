@@ -1,23 +1,18 @@
 import React from 'react';
-import {Platform} from 'react-native';
 import styled from 'styled-components/native';
-import {ETASimpleText} from '@etaui';
+import CartListComponent from '@components/Cart/CartListComponent';
+import CartDetailsComponent from '@components/Cart/CartDetailsComponent';
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  alignItems: center;
+  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 
 const CartScreen = () => {
   return (
     <Root>
-      <ETASimpleText
-        size={14}
-        weight={Platform.OS === 'ios' ? '700' : '600'}
-        align={'left'}>
-        Cart
-      </ETASimpleText>
+        <CartListComponent />
+        <CartDetailsComponent />
     </Root>
   );
 };

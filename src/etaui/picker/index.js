@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import {View} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import RNPickerSelect, {defaultStyles} from 'react-native-picker-select';
-import {Ionicons} from '@commons/Icons';
+import {Ionicons} from '@icons';
 
 const Root = styled.View`
   flex: 1;
@@ -25,7 +25,7 @@ const PickerContainer = styled.View`
   alignSelf: center;
   alignContent: center;
   paddingHorizontal: 15px;
-  shadowColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR};
+  shadowColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   shadowOpacity: 0.4;
   shadowRadius: 1.4px;
   elevation: 2.5;

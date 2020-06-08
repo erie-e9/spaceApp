@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Formik} from 'formik';
 import * as yup from 'yup';
-import {Entypo} from '@commons/Icons';
+import {Entypo} from '@icons';
 import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui';
 import {Context} from '@context';
 

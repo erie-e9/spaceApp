@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {Platform} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {Platform, Animated} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 import {ETASimpleText, ETAHeaderText} from '@etaui';
@@ -7,18 +7,18 @@ import GeneralItemComponent from '@components/Menu/GeneralItemComponent';
 
 const Root = styled.View`
   justifyContent: center;
-  marginTop: 10px;
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  paddingVertical: 10px;
   borderTopRightRadius: 5px;
   borderTopLeftRadius: 5px;
+  paddingVertical: 10px;
+  marginBottom: 12px;
 `;
 const HeadContainer = styled.View`
   flex: 1;
   flexDirection: row;
   justifyContent: space-between;
   alignItems: center;
-  margin: 10px;
+  margin: 10px 7px 5px 5px;
   paddingHorizontal: 10px;
 `;
 const ListContainer = styled.View`
@@ -27,14 +27,32 @@ const ListContainer = styled.View`
   justifyContent: center;
   alignItems: center;
 `;
+const MenuListItemsList = styled.FlatList``;
 const Touchable = styled.TouchableOpacity`
-  zIndex: 100
+  zIndex: 100;
 `;
-const MenuListItems = styled.FlatList``;
 
 const MenuList = ({data, title}) => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
+  const [ items ] = useState(data.slice(0, 4)); //slice: only first 4 items
+  const [ animatedValueTransform ] = useState(new Animated.Value(0));
+  const [ opacity ] = useState(new Animated.Value(0));
+  let delayValue = 2000;  
+
+  useEffect(() => {
+    Animated.spring(animatedValueTransform, {
+      toValue: 1,
+      tension: 10,
+      useNativeDriver: true
+    }).start();
+
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true
+    }).start();
+  }, [])
 
   const _onPressAllItems = (item) => {
     console.log('_onPressAllItems pressed:', item);
@@ -61,19 +79,20 @@ const MenuList = ({data, title}) => {
   return (
     <>
     {
-      data.length > 0
+      items.length > 0
       ? <Root>
           <HeadContainer>
             <ETAHeaderText
-              size={15}
+              size={14}
               weight='700'
-              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}>
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+              align={'left'}>
               {title}
             </ETAHeaderText>
             <Touchable onPress={() => _onPressAllItems(title)}>
               <ETASimpleText
-                size={14}
-                weight={Platform.OS === 'ios' ? '500' : '300'}
+                size={13}
+                weight={Platform.OS === 'ios' ? '400' : '300'}
                 color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                 align={'left'}>
                 See more
@@ -81,15 +100,15 @@ const MenuList = ({data, title}) => {
             </Touchable>
           </HeadContainer>
           <ListContainer>
-            <MenuListItems
+            <MenuListItemsList
               contentContainerStyle={{
                 flexDirection: 'column',
               }}
-              data={data}
+              data={items}
               keyExtractor={(item) => item._id.toString()}
               horizontal={!true}
               numColumns={2}
-              initialNumToRender={2}
+              initialNumToRender={4}
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
               ListEmptyComponent={() => {
@@ -101,7 +120,7 @@ const MenuList = ({data, title}) => {
                     align={'left'}>
                     Empty list 
                 </ETASimpleText>
-                )
+                );
               }}
               ListFooterComponent={() => {
                 return (
@@ -110,11 +129,25 @@ const MenuList = ({data, title}) => {
                     weight={Platform.OS === 'ios' ? '500' : '300'}
                     color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                     align={'left'}>
-                    Price subject to change without notice
+                    Prices subject to change without notice
                 </ETASimpleText>
                 )
               }}
-              renderItem={({item}) => <Touchable key={item._id} onPress={() => _onPressItem(item)}><GeneralItemComponent item={item} /></Touchable>}
+              renderItem={({item}) => {
+                delayValue = delayValue + 1000;
+                const translateY = animatedValueTransform.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [delayValue, 1]
+                });
+
+                return (
+                  <Touchable key={item._id} onPress={() => _onPressItem(item)}>
+                    <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+                      <GeneralItemComponent item={item} />
+                    </Animated.View>
+                  </Touchable>
+                );
+              }}
             />
           </ListContainer>
         </Root>

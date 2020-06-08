@@ -3,13 +3,16 @@ import {UIManager, SafeAreaView, useColorScheme} from 'react-native';
 import {ThemeProvider} from 'styled-components';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigation from '@components/commons/Navigation';
+import {Provider as AuthProvider} from '@context';
 import {
   lightTheme,
   darkTheme,
   navLightMode,
   navDarkMode,
 } from '@utils/constants';
-import {Provider as AuthProvider} from '@context';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens();
 
 if (UIManager.setLayoutAnimationEnabledExperimental) {
   UIManager.setLayoutAnimationEnabledExperimental(true);

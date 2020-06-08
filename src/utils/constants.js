@@ -1,10 +1,10 @@
 export const URL = 'http://myapiuri.com/api/controller';
 export const fakeavatar = 'https://randomuser.me/api/portraits/women/10.jpg';
-const SLUG = 'exitusmovil';
+const SLUG = 'iceCream';
 
 export const variables = {
-  COMPANYNAME: 'Exitus Credit',
-  COMPANYSLOGAN: 'Exitus Credit slogan',
+  COMPANYNAME: 'iceCream',
+  COMPANYSLOGAN: 'iceCream slogan',
   COMPANYURL: `https://www.${SLUG}.com`,
   COMPANYMAIL: `help@${SLUG}.com`,
   AVATAR_USER_DEFAULT:
@@ -71,9 +71,10 @@ export const darkTheme = {
   THIRD_BACKGROUND_COLOR_LIGHT: '#333333',
 
   FOURTH_BACKGROUND_COLOR: '#EFEFF4',
-  FOURTH_BACKGROUND_COLOR_LIGHT: '#3D3D3D',
+  FOURTH_BACKGROUND_COLOR_LIGHT: '#262626', //background navigation
 
   REDGRAY: 'rgba(237, 41, 57, 1)',
+  REDBADGE: 'rgba(230, 0, 0, 1)',
   SUCCESS_COLOR: 'rgba(0, 255, 0, 1)',
   FAIL_COLOR: 'rgba(255, 0, 0, 1)',
   LINK: '#2196F3',
@@ -105,9 +106,10 @@ export const lightTheme = {
   THIRD_BACKGROUND_COLOR_LIGHT: '#FFFFFF',
 
   FOURTH_BACKGROUND_COLOR: '#EFEFF4',
-  FOURTH_BACKGROUND_COLOR_LIGHT: '#F1F1F1',
+  FOURTH_BACKGROUND_COLOR_LIGHT: '#F1F1F1', //background navigation
 
   REDGRAY: 'rgba(141, 148, 158, 1)',
+  REDBADGE: 'rgba(230, 0, 0, 1)',
   SUCCESS_COLOR: 'rgba(0, 125, 0, 1)',
   FAIL_COLOR: 'rgba(255, 0, 0, 1)',
   LINK: '#2196F3',

@@ -1,12 +1,9 @@
-import React, {useState, useContext} from 'react';
-import {Dimensions} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {Animated} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText} from '@etaui';
-import {Ionicons, FontAwesome} from '@icons';
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent';
-
-const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 1;
@@ -17,13 +14,30 @@ const Root = styled.View`
 const Touchable = styled.TouchableOpacity`
   zIndex: 100;
 `;
-const CategorytItems = styled.FlatList``;
+const CategorytItemsList = styled.FlatList``;
 
 const AllItemsComponent = () => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
   const route = useRoute();
   const { allitems } = route.params.params;
+  const [ animatedValueTransform ] = useState(new Animated.Value(0.7));
+  const [ opacity ] = useState(new Animated.Value(0));
+  let delayValue = 1000;
+
+  useEffect(() => {
+    Animated.spring(animatedValueTransform, {
+      toValue: 1,
+      tension: 5,
+      useNativeDriver: true
+    }).start();
+    
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: true
+    }).start();
+  }, [])
 
   const _onPressItem = (item) => {
     navigation.navigate('GetOneItemScreen', {
@@ -37,7 +51,7 @@ const AllItemsComponent = () => {
 
   return (
     <Root>
-      <CategorytItems
+      <CategorytItemsList
         contentContainerStyle={{
           flexDirection: 'column',
         }}
@@ -57,20 +71,35 @@ const AllItemsComponent = () => {
               align={'left'}>
               Empty list 
           </ETASimpleText>
-          )
+          );
         }}
-        ListFooterComponent={() => {
-          return (
-            <ETASimpleText
-              size={7}
-              weight={Platform.OS === 'ios' ? '500' : '300'}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              align={'left'}>
-              Go to up
-          </ETASimpleText>
-          )
+        // ListFooterComponent={() => {
+        //   return (
+        //     <ETASimpleText
+        //       size={7}
+        //       weight={Platform.OS === 'ios' ? '500' : '300'}
+        //       color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+        //       align={'left'}>
+        //       Go to up
+        //   </ETASimpleText>
+        //   );
+        // }}
+        renderItem={({item}) => {
+          delayValue + 1000;
+          const translateY = animatedValueTransform.interpolate({
+            inputRange: [0, 1],
+            outputRange:[delayValue, 1],
+            extrapolate: 'clamp'
+          });
+          
+           return(
+            <Touchable key={item._id} onPress={() => _onPressItem(item)}>
+              <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+                <GeneralItemComponent item={item} />
+              </Animated.View>
+            </Touchable>
+           );
         }}
-        renderItem={({item}) => <Touchable key={item._id} onPress={() => _onPressItem(item)}><GeneralItemComponent item={item} /></Touchable>}
       />
     </Root>
   );

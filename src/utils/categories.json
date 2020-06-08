@@ -1,0 +1,47 @@
+{
+    "data": [
+
+        {
+            "_id": 1,
+            "name": "Chocolate",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_chocolateSeaSaltCaramel_thumb.png",
+            "link": "",
+            "isNew": true
+        },
+        {
+            "_id": 2,
+            "name": "Nut",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_coldBrewExpressoChip_thumb.png",
+            "link": "",
+            "isNew": false
+        },
+        {
+            "_id": 3,
+            "name": "Vanilla",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_peanutButterChip_thumb.png",
+            "link": "",
+            "isNew": true
+        },
+        {
+            "_id": 4,
+            "name": "Strawberry",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_strawberryWaffleCone_thumb.png",
+            "link": "",
+            "isNew": false
+        },
+        {
+            "_id": 5,
+            "name": "Maple",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD_WebPintCurl_HnySaltCarmAlmond_553x562.jpg",
+            "link": "",
+            "isNew": false
+        },
+        {
+            "_id": 6,
+            "name": "Carlotta",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD_WebPintCurl_TrioLemonRaspWhtChoc_553x562_0.jpg",
+            "link": "",
+            "isNew": true
+        }
+    ]
+}

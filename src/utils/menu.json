@@ -3,7 +3,7 @@
         {
             "_id": 1,
             "name": "Banana Split Dazzler",
-            "details": "Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.",
+            "details": "Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge  ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.",
             "rating": 5,
             "link": "",
             "icon": "",
@@ -11,6 +11,8 @@
             "discount": 60,
             "calories": 143,
             "weight": 143,
+            "isFavorite": false,
+            "isNew": false,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-BSDDazzler_Olo_0.png"
@@ -29,10 +31,12 @@
             "rating": 5,
             "link": "",
             "icon": "",
-            "price": 123,
+            "price": 101,
             "discount": 0,
             "calories": 143,
             "weight": 143,
+            "isFavorite": true,
+            "isNew": true,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-cookies-n-cream.png"
@@ -47,14 +51,16 @@
         {
             "_id": 3,
             "name": "Dulce de Leche Dazzler",
-            "details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings",
+            "details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings.",
             "rating": 5,
             "link": "",
             "icon": "",
-            "price": 123,
+            "price": 143,
             "discount": 12,
             "calories": 143,
             "weight": 143,
+            "isFavorite": false,
+            "isNew": false,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-dulce-de-leche.png"
@@ -73,10 +79,12 @@
             "rating": 5,
             "link": "",
             "icon": "",
-            "price": 123,
+            "price": 193,
             "discount": 15,
             "calories": 143,
             "weight": 143,
+            "isFavorite": true,
+            "isNew": true,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-midnight-cookies-n-cream.png"
@@ -95,10 +103,12 @@
             "rating": 5,
             "link": "",
             "icon": "",
-            "price": 123,
+            "price": 93,
             "discount": 0,
             "calories": 143,
             "weight": 143,
+            "isFavorite": true,
+            "isNew": true,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-mint-chip%20%281%29.png"
@@ -121,6 +131,8 @@
             "discount": 2,
             "calories": 143,
             "weight": 143,
+            "isFavorite": false,
+            "isNew": false,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png"
@@ -146,6 +158,8 @@
             "discount": 2,
             "calories": 143,
             "weight": 143,
+            "isFavorite": false,
+            "isNew": false,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-belgian-chocolate.png"
@@ -168,6 +182,8 @@
             "discount": 0,
             "calories": 143,
             "weight": 143,
+            "isFavorite": true,
+            "isNew": true,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-cookiesncream.png"
@@ -190,6 +206,8 @@
             "discount": 0,
             "calories": 143,
             "weight": 143,
+            "isFavorite": false,
+            "isNew": false,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-dulcedeleche.png"
@@ -214,6 +232,8 @@
             "discount": 15,
             "calories": 143,
             "weight": 143,
+            "isFavorite": true,
+            "isNew": true,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Coffee-Frapee-.png"
@@ -236,6 +256,8 @@
             "discount": 10,
             "calories": 143,
             "weight": 143,
+            "isFavorite": true,
+            "isNew": true,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Smoothies.png"
@@ -260,6 +282,8 @@
             "discount": 20,
             "calories": 143,
             "weight": 143,
+            "isFavorite": false,
+            "isNew": false,
             "images": [
                 {
                     "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Brownie-Cookie-Ice-Cream-Sandwich.png"

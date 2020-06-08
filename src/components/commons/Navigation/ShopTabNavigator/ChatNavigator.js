@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
 import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
-import {Feather, FontAwesome, AntDesign} from '@commons/Icons';
+import {Feather, FontAwesome} from '@icons';
 import ChatScreen from '@screens/Chat/ChatScreen';
 import ChatItemScreen from '@screens/Chat/ChatItemScreen';
 import {ETASimpleText} from '@etaui';
@@ -50,8 +50,9 @@ const ChatNavigator = () => {
         headerShown: !true,
         headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
         headerStyle: {
-          backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-          shadowColor: 'transparent',
+            backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+            shadowColor: 'transparent',
+            elevation: 5
         },
         headerTitleStyle: {
           fontWeight: 'bold',
@@ -70,7 +71,7 @@ const ChatNavigator = () => {
                         <Header>
                             <ETASimpleText
                                 size={22}
-                                weight={Platform.OS === 'ios' ? '600' : '600'}
+                                weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                                 align={'left'}>
                                 Chatroom
@@ -117,7 +118,7 @@ const ChatNavigator = () => {
                 return (
                     <Touchable>
                         <HeaderRight>
-                            <Feather name='more-vertical' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                            <Feather name='more-vertical' size={20} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
                         </HeaderRight>
                     </Touchable>
                 );

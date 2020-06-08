@@ -7,6 +7,12 @@ import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 
+// custom icons
+import SunIcon from './sun';
+import IcecreamIcon from './icecream';
+import IcecreamIcon2 from './icecream2';
+import IcecreamIcon3 from './icecream3';
+
 export {
   Ionicons,
   FontAwesome,
@@ -16,4 +22,8 @@ export {
   EvilIcons,
   MaterialIcons,
   Feather,
+  SunIcon,
+  IcecreamIcon,
+  IcecreamIcon2,
+  IcecreamIcon3,
 };

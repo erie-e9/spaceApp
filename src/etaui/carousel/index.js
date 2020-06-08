@@ -2,51 +2,69 @@ import React, {useState, useEffect,useRef} from 'react';
 import {Animated, Dimensions} from 'react-native';
 import styled from 'styled-components';
 import ETACarouselItem from './item';
-import defaultData from './defaultData.json';
+import carouselData from '@utils/carouselData.json';
+import {useNavigation} from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
-const Root = styled.View``;
-const CarouselList = styled.FlatList``;
+const Root = styled.View`
+  justifyContent: center;
+  alignItems: center;
+`;
+const CarouselList = styled.FlatList`
+`;
 const DotCarousel = styled.View`
   flexDirection: row;
   justifyContent: center;
+  `;
+const Touchable = styled.TouchableWithoutFeedback`
 `;
-const Touchable = styled.TouchableHighlight``;
+const TouchableWithoutFeedbackContainer = styled.View``;
 
-const ETACarousel = ({posts}) => {
+const ETACarousel = ({posts, data}) => {
+  const navigation = useNavigation();
   const [dataList, setdataList] = useState([]);
   const scrollX = new Animated.Value(0);
-  const flatList = useRef(null)
   let position = Animated.divide(scrollX, width);
+  let flatList = useRef(null);
 
   useEffect(() => {
-    setdataList(defaultData.data);
-    infiniteScroll(dataList);
+    setdataList(carouselData.data);
+    infiniteScroll(posts);
   }, []);
 
-
-const infiniteScroll = (datalist) => {
-  const numberOfData = 4;
-  let scrollValue = 0
-  let scrolled = 0;
-
-  setInterval(function () {
+  const infiniteScroll = (datalist) => {
+    var numberOfData = posts.length;
     
-    scrolled++;
+    let scrollValue = 0;
+    let scrolled = 0;
 
-    if (scrolled < numberOfData) {
-      scrollValue = scrollValue + 1;
-      
-    } else {
-      scrollValue = 0;
-      scrolled = 0;
-    }
+    setInterval(() => {
+      scrolled++;
+      if (scrolled < numberOfData) {
+        scrollValue = scrollValue + 1;      
+      } else {
+        scrollValue = 0;
+        scrolled = 0;
+      }
 
-    flatList.current.scrollToIndex({animated: true, index: scrollValue})
-    // flatList.scrollView({animated: true, offset: scrollValue});
-  }, 5000);
-};
+      flatList.current.scrollToIndex({animated: true, index: scrollValue})
+      // flatList.scrollView({animated: true, offset: scrollValue});
+    }, 5000);
+  };
+
+  const _onPressPromo = (selecteditem) => {
+    console.log('_onPressPromo pressed:', selecteditem.title);
+    
+    navigation.navigate('PromotionScreen', {
+      screen: 'MenuScreen',
+      params: {
+        name: selecteditem.title,
+        promoitems: data,
+        selectedItem: selecteditem
+      }
+    });
+  };
 
   return (
     <Root>
@@ -54,7 +72,7 @@ const infiniteScroll = (datalist) => {
         <>
           <CarouselList
             ref={flatList}
-            data={posts ? posts : dataList}
+            data={posts}
             keyExtractor={(item) => item._id.toString()}
             horizontal
             pagingEnabled
@@ -74,8 +92,10 @@ const infiniteScroll = (datalist) => {
               },
             )}
             renderItem={({item}) => (
-              <Touchable>
-                <ETACarouselItem key={item._id} item={item} />
+              <Touchable onPress={() => _onPressPromo(item)}>
+                <TouchableWithoutFeedbackContainer>
+                  <ETACarouselItem key={item._id} item={item} />
+                </TouchableWithoutFeedbackContainer>
               </Touchable>
             )}
           />
@@ -109,4 +129,4 @@ const infiniteScroll = (datalist) => {
   );
 };
 
-export default ETACarousel;
+export default React.memo(ETACarousel);

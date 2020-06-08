@@ -17,12 +17,10 @@ const ChatComponent = ({data}) => {
   const [refresher, setrefresher] = useState(!true)
   
   const _onPress = (item) => {
-    console.log('------dasda', item.username);
     
     navigation.navigate('ChatItemScreen', {
       screen: 'ChatScreen',
       params: {
-        userName: item.username,
         item: item
       }
     });

@@ -19,6 +19,13 @@ const ItemPresentation = styled.View`
 const ItemBottomContainer = styled.View`
   flex: 0.6;
 `;
+const BackgroundDoodle = styled.ImageBackground`
+  flex: 1;
+  width: null;
+  height: null;
+  resizeMode: cover;
+  justifyContent: center;
+`;
 const ItemImage = styled.Image`
   width: 100%;
   height: 100%;
@@ -29,24 +36,17 @@ const ChatItemComponent = () => {
   const route = useRoute();
   const { item } = route.params.params;
   // console.log('item ', item);
-  
-  
+
   return (
     <Root>
-      <ItemTopContainer>
-        <ItemPresentation>
-          {/* <ItemImage source={{uri: item.images[0].image}} /> */}
-        </ItemPresentation>
-      </ItemTopContainer>
-      <ItemBottomContainer>
-        {/* <ETASimpleText
-          size={14}
-          weight={Platform.OS === 'ios' ? '500' : '300'}
-          color={themeContext.PRIMARY_COLOR}
-          align={'left'}>
-          {item.name}
-        </ETASimpleText> */}
-      </ItemBottomContainer>
+      <BackgroundDoodle source={{uri: 'https://i.pinimg.com/originals/ab/ab/60/abab60f06ab52fa7846593e6ae0c9a0b.png' }}>
+        {/* <ItemTopContainer>
+          <ItemPresentation>
+          </ItemPresentation>
+        </ItemTopContainer>
+        <ItemBottomContainer>
+        </ItemBottomContainer> */}  
+      </BackgroundDoodle>
     </Root>
   );
 };

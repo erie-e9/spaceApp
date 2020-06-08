@@ -6,7 +6,7 @@ import {
   // TransitionPresets,
   // CardStyleInterpolators,
 } from '@react-navigation/stack';
-import {FontAwesome} from '@commons/Icons';
+import {FontAwesome} from '@icons';
 import AuthScreen from '@screens/Auth/AuthScreen';
 import ForgetPasswordScreen from '@screens/Auth/ForgetPasswordScreen';
 import SignupScreen from '@screens/Auth/SignupScreen';

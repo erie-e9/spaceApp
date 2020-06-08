@@ -7,23 +7,24 @@ const {width, height} = Dimensions.get('window');
 
 const Root = styled.View`
   width: ${width - 20}px;
-  height: ${height / 5}px;
+  height: ${height / 5.5}px;
   backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  marginTop: 10px;
   marginHorizontal: 10px;
   borderRadius: 8px;
+  shadowOffset: 5px 5px;
   shadowColor: #000;
   shadowOpacity: 0;
   shadowRadius: 3px;
   elevation: 0;
+  justifyContent: center;
 `;
 // shadowOffset: ${{width: 0.5, height: 0.5}};
 const ItemImage = styled.Image`
   width: ${width - 20}px;
-  height: ${height / 5}px;
+  height: ${height / 5.5}px;
   borderRadius: 10px;
 `;
-const ContentWrapper = styled.View`
+const ContentContainer = styled.View`
   position: absolute;
   bottom: 10px;
   margin: 7px;
@@ -32,24 +33,20 @@ const ContentWrapper = styled.View`
 
 const ETACarouselItem = ({item}) => {
   return (
-    <Root
-      style={{
-        shadowOffset: {width: 0.5, height: 0.5},
-      }}>
+    <Root>
       <ItemImage source={{uri: item.image}} />
-      <ContentWrapper>
+      <ContentContainer>
         <ETASimpleText
           size={18}
           weight='700'
           color='white'
           align={'center'}
           style={{
-            shadowColor: '#000',
-            shadowOffset: {width: 1, height: 1.2},
-            shadowOpacity: 0.8,
-            shadowRadius: 3,
             marginBottom: 2,
             elevation: 4,
+            textShadowColor: 'rgba(0, 0, 0, 0.7)',
+            textShadowOffset: {width: 0.5, height: 0.7},
+            textShadowRadius: 3
           }}>
           {item.title}
         </ETASimpleText>
@@ -59,18 +56,17 @@ const ETACarouselItem = ({item}) => {
           color='white'
           align={'center'}
           style={{
-            shadowColor: '#000',
-            shadowOffset: {width: 1, height: 1.2},
-            shadowOpacity: 0.8,
-            shadowRadius: 2,
             marginBottom: 5,
             elevation: 4,
+            textShadowColor: 'rgba(0, 0, 0, 0.7)',
+            textShadowOffset: {width: 0.5, height: 0.7},
+            textShadowRadius: 3
           }}>
           {item.description}
         </ETASimpleText>
-      </ContentWrapper>
+      </ContentContainer>
     </Root>
   );
 };
 
-export default ETACarouselItem;
+export default React.memo(ETACarouselItem);
