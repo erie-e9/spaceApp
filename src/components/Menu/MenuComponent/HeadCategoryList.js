@@ -16,7 +16,7 @@ const Root = styled.View`
   width: ${width}px;
 `;
 const ItemsList = styled.FlatList`
-  width: ${width - 20}px;
+  width: ${width}px;
 `;
 const Item = styled.View`
   width: 40px;

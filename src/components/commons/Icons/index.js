@@ -6,12 +6,14 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // custom icons
 import SunIcon from './sun';
 import IcecreamIcon from './icecream';
 import IcecreamIcon2 from './icecream2';
 import IcecreamIcon3 from './icecream3';
+import IcecreamIcon4 from './icecream4';
 
 export {
   Ionicons,
@@ -22,8 +24,10 @@ export {
   EvilIcons,
   MaterialIcons,
   Feather,
+  MaterialCommunityIcons,
   SunIcon,
   IcecreamIcon,
   IcecreamIcon2,
   IcecreamIcon3,
+  IcecreamIcon4,
 };

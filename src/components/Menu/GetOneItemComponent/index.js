@@ -20,7 +20,7 @@ const ItemPresentation = styled.View`
   height: 100%;
 `;
 const ItemImage = styled.ImageBackground`
-  flex: 1;
+  flex: 0.8;
   width: null;
   height: null;
   resizeMode: cover;
@@ -86,22 +86,29 @@ const CounterContainer = styled.View`
   alignItems: center;
   justifyContent: center;
 `;
+const AddCart = styled.TouchableOpacity`
+  padding: 5px;
+  flexDirection: row;
+  zIndex: 1000;
+  justifyContent: center;
+  alignItems: center;
+  backgroundColor: transparent;
+`;
 const AddRemoveButtonContainer = styled.View`
   height: 18px;
   width: 12px;
-  alignItems: center;
   justifyContent: center;
-`;
-const AddCart = styled.TouchableOpacity`
-  paddingHorizontal: 5px;
-  paddingVertical: 5px;
-  flexDirection: row;
-  zIndex: 1000;
+  alignItems: center;
+  backgroundColor: transparent;
+  bottom: 5px;
 `;
 const RemoveCart = styled.TouchableOpacity`
-  paddingHorizontal: 5px;
+  padding: 5px;
   flexDirection: row;
   zIndex: 1000;
+  justifyContent: center;
+  alignItems: center;
+  backgroundColor: transparent;
 `;
 const CardTop = styled.View`
   minHeight: 10px;
@@ -120,6 +127,7 @@ const NewContainer = styled.View`
   borderRadius: 5px;
   borderWidth: 1px;
   borderColor: white;
+  justifyContent: center;
 `;
 const CardTopHead = styled.View`
   minHeight: 45px;
@@ -135,28 +143,29 @@ const NameContainer = styled.View`
   paddingHorizontal: 2px;
 `;
 const ShopContainer = styled.View`
-  flex: 0.4;
+  flex: 0.35;
+  minHeight: 50px;
   flexDirection: column;
   justifyContent: center;
   alignItems: center;
-  marginBottom: 10px;
   paddingHorizontal: 2px;
+  marginBottom: 10px;
 `;
 const DiscountContainer = styled.View`
   flex: 1;
   flexDirection: row;
   justifyContent: center;
   alignItems: center;
+  paddingVertical: 1px;
   zIndex: 100;
-  marginBottom: 10px;
 `;
 const PercentContainer = styled.View`
-  justifyContent: flex-start;
+  justifyContent: center;
   alignItems: center;
   zIndex: 100;
   borderWidth: 0px;
   paddingHorizontal: 5px;
-  paddingVertical: 1px;
+  paddingVertical: 3px;
   borderColor: white;
   borderTopLeftRadius: 4px;
   borderTopRightRadius: 4px;
@@ -168,21 +177,23 @@ const PercentContainer = styled.View`
 const PriceContainer = styled.View`
   flex: 0.8;
   flexDirection: column;
-  justifyContent: flex-end;
+  justifyContent: center;
   alignItems: center;
   marginBottom: 3px;
 `;
 const ItemInfoContainer = styled.View`
   minHeight: 10px;
   flexDirection: row;
-  justifyContent: center
-  alignItems: center;
+  justifyContent: space-between;
+  paddingHorizontal: 10px;
+  alignItems: stretch;
+  backgroundColor: transparent;
 `;
 const ItemInfoRating = styled.View`
   flexDirection: row;
   height: 20px;
   width: 75px;
-  borderRadius: 15px;
+  borderRadius: 20px;
   shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
   shadowOffset: 0px 1px;
   shadowRadius: 2px;
@@ -198,7 +209,7 @@ const ItemInfoRating = styled.View`
 const ItemInfoCalories = styled.View`
   height: 20px;
   width: 75px;
-  borderRadius: 15px;
+  borderRadius: 20px;
   shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
   shadowOffset: 0px 1px;
   shadowRadius: 2px;
@@ -214,7 +225,7 @@ const ItemInfoCalories = styled.View`
 const ItemInfoWeight = styled.View`
   height: 20px;
   width: 75px;
-  borderRadius: 15px;
+  borderRadius: 20px;
   shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
   shadowOffset: 0px 1px;
   shadowRadius: 2px;
@@ -293,8 +304,9 @@ const GetOneItemComponent = () => {
         </ItemTopContainer>
         <ItemBottomContainer>
           <Animated.View style={{ 
-            width: width / 1.2,
-            top: 180,
+            width: width - 60,
+            top: 160,
+            bottom: 10,
             backgroundColor:  themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
             marginVertical: 15,
             shadowColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
@@ -307,7 +319,7 @@ const GetOneItemComponent = () => {
             paddingRight: 10,
             paddingBottom: 10,
             elevation: 0,
-            justifyContent: 'flex-start',
+            justifyContent: 'center',
             alignItems: 'center',
             borderWidth: 0,
             borderColor: themeContext.GRAYFACEBOOK,
@@ -412,7 +424,7 @@ const GetOneItemComponent = () => {
                         <PercentContainer>
                           <ETASimpleText 
                             size={9} 
-                            weight={Platform.OS === 'ios' ? '900' : '900'} 
+                            weight={Platform.OS === 'ios' ? '500' : '900'} 
                             color={themeContext.PRIMARY_COLOR} 
                             align={'left'}
                             style={{ zIndex: 100 }}>

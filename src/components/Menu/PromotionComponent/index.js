@@ -31,8 +31,8 @@ const PromoHeadTitle = styled.View`
   flexDirection: column;
   justifyContent: center;
   alignItems: center;
-  `;
-  // backgroundColor: red;
+  backgroundColor: transparent;
+`;
 const PromoHeadImage = styled.ImageBackground`
   justifyContent: center;
   alignItems: center;
@@ -154,7 +154,7 @@ const PromoComponent = () => {
 
       <Animated.View style={{
         position: 'absolute',
-        top: (Platform.OS == 'ios') ? 20 : 0,
+        top: (Platform.OS == 'ios') ? 0 : 0,
         left: 0,
         right: 0,
         alignItems: 'center', 

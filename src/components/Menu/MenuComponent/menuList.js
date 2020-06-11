@@ -38,7 +38,7 @@ const MenuList = ({data, title}) => {
   const [ items ] = useState(data.slice(0, 4)); //slice: only first 4 items
   const [ animatedValueTransform ] = useState(new Animated.Value(0));
   const [ opacity ] = useState(new Animated.Value(0));
-  let delayValue = 2000;  
+  let delayValue = 2000;
 
   useEffect(() => {
     Animated.spring(animatedValueTransform, {
@@ -122,17 +122,17 @@ const MenuList = ({data, title}) => {
                 </ETASimpleText>
                 );
               }}
-              ListFooterComponent={() => {
-                return (
-                  <ETASimpleText
-                    size={7}
-                    weight={Platform.OS === 'ios' ? '500' : '300'}
-                    color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                    align={'left'}>
-                    Prices subject to change without notice
-                </ETASimpleText>
-                )
-              }}
+              // ListFooterComponent={() => {
+              //   return (
+              //     <ETASimpleText
+              //       size={7}
+              //       weight={Platform.OS === 'ios' ? '500' : '300'}
+              //       color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+              //       align={'left'}>
+              //       Prices subject to change without notice
+              //   </ETASimpleText>
+              //   )
+              // }}
               renderItem={({item}) => {
                 delayValue = delayValue + 1000;
                 const translateY = animatedValueTransform.interpolate({

@@ -50,7 +50,10 @@ const CartNavigator = () => {
         headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
         headerStyle: {
             backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-            shadowColor: 'transparent',
+            shadowColor: 'black',
+            shadowOpacity: 0.15,
+            shadowOffset: { height: 0.2 },
+            shadowRadius: 5,
             elevation: 5
         },
         headerTitleStyle: {

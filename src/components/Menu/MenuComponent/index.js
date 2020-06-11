@@ -4,6 +4,7 @@ import { Platform, Animated, ScrollView, Dimensions } from 'react-native';
 import {ETACarousel} from '@etaui';
 import MenuList from './menuList';
 import HeadCategoryList from './HeadCategoryList';
+import PromoBannerComponent from './PromoBannerComponent';
 import carouselData from '@utils/carouselData.json';
 
 const HEADER_MIN_HEIGHT = 90;
@@ -23,7 +24,7 @@ const HeaderContainer = styled.View`
 const MenuComponent = (data) => {
   const themeContext = useContext(ThemeContext);
   const [ scrollYAnimatedValue ] = useState(new Animated.Value(0));
-  const [ animatedValueTransform ] = useState(new Animated.Value(0.94));
+  const [ animatedValueTransform ] = useState(new Animated.Value(0.54));
   let delayValue = 1000;
 
   const headerHeight = scrollYAnimatedValue.interpolate({
@@ -49,7 +50,8 @@ const MenuComponent = (data) => {
 
   const translateY = animatedValueTransform.interpolate({
     inputRange: [0, 1],
-    outputRange: [delayValue, 1]
+    outputRange: [delayValue, 1],
+    extrapolate: 'clamp'
   });
 
   return (
@@ -66,11 +68,12 @@ const MenuComponent = (data) => {
               useNativeDriver: !true,
             }          
           )}>
-          <Animated.View style={{ transform: [{ translateY }]}}>
+          {/* <Animated.View style={{ transform: [{ translateY }]}}> */}
             <HeaderContainer>
-              <ETACarousel posts={carouselData.data} data={data.menu1} />
+              <ETACarousel posts={carouselData.data} data={data.menu1} autoplay={true} time={6000}/>
             </HeaderContainer>
-          </Animated.View>
+          {/* </Animated.View> */}
+          <PromoBannerComponent />
           <MenuList data={data.menu1} title='Dazzler sundaes' />
           <MenuList data={data.menu2} title='Cups and cones'/>
           <MenuList data={data.menu3} title='Milkshakes'/>
@@ -80,7 +83,7 @@ const MenuComponent = (data) => {
 
         <Animated.View style={{
           position: 'absolute',
-          top: (Platform.OS == 'ios') ? 20 : 0,
+          top: (Platform.OS == 'ios') ? 0 : 0,
           left: 0,
           right: 0,
           justifyContent: 'center',

@@ -17,9 +17,8 @@ const Touchable = styled.TouchableOpacity``;
 const ChatItemScreen = ({ navigation, route }) => {
   const { item } = route.params.params;
   const themeContext = useContext(ThemeContext);
-  
+
   useLayoutEffect(() => {
-    
     navigation.setOptions({ headerTitle: () => (
       <HeaderContainer>
         <ETASimpleText

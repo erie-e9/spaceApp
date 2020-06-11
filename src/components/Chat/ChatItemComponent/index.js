@@ -1,8 +1,9 @@
-import React, {useContext} from 'react';
-import {Dimensions} from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {Dimensions, Animated} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import styled, {ThemeContext} from 'styled-components';
-import {ETASimpleText} from '@etaui';
+import MessageBubbleComponent from './MessageBubbleComponent';
+import messages from '@utils/messages.json' 
 
 const {width} = Dimensions.get('window');
 
@@ -30,16 +31,59 @@ const ItemImage = styled.Image`
   width: 100%;
   height: 100%;
 `;
+const MessagesList = styled.FlatList``;
 
 const ChatItemComponent = () => {
   const themeContext = useContext(ThemeContext);
   const route = useRoute();
-  const { item } = route.params.params;
-  // console.log('item ', item);
+  const [ items ] = useState(messages.data); //slice: only first 4 items
+  const [ animatedValueTransform ] = useState(new Animated.Value(0));
+  const [ opacity ] = useState(new Animated.Value(0));
+  let delayValue = 2000;
+  
+  useEffect(() => {
+    Animated.spring(animatedValueTransform, {
+      toValue: 1,
+      tension: 0,
+      useNativeDriver: true
+    }).start();
+
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 1500,
+      useNativeDriver: true
+    }).start();
+  }, [])
 
   return (
     <Root>
       <BackgroundDoodle source={{uri: 'https://i.pinimg.com/originals/ab/ab/60/abab60f06ab52fa7846593e6ae0c9a0b.png' }}>
+        <MessagesList
+          contentContainerStyle={{
+            flexDirection: 'column',
+          }}
+          data={items}
+          keyExtractor={(item) => item._id.toString()}
+          horizontal={!true}
+          initialNumToRender={4}
+          showsHorizontalScrollIndicator={!true}
+          showsVerticalScrollIndicator={true}
+          renderItem={({item}) => {
+            delayValue = delayValue + 1000;
+            const translateY = animatedValueTransform.interpolate({
+              inputRange: [0, 1],
+              outputRange: [delayValue, 1]
+            });
+
+            return (
+              // <Touchable key={item._id} onPress={() => _onPressItem(item)}>
+                <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+                  <MessageBubbleComponent item={item} />
+                </Animated.View>
+              // {/* </Touchable> */}
+            );
+          }}
+        />
         {/* <ItemTopContainer>
           <ItemPresentation>
           </ItemPresentation>

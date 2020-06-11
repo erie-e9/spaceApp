@@ -7,10 +7,9 @@ import {Ionicons, FontAwesome} from '@icons';
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-    flex: 0.7;
+    flex: 0.6;
     flexDirection: column;
-    width: ${width / 1.1}px;
-    height: 260px;
+    width: ${width - 30}px;
     borderTopLeftRadius: 15px;
     borderTopRightRadius: 15px;
     borderBottomLeftRadius: 0px;
@@ -48,7 +47,7 @@ const DirectionContainer = styled.View`
 const TotalContainer = styled.View`
     flexDirection: row;
     justifyContent: space-between;
-    alignItems: stretch;
+    alignItems: center;
     width: 100%;
     height: 40px;
     marginVertical: 3px;
@@ -59,18 +58,21 @@ const TotalContainer = styled.View`
     backgroundColor: transparent;
 `;
 const ResumeTotalContainer = styled.View`
+    flex: 1;
     flexDirection: row;
     justifyContent: space-between;
     alignItems: center;
+    minHeight: 30px;
     width: 100%;
     marginVertical: 3px;
     paddingVertical: 5px;
-    
+    backgroundColor: transparent;
 `;
 const ButtonPayContainer = styled.View`
-    height: 20px;
+    height: 50px;
     width: 100%;
     alignItems: center;
+    backgroundColor: transparent;
 `;
 
 const CartDetailsComponent = () => {
@@ -84,12 +86,12 @@ const CartDetailsComponent = () => {
                 weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                 align={'left'}>
-                Summary (3 items)
+                Summary (5 items)
             </ETASimpleText>
             <ResumeContainer>
                 <ETASimpleText
                     size={11}
-                    weight={Platform.OS === 'ios' ? '500' : '400'}
+                    weight={Platform.OS === 'ios' ? '400' : '400'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align={'left'}>
                     Subtotal
@@ -97,7 +99,7 @@ const CartDetailsComponent = () => {
                 
                 <ETASimpleText
                     size={11}
-                    weight={Platform.OS === 'ios' ? '500' : '400'}
+                    weight={Platform.OS === 'ios' ? '400' : '400'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align={'left'}>
                     $100.00
@@ -106,7 +108,7 @@ const CartDetailsComponent = () => {
             <ResumeContainer>
                 <ETASimpleText
                     size={11}
-                    weight={Platform.OS === 'ios' ? '500' : '400'}
+                    weight={Platform.OS === 'ios' ? '400' : '400'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align={'left'}>
                     Shipping
@@ -114,7 +116,7 @@ const CartDetailsComponent = () => {
                 
                 <ETASimpleText
                     size={11}
-                    weight={Platform.OS === 'ios' ? '500' : '400'}
+                    weight={Platform.OS === 'ios' ? '400' : '400'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align={'left'}>
                     $30.00
@@ -123,7 +125,7 @@ const CartDetailsComponent = () => {
             <TotalContainer>                
                 <ResumeTotalContainer>
                     <ETASimpleText
-                        size={14}
+                        size={16}
                         weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'left'}>
@@ -131,7 +133,7 @@ const CartDetailsComponent = () => {
                     </ETASimpleText>
                     
                     <ETASimpleText
-                        size={14}
+                        size={16}
                         weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'left'}>
@@ -142,7 +144,7 @@ const CartDetailsComponent = () => {
             <DirectionContainer>
                 <ETASimpleText
                     size={15}
-                    weight={Platform.OS === 'ios' ? '800' : '800'}
+                    weight={Platform.OS === 'ios' ? '500' : '500'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align={'left'}>
                     Send to...

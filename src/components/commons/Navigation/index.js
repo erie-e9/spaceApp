@@ -33,8 +33,8 @@ const Navigation = () => {
         }
         barStyle={
           colorSchema === 'dark'
-          ? 'light-content'
-          : 'dark-content'
+            ? 'light-content'
+            : 'dark-content'
         }
         hidden={false}
       />

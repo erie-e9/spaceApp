@@ -13,21 +13,21 @@ const Card = styled.View`
   marginHorizontal: ${width / 30}px;
   marginVertical: 10px;
   shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-  borderRadius: 20px;
+  borderRadius: 15px;
   shadowOffset: 2px 3px;
   shadowRadius: 2px;
   shadowOpacity: 0;
 `;
 const CardTop = styled.View`
   flex: 1.25;
-  borderTopLeftRadius: 25px;
-  borderTopRightRadius: 25px;
+  borderTopLeftRadius: 15px;
+  borderTopRightRadius: 15px;
 `;
 const ItemImage = styled.Image`
   height: 100%;
   width: 100%;
-  borderTopLeftRadius: 20px;
-  borderTopRightRadius: 20px;
+  borderTopLeftRadius: 15px;
+  borderTopRightRadius: 15px;
 `;
 const NewContainer = styled.View`
   position: absolute;
@@ -50,8 +50,8 @@ const CardBottom = styled.View`
   flexDirection: column;
   justifyContent: space-between;
   width: 100%;
-  borderBottomLeftRadius: 20px;
-  borderBottomRightRadius: 20px;
+  borderBottomLeftRadius: 15px;
+  borderBottomRightRadius: 15px;
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   borderWidth: 0.75px;
   borderColor: ${(props) => props.theme.GRAYFACEBOOK};
@@ -156,7 +156,7 @@ const GeneralItemComponent = ({item}) => {
                 <PercentContainer>
                   <ETASimpleText 
                     size={9} 
-                    weight={Platform.OS === 'ios' ? '900' : '900'} 
+                    weight={Platform.OS === 'ios' ? '500' : '900'} 
                     color={themeContext.PRIMARY_COLOR} 
                     align={'left'}
                     style={{ zIndex: 100 }}>

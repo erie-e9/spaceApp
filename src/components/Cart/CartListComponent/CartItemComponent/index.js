@@ -8,11 +8,12 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
     flexDirection: column;
-    height: 100px;
+    minHeight: 100px;
     width: ${width}px;
 `;
 const Item = styled.View`
     flex: 1;
+    minHeight: 50px;
     flexDirection: row;
     paddingHorizontal: 5px;
     shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
@@ -21,7 +22,7 @@ const Item = styled.View`
     shadowOpacity: 0;
     justifyContent: center;
     alignItems: center;
-    margin: 1px 0px;
+    margin: 0px 0px 2px 0px;
     backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const ItemImage = styled.Image`
@@ -34,14 +35,14 @@ const NewContainer = styled.View`
     position: absolute;
     zIndex: 100;
     height: 15px;
-    width: 30px;
+    width: 25px;
     top: 14px;
     left: 10px;
     backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
     borderRadius: 5px;
     borderWidth: 1px;
     borderColor: white;
-    justifyContent: flex-end;
+    justifyContent: center;
 `;
 const CartItemData = styled.View`
     flex: 1;
@@ -85,13 +86,15 @@ const CartItemLeftContainer = styled.View`
     paddingHorizontal: 2px;
 `;
 const DiscountContainer = styled.View`
+    flex: 1;
     flexDirection: row;
     justifyContent: center;
     alignItems: center;
+    paddingVertical: 1px;
     zIndex: 100;
 `;
 const PercentContainer = styled.View`
-    justifyContent: flex-start;
+    justifyContent: center;
     alignItems: center;
     zIndex: 100;
     borderWidth: 0px;
@@ -158,6 +161,8 @@ const AddRemoveButtonContainer = styled.View`
     width: 12px;
     alignItems: center;
     justifyContent: center;
+    backgroundColor: transparent;
+    bottom: 5px;
 `;
 const AddCart = styled.TouchableOpacity`
     paddingHorizontal: 5px;
@@ -190,7 +195,7 @@ const CartItemComponent = ({item}) => {
               item.isNew
               ? <NewContainer>
                   <ETASimpleText
-                    size={11}
+                    size={10}
                     weight={Platform.OS === 'ios' ? '400' : '300'}
                     // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                     color='white'
@@ -229,17 +234,17 @@ const CartItemComponent = ({item}) => {
                         item.discount > 0
                         ? <DiscountContainer>            
                             <ETASimpleText 
-                            size={10} 
-                            weight={Platform.OS === 'ios' ? '400' : '400'} 
-                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} 
-                            align={'center'}
-                            style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
-                            ${(item.price.toFixed(2))} 
+                                size={10} 
+                                weight={Platform.OS === 'ios' ? '400' : '400'} 
+                                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} 
+                                align={'center'}
+                                style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
+                                ${(item.price.toFixed(2))} 
                             </ETASimpleText>
                             <PercentContainer>
                             <ETASimpleText 
                                 size={9} 
-                                weight={Platform.OS === 'ios' ? '900' : '900'} 
+                                weight={Platform.OS === 'ios' ? '500' : '900'} 
                                 color={themeContext.PRIMARY_COLOR} 
                                 align={'left'}
                                 style={{ zIndex: 100 }}>
@@ -251,12 +256,12 @@ const CartItemComponent = ({item}) => {
                     }
                     <PriceContainer>
                         <ETASimpleText 
-                        size={14} 
-                        weight={Platform.OS === 'ios' ? '500' : '400'}
-                        color={themeContext.PRIMARY_COLOR} 
-                        align={'center'}
-                        style={{ zIndex: 100 }}>
-                        ${((100 - item.discount) * item.price / 100).toFixed(2)} 
+                            size={14} 
+                            weight={Platform.OS === 'ios' ? '500' : '400'}
+                            color={themeContext.PRIMARY_COLOR} 
+                            align={'center'}
+                            style={{ zIndex: 100 }}>
+                            ${((100 - item.discount) * item.price / 100).toFixed(2)} 
                         </ETASimpleText>
                     </PriceContainer>
                     </CartItemLeftContainer>

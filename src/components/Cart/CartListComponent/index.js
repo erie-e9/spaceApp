@@ -6,14 +6,10 @@ import CartItemComponent from './CartItemComponent';
 import cartItems from '@utils/cartItems.json';
 
 const Root = styled.View`
-    flex: 0.65;
+    flex: 0.58;
     justifyContent: center;
     alignItems: center;
     backgroundColor: transparent;
-`;
-    // backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-const Touchable = styled.TouchableOpacity`
-    zIndex: 100;
 `;
 const CategorytItemsList = styled.FlatList``;
 
@@ -49,7 +45,7 @@ const CartListComponent = () => {
                 data={items}
                 keyExtractor={(item) => item._id.toString()}
                 horizontal={!true}
-                numColumns={2}
+                // numColumns={2}
                 initialNumToRender={5}
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}

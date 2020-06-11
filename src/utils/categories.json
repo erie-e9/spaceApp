@@ -1,6 +1,5 @@
 {
     "data": [
-
         {
             "_id": 1,
             "name": "Chocolate",
@@ -40,6 +39,13 @@
             "_id": 6,
             "name": "Carlotta",
             "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD_WebPintCurl_TrioLemonRaspWhtChoc_553x562_0.jpg",
+            "link": "",
+            "isNew": true
+        },
+        {
+            "_id": 7,
+            "name": "Chocolate",
+            "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_peanutButterChip_thumb.png",
             "link": "",
             "isNew": true
         }

@@ -7,18 +7,22 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 0.35;
+  backgroundColor: transparent;
+  justifyContent: center;
+  alignItems: center;
 `;
 const SuggestionItemsContainer = styled.View`
   flexDirection: column;
   height: 90px;
-  width: ${width - 20}px;
+  width: ${width}px;
   justifyContent: center;
   position: absolute;
   alignItems: flex-start;
   zIndex: 10;
+  backgroundColor: transparent;
 `;
 const SuggestionItemsList = styled.FlatList`
-  width: ${width - 20}px;
+  width: ${width}px;
 `;
 const Touchable = styled.TouchableOpacity`
   justifyContent: center;
@@ -140,6 +144,17 @@ const SuggestionsComponent = ({selectedItemName}) => {
                     'images': [
                         {
                             'image': 'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png'
+                        }
+                    ],
+                  },
+                  {
+                    'key': 7,
+                    '_id': 7,
+                    'name': 'Belgian Chocolate Shake',
+                    'details': 'RBelgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.',
+                    'images': [
+                        {
+                            'image': 'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-belgian-chocolate.png'
                         }
                     ],
                   },

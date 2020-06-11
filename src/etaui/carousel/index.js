@@ -21,7 +21,7 @@ const Touchable = styled.TouchableWithoutFeedback`
 `;
 const TouchableWithoutFeedbackContainer = styled.View``;
 
-const ETACarousel = ({posts, data}) => {
+const ETACarousel = ({posts, data, autoplay, time}) => {
   const navigation = useNavigation();
   const [dataList, setdataList] = useState([]);
   const scrollX = new Animated.Value(0);
@@ -30,7 +30,9 @@ const ETACarousel = ({posts, data}) => {
 
   useEffect(() => {
     setdataList(carouselData.data);
-    infiniteScroll(posts);
+    if (autoplay) {
+      infiniteScroll(dataList);
+    }
   }, []);
 
   const infiniteScroll = (datalist) => {
@@ -50,7 +52,7 @@ const ETACarousel = ({posts, data}) => {
 
       flatList.current.scrollToIndex({animated: true, index: scrollValue})
       // flatList.scrollView({animated: true, offset: scrollValue});
-    }, 5000);
+    }, time);
   };
 
   const _onPressPromo = (selecteditem) => {

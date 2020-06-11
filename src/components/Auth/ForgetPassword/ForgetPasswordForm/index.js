@@ -140,10 +140,10 @@ const ForgetPasswordScreen = () => {
       </Formik>
       <RecoverTextContainer>
         <ETASimpleText
-          size={14}
+          size={12}
           weight={Platform.OS === 'ios' ? '500' : '300'}
           color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-          align={'left'}>
+          align={'center'}>
           {recoverytext}
         </ETASimpleText>
       </RecoverTextContainer>
