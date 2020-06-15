@@ -7,6 +7,7 @@ import ETALink from '@etaui/link';
 import ETAErrorMessage from '@etaui/texts/errorMessage';
 import ETAHeaderText from '@etaui/texts/header';
 import ETASimpleText from '@etaui/texts/simple';
+import ETABlinkingText from '@etaui/texts/blinking';
 import ETACard from '@etaui/card';
 import ETAAvatar from '@etaui/avatar';
 import ETANetInfo from '@etaui/netInfo';
@@ -23,6 +24,7 @@ export {
   ETAErrorMessage,
   ETAHeaderText,
   ETASimpleText,
+  ETABlinkingText,
   ETACard,
   ETAAvatar,
   ETANetInfo,

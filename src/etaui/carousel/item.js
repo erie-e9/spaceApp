@@ -7,9 +7,10 @@ const {width, height} = Dimensions.get('window');
 
 const Root = styled.View`
   width: ${width - 20}px;
-  height: ${height / 5.5}px;
+  height: ${height / 6.4}px;
   backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   marginHorizontal: 10px;
+  marginVertical: 10px;
   borderRadius: 8px;
   shadowOffset: 5px 5px;
   shadowColor: #000;
@@ -21,7 +22,7 @@ const Root = styled.View`
 // shadowOffset: ${{width: 0.5, height: 0.5}};
 const ItemImage = styled.Image`
   width: ${width - 20}px;
-  height: ${height / 5.5}px;
+  height: ${height / 6.4}px;
   borderRadius: 10px;
 `;
 const ContentContainer = styled.View`

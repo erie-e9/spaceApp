@@ -45,20 +45,20 @@ const MessageBubbleComponent = ({item}) => {
         <Root 
             style={{ 
                 alignSelf: item.mine ? 'flex-end' : 'flex-start',
-                marginLeft: item.mine ? 0 : 15,
-                marginRight: item.mine ? 15 : 0,
+                marginLeft: item.mine ? 0 : 10,
+                marginRight: item.mine ? 10 : 0,
                 marginVertical: item.mine ? 2 : moderateScale(8,2)
             }}
         >
             <Cloud 
                 style={{ 
-                    backgroundColor: item.mine ?  themeContext.PRIMARY_COLOR : '#FFFFFF' 
+                    backgroundColor: item.mine ?  themeContext.PRIMARY_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR 
                 }}
             >
                 {
                     item.image
                     ?   <MessageImage 
-                            style={{ alignSelf: item.mine ?   'flex-start'    :   'flex-end' }}
+                            style={{ alignSelf: item.mine ?   'flex-start' : 'flex-end' }}
                             source={{ uri: item.image }} />
                     :   null
                 }
@@ -67,7 +67,7 @@ const MessageBubbleComponent = ({item}) => {
                     ?   <MessageText
                             style={{
                                 alignItems: item.mine ? 'flex-end' : 'flex-start',
-                                color: item.mine ? 'white' : 'black'
+                                color: item.mine ? 'white' : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR 
                             }}
                         >
                                 {item.text}
@@ -80,7 +80,7 @@ const MessageBubbleComponent = ({item}) => {
                     }}>
                     <Svg
                         style={{
-                            left: item.mine  ? moderateScale(4, 0.5) : 0,
+                            left: item.mine  ? moderateScale(4, 0.5) : -2,
                             right: item.mine ? 0 : moderateScale(30, 0.5),
                         }}
                         width={moderateScale(15.5, 0.6)}
@@ -93,7 +93,7 @@ const MessageBubbleComponent = ({item}) => {
                                 ?   'M48,35c-7-4-6-8.75-6-17.5C28,17.5,29,35,48,35z'
                                 :   'M38.484,17.5c0,8.75,1,13.5-6,17.5C51.484,35,52.484,17.5,38.484,17.5z'
                             }
-                            fill={item.mine ? themeContext.PRIMARY_COLOR : '#FFFFFF'}
+                            fill={item.mine ? themeContext.PRIMARY_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR }
                             x='0'
                             y='0'
                         />

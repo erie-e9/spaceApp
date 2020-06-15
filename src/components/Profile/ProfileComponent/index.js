@@ -1,17 +1,30 @@
 import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
-import {Ionicons, FontAwesome, AntDesign, Octicons} from '@icons';
+import {FontAwesome} from '@icons';
 import {Context} from '@context';
 import {ETAAvatar, ETASimpleText} from '@etaui';
+import ProfileHeadComponent from './ProfileHeadComponent';
+import ProfileContentComponent from './ProfileContentComponent';
+import { truncateString } from '@functions';
+import {fakeavatar} from '@utils/constants';
 
-const iconSize = 23;
 const firstname = 'Scarlett';
 const lastname = 'Johansson';
-const info = '❝ Besame... las muestras publicas de afecto incomodan a las personas. (Black Widow) ❞';
+const username = 'BWidow';
+const info = 'Member from 5 jun 2017';
 
-const Card = styled.View`
+const Root = styled.View`
   flex: 1;
+  flexDirection: column;
+`;
+const ProfileUserContent = styled.View`
+  flexDirection: column;
+  justifyContent: flex-start;
+`;
+const Scroll = styled.ScrollView`
+`;
+const Card = styled.View`
   flexDirection: row;
   backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   marginBottom: 1px;
@@ -19,173 +32,65 @@ const Card = styled.View`
   alignItems: center;
   paddingHorizontal: 10px;
 `;
-const Spacevertical = styled.View`
-  marginTop: 50px;
-`;
-const Metadata = styled.View`
-  flex: 1;
-  flexDirection: column;
-  justifyContent: center;
-  minHeight: 50px;
-`;
 const MetadataHeader = styled.View`
   flexDirection: column;
   justifyContent: center;
-  minHeight: 100px;
+  minHeight: 80px;
   marginHorizontal: 10px;
 `;
 const MetadataInfo = styled.View`
-  flexDirection: row;
+  flexDirection: column;
   justifyContent: center;
   paddingHorizontal: 5px;
   marginRight: 50px;
+  marginVertical: 5px;
   paddingRight: 40px;
 `;
-const Touchable = styled.TouchableOpacity`
-  flexDirection: row;
-  justifyContent: flex-start;
-  alignItems: center;
-  margin: 15px;
-`;
- const OptionTitleContainer = styled.View`
-  marginLeft: 15px;
-`;
 
-const SettingsContent = () => {
+const ProfileComponent = () => {
   const themeContext = useContext(ThemeContext);
-  const {logOut} = useContext(Context);
-
-  const logout = () => {
-    logOut();
-  };
 
   return (
-    <>
-      <Card>
-        <ETAAvatar size='middle' />
-        <MetadataHeader>
-          <ETASimpleText
-            size={14}
-            weight={Platform.OS === 'ios' ? '700' : '600'}
-            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-            align={'left'}>
-            {firstname} {lastname}
-          </ETASimpleText>
-          <MetadataInfo>
+    <Root>
+      <ProfileHeadComponent />
+      <ProfileUserContent>
+        <Card>
+          <ETAAvatar image={fakeavatar} size='middle' />
+          <MetadataHeader>
             <ETASimpleText
               size={14}
-              weight={Platform.OS === 'ios' ? '400' : '300'}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+              weight={Platform.OS === 'ios' ? '700' : '600'}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               align={'left'}>
-              {info}
+              {firstname} {lastname}
             </ETASimpleText>
-          </MetadataInfo>
-        </MetadataHeader>
-      </Card>
-      <Card>
-        <Metadata>
-          <Touchable>
-            <FontAwesome
-              name='bell-o'
-              size={iconSize - 5}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-            />
-            <OptionTitleContainer>
+            <MetadataInfo>
               <ETASimpleText
-                size={14}
-                weight={Platform.OS === 'ios' ? '400' : '300'}
+                size={13}
+                weight={Platform.OS === 'ios' ? '500' : '300'}
+                color={themeContext.LINK}
+                align={'left'}>
+                @
+                {
+                  truncateString(username, 40)
+                }
+              </ETASimpleText>
+              <ETASimpleText
+                size={12}
+                weight={Platform.OS === 'ios' ? '300' : '300'}
                 color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                 align={'left'}>
-                Notifications
+                {info}
               </ETASimpleText>
-            </OptionTitleContainer>
-          </Touchable>
-        </Metadata>
-      </Card>
-      <Card>
-        <Metadata>
-          <Touchable>
-            <Ionicons
-              name='ios-information-circle-outline'
-              size={iconSize}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-            />
-            <OptionTitleContainer>
-              <ETASimpleText
-                size={14}
-                weight={Platform.OS === 'ios' ? '400' : '300'}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                align={'left'}>
-                Help
-              </ETASimpleText>
-              </OptionTitleContainer>
-          </Touchable>
-        </Metadata>
-      </Card>
-      <Card>
-        <Metadata>
-          <Touchable onPress={() => logout()}>
-            <AntDesign
-              name='logout'
-              size={iconSize - 5}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-            />
-            <OptionTitleContainer>
-              <ETASimpleText
-                size={14}
-                weight={Platform.OS === 'ios' ? '400' : '300'}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                align={'left'}>
-                Log out
-              </ETASimpleText>
-              </OptionTitleContainer>
-          </Touchable>
-        </Metadata>
-      </Card>
-      <Spacevertical>
-        <Card>
-          <Metadata>
-            <Touchable>
-              <Octicons
-                name='mail'
-                size={iconSize}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              />
-              <OptionTitleContainer>
-                <ETASimpleText
-                  size={14}
-                  weight={Platform.OS === 'ios' ? '400' : '300'}
-                  color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                  align={'left'}>
-                  Contact
-                </ETASimpleText>
-                </OptionTitleContainer>
-            </Touchable>
-          </Metadata>
+            </MetadataInfo>
+          </MetadataHeader>
         </Card>
-        <Card>
-          <Metadata>
-            <Touchable>
-              <Ionicons
-                name='ios-heart'
-                size={iconSize}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              />
-              <OptionTitleContainer>
-                <ETASimpleText
-                  size={14}
-                  weight={Platform.OS === 'ios' ? '400' : '300'}
-                  color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                  align={'left'}>
-                  About us
-                </ETASimpleText>
-                </OptionTitleContainer>
-            </Touchable>
-          </Metadata>
-        </Card>
-      </Spacevertical>
-    </>
+      </ProfileUserContent>
+      <Scroll>
+        <ProfileContentComponent />
+      </Scroll>
+    </Root>
   );
 };
 
-export default SettingsContent;
+export default ProfileComponent;

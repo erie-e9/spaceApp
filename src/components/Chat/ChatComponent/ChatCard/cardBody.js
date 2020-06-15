@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
+import { truncateString } from '@functions';
 
 const Root = styled.View`
   flex: 1;
@@ -33,7 +34,9 @@ const CardBody = ({text}) => {
           weight={Platform.OS === 'ios' ? '500' : '300'}
           color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
           align={'left'}>
-          {text}
+          {
+            truncateString(text, 30)
+          }
         </ETASimpleText>
       </ChatContentContainer>
     </Root>

@@ -149,7 +149,7 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
         </SecondaryButton>
       </Animated.View>
 
-      {/* <Animated.View style={{
+      <Animated.View style={{
         backgroundColor: '#262626',
         justifyContent: 'center',
         alignItems: 'center',
@@ -160,21 +160,25 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
         top: -35,
         borderWidth: 6,
         borderColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-      }}> */}
+        zIndex: 1000 
+      }}>
         <ItemGeneratorButton onPress={() => {_handlePress(); onPress()}}>
-          <Animated.View style={{ 
-            backgroundColor: '#262626',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 56,
-            width: 56,
-            borderRadius: 28,
-            position: 'absolute',
-            top: -35,
-            right: -25,
-            borderWidth: 6,
-            borderColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-            transform: [{ scale: buttonSize }], zIndex: 1000 }}>
+          <Animated.View 
+            style={{ 
+              backgroundColor: '#262626',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 56,
+              width: 56,
+              borderRadius: 28,
+              // position: 'absolute',
+              // top: -35,
+              // right: -25,
+              borderWidth: 6,
+              borderColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+              transform: [{ scale: buttonSize }], 
+              zIndex: 1000 
+            }}>
             {/* <IcecreamIcon 
               focused={focused} 
               color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} 
@@ -184,7 +188,7 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
             <Ionicons name='ios-ice-cream' size={size} color={'white'} />
           </Animated.View>
         </ItemGeneratorButton>
-      {/* </Animated.View> */}
+      </Animated.View>
     </ItemGeneratorContainer>
   );
 }

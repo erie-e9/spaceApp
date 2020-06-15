@@ -8,7 +8,7 @@ const TouchableOpacity = styled.TouchableOpacity`
 const AvatarContainer = styled.View``;
 const Avatar = styled.Image``;
 
-const ETAAvatar = ({avatar, size}) => {
+const ETAAvatar = ({image, size}) => {
   const avatarSizeMiddle = 45;
   const avatarSizeSmall = 30;
 
@@ -27,7 +27,7 @@ const ETAAvatar = ({avatar, size}) => {
               borderRadius:
                 size === 'middle' ? avatarSizeMiddle / 2 : avatarSizeSmall / 2,
             }}
-            source={{uri: avatar ? avatar : variables.AVATAR_USER_DEFAULT}}
+            source={{uri: image ? image : variables.AVATAR_USER_DEFAULT}}
           />
         </AvatarContainer>
       </TouchableOpacity>

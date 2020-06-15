@@ -1,15 +1,18 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Platform, Animated} from 'react-native';
+import {Platform, Animated, Dimensions} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {useNavigation} from '@react-navigation/native';
 import {ETASimpleText, ETAHeaderText} from '@etaui';
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent';
 
+const {width} = Dimensions.get('window');
+
 const Root = styled.View`
+  width: ${ width - 20}px;
   justifyContent: center;
+  alignSelf: center;
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  borderTopRightRadius: 5px;
-  borderTopLeftRadius: 5px;
+  borderRadius: 15px
   paddingVertical: 10px;
   marginBottom: 12px;
 `;
@@ -35,7 +38,7 @@ const Touchable = styled.TouchableOpacity`
 const MenuList = ({data, title}) => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
-  const [ items ] = useState(data.slice(0, 4)); //slice: only first 4 items
+  const [ items ] = useState(data.slice(0, 2)); //slice: only first 4 items
   const [ animatedValueTransform ] = useState(new Animated.Value(0));
   const [ opacity ] = useState(new Animated.Value(0));
   let delayValue = 2000;

@@ -37,7 +37,7 @@ const ChatItemComponent = () => {
   const themeContext = useContext(ThemeContext);
   const route = useRoute();
   const [ items ] = useState(messages.data); //slice: only first 4 items
-  const [ animatedValueTransform ] = useState(new Animated.Value(0));
+  const [ animatedValueTransform ] = useState(new Animated.Value(0.9));
   const [ opacity ] = useState(new Animated.Value(0));
   let delayValue = 2000;
   
@@ -50,7 +50,7 @@ const ChatItemComponent = () => {
 
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 1500,
+      duration: 500,
       useNativeDriver: true
     }).start();
   }, [])
@@ -72,12 +72,16 @@ const ChatItemComponent = () => {
             delayValue = delayValue + 1000;
             const translateY = animatedValueTransform.interpolate({
               inputRange: [0, 1],
-              outputRange: [delayValue, 1]
+              outputRange: [delayValue, 1],
+              extrapolate: 'clamp'
             });
 
             return (
               // <Touchable key={item._id} onPress={() => _onPressItem(item)}>
-                <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+                <Animated.View style={{ 
+                  opacity, 
+                  // transform: [{ translateY }]
+                }}>
                   <MessageBubbleComponent item={item} />
                 </Animated.View>
               // {/* </Touchable> */}

@@ -4,6 +4,7 @@ import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import eoLocale from 'date-fns/locale/es';
+import { truncateString } from '@functions';
 
 const Root = styled.View`
   flex: 1;
@@ -32,12 +33,14 @@ const TimeContainer = styled.View`
   flexDirection: column;
   alignItems: center;
   justifyContent: flex-end;
+  right: 10px; 
 `;
 const Touchable = styled.TouchableOpacity``;
 
-const CardHeader = ({username, firstname, lastname}) => {
-  // , avatar, createdAt
+const CardHeader = ({username, firstname, lastname, createdAt}) => {
+  // console.log('ewe', createdAt);
   const themeContext = useContext(ThemeContext);
+  var fullname = `${firstname} ${lastname}`;
 
   return (
     <Root>
@@ -48,7 +51,9 @@ const CardHeader = ({username, firstname, lastname}) => {
             weight={Platform.OS === 'ios' ? '500' : '400'}
             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
             align={'left'}>
-            {firstname} {lastname}
+            {
+              truncateString(fullname, 40)
+            }
           </ETASimpleText>
           <Touchable>
             <ETASimpleText
@@ -56,7 +61,10 @@ const CardHeader = ({username, firstname, lastname}) => {
               weight={Platform.OS === 'ios' ? '500' : '300'}
               color={themeContext.LINK}
               align={'left'}>
-              @{username}
+              @
+              {
+                truncateString(username, 40)
+              }
             </ETASimpleText>
           </Touchable>
         </UserDataContainer>
@@ -67,10 +75,10 @@ const CardHeader = ({username, firstname, lastname}) => {
             weight={Platform.OS === 'ios' ? '500' : '300'}
             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
             align={'left'}>
-            {formatDistanceToNow(new Date(2019, 6, 2), { 
+            {formatDistanceToNow(new Date(parseInt(createdAt)), { 
               addSuffix: true, 
               // locale: eoLocale // Esp
-              })}
+            })}
           </ETASimpleText>
         </TimeContainer>
       </MetaContainer>

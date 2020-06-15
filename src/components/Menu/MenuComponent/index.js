@@ -14,17 +14,19 @@ const {width} = Dimensions.get('window');
 const Root = styled.View`
   justifyContent: center;
   alignItems: center;
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  backgroundColor: transparent;
 `;
 const HeaderContainer = styled.View`
-  justifyContent: flex-end;
-  marginTop: 20px;
+  flex: 1;
+  justifyContent: center;
+  margin: -1px 0px 0px 0px;
 `;
 
 const MenuComponent = (data) => {
   const themeContext = useContext(ThemeContext);
   const [ scrollYAnimatedValue ] = useState(new Animated.Value(0));
-  const [ animatedValueTransform ] = useState(new Animated.Value(0.54));
+  const [ animatedValueTransform ] = useState(new Animated.Value(0.96));
+  const [ opacity ] = useState(new Animated.Value(0));
   let delayValue = 1000;
 
   const headerHeight = scrollYAnimatedValue.interpolate({
@@ -44,6 +46,12 @@ const MenuComponent = (data) => {
     Animated.spring(animatedValueTransform, {
       toValue: 1,
       tension: 5,
+      useNativeDriver: true
+    }).start();
+
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 500,
       useNativeDriver: true
     }).start();
   }, []);
@@ -68,12 +76,16 @@ const MenuComponent = (data) => {
               useNativeDriver: !true,
             }          
           )}>
-          {/* <Animated.View style={{ transform: [{ translateY }]}}> */}
+          <Animated.View 
+            style={{ 
+              transform: [{ translateY }],
+              opacity
+            }}>
             <HeaderContainer>
               <ETACarousel posts={carouselData.data} data={data.menu1} autoplay={true} time={6000}/>
             </HeaderContainer>
-          {/* </Animated.View> */}
-          <PromoBannerComponent />
+            <PromoBannerComponent />
+          </Animated.View>
           <MenuList data={data.menu1} title='Dazzler sundaes' />
           <MenuList data={data.menu2} title='Cups and cones'/>
           <MenuList data={data.menu3} title='Milkshakes'/>

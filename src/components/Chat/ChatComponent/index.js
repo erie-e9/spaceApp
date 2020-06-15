@@ -17,13 +17,14 @@ const ChatComponent = ({data}) => {
   const [refresher, setrefresher] = useState(!true)
   
   const _onPress = (item) => {
-    
-    navigation.navigate('ChatItemScreen', {
-      screen: 'ChatScreen',
+    navigation.navigate('ChatItemNavigator', {
+      screen: 'ChatItemScreen',
       params: {
         item: item
       }
     });
+
+    // navigation.navigate('ChatItemNavigator');
   };
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const ChatComponent = ({data}) => {
   }, [])
   
   const _getData = () => {
-    console.log('getting data...');      
+    // console.log('getting data...', data.getChats);
     setrefresher(true)
     setchats(data.getChats)
     setrefresher(!true)

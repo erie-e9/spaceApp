@@ -9,7 +9,7 @@ const {width} = Dimensions.get('window');
 const Root = styled.View`
     flex: 0.6;
     flexDirection: column;
-    width: ${width - 30}px;
+    width: ${width - 20}px;
     borderTopLeftRadius: 15px;
     borderTopRightRadius: 15px;
     borderBottomLeftRadius: 0px;

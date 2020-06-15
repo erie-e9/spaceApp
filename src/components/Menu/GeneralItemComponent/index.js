@@ -32,13 +32,13 @@ const ItemImage = styled.Image`
 const NewContainer = styled.View`
   position: absolute;
   zIndex: 100;
-  height: 15px;
-  width: 30px;
+  height: 14px;
+  width: 28px;
   top: 10px;
   left: 8px;
   backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
   borderRadius: 5px;
-  borderWidth: 1px;
+  borderWidth: 0px;
   borderColor: white;
   justifyContent: flex-end;
 `;
@@ -53,7 +53,7 @@ const CardBottom = styled.View`
   borderBottomLeftRadius: 15px;
   borderBottomRightRadius: 15px;
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  borderWidth: 0.75px;
+  borderWidth: 0.5px;
   borderColor: ${(props) => props.theme.GRAYFACEBOOK};
 `;
 const ShopContainer = styled.View`
@@ -182,7 +182,7 @@ const GeneralItemComponent = ({item}) => {
                 name={item.isFavorite ? 'md-heart' : 'md-heart-empty'} 
                 size={20} 
                 color={item.isFavorite ? themeContext.PRIMARY_COLOR  : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-            />
+              />
             </Touchable>
           </FavoriteContainer>
             {/* {

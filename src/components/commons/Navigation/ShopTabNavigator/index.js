@@ -2,19 +2,17 @@ import React, {useState, useContext, cloneElement} from 'react';
 import {View, Text} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
 import DinamycTabButton from './DinamycTabButton';
 import {Ionicons, FontAwesome, AntDesign, SunIcon, IcecreamIcon, IcecreamIcon2, IcecreamIcon3} from '@icons';
 import { eq, multiply, greaterThan, cond } from 'react-native-reanimated';
 import { withTransition } from 'react-native-redash';
 import {fakeavatar, variables} from '@utils/constants';
 import MenuNavigator from './MenuNavigator';
-import ChatNavigator from './ChatNavigator';
+import {ChatNavigator, ChatItemNavigator} from './ChatNavigator';
 import CartNavigator from './CartNavigator';
+import ProfileNavigator from './ProfileNavigator';
 import AnalyticsScreen from '@screens/AnalyticsScreen';
-import FavsScreen from '@screens/Favs/FavsScreen';
-import CartScreen from '@screens/Cart/CartScreen';
-import ProfileScreen from '@screens/Profile/ProfileScreen';
-import OrdersScreen from '@screens/Orders/OrdersScreen';
 import {ETASearchBar} from '@etaui';
 
 const AvatarContainer = styled.View`
@@ -158,10 +156,11 @@ const ShopTabNavigator = () => {
             return (
               <AvatarContainer 
                 style={{
-                  height: size + 1,
-                  width: size + 1,
+                  height: size + 1.5,
+                  width: size + 1.5,
                   borderRadius: size / 2,
-                  backgroundColor: color
+                  backgroundColor: color,
+                  padding: 2
                 }}>
                 <Avatar
                   style={{
@@ -199,10 +198,24 @@ const ShopTabNavigator = () => {
       <ShopTab.Screen name='ItemGenerator' component={() => null} />
       <ShopTab.Screen name='Cart' component={CartNavigator} />
       {/* <ShopTab.Screen name='Favs' component={FavsScreen} /> */}
-      <ShopTab.Screen name='Profile' component={ProfileScreen} />
+      <ShopTab.Screen name='Profile' component={ProfileNavigator} />
     </ShopTab.Navigator>
   );
 };
 /** /App user logged */
 
-export default ShopTabNavigator;
+const Stack = createStackNavigator();
+const ShopNavigator = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTransparent: !true,
+        headerShown: !true,
+      }}>
+      <Stack.Screen name='ShopTabNavigator' component={ShopTabNavigator} />
+      <Stack.Screen name='ChatItemNavigator' component={ChatItemNavigator} />
+    </Stack.Navigator>
+  );
+}
+
+export default ShopNavigator;

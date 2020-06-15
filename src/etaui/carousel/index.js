@@ -10,13 +10,16 @@ const {width} = Dimensions.get('window');
 const Root = styled.View`
   justifyContent: center;
   alignItems: center;
+  backgroundColor:  ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const CarouselList = styled.FlatList`
 `;
 const DotCarousel = styled.View`
   flexDirection: row;
   justifyContent: center;
-  `;
+  position: absolute;
+  bottom: 5px;
+`;
 const Touchable = styled.TouchableWithoutFeedback`
 `;
 const TouchableWithoutFeedbackContainer = styled.View``;
@@ -119,7 +122,7 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
                     borderRadius: 3.5,
                     backgroundColor: '#595959',
                     margin: 5,
-                    bottom: 20,
+                    bottom: 5,
                   }}
                 />
               );

@@ -21,13 +21,18 @@ const ContactContainer = styled.View`
   minWidth: 100%;
   maxWidth: 100%;
 `;
-const AvatarContainer = styled.View``;
+const AvatarContainer = styled.View`
+  padding: 2px;
+  borderRadius: 50px;
+  backgroundColor: transparent;
+`;
 
-const ChatCard = ({text, employee, createdAt, favoriteCount}) => {
+const ChatCard = ({text, employee, createdAt}) => {
+
   return (
     <Root>
       <AvatarContainer>
-        <ETAAvatar size='middle' />
+        <ETAAvatar image={employee.avatar} size='middle' />
       </AvatarContainer>
       <ContactContainer>
         <CardHeader {...employee} createdAt={createdAt} />

@@ -126,7 +126,7 @@ const NewContainer = styled.View`
   backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
   borderRadius: 5px;
   borderWidth: 1px;
-  borderColor: white;
+  borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   justifyContent: center;
 `;
 const CardTopHead = styled.View`
@@ -245,7 +245,7 @@ const CardBottom = styled.View`
   width: 100%;
   alignItems: flex-start;
   paddingHorizontal: 10px;
-  marginTop: 3px;
+  marginTop: 10px;
 `;
 const ItemDetailsContainer = styled.View`
   minHeight: 50px;

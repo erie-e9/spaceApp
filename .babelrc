@@ -8,6 +8,7 @@
                 "@screens": "./src/screens",
                 "@etaui": "./src/etaui",
                 "@utils": "./src/utils",
+                "@functions": "./src/etaui/functions",
                 "@graphql": "./src/graphql",
                 "@assets": "./assets",
                 "@context": "./src/context",

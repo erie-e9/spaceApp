@@ -5,25 +5,26 @@ import {ETASimpleText} from '@etaui';
 
 const {width} = Dimensions.get('window');
 const Root = styled.View`
-  flex: 1;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
-  padding: 10px 0px;
+    flex: 1;
+    justifyContent: center;
+    alignItems: center;
+    backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    padding: 10px 0px;
+    marginBottom: 10px;
 `;
 const Item = styled.View`
     flexDirection: row;
-    width: ${width - 55}px;
-    height: 32px;
-    borderRadius: 5px;
-    borderWidth: 0px;
-    borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    width: ${width - 50}px;
+    height: 35px;
+    borderRadius: 1px;
+    borderWidth: 0.75px;
+    borderColor: ${(props) => props.theme.GRAYFACEBOOK};
 `;
 const BannerLeft = styled.View`
     flex: 1;
     justifyContent: center;
     alignItems: center;
-    backgroundColor: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const BannerRight = styled.View`
     flex: 1;
@@ -40,24 +41,25 @@ const PromoBannerComponent = () => {
             <Item>
                 <BannerLeft>
                     <ETASimpleText
-                        size={11}
-                        weight={Platform.OS === 'ios' ? '700' : '200'}
+                        size={10}
+                        weight={Platform.OS === 'ios' ? '700' : 'bold'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}>
-                        Week offers
+                        Weekly
                     </ETASimpleText>
                     <ETASimpleText
-                        size={9}
-                        weight={Platform.OS === 'ios' ? '400' : '200'}
+                        size={10}
+                        weight={Platform.OS === 'ios' ? '400' : '400'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                        align={'center'}>
-                        -30%, -40% and -75%
+                        align={'center'}
+                        time={2000}>
+                        offers
                     </ETASimpleText>
                 </BannerLeft>
                 <BannerRight>
                     <ETASimpleText
-                        size={11}
-                        weight={Platform.OS === 'ios' ? '700' : '200'}
+                        size={10}
+                        weight={Platform.OS === 'ios' ? '700' : 'bold'}
                         color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}>
                         Extra discount 
@@ -72,15 +74,15 @@ const PromoBannerComponent = () => {
                 </BannerRight>
                 <BannerLeft>
                     <ETASimpleText
-                        size={11}
-                        weight={Platform.OS === 'ios' ? '700' : '200'}
+                        size={10}
+                        weight={Platform.OS === 'ios' ? '700' : 'bold'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}>
                         Free shipping
                     </ETASimpleText>
                     <ETASimpleText
                         size={9}
-                        weight={Platform.OS === 'ios' ? '400' : '200'}
+                        weight={Platform.OS === 'ios' ? '400' : 'bold'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}>
                         First order
