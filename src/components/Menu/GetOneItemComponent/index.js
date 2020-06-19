@@ -5,6 +5,7 @@ import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText} from '@etaui';
 import {Ionicons, FontAwesome} from '@icons';
 import SuggestionsComponent from './SuggestionsComponent';
+import {Context} from '@context/cartContext';
 
 const {width, height} = Dimensions.get('window');
 
@@ -100,7 +101,6 @@ const AddRemoveButtonContainer = styled.View`
   justifyContent: center;
   alignItems: center;
   backgroundColor: transparent;
-  bottom: 5px;
 `;
 const RemoveCart = styled.TouchableOpacity`
   padding: 5px;
@@ -120,20 +120,22 @@ const CardTop = styled.View`
 const NewContainer = styled.View`
   position: absolute;
   zIndex: 100;
-  height: 18px;
-  width: 32px;
-  top: -18px;
+  height: 16px;
+  width: 30px;
+  top: -15px;
   backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
   borderRadius: 5px;
   borderWidth: 1px;
   borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   justifyContent: center;
+  alignItems: center;
 `;
 const CardTopHead = styled.View`
-  minHeight: 45px;
+  minHeight: 40px;
   flexDirection: row;
   justifyContent: center;
-  alignItems: center;
+  alignItems: flex-start;
+  backgroundColor: transparent;
 `;
 const NameContainer = styled.View`
   flex: 1;
@@ -149,7 +151,7 @@ const ShopContainer = styled.View`
   justifyContent: center;
   alignItems: center;
   paddingHorizontal: 2px;
-  marginBottom: 10px;
+  marginBottom: 5px;
 `;
 const DiscountContainer = styled.View`
   flex: 1;
@@ -164,8 +166,8 @@ const PercentContainer = styled.View`
   alignItems: center;
   zIndex: 100;
   borderWidth: 0px;
-  paddingHorizontal: 5px;
-  paddingVertical: 3px;
+  paddingHorizontal: 4px;
+  paddingVertical: 1.5px;
   borderColor: white;
   borderTopLeftRadius: 4px;
   borderTopRightRadius: 4px;
@@ -199,7 +201,7 @@ const ItemInfoRating = styled.View`
   shadowRadius: 2px;
   shadowOpacity: 0;
   elevation: 0;
-  borderWidth: 0.75px;
+  borderWidth: 0.5px;
   borderColor: ${props => props.theme.GRAYFACEBOOK};
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   marginHorizontal: 7px;
@@ -215,7 +217,7 @@ const ItemInfoCalories = styled.View`
   shadowRadius: 2px;
   shadowOpacity: 0;
   elevation: 0;
-  borderWidth: 0.75px;
+  borderWidth: 0.5px;
   borderColor: ${props => props.theme.GRAYFACEBOOK};
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   marginHorizontal: 7px;
@@ -231,7 +233,7 @@ const ItemInfoWeight = styled.View`
   shadowRadius: 2px;
   shadowOpacity: 0;
   elevation: 0;
-  borderWidth: 0.75px;
+  borderWidth: 0.5px;
   borderColor: ${props => props.theme.GRAYFACEBOOK};
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   marginHorizontal: 7px;
@@ -266,6 +268,7 @@ const Touchable = styled.TouchableOpacity`
 
 const GetOneItemComponent = () => {
   const themeContext = useContext(ThemeContext);
+  const {addToCart, removeToCart, state} = useContext(Context);
   const [ addedCounter, setaddedCounter ] = useState(0);
   const [ animatedValueTransform ] = useState(new Animated.Value(0.9));
   const route = useRoute();
@@ -273,23 +276,37 @@ const GetOneItemComponent = () => {
   let delayValue = 1000;
 
   useEffect(() => {
+    if (state.data.length > 0) {
+      let itemFound = state.data.find(element => element._id === item._id);
+      // console.log('itemFound:', itemFound);
+      if (itemFound) {
+        setaddedCounter(itemFound.howMany);
+      }
+    } else {
+      // console.log('state.data: ', state.data);
+    }
+  }, [state]);
+
+  useEffect(() => {   
     Animated.spring(animatedValueTransform, {
       toValue: 1,
       tension: 5,
       useNativeDriver: true
     }).start();
-  }, [])
+  }, []);
 
   const translateY = animatedValueTransform.interpolate({
     inputRange: [0, 1],
     outputRange: [delayValue, 1]
   });  
   
-  const _addCart = () => {
+  const _addCart = (item) => {
     setaddedCounter(addedCounter + 1)
+    addToCart(item);
   }
 
-  const _removeCart = () => {
+  const _removeCart = (_id) => {
+    removeToCart(_id);
     setaddedCounter(addedCounter - 1)
   }
   
@@ -328,7 +345,7 @@ const GetOneItemComponent = () => {
             <AddCartContainer>
             {
               addedCounter === 0
-              ? <AddCart onPress={() => _addCart()}>
+              ? <AddCart onPress={() => _addCart(item)}>
                   <AddRemoveButtonContainer>
                     <ETASimpleText
                       size={18}
@@ -346,7 +363,7 @@ const GetOneItemComponent = () => {
                   />
                 </AddCart>
               : <AddRemoveContainer>
-                  <RemoveCart onPress={() => _removeCart()}>
+                  <RemoveCart onPress={() => _removeCart(item._id)}>
                     <AddRemoveButtonContainer>
                       {/* <CounterContainer> */}
                         <ETASimpleText
@@ -368,7 +385,7 @@ const GetOneItemComponent = () => {
                       {addedCounter}
                     </ETASimpleText>
                   </CounterContainer>
-                  <AddCart onPress={() => _addCart()}>
+                  <AddCart onPress={() => _addCart(item)}>
                     <AddRemoveButtonContainer>                  
                       {/* <CounterContainer> */}
                         <ETASimpleText
@@ -484,8 +501,8 @@ const GetOneItemComponent = () => {
                   Details
                 </ETASimpleText>
                 <ETASimpleText
-                  size={12}
-                  weight={Platform.OS === 'ios' ? '400' : '400'}
+                  size={11}
+                  weight={Platform.OS === 'ios' ? '300' : '300'}
                   color={themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT}
                   align={'left'}>
                   {item.details}

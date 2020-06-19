@@ -8,7 +8,7 @@ import {ETASimpleText} from '@etaui';
 const iconSize = 23;
 
 const Root = styled.View`
-  flex: 0.3;
+  flex: 1;
   flexDirection: column;
   backgroundColor: transparent;
 `;

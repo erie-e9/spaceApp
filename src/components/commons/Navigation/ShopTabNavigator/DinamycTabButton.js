@@ -10,10 +10,9 @@ const ItemGeneratorContainer = styled.View`
 const ItemGeneratorButton = styled.TouchableHighlight.attrs({
   underlayColor: 'transparent',
 })`
-  zIndex: 1000;
+  zIndex: 2000;
 `;
 const SecondaryButton = styled.View`
-  backgroundColor: ${props => props.theme.PRIMARY_COLOR};
   justifyContent: center;
   alignItems: center;
   height: 30px;
@@ -27,11 +26,13 @@ const SecondaryButton = styled.View`
   shadowOpacity: 0;
   borderWidth: 0px;
   borderColor: red;
+  backgroundColor: ${props => props.theme.PRIMARY_COLOR};
+  zIndex: 2000;
 `;
 const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
-  underlayColor: 'transparent',
+  underlayColor: 'red',
 })`
-  zIndex: 100;
+  zIndex: 2000;
 `;
 
 const DinamycTabButton = ({ focused, size, onPress }) => {
@@ -105,7 +106,7 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 
   return (
     <ItemGeneratorContainer>
-      <Animated.View style={{ position: 'absolute', left: SecondaryButton1X, top: SecondaryButton1Y }}>
+      <Animated.View style={{ position: 'absolute', left: SecondaryButton1X, top: SecondaryButton1Y, zIndex: 1000 }}>
         <SecondaryButton>
           <SubItemGeneratorButton onPress={() => {_handlePressButton1(); onPress()}}>
             <Animated.View style={{ transform: [{ scale: buttonSize }] }}>
@@ -120,7 +121,7 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
         </SecondaryButton>
       </Animated.View>
       
-      <Animated.View style={{ position: 'absolute', left: SecondaryButton2X, top: SecondaryButton2Y }}>
+      <Animated.View style={{ position: 'absolute', left: SecondaryButton2X, top: SecondaryButton2Y, zIndex: 1000 }}>
         <SecondaryButton>
           <SubItemGeneratorButton onPress={() => {_handlePressButton2(); onPress()}}>
             <Animated.View style={{ transform: [{ scale: buttonSize }] }}>
@@ -134,14 +135,14 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
         </SecondaryButton>
       </Animated.View>
       
-      <Animated.View style={{ position: 'absolute', left: SecondaryButton3X, top: SecondaryButton3Y }}>
+      <Animated.View style={{ position: 'absolute', left: SecondaryButton3X, top: SecondaryButton3Y, zIndex: 1000  }}>
         <SecondaryButton>
           {/* <IcecreamIcon3 
             focused={focused} 
             // color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR} 
             color='white'
           size={size-7} /> */}
-          <SubItemGeneratorButton onPress={() => {_handlePressButton3(); onPress()}}>
+          <SubItemGeneratorButton onPress={() => _handlePressButton3()}>
             <Animated.View style={{ transform: [{ scale: buttonSize }] }}>
             </Animated.View>
               <Ionicons name='md-heart' size={size-7} color={'white'} />

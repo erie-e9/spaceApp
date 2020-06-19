@@ -1,7 +1,12 @@
 import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
 import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
-import ProfileScreen from '@screens/Profile/ProfileScreen';;
+import ProfileScreen from '@screens/Profile/ProfileScreen';
+import NotificationsScreen from '@screens/Profile/NotificationsScreen';
+import DirectionsScreen from '@screens/Profile/DirectionsScreen';
+import FavoritesScreen from '@screens/Profile/FavoritesScreen';
+import PaymentMethodsScreen from '@screens/Profile/PaymentMethodsScreen';
+import HelpScreen from '@screens/Profile/HelpScreen';
 import {ETASimpleText} from '@etaui';
 
 const HeaderLeft = styled.TouchableOpacity`
@@ -49,6 +54,216 @@ const ProfileNavigator = () => {
             <ProfileStack.Screen
                 name='ProfileScreen'
                 component={ProfileScreen}
+                options={({navigation, route}) => ({
+                    headerTitle: '',
+                    headerShown: !true,
+                    headerTransparent: !true,
+                    headerLeft: () => {
+                        return (
+                            <Header>
+                                <ETASimpleText
+                                    size={22}
+                                    weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                    align={'left'}>
+                                    Profile
+                                </ETASimpleText>
+                            </Header>
+                        );
+                    },
+                    // headerRight: () => {
+                    //     return (
+                    //         <IconButton
+                    //             activeOpacity={1}
+                    //             underlayColor='#ccd0d5'
+                    //             // onPress={(event) => _onFocus(event)}
+                    //         >
+                    //             <FontAwesome name='search' size={18} color='#000' />
+                    //         </IconButton>
+                    //     )
+                    // },
+                    headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                })}
+            />
+            <ProfileStack.Screen
+                name='NotificationsScreen'
+                component={NotificationsScreen}
+                options={({navigation, route}) => ({
+                    headerTitle: '',
+                    headerShown: true,
+                    headerTransparent: !true,
+                    headerLeft: () => {
+                        return (
+                            <Header>
+                                <ETASimpleText
+                                    size={22}
+                                    weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                    align={'left'}>
+                                    Profile
+                                </ETASimpleText>
+                            </Header>
+                        );
+                    },
+                    // headerRight: () => {
+                    //     return (
+                    //         <IconButton
+                    //             activeOpacity={1}
+                    //             underlayColor='#ccd0d5'
+                    //             // onPress={(event) => _onFocus(event)}
+                    //         >
+                    //             <FontAwesome name='search' size={18} color='#000' />
+                    //         </IconButton>
+                    //     )
+                    // },
+                    headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                })}
+            />
+            <ProfileStack.Screen
+                name='DirectionsScreen'
+                component={DirectionsScreen}
+                options={({navigation, route}) => ({
+                    headerTitle: '',
+                    headerShown: !true,
+                    headerTransparent: !true,
+                    headerLeft: () => {
+                        return (
+                            <Header>
+                                <ETASimpleText
+                                    size={22}
+                                    weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                    align={'left'}>
+                                    Profile
+                                </ETASimpleText>
+                            </Header>
+                        );
+                    },
+                    // headerRight: () => {
+                    //     return (
+                    //         <IconButton
+                    //             activeOpacity={1}
+                    //             underlayColor='#ccd0d5'
+                    //             // onPress={(event) => _onFocus(event)}
+                    //         >
+                    //             <FontAwesome name='search' size={18} color='#000' />
+                    //         </IconButton>
+                    //     )
+                    // },
+                    headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                })}
+            />
+            <ProfileStack.Screen
+                name='FavoritesScreen'
+                component={FavoritesScreen}
+                options={({navigation, route}) => ({
+                    headerTitle: '',
+                    headerShown: !true,
+                    headerTransparent: !true,
+                    headerLeft: () => {
+                        return (
+                            <Header>
+                                <ETASimpleText
+                                    size={22}
+                                    weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                    align={'left'}>
+                                    Profile
+                                </ETASimpleText>
+                            </Header>
+                        );
+                    },
+                    // headerRight: () => {
+                    //     return (
+                    //         <IconButton
+                    //             activeOpacity={1}
+                    //             underlayColor='#ccd0d5'
+                    //             // onPress={(event) => _onFocus(event)}
+                    //         >
+                    //             <FontAwesome name='search' size={18} color='#000' />
+                    //         </IconButton>
+                    //     )
+                    // },
+                    headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                })}
+            />
+            <ProfileStack.Screen
+                name='ProfileScreen'
+                component={ProfileScreen}
+                options={({navigation, route}) => ({
+                    headerTitle: '',
+                    headerShown: !true,
+                    headerTransparent: !true,
+                    headerLeft: () => {
+                        return (
+                            <Header>
+                                <ETASimpleText
+                                    size={22}
+                                    weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                    align={'left'}>
+                                    Profile
+                                </ETASimpleText>
+                            </Header>
+                        );
+                    },
+                    // headerRight: () => {
+                    //     return (
+                    //         <IconButton
+                    //             activeOpacity={1}
+                    //             underlayColor='#ccd0d5'
+                    //             // onPress={(event) => _onFocus(event)}
+                    //         >
+                    //             <FontAwesome name='search' size={18} color='#000' />
+                    //         </IconButton>
+                    //     )
+                    // },
+                    headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                })}
+            />
+            <ProfileStack.Screen
+                name='PaymentMethodsScreen'
+                component={PaymentMethodsScreen}
+                options={({navigation, route}) => ({
+                    headerTitle: '',
+                    headerShown: !true,
+                    headerTransparent: !true,
+                    headerLeft: () => {
+                        return (
+                            <Header>
+                                <ETASimpleText
+                                    size={22}
+                                    weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                    align={'left'}>
+                                    Profile
+                                </ETASimpleText>
+                            </Header>
+                        );
+                    },
+                    // headerRight: () => {
+                    //     return (
+                    //         <IconButton
+                    //             activeOpacity={1}
+                    //             underlayColor='#ccd0d5'
+                    //             // onPress={(event) => _onFocus(event)}
+                    //         >
+                    //             <FontAwesome name='search' size={18} color='#000' />
+                    //         </IconButton>
+                    //     )
+                    // },
+                    headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                })}
+            />
+            <ProfileStack.Screen
+                name='HelpScreen'
+                component={HelpScreen}
                 options={({navigation, route}) => ({
                     headerTitle: '',
                     headerShown: !true,

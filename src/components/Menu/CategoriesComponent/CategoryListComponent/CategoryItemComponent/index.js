@@ -38,7 +38,7 @@ const NewContainer = styled.View`
   backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
   borderRadius: 5px;
   borderWidth: 1px;
-  borderColor: white;
+  borderColor: transparent;
   justifyContent: flex-end;
 `;
 

@@ -82,7 +82,6 @@ const SearchItem = styled.View`
     marginVertical: 7px;
 `;
 
-
 const { Value, timing } = Animated;
 const { width, height } = Dimensions.get('window');
 
@@ -202,7 +201,7 @@ const ETASearchBar = () => {
                                 position: 'absolute',
                                 top: 0,
                                 left: 0,
-                                backgroundColor: 'red',
+                                backgroundColor: 'transparent',
                                 transform: [{ translateX: inputBoxTranslateX }],
                                 zIndex: 2000
                             }}>

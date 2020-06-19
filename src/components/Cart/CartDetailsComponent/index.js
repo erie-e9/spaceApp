@@ -3,6 +3,8 @@ import {Platform, Dimensions} from 'react-native';
 import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText, ETAButtonFilled} from '@etaui';
 import {Ionicons, FontAwesome} from '@icons';
+import {Context} from '@context/cartContext';
+import { useIsFocused } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
@@ -77,7 +79,37 @@ const ButtonPayContainer = styled.View`
 
 const CartDetailsComponent = () => {
     const themeContext = useContext(ThemeContext);
+    const {getCartItems, state} = useContext(Context);
+    const [ totalItems, settotalItems ] = useState(0);
+    const [ total, settotal ] = useState(0);
+    const [ subtotal, setsubtotal ] = useState(0);
+    const [ shipping, setshipping ] = useState(35);
     const [ isSubmitting, setisSubmitting ] = useState(false);
+    const isFocused = useIsFocused();
+  
+    useEffect(() => {
+      getCartItems();
+      darta();
+      console.log('CartDetailsComponent isFocused', isFocused);
+      
+    }, [state.data]);
+
+    const darta = async () => {
+        let itemsArray = state.data;
+        let sum = 0
+        let subtotal = 0
+        let total = 0
+        await itemsArray.forEach(element => {
+            console.log('element.howMany', element.howMany);
+            sum = sum + element.howMany;
+            subtotal = subtotal + (element.price * element.howMany);
+            console.log('subtotal:', subtotal);
+            
+        });
+        settotalItems(sum);
+        setsubtotal(subtotal);
+        settotal(subtotal + shipping);
+    }
 
     return (
         <Root>
@@ -86,7 +118,7 @@ const CartDetailsComponent = () => {
                 weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                 align={'left'}>
-                Summary (5 items)
+                Summary ({totalItems} items)
             </ETASimpleText>
             <ResumeContainer>
                 <ETASimpleText
@@ -102,7 +134,7 @@ const CartDetailsComponent = () => {
                     weight={Platform.OS === 'ios' ? '400' : '400'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align={'left'}>
-                    $100.00
+                    ${(subtotal).toFixed(2)}
                 </ETASimpleText>
             </ResumeContainer>
             <ResumeContainer>
@@ -119,7 +151,7 @@ const CartDetailsComponent = () => {
                     weight={Platform.OS === 'ios' ? '400' : '400'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align={'left'}>
-                    $30.00
+                    ${(shipping).toFixed(2)}
                 </ETASimpleText>
             </ResumeContainer>
             <TotalContainer>                
@@ -137,7 +169,7 @@ const CartDetailsComponent = () => {
                         weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'left'}>
-                        $130.00
+                        ${(total).toFixed(2)}
                     </ETASimpleText>
                 </ResumeTotalContainer>
             </TotalContainer>
@@ -153,7 +185,7 @@ const CartDetailsComponent = () => {
             <ButtonPayContainer>
                 <ETAButtonFilled
                     title='Check out'
-                    onPress={() => console.warn('Go to pay')}
+                    onPress={() => console.log(state.data)}
                     disabled={isSubmitting ? true : false}
                     colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
                     padding={10}
@@ -165,4 +197,4 @@ const CartDetailsComponent = () => {
     );
 }
 
-export default CartDetailsComponent;
+export default React.memo(CartDetailsComponent);

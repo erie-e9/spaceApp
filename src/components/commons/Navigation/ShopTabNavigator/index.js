@@ -1,4 +1,4 @@
-import React, {useState, useContext, cloneElement} from 'react';
+import React, {useState, useEffect, useContext, cloneElement} from 'react';
 import {View, Text} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -14,6 +14,7 @@ import CartNavigator from './CartNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import AnalyticsScreen from '@screens/AnalyticsScreen';
 import {ETASearchBar} from '@etaui';
+import {Context} from '@context/cartContext';
 
 const AvatarContainer = styled.View`
   justifyContent: center;
@@ -23,6 +24,7 @@ const Avatar = styled.Image``;
 
 const IconWithBadge = ({ name, badgeCount, color, size }) => {
   const themeContext = useContext(ThemeContext);
+  // console.log('badgeCount:', badgeCount);
 
   return (
     <View style={{ width: 24, height: 24, margin: 5 }}>
@@ -54,7 +56,16 @@ const IconWithBadge = ({ name, badgeCount, color, size }) => {
 }
 
 const CartIconWithBadge = (props) => {
-  return <IconWithBadge {...props} badgeCount={1} />;
+  const {getCartItems, state} = useContext(Context);
+  
+  let badgeCountCart = 0
+  useEffect(() => {
+    getCartItems();
+  }, []);
+  
+  badgeCountCart = state.data.length;
+
+  return <IconWithBadge {...props} badgeCount={badgeCountCart} />;
 }
 
 const ShopTab = createBottomTabNavigator();
@@ -213,7 +224,11 @@ const ShopNavigator = () => {
         headerShown: !true,
       }}>
       <Stack.Screen name='ShopTabNavigator' component={ShopTabNavigator} />
-      <Stack.Screen name='ChatItemNavigator' component={ChatItemNavigator} />
+      <Stack.Screen name='ChatItemNavigator' component={ChatItemNavigator} 
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
     </Stack.Navigator>
   );
 }

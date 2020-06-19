@@ -4,6 +4,7 @@ import {ThemeProvider} from 'styled-components';
 import {NavigationContainer} from '@react-navigation/native';
 import Navigation from '@components/commons/Navigation';
 import {Provider as AuthProvider} from '@context';
+import {Provider as CartProvider} from '@context/cartContext';
 import {
   lightTheme,
   darkTheme,
@@ -43,10 +44,12 @@ const App: () => React$Node = () => {
         }}>
         <ThemeProvider theme={colorSchema === 'dark' ? darkTheme : lightTheme}>
           <AuthProvider>
-            <NavigationContainer
-              theme={colorSchema === 'dark' ? navDarkMode : navLightMode}>
-              <Navigation />
-            </NavigationContainer>
+            <CartProvider>
+              <NavigationContainer
+                theme={colorSchema === 'dark' ? navDarkMode : navLightMode}>
+                <Navigation />
+              </NavigationContainer>
+            </CartProvider>
           </AuthProvider>
         </ThemeProvider>
       </SafeAreaView>

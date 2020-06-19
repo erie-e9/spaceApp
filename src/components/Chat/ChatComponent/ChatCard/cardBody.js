@@ -35,7 +35,7 @@ const CardBody = ({text}) => {
           color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
           align={'left'}>
           {
-            truncateString(text, 30)
+            truncateString(text, 35)
           }
         </ETASimpleText>
       </ChatContentContainer>

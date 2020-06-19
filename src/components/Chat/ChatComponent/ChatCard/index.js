@@ -6,14 +6,15 @@ import CardBody from './cardBody';
 
 const Root = styled.View`
   flexDirection: row;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   paddingHorizontal: 15px;
   shadowColor: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
   alignItems: center;
   width: 100%;
   minWidth: 100%;
   maxWidth: 100%;
-`;
+  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT}
+  `;
+  // backgroundColor: transparent;
 const ContactContainer = styled.View`
   flexDirection: column;
   minHeight: 80px;

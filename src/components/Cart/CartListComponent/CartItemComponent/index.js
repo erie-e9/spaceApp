@@ -3,6 +3,8 @@ import {Platform, Dimensions} from 'react-native';
 import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText} from '@etaui';
 import {Ionicons, FontAwesome} from '@icons';
+import {Context} from '@context/cartContext';
+import { useIsFocused } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
@@ -32,17 +34,16 @@ const ItemImage = styled.Image`
     marginLeft: 5px;
 `;
 const NewContainer = styled.View`
-    position: absolute;
-    zIndex: 100;
-    height: 15px;
-    width: 25px;
-    top: 14px;
-    left: 10px;
-    backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
-    borderRadius: 5px;
-    borderWidth: 1px;
-    borderColor: white;
     justifyContent: center;
+    position: absolute;
+    height: 12px;
+    width: 23px;
+    top: 15px;
+    left: 11px;
+    backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
+    borderRadius: 4px;
+    borderWidth: 0px;
+    borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const CartItemData = styled.View`
     flex: 1;
@@ -75,15 +76,16 @@ const CardItemFunctions = styled.View`
 const Touchable = styled.TouchableOpacity`
 `;
 const CartItemContainer = styled.View`
-    flex: 0.8;
+    flex: 0.7;
     flexDirection: row;
 `;
 const CartItemLeftContainer = styled.View`
     flexDirection: column;
-    justifyContent: center;
+    justifyContent: flex-start;
     alignItems: flex-start;
-    margin: 5px 0px 10px 0px;
+    margin: 5px 0px 0px 0px;
     paddingHorizontal: 2px;
+    backgroundColor: transparent;
 `;
 const DiscountContainer = styled.View`
     flex: 1;
@@ -107,6 +109,20 @@ const PercentContainer = styled.View`
     borderBottomRightRadius: 4px;
     backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
     marginLeft: 5px;
+`;
+const UnitPriceContainer = styled.View`
+    justifyContent: center;
+    alignItems: center;
+    zIndex: 100;
+    borderWidth: 0px;
+    paddingHorizontal: 5px;
+    paddingVertical: 1px;
+    borderColor: white;
+    borderTopLeftRadius: 4px;
+    borderTopRightRadius: 4px;
+    borderBottomLeftRadius: 4px;
+    borderBottomRightRadius: 4px;
+    backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 const PriceContainer = styled.View`
     flex: 0.4;
@@ -162,7 +178,6 @@ const AddRemoveButtonContainer = styled.View`
     alignItems: center;
     justifyContent: center;
     backgroundColor: transparent;
-    bottom: 5px;
 `;
 const AddCart = styled.TouchableOpacity`
     paddingHorizontal: 5px;
@@ -178,13 +193,20 @@ const RemoveCart = styled.TouchableOpacity`
 const CartItemComponent = ({item}) => {
     const themeContext = useContext(ThemeContext);
     const [ addedCounter, setaddedCounter ] = useState(item.howMany);
+    const {addToCart, removeToCart, removeItemToCart, state} = useContext(Context);
 
-    const _addCart = () => {
+    const _addCart = (item) => {
+        addToCart(item)
         setaddedCounter(addedCounter + 1)
     }
 
-    const _removeCart = () => {
-    setaddedCounter(addedCounter - 1)
+    const _removeCart = (_id) => {
+        removeToCart(_id)
+        setaddedCounter(addedCounter - 1)
+    }
+    
+    const _removeItemCart = (_id) => {
+        removeItemToCart(_id)
     }
 
     return (
@@ -195,8 +217,8 @@ const CartItemComponent = ({item}) => {
               item.isNew
               ? <NewContainer>
                   <ETASimpleText
-                    size={10}
-                    weight={Platform.OS === 'ios' ? '400' : '300'}
+                    size={8}
+                    weight={Platform.OS === 'ios' ? '400' : '200'}
                     // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                     color='white'
                     align={'center'}>
@@ -218,7 +240,7 @@ const CartItemComponent = ({item}) => {
                         </ETASimpleText>
                     </CartTitleContainer>
                     <CardItemFunctions>
-                        <Touchable onPress={() => console.warn('item removed')}>
+                        <Touchable onPress={() => _removeItemCart(item._id)}>
                             <Ionicons 
                                 name='md-close' 
                                 size={18} 
@@ -230,7 +252,7 @@ const CartItemComponent = ({item}) => {
                 </CartItemHeadContainer>
                 <CartItemContainer>
                     <CartItemLeftContainer>
-                    {
+                    {/* {
                         item.discount > 0
                         ? <DiscountContainer>            
                             <ETASimpleText 
@@ -253,7 +275,18 @@ const CartItemComponent = ({item}) => {
                         </PercentContainer>
                         </DiscountContainer>
                         : null
-                    }
+                    } */}
+                    
+                    <UnitPriceContainer>
+                        <ETASimpleText 
+                            size={9} 
+                            weight={Platform.OS === 'ios' ? '500' : '900'} 
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} 
+                            align={'left'}
+                            style={{ zIndex: 100 }}>
+                            ${((100 - item.discount) * item.price / 100).toFixed(2)} unit price
+                        </ETASimpleText>
+                    </UnitPriceContainer>
                     <PriceContainer>
                         <ETASimpleText 
                             size={14} 
@@ -261,7 +294,7 @@ const CartItemComponent = ({item}) => {
                             color={themeContext.PRIMARY_COLOR} 
                             align={'center'}
                             style={{ zIndex: 100 }}>
-                            ${((100 - item.discount) * item.price / 100).toFixed(2)} 
+                            ${((100 - item.discount) * (item.price / 100) * addedCounter).toFixed(2)} 
                         </ETASimpleText>
                     </PriceContainer>
                     </CartItemLeftContainer>
@@ -269,7 +302,7 @@ const CartItemComponent = ({item}) => {
                         <AddCartContainer>
                         {
                             addedCounter === 0
-                            ?   <AddCart onPress={() => _addCart()}>
+                            ?   <AddCart onPress={() => _addCart(item)}>
                                     <AddRemoveButtonContainer>
                                         <ETASimpleText
                                         size={18}
@@ -287,7 +320,7 @@ const CartItemComponent = ({item}) => {
                                     />
                                 </AddCart>
                             :   <AddRemoveContainer>
-                                    <RemoveCart onPress={() => _removeCart()}>
+                                    <RemoveCart onPress={() => _removeCart(item._id)}>
                                         <AddRemoveButtonContainer>
                                         {/* <CounterContainer> */}
                                             <ETASimpleText
@@ -309,7 +342,7 @@ const CartItemComponent = ({item}) => {
                                         {addedCounter}
                                         </ETASimpleText>
                                     </CounterContainer>
-                                    <AddCart onPress={() => _addCart()}>
+                                    <AddCart onPress={() => _addCart(item)}>
                                         <AddRemoveButtonContainer>                  
                                         {/* <CounterContainer> */}
                                             <ETASimpleText

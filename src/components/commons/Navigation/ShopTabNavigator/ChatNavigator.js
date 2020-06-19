@@ -135,7 +135,7 @@ const ChatNavigator = () => {
                                 weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                                 align={'left'}>
-                                Chatroom
+                                Chat room
                             </ETASimpleText>
                         </Header>
                     );

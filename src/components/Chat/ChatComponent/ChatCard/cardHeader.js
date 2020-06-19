@@ -47,7 +47,7 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
       <MetaContainer>
         <UserDataContainer>
           <ETASimpleText
-            size={15}
+            size={13}
             weight={Platform.OS === 'ios' ? '500' : '400'}
             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
             align={'left'}>
@@ -57,7 +57,7 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
           </ETASimpleText>
           <Touchable>
             <ETASimpleText
-              size={13}
+              size={11}
               weight={Platform.OS === 'ios' ? '500' : '300'}
               color={themeContext.LINK}
               align={'left'}>
