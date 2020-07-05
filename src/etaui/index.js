@@ -18,7 +18,7 @@ import ETASwitch from '@etaui/switch';
 import ETAStarRaiting from '@etaui/starraiting';
 import ETAAutoScroll from '@etaui/autoscroll';
 import ETACreditCard from '@etaui/creditcard';
-import ETAValidationInput from '@etaui/inputs/maskedinput';
+import ETAValidationInput from '@etaui/inputs/validationnput';
 
 export {
   ETAButtonOutline,

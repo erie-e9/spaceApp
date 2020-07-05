@@ -163,21 +163,21 @@ const ETACreditCard = ({ lang, placeholderTextColor }) => {
                                     <ETASimpleText
                                         size={20}
                                         weight={Platform.OS === 'ios' ? '500' : 'bold'}
-                                        color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+                                        color='#333'
                                         align={'center'}>
                                         {creditCard === '' ? '1234 5678 9012 3456'.padEnd(19, '•') : creditCard.padEnd(19, '•')}
                                     </ETASimpleText>
                                     <ETASimpleText
                                         size={13}
                                         weight={Platform.OS === 'ios' ? '500' : '300'}
-                                        color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+                                        color='#333'
                                         align={'center'}>
                                         {expiry === '' ? lang === 'es' ? 'MM/AA' : 'MM/YY' : expiry}
                                     </ETASimpleText>
                                     <ETASimpleText
                                         size={13}
                                         weight={Platform.OS === 'ios' ? '500' : '300'}
-                                        color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+                                        color='#333'
                                         align={'center'}>
                                         {onwerName === '' ? lang === 'es' ? 'NOMBRE DE PROPIETARIO' : 'ONWER NAME' : onwerName.toUpperCase()}
                                     </ETASimpleText>
@@ -202,7 +202,7 @@ const ETACreditCard = ({ lang, placeholderTextColor }) => {
                                     <ETASimpleText
                                         size={14}
                                         weight={Platform.OS === 'ios' ? '500' : '300'}
-                                        color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+                                        color='#333'
                                         align={'center'}>
                                         {cvc === '' ? lang === 'es' ? 'MM/AA' : 'MM/YY' : cvc}
                                     </ETASimpleText>
