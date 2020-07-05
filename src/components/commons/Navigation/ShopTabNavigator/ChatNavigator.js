@@ -39,64 +39,6 @@ const IconButton = styled.TouchableOpacity`
     marginRight: 15px;
 `;
 
-const ChatItemStack = createStackNavigator();
-const ChatItemNavigator = () => {
-  const themeContext = useContext(ThemeContext);
-
-  return (
-    <ChatStack.Navigator
-        screenOptions={{
-            headerTransparent: !true,
-            headerShown: !true,
-            headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
-            headerStyle: {
-                backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-                shadowColor: 'black',
-                shadowOpacity: 0,
-                shadowOffset: { height: 0 },
-                shadowRadius: 5,
-                elevation: 5
-            },
-            headerTitleStyle: {
-            fontWeight: 'bold',
-            },
-        }}>
-        <ChatItemStack.Screen
-            name='ChatItemScreen'
-            component={ChatItemScreen}
-            options={({navigation, route}) => ({
-                headerTitle: '',
-                headerShown: true,
-                headerTransparent: !true,
-                headerTitleAlign: 'center',
-                headerTitleStyle: {
-                    fontWeight: '500',
-                    color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-                },
-                headerLeft: () => {
-                    return (
-                        <HeaderLeft onPress={() => navigation.goBack()}>
-                            <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
-                        </HeaderLeft>
-                    );
-                },
-                headerRight: () => {
-                    return (
-                        <Touchable>
-                            <HeaderRight>
-                                <Feather name='more-vertical' size={20} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
-                            </HeaderRight>
-                        </Touchable>
-                    );
-                },
-                headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
-                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-            })}
-        />
-    </ChatStack.Navigator>
-  );
-}
-
 const ChatStack = createStackNavigator();
 const ChatNavigator = () => {
   const themeContext = useContext(ThemeContext);
@@ -158,6 +100,64 @@ const ChatNavigator = () => {
     </ChatStack.Navigator>
   );
 };
+
+const ChatItemStack = createStackNavigator();
+const ChatItemNavigator = () => {
+  const themeContext = useContext(ThemeContext);
+
+  return (
+    <ChatItemStack.Navigator
+        screenOptions={{
+            headerTransparent: !true,
+            headerShown: !true,
+            headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+            headerStyle: {
+                backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+                shadowColor: 'black',
+                shadowOpacity: 0,
+                shadowOffset: { height: 0 },
+                shadowRadius: 5,
+                elevation: 5
+            },
+            headerTitleStyle: {
+                fontWeight: 'bold',
+            },
+        }}>
+        <ChatItemStack.Screen
+            name='ChatItemScreen'
+            component={ChatItemScreen}
+            options={({navigation, route}) => ({
+                headerTitle: '',
+                headerShown: true,
+                headerTransparent: !true,
+                headerTitleAlign: 'center',
+                headerTitleStyle: {
+                    fontWeight: '500',
+                    color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                },
+                headerLeft: () => {
+                    return (
+                        <HeaderLeft onPress={() => navigation.goBack()}>
+                            <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                        </HeaderLeft>
+                    );
+                },
+                headerRight: () => {
+                    return (
+                        <Touchable>
+                            <HeaderRight>
+                                <Feather name='more-vertical' size={20} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                            </HeaderRight>
+                        </Touchable>
+                    );
+                },
+                headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+                cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            })}
+        />
+    </ChatItemStack.Navigator>
+  );
+}
 
 export {
     ChatNavigator,

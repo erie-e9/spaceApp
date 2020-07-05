@@ -27,7 +27,7 @@ const MenuComponent = (data) => {
   const [ scrollYAnimatedValue ] = useState(new Animated.Value(0));
   const [ animatedValueTransform ] = useState(new Animated.Value(0.96));
   const [ opacity ] = useState(new Animated.Value(0));
-  let delayValue = 1000;
+  let delayValue = 700;
 
   const headerHeight = scrollYAnimatedValue.interpolate({
     inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],

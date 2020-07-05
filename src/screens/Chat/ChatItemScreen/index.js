@@ -42,7 +42,7 @@ const ChatItemScreen = ({ navigation, route }) => {
           <ETASimpleText
             size={15}
             weight={Platform.OS === 'ios' ? '500' : '400'}
-            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
             align={'left'}>
             {
               truncateString(fullname, 40)

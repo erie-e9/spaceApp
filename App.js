@@ -22,7 +22,6 @@ if (UIManager.setLayoutAnimationEnabledExperimental) {
 const App: () => React$Node = () => {
   const colorSchema = useColorScheme();
   console.disableYellowBox = true
-  
   return (
     <Fragment>
       <SafeAreaView

@@ -46,9 +46,9 @@ const PromoComponent = () => {
   const route = useRoute();
   const { promoitems, selectedItem } = route.params.params;
   const [ scrollYAnimatedValue ] = useState(new Animated.Value(0));
-  const [ animatedValueTransform ] = useState(new Animated.Value(0.7));
+  const [ animatedValueTransform ] = useState(new Animated.Value(0));
   const [ opacity ] = useState(new Animated.Value(0));
-  let delayValue = 1000;
+  let delayValue = 700;
   
   const headerHeight = scrollYAnimatedValue.interpolate({
     inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
@@ -72,7 +72,7 @@ const PromoComponent = () => {
     
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 800,
+      duration: 700,
       useNativeDriver: true
     }).start();
   }, [])
@@ -134,19 +134,16 @@ const PromoComponent = () => {
           //   );
           // }}
           renderItem={({item}) => {
-            delayValue + 1000;
+            delayValue = delayValue + 700;
             const translateY = animatedValueTransform.interpolate({
               inputRange: [0, 1],
               outputRange:[delayValue, 1],
               extrapolate: 'clamp'
-            });
-            
+            });            
             return(
-              <Touchable key={item._id} onPress={() => _onPressItem(item)}>
-                <Animated.View style={{ opacity, transform: [{ translateY }]}}>
-                  <GeneralItemComponent item={item} />
-                </Animated.View>
-              </Touchable>
+              <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+                <GeneralItemComponent item={item} />
+              </Animated.View>
             );
           }}
         />

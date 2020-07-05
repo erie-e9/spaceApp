@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext, memo} from 'react';
 import {Dimensions, Platform, Animated} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import styled, {ThemeContext} from 'styled-components';
-import {ETASimpleText} from '@etaui';
+import {ETASimpleText, ETAStarRaiting} from '@etaui';
 import {Ionicons, FontAwesome} from '@icons';
 import SuggestionsComponent from './SuggestionsComponent';
 import {Context} from '@context/cartContext';
@@ -10,8 +10,21 @@ import {Context} from '@context/cartContext';
 const {width, height} = Dimensions.get('window');
 
 const Root = styled.View`
-  flex: 2;
-  alignItems: center;
+  flex: 1;
+`;
+const ItemContainer = styled.View`
+  flex: 0.86;
+  backgroundColor: transparent;
+`;
+const BackgroundPresentationContainer = styled.View`
+  flex: 0.85;
+  backgroundColor: transparent;
+  zIndex: 9;
+`;
+const SuggestionsContainer = styled.View`
+  flex: 0.14;
+  backgroundColor: transparent;
+  zIndex: 999;
 `;
 const ItemTopContainer = styled.View`
   height: ${height - 255}px;
@@ -21,7 +34,7 @@ const ItemPresentation = styled.View`
   height: 100%;
 `;
 const ItemImage = styled.ImageBackground`
-  flex: 0.8;
+  flex: 1;
   width: null;
   height: null;
   resizeMode: cover;
@@ -30,8 +43,9 @@ const ItemImage = styled.ImageBackground`
 const ItemBottomContainer = styled.View`
   flex: 1;
   backgroundColor: transparent;
-  justifyContent: center;
+  justifyContent: flex-end;
   alignItems: center;
+  alignSelf: center;
   position: absolute;
   height: 100%;
   zIndex: 100;
@@ -54,6 +68,25 @@ const ItemBottomContainer = styled.View`
 //   borderColor: ${(props) => props.theme.GRAYFACEBOOK};
 // `;
 const AddCartContainer = styled.View`
+  position: absolute;
+  top: -25px;
+  flexDirection: row;
+  height: 40px;
+  width: 120px;
+  borderRadius: 30px;
+  shadowOffset: 0px 1px;
+  shadowRadius: 2px;
+  shadowOpacity: 0.2;
+  elevation: 0.3;
+  backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
+  marginHorizontal: 7px;
+  paddingHorizontal: 10px;
+  justifyContent: center;
+  alignItems: center;
+  alignSelf: center;
+  zIndex: 1000;
+`;
+const AddCartTouchable = styled.TouchableOpacity`
   position: absolute;
   top: -25px;
   flexDirection: row;
@@ -120,14 +153,14 @@ const CardTop = styled.View`
 const NewContainer = styled.View`
   position: absolute;
   zIndex: 100;
-  height: 16px;
+  height: 15px;
   width: 30px;
   top: -15px;
-  backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
   borderRadius: 5px;
   borderWidth: 1px;
   borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  justifyContent: center;
+  backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
+  justifyContent: flex-end;
   alignItems: center;
 `;
 const CardTopHead = styled.View`
@@ -151,15 +184,23 @@ const ShopContainer = styled.View`
   justifyContent: center;
   alignItems: center;
   paddingHorizontal: 2px;
-  marginBottom: 5px;
+  marginBottom: 7px;
+`;
+const PriceContainer = styled.View`
+  flex: 0.5;
+  flexDirection: column;
+  justifyContent: flex-start;
+  alignItems: center;
+  backgroundColor: transparent;
 `;
 const DiscountContainer = styled.View`
-  flex: 1;
+  flex: 0.34
   flexDirection: row;
   justifyContent: center;
   alignItems: center;
-  paddingVertical: 1px;
+  marginBottom: 3px;
   zIndex: 100;
+  backgroundColor: transparent;
 `;
 const PercentContainer = styled.View`
   justifyContent: center;
@@ -175,13 +216,6 @@ const PercentContainer = styled.View`
   borderBottomRightRadius: 4px;
   backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
   marginLeft: 5px;
-`;
-const PriceContainer = styled.View`
-  flex: 0.8;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  marginBottom: 3px;
 `;
 const ItemInfoContainer = styled.View`
   minHeight: 10px;
@@ -243,11 +277,12 @@ const ItemInfoWeight = styled.View`
 const CardBottom = styled.View`
   flexDirection: column;
   justifyContent: space-between;
-  minHeight: 100px;
+  minHeight: 90px;
   width: 100%;
   alignItems: flex-start;
   paddingHorizontal: 10px;
   marginTop: 10px;
+  backgroundColor: transparent
 `;
 const ItemDetailsContainer = styled.View`
   minHeight: 50px;
@@ -272,8 +307,8 @@ const GetOneItemComponent = () => {
   const [ addedCounter, setaddedCounter ] = useState(0);
   const [ animatedValueTransform ] = useState(new Animated.Value(0.9));
   const route = useRoute();
-  const { item } = route.params.params;
-  let delayValue = 1000;
+  const { item } = route.params;
+  let delayValue = 1500;
 
   useEffect(() => {
     if (state.data.length > 0) {
@@ -311,19 +346,15 @@ const GetOneItemComponent = () => {
   }
   
   return (
-    <>
-      <Root>
-        <ItemTopContainer>
-          <ItemPresentation>
-            {/* <ItemImage source={{uri: item.images[0].image}} /> */}
-            <ItemImage source={{uri: 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg'}} />
-          </ItemPresentation>
-        </ItemTopContainer>
+    <Root>
+      <ItemContainer>
+        <BackgroundPresentationContainer>        
+          <ItemImage source={{uri: 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg'}} />
+        </BackgroundPresentationContainer>
         <ItemBottomContainer>
           <Animated.View style={{ 
             width: width - 60,
-            top: 160,
-            bottom: 10,
+            bottom: -10,
             backgroundColor:  themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
             marginVertical: 15,
             shadowColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
@@ -342,10 +373,9 @@ const GetOneItemComponent = () => {
             borderColor: themeContext.GRAYFACEBOOK,
             transform: [{ translateY }]}}
           >
-            <AddCartContainer>
             {
               addedCounter === 0
-              ? <AddCart onPress={() => _addCart(item)}>
+              ? <AddCartTouchable onPress={() => _addCart(item)}>
                   <AddRemoveButtonContainer>
                     <ETASimpleText
                       size={18}
@@ -361,46 +391,47 @@ const GetOneItemComponent = () => {
                     color='white' 
                     style={{ alignSelf: 'center'}}
                   />
-                </AddCart>
-              : <AddRemoveContainer>
-                  <RemoveCart onPress={() => _removeCart(item._id)}>
-                    <AddRemoveButtonContainer>
-                      {/* <CounterContainer> */}
-                        <ETASimpleText
-                          size={22}
-                          weight={Platform.OS === 'ios' ? '600' : '300'}
-                          color='white'
-                          align={'center'}>
-                          -
-                        </ETASimpleText>
-                      {/* </CounterContainer> */}
-                    </AddRemoveButtonContainer>
-                  </RemoveCart>
-                  <CounterContainer>
-                    <ETASimpleText
-                      size={12}
-                      weight={Platform.OS === 'ios' ? '600' : '300'}
-                      color='white'
-                      align={'center'}>
-                      {addedCounter}
-                    </ETASimpleText>
-                  </CounterContainer>
-                  <AddCart onPress={() => _addCart(item)}>
-                    <AddRemoveButtonContainer>                  
-                      {/* <CounterContainer> */}
-                        <ETASimpleText
-                          size={22}
-                          weight={Platform.OS === 'ios' ? '600' : '300'}
-                          color='white'
-                          align={'center'}>
-                          +
-                        </ETASimpleText>
-                      {/* </CounterContainer> */}
-                    </AddRemoveButtonContainer>
-                  </AddCart>
-                </AddRemoveContainer>
+                </AddCartTouchable>
+              : <AddCartContainer>
+                  <AddRemoveContainer>
+                    <RemoveCart onPress={() => _removeCart(item._id)}>
+                      <AddRemoveButtonContainer>
+                        {/* <CounterContainer> */}
+                          <ETASimpleText
+                            size={22}
+                            weight={Platform.OS === 'ios' ? '600' : '300'}
+                            color='white'
+                            align={'center'}>
+                            -
+                          </ETASimpleText>
+                        {/* </CounterContainer> */}
+                      </AddRemoveButtonContainer>
+                    </RemoveCart>
+                    <CounterContainer>
+                      <ETASimpleText
+                        size={12}
+                        weight={Platform.OS === 'ios' ? '600' : '300'}
+                        color='white'
+                        align={'center'}>
+                        {addedCounter}
+                      </ETASimpleText>
+                    </CounterContainer>
+                    <AddCart onPress={() => _addCart(item)}>
+                      <AddRemoveButtonContainer>                  
+                        {/* <CounterContainer> */}
+                          <ETASimpleText
+                            size={22}
+                            weight={Platform.OS === 'ios' ? '600' : '300'}
+                            color='white'
+                            align={'center'}>
+                            +
+                          </ETASimpleText>
+                        {/* </CounterContainer> */}
+                      </AddRemoveButtonContainer>
+                    </AddCart>
+                  </AddRemoveContainer>
+                </AddCartContainer>
             }
-            </AddCartContainer>
             <CardTop>
               {
                 item.isNew
@@ -427,30 +458,6 @@ const GetOneItemComponent = () => {
                   </ETASimpleText>
                 </NameContainer>
                 <ShopContainer>
-                  {
-                    item.discount > 0
-                    ? <DiscountContainer>            
-                        <ETASimpleText 
-                          size={10} 
-                          weight={Platform.OS === 'ios' ? '400' : '400'} 
-                          color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} 
-                          align={'center'}
-                          style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
-                          ${(item.price.toFixed(2))} 
-                        </ETASimpleText>
-                        <PercentContainer>
-                          <ETASimpleText 
-                            size={9} 
-                            weight={Platform.OS === 'ios' ? '500' : '900'} 
-                            color={themeContext.PRIMARY_COLOR} 
-                            align={'left'}
-                            style={{ zIndex: 100 }}>
-                            -{item.discount}%
-                          </ETASimpleText>
-                      </PercentContainer>
-                      </DiscountContainer>
-                    : null
-                  }
                   <PriceContainer>
                     <ETASimpleText 
                       size={14} 
@@ -461,15 +468,37 @@ const GetOneItemComponent = () => {
                       ${((100 - item.discount) * item.price / 100).toFixed(2)} 
                     </ETASimpleText>
                   </PriceContainer>
+                  <DiscountContainer>
+                    {
+                      item.discount > 0
+                      ? <>
+                          <ETASimpleText 
+                            size={10} 
+                            weight={Platform.OS === 'ios' ? '400' : '400'} 
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} 
+                            align={'center'}
+                            style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
+                            ${(item.price.toFixed(2))} 
+                          </ETASimpleText>
+                          <PercentContainer>
+                            <ETASimpleText 
+                              size={9} 
+                              weight={Platform.OS === 'ios' ? '500' : '900'} 
+                              color={themeContext.PRIMARY_COLOR} 
+                              align={'left'}
+                              style={{ zIndex: 100 }}>
+                              -{item.discount}%
+                            </ETASimpleText>
+                        </PercentContainer>
+                        </>
+                      : null
+                    }
+                  </DiscountContainer>
                 </ShopContainer>
               </CardTopHead>
               <ItemInfoContainer>
                 <ItemInfoRating>
-                  <Ionicons name='ios-star' size={8.5} color='#f2f20d' style={{ marginHorizontal: 1 }} />
-                  <Ionicons name='ios-star' size={8.5} color='#f2f20d' style={{ marginHorizontal: 1 }} />
-                  <Ionicons name='ios-star' size={8.5} color='#f2f20d' style={{ marginHorizontal: 1 }} />
-                  <Ionicons name='ios-star' size={8.5} color='#f2f20d' style={{ marginHorizontal: 1 }} />
-                  <Ionicons name='ios-star' size={8.5} color='#f2f20d' style={{ marginHorizontal: 1 }} />
+                  <ETAStarRaiting raitings={4}/>
                 </ItemInfoRating>
                 <ItemInfoCalories>
                   <ETASimpleText
@@ -520,9 +549,11 @@ const GetOneItemComponent = () => {
             </CardBottom>
           </Animated.View>
         </ItemBottomContainer>
-      </Root>
-      <SuggestionsComponent selectedItemName={item.name}/>
-    </>
+      </ItemContainer>
+      <SuggestionsContainer>
+        <SuggestionsComponent selectedItemName={item.name}/>
+      </SuggestionsContainer>
+    </Root>
   );
 };
 

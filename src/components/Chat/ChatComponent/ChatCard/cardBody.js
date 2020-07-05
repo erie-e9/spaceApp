@@ -12,7 +12,7 @@ const Root = styled.View`
   alignContent: center;
   paddingHorizontal: 10px;
   paddingRight: 20px;
-  borderBottomWidth: 0.5px;
+  borderBottomWidth: 0px;
   borderBottomColor: ${props => props.theme.GRAYFACEBOOK}; 
 `;
 const ChatContentContainer = styled.View`

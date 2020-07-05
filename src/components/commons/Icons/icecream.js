@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Svg, { Path, G } from 'react-native-svg';
 
-const IcecreamIcon = ({focused, color, size}) => {
+const AppIcon = ({focused, color, size}) => {
   return (
     <Svg 
       viewBox='0 0 60 60'
@@ -23,4 +23,4 @@ const IcecreamIcon = ({focused, color, size}) => {
   );
 }
 
-export default React.memo(IcecreamIcon);
+export default React.memo(AppIcon);

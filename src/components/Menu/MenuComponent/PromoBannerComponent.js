@@ -45,15 +45,15 @@ const PromoBannerComponent = () => {
                         weight={Platform.OS === 'ios' ? '700' : 'bold'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}>
-                        Weekly
+                        Offers 
                     </ETASimpleText>
                     <ETASimpleText
-                        size={10}
+                        size={9}
                         weight={Platform.OS === 'ios' ? '400' : '400'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}
                         time={2000}>
-                        offers
+                        of the week
                     </ETASimpleText>
                 </BannerLeft>
                 <BannerRight>
@@ -66,7 +66,7 @@ const PromoBannerComponent = () => {
                     </ETASimpleText>
                     <ETASimpleText
                         size={9}
-                        weight={Platform.OS === 'ios' ? '400' : '200'}
+                        weight={Platform.OS === 'ios' ? '400' : '400'}
                         color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}>
                         Code: JUN50
@@ -82,7 +82,7 @@ const PromoBannerComponent = () => {
                     </ETASimpleText>
                     <ETASimpleText
                         size={9}
-                        weight={Platform.OS === 'ios' ? '400' : 'bold'}
+                        weight={Platform.OS === 'ios' ? '400' : '400'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align={'center'}>
                         First order

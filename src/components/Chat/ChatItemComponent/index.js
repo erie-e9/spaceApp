@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Dimensions, Animated} from 'react-native';
-import {useRoute} from '@react-navigation/native';
 import styled, {ThemeContext} from 'styled-components';
 import MessageBubbleComponent from './MessageBubbleComponent';
 import messages from '@utils/messages.json' 
@@ -35,7 +34,6 @@ const MessagesList = styled.FlatList``;
 
 const ChatItemComponent = () => {
   const themeContext = useContext(ThemeContext);
-  const route = useRoute();
   const [ items ] = useState(messages.data); //slice: only first 4 items
   const [ animatedValueTransform ] = useState(new Animated.Value(0.9));
   const [ opacity ] = useState(new Animated.Value(0));

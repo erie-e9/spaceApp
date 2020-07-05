@@ -1,0 +1,23 @@
+import React from 'react';
+import styled from 'styled-components/native';
+import HeadAddressesComponent from './HeadAddressesComponent';
+import SubHeadAddressesComponent from './SubHeadAddressesComponent';
+import AddressesListComponent from './AddressesListComponent';
+
+const Root = styled.View`
+  flex: 1;
+  flex-direction: column;
+  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+`;
+
+const AddressesComponent = () => {
+  return (
+    <Root>
+      <HeadAddressesComponent />
+      <SubHeadAddressesComponent />
+      <AddressesListComponent />
+    </Root>
+  );
+}
+
+export default AddressesComponent;

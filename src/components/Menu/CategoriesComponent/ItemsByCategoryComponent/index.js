@@ -21,11 +21,13 @@ const ItemsByCategoryComponent = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { items } = route.params.params;
-  const [ animatedValueTransform ] = useState(new Animated.Value(0.7));
+  const [ itemparams, setitemparams ] = useState([]);
+  const [ animatedValueTransform ] = useState(new Animated.Value(0));
   const [ opacity ] = useState(new Animated.Value(0));
-  let delayValue = 500;
+  let delayValue = 700;
 
   useEffect(() => {
+    setitemparams(items);
     Animated.spring(animatedValueTransform, {
       toValue: 1,
       tension: 5,
@@ -34,7 +36,7 @@ const ItemsByCategoryComponent = () => {
     
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 800,
+      duration: 700,
       useNativeDriver: true
     }).start();
   }, [])
@@ -55,7 +57,7 @@ const ItemsByCategoryComponent = () => {
         contentContainerStyle={{
           flexDirection: 'column',
         }}
-        data={items}
+        data={itemparams}
         keyExtractor={(item) => item._id.toString()}
         horizontal={!true}
         numColumns={2}
@@ -85,18 +87,16 @@ const ItemsByCategoryComponent = () => {
         //   )
         // }}
         renderItem={({item}) => {
-          delayValue + 1000;
+          delayValue = delayValue + 700;
           const translateY = animatedValueTransform.interpolate({
             inputRange: [0, 1],
-            outputRange:[delayValue, 1]
+            outputRange:[delayValue, 1],
+            extrapolate: 'clamp'
           });
-
           return (
-            <Touchable key={item._id} onPress={() => _onPressItem(item)}>
-              <Animated.View style={{opacity, transform: [{ translateY }]}}>
-                <GeneralItemComponent item={item} />
-              </Animated.View>
-            </Touchable>
+            <Animated.View style={{opacity, transform: [{ translateY }]}}>
+              <GeneralItemComponent item={item} />
+            </Animated.View>
           );
         }}
       />

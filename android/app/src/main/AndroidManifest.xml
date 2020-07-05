@@ -2,7 +2,8 @@
   package="com.icecream">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -10,6 +11,9 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyB1UnzAe0p8Ls2feDF75SD8upijaf4_a1U"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

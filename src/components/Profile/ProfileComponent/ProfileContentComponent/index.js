@@ -1,195 +1,236 @@
 import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
-import {Ionicons, FontAwesome, AntDesign, Feather, SimpleLineIcons} from '@icons';
+import {Ionicons, FontAwesome, AntDesign, SimpleLineIcons, Feather, EvilIcons, Octicons} from '@icons';
 import {Context} from '@context';
+import {useNavigation} from '@react-navigation/native';
 import {ETASimpleText} from '@etaui';
 
 const iconSize = 23;
 
+const Scroll = styled.ScrollView``;
 const Root = styled.View`
   flex: 1;
   flexDirection: column;
-  backgroundColor: transparent;
+  backgroundColor: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 const Card = styled.View`
   flexDirection: row;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-  marginBottom: 1px;
-  minHeight: 40px;
-  alignItems: center;
+  alignItems: stretch;
+  minHeight: 30px;
   paddingHorizontal: 10px;
-`;
-const Spacevertical = styled.View`
-  marginTop: 50px;
+  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const Metadata = styled.View`
   flex: 1;
   flexDirection: column;
   justifyContent: center;
   minHeight: 50px;
+  backgroundColor: transparent;
 `;
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableWithoutFeedback`
+`;
+const SettingContainer = styled.View`
   flex: 1;
   flexDirection: row;
-  justifyContent: flex-start;
+  paddingHorizontal: 10px;
   alignItems: center;
-  padding: 15px;
+  minHeight: 50px;
+  backgroundColor: transparent
+`;
+const LeftContainer = styled.View`
+  flex: 1;
+  flexDirection: row;
 `;
  const OptionTitleContainer = styled.View`
-  marginLeft: 15px;
+  marginLeft: 13px;
+`;
+const IconContainer = styled.View`
+  flex: 0.12;
+  justifyContent: center;
+  alignItems: center;
+  backgroundColor: transparent;
 `;
 
 const ProfileContentComponent = () => {
   const themeContext = useContext(ThemeContext);
-  const {logOut} = useContext(Context);
+  const navigation = useNavigation();
+  const { logOut } = useContext(Context);
 
   const logout = () => {
     logOut();
   };
 
   return (
-    <Root>
-      <Card>
-        <Metadata>
-          <Touchable onPress={() => alert('touchable')}>
-            <FontAwesome
-              name='bell-o'
-              size={iconSize - 6}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-            />
-            <OptionTitleContainer>
-              <ETASimpleText
-                size={14}
-                weight={Platform.OS === 'ios' ? '400' : '300'}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                align={'left'}>
-                Notifications
-              </ETASimpleText>
-            </OptionTitleContainer>
-          </Touchable>
-        </Metadata>
-      </Card>
-      <Card>
-        <Metadata>
-          <Touchable onPress={() => alert('touchable')}>
-            <SimpleLineIcons
-              name='directions'
-              size={iconSize - 5}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-            />
-            <OptionTitleContainer>
-              <ETASimpleText
-                size={14}
-                weight={Platform.OS === 'ios' ? '400' : '300'}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                align={'left'}>
-                Directions
-              </ETASimpleText>
-            </OptionTitleContainer>
-          </Touchable>
-        </Metadata>
-      </Card>
-      <Card>
-        <Metadata>
-          <Touchable onPress={() => alert('touchable')}>
-            <Ionicons 
-              name='md-heart-empty'
-              size={iconSize - 5}
-              color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-            />
-            <OptionTitleContainer>
-              <ETASimpleText
-                size={14}
-                weight={Platform.OS === 'ios' ? '400' : '300'}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                align={'left'}>
-                Favorites
-              </ETASimpleText>
-            </OptionTitleContainer>
-          </Touchable>
-        </Metadata>
-      </Card>
-
-      <Spacevertical>
-        {/* <Card>
-          <Metadata>
-            <Touchable>
-              <Octicons
-                name='mail'
-                size={iconSize}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              />
-              <OptionTitleContainer>
-                <ETASimpleText
-                  size={14}
-                  weight={Platform.OS === 'ios' ? '400' : '300'}
-                  color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                  align={'left'}>
-                  Contact
-                </ETASimpleText>
-                </OptionTitleContainer>
-            </Touchable>
-          </Metadata>
-        </Card> */}
-
-        {/* <Card>
-          <Metadata>
-            <Touchable>
-              <Ionicons
-                name='ios-heart'
-                size={iconSize}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              />
-              <OptionTitleContainer>
-                <ETASimpleText
-                  size={14}
-                  weight={Platform.OS === 'ios' ? '400' : '300'}
-                  color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                  align={'left'}>
-                  About us
-                </ETASimpleText>
-                </OptionTitleContainer>
-            </Touchable>
-          </Metadata>
-        </Card> */}
+    <Scroll>
+      <Root>
         <Card>
           <Metadata>
-            <Touchable onPress={() => alert('touchable')}>
-              <SimpleLineIcons
-                name='credit-card'
-                size={iconSize - 3}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'NotificationsScreen'})}>
+              <SettingContainer>
+                <LeftContainer>
+                  <IconContainer>
+                    <FontAwesome
+                      name='bell-o'
+                      size={iconSize - 6}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                    />
+                  </IconContainer>
+                  <OptionTitleContainer>
+                    <ETASimpleText
+                      size={13}
+                      weight={Platform.OS === 'ios' ? '400' : '800'}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                      align={'left'}>
+                      Notifications
+                    </ETASimpleText>
+                  </OptionTitleContainer>
+                </LeftContainer>
+                <IconContainer>
+                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                </IconContainer>
+              </SettingContainer>
+            </Touchable>
+          </Metadata>
+        </Card>
+
+        <Card>
+          <Metadata>
+            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'AddressesScreen'})}>
+              <SettingContainer>
+                <LeftContainer>
+                  <IconContainer>
+                    <SimpleLineIcons
+                      name='directions'
+                      size={iconSize - 6}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                    />
+                  </IconContainer>
+                  <OptionTitleContainer>
+                    <ETASimpleText
+                      size={13}
+                      weight={Platform.OS === 'ios' ? '400' : '800'}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                      align={'left'}>
+                      Addresses
+                    </ETASimpleText>
+                  </OptionTitleContainer>
+                </LeftContainer>
+                <IconContainer>
+                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                </IconContainer>
+              </SettingContainer>
+            </Touchable>
+          </Metadata>
+        </Card>
+
+        {/* <Card>
+          <Metadata>
+            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'FavoritesScreen'})}>
+              <Ionicons 
+                name='md-heart-empty'
+                size={iconSize - 5}
+                color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               />
               <OptionTitleContainer>
                 <ETASimpleText
-                  size={14}
+                  size={13}
                   weight={Platform.OS === 'ios' ? '400' : '300'}
-                  color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                   align={'left'}>
-                  Payment methods
+                  Favorites
                 </ETASimpleText>
               </OptionTitleContainer>
             </Touchable>
           </Metadata>
-        </Card>
+        </Card> */}
+
         <Card>
           <Metadata>
-            <Touchable onPress={() => alert('touchable')}>
-              <Ionicons
-                name='ios-information-circle-outline'
-                size={iconSize - 2}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              />
-              <OptionTitleContainer>
-                <ETASimpleText
-                  size={14}
-                  weight={Platform.OS === 'ios' ? '400' : '300'}
-                  color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                  align={'left'}>
-                  Help
-                </ETASimpleText>
-                </OptionTitleContainer>
+            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'PaymentMethodsScreen'})}>
+              <SettingContainer>
+                <LeftContainer>
+                  <IconContainer>
+                    <AntDesign
+                      name='creditcard'
+                      size={iconSize - 7}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                    />
+                  </IconContainer>
+                  <OptionTitleContainer>
+                    <ETASimpleText
+                      size={13}
+                      weight={Platform.OS === 'ios' ? '400' : '800'}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                      align={'left'}>
+                      Payment methods
+                    </ETASimpleText>
+                  </OptionTitleContainer>
+                </LeftContainer>
+                <IconContainer>
+                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                </IconContainer>
+              </SettingContainer>
+            </Touchable>
+          </Metadata>
+        </Card>
+
+        <Card>
+          <Metadata>
+            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'BranchOfficesScreen'})}>
+              <SettingContainer>
+                <LeftContainer>
+                  <IconContainer>
+                    <Octicons
+                      name='location'
+                      size={iconSize - 5}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                    />
+                  </IconContainer>
+                  <OptionTitleContainer>
+                    <ETASimpleText
+                      size={13}
+                      weight={Platform.OS === 'ios' ? '400' : '800'}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                      align={'left'}>
+                      Branch offices
+                    </ETASimpleText>
+                  </OptionTitleContainer>
+                </LeftContainer>
+                <IconContainer>
+                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                </IconContainer>
+              </SettingContainer>
+            </Touchable>
+          </Metadata>
+        </Card>
+
+        <Card>
+          <Metadata>
+            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'HelpScreen'})}>
+              <SettingContainer>
+                <LeftContainer>
+                  <IconContainer>
+                    <Ionicons
+                      name='ios-information-circle-outline'
+                      size={iconSize - 2}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                    />
+                  </IconContainer>
+                  <OptionTitleContainer>
+                    <ETASimpleText
+                      size={13}
+                      weight={Platform.OS === 'ios' ? '400' : '300'}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                      align={'left'}>
+                      Help
+                    </ETASimpleText>
+                  </OptionTitleContainer>
+                </LeftContainer>
+                <IconContainer>
+                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                </IconContainer>
+              </SettingContainer>
             </Touchable>
           </Metadata>
         </Card>
@@ -197,26 +238,34 @@ const ProfileContentComponent = () => {
         <Card>
           <Metadata>
             <Touchable onPress={() => logout()}>
-              <AntDesign
-                name='logout'
-                size={iconSize - 6}
-                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              />
-              <OptionTitleContainer>
-                <ETASimpleText
-                  size={14}
-                  weight={Platform.OS === 'ios' ? '400' : '300'}
-                  color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                  align={'left'}>
-                  Log out
-                </ETASimpleText>
-                </OptionTitleContainer>
+              <SettingContainer>
+                <LeftContainer>
+                  <IconContainer>
+                    <AntDesign
+                      name='logout'
+                      size={iconSize - 6}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                    />
+                  </IconContainer>
+                  <OptionTitleContainer>
+                    <ETASimpleText
+                      size={13}
+                      weight={Platform.OS === 'ios' ? '400' : '300'}
+                      color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                      align={'left'}>
+                      Log out
+                    </ETASimpleText>
+                  </OptionTitleContainer>
+                </LeftContainer>
+                <IconContainer>
+                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                </IconContainer>
+              </SettingContainer>
             </Touchable>
           </Metadata>
         </Card>
-        
-      </Spacevertical>
-    </Root>
+      </Root>
+    </Scroll>
   );
 };
 

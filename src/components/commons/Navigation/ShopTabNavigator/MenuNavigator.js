@@ -3,6 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native';
 import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
 import {FontAwesome, AntDesign} from '@icons';
 import {ETASimpleText, ETASearchBar} from '@etaui';
+import { variables } from '@utils/constants';
 import MenuScreen from '@screens/Menu/MenuScreen';
 import CategoryListScreen from '@screens/Menu/Categories/CategoryListScreen';
 import CategoryItemsScreen from '@screens/Menu/Categories/CategoryItemsScreen';
@@ -35,7 +36,6 @@ const Touchable = styled.TouchableOpacity`
 const MenuStack = createStackNavigator();
 const MenuNavigator = () => {
   const themeContext = useContext(ThemeContext);
-
   return (
     <MenuStack.Navigator
       screenOptions={{
@@ -69,7 +69,7 @@ const MenuNavigator = () => {
                   weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                   color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                   align={'left'}>
-                    iceCream
+                    {variables.COMPANYNAME}
                 </ETASimpleText>
               </Header>
             );
@@ -182,8 +182,17 @@ const MenuNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}
       />
-      
-      <MenuStack.Screen
+
+    </MenuStack.Navigator>
+  );
+};
+
+const GetOneItemStack = createStackNavigator();
+const GetOneItemNavigator = () => {
+  const themeContext = useContext(ThemeContext);
+  return (
+    <GetOneItemStack.Navigator>
+      <GetOneItemStack.Screen
         name='GetOneItemScreen'
         component={GetOneItemScreen}
         options={({navigation, route}) => ({
@@ -206,9 +215,11 @@ const MenuNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
         })}
       />
-
-    </MenuStack.Navigator>
+    </GetOneItemStack.Navigator>
   );
-};
+}
 
-export default MenuNavigator;
+export {
+  MenuNavigator,
+  GetOneItemNavigator
+};

@@ -11,7 +11,6 @@ const Item = styled.View`
   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   marginHorizontal: ${width / 30}px;
   marginVertical: 10px;
-  shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
   borderTopLeftRadius: 15px;
   borderTopRightRadius: 15px;
   borderBottomLeftRadius: 15px;
@@ -19,6 +18,7 @@ const Item = styled.View`
   shadowOffset: 2px 3px;
   shadowRadius: 2px;
   shadowOpacity: 0;
+  shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 `;
 const ItemImage = styled.Image`
   height: 180px;

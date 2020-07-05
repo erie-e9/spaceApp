@@ -29,12 +29,15 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
   const [dataList, setdataList] = useState([]);
   const scrollX = new Animated.Value(0);
   let position = Animated.divide(scrollX, width);
-  let flatList = useRef(null);
+  let flatList = useRef(0);
+  let timerID;
 
   useEffect(() => {
     setdataList(carouselData.data);
     if (autoplay) {
       infiniteScroll(dataList);
+    } else {
+      stopAutoPlay();
     }
   }, []);
 
@@ -44,7 +47,7 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
     let scrollValue = 0;
     let scrolled = 0;
 
-    setInterval(() => {
+    timerID = setInterval(() => {
       scrolled++;
       if (scrolled < numberOfData) {
         scrollValue = scrollValue + 1;      
@@ -53,10 +56,17 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
         scrolled = 0;
       }
 
-      flatList.current.scrollToIndex({animated: true, index: scrollValue})
+      flatList.current.scrollToIndex({ animated: true, index: scrollValue ? scrollValue : 0 });
       // flatList.scrollView({animated: true, offset: scrollValue});
     }, time);
   };
+  
+  const stopAutoPlay = () => {
+    if(timerID) {
+      clearInterval(timerID);
+      timerID = null
+    }
+  }
 
   const _onPressPromo = (selecteditem) => {
     console.log('_onPressPromo pressed:', selecteditem.title);

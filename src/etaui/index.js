@@ -1,3 +1,4 @@
+import ETAButtonOutline from '@etaui/buttons/buttonOutLine';
 import ETAButtonFilled from '@etaui/buttons/buttonFilled';
 import ETACheckBox from '@etaui/checkbox';
 import ETATextInputFilled from '@etaui/inputs/inputFilled';
@@ -10,11 +11,17 @@ import ETASimpleText from '@etaui/texts/simple';
 import ETABlinkingText from '@etaui/texts/blinking';
 import ETACard from '@etaui/card';
 import ETAAvatar from '@etaui/avatar';
-import ETANetInfo from '@etaui/netInfo';
+import ETANetInfo from '@etaui/netinfo';
 import ETACarousel from '@etaui/carousel';
 import ETASearchBar from '@etaui/searchbar'
+import ETASwitch from '@etaui/switch';
+import ETAStarRaiting from '@etaui/starraiting';
+import ETAAutoScroll from '@etaui/autoscroll';
+import ETACreditCard from '@etaui/creditcard';
+import ETAValidationInput from '@etaui/inputs/maskedinput';
 
 export {
+  ETAButtonOutline,
   ETAButtonFilled,
   ETACheckBox,
   ETATextInputFilled,
@@ -29,5 +36,10 @@ export {
   ETAAvatar,
   ETANetInfo,
   ETACarousel,
-  ETASearchBar
+  ETASearchBar,
+  ETASwitch,
+  ETAStarRaiting,
+  ETAAutoScroll,
+  ETACreditCard,
+  ETAValidationInput
 };

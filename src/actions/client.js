@@ -16,7 +16,7 @@ export function getMe(info) {
 export function logout() {
   return async (dispatch) => {
     try {
-      await AsyncStorage.removeItem('@icecream');
+      await AsyncStorage.removeItem('@apptoken');
       return dispatch({
         type: 'LOGOUT',
       });

@@ -1,10 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Platform, Dimensions} from 'react-native';
 import styled, {ThemeContext} from 'styled-components';
-import {ETASimpleText, ETAButtonFilled} from '@etaui';
-import {Ionicons, FontAwesome} from '@icons';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui';
 import {Context} from '@context/cartContext';
-import { useIsFocused } from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
@@ -35,7 +34,7 @@ const ResumeContainer = styled.View`
 `;
 const DirectionContainer = styled.View`
     flexDirection: row;
-    justifyContent: space-between;
+    justifyContent: center;
     alignItems: center;
     width: 100%;
     height: 40px;
@@ -44,7 +43,7 @@ const DirectionContainer = styled.View`
     paddingHorizontal: 10px;
     borderWidth: 0px;
     borderColor: ${props => props.theme.GRAYFACEBOOK};
-    backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    backgroundColor: transparent;
 `;
 const TotalContainer = styled.View`
     flexDirection: row;
@@ -79,6 +78,7 @@ const ButtonPayContainer = styled.View`
 
 const CartDetailsComponent = () => {
     const themeContext = useContext(ThemeContext);
+    const navigation = useNavigation();
     const {getCartItems, state} = useContext(Context);
     const [ totalItems, settotalItems ] = useState(0);
     const [ total, settotal ] = useState(0);
@@ -174,13 +174,22 @@ const CartDetailsComponent = () => {
                 </ResumeTotalContainer>
             </TotalContainer>
             <DirectionContainer>
-                <ETASimpleText
-                    size={15}
-                    weight={Platform.OS === 'ios' ? '500' : '500'}
-                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                    align={'left'}>
-                    Send to...
-                </ETASimpleText>
+                <ETAButtonOutline
+                    title='Send to Home'
+                    onPress={() => navigation.navigate('SettingsNavigator', {screen: 'MapAddressesScreen', params: { data: {
+                        "_id": 1,
+                        "headTitle": "Home",
+                        "details": "Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.",
+                        "latitude": 24.02574090527505,
+                        "isDefault": true,
+                        "longitude": -104.67300467638253
+                    }}})}
+                    disabled={false}
+                    colorButton={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+                    padding={10}
+                    width={250}
+                    borderRadius={3}
+                />
             </DirectionContainer>
             <ButtonPayContainer>
                 <ETAButtonFilled

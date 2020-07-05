@@ -26,22 +26,21 @@ const HeadContainer = styled.View`
 `;
 const ListContainer = styled.View`
   flex: 1;
-  flexDirection: column;
+  flexDirection: row;
   justifyContent: center;
   alignItems: center;
 `;
-const MenuListItemsList = styled.FlatList``;
 const Touchable = styled.TouchableOpacity`
   zIndex: 100;
 `;
 
-const MenuList = ({data, title}) => {
+const MenuList = ({ data, title }) => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
   const [ items ] = useState(data.slice(0, 2)); //slice: only first 4 items
   const [ animatedValueTransform ] = useState(new Animated.Value(0));
   const [ opacity ] = useState(new Animated.Value(0));
-  let delayValue = 2000;
+  let delayValue = 700;
 
   useEffect(() => {
     Animated.spring(animatedValueTransform, {
@@ -65,16 +64,6 @@ const MenuList = ({data, title}) => {
       params: {
         name: item,
         allitems: data
-      }
-    });
-  };
-
-  const _onPressItem = (item) => {
-    navigation.navigate('GetOneItemScreen', {
-      screen: 'MenuScreen',
-      params: {
-        _id: item._id,
-        item: item
       }
     });
   };
@@ -103,55 +92,21 @@ const MenuList = ({data, title}) => {
             </Touchable>
           </HeadContainer>
           <ListContainer>
-            <MenuListItemsList
-              contentContainerStyle={{
-                flexDirection: 'column',
-              }}
-              data={items}
-              keyExtractor={(item) => item._id.toString()}
-              horizontal={!true}
-              numColumns={2}
-              initialNumToRender={4}
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-              ListEmptyComponent={() => {
-                return (
-                  <ETASimpleText
-                    size={14}
-                    weight={Platform.OS === 'ios' ? '500' : '300'}
-                    color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                    align={'left'}>
-                    Empty list 
-                </ETASimpleText>
-                );
-              }}
-              // ListFooterComponent={() => {
-              //   return (
-              //     <ETASimpleText
-              //       size={7}
-              //       weight={Platform.OS === 'ios' ? '500' : '300'}
-              //       color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              //       align={'left'}>
-              //       Prices subject to change without notice
-              //   </ETASimpleText>
-              //   )
-              // }}
-              renderItem={({item}) => {
-                delayValue = delayValue + 1000;
+            {
+              items.map((item) => {
+                delayValue = delayValue + 700;
                 const translateY = animatedValueTransform.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [delayValue, 1]
+                  outputRange: [delayValue, 1],
+                  extrapolate: 'clamp'
                 });
-
                 return (
-                  <Touchable key={item._id} onPress={() => _onPressItem(item)}>
-                    <Animated.View style={{ opacity, transform: [{ translateY }]}}>
-                      <GeneralItemComponent item={item} />
-                    </Animated.View>
-                  </Touchable>
+                  <Animated.View key={item._id} style={{ opacity, transform: [{ translateY }]}}>
+                    <GeneralItemComponent item={item} />
+                  </Animated.View>
                 );
-              }}
-            />
+              })
+            }
           </ListContainer>
         </Root>
       : null

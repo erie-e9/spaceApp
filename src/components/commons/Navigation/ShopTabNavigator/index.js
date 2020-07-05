@@ -8,10 +8,10 @@ import {Ionicons, FontAwesome, AntDesign, SunIcon, IcecreamIcon, IcecreamIcon2, 
 import { eq, multiply, greaterThan, cond } from 'react-native-reanimated';
 import { withTransition } from 'react-native-redash';
 import {fakeavatar, variables} from '@utils/constants';
-import MenuNavigator from './MenuNavigator';
+import {MenuNavigator, GetOneItemNavigator} from './MenuNavigator';
 import {ChatNavigator, ChatItemNavigator} from './ChatNavigator';
 import CartNavigator from './CartNavigator';
-import ProfileNavigator from './ProfileNavigator';
+import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator';
 import AnalyticsScreen from '@screens/AnalyticsScreen';
 import {ETASearchBar} from '@etaui';
 import {Context} from '@context/cartContext';
@@ -194,8 +194,8 @@ const ShopTabNavigator = () => {
       })}
       tabBarOptions={{
         showLabel: !true,
-        // activeTintColor: themeContext.PRIMARY_COLOR,
-        activeTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+        activeTintColor: themeContext.PRIMARY_COLOR,
+        // activeTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
         inactiveTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
         style: {
           borderTopColor: 'transparent',
@@ -224,7 +224,17 @@ const ShopNavigator = () => {
         headerShown: !true,
       }}>
       <Stack.Screen name='ShopTabNavigator' component={ShopTabNavigator} />
+      <Stack.Screen name='GetOneItemNavigator' component={GetOneItemNavigator} 
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
+        }}
+      />
       <Stack.Screen name='ChatItemNavigator' component={ChatItemNavigator} 
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Stack.Screen name='SettingsNavigator' component={SettingsNavigator} 
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}

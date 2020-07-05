@@ -21,15 +21,14 @@ const Touchable = styled.TouchableOpacity`
 
 const CategoryListComponent = ({categories, menu}) => {
     const themeContext = useContext(ThemeContext);
-    const [items, setitems] = useState([]);
+    const [items, setitems ] = useState([]);
     const navigation = useNavigation();
     const [ animatedValueTransform ] = useState(new Animated.Value(0));
     const [ opacity ] = useState(new Animated.Value(0));
-    let delayValue = 1000;
+    let delayValue = 700;
 
     useEffect(() => {
         setitems(categories.data);
-        
         Animated.spring(animatedValueTransform, {
             toValue: 1,
             tension: 5,
@@ -38,7 +37,7 @@ const CategoryListComponent = ({categories, menu}) => {
 
         Animated.timing(opacity, {
             toValue: 1,
-            duration: 800,
+            duration: 700,
             useNativeDriver: true
         }).start();
     }, []);
@@ -67,7 +66,7 @@ const CategoryListComponent = ({categories, menu}) => {
                 numColumns={2}
                 initialNumToRender={6}
                 renderItem={({item}) => {
-                    delayValue = delayValue + 1000;
+                    delayValue = delayValue + 700;
                     const translateY = animatedValueTransform.interpolate({
                         inputRange: [0, 1],
                         outputRange: [delayValue, 1],

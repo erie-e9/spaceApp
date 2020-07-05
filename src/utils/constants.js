@@ -1,11 +1,18 @@
 export const URL = 'http://myapiuri.com/api/controller';
-export const fakeavatar = 'https://randomuser.me/api/portraits/women/10.jpg';
-const SLUG = 'iceCream';
+// export const fakeavatar = 'https://randomuser.me/api/portraits/women/10.jpg';
+export const fakeavatar = 'https://elcomercio.pe/resizer/oJXTPUyJwv30CxKHvSSWyGuvfwc=/980x528/smart/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/7MZZLBWAZVBP5DM5DU6UCY4G3I.png';
+export const SLUG = 'iceCreamUnicorn';
 
 export const variables = {
-  COMPANYNAME: 'iceCream',
-  COMPANYSLOGAN: 'iceCream slogan',
+  COMPANYNAME: `iceCream Unicorn`,
+  COMPANYSLOGAN: `❝Change the World, One Scoop at a time...❞`,
   COMPANYURL: `https://www.${SLUG}.com`,
+  COMPANYFACEBOOK: `https://www.facebook.com/${SLUG}`,
+  COMPANYTWITTER: `https://www.twitter.com/${SLUG}`,
+  COMPANYINSTAGRAM: `https://www.instagram.com/${SLUG}`,
+  COMPANYPHONE1: `5620222699`,
+  COMPANYPHONE2: `6181092045`,
+  COMPANYWHATSAPP: `6181092045`,
   COMPANYMAIL: `help@${SLUG}.com`,
   AVATAR_USER_DEFAULT:
     'https://www.researchgate.net/profile/Maria_Monreal2/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook.png',
@@ -78,7 +85,8 @@ export const darkTheme = {
   SUCCESS_COLOR: 'rgba(0, 255, 0, 1)',
   FAIL_COLOR: 'rgba(255, 0, 0, 1)',
   LINK: '#2196F3',
-  GRAYFACEBOOK: '#777',
+  GRAYFACEBOOK: '#777777',
+  STAR: '#FFBF00',
 
   BACKGROUND_COLOR: '#333333',
 
@@ -90,13 +98,199 @@ export const darkTheme = {
   THIRD_TEXT_COLOR_LIGHT: 'rgba(169, 169, 169, 1)',
 
   PRIMARY_TEXT_BACKGROUND_COLOR: '#333333',
-  SECONDARY_TEXT_BACKGROUND_COLOR: '#f7f7f7',
+  SECONDARY_TEXT_BACKGROUND_COLOR: '#F7F7F7',
+  MAPSTYLE: [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#212121"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#212121"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.country",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9E9E9E"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.locality",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#BDBDBD"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#181818"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#1B1B1B"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry.fill",
+      "stylers": [
+        {
+          "color": "#2C2C2C"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#8A8A8A"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#373737"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#3C3C3C"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway.controlled_access",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#4E4E4E"
+        }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#000000"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#3D3D3D"
+        }
+      ]
+    }
+  ]
 };
 
 export const lightTheme = {
   PRIMARY_COLOR: '#F54F8E',
   PRIMARY_BACKGROUND_COLOR: '#E6E6E6',
-  PRIMARY_BACKGROUND_COLOR_LIGHT: '#f7f7f7',
+  PRIMARY_BACKGROUND_COLOR_LIGHT: '#F7F7F7',
 
   SECONDARY_COLOR: '#D32345',
   SECONDARY_BACKGROUND_COLOR: '#3D3D3D', // shadow
@@ -113,7 +307,8 @@ export const lightTheme = {
   SUCCESS_COLOR: 'rgba(0, 125, 0, 1)',
   FAIL_COLOR: 'rgba(255, 0, 0, 1)',
   LINK: '#2196F3',
-  GRAYFACEBOOK: '#e4e6eb',
+  GRAYFACEBOOK: '#E4E6EB',
+  STAR: '#FFBF00',
 
   BACKGROUND_COLOR: 'rgba(248, 248, 248, 0.82)',
 
@@ -126,6 +321,166 @@ export const lightTheme = {
 
   PRIMARY_TEXT_BACKGROUND_COLOR: '#FFFFFF',
   SECONDARY_TEXT_BACKGROUND_COLOR: '#3D3D3D',
+  MAPSTYLE: [
+    {
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#F5F5F5"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.icon",
+      "stylers": [
+        {
+          "visibility": "off"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [
+        {
+          "color": "#F5F5F5"
+        }
+      ]
+    },
+    {
+      "featureType": "administrative.land_parcel",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#BDBDBD"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#EEEEEE"
+        }
+      ]
+    },
+    {
+      "featureType": "poi",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#E5E5E5"
+        }
+      ]
+    },
+    {
+      "featureType": "poi.park",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9E9E9E"
+        }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#757575"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#DADADA"
+        }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#616161"
+        }
+      ]
+    },
+    {
+      "featureType": "road.local",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9E9E9E"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.line",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#E5E5E5"
+        }
+      ]
+    },
+    {
+      "featureType": "transit.station",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#EEEEEE"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [
+        {
+          "color": "#C9C9C9"
+        }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "labels.text.fill",
+      "stylers": [
+        {
+          "color": "#9E9E9E"
+        }
+      ]
+    }
+  ]
 };
 
 export const colorOptions = {

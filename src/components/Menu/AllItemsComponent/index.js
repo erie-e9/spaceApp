@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Animated} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useRoute} from '@react-navigation/native';
 import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText} from '@etaui';
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent';
@@ -18,12 +18,11 @@ const CategorytItemsList = styled.FlatList``;
 
 const AllItemsComponent = () => {
   const themeContext = useContext(ThemeContext);
-  const navigation = useNavigation();
   const route = useRoute();
   const { allitems } = route.params.params;
-  const [ animatedValueTransform ] = useState(new Animated.Value(0.7));
+  const [ animatedValueTransform ] = useState(new Animated.Value(0));
   const [ opacity ] = useState(new Animated.Value(0));
-  let delayValue = 1000;
+  let delayValue = 700;
 
   useEffect(() => {
     Animated.spring(animatedValueTransform, {
@@ -38,16 +37,6 @@ const AllItemsComponent = () => {
       useNativeDriver: true
     }).start();
   }, [])
-
-  const _onPressItem = (item) => {
-    navigation.navigate('GetOneItemScreen', {
-      screen: 'MenuScreen',
-      params: {
-        _id: item._id,
-        item: item
-      }
-    });
-  };
 
   return (
     <Root>
@@ -85,20 +74,17 @@ const AllItemsComponent = () => {
         //   );
         // }}
         renderItem={({item}) => {
-          delayValue + 1000;
+          delayValue = delayValue + 700;
           const translateY = animatedValueTransform.interpolate({
             inputRange: [0, 1],
             outputRange:[delayValue, 1],
             extrapolate: 'clamp'
-          });
-          
-           return(
-            <Touchable key={item._id} onPress={() => _onPressItem(item)}>
-              <Animated.View style={{ opacity, transform: [{ translateY }]}}>
-                <GeneralItemComponent item={item} />
-              </Animated.View>
-            </Touchable>
-           );
+          });          
+          return(
+            <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+              <GeneralItemComponent item={item} />
+            </Animated.View>
+          );
         }}
       />
     </Root>

@@ -29,11 +29,11 @@ const UserDataContainer = styled.View`
   justifyContent: center;
 `;
 const TimeContainer = styled.View`
-  flex: 0.6;
+  flex: 1;
   flexDirection: column;
   alignItems: center;
   justifyContent: flex-end;
-  right: 10px; 
+  right: 5px; 
 `;
 const Touchable = styled.TouchableOpacity``;
 
@@ -47,9 +47,9 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
       <MetaContainer>
         <UserDataContainer>
           <ETASimpleText
-            size={13}
-            weight={Platform.OS === 'ios' ? '500' : '400'}
-            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+            size={14}
+            weight={Platform.OS === 'ios' ? '500' : '800'}
+            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
             align={'left'}>
             {
               truncateString(fullname, 40)
@@ -71,12 +71,12 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
 
         <TimeContainer>
           <ETASimpleText
-            size={13}
+            size={11}
             weight={Platform.OS === 'ios' ? '500' : '300'}
             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
             align={'left'}>
-            {formatDistanceToNow(new Date(parseInt(createdAt)), { 
-              addSuffix: true, 
+            {formatDistanceToNow(new Date(), { 
+              addSuffix: true,
               // locale: eoLocale // Esp
             })}
           </ETASimpleText>

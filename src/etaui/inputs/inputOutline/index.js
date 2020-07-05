@@ -2,6 +2,8 @@ import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
 
 const TextInputContainer = styled.View`
+  height: ${props => props.height ? props.height : 0.3}px;
+  width: ${props => props.width ? props.width : 0.3}px;
   borderRadius: 30px;
   marginVertical: 5px;
   marginHorizontal: 5px;
@@ -11,13 +13,14 @@ const TextInputContainer = styled.View`
   alignItems: center;
   alignSelf: center;
   alignContent: center;
-  borderWidth: 0.3px;
-  borderColor: ${(props) => props.theme.PRIMARY_BACKGROUND_COLOR};
+  borderWidth: ${props => props.borderWidth}px;
+  borderColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
   borderRadius: 3px;
+  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const TextInput = styled.TextInput.attrs({})`
-  width: ${(props) => (props.width ? props.width: 300)}px;
   height: ${(props) => (props.height ? props.height : 40)}px;
+  width: ${(props) => (props.width ? props.width: 300)}px;
   fontSize: ${(props) => (props.textsize ? props.textsize : 14)}px;
   color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
   justifyContent: center;
@@ -56,6 +59,7 @@ const ETATextInputOutLine = ({
   textsize,
   height,
   width,
+  borderWidth,
   onChangeText,
   paddingHorizontal,
 }) => {
@@ -63,7 +67,7 @@ const ETATextInputOutLine = ({
 
   return (
     <>
-      <TextInputContainer style={{width: width, height: height}}>
+      <TextInputContainer height={height} width={width} borderWidth={borderWidth}>
         <TextInput
           value={value}
           placeholder={placeholder}

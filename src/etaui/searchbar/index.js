@@ -3,6 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native';
 import {Platform, Easing, Animated, Dimensions, TextInput, Keyboard} from 'react-native';
 import {FontAwesome} from '@icons';
 import {ETASimpleText} from '@etaui';
+import { variables } from '@utils/constants';
 
 const HeaderSafeArea = styled.SafeAreaView`
     zIndex: 600;
@@ -216,7 +217,7 @@ const ETASearchBar = () => {
                                 </Animated.View>
                                 <TextInput
                                     ref={input}
-                                    placeholder='Search on iceCream'
+                                    placeholder={`Search on ${variables.COMPANYNAME}`}
                                     placeholderTextColor='#333'
                                     clearButtonMode='always'
                                     value={keyword}
@@ -245,7 +246,7 @@ const ETASearchBar = () => {
                                                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                                                 align={'center'}>
                                                 Enter a few words{'\n'}
-                                                to search on iceCream
+                                                to search on {variables.COMPANYNAME}
                                             </ETASimpleText>
                                         </EmptySearchContainer>
                                         </>

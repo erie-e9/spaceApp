@@ -6,7 +6,7 @@ const Root = styled.View`
   paddingHorizontal: 10px;
 `;
 
-const ETAErrorMessage = ({children, size}) => {
+const ETAErrorMessage = ({ children, size }) => {
   const themeContext = useContext(ThemeContext);
 
   return (

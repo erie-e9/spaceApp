@@ -23,8 +23,6 @@ const ChatComponent = ({data}) => {
         item: item
       }
     });
-
-    // navigation.navigate('ChatItemNavigator');
   };
 
   useEffect(() => {

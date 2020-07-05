@@ -101,7 +101,7 @@ const SignupForm = () => {
             <ETATextInputOutline
               value={values.fullname}
               placeholder='Fullname'
-              placeholderTextColor='#777'
+              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               keyboardType='default'
               autoCapitalize='none'
               allowFontScaling={true}
@@ -126,6 +126,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
+              borderWidth={0.3}
               onChangeText={handleChange('fullname')}
               onBlur={handleBlur('fullname')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -144,7 +145,7 @@ const SignupForm = () => {
             <ETATextInputOutline
               value={values.username}
               placeholder='Username'
-              placeholderTextColor='#777'
+              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               keyboardType='default'
               autoCapitalize='none'
               allowFontScaling={true}
@@ -169,6 +170,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
+              borderWidth={0.3}
               onChangeText={handleChange('username')}
               onBlur={handleBlur('username')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -187,7 +189,7 @@ const SignupForm = () => {
             <ETATextInputOutline
               value={values.cellphone}
               placeholder='Cellphone'
-              placeholderTextColor='#777'
+              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               keyboardType='phone-pad'
               autoCapitalize='none'
               allowFontScaling={true}
@@ -212,6 +214,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
+              borderWidth={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -230,7 +233,7 @@ const SignupForm = () => {
             <ETATextInputOutline
               value={values.password}
               placeholder='Password'
-              placeholderTextColor='#777'
+              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               keyboardType='default'
               autoCapitalize='none'
               allowFontScaling={true}
@@ -255,6 +258,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
+              borderWidth={0.3}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -275,7 +279,7 @@ const SignupForm = () => {
             <ETATextInputOutline
               value={values.confirmPassword}
               placeholder='Confirm password'
-              placeholderTextColor='#777'
+              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               keyboardType='default'
               autoCapitalize='none'
               allowFontScaling={true}
@@ -300,6 +304,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
+              borderWidth={0.3}
               onChangeText={handleChange('confirmPassword')}
               onBlur={handleBlur('confirmPassword')}
               selectionColor={themeContext.PRIMARY_COLOR}

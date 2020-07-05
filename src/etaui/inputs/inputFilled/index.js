@@ -2,20 +2,21 @@ import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
 
 const TextInputContainer = styled.View`
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   borderRadius: 30px;
   marginVertical: 5px;
   marginHorizontal: 5px;
   flexDirection: row;
   justifyContent: center;
-  alignItems: center;
-  alignSelf: center;
-  alignContent: center;
+  alignItems: flex-end;
+  alignSelf: flex-end;
+  alignContent: flex-end;
   paddingHorizontal: 25px;
-  shadowColor: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
+  shadowColor: #ccc;
+  shadowOffset: 2px 2px;
   shadowOpacity: 0.4;
   shadowRadius: 1.4px;
   elevation: 1;
+  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const TextInput = styled.TextInput.attrs({})`
   width: ${(props) => (props.width ? props.width : 300)}px;

@@ -84,7 +84,7 @@ const ForgetPasswordScreen = () => {
             <ETATextInputOutline
               value={values.cellphone}
               placeholder='Cellphone'
-              placeholderTextColor='#777'
+              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               keyboardType='phone-pad'
               autoCapitalize='none'
               allowFontScaling={true}
@@ -109,6 +109,7 @@ const ForgetPasswordScreen = () => {
               textsize={14}
               height={40}
               width={240}
+              borderWidth={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}

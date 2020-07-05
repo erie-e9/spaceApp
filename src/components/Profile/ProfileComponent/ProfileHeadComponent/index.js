@@ -6,12 +6,12 @@ import {Context} from '@context';
 import {ETAAvatar, ETASimpleText} from '@etaui';
 
 const Root = styled.View`
-    flex: 0.5;
+    flex: 0.6;
     width: 100%;
     flexDirection: row;
     justifyContent: center;
     alignItems: center;
-    backgroundColor: transparent;
+    backgroundColor: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 
 const ProfileHeadComponent = () => {
@@ -33,7 +33,6 @@ const ProfileHeadComponent = () => {
                 align={'left'}>
                 pts
             </ETASimpleText>
-
         </Root>
     );
 }

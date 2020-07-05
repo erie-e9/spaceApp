@@ -12,12 +12,12 @@ const Root = styled.View`
   width: 100%;
   minWidth: 100%;
   maxWidth: 100%;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT}
+  backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   `;
   // backgroundColor: transparent;
 const ContactContainer = styled.View`
   flexDirection: column;
-  minHeight: 80px;
+  minHeight: 70px;
   width: 100%;
   minWidth: 100%;
   maxWidth: 100%;

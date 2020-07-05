@@ -29,13 +29,13 @@ const ETABlinkingText = ({
 
     return (
         <Text
-        onPress={onPress ? onPress : null}
-        style={{
-            textAlign: align ? align : 'center',
-            color: color ? color : 'black',
-            fontWeight: weight ? weight : '500',
-            fontSize: size ? size : 14,
-            ...style,
+            onPress={onPress ? onPress : null}
+            style={{
+                textAlign: align ? align : 'center',
+                color: color ? color : 'black',
+                fontWeight: weight ? weight : '500',
+                fontSize: size ? size : 14,
+                ...style,
         }}>
             {
                 textBlink === true
