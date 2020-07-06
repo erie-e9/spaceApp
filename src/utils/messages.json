@@ -1,34 +1,34 @@
 {
-    "data": [
-        {
-            "_id": 1,
-            "mine": false,
-            "text": "Hi",
-            "image": ""
-        },
-        {
-            "_id": 2,
-            "mine": true,
-            "text": "Hey, what's up?",
-            "image": ""
-        },
-        {
-            "_id": 3,
-            "mine": true,
-            "text": "I got your message, how are you?",
-            "image": ""
-        },
-        {
-            "_id": 4,
-            "mine": false,
-            "text": "Oh yes, I wanna ask you an ice-cream",
-            "image": ""
-        },
-        {
-            "_id": 5,
-            "mine": true,
-            "text": "Of course, Do you want to see menu?",
-            "image": ""
-        }
-    ]
+	"data": [
+		{
+			"_id": 1,
+			"mine": false,
+			"text": "Hi",
+			"image": ""
+		},
+		{
+			"_id": 2,
+			"mine": true,
+			"text": "Hey, what's up?",
+			"image": ""
+		},
+		{
+			"_id": 3,
+			"mine": true,
+			"text": "I got your message, how are you?",
+			"image": ""
+		},
+		{
+			"_id": 4,
+			"mine": false,
+			"text": "Oh yes, I wanna ask you an ice-cream",
+			"image": ""
+		},
+		{
+			"_id": 5,
+			"mine": true,
+			"text": "Of course, Do you want to see menu?",
+			"image": ""
+		}
+	]
 }

@@ -1,24 +1,24 @@
-import React, {useLayoutEffect} from 'react';
-import styled from 'styled-components/native';
-import PromotionComponent from '@components/Menu/PromotionComponent';
+import React, {useLayoutEffect} from 'react'
+import styled from 'styled-components/native'
+import PromotionComponent from '@components/Menu/PromotionComponent'
 // import data from '@utils/categories.json';
 
 const Root = styled.View`
-  flex: 1;
-`;
+	flex: 1;
+`
 
 const PromotionScreen = ({navigation, route}) => {
-  const {name} = route.params.params;
+	const {name} = route.params.params
 
-  useLayoutEffect(() => {
-    navigation.setOptions({headerTitle: name});
-  }, [navigation, route]);
+	useLayoutEffect(() => {
+		navigation.setOptions({headerTitle: name})
+	}, [navigation, route])
 
-  return (
-    <Root>
-      <PromotionComponent />
-    </Root>
-  );
-};
+	return (
+		<Root>
+			<PromotionComponent />
+		</Root>
+	)
+}
 
-export default PromotionScreen;
+export default PromotionScreen

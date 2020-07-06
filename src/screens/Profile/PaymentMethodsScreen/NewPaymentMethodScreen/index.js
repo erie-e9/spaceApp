@@ -1,17 +1,15 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import NewPaymentMethodComponent from '@components/Profile/PaymentMethodsComponent/NewPaymentMethodComponent';
+import React from 'react'
+import styled from 'styled-components/native'
+import NewPaymentMethodComponent from '@components/Profile/PaymentMethodsComponent/NewPaymentMethodComponent'
 
 const Root = styled.View`
-  flex: 1;
-`;
+	flex: 1;
+`
 
-const NewPaymentMethodScreen = () => {
-  return (
-    <Root>
-      <NewPaymentMethodComponent />
-    </Root>
-  );
-};
+const NewPaymentMethodScreen = () => (
+	<Root>
+		<NewPaymentMethodComponent />
+	</Root>
+)
 
-export default NewPaymentMethodScreen;
+export default NewPaymentMethodScreen

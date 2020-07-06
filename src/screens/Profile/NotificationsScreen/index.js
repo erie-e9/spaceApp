@@ -1,17 +1,15 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import NotificationsComponent from '@components/Profile/NotificationsComponent';
+import React from 'react'
+import styled from 'styled-components/native'
+import NotificationsComponent from '@components/Profile/NotificationsComponent'
 
 const Root = styled.View`
-  flex: 1;
-`;
+	flex: 1;
+`
 
-const NotificationsScreen = () => {
-  return (
-    <Root>
-      <NotificationsComponent />
-    </Root>
-  );
-};
+const NotificationsScreen = () => (
+	<Root>
+		<NotificationsComponent />
+	</Root>
+)
 
-export default NotificationsScreen;
+export default NotificationsScreen

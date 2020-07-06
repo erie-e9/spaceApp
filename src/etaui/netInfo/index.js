@@ -1,51 +1,55 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {ActivityIndicator} from 'react-native';
-import NetInfo from '@react-native-community/netinfo';
-import styled, {ThemeContext} from 'styled-components/native';
-import {ETASimpleText} from '@etaui';
+import React, {useState, useEffect, useContext} from 'react'
+import {ActivityIndicator} from 'react-native'
+import NetInfo from '@react-native-community/netinfo'
+import styled, {ThemeContext} from 'styled-components/native'
+import {ETASimpleText} from '@etaui'
 
 const Root = styled.SafeAreaView`
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-  padding-vertical: 10px;
-`;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: ${(props) =>
+		props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+	padding-vertical: 10px;
+`
 
 const ETANetInfo = () => {
-  const [isInternetReachable, setisInternetReachable] = useState(true);
-  const themeContext = useContext(ThemeContext);
+	const [isInternetReachable, setisInternetReachable] = useState(true)
+	const themeContext = useContext(ThemeContext)
 
-  useEffect(() => {
-    const unsubscribe = NetInfo.addEventListener((state) => {
-      setisInternetReachable(state.isInternetReachable);
-      console.log('isInternetReachable: ', state.isInternetReachable);
-    });
+	useEffect(() => {
+		const unsubscribe = NetInfo.addEventListener((state) => {
+			setisInternetReachable(state.isInternetReachable)
+			console.log(
+				'isInternetReachable: ',
+				state.isInternetReachable,
+			)
+		})
 
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+		return () => {
+			unsubscribe()
+		}
+	}, [])
 
-  if (isInternetReachable) {
-    return null;
-  }
+	if (isInternetReachable) {
+		return null
+	}
 
-  return (
-    <Root>
-      <ETASimpleText
-        size={14}
-        weight="400"
-        color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
-        align={'center'}>
-        No internet, connecting {'  '}
-      </ETASimpleText>
-      <ActivityIndicator
-        size="small"
-        color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
-      />
-    </Root>
-  );
-};
+	return (
+		<Root>
+			<ETASimpleText
+				size={14}
+				weight='400'
+				color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+				align='center'>
+				No internet, connecting {'  '}
+			</ETASimpleText>
+			<ActivityIndicator
+				size='small'
+				color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+			/>
+		</Root>
+	)
+}
 
-export default ETANetInfo;
+export default ETANetInfo

@@ -1,17 +1,15 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import FAQSComponent from '@components/Profile/HelpComponent/FAQSComponent';
+import React from 'react'
+import styled from 'styled-components/native'
+import FAQSComponent from '@components/Profile/HelpComponent/FAQSComponent'
 
 const Root = styled.View`
-  flex: 1;
-`;
+	flex: 1;
+`
 
-const FAQSScreen = () => {
-  return (
-    <Root>
-      <FAQSComponent />
-    </Root>
-  );
-};
+const FAQSScreen = () => (
+	<Root>
+		<FAQSComponent />
+	</Root>
+)
 
-export default FAQSScreen;
+export default FAQSScreen

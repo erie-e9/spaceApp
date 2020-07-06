@@ -1,63 +1,63 @@
-import React, {useState, useEffect} from 'react';
-import styled from 'styled-components/native';
-import {FlatList} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import ChatCard from './ChatCard';
+import React, {useState, useEffect} from 'react'
+import styled from 'styled-components/native'
+import {FlatList} from 'react-native'
+import {useNavigation} from '@react-navigation/native'
+import ChatCard from './ChatCard'
 
 const Root = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-const Touchable = styled.TouchableOpacity``;
+	flex: 1;
+	justify-content: center;
+	align-items: center;
+`
+const Touchable = styled.TouchableOpacity``
 
 const ChatComponent = ({data}) => {
-  const navigation = useNavigation();
-  const [chats, setchats] = useState([]);
-  const [refresher, setrefresher] = useState(!true);
+	const navigation = useNavigation()
+	const [chats, setchats] = useState([])
+	const [refresher, setrefresher] = useState(!true)
 
-  const _onPress = (item) => {
-    navigation.navigate('ChatItemNavigator', {
-      screen: 'ChatItemScreen',
-      params: {
-        item: item,
-      },
-    });
-  };
+	const _onPress = (item) => {
+		navigation.navigate('ChatItemNavigator', {
+			screen: 'ChatItemScreen',
+			params: {
+				item,
+			},
+		})
+	}
 
-  useEffect(() => {
-    setchats(data.getChats);
-    _getData();
-  }, []);
+	useEffect(() => {
+		setchats(data.getChats)
+		_getData()
+	}, [])
 
-  const _getData = () => {
-    // console.log('getting data...', data.getChats);
-    setrefresher(true);
-    setchats(data.getChats);
-    setrefresher(!true);
-  };
+	const _getData = () => {
+		// console.log('getting data...', data.getChats);
+		setrefresher(true)
+		setchats(data.getChats)
+		setrefresher(!true)
+	}
 
-  return (
-    <Root>
-      <FlatList
-        contentContainerStyle={{
-          alignSelf: 'stretch',
-        }}
-        data={chats}
-        keyExtractor={(item) => item._id.toString()}
-        showsVerticalScrollIndicator={false}
-        refreshing={refresher}
-        onRefresh={() => _getData()}
-        renderItem={({item}) => {
-          return (
-            <Touchable key={item._id} onPress={() => _onPress(item)}>
-              <ChatCard {...item} />
-            </Touchable>
-          );
-        }}
-      />
-    </Root>
-  );
-};
+	return (
+		<Root>
+			<FlatList
+				contentContainerStyle={{
+					alignSelf: 'stretch',
+				}}
+				data={chats}
+				keyExtractor={(item) => item._id.toString()}
+				showsVerticalScrollIndicator={false}
+				refreshing={refresher}
+				onRefresh={() => _getData()}
+				renderItem={({item}) => (
+					<Touchable
+						key={item._id}
+						onPress={() => _onPress(item)}>
+						<ChatCard {...item} />
+					</Touchable>
+				)}
+			/>
+		</Root>
+	)
+}
 
-export default ChatComponent;
+export default ChatComponent

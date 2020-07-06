@@ -1,18 +1,18 @@
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
 
 export default gql`
-  {
-    getOrders {
-      _id
-      text
-      createdAt
-      favoriteCount
-      client {
-        username
-        avatar
-        firstname
-        lastname
-      }
-    }
-  }
-`;
+	{
+		getOrders {
+			_id
+			text
+			createdAt
+			favoriteCount
+			client {
+				username
+				avatar
+				firstname
+				lastname
+			}
+		}
+	}
+`

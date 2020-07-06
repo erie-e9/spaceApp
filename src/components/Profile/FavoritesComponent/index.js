@@ -1,14 +1,12 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import React from 'react'
+import styled from 'styled-components/native'
 
 const Root = styled.View`
-  flex: 1;
-  flex-direction: column;
-  background-color: transparent;
-`;
+	flex: 1;
+	flex-direction: column;
+	background-color: transparent;
+`
 
-const FavoritesComponent = () => {
-  return <Root />;
-};
+const FavoritesComponent = () => <Root />
 
-export default FavoritesComponent;
+export default FavoritesComponent

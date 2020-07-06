@@ -1,17 +1,15 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import TermsOfServiceComponent from '@components/Profile/HelpComponent/TermsOfServiceComponent';
+import React from 'react'
+import styled from 'styled-components/native'
+import TermsOfServiceComponent from '@components/Profile/HelpComponent/TermsOfServiceComponent'
 
 const Root = styled.View`
-  flex: 1;
-`;
+	flex: 1;
+`
 
-const TermsOfServiceScreen = () => {
-  return (
-    <Root>
-      <TermsOfServiceComponent />
-    </Root>
-  );
-};
+const TermsOfServiceScreen = () => (
+	<Root>
+		<TermsOfServiceComponent />
+	</Root>
+)
 
-export default TermsOfServiceScreen;
+export default TermsOfServiceScreen

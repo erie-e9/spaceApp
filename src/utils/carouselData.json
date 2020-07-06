@@ -1,28 +1,28 @@
 {
-    "data": [
-        {
-            "_id": 1,
-            "title": "Promotion 1",
-            "description": "Description",
-            "image": "https://previews.123rf.com/images/anaumenko/anaumenko1906/anaumenko190600002/124133990-pastel-ice-cream-in-waffle-cones.jpg"
-        },
-        {
-            "_id": 2,
-            "title": "Promotion 2",
-            "description": "Description",
-            "image": "https://www.seriouseats.com/2018/06/20180625-no-churn-vanilla-ice-cream-vicky-wasik-13.jpg"
-        },
-        {
-            "_id": 3,
-            "title": "Promotion 3",
-            "description": "Description",
-            "image": "https://img.taste.com.au/p5S73u75/w720-h480-cfill-q80/taste/2018/12/fizzy-sherbet-ice-cream-recipe_1980x1320-145188-1.jpg"
-        },
-        {
-            "_id": 4,
-            "title": "Promotion 4",
-            "description": "Description",
-            "image": "https://cdn.britannica.com/s:700x500/50/80550-050-5D392AC7/Scoops-kinds-ice-cream.jpg"
-        }
-    ]
+	"data": [
+		{
+			"_id": 1,
+			"title": "Promotion 1",
+			"description": "Description",
+			"image": "https://previews.123rf.com/images/anaumenko/anaumenko1906/anaumenko190600002/124133990-pastel-ice-cream-in-waffle-cones.jpg"
+		},
+		{
+			"_id": 2,
+			"title": "Promotion 2",
+			"description": "Description",
+			"image": "https://www.seriouseats.com/2018/06/20180625-no-churn-vanilla-ice-cream-vicky-wasik-13.jpg"
+		},
+		{
+			"_id": 3,
+			"title": "Promotion 3",
+			"description": "Description",
+			"image": "https://img.taste.com.au/p5S73u75/w720-h480-cfill-q80/taste/2018/12/fizzy-sherbet-ice-cream-recipe_1980x1320-145188-1.jpg"
+		},
+		{
+			"_id": 4,
+			"title": "Promotion 4",
+			"description": "Description",
+			"image": "https://cdn.britannica.com/s:700x500/50/80550-050-5D392AC7/Scoops-kinds-ice-cream.jpg"
+		}
+	]
 }

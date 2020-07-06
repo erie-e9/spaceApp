@@ -1,20 +1,18 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import SubHeadGetOnePaymentMethodComponent from './SubHeadGetOnePaymentMethodComponent';
+import React from 'react'
+import styled from 'styled-components/native'
+import SubHeadGetOnePaymentMethodComponent from './SubHeadGetOnePaymentMethodComponent'
 
 const Root = styled.View`
-  flex: 1;
-  flex-direction: column;
-  background-color: transparent;
-`;
+	flex: 1;
+	flex-direction: column;
+	background-color: transparent;
+`
 
-const GetOnePaymentMethodComponent = () => {
-  return (
-    <Root>
-      {/* <HeadGetOnePaymentMethodComponent /> */}
-      <SubHeadGetOnePaymentMethodComponent />
-    </Root>
-  );
-};
+const GetOnePaymentMethodComponent = () => (
+	<Root>
+		{/* <HeadGetOnePaymentMethodComponent /> */}
+		<SubHeadGetOnePaymentMethodComponent />
+	</Root>
+)
 
-export default GetOnePaymentMethodComponent;
+export default GetOnePaymentMethodComponent

@@ -1,36 +1,36 @@
 {
-    "data": [
-        {
-            "_id": 1,
-            "headTitle": "Home",
-            "details": "Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.",
-            "latitude": 24.02574090527505,
-            "longitude": -104.67300467638253,
-            "isDefault": true
-        },
-        {
-            "_id": 2,
-            "headTitle": "Work office",
-            "details": "Simonis Row, Ohio, 64765-2539 31154, Trinidad and Tobago.",
-            "latitude": 24.02780775285771,
-            "longitude": -104.65332895517349,
-            "isDefault": false
-        },
-        {
-            "_id": 3,
-            "headTitle": "Mom house",
-            "details": "Mckenna Center, Idaho, 88859 24757-1176, Lebanon.",
-            "latitude": 24.055258816581457,
-            "longitude": -104.66824845629891,
-            "isDefault": false
-        },
-        {
-            "_id": 4,
-            "headTitle": "Gym",
-            "details": "Hartmann Alley, Mississippi, 81438 60757-7522, Western Sahara.",
-            "latitude": 23.995409497383967,
-            "longitude": -104.65303700092997,
-            "isDefault": false
-        }
-    ]
+	"data": [
+		{
+			"_id": 1,
+			"headTitle": "Home",
+			"details": "Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.",
+			"latitude": 24.02574090527505,
+			"longitude": -104.67300467638253,
+			"isDefault": true
+		},
+		{
+			"_id": 2,
+			"headTitle": "Work office",
+			"details": "Simonis Row, Ohio, 64765-2539 31154, Trinidad and Tobago.",
+			"latitude": 24.02780775285771,
+			"longitude": -104.65332895517349,
+			"isDefault": false
+		},
+		{
+			"_id": 3,
+			"headTitle": "Mom house",
+			"details": "Mckenna Center, Idaho, 88859 24757-1176, Lebanon.",
+			"latitude": 24.055258816581457,
+			"longitude": -104.66824845629891,
+			"isDefault": false
+		},
+		{
+			"_id": 4,
+			"headTitle": "Gym",
+			"details": "Hartmann Alley, Mississippi, 81438 60757-7522, Western Sahara.",
+			"latitude": 23.995409497383967,
+			"longitude": -104.65303700092997,
+			"isDefault": false
+		}
+	]
 }

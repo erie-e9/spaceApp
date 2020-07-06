@@ -5,12 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import Navigation from '@components/commons/Navigation';
 import {Provider as AuthProvider} from '@context';
 import {Provider as CartProvider} from '@context/cartContext';
-import {
-  lightTheme,
-  darkTheme,
-  navLightMode,
-  navDarkMode,
-} from '@utils/constants';
+import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants';
 import {enableScreens} from 'react-native-screens';
 
 enableScreens();

@@ -1,17 +1,15 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import ContactUsComponent from '@components/Profile/HelpComponent/ContactUsComponent';
+import React from 'react'
+import styled from 'styled-components/native'
+import ContactUsComponent from '@components/Profile/HelpComponent/ContactUsComponent'
 
 const Root = styled.View`
-  flex: 1;
-`;
+	flex: 1;
+`
 
-const ContactUsScreen = () => {
-  return (
-    <Root>
-      <ContactUsComponent />
-    </Root>
-  );
-};
+const ContactUsScreen = () => (
+	<Root>
+		<ContactUsComponent />
+	</Root>
+)
 
-export default ContactUsScreen;
+export default ContactUsScreen

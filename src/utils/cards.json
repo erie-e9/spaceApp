@@ -1,21 +1,22 @@
 {
-    "data": [
-        {"_id": 1,
-            "headTitle": "Debit card",
-            "details": "•••• •••• •••• 7212",
-            "expDate": "01/23",
-            "company": "MasterCard",
-            "owner": "Marie Walker",
-            "isDefault": true
-        },    
-        {   "_id": 2,
-            "headTitle": "Credit card",
-            "details": "•••• •••• •••• 3732",
-            "expDate": "12/22",
-            "company": "Visa",
-            "owner": " Rempel Moen",
-            "isDefault": false
-        }
-    
-    ]
+	"data": [
+		{
+			"_id": 1,
+			"headTitle": "Debit card",
+			"details": "•••• •••• •••• 7212",
+			"expDate": "01/23",
+			"company": "MasterCard",
+			"owner": "Marie Walker",
+			"isDefault": true
+		},
+		{
+			"_id": 2,
+			"headTitle": "Credit card",
+			"details": "•••• •••• •••• 3732",
+			"expDate": "12/22",
+			"company": "Visa",
+			"owner": " Rempel Moen",
+			"isDefault": false
+		}
+	]
 }

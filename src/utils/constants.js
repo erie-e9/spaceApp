@@ -1,8 +1,7 @@
-export const URL = 'http://myapiuri.com/api/controller';
+export const URL = 'http://myapiuri.com/api/controller'
 // export const fakeavatar = 'https://randomuser.me/api/portraits/women/10.jpg';
-export const fakeavatar =
-  'https://elcomercio.pe/resizer/oJXTPUyJwv30CxKHvSSWyGuvfwc=/980x528/smart/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/7MZZLBWAZVBP5DM5DU6UCY4G3I.png';
-export const SLUG = 'iceCreamUnicorn';
+export const fakeavatar =	'https://elcomercio.pe/resizer/oJXTPUyJwv30CxKHvSSWyGuvfwc=/980x528/smart/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/7MZZLBWAZVBP5DM5DU6UCY4G3I.png'
+export const SLUG = 'iceCreamUnicorn'
 
 export const variables = {
   COMPANYNAME: 'iceCream Unicorn',
@@ -16,8 +15,8 @@ export const variables = {
   COMPANYWHATSAPP: '6181092045',
   COMPANYMAIL: `help@${SLUG}.com`,
   AVATAR_USER_DEFAULT:
-    'https://www.researchgate.net/profile/Maria_Monreal2/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook.png',
-};
+		'https://www.researchgate.net/profile/Maria_Monreal2/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook.png',
+}
 export const base = {
   FONT_SIZE_TINY: 8,
   FONT_SIZE_SEMISMALL: 10,
@@ -62,8 +61,8 @@ export const base = {
   GREEN: '#4CD964',
 
   noImage:
-    'https://www.brandenforcement.co.uk/wp-content/themes/brand-enforce/img/default-placeholder.png',
-};
+		'https://www.brandenforcement.co.uk/wp-content/themes/brand-enforce/img/default-placeholder.png',
+}
 
 export const darkTheme = {
   PRIMARY_COLOR: '#F54F8E',
@@ -79,7 +78,7 @@ export const darkTheme = {
   THIRD_BACKGROUND_COLOR_LIGHT: '#333333',
 
   FOURTH_BACKGROUND_COLOR: '#EFEFF4',
-  FOURTH_BACKGROUND_COLOR_LIGHT: '#262626', //background navigation
+  FOURTH_BACKGROUND_COLOR_LIGHT: '#262626', // background navigation
 
   REDGRAY: 'rgba(237, 41, 57, 1)',
   REDBADGE: 'rgba(230, 0, 0, 1)',
@@ -286,7 +285,7 @@ export const darkTheme = {
       ],
     },
   ],
-};
+}
 
 export const lightTheme = {
   PRIMARY_COLOR: '#F54F8E',
@@ -301,7 +300,7 @@ export const lightTheme = {
   THIRD_BACKGROUND_COLOR_LIGHT: '#FFFFFF',
 
   FOURTH_BACKGROUND_COLOR: '#EFEFF4',
-  FOURTH_BACKGROUND_COLOR_LIGHT: '#F1F1F1', //background navigation
+  FOURTH_BACKGROUND_COLOR_LIGHT: '#F1F1F1', // background navigation
 
   REDGRAY: 'rgba(141, 148, 158, 1)',
   REDBADGE: 'rgba(230, 0, 0, 1)',
@@ -482,7 +481,7 @@ export const lightTheme = {
       ],
     },
   ],
-};
+}
 
 export const colorOptions = {
   orange: {
@@ -555,7 +554,7 @@ export const colorOptions = {
     PRIMARY_COLOR_BOLD: '#7D2E5D',
     PRIMARY_FOREGROUND_COLOR: '#FFFFFF',
   },
-};
+}
 
 export const navLightMode = {
   dark: false,
@@ -567,7 +566,7 @@ export const navLightMode = {
     text: 'rgb(28, 28, 30)',
     border: 'rgb(199, 199, 204)',
   },
-};
+}
 
 export const navDarkMode = {
   dark: false,
@@ -578,4 +577,4 @@ export const navDarkMode = {
     text: 'rgb(242, 242, 242)',
     border: 'rgb(199, 199, 204)',
   },
-};
+}

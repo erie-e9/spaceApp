@@ -1,17 +1,15 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import AboutUsComponent from '@components/Profile/HelpComponent/AboutUsComponent';
+import React from 'react'
+import styled from 'styled-components/native'
+import AboutUsComponent from '@components/Profile/HelpComponent/AboutUsComponent'
 
 const Root = styled.View`
-  flex: 1;
-`;
+	flex: 1;
+`
 
-const AboutUsScreen = () => {
-  return (
-    <Root>
-      <AboutUsComponent />
-    </Root>
-  );
-};
+const AboutUsScreen = () => (
+	<Root>
+		<AboutUsComponent />
+	</Root>
+)
 
-export default AboutUsScreen;
+export default AboutUsScreen
