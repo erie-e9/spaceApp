@@ -5,34 +5,34 @@ import {Ionicons, MaterialCommunityIcons, SunIcon, IcecreamIcon, IcecreamIcon2, 
 
 const ItemGeneratorContainer = styled.View`
   position: absolute;
-  alignItems: center;
+  align-items: center;
 `;
 const ItemGeneratorButton = styled.TouchableHighlight.attrs({
   underlayColor: 'transparent',
 })`
-  zIndex: 2000;
+  z-index: 2000;
 `;
 const SecondaryButton = styled.View`
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
   height: 30px;
   width: 30px;
-  borderRadius: 36px;
+  border-radius: 36px;
   position: absolute;
   top: -60px;
-  shadowColor: black;
-  shadowRadius: 5px;
-  shadowOffset: 10px;
-  shadowOpacity: 0;
-  borderWidth: 0px;
-  borderColor: red;
-  backgroundColor: ${props => props.theme.PRIMARY_COLOR};
-  zIndex: 2000;
+  shadow-color: black;
+  shadow-radius: 5px;
+  shadow-offset: 10px;
+  shadow-opacity: 0;
+  border-width: 0px;
+  border-color: red;
+  background-color: ${props => props.theme.PRIMARY_COLOR};
+  z-index: 2000;
 `;
 const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
   underlayColor: 'red',
 })`
-  zIndex: 2000;
+  z-index: 2000;
 `;
 
 const DinamycTabButton = ({ focused, size, onPress }) => {

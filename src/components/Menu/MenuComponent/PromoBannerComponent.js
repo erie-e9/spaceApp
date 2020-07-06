@@ -6,31 +6,31 @@ import {ETASimpleText} from '@etaui';
 const {width} = Dimensions.get('window');
 const Root = styled.View`
     flex: 1;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    justify-content: center;
+    align-items: center;
+    background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
     padding: 10px 0px;
-    marginBottom: 10px;
+    margin-bottom: 10px;
 `;
 const Item = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     width: ${width - 50}px;
     height: 35px;
-    borderRadius: 1px;
-    borderWidth: 0.75px;
-    borderColor: ${(props) => props.theme.GRAYFACEBOOK};
+    border-radius: 1px;
+    border-width: 0.75px;
+    border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `;
 const BannerLeft = styled.View`
     flex: 1;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    justify-content: center;
+    align-items: center;
+    background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const BannerRight = styled.View`
     flex: 1;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+    justify-content: center;
+    align-items: center;
+    background-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 `;
 
 const PromoBannerComponent = () => {

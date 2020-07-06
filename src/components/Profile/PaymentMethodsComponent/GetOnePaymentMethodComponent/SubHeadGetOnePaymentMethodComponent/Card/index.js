@@ -4,33 +4,33 @@ import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
 
 const Card = styled.View`
-  flexDirection: row;
-  marginBottom: 1px;
-  minHeight: 40px;
-  alignItems: center;
-  paddingHorizontal: 10px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: row;
+  margin-bottom: 1px;
+  min-height: 40px;
+  align-items: center;
+  padding-horizontal: 10px;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const MetadataInfo = styled.View`
   width: 100%;
-  flexDirection: column;
-  justifyContent: center;
-  paddingBottom: 5px;
-  paddingHorizontal: 1px;
-  backgroundColor: transparent;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 5px;
+  padding-horizontal: 1px;
+  background-color: transparent;
 `;
 const MetadaInfoHead = styled.View`
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
-  backgroundColor: transparent;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
 `;
 const MessageContainer = styled.View`
-  flexDirection: row;
-  minHeight: 20px;
-  alignItems: center;
-  paddingHorizontal: 0px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: row;
+  min-height: 20px;
+  align-items: center;
+  padding-horizontal: 0px;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
 const PaymentCardComponent = ({ headTitle, message }) => {

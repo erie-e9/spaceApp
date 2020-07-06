@@ -16,35 +16,35 @@ const info = 'Member from 5 jun 2017';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
+  flex-direction: column;
 `;
 const ProfileUserContent = styled.View`
-  flexDirection: column;
-  justifyContent: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 const Scroll = styled.ScrollView`
 `;
 const Card = styled.View`
-  flexDirection: row;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-  marginBottom: 1px;
-  minHeight: 40px;
-  alignItems: center;
-  paddingHorizontal: 10px;
+  flex-direction: row;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  margin-bottom: 1px;
+  min-height: 40px;
+  align-items: center;
+  padding-horizontal: 10px;
 `;
 const MetadataHeader = styled.View`
-  flexDirection: column;
-  justifyContent: center;
-  minHeight: 80px;
-  marginHorizontal: 10px;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80px;
+  margin-horizontal: 10px;
 `;
 const MetadataInfo = styled.View`
-  flexDirection: column;
-  justifyContent: center;
-  paddingHorizontal: 5px;
-  marginRight: 50px;
-  marginVertical: 5px;
-  paddingRight: 40px;
+  flex-direction: column;
+  justify-content: center;
+  padding-horizontal: 5px;
+  margin-right: 50px;
+  margin-vertical: 5px;
+  padding-right: 40px;
 `;
 const Touchable = styled.TouchableOpacity`
 `;

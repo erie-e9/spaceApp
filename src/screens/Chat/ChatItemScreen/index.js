@@ -9,22 +9,22 @@ const Root = styled.View`
 `;
 const HeaderContainer = styled.View`
   flex: 1;
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: stretch;
-  backgroundColor: transparent;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: transparent;
 `;
 const NameContainer = styled.View`
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const Touchable = styled.TouchableOpacity``;
 const AvatarContainer = styled.View`
   padding: 2px 10px;
-  borderRadius: 50px;
-  justifyContent: center;
-  alignItems: center;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ChatItemScreen = ({ navigation, route }) => {

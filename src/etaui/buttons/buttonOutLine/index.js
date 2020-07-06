@@ -4,8 +4,8 @@ import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
 
 const Root = styled.View`
-  marginVertical: 5px;
-  paddingHorizontal: 10px;
+  margin-vertical: 5px;
+  padding-horizontal: 10px;
 `;
 const TouchableOpacity = styled.TouchableOpacity`
   height: 40px;

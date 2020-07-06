@@ -4,20 +4,20 @@ import { Animated } from 'react-native';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
+  flex-direction: column;
+  justify-content: center;
 `;
 const LoaderContainer = styled.View`
   width: 40px;
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 const Ball = styled.View`
   height: ${props => props.size};
   width: ${props => props.size};
-  borderRadius: ${props => props.size / 2};
-  backgroundColor: ${props => props.color};
+  border-radius: ${props => props.size / 2};
+  background-color: ${props => props.color};
 `;
 
 const Loader = ({color, size}) => {

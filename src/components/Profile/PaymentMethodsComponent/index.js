@@ -6,8 +6,8 @@ import PaymentMethodsListComponent from './PaymentMethodsListComponent';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
 const PaymentMetodComponent = () => {

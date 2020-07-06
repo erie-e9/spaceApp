@@ -7,33 +7,33 @@ import Card from './Card';
 
 const Root = styled.ScrollView`
   flex: 1;
-  flexDirection: column;
-  paddingTop: 15px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  padding-top: 15px;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const Touchable = styled.TouchableWithoutFeedback`
-  zIndex: 100;
+  z-index: 100;
 `;
 const HelpContainer = styled.View`
-  flexDirection: row;
-  justifyContent: flex-start;
-  alignItems: center;
-  minHeight: 50px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 50px;
   padding: 2.5px 10px;
-  backgroundColor: transparent;
-  marginVertical: 0px;
+  background-color: transparent;
+  margin-vertical: 0px;
 `;
 const LeftContainer = styled.View`
   flex: 0.9;
-  flexDirection: column;
+  flex-direction: column;
   padding: 1px 10px;
-  backgroundColor: transparent;
+  background-color: transparent;
 `;
 const IconContainer = styled.View`
   flex: 0.1;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 
 const HelpComponent = () => {

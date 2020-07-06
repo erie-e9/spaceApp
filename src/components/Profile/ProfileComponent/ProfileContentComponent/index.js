@@ -11,45 +11,45 @@ const iconSize = 23;
 const Scroll = styled.ScrollView``;
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  backgroundColor: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 const Card = styled.View`
-  flexDirection: row;
-  alignItems: stretch;
-  minHeight: 30px;
-  paddingHorizontal: 10px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: row;
+  align-items: stretch;
+  min-height: 30px;
+  padding-horizontal: 10px;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const Metadata = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
-  minHeight: 50px;
-  backgroundColor: transparent;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 50px;
+  background-color: transparent;
 `;
 const Touchable = styled.TouchableWithoutFeedback`
 `;
 const SettingContainer = styled.View`
   flex: 1;
-  flexDirection: row;
-  paddingHorizontal: 10px;
-  alignItems: center;
-  minHeight: 50px;
-  backgroundColor: transparent
+  flex-direction: row;
+  padding-horizontal: 10px;
+  align-items: center;
+  min-height: 50px;
+  background-color: transparent
 `;
 const LeftContainer = styled.View`
   flex: 1;
-  flexDirection: row;
+  flex-direction: row;
 `;
  const OptionTitleContainer = styled.View`
-  marginLeft: 13px;
+  margin-left: 13px;
 `;
 const IconContainer = styled.View`
   flex: 0.12;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 
 const ProfileContentComponent = () => {

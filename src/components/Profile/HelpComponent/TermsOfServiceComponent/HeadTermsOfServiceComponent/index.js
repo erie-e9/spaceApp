@@ -8,37 +8,37 @@ const avatarRadius = logoSize / 2;
 
 const Root = styled.View`
     flex: 0.15;
-    flexDirection: row;
-    justifyContent: flex-start;
-    alignItems: center;
-    marginTop: 10px;
-    backgroundColor: transparent;
-    paddingBottom: 20px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    background-color: transparent;
+    padding-bottom: 20px;
 `;
 const LogoContainer = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     display: flex;
-    justifyContent: center;
-    alignItems: center;
+    justify-content: center;
+    align-items: center;
     height: 60px;
     width: 60px;
-    borderRadius: ${avatarRadius}px;
-    borderWidth: 0px;
-    marginHorizontal: 10px;
-    borderColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
-    backgroundColor: #ffffff;
+    border-radius: ${avatarRadius}px;
+    border-width: 0px;
+    margin-horizontal: 10px;
+    border-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    background-color: #ffffff;
 `;
 const Logo = styled.Image`
     height: ${Platform.OS === 'ios' ? logoSize : 40}px;
     width: ${Platform.OS === 'ios' ? logoSize : 40}px;
-    borderRadius: 5px;
+    border-radius: 5px;
 `;
 const ContentContainer = styled.View`
     flex: 1;
-    flexDirection: column;
-    justifyContent: center;
-    alignItems: flex-start;
-    backgroundColor: transparent;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: transparent;
 `;
 
 const HeadTermsOfServiceComponent = () => {

@@ -9,29 +9,29 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   width: ${ width - 20}px;
-  justifyContent: center;
-  alignSelf: center;
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  borderRadius: 15px
-  paddingVertical: 10px;
-  marginBottom: 12px;
+  justify-content: center;
+  align-self: center;
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  border-radius: 15px
+  padding-vertical: 10px;
+  margin-bottom: 12px;
 `;
 const HeadContainer = styled.View`
   flex: 1;
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin: 10px 7px 5px 5px;
-  paddingHorizontal: 10px;
+  padding-horizontal: 10px;
 `;
 const ListContainer = styled.View`
   flex: 1;
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 const Touchable = styled.TouchableOpacity`
-  zIndex: 100;
+  z-index: 100;
 `;
 
 const MenuList = ({ data, title }) => {

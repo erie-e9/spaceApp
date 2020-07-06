@@ -9,71 +9,71 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 0.6;
-  flexDirection: column;
+  flex-direction: column;
   width: ${width - 20}px;
-  borderTopLeftRadius: 15px;
-  borderTopRightRadius: 15px;
-  borderBottomLeftRadius: 0px;
-  borderBottomRightRadius: 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   position: absolute;
   padding: 20px 20px;
-  alignSelf: center;
+  align-self: center;
   bottom: -2px;
-  backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
-  borderWidth: 0px;
-  borderColor: ${props => props.theme.GRAYFACEBOOK};
+  background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+  border-width: 0px;
+  border-color: ${props => props.theme.GRAYFACEBOOK};
 `;
 const ResumeContainer = styled.View`
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
   width: 100%;
   margin: 5px 0px 0px 0px;
   padding: 5px 10px;
-  backgroundColor: transparent;
+  background-color: transparent;
 `;
 const DirectionContainer = styled.View`
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 40px;
-  marginVertical: 3px;
-  paddingVertical: 5px;
-  paddingHorizontal: 10px;
-  borderWidth: 0px;
-  borderColor: ${props => props.theme.GRAYFACEBOOK};
-  backgroundColor: transparent;
+  margin-vertical: 3px;
+  padding-vertical: 5px;
+  padding-horizontal: 10px;
+  border-width: 0px;
+  border-color: ${props => props.theme.GRAYFACEBOOK};
+  background-color: transparent;
 `;
 const TotalContainer = styled.View`
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 40px;
-  marginVertical: 3px;
-  paddingVertical: 5px;
-  paddingHorizontal: 10px;
-  borderWidth: 0px;
-  borderColor: ${props => props.theme.GRAYFACEBOOK};
-  backgroundColor: transparent;
+  margin-vertical: 3px;
+  padding-vertical: 5px;
+  padding-horizontal: 10px;
+  border-width: 0px;
+  border-color: ${props => props.theme.GRAYFACEBOOK};
+  background-color: transparent;
 `;
 const ResumeTotalContainer = styled.View`
   flex: 1;
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
-  minHeight: 30px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 30px;
   width: 100%;
-  marginVertical: 3px;
-  paddingVertical: 5px;
-  backgroundColor: transparent;
+  margin-vertical: 3px;
+  padding-vertical: 5px;
+  background-color: transparent;
 `;
 const ButtonPayContainer = styled.View`
   height: 50px;
   width: 100%;
-  alignItems: center;
-  backgroundColor: transparent;
+  align-items: center;
+  background-color: transparent;
 `;
 
 const CartDetailsComponent = () => {
@@ -188,7 +188,7 @@ const CartDetailsComponent = () => {
           colorButton={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
           padding={10}
           width={250}
-          borderRadius={3}
+          border-radius={3}
         />
       </DirectionContainer>
       <ButtonPayContainer>
@@ -199,7 +199,7 @@ const CartDetailsComponent = () => {
           colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
           padding={10}
           width={isSubmitting ? 40 : 250}
-          borderRadius={isSubmitting ? 20 : 3}
+          border-radius={isSubmitting ? 20 : 3}
         />
       </ButtonPayContainer>
     </Root>

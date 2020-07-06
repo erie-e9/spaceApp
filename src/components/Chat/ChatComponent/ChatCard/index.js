@@ -5,27 +5,27 @@ import CardHeader from './cardHeader';
 import CardBody from './cardBody';
 
 const Root = styled.View`
-  flexDirection: row;
-  paddingHorizontal: 15px;
-  shadowColor: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
-  alignItems: center;
+  flex-direction: row;
+  padding-horizontal: 15px;
+  shadow-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
+  align-items: center;
   width: 100%;
-  minWidth: 100%;
-  maxWidth: 100%;
-  backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  min-width: 100%;
+  max-width: 100%;
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   `;
-  // backgroundColor: transparent;
+  // background-color: transparent;
 const ContactContainer = styled.View`
-  flexDirection: column;
-  minHeight: 70px;
+  flex-direction: column;
+  min-height: 70px;
   width: 100%;
-  minWidth: 100%;
-  maxWidth: 100%;
+  min-width: 100%;
+  max-width: 100%;
 `;
 const AvatarContainer = styled.View`
   padding: 2px;
-  borderRadius: 50px;
-  backgroundColor: transparent;
+  border-radius: 50px;
+  background-color: transparent;
 `;
 
 const ChatCard = ({text, employee, createdAt}) => {

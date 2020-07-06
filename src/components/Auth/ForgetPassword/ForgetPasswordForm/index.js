@@ -23,24 +23,24 @@ const validationSchema = yup.object().shape({
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const FormContainer = styled.View`
   flex: 0.7;
-  flexDirection: column;
+  flex-direction: column;
   display: flex;
-  justifyContent: center;
-  alignItems: center;
-  paddingHorizontal: 10px;
+  justify-content: center;
+  align-items: center;
+  padding-horizontal: 10px;
 `;
 const ButtonSigninContainer = styled.View`
   height: 20px;
 `;
 const RecoverTextContainer = styled.View`
-  justifyContent: center;
-  alignItems: center;
-  marginTop: 15px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 `;
 
 const ForgetPasswordScreen = () => {
@@ -109,7 +109,7 @@ const ForgetPasswordScreen = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -133,7 +133,7 @@ const ForgetPasswordScreen = () => {
                 colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
                 padding={10}
                 width={isSubmitting ? 40 : 240}
-                borderRadius={isSubmitting ? 20 : 3}
+                border-radius={isSubmitting ? 20 : 3}
               />
             </ButtonSigninContainer>
           </FormContainer>

@@ -3,8 +3,8 @@ import styled, {ThemeContext} from 'styled-components/native';
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  backgroundColor: transparent;
+  justify-content: center;
+  background-color: transparent;
 `;
 const Scroll = styled.ScrollView`
 `;

@@ -9,11 +9,11 @@ import {Context} from '@context';
 
 const FormContainer = styled.View`
   flex: 1;
-  flexDirection: column;
+  flex-direction: column;
   display: flex;
-  justifyContent: center;
-  alignItems: center;
-  paddingHorizontal: 10px;
+  justify-content: center;
+  align-items: center;
+  padding-horizontal: 10px;
 `;
 const TextInputIcon = styled.TouchableOpacity``;
 const ButtonSigninContainer = styled.View`
@@ -101,11 +101,11 @@ const SigninForm = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}
-              paddingHorizontal={15}
+              padding-horizontal={15}
               // selection='1, 4'//? no sé we xd
               // onBlur={text => this._onBlur(text)}
               // onChangeText={onchangetext}
@@ -146,7 +146,7 @@ const SigninForm = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               rightIcon={
@@ -168,7 +168,7 @@ const SigninForm = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              paddingHorizontal={60}
+              padding-horizontal={60}
             />
             {errors.password ? (
               <ETAErrorMessage size={12}>{errors.password}</ETAErrorMessage>
@@ -181,7 +181,7 @@ const SigninForm = () => {
                 colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
                 padding={10}
                 width={isSubmitting ? 40 : 240}
-                borderRadius={isSubmitting ? 20 : 3}
+                border-radius={isSubmitting ? 20 : 3}
               />
             </ButtonSigninContainer>
           </FormContainer>

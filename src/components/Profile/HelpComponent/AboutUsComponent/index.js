@@ -8,9 +8,9 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  align-items: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
 const AboutUsComponent = () => {

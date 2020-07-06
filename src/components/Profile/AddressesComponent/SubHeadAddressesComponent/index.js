@@ -4,20 +4,20 @@ import {useNavigation} from '@react-navigation/native';
 import {ETAButtonFilled} from '@etaui';
 
 const Root = styled.View`
-  minHeight: 10px;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  min-height: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 const ContentContainer = styled.View`
-  minHeight: 10px;
-  flexDirection: column;
-  justifyContent: flex-end;
-  alignItems: center;
+  min-height: 10px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
   margin: 5px;
-  backgroundColor: transparent;
+  background-color: transparent;
 `;
 
 const SubHeadAddressesComponent = () => {
@@ -33,7 +33,7 @@ const SubHeadAddressesComponent = () => {
           colorButton={themeContext.PRIMARY_COLOR}
           padding={10}
           width={250}
-          borderRadius={3}
+          border-radius={3}
         />
       </ContentContainer>
     </Root>

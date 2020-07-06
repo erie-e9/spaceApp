@@ -8,15 +8,15 @@ import {useNavigation} from '@react-navigation/native';
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor:  ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  justify-content: center;
+  align-items: center;
+  background-color:  ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const CarouselList = styled.FlatList`
 `;
 const DotCarousel = styled.View`
-  flexDirection: row;
-  justifyContent: center;
+  flex-direction: row;
+  justify-content: center;
   position: absolute;
   bottom: 5px;
 `;

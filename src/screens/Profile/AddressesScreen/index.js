@@ -4,9 +4,9 @@ import AddressesComponent from '@components/Profile/AddressesComponent';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AddressesScreen = () => {

@@ -7,17 +7,17 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const InfoContainer = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
+  flex-direction: column;
+  justify-content: center;
   width: ${width - 40}px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
 const SubHeadAboutUsComponent = () => {

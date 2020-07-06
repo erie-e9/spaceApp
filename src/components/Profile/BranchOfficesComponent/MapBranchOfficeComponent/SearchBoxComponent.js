@@ -8,24 +8,24 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 const SearchBox = styled.View`
   position: absolute;
-  marginTop: ${Platform.OS === 'ios' ? 40 : 20}px;
-  flexDirection: row;
+  margin-top: ${Platform.OS === 'ios' ? 40 : 20}px;
+  flex-direction: row;
   width: 90%;
-  borderRadius: 5px;
-  justifyContent: center;
-  alignSelf: center;
-  alignItems: flex-start;
-  alignContent: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  border-radius: 5px;
+  justify-content: center;
+  align-self: center;
+  align-items: flex-start;
+  align-content: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   elevation: 1;
 `;
 const HeaderLeft = styled.TouchableOpacity`
-  marginLeft: 15px;
-  marginTop: 10px;
+  margin-left: 15px;
+  margin-top: 10px;
 `;
 const HeaderRight = styled.TouchableOpacity`
-  marginRight: 15px;
-  marginTop: 10px;
+  margin-right: 15px;
+  margin-top: 10px;
 `;
 
 const SearchBoxComponent = ({ currentPosition }) => {
@@ -71,11 +71,11 @@ const SearchBoxComponent = ({ currentPosition }) => {
         textsize={14}
         height={40}
         width={240}
-        borderWidth={0}
+        border-width={0}
         // onChangeText={handleChange('search')}
         // onBlur={handleBlur('search')}
         selectionColor={themeContext.PRIMARY_COLOR}
-        paddingHorizontal={15}
+        padding-horizontal={15}
         // selection='1, 4'//? no sé we xd
         // onEndEditing={text => this._onEndEditing(text)}
         // onFocus={text => this._onFocus(text)}

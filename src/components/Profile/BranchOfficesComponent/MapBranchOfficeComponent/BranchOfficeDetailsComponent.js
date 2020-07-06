@@ -8,21 +8,21 @@ const SPACING_FOR_CARD_INSET = width * 0.1 - 3;
 const CARD_WIDTH = width * 0.8;
 
 const Card = styled.View`
-  flexDirection: row;
-  borderTopLeftRadius: 15px;
-  borderTopRightRadius: 15px;
-  borderBottomLeftRadius: 0px;
-  borderBottomRightRadius: 0px;
-  marginHorizontal: 8px;
+  flex-direction: row;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  margin-horizontal: 8px;
   overflow: hidden;
   height: 100px;
   width: ${props => props.data.length > 1 ? CARD_WIDTH : width - 20}px; 
   padding: 15px;
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  shadowColor: #333;
-  shadowOpacity: 0.5;
-  shadowOffset: 10px 10px;
-  shadowRadius: 2px;
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  shadow-color: #333;
+  shadow-opacity: 0.5;
+  shadow-offset: 10px 10px;
+  shadow-radius: 2px;
   elevation: 3
 `;
 const InfoContainer = styled.View``;

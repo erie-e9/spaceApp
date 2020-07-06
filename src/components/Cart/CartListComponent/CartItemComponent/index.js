@@ -9,185 +9,185 @@ import { useIsFocused } from '@react-navigation/native';
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-    flexDirection: column;
-    minHeight: 100px;
+    flex-direction: column;
+    min-height: 100px;
     width: ${width}px;
 `;
 const Item = styled.View`
     flex: 1;
-    minHeight: 50px;
-    flexDirection: row;
-    paddingHorizontal: 5px;
-    shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-    shadowOffset: 2px 3px;
-    shadowRadius: 2px;
-    shadowOpacity: 0;
-    justifyContent: center;
-    alignItems: center;
+    min-height: 50px;
+    flex-direction: row;
+    padding-horizontal: 5px;
+    shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+    shadow-offset: 2px 3px;
+    shadow-radius: 2px;
+    shadow-opacity: 0;
+    justify-content: center;
+    align-items: center;
     margin: 0px 0px 2px 0px;
-    backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const ItemImage = styled.Image`
     height: 70px;
     width: 70px;
-    borderRadius: 5px;
-    marginLeft: 5px;
+    border-radius: 5px;
+    margin-left: 5px;
 `;
 const NewContainer = styled.View`
-    justifyContent: center;
+    justify-content: center;
     position: absolute;
     height: 12px;
     width: 23px;
     top: 15px;
     left: 11px;
-    backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
-    borderRadius: 4px;
-    borderWidth: 0px;
-    borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    background-color: ${(props) => props.theme.PRIMARY_COLOR};
+    border-radius: 4px;
+    border-width: 0px;
+    border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const CartItemData = styled.View`
     flex: 1;
-    flexDirection: column;
-    marginLeft: 15px;
-    alignItems: flex-start;
-    justifyContent: center;
-    backgroundColor: transparent;
+    flex-direction: column;
+    margin-left: 15px;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: transparent;
 `;
 const CartItemHeadContainer = styled.View`
-    minHeight: 30px;
-    justifyContent: center;
-    alignItems: center;
-    flexDirection: row;
-    backgroundColor: transparent;
+    min-height: 30px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: transparent;
     padding: 5px 5px 0px 5px;
 `;
 const CartTitleContainer = styled.View`
     flex: 1;
-    backgroundColor: transparent;
-    alignItems: flex-start;
+    background-color: transparent;
+    align-items: flex-start;
 `;
 const CardItemFunctions = styled.View`
     flex: 0.5;
-    alignItems: flex-end;
-    justifyContent: center;
+    align-items: flex-end;
+    justify-content: center;
     margin: 0px 10px 10px 0px;
-    paddingHorizontal: 2px;
+    padding-horizontal: 2px;
 `;
 const Touchable = styled.TouchableOpacity`
 `;
 const CartItemContainer = styled.View`
     flex: 0.7;
-    flexDirection: row;
+    flex-direction: row;
 `;
 const CartItemLeftContainer = styled.View`
-    flexDirection: column;
-    justifyContent: flex-start;
-    alignItems: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     margin: 5px 0px 0px 0px;
-    paddingHorizontal: 2px;
-    backgroundColor: transparent;
+    padding-horizontal: 2px;
+    background-color: transparent;
 `;
 const DiscountContainer = styled.View`
     flex: 1;
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    paddingVertical: 1px;
-    zIndex: 100;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-vertical: 1px;
+    z-index: 100;
 `;
 const PercentContainer = styled.View`
-    justifyContent: center;
-    alignItems: center;
-    zIndex: 100;
-    borderWidth: 0px;
-    paddingHorizontal: 5px;
-    paddingVertical: 1px;
-    borderColor: white;
-    borderTopLeftRadius: 4px;
-    borderTopRightRadius: 4px;
-    borderBottomLeftRadius: 4px;
-    borderBottomRightRadius: 4px;
-    backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
-    marginLeft: 5px;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-width: 0px;
+    padding-horizontal: 5px;
+    padding-vertical: 1px;
+    border-color: white;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    margin-left: 5px;
 `;
 const UnitPriceContainer = styled.View`
-    justifyContent: center;
-    alignItems: center;
-    zIndex: 100;
-    borderWidth: 0px;
-    paddingHorizontal: 5px;
-    paddingVertical: 1px;
-    borderColor: white;
-    borderTopLeftRadius: 4px;
-    borderTopRightRadius: 4px;
-    borderBottomLeftRadius: 4px;
-    borderBottomRightRadius: 4px;
-    backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    border-width: 0px;
+    padding-horizontal: 5px;
+    padding-vertical: 1px;
+    border-color: white;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 const PriceContainer = styled.View`
     flex: 0.4;
-    flexDirection: column;
-    justifyContent: flex-start;
-    alignItems: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 `;
 const CartItemRightContainer = styled.View`
     flex: 1;
-    flexDirection: column;
-    justifyContent: center;
-    alignItems: flex-end;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
     margin: 5px 0px 10px 5px;
-    paddingHorizontal: 2px;
+    padding-horizontal: 2px;
 `;
 const AddCartContainer = styled.View`
     position: absolute;
     right: 5px;
-    flexDirection: row;
+    flex-direction: row;
     height: 30px;
     width: 90px;
-    borderRadius: 20px;
-    shadowOffset: 0px 1px;
-    shadowRadius: 2px;
-    shadowOpacity: 0.2;
+    border-radius: 20px;
+    shadow-offset: 0px 1px;
+    shadow-radius: 2px;
+    shadow-opacity: 0.2;
     elevation: 0.3;
-    backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
-    marginHorizontal: 7px;
-    paddingHorizontal: 10px;
-    justifyContent: center;
-    alignItems: center;
-    alignSelf: center;
-    zIndex: 1000;
+    background-color: ${(props) => props.theme.PRIMARY_COLOR};
+    margin-horizontal: 7px;
+    padding-horizontal: 10px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    z-index: 1000;
 `;
 const AddRemoveContainer = styled.View`
     width: 100%; 
-    flexDirection: row;
-    alignItems: center;
-    justifyContent: space-between;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `;
 const CounterContainer = styled.View`
     height: 20px;
     width: 20px;
-    borderRadius: 12px;
-    borderWidth: 0.5px;
-    borderColor: white;
-    alignItems: center;
-    justifyContent: center;
+    border-radius: 12px;
+    border-width: 0.5px;
+    border-color: white;
+    align-items: center;
+    justify-content: center;
 `;
 const AddRemoveButtonContainer = styled.View`
     height: 18px;
     width: 12px;
-    alignItems: center;
-    justifyContent: center;
-    backgroundColor: transparent;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
 `;
 const AddCart = styled.TouchableOpacity`
-    paddingHorizontal: 5px;
-    flexDirection: row;
-    zIndex: 1000;
+    padding-horizontal: 5px;
+    flex-direction: row;
+    z-index: 1000;
 `;
 const RemoveCart = styled.TouchableOpacity`
-    paddingHorizontal: 5px;
-    flexDirection: row;
-    zIndex: 1000;
+    padding-horizontal: 5px;
+    flex-direction: row;
+    z-index: 1000;
 `;
 
 const CartItemComponent = ({item}) => {
@@ -269,7 +269,7 @@ const CartItemComponent = ({item}) => {
                                 weight={Platform.OS === 'ios' ? '500' : '900'} 
                                 color={themeContext.PRIMARY_COLOR} 
                                 align={'left'}
-                                style={{ zIndex: 100 }}>
+                                style={{ z-index: 100 }}>
                                 -{item.discount}%
                             </ETASimpleText>
                         </PercentContainer>

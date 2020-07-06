@@ -8,43 +8,43 @@ import SigninBody from '@components/Auth/Signin/SigninBody';
 const KeyboardMisser = styled.TouchableWithoutFeedback``;
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
+  flex-direction: column;
+  justify-content: center;
 `;
 // const BackImage = styled.ImageBackground`
 //   flex: 1;
-//   resizemode: cover;
-//   justifyContent: center;
-//   zIndex: 10;
+//   resize-mode: cover;
+//   justify-content: center;
+//   z-index: 10;
 // `;
 // const InfoContainer = styled.View`
 const InfoContainer = styled.KeyboardAvoidingView.attrs({
   behavior: Platform.OS === 'ios' ? 'padding' : 'height',
 })`
   flex: 0.5;
-  alignSelf: stretch;
-  alignItems: center;
-  justifyContent: center;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
 `;
 const Card = styled.View`
   flex: 0.3;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   width: 80%;
-  minHeight: 250px;
-  paddingVertical: 10px;
-  marginVertical: 5px;
-  paddingHorizontal: 20px;
-  marginHorizontal: 10px;
-  shadowColor: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
-  shadowOffset: 0px 2px;
-  shadowRadius: 2px;
-  shadowOpacity: 0.1;
-  borderRadius: 5px;
-  borderWidth: 0.075px;
-  borderColor: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
+  min-height: 250px;
+  padding-vertical: 10px;
+  margin-vertical: 5px;
+  padding-horizontal: 20px;
+  margin-horizontal: 10px;
+  shadow-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
+  shadow-offset: 0px 2px;
+  shadow-radius: 2px;
+  shadow-opacity: 0.1;
+  border-radius: 5px;
+  border-width: 0.075px;
+  border-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
 `;
 
 const AuthScreen = ({navigation}) => {

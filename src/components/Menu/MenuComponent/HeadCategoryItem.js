@@ -6,30 +6,30 @@ import {ETASimpleText} from '@etaui';
 const Item = styled.View`
   width: 40px;
   height: 60px;
-  borderRadius: 20px;
-  borderWidth: 0.5px;
-  borderColor: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
-  backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  border-radius: 20px;
+  border-width: 0.5px;
+  border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   margin: 4px 9px;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const ItemImage = styled.Image`
   width: 40px;
   height: 60px;
-  borderRadius: 20px;
+  border-radius: 20px;
 `;
 const NewContainer = styled.View`
-  justifyContent: flex-end;
+  justify-content: flex-end;
   position: absolute;
   height: 12px;
   width: 23px;
   bottom: 12px;
   right: 8px;
-  backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
-  borderRadius: 4px;
-  borderWidth: 1.3px;
-  borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_COLOR};
+  border-radius: 4px;
+  border-width: 1.3px;
+  border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 
 const CategoryItem = ({itemcat}) => {

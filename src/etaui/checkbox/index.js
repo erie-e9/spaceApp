@@ -5,22 +5,22 @@ import { ETASimpleText } from '@etaui';
 
 const Root = styled.View`
     flex: 1;
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    marginVertical: 5px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-vertical: 5px;
 `;
 const CheckBox = styled.View`
     height: 20px;
     width: 20px;
-    borderWidth: 2px;
+    border-width: 2px;
     margin: 10px;
-    borderRadius: 3px
+    border-radius: 3px
 `;
 const TitleContainer = styled.View`
-    marginVertical: 10px;
-    justifyContent: center;
-    alignItems: center;
+    margin-vertical: 10px;
+    justify-content: center;
+    align-items: center;
 `;
 
 const ETACheckBox = ({ title, checkedTitle, color, onChange, checked, onPressTitle }) => {

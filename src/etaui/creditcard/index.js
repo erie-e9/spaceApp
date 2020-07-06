@@ -6,18 +6,18 @@ import {ETASimpleText, ETAButtonFilled} from '@etaui';
 const { width, height } = Dimensions.get('window');
 
 const CreditCardTopContainer = styled.View`
-    flexDirection: column;
-    justifyContent: flex-start;
-    alignItems: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     width: ${width}px;
-    backgroundColor: transparent;
+    background-color: transparent;
 `;
 const Card = styled.View`
     height: ${height / 4.75}px;
     width: ${width - 50}px;
     margin: 15px;
-    borderRadius: 10px;
-    backgroundColor: #efefef;
+    border-radius: 10px;
+    background-color: #efefef;
 `;
 const CardFrontContainer = styled.View`
     flex: 1;
@@ -27,59 +27,59 @@ const CardBackContainer = styled.View`
 `;
 const CardItemsContainer = styled.View`
     flex: 1;
-    flexDirection: column;
-    justifyContent: flex-end;
-    alignItems: flex-start;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
     padding: 10px 20px 20px 20px;
 `;
 const CreditCardBottomContainer = styled.View`
-    flexDirection: column;
-    justifyContent: flex-start;
-    alignItems: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     width: ${width}px;
-    backgroundColor: transparent;
+    background-color: transparent;
 `;
 const CardBackBand = styled.View`
     height: 35px;
     width: 100%;
-    marginTop: 20px;
-    backgroundColor: #282828;
+    margin-top: 20px;
+    background-color: #282828;
 `;
 const CardIBacktemsContainer = styled.View`
     flex: 1;
-    flexDirection: column;
-    justifyContent: center;
-    alignItems: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     padding: 10px 20px 20px 20px;
 `;
 const TextInputsContainer = styled.View`
-    flexDirection: row;
-    justifyContent: flex-start;
-    alignItems: flex-start;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: ${width}px;
-    backgroundColor: transparent;
+    background-color: transparent;
 `;
 const TextInputContainer = styled.View`
     flex: 1;
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
 `;
 const TextInput = styled.TextInput.attrs({})`
     height: ${(props) => (props.height ? props.height : 40)}px;
     width: 100%;
     fontSize: ${(props) => (props.textsize ? props.textsize : 14)}px;
     color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-    justifyContent: center;
-    alignItems: center;
-    alignSelf: center;
-    alignContent: center;
-    backgroundColor: transparent;
-    paddingHorizontal: 15px;
-    marginVertical: 7px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+    background-color: transparent;
+    padding-horizontal: 15px;
+    margin-vertical: 7px;
     borderBottomWidth: 0.3px;
-    borderColor: ${(props) => props.theme.GRAYFACEBOOK};
+    border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `;
 
 const ETACreditCard = ({ lang, placeholderTextColor }) => {
@@ -380,7 +380,7 @@ const ETACreditCard = ({ lang, placeholderTextColor }) => {
                         colorButton={themeContext.PRIMARY_COLOR}
                         padding={10}
                         width={250}
-                        borderRadius={3}
+                        border-radius={3}
                     />
                 </CreditCardBottomContainer>
             </KeyboardAvoidingView>

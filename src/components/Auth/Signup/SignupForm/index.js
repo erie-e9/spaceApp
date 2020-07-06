@@ -15,15 +15,15 @@ const signup = 'Sign up';
 const Root = styled.TouchableWithoutFeedback`
   flex: 1;
   position: relative;
-  justifyContent: center;
+  justify-content: center;
 `;
 const FormContainer = styled.View`
   flex: 1;
-  flexDirection: column;
+  flex-direction: column;
   display: flex;
-  justifyContent: center;
-  alignItems: center;
-  paddingHorizontal: 10px;
+  justify-content: center;
+  align-items: center;
+  padding-horizontal: 10px;
 `;
 const ButtonSignupContainer = styled.View`
   height: 20px;
@@ -126,7 +126,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('fullname')}
               onBlur={handleBlur('fullname')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -170,7 +170,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('username')}
               onBlur={handleBlur('username')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -214,7 +214,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -258,7 +258,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -270,7 +270,7 @@ const SignupForm = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              // paddingHorizontal={60}
+              // padding-horizontal={60}
             />
 
             {errors.password ? (
@@ -304,7 +304,7 @@ const SignupForm = () => {
               textsize={14}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('confirmPassword')}
               onBlur={handleBlur('confirmPassword')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -316,7 +316,7 @@ const SignupForm = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              // paddingHorizontal={60}
+              // padding-horizontal={60}
             />
             {errors.confirmPassword ? (
               <ETAErrorMessage size={12}>
@@ -331,7 +331,7 @@ const SignupForm = () => {
                 colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
                 padding={10}
                 width={isSubmitting ? 40 : 240}
-                borderRadius={isSubmitting ? 20 : 3}
+                border-radius={isSubmitting ? 20 : 3}
               />
             </ButtonSignupContainer>
           </FormContainer>

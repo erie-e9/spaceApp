@@ -6,11 +6,11 @@ const logoSize = 90;
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
+  flex-direction: column;
   display: flex;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: #ffffff;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
 `;
 const Logo = styled.Image`
   width: ${Platform.OS === 'ios' ? logoSize : 90}px;

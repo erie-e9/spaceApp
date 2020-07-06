@@ -9,21 +9,21 @@ const avatarRadius = logoSize / 2;
 
 const Root = styled.View`
   flex: 0.3;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const LogoContainer = styled.View`
-  flexDirection: row;
+  flex-direction: row;
   display: flex;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
   height: 110px;
   width: 110px;
-  borderRadius: ${avatarRadius}px;
-  backgroundColor: #ffffff;
-  marginVertical: 30px;
-  borderWidth: 0.3px;
-  borderColor: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
+  border-radius: ${avatarRadius}px;
+  background-color: #ffffff;
+  margin-vertical: 30px;
+  border-width: 0.3px;
+  border-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
 `;
 const Logo = styled.Image`
   width: ${Platform.OS === 'ios' ? logoSize : 90}px;

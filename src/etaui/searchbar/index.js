@@ -6,19 +6,19 @@ import {ETASimpleText} from '@etaui';
 import { variables } from '@utils/constants';
 
 const HeaderSafeArea = styled.SafeAreaView`
-    zIndex: 600;
+    z-index: 600;
 `;
-// backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+// background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 const Header = styled.View`
     height: 40px;
-    paddingHorizontal: 10px;
+    padding-horizontal: 10px;
 `;
 const HeaderInner = styled.View`
     flex: 1;
-    flexDirection: row;
+    flex-direction: row;
     overflow: hidden;
-    justifyContent: space-between;
-    alignItems: center;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
 `;
 const ImageContainer = styled.View`
@@ -28,28 +28,28 @@ const Img = styled.Image`
 
 `;
 const IconButton = styled.TouchableOpacity`
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: #e4e6eb;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #e4e6eb;
     width: 32px;
     height: 32px;
-    borderRadius: 32px;
-    marginHorizontal: 5px;
-    marginRight: 15px;
+    border-radius: 32px;
+    margin-horizontal: 5px;
+    margin-right: 15px;
 `;
 const IconButtonClose = styled.TouchableOpacity`
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     width: 40px;
     height: 40px;
-    borderRadius: 40px;
-    marginHorizontal: 5px;
+    border-radius: 40px;
+    margin-horizontal: 5px;
 `;
 const ContentSafeArea = styled.SafeAreaView`
     flex: 1;
-    backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const ContentInner = styled.View`
     flex: 1;
@@ -57,30 +57,30 @@ const ContentInner = styled.View`
 `;
 const Separator = styled.View`
     height: 1px;
-    marginTop: 5px;
-    backgroundColor:  #e4e6eb;
+    margin-top: 5px;
+    background-color:  #e4e6eb;
 `;
 const EmptySearchContainer = styled.View`
     flex: 1;
-    flexDirection: column;
-    justifyContent: center;
-    alignItems: center;
-    marginTop: -50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -50%;
 `;
 const EmptySearchImage = styled.Image`
     width: 50px;
     height: 50px;
-    alignSelf: center;
-    marginVertical: 10px
+    align-self: center;
+    margin-vertical: 10px
 `;
 const Scroll = styled.ScrollView``;
 const SearchItem = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     height: 40px;
-    alignItems: center;
-    marginLeft: 16px;
-    paddingHorizontal: 15px;
-    marginVertical: 7px;
+    align-items: center;
+    margin-left: 16px;
+    padding-horizontal: 15px;
+    margin-vertical: 7px;
 `;
 
 const { Value, timing } = Animated;

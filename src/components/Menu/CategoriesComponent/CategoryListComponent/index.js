@@ -8,10 +8,10 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const CategoryList = styled.FlatList`
 `;

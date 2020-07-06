@@ -9,30 +9,30 @@ import {Ionicons} from '@icons';
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-    flexDirection: row;
+    flex-direction: row;
 `;
 const Cloud = styled.View`
-    maxWidth: ${moderateScale(250,2)}px;
-    paddingTop: ${moderateScale(5,2)}px;
-    paddingBottom: ${moderateScale(7,2)}px;
-    paddingHorizontal: ${moderateScale(10,2)}px;
-    borderRadius: 20px;
+    max-width: ${moderateScale(250,2)}px;
+    padding-top: ${moderateScale(5,2)}px;
+    padding-bottom: ${moderateScale(7,2)}px;
+    padding-horizontal: ${moderateScale(10,2)}px;
+    border-radius: 20px;
 `;
 const ArrowContainer = styled.View`
     flex: 1;
-    justifyContent: flex-end;
+    justify-content: flex-end;
     position: absolute;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    zIndex: -1;
+    z-index: -1;
 `;
 const MessageImage = styled.Image`
-    borderRadius: 10px;
+    border-radius: 10px;
 `;
 const MessageText = styled.Text`
-    paddingTop: 3px;
+    padding-top: 3px;
     fontSize: 15px;
     fontWeight: ${Platform.OS === 'ios' ? 400 : 600};
     lineHeight: 22px
@@ -42,7 +42,7 @@ const MessageTimeText = styled.Text`
     fontSize: 11px;
     fontWeight: ${Platform.OS === 'ios' ? 400 : 600};
     lineHeight: 22px;
-    alignSelf: flex-end;
+    align-self: flex-end;
 `;
 
 const MessageBubbleComponent = ({item}) => {

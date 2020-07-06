@@ -8,22 +8,22 @@ const {width, height} = Dimensions.get('window');
 const Root = styled.View`
   width: ${width - 20}px;
   height: ${height / 5.6}px;
-  backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  marginHorizontal: 10px;
-  marginVertical: 10px;
-  borderRadius: 8px;
-  shadowOffset: 5px 5px;
-  shadowColor: #000;
-  shadowOpacity: 0;
-  shadowRadius: 3px;
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  margin-horizontal: 10px;
+  margin-vertical: 10px;
+  border-radius: 8px;
+  shadow-offset: 5px 5px;
+  shadow-color: #000;
+  shadow-opacity: 0;
+  shadow-radius: 3px;
   elevation: 0;
-  justifyContent: center;
+  justify-content: center;
 `;
-// shadowOffset: ${{width: 0.5, height: 0.5}};
+// shadow-offset: ${{width: 0.5, height: 0.5}};
 const ItemImage = styled.Image`
   width: ${width - 20}px;
   height: ${height / 5.6}px;
-  borderRadius: 10px;
+  border-radius: 10px;
 `;
 const ContentContainer = styled.View`
   position: absolute;

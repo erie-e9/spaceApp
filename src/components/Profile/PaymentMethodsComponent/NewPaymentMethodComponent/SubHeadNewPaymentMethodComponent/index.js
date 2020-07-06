@@ -5,10 +5,10 @@ import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-  paddingVertical: 10px;
+  flex-direction: column;
+  align-items: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  padding-vertical: 10px;
 `;
 
 const SubHeadNewPaymentMethodComponent = () => {

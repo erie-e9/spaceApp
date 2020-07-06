@@ -17,8 +17,8 @@ import {ETASearchBar} from '@etaui';
 import {Context} from '@context/cartContext';
 
 const AvatarContainer = styled.View`
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const Avatar = styled.Image``;
 

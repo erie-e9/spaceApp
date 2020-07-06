@@ -7,43 +7,43 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  alignItems: center;
-  zIndex: 999;
-  backgroundColor: transparent;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  background-color: transparent;
 `;
 const SuggestionItemsContainer = styled.View`
-  flexDirection: column;
+  flex-direction: column;
   height: 90px;
   width: ${width}px;
-  justifyContent: center;
+  justify-content: center;
   position: absolute;
-  alignItems: flex-start;
-  zIndex: 10;
-  backgroundColor: transparent;
+  align-items: flex-start;
+  z-index: 10;
+  background-color: transparent;
 `;
 const SuggestionItemsList = styled.FlatList`
   width: ${width}px;
 `;
 const Touchable = styled.TouchableOpacity`
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const SuggestionItem = styled.View`
   width: 50px;
   height: 50px;
-  borderRadius: 10px;
-  borderWidth: 0px;
-  borderColor: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
-  backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  border-radius: 10px;
+  border-width: 0px;
+  border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   margin: 2px 7px;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const SuggestionItemImage = styled.Image`
   width: 50px;
   height: 50px;
-  borderRadius: 10px;
+  border-radius: 10px;
 `;
 
 const SuggestionsComponent = ({selectedItemName}) => {

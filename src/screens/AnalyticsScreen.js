@@ -3,8 +3,8 @@ import styled from 'styled-components/native';
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const T = styled.Text``;
 

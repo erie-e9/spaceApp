@@ -7,35 +7,35 @@ import {Ionicons, Feather} from '@icons'
 const {width} = Dimensions.get('window');
 
 const Card = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     width: ${ width - 20}px;
-    minHeight: 70px;
-    justifyContent: space-between;
-    alignSelf: center;
-    borderRadius: 5px
+    min-height: 70px;
+    justify-content: space-between;
+    align-self: center;
+    border-radius: 5px
     padding: 10px;
-    marginBottom: 5px;
-    backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+    margin-bottom: 5px;
+    background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const MetadataInfo = styled.View`
     flex: 0.9;
     width: 100%;
-    flexDirection: column;
-    justifyContent: flex-start;
-    paddingBottom: 5px;
-    backgroundColor: transparent;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+    background-color: transparent;
 `;
 const MetadaInfoHead = styled.View`
-    flexDirection: row;
-    justifyContent: flex-start;
-    alignItems: center;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
 `;
 const IconContainer = styled.View`
     flex: 0.1;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: transparent;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
 `;
 
 const AddressCardComponent = ({ headTitle, details, isDefault }) => {

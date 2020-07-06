@@ -5,17 +5,17 @@ import { ETASimpleText } from '@etaui';
 
 const FixedDotContainer = styled.View`
     flex: 1;
-    justifyContent: center;
-    alignItems: center;
+    justify-content: center;
+    align-items: center;
 `;
 const FixedDot = styled.View`
     height: 10px;
     width: 10px;
-    borderRadius: 5px;
-    backgroundColor: ${props => props.background};
+    border-radius: 5px;
+    background-color: ${props => props.background};
 `;
 const ShapeMarker = styled.View`
-    alignSelf: center; 
+    align-self: center; 
     width: 2px;
     height: 10px;
     borderRightWidth: 0;

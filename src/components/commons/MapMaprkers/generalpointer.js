@@ -4,20 +4,20 @@ import { TouchableHighlight } from 'react-native';
 
 const Root = styled.View`
     flex: 1;
-    shadowOpacity: 0.25;
-    shadowRadius: 1px;
-    shadowOffset: 2px 2px;
-    shadowColor: #000;
+    shadow-opacity: 0.25;
+    shadow-radius: 1px;
+    shadow-offset: 2px 2px;
+    shadow-color: #000;
     elevation: 2
 `;
 const MarkerContainer = styled.View`
-    backgroundColor: ${props => props.background};
-    minWidth: 23px;
-    paddingHorizontal: 4px;
+    background-color: ${props => props.background};
+    min-width: 23px;
+    padding-horizontal: 4px;
     height: 18px;
-    alignItems: center;
-    justifyContent: center;
-    borderRadius: 3px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
     position: relative
 `;
 const MarkerText = styled.Text`
@@ -27,7 +27,7 @@ const MarkerText = styled.Text`
     textAlign: center;
 `;
 const ShapeMarker = styled.View`
-    alignSelf: center; 
+    align-self: center; 
     width: 0px;
     height: 0px;
     bottom: 4px;

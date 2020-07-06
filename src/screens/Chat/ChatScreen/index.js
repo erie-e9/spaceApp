@@ -5,8 +5,8 @@ import data from '@utils/chats.json';
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ChatScreen = () => {

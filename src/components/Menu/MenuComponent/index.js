@@ -12,13 +12,13 @@ const HEADER_MAX_HEIGHT = 90;
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 const HeaderContainer = styled.View`
   flex: 1;
-  justifyContent: center;
+  justify-content: center;
   margin: -1px 0px 0px 0px;
 `;
 
@@ -35,7 +35,7 @@ const MenuComponent = (data) => {
     extrapolate: 'clamp'
   });
 
-  const headerBackgroundColor = scrollYAnimatedValue.interpolate({
+  const headerbackgroundColor = scrollYAnimatedValue.interpolate({
     inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
     outputRange: [themeContext.PRIMARY_TEXT_BACKGROUND_COLOR, themeContext.PRIMARY_TEXT_BACKGROUND_COLOR],
     // outputRange: [ 'rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.95)' ],
@@ -102,7 +102,7 @@ const MenuComponent = (data) => {
           alignItems: 'center', 
           height: headerHeight, 
           width: width, 
-          backgroundColor: headerBackgroundColor
+          backgroundColor: headerbackgroundColor
         }}>
           <HeadCategoryList items={data.menu1} />
         </Animated.View>

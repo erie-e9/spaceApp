@@ -8,10 +8,10 @@ import {ETAAvatar, ETASimpleText} from '@etaui';
 const Root = styled.View`
     flex: 0.6;
     width: 100%;
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 
 const ProfileHeadComponent = () => {

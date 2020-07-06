@@ -8,49 +8,49 @@ const {width} = Dimensions.get('window');
 const iconSize = 23;
 
 const Card = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     width: ${width}px;
-    minHeight: 50px;
-    justifyContent: space-between;
-    alignSelf: center;
-    alignItems: center;
-    borderRadius: 5px
-    marginBottom: 1px;
-    backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+    min-height: 50px;
+    justify-content: space-between;
+    align-self: center;
+    align-items: center;
+    border-radius: 5px
+    margin-bottom: 1px;
+    background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const MetadataInfo = styled.View`
     flex: 1;
     width: 100%;
-    flexDirection: column;
-    justifyContent: flex-start;
-    paddingBottom: 5px;
-    backgroundColor: transparent;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+    background-color: transparent;
 `;
 const MetadaInfoHead = styled.View`
-    minHeight: 20px;
+    min-height: 20px;
     width: ${width}px;
-    flexDirection: row;
-    justifyContent: flex-start;
-    alignItems: center;
-    paddingHorizontal: 10px;
-    paddingRight: 50px;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-horizontal: 10px;
+    padding-right: 50px;
+    background-color: transparent;
 `;
 const IconContainer = styled.View`
-    justifyContent: center;
-    alignItems: center;
-    paddingRight: 5px;
-    backgroundColor: transparent;
+    justify-content: center;
+    align-items: center;
+    padding-right: 5px;
+    background-color: transparent;
 `;
 const MetadaAnswerContainer = styled.View`
-    minHeight: 20px;
+    min-height: 20px;
     width: ${width - 30}px;
-    flexDirection: row;
-    justifyContent: flex-start;
-    alignItems: center;
-    paddingLeft: 40px;
-    paddingTop: 5px;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 40px;
+    padding-top: 5px;
+    background-color: transparent;
 `;
 
 

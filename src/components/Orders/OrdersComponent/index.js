@@ -5,8 +5,8 @@ import {ETACard} from '@etaui';
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const Touchable = styled.TouchableOpacity``;
 

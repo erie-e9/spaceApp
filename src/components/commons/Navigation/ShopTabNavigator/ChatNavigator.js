@@ -7,36 +7,36 @@ import ChatItemScreen from '@screens/Chat/ChatItemScreen';
 import {ETASimpleText} from '@etaui';
 
 const HeaderLeft = styled.TouchableOpacity`
-    marginLeft: 15px;
+    margin-left: 15px;
 `;
 const HeaderLeftCard = styled.TouchableOpacity`
-    marginLeft: 15px;
-    marginTop: 25px;
-    alignItems: center;
+    margin-left: 15px;
+    margin-top: 25px;
+    align-items: center;
     height: 30px;
     width: 30px;
-    borderRadius: 15px;
+    border-radius: 15px;
 `;
 const HeaderRight = styled.View`
-    flexDirection: row;
-    marginRight: 15px;
+    flex-direction: row;
+    margin-right: 15px;
 `;
 const Touchable = styled.TouchableOpacity`
-    marginLeft: 10px;
+    margin-left: 10px;
 `;
 const Header = styled.View`
-    marginLeft: 15px;
+    margin-left: 15px;
 `;
 const IconButton = styled.TouchableOpacity`
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: #e4e6eb;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #e4e6eb;
     width: 35px;
     height: 35px;
-    borderRadius: 35px;
-    marginHorizontal: 5px;
-    marginRight: 15px;
+    border-radius: 35px;
+    margin-horizontal: 5px;
+    margin-right: 15px;
 `;
 
 const ChatStack = createStackNavigator();

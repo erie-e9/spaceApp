@@ -8,18 +8,18 @@ import CartItemComponent from './CartItemComponent';
 
 const Root = styled.View`
   flex: 0.58;
-  justifyContent: flex-start;
-  alignItems: center;
-  backgroundColor: transparent;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
 `;
 const CategorytItemsList = styled.FlatList``;
 const EmptyListContainer = styled.View`
   flex: 1;
   height: 100%;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 
 const CartListComponent = () => {
@@ -95,7 +95,7 @@ const CartListComponent = () => {
                 colorButton={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                 padding={10}
                 width={250}
-                borderRadius={3}
+                border-radius={3}
               />
             </EmptyListContainer>
           );

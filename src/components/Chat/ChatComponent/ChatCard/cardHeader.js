@@ -8,31 +8,31 @@ import { truncateString } from '@functions';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  alignContent: center;
-  paddingHorizontal: 10px;
-  paddingRight: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  padding-horizontal: 10px;
+  padding-right: 20px;
 `;
 const MetaContainer = styled.View`
   flex: 1;
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
-  paddingHorizontal: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-horizontal: 10px;
 `;
 const UserDataContainer = styled.View`
   flex: 1;
-  flexDirection: column;
-  alignItems: flex-start;
-  justifyContent: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 `;
 const TimeContainer = styled.View`
   flex: 1;
-  flexDirection: column;
-  alignItems: center;
-  justifyContent: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   right: 5px; 
 `;
 const Touchable = styled.TouchableOpacity``;

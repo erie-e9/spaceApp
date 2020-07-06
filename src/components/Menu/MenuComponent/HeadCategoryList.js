@@ -9,10 +9,10 @@ import data from '@utils/categories.json';
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  paddingVertical: 4px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-vertical: 4px;
   width: ${width}px;
 `;
 const ItemsList = styled.FlatList`
@@ -21,17 +21,17 @@ const ItemsList = styled.FlatList`
 const Item = styled.View`
   width: 40px;
   height: 60px;
-  borderRadius: 20px;
-  borderWidth: 0.5px;
-  borderColor: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
-  backgroundColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  border-radius: 20px;
+  border-width: 0.5px;
+  border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   margin: 5px 9px;
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 const Touchable = styled.TouchableOpacity`
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Categories = ({items}) => {

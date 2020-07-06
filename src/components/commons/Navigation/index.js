@@ -8,7 +8,6 @@ import ShopTabNavigator from './ShopTabNavigator';
 import SplashScreen from '@components/commons/SplashScreen';
 import {lightTheme, darkTheme} from '@utils/constants';
 
-////////////////////////////////////////////////////////////
 const Navigation = () => {
   const {restoreToken, state} = useContext(Context);
   const colorSchema = useColorScheme();
@@ -26,7 +25,7 @@ const Navigation = () => {
   return (
     <>
       <StatusBar
-        backgroundColor={
+        background-color={
           colorSchema === 'dark'
             ? darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR
             : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR

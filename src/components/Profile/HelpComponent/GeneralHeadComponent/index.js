@@ -8,36 +8,36 @@ const avatarRadius = logoSize / 2;
 
 const Root = styled.View`
     flex: 0.3;
-    flexDirection: column;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: transparent;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
     padding: 15px;
 `;
 const ContentContainer = styled.View`
-    minHeight: 20px;
-    flexDirection: column;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: transparent;
+    min-height: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
     padding: 10px 20px;
 `;
 const LogoContainer = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     display: flex;
-    justifyContent: center;
-    alignItems: center;
+    justify-content: center;
+    align-items: center;
     height: 80px;
     width: 80px;
-    borderRadius: ${avatarRadius}px;
-    backgroundColor: #ffffff;
-    borderWidth: 0.3px;
-    borderColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    border-radius: ${avatarRadius}px;
+    background-color: #ffffff;
+    border-width: 0.3px;
+    border-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 const Logo = styled.Image`
     height: ${Platform.OS === 'ios' ? logoSize : 70}px;
     width: ${Platform.OS === 'ios' ? logoSize : 70}px;
-    borderRadius: 5px;
+    border-radius: 5px;
 `;
 
 const GeneralHeadComponent = ({imagePath}) => {

@@ -5,22 +5,22 @@ import CartScreen from '@screens/Cart/CartScreen';;
 import {ETASimpleText} from '@etaui';
 
 const HeaderLeft = styled.TouchableOpacity`
-    marginLeft: 15px;
+    margin-left: 15px;
 `;
 const HeaderLeftCard = styled.TouchableOpacity`
-    marginLeft: 15px;
-    marginTop: 25px;
-    alignItems: center;
+    margin-left: 15px;
+    margin-top: 25px;
+    align-items: center;
     height: 30px;
     width: 30px;
-    borderRadius: 15px;
+    border-radius: 15px;
 `;
 const HeaderRight = styled.View`
-    flexDirection: row;
-    marginRight: 15px;
+    flex-direction: row;
+    margin-right: 15px;
 `;
 const Header = styled.View`
-    marginLeft: 15px;
+    margin-left: 15px;
 `;
 
 const CartStack = createStackNavigator();

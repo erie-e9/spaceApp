@@ -5,14 +5,14 @@ import Card from './Card'
 
 const Root = styled.ScrollView`
   flex: 1;
-  flexDirection: column;
-  paddingTop: 15px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  padding-top: 15px;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const NotificationSettingContainer = styled.View`
-  flexDirection: column;
+  flex-direction: column;
   padding: 5px 15px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
 const NotificationsComponent = () => {

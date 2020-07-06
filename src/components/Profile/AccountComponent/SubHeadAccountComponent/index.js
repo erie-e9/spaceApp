@@ -14,17 +14,17 @@ const signup = 'Save';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: flex-start;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const FormContainer = styled.View`
-  flexDirection: column;
+  flex-direction: column;
   display: flex;
-  justifyContent: center;
-  alignItems: center;
-  paddingHorizontal: 10px;
+  justify-content: center;
+  align-items: center;
+  padding-horizontal: 10px;
 `;
 const ButtonSignupContainer = styled.View`
   height: 20px;
@@ -125,7 +125,7 @@ const SubHeadAccountComponent = () => {
               textsize={13}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('fullname')}
               onBlur={handleBlur('fullname')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -169,7 +169,7 @@ const SubHeadAccountComponent = () => {
               textsize={13}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('username')}
               onBlur={handleBlur('username')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -213,7 +213,7 @@ const SubHeadAccountComponent = () => {
               textsize={13}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -257,7 +257,7 @@ const SubHeadAccountComponent = () => {
               textsize={13}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -269,7 +269,7 @@ const SubHeadAccountComponent = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              // paddingHorizontal={60}
+              // padding-horizontal={60}
             />
 
             {errors.password ? (
@@ -303,7 +303,7 @@ const SubHeadAccountComponent = () => {
               textsize={13}
               height={40}
               width={240}
-              borderWidth={0.3}
+              border-width={0.3}
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -315,7 +315,7 @@ const SubHeadAccountComponent = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              // paddingHorizontal={60}
+              // padding-horizontal={60}
             />
             {errors.email ? (
               <ETAErrorMessage size={12}>
@@ -330,7 +330,7 @@ const SubHeadAccountComponent = () => {
                 colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
                 padding={10}
                 width={isSubmitting ? 40 : 240}
-                borderRadius={isSubmitting ? 20 : 3}
+                border-radius={isSubmitting ? 20 : 3}
               />
             </ButtonSignupContainer>
           </FormContainer>

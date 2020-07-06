@@ -7,29 +7,29 @@ const {width} = Dimensions.get('window');
 
 const Root = styled.View`
   flex: 0.6;
-  alignItems: center;
-  alignSelf: center;
-  flexDirection: column;
-  minHeight: 100px;
+  align-items: center;
+  align-self: center;
+  flex-direction: column;
+  min-height: 100px;
   width: ${width - 20}px;
-  borderTopLeftRadius: 15px;
-  borderTopRightRadius: 15px;
-  borderBottomLeftRadius: 0px;
-  borderBottomRightRadius: 0px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   position: absolute;
   padding: 10px 10px;
   bottom: -2px;
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  borderWidth: 0px;
-  borderColor: ${props => props.theme.GRAYFACEBOOK};
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  border-width: 0px;
+  border-color: ${props => props.theme.GRAYFACEBOOK};
 `;
 const InfoContainer = styled.View`
   flex: 1;
-  alignItems: flex-start;
-  minHeight: 50px;
-  alignSelf: flex-start;
+  align-items: flex-start;
+  min-height: 50px;
+  align-self: flex-start;
   padding: 5px 5px;
-  backgroundColor: transparent;
+  background-color: transparent;
 `;
 
 const UbicationDetailsComponent = ({headTitle, details}) => {
@@ -66,7 +66,7 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
         colorButton={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
         padding={10}
         width={240}
-        borderRadius={3}
+        border-radius={3}
       />
       <ETAButtonFilled
         title='Save'
@@ -75,7 +75,7 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
         colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
         padding={10}
         width={240}
-        borderRadius={3}
+        border-radius={3}
       />
     </Root>
   );

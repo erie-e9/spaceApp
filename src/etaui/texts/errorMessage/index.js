@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
 
 const Root = styled.View`
-  paddingHorizontal: 10px;
+  padding-horizontal: 10px;
 `;
 
 const ETAErrorMessage = ({ children, size }) => {

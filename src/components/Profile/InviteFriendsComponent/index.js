@@ -7,8 +7,8 @@ import {ETASimpleText} from '@etaui';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  backgroundColor: transparent;
+  flex-direction: column;
+  background-color: transparent;
 `;
 
 const InviteFriendsComponent = () => {

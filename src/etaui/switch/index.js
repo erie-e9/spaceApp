@@ -3,21 +3,21 @@ import styled, { ThemeContext } from 'styled-components/native';
 import { TouchableWithoutFeedback, Animated, Easing } from 'react-native';
 
 const Root = styled.View`
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
 `;
 const Switch = styled.View`
     height: 20px;
     width: 40px;
-    borderWidth: 0.5px;
-    borderColor: ${props => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+    border-width: 0.5px;
+    border-color: ${props => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
     margin: 10px;
-    borderRadius: 20px;    
-    alignItems: flex-start;
+    border-radius: 20px;    
+    align-items: flex-start;
     padding: 1px;
-    backgroundColor: transparent;
+    background-color: transparent;
 `;
 
 const ETASwitch = ({ color, onChange, activated }) => {

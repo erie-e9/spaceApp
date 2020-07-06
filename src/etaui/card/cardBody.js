@@ -5,7 +5,7 @@ import {ETASimpleText} from '@etaui';
 
 const Root = styled.View`
   flex: 1;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   width: 100%;
 `;
 const OrderContentContainer = styled.View`

@@ -23,8 +23,8 @@ const BackgroundDoodle = styled.ImageBackground`
   flex: 1;
   width: null;
   height: null;
-  resizeMode: cover;
-  justifyContent: center;
+  resize-mode: cover;
+  justify-content: center;
 `;
 const ItemImage = styled.Image`
   width: 100%;

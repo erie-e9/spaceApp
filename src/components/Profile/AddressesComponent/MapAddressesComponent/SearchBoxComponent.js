@@ -8,24 +8,24 @@ import {Feather, FontAwesome} from '@icons';
 
 const SearchBox = styled.View`
   position: absolute;
-  marginTop: ${Platform.OS === 'ios' ? 40 : 20}px;
-  flexDirection: row;
+  margin-top: ${Platform.OS === 'ios' ? 40 : 20}px;
+  flex-direction: row;
   width: 90%;
-  borderRadius: 5px;
-  justifyContent: center;
-  alignSelf: center;
-  alignItems: flex-start;
-  alignContent: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  border-radius: 5px;
+  justify-content: center;
+  align-self: center;
+  align-items: flex-start;
+  align-content: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   elevation: 1;
 `;
 const HeaderLeft = styled.TouchableOpacity`
-  marginLeft: 15px;
-  marginTop: 10px;
+  margin-left: 15px;
+  margin-top: 10px;
 `;
 const HeaderRight = styled.TouchableOpacity`
-  marginRight: 15px;
-  marginTop: 10px;
+  margin-right: 15px;
+  margin-top: 10px;
 `;
 
 const SearchBoxComponent = ({ currentPosition }) => {

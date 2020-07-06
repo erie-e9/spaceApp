@@ -14,17 +14,17 @@ const Root = styled.View`
 `;
 const ItemContainer = styled.View`
   flex: 0.86;
-  backgroundColor: transparent;
+  background-color: transparent;
 `;
 const BackgroundPresentationContainer = styled.View`
   flex: 0.85;
-  backgroundColor: transparent;
-  zIndex: 9;
+  background-color: transparent;
+  z-index: 9;
 `;
 const SuggestionsContainer = styled.View`
   flex: 0.14;
-  backgroundColor: transparent;
-  zIndex: 999;
+  background-color: transparent;
+  z-index: 999;
 `;
 const ItemTopContainer = styled.View`
   height: ${height - 255}px;
@@ -37,268 +37,268 @@ const ItemImage = styled.ImageBackground`
   flex: 1;
   width: null;
   height: null;
-  resizeMode: cover;
-  justifyContent: center;
+  resize-mode: cover;
+  justify-content: center;
 `;
 const ItemBottomContainer = styled.View`
   flex: 1;
-  backgroundColor: transparent;
-  justifyContent: flex-end;
-  alignItems: center;
-  alignSelf: center;
+  background-color: transparent;
+  justify-content: flex-end;
+  align-items: center;
+  align-self: center;
   position: absolute;
   height: 100%;
-  zIndex: 100;
+  z-index: 100;
 `;
 // const Card = styled.Animated.View`
 //   width: ${width / 1.2}px;
 //   top: 150px;
-//   backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-//   marginVertical: 10px;
-//   shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-//   borderRadius: 15px;
+//   background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+//   margin-vertical: 10px;
+//   shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+//   border-radius: 15px;
 //   padding: 25px 15px 10px 15px;
-//   shadowOffset: 0px 1px;
-//   shadowRadius: 2px;
-//   shadowOpacity: 0;
+//   shadow-offset: 0px 1px;
+//   shadow-radius: 2px;
+//   shadow-opacity: 0;
 //   elevation: 0;
-//   justifyContent: flex-start;
-//   alignItems: center;
-//   borderWidth: 0px;
-//   borderColor: ${(props) => props.theme.GRAYFACEBOOK};
+//   justify-content: flex-start;
+//   align-items: center;
+//   border-width: 0px;
+//   border-color: ${(props) => props.theme.GRAYFACEBOOK};
 // `;
 const AddCartContainer = styled.View`
   position: absolute;
   top: -25px;
-  flexDirection: row;
+  flex-direction: row;
   height: 40px;
   width: 120px;
-  borderRadius: 30px;
-  shadowOffset: 0px 1px;
-  shadowRadius: 2px;
-  shadowOpacity: 0.2;
+  border-radius: 30px;
+  shadow-offset: 0px 1px;
+  shadow-radius: 2px;
+  shadow-opacity: 0.2;
   elevation: 0.3;
-  backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
-  marginHorizontal: 7px;
-  paddingHorizontal: 10px;
-  justifyContent: center;
-  alignItems: center;
-  alignSelf: center;
-  zIndex: 1000;
+  background-color: ${(props) => props.theme.PRIMARY_COLOR};
+  margin-horizontal: 7px;
+  padding-horizontal: 10px;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  z-index: 1000;
 `;
 const AddCartTouchable = styled.TouchableOpacity`
   position: absolute;
   top: -25px;
-  flexDirection: row;
+  flex-direction: row;
   height: 40px;
   width: 120px;
-  borderRadius: 30px;
-  shadowOffset: 0px 1px;
-  shadowRadius: 2px;
-  shadowOpacity: 0.2;
+  border-radius: 30px;
+  shadow-offset: 0px 1px;
+  shadow-radius: 2px;
+  shadow-opacity: 0.2;
   elevation: 0.3;
-  backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
-  marginHorizontal: 7px;
-  paddingHorizontal: 10px;
-  justifyContent: center;
-  alignItems: center;
-  alignSelf: center;
-  zIndex: 1000;
+  background-color: ${(props) => props.theme.PRIMARY_COLOR};
+  margin-horizontal: 7px;
+  padding-horizontal: 10px;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  z-index: 1000;
 `;
 const AddRemoveContainer = styled.View`
   width: 100%; 
-  flexDirection: row;
-  alignItems: center;
-  justifyContent: space-between;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 const CounterContainer = styled.View`
   height: 24px;
   width: 24px;
-  borderRadius: 12px;
-  borderWidth: 0.5px;
-  borderColor: white;
-  alignItems: center;
-  justifyContent: center;
+  border-radius: 12px;
+  border-width: 0.5px;
+  border-color: white;
+  align-items: center;
+  justify-content: center;
 `;
 const AddCart = styled.TouchableOpacity`
   padding: 5px;
-  flexDirection: row;
-  zIndex: 1000;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  flex-direction: row;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 const AddRemoveButtonContainer = styled.View`
   height: 18px;
   width: 12px;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 const RemoveCart = styled.TouchableOpacity`
   padding: 5px;
-  flexDirection: row;
-  zIndex: 1000;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  flex-direction: row;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 const CardTop = styled.View`
-  minHeight: 10px;
-  flexDirection: column;
+  min-height: 10px;
+  flex-direction: column;
   width: 100%;
-  justifyContent: center;
-  marginTop: 10px;
+  justify-content: center;
+  margin-top: 10px;
 `;
 const NewContainer = styled.View`
   position: absolute;
-  zIndex: 100;
+  z-index: 100;
   height: 15px;
   width: 30px;
   top: -15px;
-  borderRadius: 5px;
-  borderWidth: 1px;
-  borderColor: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  backgroundColor: ${(props) => props.theme.PRIMARY_COLOR};
-  justifyContent: flex-end;
-  alignItems: center;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_COLOR};
+  justify-content: flex-end;
+  align-items: center;
 `;
 const CardTopHead = styled.View`
-  minHeight: 40px;
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: flex-start;
-  backgroundColor: transparent;
+  min-height: 40px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: transparent;
 `;
 const NameContainer = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: flex-start;
-  alignItems: flex-start;
-  paddingHorizontal: 2px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-horizontal: 2px;
 `;
 const ShopContainer = styled.View`
   flex: 0.35;
-  minHeight: 50px;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  paddingHorizontal: 2px;
-  marginBottom: 7px;
+  min-height: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-horizontal: 2px;
+  margin-bottom: 7px;
 `;
 const PriceContainer = styled.View`
   flex: 0.5;
-  flexDirection: column;
-  justifyContent: flex-start;
-  alignItems: center;
-  backgroundColor: transparent;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
 `;
 const DiscountContainer = styled.View`
   flex: 0.34
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: center;
-  marginBottom: 3px;
-  zIndex: 100;
-  backgroundColor: transparent;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3px;
+  z-index: 100;
+  background-color: transparent;
 `;
 const PercentContainer = styled.View`
-  justifyContent: center;
-  alignItems: center;
-  zIndex: 100;
-  borderWidth: 0px;
-  paddingHorizontal: 4px;
-  paddingVertical: 1.5px;
-  borderColor: white;
-  borderTopLeftRadius: 4px;
-  borderTopRightRadius: 4px;
-  borderBottomLeftRadius: 4px;
-  borderBottomRightRadius: 4px;
-  backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
-  marginLeft: 5px;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  border-width: 0px;
+  padding-horizontal: 4px;
+  padding-vertical: 1.5px;
+  border-color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+  margin-left: 5px;
 `;
 const ItemInfoContainer = styled.View`
-  minHeight: 10px;
-  flexDirection: row;
-  justifyContent: space-between;
-  paddingHorizontal: 10px;
-  alignItems: stretch;
-  backgroundColor: transparent;
+  min-height: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-horizontal: 10px;
+  align-items: stretch;
+  background-color: transparent;
 `;
 const ItemInfoRating = styled.View`
-  flexDirection: row;
+  flex-direction: row;
   height: 20px;
   width: 75px;
-  borderRadius: 20px;
-  shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-  shadowOffset: 0px 1px;
-  shadowRadius: 2px;
-  shadowOpacity: 0;
+  border-radius: 20px;
+  shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+  shadow-offset: 0px 1px;
+  shadow-radius: 2px;
+  shadow-opacity: 0;
   elevation: 0;
-  borderWidth: 0.5px;
-  borderColor: ${props => props.theme.GRAYFACEBOOK};
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  marginHorizontal: 7px;
-  justifyContent: center;
-  alignItems: center;
+  border-width: 0.5px;
+  border-color: ${props => props.theme.GRAYFACEBOOK};
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  margin-horizontal: 7px;
+  justify-content: center;
+  align-items: center;
 `;
 const ItemInfoCalories = styled.View`
   height: 20px;
   width: 75px;
-  borderRadius: 20px;
-  shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-  shadowOffset: 0px 1px;
-  shadowRadius: 2px;
-  shadowOpacity: 0;
+  border-radius: 20px;
+  shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+  shadow-offset: 0px 1px;
+  shadow-radius: 2px;
+  shadow-opacity: 0;
   elevation: 0;
-  borderWidth: 0.5px;
-  borderColor: ${props => props.theme.GRAYFACEBOOK};
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  marginHorizontal: 7px;
-  justifyContent: center;
-  alignItems: center;
+  border-width: 0.5px;
+  border-color: ${props => props.theme.GRAYFACEBOOK};
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  margin-horizontal: 7px;
+  justify-content: center;
+  align-items: center;
 `;
 const ItemInfoWeight = styled.View`
   height: 20px;
   width: 75px;
-  borderRadius: 20px;
-  shadowColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-  shadowOffset: 0px 1px;
-  shadowRadius: 2px;
-  shadowOpacity: 0;
+  border-radius: 20px;
+  shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+  shadow-offset: 0px 1px;
+  shadow-radius: 2px;
+  shadow-opacity: 0;
   elevation: 0;
-  borderWidth: 0.5px;
-  borderColor: ${props => props.theme.GRAYFACEBOOK};
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  marginHorizontal: 7px;
-  justifyContent: center;
-  alignItems: center;
+  border-width: 0.5px;
+  border-color: ${props => props.theme.GRAYFACEBOOK};
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  margin-horizontal: 7px;
+  justify-content: center;
+  align-items: center;
 `;
 const CardBottom = styled.View`
-  flexDirection: column;
-  justifyContent: space-between;
-  minHeight: 90px;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90px;
   width: 100%;
-  alignItems: flex-start;
-  paddingHorizontal: 10px;
-  marginTop: 10px;
-  backgroundColor: transparent
+  align-items: flex-start;
+  padding-horizontal: 10px;
+  margin-top: 10px;
+  background-color: transparent
 `;
 const ItemDetailsContainer = styled.View`
-  minHeight: 50px;
-  flexDirection: column;
-  justifyContent: flex-start;
-  alignItems: flex-start;
+  min-height: 50px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 const FavoriteContainer = styled.View`
   position: absolute;
   bottom: 0px;
   right: 5px;
-  zIndex: 1000;
+  z-index: 1000;
 `;
 const Touchable = styled.TouchableOpacity`
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const GetOneItemComponent = () => {
@@ -358,14 +358,14 @@ const GetOneItemComponent = () => {
             backgroundColor:  themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
             marginVertical: 15,
             shadowColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            borderRadius: 15,
             shadowOffset: {width: 0, height: 1},
             shadowRadius: 2,
             shadowOpacity: 0,          
+            borderRadius: 15,
             paddingTop: 25,
-            paddingLeft: 10,
             paddingRight: 10,
             paddingBottom: 10,
+            paddingLeft: 10,
             elevation: 0,
             justifyContent: 'center',
             alignItems: 'center',

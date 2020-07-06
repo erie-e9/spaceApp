@@ -10,32 +10,32 @@ const HEADER_MAX_HEIGHT = 130;
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const Touchable = styled.TouchableOpacity`
-  zIndex: 100;
+  z-index: 100;
 `;
 const CategorytItemsList = styled.FlatList``;
 const PromoHeadContainer = styled.View`
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   width: ${width}px;
   height: 100%;
-  paddingBottom: 5px
+  padding-bottom: 5px
 `;
 const PromoHeadTitle = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: transparent;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
 `;
 const PromoHeadImage = styled.ImageBackground`
-  justifyContent: center;
-  alignItems: center;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
 `;
@@ -56,7 +56,7 @@ const PromoComponent = () => {
     extrapolate: 'clamp'
   });
 
-  const headerBackgroundColor = scrollYAnimatedValue.interpolate({
+  const headerbackgroundColor = scrollYAnimatedValue.interpolate({
     inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
     outputRange: [themeContext.PRIMARY_TEXT_BACKGROUND_COLOR, themeContext.PRIMARY_TEXT_BACKGROUND_COLOR],
     // outputRange: [ 'rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.95)' ],
@@ -157,7 +157,7 @@ const PromoComponent = () => {
         alignItems: 'center', 
         height: headerHeight, 
         width: width, 
-        backgroundColor: headerBackgroundColor
+        backgroundColor: headerbackgroundColor
       }}>
         <PromoHeadContainer>
           <PromoHeadImage source={{ uri: selectedItem.image }}>

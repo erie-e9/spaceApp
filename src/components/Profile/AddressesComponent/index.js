@@ -7,7 +7,7 @@ import AddressesListComponent from './AddressesListComponent';
 const Root = styled.View`
   flex: 1;
   flex-direction: column;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
 const AddressesComponent = () => {

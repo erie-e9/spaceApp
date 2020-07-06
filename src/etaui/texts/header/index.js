@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 const Text = styled.Text`
-  alignItems: center;
-  justifyContent: center;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ETAHeaderText = ({children, size, weight, color, align}) => (

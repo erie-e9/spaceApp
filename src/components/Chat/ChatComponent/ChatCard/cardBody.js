@@ -6,21 +6,21 @@ import { truncateString } from '@functions';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  justifyContent: flex-start;
-  alignItems: flex-start;
-  alignContent: center;
-  paddingHorizontal: 10px;
-  paddingRight: 20px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: center;
+  padding-horizontal: 10px;
+  padding-right: 20px;
   borderBottomWidth: 0px;
   borderBottomColor: ${props => props.theme.GRAYFACEBOOK}; 
 `;
 const ChatContentContainer = styled.View`
   flex: 1;
-  flexDirection: column;
-  alignItems: flex-start;
-  justifyContent: flex-start;
-  paddingHorizontal: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-horizontal: 10px;
 `;
 
 const CardBody = ({text}) => {

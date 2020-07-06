@@ -12,29 +12,29 @@ const iconSize = 23;
 const Root = styled.View`
   flex: 1;
   width: ${width - 30}px;
-  flexDirection: column;
-  justifyContent: flex-start;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const InfoContainer = styled.View`
-  flexDirection: row;
+  flex-direction: row;
   width: ${width - 30}px;
-  justifyContent: center;
-  alignItems: center;
-  paddingVertical: 10px;
-  backgroundColor: transparent
+  justify-content: center;
+  align-items: center;
+  padding-vertical: 10px;
+  background-color: transparent
 `;
 const TitleContainer = styled.View`
-  marginLeft: 15px;
+  margin-left: 15px;
 `;
 const LinkContainer = styled.View`
 `;
 const Touchable = styled.TouchableWithoutFeedback`
-  zIndex: 100;
+  z-index: 100;
 `;
 const TouchableContainer = styled.View`
-  zIndex: 100;
+  z-index: 100;
 `;
 
 const SubHeadAboutUsComponent = () => {

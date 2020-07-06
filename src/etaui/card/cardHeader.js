@@ -7,33 +7,33 @@ import {ETASimpleText, ETAAvatar} from '@etaui';
 
 const Root = styled.View`
   height: 50px;
-  flexDirection: row;
-  alignItems: center;
+  flex-direction: row;
+  align-items: center;
 `;
 const AvatarContainer = styled.View`
     flex: 0.2
-    paddingLeft: 5px;
-    justifyContent: center;
-    alignSelf: stretch;
+    padding-left: 5px;
+    justify-content: center;
+    align-self: stretch;
 `;
 const MetaContainer = styled.View`
   flex: 1;
-  alignSelf: stretch;
-  marginTop: 5px;
+  align-self: stretch;
+  margin-top: 5px;
 `;
 const MetaTopContainer = styled.View`
   flex: 1;
-  alignSelf: stretch;
-  flexDirection: column;
-  alignItems: flex-start;
-  justifyContent: flex-start;
-  marginTop: 10px;
+  align-self: stretch;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 10px;
 `;
 const MetaBottomContainer = styled.View`
   flex: 0.8;
-  alignSelf: stretch;
-  alignItems: flex-start;
-  justifyContent: center;
+  align-self: stretch;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 const CardHeader = ({username, firstname, lastname}) => {

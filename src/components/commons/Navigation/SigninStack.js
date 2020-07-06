@@ -32,7 +32,7 @@ const configClose = {
 };
 
 const Touchable = styled.TouchableOpacity`
-  marginLeft: 10px;
+  margin-left: 10px;
 `;
 
 /** Auth screens - No logged */
@@ -63,7 +63,7 @@ const SigninStackScreen = () => {
         },
         // transition way 3
         // ...TransitionPresets.FadeFromBottomAndroid
-        // headerStyle: { backgroundColor: 'tomato' },
+        // headerStyle: { background-color: 'tomato' },
       }}
       // animation='fade'
     >

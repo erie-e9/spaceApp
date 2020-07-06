@@ -5,20 +5,20 @@ import {ETASimpleText} from '@etaui';
 
 const Root = styled.View`
   flex: 0.5;
-  justifyContent: flex-end;
-  marginTop: 24px;
+  justify-content: flex-end;
+  margin-top: 24px;
 `;
 const ButtonForgetPassword = styled.TouchableOpacity`
-  justifyContent: center;
-  alignItems: center;
-  zIndex: 1;
-  marginBottom: 15px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  margin-bottom: 15px;
 `;
 const ButtonSignup = styled.TouchableOpacity`
-  justifyContent: center;
-  alignItems: center;
-  zIndex: 1;
-  marginBottom: 15px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  margin-bottom: 15px;
 `;
 
 const SignInBody = ({navigation}) => {

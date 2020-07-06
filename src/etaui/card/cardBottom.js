@@ -6,10 +6,10 @@ let isSubmitting = !true;
 const Root = styled.View`
   height: 40px;
   width: 100%;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  marginVertical: 15px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-vertical: 15px;
 `;
 
 const CardBottom = () => {

@@ -5,11 +5,11 @@ import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
 
 const Root = styled.SafeAreaView`
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-  paddingVertical: 10px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+  padding-vertical: 10px;
 `;
 
 const ETANetInfo = () => {

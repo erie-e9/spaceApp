@@ -6,31 +6,30 @@ import {Ionicons} from '@icons';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: center;
-  alignSelf: center;
-  alignContent: center;
-  marginVertical: 10px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  margin-vertical: 10px;
 `;
 const PickerContainer = styled.View`
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-  borderRadius: 30px;
-  marginBottom: 20px;
-  marginHorizontal: 5px;
-  paddingHorizontal: 20px;
-  display: flex;
-  justifyContent: center;
-  alignItems: center;
-  alignSelf: center;
-  alignContent: center;
-  paddingHorizontal: 15px;
-  shadowColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-  shadowOpacity: 0.4;
-  shadowRadius: 1.4px;
-  elevation: 2.5;
   height: 45px;
   width: 300px;
+  border-radius: 30px;
+  margin-bottom: 20px;
+  margin-horizontal: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
+  padding-horizontal: 15px;
+  shadow-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  shadow-opacity: 0.4;
+  shadow-radius: 1.4px;
+  elevation: 2.5;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
 const ETAPicker = ({items, placeholder}) => {
@@ -63,7 +62,7 @@ const ETAPicker = ({items, placeholder}) => {
                 },
                 inputIOS: {
                   fontSize: 14,
-                  // paddingVertical: 12,
+                  // padding-vertical: 12,
                   color: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
                   backgroundColor: themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
                   width: 250,
@@ -73,7 +72,7 @@ const ETAPicker = ({items, placeholder}) => {
                 },
                 inputAndroid: {
                   fontSize: 14,
-                  // paddingVertical: 4,
+                  // padding-vertical: 4,
                   color: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
                   backgroundColor: themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
                   width: 250,

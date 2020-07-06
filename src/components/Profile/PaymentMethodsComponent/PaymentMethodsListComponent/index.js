@@ -12,40 +12,40 @@ const iconSize = 26;
 
 const Root = styled.View`
     flex: 1;
-    flexDirection: column;
-    backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    flex-direction: column;
+    background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 const PaymentMethodsList = styled.FlatList`
-    flexDirection: column;
+    flex-direction: column;
     padding: 10px 10px;
 `;
 const Touchable = styled.TouchableOpacity``;
 const Card = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     width: ${ width - 20}px;
-    minHeight: 80px;
-    justifyContent: center;
-    alignSelf: center;
-    backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-    borderRadius: 5px
+    min-height: 80px;
+    justify-content: center;
+    align-self: center;
+    background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+    border-radius: 5px
     padding: 10px;
-    marginBottom: 5px;
+    margin-bottom: 5px;
 `;
 const MetadataInfo = styled.View`
     width: 100%;
-    flexDirection: column;
-    justifyContent: flex-start;
-    paddingBottom: 5px;
-    backgroundColor: transparent;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+    background-color: transparent;
 `;
 const MetadaInfoHead = styled.View`
-    flexDirection: row;
-    justifyContent: flex-start;
-    alignItems: center;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
 `;
 const CompanyIconContainer = styled.View`
-    paddingHorizontal: 10px;
+    padding-horizontal: 10px;
 `;
 
 const PaymentMethodsListComponent = () => {

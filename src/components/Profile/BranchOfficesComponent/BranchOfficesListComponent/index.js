@@ -6,11 +6,11 @@ import branchOffices from '@utils/branchOffices.json';
 
 const Root = styled.View`
     flex: 1;
-    flexDirection: column;
-    backgroundColor: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+    flex-direction: column;
+    background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `;
 const BranchOfficesList = styled.FlatList`
-    flexDirection: column;
+    flex-direction: column;
     padding: 10px 10px;
 `;
 const Touchable = styled.TouchableOpacity``;

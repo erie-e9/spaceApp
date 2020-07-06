@@ -2,21 +2,21 @@ import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
 
 const TextInputContainer = styled.View`
-  borderRadius: 30px;
-  marginVertical: 5px;
-  marginHorizontal: 5px;
-  flexDirection: row;
-  justifyContent: center;
-  alignItems: flex-end;
-  alignSelf: flex-end;
-  alignContent: flex-end;
-  paddingHorizontal: 25px;
-  shadowColor: #ccc;
-  shadowOffset: 2px 2px;
-  shadowOpacity: 0.4;
-  shadowRadius: 1.4px;
+  border-radius: 30px;
+  margin-vertical: 5px;
+  margin-horizontal: 5px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: flex-end;
+  align-content: flex-end;
+  padding-horizontal: 25px;
+  shadow-color: #ccc;
+  shadow-offset: 2px 2px;
+  shadow-opacity: 0.4;
+  shadow-radius: 1.4px;
   elevation: 1;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const TextInput = styled.TextInput.attrs({})`
   width: ${(props) => (props.width ? props.width : 300)}px;
@@ -24,10 +24,10 @@ const TextInput = styled.TextInput.attrs({})`
   fontSize: ${(props) => (props.textsize ? props.textsize : 14)}px;
   color: ${(props) => props.theme.PRIMARY_COLOR};
   margin: 5px;
-  justifyContent: center;
-  alignItems: center;
-  alignSelf: center;
-  alignContent: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  align-content: center;
 `;
 
 const ETATextInputFilled = ({

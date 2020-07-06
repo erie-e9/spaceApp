@@ -3,10 +3,10 @@ import styled, { ThemeContext } from 'styled-components/native';
 import {Ionicons} from '@icons';
 
 const Root = styled.View`
-    flexDirection: row;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
 `;
 
 const ETAStarRaiting = ({ raitings }) => {

@@ -6,14 +6,14 @@ import Card from './Card';
 
 const Root = styled.View`
   flex: 1;
-  flexDirection: column;
-  alignItems: center;
-  paddingTop: 15px;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  align-items: center;
+  padding-top: 15px;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const DataContainer = styled.View`
-  flexDirection: column;
-  backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+  flex-direction: column;
+  background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
   padding: 5px 15px;
 `;
 
@@ -87,7 +87,7 @@ const HeadGetOnePaymentMethodComponent = () => {
         colorButton={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
         padding={10}
         width={240}
-        borderRadius={3}
+        border-radius={3}
       />
       <ETAButtonFilled
         title='Remove'
@@ -96,7 +96,7 @@ const HeadGetOnePaymentMethodComponent = () => {
         colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
         padding={10}
         width={240}
-        borderRadius={3}
+        border-radius={3}
       />
     </Root>
   );

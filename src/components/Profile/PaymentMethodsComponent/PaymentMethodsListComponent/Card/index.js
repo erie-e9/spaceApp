@@ -8,38 +8,38 @@ const {width} = Dimensions.get('window');
 const iconSize = 23;
 
 const Card = styled.View`
-    flexDirection: row;
+    flex-direction: row;
     width: ${ width - 20}px;
-    minHeight: 70px;
-    justifyContent: center;
-    alignSelf: center;
-    backgroundColor: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-    borderRadius: 5px
+    min-height: 70px;
+    justify-content: center;
+    align-self: center;
+    background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+    border-radius: 5px
     padding: 10px;
-    marginBottom: 5px;
+    margin-bottom: 5px;
 `;
 const MetadataInfo = styled.View`
     flex: 0.9;
     width: 100%;
-    flexDirection: column;
-    justifyContent: flex-start;
-    paddingBottom: 5px;
-    backgroundColor: transparent;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-bottom: 5px;
+    background-color: transparent;
 `;
 const MetadaInfoHead = styled.View`
-    flexDirection: row;
-    justifyContent: flex-start;
-    alignItems: center;
-    backgroundColor: transparent;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
 `;
 const CompanyIconContainer = styled.View`
-    paddingHorizontal: 10px;
+    padding-horizontal: 10px;
 `;
 const IconContainer = styled.View`
     flex: 0.1;
-    justifyContent: center;
-    alignItems: center;
-    backgroundColor: transparent;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
 `;
 
 const DirectionCardComponent = ({ headTitle, details, expDate, cardType, company, owner, isDefault }) => {

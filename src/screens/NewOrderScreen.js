@@ -8,13 +8,13 @@ import styled from 'styled-components/native';
 
 const Root = styled.View`
   flex: 1;
-  alignItems: center;
-  backgroundColor: ${(props) => props.theme.WHITE};
+  align-items: center;
+  background-color: ${(props) => props.theme.WHITE};
 `;
 const Wrapper = styled.View`
   height: 80%;
   width: 90%;
-  paddingtop: 5;
+  padding-top: 5;
   position: relative;
 `;
 const Input = styled.TextInput.attrs({
@@ -29,12 +29,12 @@ const Input = styled.TextInput.attrs({
   color: #333;
 `;
 const CreateOrderButton = styled.TouchableWithoutFeedback`
-  backgroundColor: ${(props) => props.theme.PRIMARY};
-  alignItems: center;
-  justifyContent: center;
+  background-color: ${(props) => props.theme.PRIMARY};
+  align-items: center;
+  justify-content: center;
   width: 80;
   height: 40;
-  borderRadius: 25;
+  border-radius: 25;
   position: absolute;
   top: 60%;
   right: 0;

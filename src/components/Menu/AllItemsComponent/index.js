@@ -7,12 +7,12 @@ import GeneralItemComponent from '@components/Menu/GeneralItemComponent';
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center;
-  alignItems: center;
-  backgroundColor: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
 const Touchable = styled.TouchableOpacity`
-  zIndex: 100;
+  z-index: 100;
 `;
 const CategorytItemsList = styled.FlatList``;
 
