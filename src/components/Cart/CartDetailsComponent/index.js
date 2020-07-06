@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Platform, Dimensions} from 'react-native';
 import styled, {ThemeContext} from 'styled-components';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import {useIsFocused, useNavigation} from '@react-navigation/native';
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui';
 import {Context} from '@context/cartContext';
 
@@ -19,9 +19,9 @@ const Root = styled.View`
   padding: 20px 20px;
   align-self: center;
   bottom: -2px;
-  background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
   border-width: 0px;
-  border-color: ${props => props.theme.GRAYFACEBOOK};
+  border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `;
 const ResumeContainer = styled.View`
   flex-direction: row;
@@ -42,7 +42,7 @@ const DirectionContainer = styled.View`
   padding-vertical: 5px;
   padding-horizontal: 10px;
   border-width: 0px;
-  border-color: ${props => props.theme.GRAYFACEBOOK};
+  border-color: ${(props) => props.theme.GRAYFACEBOOK};
   background-color: transparent;
 `;
 const TotalContainer = styled.View`
@@ -55,7 +55,7 @@ const TotalContainer = styled.View`
   padding-vertical: 5px;
   padding-horizontal: 10px;
   border-width: 0px;
-  border-color: ${props => props.theme.GRAYFACEBOOK};
+  border-color: ${(props) => props.theme.GRAYFACEBOOK};
   background-color: transparent;
 `;
 const ResumeTotalContainer = styled.View`
@@ -80,36 +80,33 @@ const CartDetailsComponent = () => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
   const {getCartItems, state} = useContext(Context);
-  const [ totalItems, settotalItems ] = useState(0);
-  const [ total, settotal ] = useState(0);
-  const [ subtotal, setsubtotal ] = useState(0);
-  const [ shipping, setshipping ] = useState(35);
-  const [ isSubmitting, setisSubmitting ] = useState(false);
+  const [totalItems, settotalItems] = useState(0);
+  const [total, settotal] = useState(0);
+  const [subtotal, setsubtotal] = useState(0);
+  const [shipping] = useState(35);
+  const [isSubmitting] = useState(false);
   const isFocused = useIsFocused();
+  let subtotalValue = 0;
 
   useEffect(() => {
     getCartItems();
-    darta();
+    _getsumatory();
     console.log('CartDetailsComponent isFocused', isFocused);
-    
   }, [state.data]);
 
-  const darta = async () => {
+  const _getsumatory = async () => {
     let itemsArray = state.data;
-    let sum = 0
-    let subtotal = 0
-    let total = 0
-    await itemsArray.forEach(element => {
+    let sum = 0;
+    await itemsArray.forEach((element) => {
       console.log('element.howMany', element.howMany);
       sum = sum + element.howMany;
-      subtotal = subtotal + (element.price * element.howMany);
-      console.log('subtotal:', subtotal);
-        
+      subtotalValue = subtotalValue + element.price * element.howMany;
+      console.log('subtotalValue:', subtotalValue);
     });
     settotalItems(sum);
-    setsubtotal(subtotal);
-    settotal(subtotal + shipping);
-  }
+    setsubtotal(subtotalValue);
+    settotal(subtotalValue + shipping);
+  };
 
   return (
     <Root>
@@ -128,13 +125,13 @@ const CartDetailsComponent = () => {
           align={'left'}>
           Subtotal
         </ETASimpleText>
-        
+
         <ETASimpleText
           size={11}
           weight={Platform.OS === 'ios' ? '400' : '400'}
           color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
           align={'left'}>
-          ${(subtotal).toFixed(2)}
+          ${subtotal.toFixed(2)}
         </ETASimpleText>
       </ResumeContainer>
       <ResumeContainer>
@@ -145,16 +142,16 @@ const CartDetailsComponent = () => {
           align={'left'}>
           Shipping
         </ETASimpleText>
-        
+
         <ETASimpleText
           size={11}
           weight={Platform.OS === 'ios' ? '400' : '400'}
           color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
           align={'left'}>
-          ${(shipping).toFixed(2)}
+          ${shipping.toFixed(2)}
         </ETASimpleText>
       </ResumeContainer>
-      <TotalContainer>                
+      <TotalContainer>
         <ResumeTotalContainer>
           <ETASimpleText
             size={16}
@@ -163,27 +160,35 @@ const CartDetailsComponent = () => {
             align={'left'}>
             Total
           </ETASimpleText>
-          
+
           <ETASimpleText
             size={16}
             weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
             color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
             align={'left'}>
-            ${(total).toFixed(2)}
+            ${total.toFixed(2)}
           </ETASimpleText>
         </ResumeTotalContainer>
       </TotalContainer>
       <DirectionContainer>
         <ETAButtonOutline
-          title='Send to Home'
-          onPress={() => navigation.navigate('SettingsNavigator', {screen: 'MapAddressesScreen', params: { data: {
-            '_id': 1,
-            'headTitle': 'Home',
-            'details': 'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
-            'latitude': 24.02574090527505,
-            'isDefault': true,
-            'longitude': -104.67300467638253
-          }}})}
+          title="Send to Home"
+          onPress={() =>
+            navigation.navigate('SettingsNavigator', {
+              screen: 'MapAddressesScreen',
+              params: {
+                data: {
+                  _id: 1,
+                  headTitle: 'Home',
+                  details:
+                    'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
+                  latitude: 24.02574090527505,
+                  isDefault: true,
+                  longitude: -104.67300467638253,
+                },
+              },
+            })
+          }
           disabled={false}
           colorButton={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
           padding={10}
@@ -193,7 +198,7 @@ const CartDetailsComponent = () => {
       </DirectionContainer>
       <ButtonPayContainer>
         <ETAButtonFilled
-          title='Check out'
+          title="Check out"
           onPress={() => console.log(state.data)}
           disabled={isSubmitting ? true : false}
           colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
@@ -204,6 +209,6 @@ const CartDetailsComponent = () => {
       </ButtonPayContainer>
     </Root>
   );
-}
+};
 
 export default React.memo(CartDetailsComponent);

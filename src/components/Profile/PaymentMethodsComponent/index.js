@@ -18,6 +18,6 @@ const PaymentMetodComponent = () => {
       <PaymentMethodsListComponent />
     </Root>
   );
-}
+};
 
 export default PaymentMetodComponent;

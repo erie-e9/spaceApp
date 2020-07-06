@@ -1,9 +1,13 @@
 import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
-import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
+import {Platform} from 'react-native';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 import {FontAwesome, AntDesign} from '@icons';
 import {ETASimpleText, ETASearchBar} from '@etaui';
-import { variables } from '@utils/constants';
+import {variables} from '@utils/constants';
 import MenuScreen from '@screens/Menu/MenuScreen';
 import CategoryListScreen from '@screens/Menu/Categories/CategoryListScreen';
 import CategoryItemsScreen from '@screens/Menu/Categories/CategoryItemsScreen';
@@ -25,13 +29,6 @@ const HeaderLeftCard = styled.TouchableOpacity`
   width: 30px;
   border-radius: 15px;
 `;
-const HeaderRight = styled.View`
-  flex-direction: row;
-  margin-right: 15px;
-`;
-const Touchable = styled.TouchableOpacity`
-  margin-left: 10px;
-`;
 
 const MenuStack = createStackNavigator();
 const MenuNavigator = () => {
@@ -45,18 +42,17 @@ const MenuNavigator = () => {
         headerStyle: {
           backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
           shadowColor: 'black',
-          shadowOpacity: Platform.OS === 'ios'  ? 0.1 : 0,
-          shadowOffset: { height: Platform.OS === 'ios' ? 0.1 : 0 },
+          shadowOpacity: Platform.OS === 'ios' ? 0.1 : 0,
+          shadowOffset: {height: Platform.OS === 'ios' ? 0.1 : 0},
           shadowRadius: 5,
-          elevation: 5
+          elevation: 5,
         },
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-      }}
-    >
+      }}>
       <MenuStack.Screen
-        name='MenuScreen'
+        name="MenuScreen"
         component={MenuScreen}
         options={{
           headerTitle: '',
@@ -69,18 +65,18 @@ const MenuNavigator = () => {
                   weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
                   color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                   align={'left'}>
-                    {variables.COMPANYNAME}
+                  {variables.COMPANYNAME}
                 </ETASimpleText>
               </Header>
             );
           },
-          headerRight: () =>  <ETASearchBar />,
+          headerRight: () => <ETASearchBar />,
           // header: () =>  <ETASearchBar />,
         }}
       />
 
       <MenuStack.Screen
-        name='CategoryListScreen'
+        name="CategoryListScreen"
         component={CategoryListScreen}
         options={({navigation, route}) => ({
           headerTitle: '',
@@ -89,12 +85,16 @@ const MenuNavigator = () => {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: '500',
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -104,7 +104,7 @@ const MenuNavigator = () => {
       />
 
       <MenuStack.Screen
-        name='CategoryItemsScreen'
+        name="CategoryItemsScreen"
         component={CategoryItemsScreen}
         options={({navigation, route}) => ({
           headerTitle: '',
@@ -113,12 +113,16 @@ const MenuNavigator = () => {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: '500',
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -128,7 +132,7 @@ const MenuNavigator = () => {
       />
 
       <MenuStack.Screen
-        name='PromotionScreen'
+        name="PromotionScreen"
         component={PromotionScreen}
         options={({navigation, route}) => ({
           headerTitle: '',
@@ -138,19 +142,23 @@ const MenuNavigator = () => {
           headerStyle: {
             backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
             shadowColor: 'black',
-            shadowOpacity: Platform.OS === 'ios'  ? 0.6 : 0.3,
-            shadowOffset: { height: Platform.OS === 'ios' ? 0.3 : 0.2 },
+            shadowOpacity: Platform.OS === 'ios' ? 0.6 : 0.3,
+            shadowOffset: {height: Platform.OS === 'ios' ? 0.3 : 0.2},
             shadowRadius: 5,
-            elevation: 5
+            elevation: 5,
           },
           headerTitleStyle: {
             fontWeight: '500',
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -160,7 +168,7 @@ const MenuNavigator = () => {
       />
 
       <MenuStack.Screen
-        name='AllItemsScreen'
+        name="AllItemsScreen"
         component={AllItemsScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Products',
@@ -169,12 +177,16 @@ const MenuNavigator = () => {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: '500',
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -182,7 +194,6 @@ const MenuNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}
       />
-
     </MenuStack.Navigator>
   );
 };
@@ -193,7 +204,7 @@ const GetOneItemNavigator = () => {
   return (
     <GetOneItemStack.Navigator>
       <GetOneItemStack.Screen
-        name='GetOneItemScreen'
+        name="GetOneItemScreen"
         component={GetOneItemScreen}
         options={({navigation, route}) => ({
           headerTitle: '',
@@ -202,12 +213,16 @@ const GetOneItemNavigator = () => {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: '500',
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
           },
           headerLeft: () => {
             return (
               <HeaderLeftCard onPress={() => navigation.goBack()}>
-                <AntDesign name='closecircle' size={25} color={themeContext.SECONDARY_BACKGROUND_COLOR}/>
+                <AntDesign
+                  name="closecircle"
+                  size={25}
+                  color={themeContext.SECONDARY_BACKGROUND_COLOR}
+                />
               </HeaderLeftCard>
             );
           },
@@ -217,9 +232,6 @@ const GetOneItemNavigator = () => {
       />
     </GetOneItemStack.Navigator>
   );
-}
-
-export {
-  MenuNavigator,
-  GetOneItemNavigator
 };
+
+export {MenuNavigator, GetOneItemNavigator};

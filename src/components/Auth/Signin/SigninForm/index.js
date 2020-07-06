@@ -75,37 +75,39 @@ const SigninForm = () => {
           <FormContainer>
             <ETATextInputOutline
               value={values.cellphone}
-              placeholder='Cellphone'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='phone-pad'
-              autoCapitalize='none'
+              placeholder="Cellphone"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="phone-pad"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={true}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={10}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={false} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='next'
+              textContentType="none"
+              returnKeyType="next"
               textsize={14}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}
-              padding-horizontal={15}
+              paddingHorizontal={15}
               // selection='1, 4'//? no sé we xd
               // onBlur={text => this._onBlur(text)}
               // onChangeText={onchangetext}
@@ -120,39 +122,41 @@ const SigninForm = () => {
             ) : null}
             <ETATextInputOutline
               value={values.password}
-              placeholder='Password'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='default'
-              autoCapitalize='none'
+              placeholder="Password"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="default"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={false}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={100}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={mysecureTextEntry} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='none'
+              textContentType="none"
+              returnKeyType="none"
               textsize={14}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               rightIcon={
                 <TextInputIcon onPress={() => _onPassPress()}>
                   <Entypo
-                    style={{ color: '#777', marginRight: 65 }}
+                    style={{color: '#777', marginRight: 65}}
                     color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                     name={toogleEye ? 'eye' : 'eye-with-line'}
                     size={18}
@@ -168,14 +172,14 @@ const SigninForm = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              padding-horizontal={60}
+              paddingHorizontal={60}
             />
             {errors.password ? (
               <ETAErrorMessage size={12}>{errors.password}</ETAErrorMessage>
             ) : null}
             <ButtonSigninContainer>
               <ETAButtonFilled
-                title='Sign in'
+                title="Sign in"
                 onPress={handleSubmit}
                 disabled={isSubmitting ? true : false}
                 colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}

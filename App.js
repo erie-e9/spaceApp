@@ -11,7 +11,7 @@ import {
   navLightMode,
   navDarkMode,
 } from '@utils/constants';
-import { enableScreens } from 'react-native-screens';
+import {enableScreens} from 'react-native-screens';
 
 enableScreens();
 
@@ -21,7 +21,7 @@ if (UIManager.setLayoutAnimationEnabledExperimental) {
 
 const App: () => React$Node = () => {
   const colorSchema = useColorScheme();
-  console.disableYellowBox = true
+  console.disableYellowBox = true;
   return (
     <Fragment>
       <SafeAreaView

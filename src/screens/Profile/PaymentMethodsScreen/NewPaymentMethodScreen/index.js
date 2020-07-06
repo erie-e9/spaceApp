@@ -7,7 +7,6 @@ const Root = styled.View`
 `;
 
 const NewPaymentMethodScreen = () => {
-
   return (
     <Root>
       <NewPaymentMethodComponent />

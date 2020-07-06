@@ -43,7 +43,7 @@ const SigninStackScreen = () => {
   return (
     <SigninStack.Navigator
       // initialRouteName='Home'
-      mode='modal'
+      mode="modal"
       // headerMode='none'
       screenOptions={{
         gestureEnabled: true,
@@ -68,7 +68,7 @@ const SigninStackScreen = () => {
       // animation='fade'
     >
       <SigninStack.Screen
-        name='AuthScreen'
+        name="AuthScreen"
         component={AuthScreen}
         options={{
           title: 'AuthScreen',
@@ -79,7 +79,7 @@ const SigninStackScreen = () => {
       />
 
       <SigninStack.Screen
-        name='SignupScreen'
+        name="SignupScreen"
         component={SignupScreen}
         options={({navigation, route}) => ({
           title: 'New account',
@@ -87,7 +87,11 @@ const SigninStackScreen = () => {
           headerLeft: () => {
             return (
               <Touchable onPress={navigation.goBack}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_BACKGROUND_COLOR}
+                />
               </Touchable>
             );
           },
@@ -97,7 +101,7 @@ const SigninStackScreen = () => {
       />
 
       <SigninStack.Screen
-        name='ForgetPasswordScreen'
+        name="ForgetPasswordScreen"
         component={ForgetPasswordScreen}
         options={({navigation, route}) => ({
           title: 'Forget Password',
@@ -105,7 +109,11 @@ const SigninStackScreen = () => {
           headerLeft: () => {
             return (
               <Touchable onPress={navigation.goBack}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_BACKGROUND_COLOR}
+                />
               </Touchable>
             );
           },

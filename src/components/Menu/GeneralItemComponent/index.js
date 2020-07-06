@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
-import {Dimensions} from 'react-native';
 import styled, {ThemeContext} from 'styled-components';
+import {Dimensions, Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Ionicons} from '@icons';
 import {ETASimpleText} from '@etaui';
@@ -13,7 +13,7 @@ const Touchable = styled.TouchableOpacity`
 const Card = styled.View`
   height: 220px;
   width: ${width / 2.65}px;
-  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   margin-horizontal: ${width / 30}px;
   margin-vertical: 10px;
   shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
@@ -53,7 +53,7 @@ const CardBottom = styled.View`
   width: 100%;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   border-width: 0.5px;
   border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `;
@@ -99,7 +99,7 @@ const PercentContainer = styled.View`
   border-top-right-radius: 4px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
-  background-color: ${props => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+  background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
   margin-left: 5px;
 `;
 const FavoriteContainer = styled.View`
@@ -109,101 +109,107 @@ const FavoriteContainer = styled.View`
   z-index: 1000;
 `;
 
-const GeneralItemComponent = ({item}) => {
+const GeneralItemComponent = ({propitem}) => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
-  
+
   const _onPressItem = (item) => {
     navigation.navigate('GetOneItemNavigator', {
       screen: 'GetOneItemScreen',
       params: {
-        item: item
-      }
+        item: item,
+      },
     });
   };
 
   return (
-    <Touchable key={item._id} onPress={() => _onPressItem(item)}>
+    <Touchable key={propitem._id} onPress={() => _onPressItem(propitem)}>
       <Card>
         <CardTop>
-          {
-            item.isNew
-            ? <NewContainer>
-                <ETASimpleText
-                  size={11}
-                  weight={Platform.OS === 'ios' ? '400' : '300'}
-                  // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                  color='white'
-                  align={'center'}>
-                  new
-                </ETASimpleText>
-              </NewContainer>
-            : null
-          }
-          <ItemImage source={{uri: item.images[0].image}} />
+          {propitem.isNew ? (
+            <NewContainer>
+              <ETASimpleText
+                size={11}
+                weight={Platform.OS === 'ios' ? '400' : '300'}
+                // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+                color="white"
+                align={'center'}>
+                new
+              </ETASimpleText>
+            </NewContainer>
+          ) : null}
+          <ItemImage source={{uri: propitem.images[0].image}} />
         </CardTop>
         <CardBottom>
           <NameContainer>
-            <ETASimpleText 
-              size={13} 
-              weight={Platform.OS === 'ios' ? '500' : '600'} 
-              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} 
+            <ETASimpleText
+              size={13}
+              weight={Platform.OS === 'ios' ? '500' : '600'}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               align={'left'}
-              style={{ zIndex: 100 }}>
-              {item.name}
+              style={{zIndex: 100}}>
+              {propitem.name}
             </ETASimpleText>
           </NameContainer>
           <ShopContainer>
             <PriceContainer>
-              <ETASimpleText 
-                size={12} 
+              <ETASimpleText
+                size={12}
                 weight={Platform.OS === 'ios' ? '600' : '600'}
-                color={themeContext.PRIMARY_COLOR} 
+                color={themeContext.PRIMARY_COLOR}
                 align={'left'}
-                style={{ zIndex: 100 }}>
-                ${((100 - item.discount) * item.price / 100).toFixed(2)}  
-              </ETASimpleText>    
+                style={{zIndex: 100}}>
+                $
+                {(((100 - propitem.discount) * propitem.price) / 100).toFixed(
+                  2,
+                )}
+              </ETASimpleText>
             </PriceContainer>
-            <DiscountContainer>           
-              {
-                item.discount > 0
-                ? <>
-                    <ETASimpleText 
-                      size={10} 
-                      weight={Platform.OS === 'ios' ? '400' : '400'} 
-                      color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} 
-                      align={'center'}
-                      style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
-                      ${(item.price.toFixed(2))} 
+            <DiscountContainer>
+              {propitem.discount > 0 ? (
+                <>
+                  <ETASimpleText
+                    size={10}
+                    weight={Platform.OS === 'ios' ? '400' : '400'}
+                    color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+                    align={'center'}
+                    style={{
+                      textDecorationLine: 'line-through',
+                      textDecorationStyle: 'solid',
+                    }}>
+                    ${propitem.price.toFixed(2)}
+                  </ETASimpleText>
+                  <PercentContainer>
+                    <ETASimpleText
+                      size={9}
+                      weight={Platform.OS === 'ios' ? '500' : '900'}
+                      color={themeContext.PRIMARY_COLOR}
+                      align={'left'}
+                      style={{zIndex: 100}}>
+                      -{propitem.discount}%
                     </ETASimpleText>
-                    <PercentContainer>
-                      <ETASimpleText 
-                        size={9} 
-                        weight={Platform.OS === 'ios' ? '500' : '900'} 
-                        color={themeContext.PRIMARY_COLOR} 
-                        align={'left'}
-                        style={{ zIndex: 100 }}>
-                        -{item.discount}%
-                      </ETASimpleText>
-                    </PercentContainer>
-                  </>
-                : null
-              }
+                  </PercentContainer>
+                </>
+              ) : null}
             </DiscountContainer>
             <FavoriteContainer>
               <Touchable onPress={() => console.log('ñeñe ñeñe ñeñe')}>
-                <Ionicons 
-                  name={item.isFavorite ? 'md-heart' : 'md-heart-empty'} 
-                  size={20} 
-                  color={item.isFavorite ? themeContext.PRIMARY_COLOR  : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+                <Ionicons
+                  name={propitem.isFavorite ? 'md-heart' : 'md-heart-empty'}
+                  size={20}
+                  color={
+                    propitem.isFavorite
+                      ? themeContext.PRIMARY_COLOR
+                      : themeContext.PRIMARY_TEXT_COLOR_LIGHT
+                  }
                 />
               </Touchable>
             </FavoriteContainer>
-              {/* {
-                item.discount !== 0
+            {/* {
+                propitem.discount !== 0
                 ? <ETASimpleText size={10} weight={Platform.OS === 'ios' ? '400' : '400'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'center'}
                     style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
-                    ${(item.price.toFixed(2))}
+                    ${(propitem.price.toFixed(2))}
                   </ETASimpleText>
                 : null
               } */}

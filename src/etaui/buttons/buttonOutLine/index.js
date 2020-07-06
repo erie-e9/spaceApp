@@ -48,7 +48,7 @@ const ETAButtonOutline = ({
           ) : (
             <ETASimpleText
               size={14}
-              weight='500'
+              weight="500"
               color={colorButton === 'white' ? 'gray' : colorButton}
               align={align}>
               {title ? title : 'Text'}

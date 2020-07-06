@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import styled, {ThemeContext} from 'styled-components/native';
+import React from 'react';
+import styled from 'styled-components/native';
 import HeadNoticeOfPrivacyComponent from './HeadNoticeOfPrivacyComponent';
 import SubHeadNoticeOfPrivacyComponent from './SubHeadNoticeOfPrivacyComponent';
 
@@ -10,13 +10,12 @@ const Root = styled.View`
 `;
 
 const NoticeOfPrivacyComponent = () => {
-
   return (
     <Root>
-      <HeadNoticeOfPrivacyComponent/>
+      <HeadNoticeOfPrivacyComponent />
       <SubHeadNoticeOfPrivacyComponent />
     </Root>
   );
-}
+};
 
 export default NoticeOfPrivacyComponent;

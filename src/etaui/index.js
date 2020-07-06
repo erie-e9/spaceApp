@@ -13,7 +13,7 @@ import ETACard from '@etaui/card';
 import ETAAvatar from '@etaui/avatar';
 import ETANetInfo from '@etaui/netinfo';
 import ETACarousel from '@etaui/carousel';
-import ETASearchBar from '@etaui/searchbar'
+import ETASearchBar from '@etaui/searchbar';
 import ETASwitch from '@etaui/switch';
 import ETAStarRaiting from '@etaui/starraiting';
 import ETAAutoScroll from '@etaui/autoscroll';
@@ -41,5 +41,5 @@ export {
   ETAStarRaiting,
   ETAAutoScroll,
   ETACreditCard,
-  ETAValidationInput
+  ETAValidationInput,
 };

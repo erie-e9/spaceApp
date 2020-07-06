@@ -1,12 +1,11 @@
 import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
-import {Context} from '@context';
 import {useNavigation} from '@react-navigation/native';
 import {ETAAvatar, ETASimpleText} from '@etaui';
 import ProfileHeadComponent from './ProfileHeadComponent';
 import ProfileContentComponent from './ProfileContentComponent';
-import { truncateString } from '@functions';
+import {truncateString} from '@functions';
 import {fakeavatar} from '@utils/constants';
 
 const firstname = 'Scarlett';
@@ -22,8 +21,7 @@ const ProfileUserContent = styled.View`
   flex-direction: column;
   justify-content: flex-start;
 `;
-const Scroll = styled.ScrollView`
-`;
+const Scroll = styled.ScrollView``;
 const Card = styled.View`
   flex-direction: row;
   background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
@@ -46,8 +44,7 @@ const MetadataInfo = styled.View`
   margin-vertical: 5px;
   padding-right: 40px;
 `;
-const Touchable = styled.TouchableOpacity`
-`;
+const Touchable = styled.TouchableOpacity``;
 
 const ProfileComponent = () => {
   const themeContext = useContext(ThemeContext);
@@ -57,9 +54,12 @@ const ProfileComponent = () => {
     <Root>
       <ProfileHeadComponent />
       <ProfileUserContent>
-        <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'AccountScreen'})}>
+        <Touchable
+          onPress={() =>
+            navigation.navigate('SettingsNavigator', {screen: 'AccountScreen'})
+          }>
           <Card>
-            <ETAAvatar image={fakeavatar} size='middle' />
+            <ETAAvatar image={fakeavatar} size="middle" />
             <MetadataHeader>
               <ETASimpleText
                 size={14}
@@ -74,10 +74,7 @@ const ProfileComponent = () => {
                   weight={Platform.OS === 'ios' ? '500' : '300'}
                   color={themeContext.LINK}
                   align={'left'}>
-                  @
-                  {
-                    truncateString(username, 40)
-                  }
+                  @{truncateString(username, 40)}
                 </ETASimpleText>
                 <ETASimpleText
                   size={11}

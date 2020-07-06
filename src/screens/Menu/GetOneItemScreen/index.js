@@ -7,7 +7,6 @@ const Root = styled.View`
 `;
 
 const GetOneItemScreen = () => {
-  
   return (
     <Root>
       <GetOneItemComponent />

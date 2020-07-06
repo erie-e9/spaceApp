@@ -39,29 +39,29 @@ const ETACarouselItem = ({item}) => {
       <ContentContainer>
         <ETASimpleText
           size={18}
-          weight='700'
-          color='white'
+          weight="700"
+          color="white"
           align={'center'}
           style={{
             marginBottom: 2,
             elevation: 4,
             textShadowColor: 'rgba(0, 0, 0, 0.7)',
             textShadowOffset: {width: 0.5, height: 0.7},
-            textShadowRadius: 3
+            textShadowRadius: 3,
           }}>
           {item.title}
         </ETASimpleText>
         <ETASimpleText
           size={14}
-          weight='400'
-          color='white'
+          weight="400"
+          color="white"
           align={'center'}
           style={{
             marginBottom: 5,
             elevation: 4,
             textShadowColor: 'rgba(0, 0, 0, 0.7)',
             textShadowOffset: {width: 0.5, height: 0.7},
-            textShadowRadius: 3
+            textShadowRadius: 3,
           }}>
           {item.description}
         </ETASimpleText>

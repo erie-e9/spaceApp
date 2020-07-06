@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
-import { variables } from '@utils/constants';
+import {variables} from '@utils/constants';
 
 const logoSize = 110;
 const avatarRadius = logoSize / 2;

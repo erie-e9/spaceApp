@@ -10,7 +10,6 @@ const Root = styled.View`
 `;
 
 const FavsScreen = () => {
-
   return (
     <Root>
       <ETASimpleText

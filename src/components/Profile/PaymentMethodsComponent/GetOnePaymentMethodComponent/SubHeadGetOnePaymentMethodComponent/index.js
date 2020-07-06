@@ -1,5 +1,6 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
+import {Platform} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui';
 import Card from './Card';
@@ -20,7 +21,7 @@ const DataContainer = styled.View`
 const HeadGetOnePaymentMethodComponent = () => {
   const themeContext = useContext(ThemeContext);
   const route = useRoute();
-  const { item } = route.params;
+  const {item} = route.params;
 
   return (
     <Root>
@@ -32,9 +33,9 @@ const HeadGetOnePaymentMethodComponent = () => {
           align={'left'}>
           Card number
         </ETASimpleText>
-        <Card 
+        <Card
           headTitle={item.details}
-          message='16 digits of your card number' 
+          message="16 digits of your card number"
         />
       </DataContainer>
 
@@ -46,10 +47,7 @@ const HeadGetOnePaymentMethodComponent = () => {
           align={'left'}>
           Owner
         </ETASimpleText>
-        <Card 
-          headTitle={item.owner}
-          message='Name owner is printed in card' 
-        />
+        <Card headTitle={item.owner} message="Name owner is printed in card" />
       </DataContainer>
 
       <DataContainer>
@@ -60,10 +58,7 @@ const HeadGetOnePaymentMethodComponent = () => {
           align={'left'}>
           Expiration date
         </ETASimpleText>
-        <Card 
-          headTitle={item.expDate}
-          message='Date expirate of your card' 
-        />
+        <Card headTitle={item.expDate} message="Date expirate of your card" />
       </DataContainer>
 
       <DataContainer>
@@ -74,14 +69,14 @@ const HeadGetOnePaymentMethodComponent = () => {
           align={'left'}>
           Alias
         </ETASimpleText>
-        <Card 
-          headTitle='BBVA first card' 
-          message='A name that you can identify faster each card' 
+        <Card
+          headTitle="BBVA first card"
+          message="A name that you can identify faster each card"
         />
       </DataContainer>
-      
+
       <ETAButtonOutline
-        title='Set default'
+        title="Set default"
         // onPress={handleSubmit}
         // disabled={isSubmitting ? true : false}
         colorButton={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
@@ -90,7 +85,7 @@ const HeadGetOnePaymentMethodComponent = () => {
         border-radius={3}
       />
       <ETAButtonFilled
-        title='Remove'
+        title="Remove"
         // onPress={handleSubmit}
         // disabled={isSubmitting ? true : false}
         colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
@@ -100,6 +95,6 @@ const HeadGetOnePaymentMethodComponent = () => {
       />
     </Root>
   );
-}
+};
 
 export default HeadGetOnePaymentMethodComponent;

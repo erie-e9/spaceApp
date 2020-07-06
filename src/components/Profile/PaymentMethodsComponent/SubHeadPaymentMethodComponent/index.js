@@ -28,8 +28,12 @@ const SubHeadPaymentMethodComponent = () => {
     <Root>
       <ContentContainer>
         <ETAButtonFilled
-          title='New payment method'
-          onPress={() => navigation.navigate('SettingsNavigator', {screen: 'NewPaymentMethodScreen'})}
+          title="New payment method"
+          onPress={() =>
+            navigation.navigate('SettingsNavigator', {
+              screen: 'NewPaymentMethodScreen',
+            })
+          }
           colorButton={themeContext.PRIMARY_COLOR}
           padding={10}
           width={250}
@@ -38,6 +42,6 @@ const SubHeadPaymentMethodComponent = () => {
       </ContentContainer>
     </Root>
   );
-}
+};
 
 export default React.memo(SubHeadPaymentMethodComponent);

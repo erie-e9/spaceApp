@@ -57,7 +57,7 @@ const validationSchema = yup.object().shape({
   email: yup
     .string()
     .matches(/^[A-Za-z0-9]*$/, 'Please do not insert special characters')
-    .required('This field is required')
+    .required('This field is required'),
 });
 
 const SubHeadAccountComponent = () => {
@@ -99,33 +99,35 @@ const SubHeadAccountComponent = () => {
           <FormContainer>
             <ETATextInputOutline
               value={values.fullname}
-              placeholder='Fullname'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='default'
-              autoCapitalize='none'
+              placeholder="Fullname"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="default"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={true}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={10}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={false} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='next'
+              textContentType="none"
+              returnKeyType="next"
               textsize={13}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('fullname')}
               onBlur={handleBlur('fullname')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -143,33 +145,35 @@ const SubHeadAccountComponent = () => {
             ) : null}
             <ETATextInputOutline
               value={values.username}
-              placeholder='Username'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='default'
-              autoCapitalize='none'
+              placeholder="Username"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="default"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={true}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={10}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={false} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='next'
+              textContentType="none"
+              returnKeyType="next"
               textsize={13}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('username')}
               onBlur={handleBlur('username')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -187,33 +191,35 @@ const SubHeadAccountComponent = () => {
             ) : null}
             <ETATextInputOutline
               value={values.cellphone}
-              placeholder='Cellphone'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='phone-pad'
-              autoCapitalize='none'
+              placeholder="Cellphone"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="phone-pad"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={true}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={10}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={false} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='next'
+              textContentType="none"
+              returnKeyType="next"
               textsize={13}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -231,33 +237,35 @@ const SubHeadAccountComponent = () => {
             ) : null}
             <ETATextInputOutline
               value={values.password}
-              placeholder='Password'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='default'
-              autoCapitalize='none'
+              placeholder="Password"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="default"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={false}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={100}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={mysecureTextEntry} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='none'
+              textContentType="none"
+              returnKeyType="none"
               textsize={13}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -269,7 +277,7 @@ const SubHeadAccountComponent = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              // padding-horizontal={60}
+              // paddingHorizontal={60}
             />
 
             {errors.password ? (
@@ -277,33 +285,35 @@ const SubHeadAccountComponent = () => {
             ) : null}
             <ETATextInputOutline
               value={values.email}
-              placeholder='Email'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='default'
-              autoCapitalize='none'
+              placeholder="Email"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="default"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={false}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={100}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={mysecureTextEntry} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='none'
+              textContentType="none"
+              returnKeyType="none"
               textsize={13}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('email')}
               onBlur={handleBlur('email')}
               selectionColor={themeContext.PRIMARY_COLOR}
@@ -315,12 +325,10 @@ const SubHeadAccountComponent = () => {
               // ref={(input) => {this.emailInput = input }}
               // onKeyPress={}
               // onScroll={}
-              // padding-horizontal={60}
+              // paddingHorizontal={60}
             />
             {errors.email ? (
-              <ETAErrorMessage size={12}>
-                {errors.email}
-              </ETAErrorMessage>
+              <ETAErrorMessage size={12}>{errors.email}</ETAErrorMessage>
             ) : null}
             <ButtonSignupContainer>
               <ETAButtonFilled

@@ -11,10 +11,9 @@ const Root = styled.View`
 `;
 
 const NewPaymentMethodComponent = () => {
-  
   return (
     <Root>
-      <ETACreditCard lang='en'/>
+      <ETACreditCard lang="en" />
     </Root>
   );
 };

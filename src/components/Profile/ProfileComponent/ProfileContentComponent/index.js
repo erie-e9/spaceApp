@@ -1,7 +1,14 @@
 import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
-import {Ionicons, FontAwesome, AntDesign, SimpleLineIcons, Feather, EvilIcons, Octicons} from '@icons';
+import {
+  Ionicons,
+  FontAwesome,
+  AntDesign,
+  SimpleLineIcons,
+  Feather,
+  Octicons,
+} from '@icons';
 import {Context} from '@context';
 import {useNavigation} from '@react-navigation/native';
 import {ETASimpleText} from '@etaui';
@@ -28,21 +35,20 @@ const Metadata = styled.View`
   min-height: 50px;
   background-color: transparent;
 `;
-const Touchable = styled.TouchableWithoutFeedback`
-`;
+const Touchable = styled.TouchableWithoutFeedback``;
 const SettingContainer = styled.View`
   flex: 1;
   flex-direction: row;
   padding-horizontal: 10px;
   align-items: center;
   min-height: 50px;
-  background-color: transparent
+  background-color: transparent;
 `;
 const LeftContainer = styled.View`
   flex: 1;
   flex-direction: row;
 `;
- const OptionTitleContainer = styled.View`
+const OptionTitleContainer = styled.View`
   margin-left: 13px;
 `;
 const IconContainer = styled.View`
@@ -55,7 +61,7 @@ const IconContainer = styled.View`
 const ProfileContentComponent = () => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
-  const { logOut } = useContext(Context);
+  const {logOut} = useContext(Context);
 
   const logout = () => {
     logOut();
@@ -66,12 +72,17 @@ const ProfileContentComponent = () => {
       <Root>
         <Card>
           <Metadata>
-            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'NotificationsScreen'})}>
+            <Touchable
+              onPress={() =>
+                navigation.navigate('SettingsNavigator', {
+                  screen: 'NotificationsScreen',
+                })
+              }>
               <SettingContainer>
                 <LeftContainer>
                   <IconContainer>
                     <FontAwesome
-                      name='bell-o'
+                      name="bell-o"
                       size={iconSize - 6}
                       color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     />
@@ -87,7 +98,11 @@ const ProfileContentComponent = () => {
                   </OptionTitleContainer>
                 </LeftContainer>
                 <IconContainer>
-                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                  <Feather
+                    name="chevron-right"
+                    size={13}
+                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                  />
                 </IconContainer>
               </SettingContainer>
             </Touchable>
@@ -96,12 +111,17 @@ const ProfileContentComponent = () => {
 
         <Card>
           <Metadata>
-            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'AddressesScreen'})}>
+            <Touchable
+              onPress={() =>
+                navigation.navigate('SettingsNavigator', {
+                  screen: 'AddressesScreen',
+                })
+              }>
               <SettingContainer>
                 <LeftContainer>
                   <IconContainer>
                     <SimpleLineIcons
-                      name='directions'
+                      name="directions"
                       size={iconSize - 6}
                       color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     />
@@ -117,7 +137,11 @@ const ProfileContentComponent = () => {
                   </OptionTitleContainer>
                 </LeftContainer>
                 <IconContainer>
-                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                  <Feather
+                    name="chevron-right"
+                    size={13}
+                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                  />
                 </IconContainer>
               </SettingContainer>
             </Touchable>
@@ -127,7 +151,7 @@ const ProfileContentComponent = () => {
         {/* <Card>
           <Metadata>
             <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'FavoritesScreen'})}>
-              <Ionicons 
+              <Ionicons
                 name='md-heart-empty'
                 size={iconSize - 5}
                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
@@ -147,12 +171,17 @@ const ProfileContentComponent = () => {
 
         <Card>
           <Metadata>
-            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'PaymentMethodsScreen'})}>
+            <Touchable
+              onPress={() =>
+                navigation.navigate('SettingsNavigator', {
+                  screen: 'PaymentMethodsScreen',
+                })
+              }>
               <SettingContainer>
                 <LeftContainer>
                   <IconContainer>
                     <AntDesign
-                      name='creditcard'
+                      name="creditcard"
                       size={iconSize - 7}
                       color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     />
@@ -168,7 +197,11 @@ const ProfileContentComponent = () => {
                   </OptionTitleContainer>
                 </LeftContainer>
                 <IconContainer>
-                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                  <Feather
+                    name="chevron-right"
+                    size={13}
+                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                  />
                 </IconContainer>
               </SettingContainer>
             </Touchable>
@@ -177,12 +210,17 @@ const ProfileContentComponent = () => {
 
         <Card>
           <Metadata>
-            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'BranchOfficesScreen'})}>
+            <Touchable
+              onPress={() =>
+                navigation.navigate('SettingsNavigator', {
+                  screen: 'BranchOfficesScreen',
+                })
+              }>
               <SettingContainer>
                 <LeftContainer>
                   <IconContainer>
                     <Octicons
-                      name='location'
+                      name="location"
                       size={iconSize - 5}
                       color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     />
@@ -198,7 +236,11 @@ const ProfileContentComponent = () => {
                   </OptionTitleContainer>
                 </LeftContainer>
                 <IconContainer>
-                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                  <Feather
+                    name="chevron-right"
+                    size={13}
+                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                  />
                 </IconContainer>
               </SettingContainer>
             </Touchable>
@@ -207,12 +249,15 @@ const ProfileContentComponent = () => {
 
         <Card>
           <Metadata>
-            <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'HelpScreen'})}>
+            <Touchable
+              onPress={() =>
+                navigation.navigate('SettingsNavigator', {screen: 'HelpScreen'})
+              }>
               <SettingContainer>
                 <LeftContainer>
                   <IconContainer>
                     <Ionicons
-                      name='ios-information-circle-outline'
+                      name="ios-information-circle-outline"
                       size={iconSize - 2}
                       color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     />
@@ -228,7 +273,11 @@ const ProfileContentComponent = () => {
                   </OptionTitleContainer>
                 </LeftContainer>
                 <IconContainer>
-                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                  <Feather
+                    name="chevron-right"
+                    size={13}
+                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                  />
                 </IconContainer>
               </SettingContainer>
             </Touchable>
@@ -242,7 +291,7 @@ const ProfileContentComponent = () => {
                 <LeftContainer>
                   <IconContainer>
                     <AntDesign
-                      name='logout'
+                      name="logout"
                       size={iconSize - 6}
                       color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     />
@@ -258,7 +307,11 @@ const ProfileContentComponent = () => {
                   </OptionTitleContainer>
                 </LeftContainer>
                 <IconContainer>
-                  <Feather name='chevron-right' size={13} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                  <Feather
+                    name="chevron-right"
+                    size={13}
+                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                  />
                 </IconContainer>
               </SettingContainer>
             </Touchable>

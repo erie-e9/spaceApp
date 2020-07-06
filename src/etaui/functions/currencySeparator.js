@@ -1,3 +1,1 @@
-export default function currencySeparator() {
-    
-}
+export default function currencySeparator() {}

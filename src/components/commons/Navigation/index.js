@@ -30,19 +30,11 @@ const Navigation = () => {
             ? darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR
             : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR
         }
-        barStyle={
-          colorSchema === 'dark'
-            ? 'light-content'
-            : 'dark-content'
-        }
+        barStyle={colorSchema === 'dark' ? 'light-content' : 'dark-content'}
         hidden={false}
       />
       <ETANetInfo />
-      {state.userToken !== null ? (
-        <ShopTabNavigator />
-      ) : (
-        <SigninStackScreen />
-      )}
+      {state.userToken !== null ? <ShopTabNavigator /> : <SigninStackScreen />}
     </>
   );
 };

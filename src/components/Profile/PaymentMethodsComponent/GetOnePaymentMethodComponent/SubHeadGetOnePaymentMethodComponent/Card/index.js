@@ -33,7 +33,7 @@ const MessageContainer = styled.View`
   background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
-const PaymentCardComponent = ({ headTitle, message }) => {
+const PaymentCardComponent = ({headTitle, message}) => {
   const themeContext = useContext(ThemeContext);
 
   return (
@@ -62,6 +62,6 @@ const PaymentCardComponent = ({ headTitle, message }) => {
       </Card>
     </>
   );
-}
+};
 
 export default React.memo(PaymentCardComponent);

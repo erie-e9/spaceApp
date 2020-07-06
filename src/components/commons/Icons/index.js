@@ -37,5 +37,5 @@ export {
   IcecreamIcon3,
   IcecreamIcon4,
   MasterCardIcon,
-  Fontisto
+  Fontisto,
 };

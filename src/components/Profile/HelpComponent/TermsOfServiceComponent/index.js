@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import styled, {ThemeContext} from 'styled-components/native';
+import React from 'react';
+import styled from 'styled-components/native';
 import HeadTermsOfServiceComponent from './HeadTermsOfServiceComponent';
 import SubHeadTermsOfServiceComponent from './SubHeadTermsOfServiceComponent';
 
@@ -10,13 +10,12 @@ const Root = styled.View`
 `;
 
 const TermsOfServiceComponent = () => {
-
   return (
     <Root>
-      <HeadTermsOfServiceComponent/>
+      <HeadTermsOfServiceComponent />
       <SubHeadTermsOfServiceComponent />
     </Root>
   );
-}
+};
 
 export default TermsOfServiceComponent;

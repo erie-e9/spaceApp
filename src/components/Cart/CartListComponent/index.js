@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Animated} from 'react-native';
+import {Animated, Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText, ETAButtonOutline} from '@etaui';
 import {Context} from '@context/cartContext';
-import {useIsFocused, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import CartItemComponent from './CartItemComponent';
 
 const Root = styled.View`
@@ -25,7 +25,6 @@ const EmptyListContainer = styled.View`
 const CartListComponent = () => {
   const themeContext = useContext(ThemeContext);
   const {getCartItems, state} = useContext(Context);
-  const isFocused = useIsFocused();
   const navigation = useNavigation();
   const [animatedValueTransform] = useState(new Animated.Value(0.7));
   const [items, setitems] = useState([]);
@@ -68,7 +67,7 @@ const CartListComponent = () => {
           flexDirection: 'column',
           justifyContent: 'flex-start',
         }}
-        data={state.data}
+        data={items}
         keyExtractor={(item) => item._id.toString()}
         horizontal={!true}
         // numColumns={2}

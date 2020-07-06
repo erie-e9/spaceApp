@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
+import {Platform} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {ETASimpleText} from '@etaui';
 import {Feather} from '@icons';
@@ -42,7 +43,10 @@ const HelpComponent = () => {
 
   return (
     <Root>
-      <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'AboutUsScreen'})}>
+      <Touchable
+        onPress={() =>
+          navigation.navigate('SettingsNavigator', {screen: 'AboutUsScreen'})
+        }>
         <HelpContainer>
           <LeftContainer>
             <ETASimpleText
@@ -52,18 +56,25 @@ const HelpComponent = () => {
               align={'left'}>
               About us
             </ETASimpleText>
-            <Card 
-              headTitle=' ' 
-              message='All info about us and our success factory.' 
+            <Card
+              headTitle=" "
+              message="All info about us and our success factory."
             />
           </LeftContainer>
           <IconContainer>
-            <Feather name='chevron-right' size={15} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+            <Feather
+              name="chevron-right"
+              size={15}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+            />
           </IconContainer>
         </HelpContainer>
       </Touchable>
 
-      <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'ContactUsScreen'})}>
+      <Touchable
+        onPress={() =>
+          navigation.navigate('SettingsNavigator', {screen: 'ContactUsScreen'})
+        }>
         <HelpContainer>
           <LeftContainer>
             <ETASimpleText
@@ -73,18 +84,25 @@ const HelpComponent = () => {
               align={'left'}>
               Contact us
             </ETASimpleText>
-            <Card 
-              headTitle=' ' 
-              message='Hey talk with us, you have doubts, recommendations or complaints? we´ll be a pleasure heard you.'  
+            <Card
+              headTitle=" "
+              message="Hey talk with us, you have doubts, recommendations or complaints? we´ll be a pleasure heard you."
             />
           </LeftContainer>
           <IconContainer>
-            <Feather name='chevron-right' size={15} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+            <Feather
+              name="chevron-right"
+              size={15}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+            />
           </IconContainer>
         </HelpContainer>
       </Touchable>
 
-      <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'FAQSScreen'})}>
+      <Touchable
+        onPress={() =>
+          navigation.navigate('SettingsNavigator', {screen: 'FAQSScreen'})
+        }>
         <HelpContainer>
           <LeftContainer>
             <ETASimpleText
@@ -94,18 +112,27 @@ const HelpComponent = () => {
               align={'left'}>
               FAQ
             </ETASimpleText>
-            <Card 
-              headTitle=' ' 
-              message='Frequently asked questions about our company and products.' 
+            <Card
+              headTitle=" "
+              message="Frequently asked questions about our company and products."
             />
           </LeftContainer>
           <IconContainer>
-            <Feather name='chevron-right' size={15} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+            <Feather
+              name="chevron-right"
+              size={15}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+            />
           </IconContainer>
         </HelpContainer>
       </Touchable>
 
-      <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'TermsOfServiceScreen'})}>
+      <Touchable
+        onPress={() =>
+          navigation.navigate('SettingsNavigator', {
+            screen: 'TermsOfServiceScreen',
+          })
+        }>
         <HelpContainer>
           <LeftContainer>
             <ETASimpleText
@@ -115,18 +142,24 @@ const HelpComponent = () => {
               align={'left'}>
               Terms of service
             </ETASimpleText>
-            <Card 
-              headTitle=' ' 
-              message='See our terms of service.' 
-            />
+            <Card headTitle=" " message="See our terms of service." />
           </LeftContainer>
           <IconContainer>
-            <Feather name='chevron-right' size={15} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+            <Feather
+              name="chevron-right"
+              size={15}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+            />
           </IconContainer>
         </HelpContainer>
       </Touchable>
 
-      <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'NoticeOfPrivacyScreen'})}>
+      <Touchable
+        onPress={() =>
+          navigation.navigate('SettingsNavigator', {
+            screen: 'NoticeOfPrivacyScreen',
+          })
+        }>
         <HelpContainer>
           <LeftContainer>
             <ETASimpleText
@@ -136,18 +169,22 @@ const HelpComponent = () => {
               align={'left'}>
               Notice of privacy
             </ETASimpleText>
-            <Card 
-              headTitle=' ' 
-              message='See our notice of privacy and use of this application.' 
+            <Card
+              headTitle=" "
+              message="See our notice of privacy and use of this application."
             />
           </LeftContainer>
           <IconContainer>
-            <Feather name='chevron-right' size={15} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+            <Feather
+              name="chevron-right"
+              size={15}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+            />
           </IconContainer>
         </HelpContainer>
       </Touchable>
     </Root>
   );
-}
+};
 
 export default HelpComponent;

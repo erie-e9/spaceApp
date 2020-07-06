@@ -21,7 +21,7 @@ const TextInputContainer = styled.View`
 const TextInput = styled.TextInput.attrs({})`
   width: ${(props) => (props.width ? props.width : 300)}px;
   height: ${(props) => (props.height ? props.height : 40)}px;
-  fontSize: ${(props) => (props.textsize ? props.textsize : 14)}px;
+  font-size: ${(props) => (props.textsize ? props.textsize : 14)}px;
   color: ${(props) => props.theme.PRIMARY_COLOR};
   margin: 5px;
   justify-content: center;

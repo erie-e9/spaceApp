@@ -18,6 +18,6 @@ const BranchOfficesComponent = () => {
       <BranchOfficesListComponent />
     </Root>
   );
-}
+};
 
 export default BranchOfficesComponent;

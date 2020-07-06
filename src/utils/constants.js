@@ -1,18 +1,19 @@
 export const URL = 'http://myapiuri.com/api/controller';
 // export const fakeavatar = 'https://randomuser.me/api/portraits/women/10.jpg';
-export const fakeavatar = 'https://elcomercio.pe/resizer/oJXTPUyJwv30CxKHvSSWyGuvfwc=/980x528/smart/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/7MZZLBWAZVBP5DM5DU6UCY4G3I.png';
+export const fakeavatar =
+  'https://elcomercio.pe/resizer/oJXTPUyJwv30CxKHvSSWyGuvfwc=/980x528/smart/arc-anglerfish-arc2-prod-elcomercio.s3.amazonaws.com/public/7MZZLBWAZVBP5DM5DU6UCY4G3I.png';
 export const SLUG = 'iceCreamUnicorn';
 
 export const variables = {
-  COMPANYNAME: `iceCream Unicorn`,
-  COMPANYSLOGAN: `❝Change the World, One Scoop at a time...❞`,
+  COMPANYNAME: 'iceCream Unicorn',
+  COMPANYSLOGAN: '❝Change the World, One Scoop at a time...❞',
   COMPANYURL: `https://www.${SLUG}.com`,
   COMPANYFACEBOOK: `https://www.facebook.com/${SLUG}`,
   COMPANYTWITTER: `https://www.twitter.com/${SLUG}`,
   COMPANYINSTAGRAM: `https://www.instagram.com/${SLUG}`,
-  COMPANYPHONE1: `5620222699`,
-  COMPANYPHONE2: `6181092045`,
-  COMPANYWHATSAPP: `6181092045`,
+  COMPANYPHONE1: '5620222699',
+  COMPANYPHONE2: '6181092045',
+  COMPANYWHATSAPP: '6181092045',
   COMPANYMAIL: `help@${SLUG}.com`,
   AVATAR_USER_DEFAULT:
     'https://www.researchgate.net/profile/Maria_Monreal2/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook.png',
@@ -101,190 +102,190 @@ export const darkTheme = {
   SECONDARY_TEXT_BACKGROUND_COLOR: '#F7F7F7',
   MAPSTYLE: [
     {
-      "elementType": "geometry",
-      "stylers": [
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#212121"
-        }
-      ]
+          color: '#212121',
+        },
+      ],
     },
     {
-      "elementType": "labels.icon",
-      "stylers": [
+      elementType: 'labels.icon',
+      stylers: [
         {
-          "visibility": "off"
-        }
-      ]
+          visibility: 'off',
+        },
+      ],
     },
     {
-      "elementType": "labels.text.fill",
-      "stylers": [
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#757575"
-        }
-      ]
+          color: '#757575',
+        },
+      ],
     },
     {
-      "elementType": "labels.text.stroke",
-      "stylers": [
+      elementType: 'labels.text.stroke',
+      stylers: [
         {
-          "color": "#212121"
-        }
-      ]
+          color: '#212121',
+        },
+      ],
     },
     {
-      "featureType": "administrative",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'administrative',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#757575"
-        }
-      ]
+          color: '#757575',
+        },
+      ],
     },
     {
-      "featureType": "administrative.country",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'administrative.country',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#9E9E9E"
-        }
-      ]
+          color: '#9E9E9E',
+        },
+      ],
     },
     {
-      "featureType": "administrative.land_parcel",
-      "stylers": [
+      featureType: 'administrative.land_parcel',
+      stylers: [
         {
-          "visibility": "off"
-        }
-      ]
+          visibility: 'off',
+        },
+      ],
     },
     {
-      "featureType": "administrative.locality",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'administrative.locality',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#BDBDBD"
-        }
-      ]
+          color: '#BDBDBD',
+        },
+      ],
     },
     {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'poi',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#757575"
-        }
-      ]
+          color: '#757575',
+        },
+      ],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'poi.park',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#181818"
-        }
-      ]
+          color: '#181818',
+        },
+      ],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'poi.park',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#616161"
-        }
-      ]
+          color: '#616161',
+        },
+      ],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "labels.text.stroke",
-      "stylers": [
+      featureType: 'poi.park',
+      elementType: 'labels.text.stroke',
+      stylers: [
         {
-          "color": "#1B1B1B"
-        }
-      ]
+          color: '#1B1B1B',
+        },
+      ],
     },
     {
-      "featureType": "road",
-      "elementType": "geometry.fill",
-      "stylers": [
+      featureType: 'road',
+      elementType: 'geometry.fill',
+      stylers: [
         {
-          "color": "#2C2C2C"
-        }
-      ]
+          color: '#2C2C2C',
+        },
+      ],
     },
     {
-      "featureType": "road",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'road',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#8A8A8A"
-        }
-      ]
+          color: '#8A8A8A',
+        },
+      ],
     },
     {
-      "featureType": "road.arterial",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road.arterial',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#373737"
-        }
-      ]
+          color: '#373737',
+        },
+      ],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road.highway',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#3C3C3C"
-        }
-      ]
+          color: '#3C3C3C',
+        },
+      ],
     },
     {
-      "featureType": "road.highway.controlled_access",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road.highway.controlled_access',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#4E4E4E"
-        }
-      ]
+          color: '#4E4E4E',
+        },
+      ],
     },
     {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'road.local',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#616161"
-        }
-      ]
+          color: '#616161',
+        },
+      ],
     },
     {
-      "featureType": "transit",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'transit',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#757575"
-        }
-      ]
+          color: '#757575',
+        },
+      ],
     },
     {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'water',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#000000"
-        }
-      ]
+          color: '#000000',
+        },
+      ],
     },
     {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'water',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#3D3D3D"
-        }
-      ]
-    }
-  ]
+          color: '#3D3D3D',
+        },
+      ],
+    },
+  ],
 };
 
 export const lightTheme = {
@@ -323,164 +324,164 @@ export const lightTheme = {
   SECONDARY_TEXT_BACKGROUND_COLOR: '#3D3D3D',
   MAPSTYLE: [
     {
-      "elementType": "geometry",
-      "stylers": [
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#F5F5F5"
-        }
-      ]
+          color: '#F5F5F5',
+        },
+      ],
     },
     {
-      "elementType": "labels.icon",
-      "stylers": [
+      elementType: 'labels.icon',
+      stylers: [
         {
-          "visibility": "off"
-        }
-      ]
+          visibility: 'off',
+        },
+      ],
     },
     {
-      "elementType": "labels.text.fill",
-      "stylers": [
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#616161"
-        }
-      ]
+          color: '#616161',
+        },
+      ],
     },
     {
-      "elementType": "labels.text.stroke",
-      "stylers": [
+      elementType: 'labels.text.stroke',
+      stylers: [
         {
-          "color": "#F5F5F5"
-        }
-      ]
+          color: '#F5F5F5',
+        },
+      ],
     },
     {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'administrative.land_parcel',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#BDBDBD"
-        }
-      ]
+          color: '#BDBDBD',
+        },
+      ],
     },
     {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'poi',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#EEEEEE"
-        }
-      ]
+          color: '#EEEEEE',
+        },
+      ],
     },
     {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'poi',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#757575"
-        }
-      ]
+          color: '#757575',
+        },
+      ],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'poi.park',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#E5E5E5"
-        }
-      ]
+          color: '#E5E5E5',
+        },
+      ],
     },
     {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'poi.park',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#9E9E9E"
-        }
-      ]
+          color: '#9E9E9E',
+        },
+      ],
     },
     {
-      "featureType": "road",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#FFFFFF"
-        }
-      ]
+          color: '#FFFFFF',
+        },
+      ],
     },
     {
-      "featureType": "road.arterial",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'road.arterial',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#757575"
-        }
-      ]
+          color: '#757575',
+        },
+      ],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'road.highway',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#DADADA"
-        }
-      ]
+          color: '#DADADA',
+        },
+      ],
     },
     {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'road.highway',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#616161"
-        }
-      ]
+          color: '#616161',
+        },
+      ],
     },
     {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'road.local',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#9E9E9E"
-        }
-      ]
+          color: '#9E9E9E',
+        },
+      ],
     },
     {
-      "featureType": "transit.line",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'transit.line',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#E5E5E5"
-        }
-      ]
+          color: '#E5E5E5',
+        },
+      ],
     },
     {
-      "featureType": "transit.station",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'transit.station',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#EEEEEE"
-        }
-      ]
+          color: '#EEEEEE',
+        },
+      ],
     },
     {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
+      featureType: 'water',
+      elementType: 'geometry',
+      stylers: [
         {
-          "color": "#C9C9C9"
-        }
-      ]
+          color: '#C9C9C9',
+        },
+      ],
     },
     {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
+      featureType: 'water',
+      elementType: 'labels.text.fill',
+      stylers: [
         {
-          "color": "#9E9E9E"
-        }
-      ]
-    }
-  ]
+          color: '#9E9E9E',
+        },
+      ],
+    },
+  ],
 };
 
 export const colorOptions = {

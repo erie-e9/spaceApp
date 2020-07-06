@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
-import { truncateString } from '@functions';
+import {truncateString} from '@functions';
 
 const Root = styled.View`
   flex: 1;
@@ -12,8 +12,8 @@ const Root = styled.View`
   align-content: center;
   padding-horizontal: 10px;
   padding-right: 20px;
-  borderBottomWidth: 0px;
-  borderBottomColor: ${props => props.theme.GRAYFACEBOOK}; 
+  border-bottom-width: 0px;
+  border-bottom-color: ${(props) => props.theme.GRAYFACEBOOK};
 `;
 const ChatContentContainer = styled.View`
   flex: 1;
@@ -34,9 +34,7 @@ const CardBody = ({text}) => {
           weight={Platform.OS === 'ios' ? '500' : '300'}
           color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
           align={'left'}>
-          {
-            truncateString(text, 35)
-          }
+          {truncateString(text, 35)}
         </ETASimpleText>
       </ChatContentContainer>
     </Root>

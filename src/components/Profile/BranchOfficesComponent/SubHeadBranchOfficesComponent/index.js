@@ -29,8 +29,13 @@ const SubHeadBranchOfficesComponent = () => {
     <Root>
       <ContentContainer>
         <ETAButtonFilled
-          title='See all on map'
-          onPress={() => navigation.navigate('SettingsNavigator', {screen: 'MapBranchOfficesScreen', params: { data: branchOffices.data }})}
+          title="See all on map"
+          onPress={() =>
+            navigation.navigate('SettingsNavigator', {
+              screen: 'MapBranchOfficesScreen',
+              params: {data: branchOffices.data},
+            })
+          }
           colorButton={themeContext.PRIMARY_COLOR}
           padding={10}
           width={250}
@@ -39,6 +44,6 @@ const SubHeadBranchOfficesComponent = () => {
       </ContentContainer>
     </Root>
   );
-}
+};
 
 export default React.memo(SubHeadBranchOfficesComponent);

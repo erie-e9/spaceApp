@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Animated} from 'react-native';
+import {Animated, Platform} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText} from '@etaui';
@@ -9,34 +9,34 @@ const Root = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
-const Touchable = styled.TouchableOpacity`
-  z-index: 100;
-`;
+// const Touchable = styled.TouchableOpacity`
+//   z-index: 100;
+// `;
 const CategorytItemsList = styled.FlatList``;
 
 const AllItemsComponent = () => {
   const themeContext = useContext(ThemeContext);
   const route = useRoute();
-  const { allitems } = route.params.params;
-  const [ animatedValueTransform ] = useState(new Animated.Value(0));
-  const [ opacity ] = useState(new Animated.Value(0));
+  const {allitems} = route.params.params;
+  const [animatedValueTransform] = useState(new Animated.Value(0));
+  const [opacity] = useState(new Animated.Value(0));
   let delayValue = 700;
 
   useEffect(() => {
     Animated.spring(animatedValueTransform, {
       toValue: 1,
       tension: 5,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
-    
+
     Animated.timing(opacity, {
       toValue: 1,
       duration: 800,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
-  }, [])
+  }, []);
 
   return (
     <Root>
@@ -58,8 +58,8 @@ const AllItemsComponent = () => {
               weight={Platform.OS === 'ios' ? '500' : '300'}
               color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
               align={'left'}>
-              Empty list 
-          </ETASimpleText>
+              Empty list
+            </ETASimpleText>
           );
         }}
         // ListFooterComponent={() => {
@@ -77,11 +77,11 @@ const AllItemsComponent = () => {
           delayValue = delayValue + 700;
           const translateY = animatedValueTransform.interpolate({
             inputRange: [0, 1],
-            outputRange:[delayValue, 1],
-            extrapolate: 'clamp'
-          });          
-          return(
-            <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+            outputRange: [delayValue, 1],
+            extrapolate: 'clamp',
+          });
+          return (
+            <Animated.View style={{opacity, transform: [{translateY}]}}>
               <GeneralItemComponent item={item} />
             </Animated.View>
           );
@@ -89,6 +89,6 @@ const AllItemsComponent = () => {
       />
     </Root>
   );
-}
+};
 
 export default AllItemsComponent;

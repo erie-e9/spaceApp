@@ -10,18 +10,16 @@ const {width} = Dimensions.get('window');
 const Root = styled.View`
   justify-content: center;
   align-items: center;
-  background-color:  ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
-const CarouselList = styled.FlatList`
-`;
+const CarouselList = styled.FlatList``;
 const DotCarousel = styled.View`
   flex-direction: row;
   justify-content: center;
   position: absolute;
   bottom: 5px;
 `;
-const Touchable = styled.TouchableWithoutFeedback`
-`;
+const Touchable = styled.TouchableWithoutFeedback``;
 const TouchableWithoutFeedbackContainer = styled.View``;
 
 const ETACarousel = ({posts, data, autoplay, time}) => {
@@ -43,41 +41,44 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 
   const infiniteScroll = (datalist) => {
     var numberOfData = posts.length;
-    
+
     let scrollValue = 0;
     let scrolled = 0;
 
     timerID = setInterval(() => {
       scrolled++;
       if (scrolled < numberOfData) {
-        scrollValue = scrollValue + 1;      
+        scrollValue = scrollValue + 1;
       } else {
         scrollValue = 0;
         scrolled = 0;
       }
 
-      flatList.current.scrollToIndex({ animated: true, index: scrollValue ? scrollValue : 0 });
+      flatList.current.scrollToIndex({
+        animated: true,
+        index: scrollValue ? scrollValue : 0,
+      });
       // flatList.scrollView({animated: true, offset: scrollValue});
     }, time);
   };
-  
+
   const stopAutoPlay = () => {
-    if(timerID) {
+    if (timerID) {
       clearInterval(timerID);
-      timerID = null
+      timerID = null;
     }
-  }
+  };
 
   const _onPressPromo = (selecteditem) => {
     console.log('_onPressPromo pressed:', selecteditem.title);
-    
+
     navigation.navigate('PromotionScreen', {
       screen: 'MenuScreen',
       params: {
         name: selecteditem.title,
         promoitems: data,
-        selectedItem: selecteditem
-      }
+        selectedItem: selecteditem,
+      },
     });
   };
 
@@ -91,9 +92,9 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
             keyExtractor={(item) => item._id.toString()}
             horizontal
             pagingEnabled
-            snapToAlignment='center'
+            snapToAlignment="center"
             scrollEventThrottle={16}
-            decelerationRate='fast'
+            decelerationRate="fast"
             showsHorizontalScrollIndicator={false}
             onScroll={Animated.event(
               [

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText, ETASwitch} from '@etaui';
@@ -33,9 +33,9 @@ const MessageContainer = styled.View`
   background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
-const NotificationCardComponent = ({ headTitle, message }) => {
+const NotificationCardComponent = ({headTitle, message}) => {
   const themeContext = useContext(ThemeContext);
-  const [ switchItem, setswitchItem ] = useState(!true);
+  const [switchItem, setswitchItem] = useState(!true);
 
   // useEffect(() => {
   //   console.log('ewe switchItem: ', switchItem);
@@ -72,6 +72,6 @@ const NotificationCardComponent = ({ headTitle, message }) => {
       </Card>
     </>
   );
-}
+};
 
 export default React.memo(NotificationCardComponent);

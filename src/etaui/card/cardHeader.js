@@ -43,7 +43,7 @@ const CardHeader = ({username, firstname, lastname}) => {
   return (
     <Root>
       <AvatarContainer>
-        <ETAAvatar size='small' />
+        <ETAAvatar size="small" />
       </AvatarContainer>
       <MetaContainer>
         <MetaTopContainer>

@@ -1,6 +1,10 @@
 import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
-import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
+import {Platform} from 'react-native';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 import ProfileScreen from '@screens/Profile/ProfileScreen';
 import AccountScreen from '@screens/Profile/AccountScreen';
 import NotificationsScreen from '@screens/Profile/NotificationsScreen';
@@ -24,18 +28,6 @@ import {FontAwesome} from '@icons';
 const HeaderLeft = styled.TouchableOpacity`
   margin-left: 15px;
 `;
-const HeaderLeftCard = styled.TouchableOpacity`
-  margin-left: 15px;
-  margin-top: 25px;
-  align-items: center;
-  height: 30px;
-  width: 30px;
-  border-radius: 15px;
-`;
-const HeaderRight = styled.View`
-  flex-direction: row;
-  margin-right: 15px;
-`;
 const Header = styled.View`
   margin-left: 15px;
 `;
@@ -54,18 +46,16 @@ const ProfileNavigator = () => {
           backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
           shadowColor: 'black',
           shadowOpacity: 0.15,
-          shadowOffset: { height: 0.2 },
+          shadowOffset: {height: 0.2},
           shadowRadius: 5,
-          elevation: 5
+          elevation: 5,
         },
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-      }}
-    >
-
+      }}>
       <ProfileStack.Screen
-        name='ProfileScreen'
+        name="ProfileScreen"
         component={ProfileScreen}
         options={({navigation, route}) => ({
           headerTitle: '',
@@ -74,32 +64,32 @@ const ProfileNavigator = () => {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: '400',
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
           },
           headerLeft: () => {
             return (
-                <Header>
-                  <ETASimpleText
-                    size={22}
-                    weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
-                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                    align={'left'}>
-                    Profile
-                  </ETASimpleText>
-                </Header>
+              <Header>
+                <ETASimpleText
+                  size={22}
+                  weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                  align={'left'}>
+                  Profile
+                </ETASimpleText>
+              </Header>
             );
-            },
-            // headerRight: () => {
-            //     return (
-            //         <IconButton
-            //             activeOpacity={1}
-            //             underlayColor='#ccd0d5'
-            //             // onPress={(event) => _onFocus(event)}
-            //         >
-            //             <FontAwesome name='search' size={18} color='#000' />
-            //         </IconButton>
-            //     )
-            // },
+          },
+          // headerRight: () => {
+          //     return (
+          //         <IconButton
+          //             activeOpacity={1}
+          //             underlayColor='#ccd0d5'
+          //             // onPress={(event) => _onFocus(event)}
+          //         >
+          //             <FontAwesome name='search' size={18} color='#000' />
+          //         </IconButton>
+          //     )
+          // },
           headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}
@@ -122,19 +112,17 @@ const SettingsNavigator = () => {
           backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
           shadowColor: 'black',
           shadowOpacity: 0,
-          shadowOffset: { height: 0 },
+          shadowOffset: {height: 0},
           shadowRadius: 5,
-          elevation: 5
+          elevation: 5,
         },
         headerTitleStyle: {
           fontWeight: '400',
-          fontSize: 12
+          fontSize: 12,
         },
-      }}
-    >
-
+      }}>
       <SettingsStack.Screen
-        name='AccountScreen'
+        name="AccountScreen"
         component={AccountScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Account',
@@ -144,12 +132,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -159,7 +151,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='NotificationsScreen'
+        name="NotificationsScreen"
         component={NotificationsScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Notifications',
@@ -169,12 +161,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -184,7 +180,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='AddressesScreen'
+        name="AddressesScreen"
         component={AddressesScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Addresses',
@@ -194,12 +190,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -207,9 +207,9 @@ const SettingsNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}
       />
-      
+
       <SettingsStack.Screen
-        name='MapAddressesScreen'
+        name="MapAddressesScreen"
         component={MapAddressesScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Map',
@@ -219,12 +219,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -234,7 +238,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='FavoritesScreen'
+        name="FavoritesScreen"
         component={FavoritesScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Favorites',
@@ -244,12 +248,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -259,7 +267,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='PaymentMethodsScreen'
+        name="PaymentMethodsScreen"
         component={PaymentMethodsScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Payment methods',
@@ -269,12 +277,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -282,9 +294,9 @@ const SettingsNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}
       />
-      
+
       <SettingsStack.Screen
-        name='NewPaymentMethodScreen'
+        name="NewPaymentMethodScreen"
         component={NewPaymentMethodScreen}
         options={({navigation, route}) => ({
           headerTitle: 'New payment method',
@@ -294,12 +306,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -307,9 +323,9 @@ const SettingsNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}
       />
-      
+
       <SettingsStack.Screen
-        name='GetOnePaymentMethodScreen'
+        name="GetOnePaymentMethodScreen"
         component={GetOnePaymentMethodScreen}
         options={({navigation, route}) => ({
           headerTitle: ' ',
@@ -319,12 +335,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -334,7 +354,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='HelpScreen'
+        name="HelpScreen"
         component={HelpScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Help',
@@ -344,12 +364,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -359,7 +383,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='AboutUsScreen'
+        name="AboutUsScreen"
         component={AboutUsScreen}
         options={({navigation, route}) => ({
           headerTitle: 'About us',
@@ -369,12 +393,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -384,7 +412,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='BranchOfficesScreen'
+        name="BranchOfficesScreen"
         component={BranchOfficesScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Branch offices',
@@ -394,12 +422,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -409,7 +441,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='MapBranchOfficesScreen'
+        name="MapBranchOfficesScreen"
         component={MapBranchOfficesScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Branch offices',
@@ -419,12 +451,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -434,7 +470,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='ContactUsScreen'
+        name="ContactUsScreen"
         component={ContactUsScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Contact us',
@@ -444,12 +480,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -459,7 +499,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='FAQSScreen'
+        name="FAQSScreen"
         component={FAQSScreen}
         options={({navigation, route}) => ({
           headerTitle: 'FAQ',
@@ -469,12 +509,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -484,7 +528,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='TermsOfServiceScreen'
+        name="TermsOfServiceScreen"
         component={TermsOfServiceScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Terms of service',
@@ -494,12 +538,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -509,7 +557,7 @@ const SettingsNavigator = () => {
       />
 
       <SettingsStack.Screen
-        name='NoticeOfPrivacyScreen'
+        name="NoticeOfPrivacyScreen"
         component={NoticeOfPrivacyScreen}
         options={({navigation, route}) => ({
           headerTitle: 'Notice of privacy',
@@ -519,12 +567,16 @@ const SettingsNavigator = () => {
           headerTitleStyle: {
             fontWeight: '400',
             color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-            fontSize: 18
+            fontSize: 18,
           },
           headerLeft: () => {
             return (
               <HeaderLeft onPress={() => navigation.goBack()}>
-                <FontAwesome name='angle-left' size={25} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}/>
+                <FontAwesome
+                  name="angle-left"
+                  size={25}
+                  color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                />
               </HeaderLeft>
             );
           },
@@ -532,12 +584,8 @@ const SettingsNavigator = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         })}
       />
-    
     </SettingsStack.Navigator>
   );
-}   
-
-export {
-  ProfileNavigator,
-  SettingsNavigator
 };
+
+export {ProfileNavigator, SettingsNavigator};

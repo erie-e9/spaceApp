@@ -18,6 +18,6 @@ const AddressesComponent = () => {
       <AddressesListComponent />
     </Root>
   );
-}
+};
 
 export default AddressesComponent;

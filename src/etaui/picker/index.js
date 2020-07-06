@@ -89,7 +89,7 @@ const ETAPicker = ({items, placeholder}) => {
               useNativeAndroidPickerStyle={false}
               Icon={() => {
                 return (
-                  <Ionicons name='md-arrow-dropdown' size={20} color='#777' />
+                  <Ionicons name="md-arrow-dropdown" size={20} color="#777" />
                 );
               }}
             />

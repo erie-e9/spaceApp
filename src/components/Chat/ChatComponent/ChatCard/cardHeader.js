@@ -3,8 +3,8 @@ import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import eoLocale from 'date-fns/locale/es';
-import { truncateString } from '@functions';
+// import eoLocale from 'date-fns/locale/es';
+import {truncateString} from '@functions';
 
 const Root = styled.View`
   flex: 1;
@@ -33,7 +33,7 @@ const TimeContainer = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  right: 5px; 
+  right: 5px;
 `;
 const Touchable = styled.TouchableOpacity``;
 
@@ -51,9 +51,7 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
             weight={Platform.OS === 'ios' ? '500' : '800'}
             color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
             align={'left'}>
-            {
-              truncateString(fullname, 40)
-            }
+            {truncateString(fullname, 40)}
           </ETASimpleText>
           <Touchable>
             <ETASimpleText
@@ -61,10 +59,7 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
               weight={Platform.OS === 'ios' ? '500' : '300'}
               color={themeContext.LINK}
               align={'left'}>
-              @
-              {
-                truncateString(username, 40)
-              }
+              @{truncateString(username, 40)}
             </ETASimpleText>
           </Touchable>
         </UserDataContainer>
@@ -75,7 +70,7 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
             weight={Platform.OS === 'ios' ? '500' : '300'}
             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
             align={'left'}>
-            {formatDistanceToNow(new Date(), { 
+            {formatDistanceToNow(new Date(), {
               addSuffix: true,
               // locale: eoLocale // Esp
             })}

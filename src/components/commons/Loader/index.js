@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components/native';
-import { Animated } from 'react-native';
+import {Animated} from 'react-native';
 
 const Root = styled.View`
   flex: 1;
@@ -14,54 +14,52 @@ const LoaderContainer = styled.View`
   align-items: center;
 `;
 const Ball = styled.View`
-  height: ${props => props.size};
-  width: ${props => props.size};
-  border-radius: ${props => props.size / 2};
-  background-color: ${props => props.color};
+  height: ${(props) => props.size};
+  width: ${(props) => props.size};
+  border-radius: ${(props) => props.size / 2};
+  background-color: ${(props) => props.color};
 `;
 
 const Loader = ({color, size}) => {
   const animations = {
     one: new Animated.Value(0),
     two: new Animated.Value(0),
-    three: new Animated.Value(0)
-  }
+    three: new Animated.Value(0),
+  };
 
   useEffect(() => {
     onStartAnimation();
   }, []);
 
-  const onAnimated = (animation, nextAnimation) => {  
+  const onAnimated = (animation, nextAnimation) => {
     Animated.sequence([
       Animated.timing(animation, {
-        toValue: - 10,
+        toValue: -10,
         duration: 300,
-        useNativeDriver: true
+        useNativeDriver: true,
       }),
 
       Animated.timing(animation, {
         toValue: 0,
         duration: 300,
-        useNativeDriver: true
-      })
+        useNativeDriver: true,
+      }),
     ]).start();
 
     setTimeout(nextAnimation, 180);
-  }
+  };
 
   const onStartAnimation = () => {
-
     const twoAnimation = () => {
       onAnimated(animations.two, threeAnimation);
-    }
-      
+    };
+
     const threeAnimation = () => {
       onAnimated(animations.three, onStartAnimation);
-    }
+    };
 
     onAnimated(animations.one, twoAnimation);
-        
-  }
+  };
 
   return (
     <Root>

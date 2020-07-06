@@ -8,7 +8,7 @@ const {width} = Dimensions.get('window');
 const Item = styled.View`
   height: 180px;
   width: ${width / 2.85}px;
-  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   margin-horizontal: ${width / 30}px;
   margin-vertical: 10px;
   border-top-left-radius: 15px;
@@ -43,47 +43,44 @@ const NewContainer = styled.View`
 `;
 
 const CategoryItemComponent = ({item}) => {
-    const themeContext = useContext(ThemeContext);
+  const themeContext = useContext(ThemeContext);
 
-    return (
-        <>
-          <Item>
-            <ItemImage source={{uri: item.image}} />
-            {
-              item.isNew
-              ? <NewContainer>
-                  <ETASimpleText
-                    size={11}
-                    weight={Platform.OS === 'ios' ? '400' : '300'}
-                    // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                    color='white'
-                    align={'center'}>
-                    new
-                  </ETASimpleText>
-                </NewContainer>
-              : null
-            }
+  return (
+    <>
+      <Item>
+        <ItemImage source={{uri: item.image}} />
+        {item.isNew ? (
+          <NewContainer>
             <ETASimpleText
-              size={14}
-              weight={Platform.OS === 'ios' ? '400' : '200'}
+              size={11}
+              weight={Platform.OS === 'ios' ? '400' : '300'}
               // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              color='white'
-              align={'center'}
-              style={{
-                position: 'absolute',
-                bottom: 15,
-                left: 10,
-                elevation: 4,
-                textShadowColor: 'rgba(0, 0, 0, 0.7)',
-                textShadowOffset: {width: 0.5, height: 0.7},
-                textShadowRadius: 3
-              }}
-            >
-              {item.name}
+              color="white"
+              align={'center'}>
+              new
             </ETASimpleText>
-          </Item>
-        </>
-    );
-  }
+          </NewContainer>
+        ) : null}
+        <ETASimpleText
+          size={14}
+          weight={Platform.OS === 'ios' ? '400' : '200'}
+          // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+          color="white"
+          align={'center'}
+          style={{
+            position: 'absolute',
+            bottom: 15,
+            left: 10,
+            elevation: 4,
+            textShadowColor: themeContext.THIRD_TEXT_COLOR_LIGHT,
+            textShadowOffset: {width: 0.5, height: 0.7},
+            textShadowRadius: 3,
+          }}>
+          {item.name}
+        </ETASimpleText>
+      </Item>
+    </>
+  );
+};
 
-  export default React.memo(CategoryItemComponent);
+export default React.memo(CategoryItemComponent);

@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import { Platform, Animated, ScrollView, Dimensions } from 'react-native';
+import {Platform, Animated, ScrollView, Dimensions} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import styled, {ThemeContext} from 'styled-components';
 import {ETASimpleText} from '@etaui';
@@ -12,11 +12,11 @@ const {width} = Dimensions.get('window');
 const Root = styled.View`
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `;
-const Touchable = styled.TouchableOpacity`
-  z-index: 100;
-`;
+// const Touchable = styled.TouchableOpacity`
+//   z-index: 100;
+// `;
 const CategorytItemsList = styled.FlatList``;
 const PromoHeadContainer = styled.View`
   flex-direction: row;
@@ -24,7 +24,7 @@ const PromoHeadContainer = styled.View`
   align-items: center;
   width: ${width}px;
   height: 100%;
-  padding-bottom: 5px
+  padding-bottom: 5px;
 `;
 const PromoHeadTitle = styled.View`
   flex: 1;
@@ -44,61 +44,64 @@ const PromoComponent = () => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
   const route = useRoute();
-  const { promoitems, selectedItem } = route.params.params;
-  const [ scrollYAnimatedValue ] = useState(new Animated.Value(0));
-  const [ animatedValueTransform ] = useState(new Animated.Value(0));
-  const [ opacity ] = useState(new Animated.Value(0));
+  const {promoitems, selectedItem} = route.params.params;
+  const [scrollYAnimatedValue] = useState(new Animated.Value(0));
+  const [animatedValueTransform] = useState(new Animated.Value(0));
+  const [opacity] = useState(new Animated.Value(0));
   let delayValue = 700;
-  
+
   const headerHeight = scrollYAnimatedValue.interpolate({
-    inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
+    inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
     outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-    extrapolate: 'clamp'
+    extrapolate: 'clamp',
   });
 
   const headerbackgroundColor = scrollYAnimatedValue.interpolate({
-    inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
-    outputRange: [themeContext.PRIMARY_TEXT_BACKGROUND_COLOR, themeContext.PRIMARY_TEXT_BACKGROUND_COLOR],
+    inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
+    outputRange: [
+      themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+      themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+    ],
     // outputRange: [ 'rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.95)' ],
-    extrapolate: 'extend'
+    extrapolate: 'extend',
   });
 
-  useEffect(() => {    
+  useEffect(() => {
     Animated.spring(animatedValueTransform, {
       toValue: 1,
       tension: 5,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
-    
+
     Animated.timing(opacity, {
       toValue: 1,
       duration: 700,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
-  }, [])
+  }, []);
 
-  const _onPressItem = (item) => {
-    navigation.navigate('GetOneItemScreen', {
-      screen: 'MenuScreen',
-      params: {
-        _id: item._id,
-        item: item
-      }
-    });
-  };
+  // const _onPressItem = (item) => {
+  //   navigation.navigate('GetOneItemScreen', {
+  //     screen: 'MenuScreen',
+  //     params: {
+  //       _id: item._id,
+  //       item: item,
+  //     },
+  //   });
+  // };
 
   return (
     <Root>
       <ScrollView
-        contentContainerStyle={{ paddingTop: HEADER_MAX_HEIGHT }}
+        contentContainerStyle={{paddingTop: HEADER_MAX_HEIGHT}}
         scrollEventThrottle={16}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollYAnimatedValue } } }],
+          [{nativeEvent: {contentOffset: {y: scrollYAnimatedValue}}}],
           {
             useNativeDriver: !true,
-          }          
+          },
         )}>
         <CategorytItemsList
           contentContainerStyle={{
@@ -118,8 +121,8 @@ const PromoComponent = () => {
                 weight={Platform.OS === 'ios' ? '500' : '300'}
                 color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                 align={'left'}>
-                Empty list 
-            </ETASimpleText>
+                Empty list
+              </ETASimpleText>
             );
           }}
           // ListFooterComponent={() => {
@@ -137,11 +140,11 @@ const PromoComponent = () => {
             delayValue = delayValue + 700;
             const translateY = animatedValueTransform.interpolate({
               inputRange: [0, 1],
-              outputRange:[delayValue, 1],
-              extrapolate: 'clamp'
-            });            
-            return(
-              <Animated.View style={{ opacity, transform: [{ translateY }]}}>
+              outputRange: [delayValue, 1],
+              extrapolate: 'clamp',
+            });
+            return (
+              <Animated.View style={{opacity, transform: [{translateY}]}}>
                 <GeneralItemComponent item={item} />
               </Animated.View>
             );
@@ -149,45 +152,45 @@ const PromoComponent = () => {
         />
       </ScrollView>
 
-      <Animated.View style={{
-        position: 'absolute',
-        top: (Platform.OS == 'ios') ? 0 : 0,
-        left: 0,
-        right: 0,
-        alignItems: 'center', 
-        height: headerHeight, 
-        width: width, 
-        backgroundColor: headerbackgroundColor
-      }}>
+      <Animated.View
+        style={{
+          position: 'absolute',
+          top: Platform.OS == 'ios' ? 0 : 0,
+          left: 0,
+          right: 0,
+          alignItems: 'center',
+          height: headerHeight,
+          width: width,
+          backgroundColor: headerbackgroundColor,
+        }}>
         <PromoHeadContainer>
-          <PromoHeadImage source={{ uri: selectedItem.image }}>
+          <PromoHeadImage source={{uri: selectedItem.image}}>
             <PromoHeadTitle>
               <ETASimpleText
                 size={18}
                 weight={Platform.OS === 'ios' ? '700' : '700'}
                 // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                color='white'
+                color="white"
                 align={'center'}
                 style={{
                   elevation: 4,
                   textShadowColor: 'rgba(0, 0, 0, 0.7)',
                   textShadowOffset: {width: 0.5, height: 0.7},
-                  textShadowRadius: 3
-                }}
-              >
+                  textShadowRadius: 3,
+                }}>
                 {selectedItem.title}
               </ETASimpleText>
               <ETASimpleText
                 size={14}
-                weight='400'
-                color='white'
+                weight="400"
+                color="white"
                 align={'center'}
                 style={{
                   marginBottom: 5,
                   elevation: 4,
                   textShadowColor: 'rgba(0, 0, 0, 0.7)',
                   textShadowOffset: {width: 0.5, height: 0.7},
-                  textShadowRadius: 3
+                  textShadowRadius: 3,
                 }}>
                 {selectedItem.description}
               </ETASimpleText>
@@ -197,6 +200,6 @@ const PromoComponent = () => {
       </Animated.View>
     </Root>
   );
-}
+};
 
 export default React.memo(PromoComponent);

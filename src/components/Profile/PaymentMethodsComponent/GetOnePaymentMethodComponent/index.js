@@ -1,10 +1,5 @@
-import React, {useContext} from 'react';
-import {Platform} from 'react-native';
-import styled, {ThemeContext} from 'styled-components/native';
-import {Ionicons, FontAwesome, AntDesign, Feather, SimpleLineIcons} from '@icons';
-import {Context} from '@context';
-import {ETASimpleText} from '@etaui';
-import HeadGetOnePaymentMethodComponent from './HeadGetOnePaymentMethodComponent';
+import React from 'react';
+import styled from 'styled-components/native';
 import SubHeadGetOnePaymentMethodComponent from './SubHeadGetOnePaymentMethodComponent';
 
 const Root = styled.View`
@@ -14,13 +9,12 @@ const Root = styled.View`
 `;
 
 const GetOnePaymentMethodComponent = () => {
-
   return (
     <Root>
       {/* <HeadGetOnePaymentMethodComponent /> */}
       <SubHeadGetOnePaymentMethodComponent />
     </Root>
   );
-}
+};
 
 export default GetOnePaymentMethodComponent;

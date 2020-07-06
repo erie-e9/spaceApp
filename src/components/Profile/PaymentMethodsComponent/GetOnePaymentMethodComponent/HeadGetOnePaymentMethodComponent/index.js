@@ -1,9 +1,5 @@
-import React, {useContext} from 'react';
-import {Platform} from 'react-native';
-import styled, {ThemeContext} from 'styled-components/native';
-import {Ionicons, FontAwesome, AntDesign, Feather, SimpleLineIcons} from '@icons';
-import {Context} from '@context';
-import {ETASimpleText} from '@etaui';
+import React from 'react';
+import styled from 'styled-components/native';
 
 const Root = styled.View`
   flex: 0.25;
@@ -12,12 +8,7 @@ const Root = styled.View`
 `;
 
 const HeadGetOnePaymentMethodComponent = () => {
-
-  return (
-    <Root>
-
-    </Root>
-  );
-}
+  return <Root />;
+};
 
 export default HeadGetOnePaymentMethodComponent;

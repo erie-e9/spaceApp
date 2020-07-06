@@ -38,7 +38,7 @@ const Categories = ({items}) => {
   const themeContext = useContext(ThemeContext);
   const [categoryitems, setcategoryitems] = useState([]);
   const navigation = useNavigation();
-  const [ animatedValueTransform ] = useState(new Animated.Value(0));
+  const [animatedValueTransform] = useState(new Animated.Value(0));
   let delayValue = 1000;
 
   useEffect(() => {
@@ -55,8 +55,8 @@ const Categories = ({items}) => {
       screen: 'MenuScreen',
       params: {
         category: item.name,
-        items: items
-      }
+        items: items,
+      },
     });
   };
 
@@ -64,8 +64,8 @@ const Categories = ({items}) => {
     navigation.navigate('CategoryListScreen', {
       screen: 'MenuScreen',
       params: {
-        name: 'All categories'
-      }
+        name: 'All categories',
+      },
     });
   };
 
@@ -77,19 +77,21 @@ const Categories = ({items}) => {
             data={categoryitems}
             keyExtractor={(item) => item._id.toString()}
             horizontal
-            snapToAlignment='center'
+            snapToAlignment="center"
             scrollEventThrottle={16}
-            decelerationRate='fast'
+            decelerationRate="fast"
             showsHorizontalScrollIndicator={false}
             renderItem={({item}) => {
               delayValue = delayValue + 1000;
               const translateX = animatedValueTransform.interpolate({
                 inputRange: [0, 1],
-                outputRange: [delayValue, 1]
-              });              
+                outputRange: [delayValue, 1],
+              });
               return (
-                <Touchable key={item._id} onPress={() => _onPressCategory(item)}>
-                  <Animated.View style={{ transform: [{ translateX }]}}>
+                <Touchable
+                  key={item._id}
+                  onPress={() => _onPressCategory(item)}>
+                  <Animated.View style={{transform: [{translateX}]}}>
                     <HeadCategoryItem itemcat={item} />
                   </Animated.View>
                 </Touchable>
@@ -115,8 +117,8 @@ const Categories = ({items}) => {
                     align={'center'}>
                     All categories
                   </ETASimpleText>
-              </Touchable>
-              )
+                </Touchable>
+              );
             }}
           />
         </>

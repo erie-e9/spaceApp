@@ -6,7 +6,7 @@ const Root = styled.View`
   padding-horizontal: 10px;
 `;
 
-const ETAErrorMessage = ({ children, size }) => {
+const ETAErrorMessage = ({children, size}) => {
   const themeContext = useContext(ThemeContext);
 
   return (
@@ -14,7 +14,7 @@ const ETAErrorMessage = ({ children, size }) => {
       <Root>
         <ETASimpleText
           size={size}
-          weight='500'
+          weight="500"
           color={themeContext.FAIL_COLOR}
           align={'left'}>
           {children}

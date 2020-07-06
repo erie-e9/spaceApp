@@ -1,7 +1,5 @@
-import React, {useContext} from 'react';
-import styled, {ThemeContext} from 'styled-components/native';
-
-let isSubmitting = !true;
+import React from 'react';
+import styled from 'styled-components/native';
 
 const Root = styled.View`
   height: 40px;
@@ -13,12 +11,7 @@ const Root = styled.View`
 `;
 
 const CardBottom = () => {
-  const themeContext = useContext(ThemeContext);
-
-  return (
-    <Root>
-    </Root>
-  );
+  return <Root />;
 };
 
 export default CardBottom;

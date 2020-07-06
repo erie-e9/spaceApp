@@ -8,10 +8,10 @@ import GeneralItemComponent from '@components/Menu/GeneralItemComponent';
 const {width} = Dimensions.get('window');
 
 const Root = styled.View`
-  width: ${ width - 20}px;
+  width: ${width - 20}px;
   justify-content: center;
   align-self: center;
-  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   border-radius: 15px
   padding-vertical: 10px;
   margin-bottom: 12px;
@@ -34,49 +34,48 @@ const Touchable = styled.TouchableOpacity`
   z-index: 100;
 `;
 
-const MenuList = ({ data, title }) => {
+const MenuList = ({data, title}) => {
   const themeContext = useContext(ThemeContext);
   const navigation = useNavigation();
-  const [ items ] = useState(data.slice(0, 2)); //slice: only first 4 items
-  const [ animatedValueTransform ] = useState(new Animated.Value(0));
-  const [ opacity ] = useState(new Animated.Value(0));
+  const [items] = useState(data.slice(0, 2)); //slice: only first 4 items
+  const [animatedValueTransform] = useState(new Animated.Value(0));
+  const [opacity] = useState(new Animated.Value(0));
   let delayValue = 700;
 
   useEffect(() => {
     Animated.spring(animatedValueTransform, {
       toValue: 1,
       tension: 10,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
 
     Animated.timing(opacity, {
       toValue: 1,
       duration: 1500,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
-  }, [])
+  }, []);
 
   const _onPressAllItems = (item) => {
     console.log('_onPressAllItems pressed:', item);
-    
+
     navigation.navigate('AllItemsScreen', {
       screen: 'MenuScreen',
       params: {
         name: item,
-        allitems: data
-      }
+        allitems: data,
+      },
     });
   };
 
   return (
     <>
-    {
-      items.length > 0
-      ? <Root>
+      {items.length > 0 ? (
+        <Root>
           <HeadContainer>
             <ETAHeaderText
               size={14}
-              weight='700'
+              weight="700"
               color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               align={'left'}>
               {title}
@@ -92,25 +91,24 @@ const MenuList = ({ data, title }) => {
             </Touchable>
           </HeadContainer>
           <ListContainer>
-            {
-              items.map((item) => {
-                delayValue = delayValue + 700;
-                const translateY = animatedValueTransform.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [delayValue, 1],
-                  extrapolate: 'clamp'
-                });
-                return (
-                  <Animated.View key={item._id} style={{ opacity, transform: [{ translateY }]}}>
-                    <GeneralItemComponent item={item} />
-                  </Animated.View>
-                );
-              })
-            }
+            {items.map((item) => {
+              delayValue = delayValue + 700;
+              const translateY = animatedValueTransform.interpolate({
+                inputRange: [0, 1],
+                outputRange: [delayValue, 1],
+                extrapolate: 'clamp',
+              });
+              return (
+                <Animated.View
+                  key={item._id}
+                  style={{opacity, transform: [{translateY}]}}>
+                  <GeneralItemComponent item={item} />
+                </Animated.View>
+              );
+            })}
           </ListContainer>
         </Root>
-      : null
-    }
+      ) : null}
     </>
   );
 };

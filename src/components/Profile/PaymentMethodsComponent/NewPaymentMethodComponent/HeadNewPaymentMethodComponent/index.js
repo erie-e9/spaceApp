@@ -1,7 +1,5 @@
-import React, {useEffect, useContext} from 'react';
-import styled, {ThemeContext} from 'styled-components/native';
-import {useRoute} from '@react-navigation/native';
-import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui';
+import React from 'react';
+import styled from 'styled-components/native';
 
 const Root = styled.View`
   flex: 1;
@@ -12,12 +10,7 @@ const Root = styled.View`
 `;
 
 const HeadNewPaymentMethodComponent = () => {
-  
-  return (
-    <Root>
-      
-    </Root>
-  );
+  return <Root />;
 };
 
 export default HeadNewPaymentMethodComponent;

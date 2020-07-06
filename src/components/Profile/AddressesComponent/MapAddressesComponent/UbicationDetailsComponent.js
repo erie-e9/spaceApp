@@ -19,9 +19,9 @@ const Root = styled.View`
   position: absolute;
   padding: 10px 10px;
   bottom: -2px;
-  background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   border-width: 0px;
-  border-color: ${props => props.theme.GRAYFACEBOOK};
+  border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `;
 const InfoContainer = styled.View`
   flex: 1;
@@ -36,13 +36,14 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
   const themeContext = useContext(ThemeContext);
 
   return (
-    <Root style={{
-      shadowColor: '#333',
-      shadowOpacity: 0.5,
-      shadowOffset: { height: 7 },
-      shadowRadius: 2,
-      elevation: 5
-    }}>
+    <Root
+      style={{
+        shadowColor: '#333',
+        shadowOpacity: 0.5,
+        shadowOffset: {height: 7},
+        shadowRadius: 2,
+        elevation: 5,
+      }}>
       <InfoContainer>
         <ETASimpleText
           size={13}
@@ -60,7 +61,7 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
         </ETASimpleText>
       </InfoContainer>
       <ETAButtonOutline
-        title='Set default'
+        title="Set default"
         // onPress={handleSubmit}
         // disabled={isSubmitting ? true : false}
         colorButton={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
@@ -69,7 +70,7 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
         border-radius={3}
       />
       <ETAButtonFilled
-        title='Save'
+        title="Save"
         // onPress={handleSubmit}
         // disabled={isSubmitting ? true : false}
         colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}
@@ -79,6 +80,6 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
       />
     </Root>
   );
-}
+};
 
 export default React.memo(UbicationDetailsComponent);

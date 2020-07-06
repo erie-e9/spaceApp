@@ -28,8 +28,13 @@ const SubHeadAddressesComponent = () => {
     <Root>
       <ContentContainer>
         <ETAButtonFilled
-          title='New address'
-          onPress={() => navigation.navigate('SettingsNavigator', {screen: 'MapAddressesScreen', params: { data: null }})}
+          title="New address"
+          onPress={() =>
+            navigation.navigate('SettingsNavigator', {
+              screen: 'MapAddressesScreen',
+              params: {data: null},
+            })
+          }
           colorButton={themeContext.PRIMARY_COLOR}
           padding={10}
           width={250}
@@ -38,6 +43,6 @@ const SubHeadAddressesComponent = () => {
       </ContentContainer>
     </Root>
   );
-}
+};
 
 export default React.memo(SubHeadAddressesComponent);

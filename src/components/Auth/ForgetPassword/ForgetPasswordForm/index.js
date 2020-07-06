@@ -83,33 +83,35 @@ const ForgetPasswordScreen = () => {
           <FormContainer>
             <ETATextInputOutline
               value={values.cellphone}
-              placeholder='Cellphone'
-              placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              keyboardType='phone-pad'
-              autoCapitalize='none'
+              placeholder="Cellphone"
+              placeholderTextColor={
+                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+              }
+              keyboardType="phone-pad"
+              autoCapitalize="none"
               allowFontScaling={true}
               autoCorrect={true}
               autoFocus={true}
               blurOnSubmit={false}
               caretHidden={false}
-              clearButtonMode='while-editing'
+              clearButtonMode="while-editing"
               contextMenuHidden={false}
               editable={true}
               enablesReturnKeyAutomatically={false}
-              underlineColorAndroid='transparent'
-              keyboardAppearance='dark'
+              underlineColorAndroid="transparent"
+              keyboardAppearance="dark"
               maxLength={10}
               multiline={false}
               numberOfLines={1} //android
-              returnKeyLabel='next' //android
+              returnKeyLabel="next" //android
               secureTextEntry={false} //password
               spellCheck={true}
-              textContentType='none'
-              returnKeyType='next'
+              textContentType="none"
+              returnKeyType="next"
               textsize={14}
               height={40}
               width={240}
-              border-width={0.3}
+              borderWidth={0.3}
               onChangeText={handleChange('cellphone')}
               onBlur={handleBlur('cellphone')}
               selectionColor={themeContext.PRIMARY_COLOR}

@@ -1,6 +1,5 @@
-import React, {useContext} from 'react';
-import {Platform} from 'react-native';
-import styled, {ThemeContext} from 'styled-components/native';
+import React from 'react';
+import styled from 'styled-components/native';
 import QuestionsList from './QuestionsList';
 
 const Root = styled.View`
@@ -12,12 +11,11 @@ const Root = styled.View`
 `;
 
 const FAQSComponent = () => {
-
   return (
     <Root>
       <QuestionsList />
     </Root>
   );
-}
+};
 
 export default React.memo(FAQSComponent);

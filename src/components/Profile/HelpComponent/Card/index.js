@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import {Platform} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {ETASimpleText} from '@etaui';
@@ -20,12 +20,6 @@ const MetadataInfo = styled.View`
   padding-horizontal: 1px;
   background-color: transparent;
 `;
-const MetadaInfoHead = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: transparent;
-`;
 const MessageContainer = styled.View`
   flex-direction: row;
   min-height: 20px;
@@ -34,9 +28,8 @@ const MessageContainer = styled.View`
   background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 
-const HelpCardComponent = ({ headTitle, message }) => {
+const HelpCardComponent = ({message}) => {
   const themeContext = useContext(ThemeContext);
-  const [ switchItem, setswitchItem ] = useState(false);
 
   return (
     <>
@@ -64,6 +57,6 @@ const HelpCardComponent = ({ headTitle, message }) => {
       </Card>
     </>
   );
-}
+};
 
 export default HelpCardComponent;

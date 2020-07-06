@@ -1,19 +1,22 @@
-import React, {useState, useEffect, useContext, cloneElement} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {View, Text} from 'react-native';
 import styled, {ThemeContext} from 'styled-components/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator, CardStyleInterpolators} from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from '@react-navigation/stack';
 import DinamycTabButton from './DinamycTabButton';
-import {Ionicons, FontAwesome, AntDesign, SunIcon, IcecreamIcon, IcecreamIcon2, IcecreamIcon3} from '@icons';
-import { eq, multiply, greaterThan, cond } from 'react-native-reanimated';
-import { withTransition } from 'react-native-redash';
+import {Ionicons} from '@icons';
+// import {eq, multiply, greaterThan, cond} from 'react-native-reanimated';
+// import {withTransition} from 'react-native-redash';
 import {fakeavatar, variables} from '@utils/constants';
 import {MenuNavigator, GetOneItemNavigator} from './MenuNavigator';
 import {ChatNavigator, ChatItemNavigator} from './ChatNavigator';
 import CartNavigator from './CartNavigator';
 import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator';
-import AnalyticsScreen from '@screens/AnalyticsScreen';
-import {ETASearchBar} from '@etaui';
+// import AnalyticsScreen from '@screens/AnalyticsScreen';
+// import {ETASearchBar} from '@etaui';
 import {Context} from '@context/cartContext';
 
 const AvatarContainer = styled.View`
@@ -22,12 +25,11 @@ const AvatarContainer = styled.View`
 `;
 const Avatar = styled.Image``;
 
-const IconWithBadge = ({ name, badgeCount, color, size }) => {
+const IconWithBadge = ({name, badgeCount, color, size}) => {
   const themeContext = useContext(ThemeContext);
-  // console.log('badgeCount:', badgeCount);
 
   return (
-    <View style={{ width: 24, height: 24, margin: 5 }}>
+    <View style={{width: 24, height: 24, margin: 5}}>
       <Ionicons name={name} size={size} color={color} />
       {badgeCount > 0 && (
         <View
@@ -42,38 +44,35 @@ const IconWithBadge = ({ name, badgeCount, color, size }) => {
             height: 16,
             justifyContent: 'center',
             alignItems: 'center',
-            borderWidth: 1, 
+            borderWidth: 1,
             borderColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-          }}
-        >
-          <Text style={{ color: 'white', fontSize: 8, fontWeight: 'bold' }}>
+          }}>
+          <Text style={{color: 'white', fontSize: 8, fontWeight: 'bold'}}>
             {badgeCount}
           </Text>
         </View>
       )}
     </View>
   );
-}
+};
 
 const CartIconWithBadge = (props) => {
   const {getCartItems, state} = useContext(Context);
-  
-  let badgeCountCart = 0
+
+  let badgeCountCart = 0;
   useEffect(() => {
     getCartItems();
   }, []);
-  
+
   badgeCountCart = state.data.length;
 
   return <IconWithBadge {...props} badgeCount={badgeCountCart} />;
-}
+};
 
 const ShopTab = createBottomTabNavigator();
 const ShopTabNavigator = () => {
   const themeContext = useContext(ThemeContext);
-  const [ index, setIndex] = useState(1);
-  const [ activeIcon, setactiveIcon] = useState(0);
-  
+
   return (
     <ShopTab.Navigator
       screenOptions={({route}) => ({
@@ -107,7 +106,7 @@ const ShopTabNavigator = () => {
             //     </View>
             //     <Animated.View style={{ overflow: 'hidden', width }}>
             //       {
-            //         cloneElement(<IcecreamIcon focused={focused} color={focused ? themeContext.PRIMARY_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={size} />, 
+            //         cloneElement(<IcecreamIcon focused={focused} color={focused ? themeContext.PRIMARY_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={size} />,
             //         { active: true })
             //       }
             //     </Animated.View>
@@ -128,25 +127,27 @@ const ShopTabNavigator = () => {
                 size={size}
                 color={color}
               />
-              
+
               // <Animated.View style={{ direction }} onPress={(item) => _activedIcon(item)}>
               //   <View style={StyleSheet.absoluteFill}>
               //     <SunIcon focused={focused} color={focused ? themeContext.PRIMARY_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={size} />
               //   </View>
               //   <Animated.View style={{ overflow: 'hidden', width }}>
               //     {
-              //       cloneElement(<SunIcon onPress={console.warn('ewe')} focused={focused} color={focused ? themeContext.PRIMARY_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={size} />, 
+              //       cloneElement(<SunIcon onPress={console.warn('ewe')} focused={focused} color={focused ? themeContext.PRIMARY_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={size} />,
               //       { active: true })
               //     }
               //   </Animated.View>
               // </Animated.View>
             );
           } else if (route.name === 'ItemGenerator') {
-            return <DinamycTabButton 
-                      focused={focused} 
-                      size={size} 
-                      onPress={() => null}
-                    />
+            return (
+              <DinamycTabButton
+                focused={focused}
+                size={size}
+                onPress={() => null}
+              />
+            );
           } else if (route.name === 'Cart') {
             return (
               <CartIconWithBadge
@@ -165,13 +166,13 @@ const ShopTabNavigator = () => {
             );
           } else if (route.name === 'Profile') {
             return (
-              <AvatarContainer 
+              <AvatarContainer
                 style={{
                   height: size + 1.5,
                   width: size + 1.5,
                   borderRadius: size / 2,
                   backgroundColor: color,
-                  padding: 2
+                  padding: 2,
                 }}>
                 <Avatar
                   style={{
@@ -181,8 +182,8 @@ const ShopTabNavigator = () => {
                   }}
                   source={{
                     uri: fakeavatar
-                    ? fakeavatar
-                    : variables.AVATAR_USER_DEFAULT,
+                      ? fakeavatar
+                      : variables.AVATAR_USER_DEFAULT,
                   }}
                 />
               </AvatarContainer>
@@ -203,13 +204,13 @@ const ShopTabNavigator = () => {
         },
       }}>
       {/* <ShopTab.Screen name='Analytics' component={AnalyticsScreen} /> */}
-      <ShopTab.Screen name='Menu' component={MenuNavigator} />
+      <ShopTab.Screen name="Menu" component={MenuNavigator} />
       {/* <ShopTab.Screen name='Orders' component={OrdersScreen} /> */}
-      <ShopTab.Screen name='Chats' component={ChatNavigator} />
-      <ShopTab.Screen name='ItemGenerator' component={() => null} />
-      <ShopTab.Screen name='Cart' component={CartNavigator} />
+      <ShopTab.Screen name="Chats" component={ChatNavigator} />
+      <ShopTab.Screen name="ItemGenerator" component={() => null} />
+      <ShopTab.Screen name="Cart" component={CartNavigator} />
       {/* <ShopTab.Screen name='Favs' component={FavsScreen} /> */}
-      <ShopTab.Screen name='Profile' component={ProfileNavigator} />
+      <ShopTab.Screen name="Profile" component={ProfileNavigator} />
     </ShopTab.Navigator>
   );
 };
@@ -223,24 +224,30 @@ const ShopNavigator = () => {
         headerTransparent: !true,
         headerShown: !true,
       }}>
-      <Stack.Screen name='ShopTabNavigator' component={ShopTabNavigator} />
-      <Stack.Screen name='GetOneItemNavigator' component={GetOneItemNavigator} 
+      <Stack.Screen name="ShopTabNavigator" component={ShopTabNavigator} />
+      <Stack.Screen
+        name="GetOneItemNavigator"
+        component={GetOneItemNavigator}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
         }}
       />
-      <Stack.Screen name='ChatItemNavigator' component={ChatItemNavigator} 
+      <Stack.Screen
+        name="ChatItemNavigator"
+        component={ChatItemNavigator}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       />
-      <Stack.Screen name='SettingsNavigator' component={SettingsNavigator} 
+      <Stack.Screen
+        name="SettingsNavigator"
+        component={SettingsNavigator}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       />
     </Stack.Navigator>
   );
-}
+};
 
 export default ShopNavigator;

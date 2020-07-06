@@ -13,8 +13,8 @@ const Root = styled.View`
   min-width: 100%;
   max-width: 100%;
   background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-  `;
-  // background-color: transparent;
+`;
+// background-color: transparent;
 const ContactContainer = styled.View`
   flex-direction: column;
   min-height: 70px;
@@ -29,15 +29,14 @@ const AvatarContainer = styled.View`
 `;
 
 const ChatCard = ({text, employee, createdAt}) => {
-
   return (
     <Root>
       <AvatarContainer>
-        <ETAAvatar image={employee.avatar} size='middle' />
+        <ETAAvatar image={employee.avatar} size="middle" />
       </AvatarContainer>
       <ContactContainer>
         <CardHeader {...employee} createdAt={createdAt} />
-        <CardBody text={text}/>
+        <CardBody text={text} />
       </ContactContainer>
     </Root>
   );

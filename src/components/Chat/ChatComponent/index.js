@@ -13,29 +13,29 @@ const Touchable = styled.TouchableOpacity``;
 
 const ChatComponent = ({data}) => {
   const navigation = useNavigation();
-  const [chats, setchats] = useState([])
-  const [refresher, setrefresher] = useState(!true)
-  
+  const [chats, setchats] = useState([]);
+  const [refresher, setrefresher] = useState(!true);
+
   const _onPress = (item) => {
     navigation.navigate('ChatItemNavigator', {
       screen: 'ChatItemScreen',
       params: {
-        item: item
-      }
+        item: item,
+      },
     });
   };
 
   useEffect(() => {
-    setchats(data.getChats)
-    _getData()
-  }, [])
-  
+    setchats(data.getChats);
+    _getData();
+  }, []);
+
   const _getData = () => {
     // console.log('getting data...', data.getChats);
-    setrefresher(true)
-    setchats(data.getChats)
-    setrefresher(!true)
-  }
+    setrefresher(true);
+    setchats(data.getChats);
+    setrefresher(!true);
+  };
 
   return (
     <Root>

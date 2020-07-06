@@ -47,22 +47,20 @@ const CategoryItem = ({itemcat}) => {
         align={'center'}>
         {itemcat.name}
       </ETASimpleText>
-      {
-        itemcat.isNew
-        ?  <NewContainer>
-            <ETASimpleText
-              size={8}
-              weight={Platform.OS === 'ios' ? '400' : '200'}
-              // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-              color='white'
-              align={'center'}>
-              new
-            </ETASimpleText>
-          </NewContainer>
-        : null
-      }
+      {itemcat.isNew ? (
+        <NewContainer>
+          <ETASimpleText
+            size={8}
+            weight={Platform.OS === 'ios' ? '400' : '200'}
+            // color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+            color="white"
+            align={'center'}>
+            new
+          </ETASimpleText>
+        </NewContainer>
+      ) : null}
     </>
   );
-}
+};
 
 export default React.memo(CategoryItem);

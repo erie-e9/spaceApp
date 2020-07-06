@@ -1,8 +1,9 @@
-import React, { useLayoutEffect, useContext } from 'react';
+import React, {useLayoutEffect, useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
+import {Platform} from 'react-native';
 import ChatItemComponent from '@components/Chat/ChatItemComponent';
 import {ETASimpleText, ETAAvatar} from '@etaui';
-import { truncateString } from '@functions';
+import {truncateString} from '@functions';
 
 const Root = styled.View`
   flex: 1;
@@ -27,44 +28,41 @@ const AvatarContainer = styled.View`
   align-items: center;
 `;
 
-const ChatItemScreen = ({ navigation, route }) => {
-  const { item } = route.params;
+const ChatItemScreen = ({navigation, route}) => {
+  const {item} = route.params;
   const themeContext = useContext(ThemeContext);
   var fullname = `${item.employee.firstname} ${item.employee.lastname}`;
-  
+
   useLayoutEffect(() => {
-    navigation.setOptions({ headerTitle: () => (
-      <HeaderContainer>
-        <AvatarContainer>
-          <ETAAvatar image={item.employee.avatar} size='small' />
-        </AvatarContainer>
-        <NameContainer>
-          <ETASimpleText
-            size={15}
-            weight={Platform.OS === 'ios' ? '500' : '400'}
-            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-            align={'left'}>
-            {
-              truncateString(fullname, 40)
-            }
-          </ETASimpleText>
-          <Touchable>
+    navigation.setOptions({
+      headerTitle: () => (
+        <HeaderContainer>
+          <AvatarContainer>
+            <ETAAvatar image={item.employee.avatar} size="small" />
+          </AvatarContainer>
+          <NameContainer>
             <ETASimpleText
-              size={12}
-              weight={Platform.OS === 'ios' ? '400' : '300'}
-              color={themeContext.LINK}
+              size={15}
+              weight={Platform.OS === 'ios' ? '500' : '400'}
+              color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               align={'left'}>
-              @
-              {
-                truncateString(item.employee.username, 30)
-              }
+              {truncateString(fullname, 40)}
             </ETASimpleText>
-          </Touchable>
-        </NameContainer>
-      </HeaderContainer>
-    )});
-  }, [ navigation, route ]);
-  
+            <Touchable>
+              <ETASimpleText
+                size={12}
+                weight={Platform.OS === 'ios' ? '400' : '300'}
+                color={themeContext.LINK}
+                align={'left'}>
+                @{truncateString(item.employee.username, 30)}
+              </ETASimpleText>
+            </Touchable>
+          </NameContainer>
+        </HeaderContainer>
+      ),
+    });
+  }, [navigation, route]);
+
   return (
     <Root>
       <ChatItemComponent />

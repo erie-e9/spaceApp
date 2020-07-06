@@ -25,7 +25,7 @@ const Input = styled.TextInput.attrs({
 })`
   height: 40%;
   width: 100%;
-  fontSize: 18;
+  font-size: 18;
   color: #333;
 `;
 const CreateOrderButton = styled.TouchableWithoutFeedback`
@@ -41,20 +41,18 @@ const CreateOrderButton = styled.TouchableWithoutFeedback`
 `;
 const CreateOrderText = styled.Text`
   color: ${(props) => props.theme.WHITE};
-  fontSize: 16;
+  font-size: 16;
 `;
 const TextLenght = styled.Text`
   color: ${(props) => props.theme.PRIMARY100};
-  fontSize: 16;
+  font-size: 16;
   position: absolute;
   top: 55%;
   right: 5%;
 `;
 
 const NewOrderScreen = () => {
-  const [text, settext] = useState('');
-
-  // const _onChangeText = (text) => settext(text);
+  const [text] = useState('');
 
   const _onCreateOrderPress = async () => {
     const {clients} = this.props;

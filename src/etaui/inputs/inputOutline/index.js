@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import styled, {ThemeContext} from 'styled-components/native';
 
 const TextInputContainer = styled.View`
-  height: ${props => props.height ? props.height : 0.3}px;
-  width: ${props => props.width ? props.width : 0.3}px;
+  height: ${(props) => (props.height ? props.height : 0.3)}px;
+  width: ${(props) => (props.width ? props.width : 0.3)}px;
   border-radius: 30px;
   margin-vertical: 5px;
   margin-horizontal: 5px;
@@ -13,15 +13,15 @@ const TextInputContainer = styled.View`
   align-items: center;
   align-self: center;
   align-content: center;
-  border-width: ${props => props.border-width}px;
+  border-width: ${(props) => props.borderWidth - props.width}px;
   border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
   border-radius: 3px;
   background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `;
 const TextInput = styled.TextInput.attrs({})`
   height: ${(props) => (props.height ? props.height : 40)}px;
-  width: ${(props) => (props.width ? props.width: 300)}px;
-  fontSize: ${(props) => (props.textsize ? props.textsize : 14)}px;
+  width: ${(props) => (props.width ? props.width : 300)}px;
+  font-size: ${(props) => (props.textsize ? props.textsize : 14)}px;
   color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
   justify-content: center;
   align-items: center;
@@ -67,7 +67,10 @@ const ETATextInputOutLine = ({
 
   return (
     <>
-      <TextInputContainer height={height} width={width} border-width={borderWidth}>
+      <TextInputContainer
+        height={height}
+        width={width}
+        borderWidth={borderWidth}>
         <TextInput
           value={value}
           placeholder={placeholder}
