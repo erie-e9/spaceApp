@@ -1,22 +1,22 @@
-import React, {Fragment} from 'react';
-import {UIManager, SafeAreaView, useColorScheme} from 'react-native';
-import {ThemeProvider} from 'styled-components';
-import {NavigationContainer} from '@react-navigation/native';
-import Navigation from '@components/commons/Navigation';
-import {Provider as AuthProvider} from '@context';
-import {Provider as CartProvider} from '@context/cartContext';
-import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants';
-import {enableScreens} from 'react-native-screens';
+import React, {Fragment} from 'react'
+import {UIManager, SafeAreaView, useColorScheme} from 'react-native'
+import {ThemeProvider} from 'styled-components'
+import {NavigationContainer} from '@react-navigation/native'
+import Navigation from '@components/commons/Navigation'
+import {Provider as AuthProvider} from '@context'
+import {Provider as CartProvider} from '@context/cartContext'
+import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants'
+import {enableScreens} from 'react-native-screens'
 
-enableScreens();
+enableScreens()
 
 if (UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
+  UIManager.setLayoutAnimationEnabledExperimental(true)
 }
 
 const App: () => React$Node = () => {
-  const colorSchema = useColorScheme();
-  console.disableYellowBox = true;
+  const colorSchema = useColorScheme()
+  console.disableYellowBox = true
   return (
     <Fragment>
       <SafeAreaView
@@ -48,7 +48,7 @@ const App: () => React$Node = () => {
         </ThemeProvider>
       </SafeAreaView>
     </Fragment>
-  );
-};
+  )
+}
 
-export default App;
+export default App

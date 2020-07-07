@@ -107,8 +107,8 @@ const ShopTabNavigator = () => {
 							: 'ios-analytics'
 					} else if (route.name === 'Menu') {
 						iconName = focused
-							? 'ios-keypad'
-							: 'ios-keypad'
+							? 'apps'
+							: 'apps'
 						// return (
 						//   <Animated.View style={{ direction }} >
 						//     <View style={StyleSheet.absoluteFill}>
@@ -142,7 +142,7 @@ const ShopTabNavigator = () => {
 										? 'ios-chatbubbles'
 										: 'ios-chatbubbles'
 								}
-								size={size}
+								size={size - 2}
 								color={color}
 							/>
 
@@ -174,7 +174,7 @@ const ShopTabNavigator = () => {
 										? 'ios-cart'
 										: 'ios-cart'
 								}
-								size={size}
+								size={size + 1}
 								color={color}
 							/>
 						)
@@ -220,7 +220,7 @@ const ShopTabNavigator = () => {
 					return (
 						<Ionicons
 							name={iconName}
-							size={size}
+							size={size - 3}
 							color={color}
 						/>
 					)

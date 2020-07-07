@@ -255,7 +255,7 @@ const GeneralItemComponent = ({item}) => {
 									name={
 										item.isFavorite
 											? 'md-heart'
-											: 'md-heart-empty'
+											: 'md-heart-outline'
 									}
 									size={20}
 									color={

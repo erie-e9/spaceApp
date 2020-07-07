@@ -188,7 +188,7 @@ const ProfileContentComponent = () => {
           <Metadata>
             <Touchable onPress={() => navigation.navigate('SettingsNavigator', {screen: 'FavoritesScreen'})}>
               <Ionicons
-                name='md-heart-empty'
+                name='md-heart-outline'
                 size={iconSize - 5}
                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
               />

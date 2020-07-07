@@ -58,10 +58,10 @@ const SigninForm = () => {
 					password: '1234567890',
 				}}
 				onSubmit={(values, actions) => {
-					// signIn({
-					// 	cellphone: values.cellphone,
-					// 	password: values.password,
-					// })
+					signIn({
+						cellphone: values.cellphone,
+						password: values.password,
+					})
 					setTimeout(() => {
 						actions.setSubmitting(false)
 						AsyncStorage.getItem(

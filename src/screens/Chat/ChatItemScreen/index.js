@@ -7,11 +7,12 @@ import {truncateString} from '@functions'
 
 const Root = styled.View`
 	flex: 1;
+	background-color: green;
 `
 const HeaderContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: stretch;
 	background-color: transparent;
 `

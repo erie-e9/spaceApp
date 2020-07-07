@@ -4,6 +4,7 @@ import {Platform} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import {FontAwesome} from '@icons'
+import Loader from '@commons/Loader'
 
 const SearchBox = styled.View`
 	position: absolute;
@@ -19,11 +20,11 @@ const SearchBox = styled.View`
 	elevation: 1;
 `
 const HeaderLeft = styled.TouchableOpacity`
-	margin-left: 15px;
+	margin-left: 17px;
 	margin-top: 10px;
 `
 const HeaderRight = styled.TouchableOpacity`
-	margin-right: 15px;
+	margin-right: 17px;
 	margin-top: 10px;
 `
 
@@ -51,10 +52,13 @@ const SearchBoxComponent = ({currentPosition}) => {
 				/>
 			</HeaderLeft>
 			<GooglePlacesAutocomplete
-				placeholder='Search address'
+        placeholder='Search address'
+        placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 				minLength={2} // minimum length of text to search
 				autoFocus={false}
-				fetchDetails
+        fetchDetails
+        loader={() => <Loader />}
+        enablePoweredByContainer={false}
 				onPress={(data, details = null) => {
 					// 'details' is provided when fetchDetails = true
 					console.log(data)
@@ -71,15 +75,20 @@ const SearchBoxComponent = ({currentPosition}) => {
 				}}
 				styles={{
 					description: {
-						fontWeight: 'bold',
+            fontWeight: '600',
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
 					},
 					textInputContainer: {
-						backgroundColor: 'rgba(0,0,0,0)',
-						borderTopWidth: 0,
+            borderTopWidth: 0,
 						borderBottomWidth: 0,
-					},
+						backgroundColor: themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
+          },
+          textInput: {
+            backgroundColor: themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
+            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+          },
 					predefinedPlacesDescription: {
-						color: '#1faadb',
+						color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
 					},
 				}}
 				currentLocation // Will add a 'Current location' button at the top of the predefined places list

@@ -14,7 +14,6 @@ const Root = styled.View`
 	max-width: 100%;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-// background-color: transparent;
 const ContactContainer = styled.View`
 	flex-direction: column;
 	min-height: 70px;

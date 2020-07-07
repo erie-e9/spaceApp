@@ -25,7 +25,7 @@ const Navigation = () => {
 	return (
 		<>
 			<StatusBar
-				background-color={
+				backgroundColor={
 					colorSchema === 'dark'
 						? darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR
 						: lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR
