@@ -1,11 +1,11 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
-import AsyncStorage from '@react-native-community/async-storage'
 import {Formik} from 'formik'
 import * as yup from 'yup'
 import {Entypo} from '@icons'
 import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
-import {Context} from '@context'
+import { connect } from 'react-redux'
+import { GET_ALL_USER_INFO_REQUEST } from '@models/user/actions'
 
 const FormContainer = styled.View`
 	flex: 1;
@@ -38,9 +38,26 @@ const validationSchema = yup.object().shape({
 		.uppercase(),
 })
 
-const SigninForm = () => {
+const mapStateToProps = (state, props) => {
+  const { cellphone, password } = state.user;
+
+  return { cellphone, password }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getAllUserInfoUser: ({cellphone, password}) => {
+		dispatch({
+		type: GET_ALL_USER_INFO_REQUEST,
+		payload: {
+			cellphone: cellphone,
+			password: password,
+		}
+		})
+  }  
+})
+
+const SigninForm = ({ cellphone, password, getAllUserInfoUser }) => {
 	const themeContext = useContext(ThemeContext)
-	const {signIn} = useContext(Context)
 	const [toogleEye, settoogleEye] = useState(true)
 	const [mysecureTextEntry, mysetSecureTextEntry] = useState(true)
 
@@ -58,21 +75,13 @@ const SigninForm = () => {
 					password: '1234567890',
 				}}
 				onSubmit={(values, actions) => {
-					signIn({
+					getAllUserInfoUser({
 						cellphone: values.cellphone,
 						password: values.password,
 					})
+					
 					setTimeout(() => {
 						actions.setSubmitting(false)
-						AsyncStorage.getItem(
-							'@userToken',
-							(err, result) => {
-								console.log(
-									'@userToken: ',
-									result,
-								)
-							},
-						)
 					}, 3000)
 				}}
 				validationSchema={validationSchema}>
@@ -227,4 +236,9 @@ const SigninForm = () => {
 	)
 }
 
-export default SigninForm
+const SignConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+  )(SigninForm)
+
+export default SignConnect

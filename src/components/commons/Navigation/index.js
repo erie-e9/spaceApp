@@ -2,25 +2,25 @@ import React, {useEffect, useContext} from 'react'
 import {StatusBar, useColorScheme} from 'react-native'
 // import AsyncStorage from '@react-native-community/async-storage';
 import {ETANetInfo} from '@etaui'
-import {Context} from '@context'
+// import {Context} from '@context'
 import SplashScreen from '@components/commons/SplashScreen'
 import {lightTheme, darkTheme} from '@utils/constants'
 import SigninStackScreen from './SigninStack'
 import ShopTabNavigator from './ShopTabNavigator'
+import { connect } from 'react-redux'
 
-const Navigation = () => {
-	const {restoreToken, state} = useContext(Context)
+const mapStateToProps = (state, props) => {
+	const { userToken } = state.user;
+  
+	return { userToken }
+}
+
+const Navigation = ({userToken}) => {
 	const colorSchema = useColorScheme()
 
-	useEffect(() => {
-		setTimeout(() => {
-			restoreToken()
-		}, 2000)
-	}, [])
-
-	if (state.isLoading) {
-		return <SplashScreen />
-	}
+	// if (state.isLoading) {
+	// 	return <SplashScreen />
+	// }
 
 	return (
 		<>
@@ -38,7 +38,7 @@ const Navigation = () => {
 				hidden={false}
 			/>
 			<ETANetInfo />
-			{state.userToken !== null ? (
+			{userToken !== null ? (
 				<ShopTabNavigator />
 			) : (
 				<SigninStackScreen />
@@ -47,4 +47,8 @@ const Navigation = () => {
 	)
 }
 
-export default Navigation
+const NavigationConnect = connect(
+	mapStateToProps
+  )(Navigation)
+  
+export default NavigationConnect

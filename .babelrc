@@ -14,7 +14,8 @@
           "@graphql": "./src/graphql",
           "@assets": "./assets",
           "@context": "./src/context",
-          "@icons": "./src/components/commons/Icons"
+          "@icons": "./src/components/commons/Icons",
+          "@models": "./src/models"
         }
       }
     ]
