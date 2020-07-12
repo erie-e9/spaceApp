@@ -20,10 +20,10 @@ const ETANetInfo = () => {
 	useEffect(() => {
 		const unsubscribe = NetInfo.addEventListener((state) => {
 			setisInternetReachable(state.isInternetReachable)
-			console.log(
-				'isInternetReachable: ',
-				state.isInternetReachable,
-			)
+			// console.log(
+			// 	'isInternetReachable: ',
+			// 	state.isInternetReachable,
+			// )
 		})
 
 		return () => {

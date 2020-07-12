@@ -3,12 +3,10 @@ import {UIManager, SafeAreaView, useColorScheme} from 'react-native'
 import {ThemeProvider} from 'styled-components'
 import {NavigationContainer} from '@react-navigation/native'
 import Navigation from '@components/commons/Navigation'
-import {Provider as AuthProvider} from '@context'
-import {Provider as CartProvider} from '@context/cartContext'
 import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants'
 import {enableScreens} from 'react-native-screens'
-import { store } from './store'
 import { Provider as ReduxProvider } from 'react-redux'
+import { store } from './src/store'
 
 enableScreens()
 
@@ -39,16 +37,12 @@ const App = () => {
               : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR,
         }}>
         <ThemeProvider theme={colorSchema === 'dark' ? darkTheme : lightTheme}>
-          <AuthProvider>
-            <ReduxProvider store={store}>
-              <CartProvider>
-                <NavigationContainer
-                  theme={colorSchema === 'dark' ? navDarkMode : navLightMode}>
-                  <Navigation />
-                </NavigationContainer>
-              </CartProvider>
-            </ReduxProvider>
-          </AuthProvider>
+          <ReduxProvider store={store}>
+            <NavigationContainer
+              theme={colorSchema === 'dark' ? navDarkMode : navLightMode}>
+              <Navigation />
+            </NavigationContainer>
+          </ReduxProvider>
         </ThemeProvider>
       </SafeAreaView>
     </Fragment>

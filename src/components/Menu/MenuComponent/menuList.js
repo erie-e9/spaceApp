@@ -57,8 +57,6 @@ const MenuList = ({data, title}) => {
 	}, [])
 
 	const _onPressAllItems = (item) => {
-		console.log('_onPressAllItems pressed:', item)
-
 		navigation.navigate('AllItemsScreen', {
 			screen: 'MenuScreen',
 			params: {

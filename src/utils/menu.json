@@ -1,21 +1,174 @@
 {
 	"menu1": [
 		{
-			"_id": 1,
-			"name": "Banana Split Dazzler",
-			"details": "Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge  ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.",
+            "_id": 23041,
+            "name": "Banana Split Dazzler",
+            "details": "Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge  ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 60,
+            "calories": 143,
+            "weight": 143,
+            "isFavorite": false,
+			"status": "new",
+			"glutten": false,
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-BSDDazzler_Olo_0.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item1.webp"
+                }
+            ]
+        },
+        {
+            "_id": 21587,
+            "name": "Cookies & Cream Dazzler",
+            "details": "Cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and cookie crunch. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 101,
+            "discount": 0,
+            "calories": 143,
+            "weight": 143,
+            "isFavorite": true,
+			"status": "",
+			"glutten": false,
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-cookies-n-cream.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item2.webp"
+                }
+            ]
+        },
+        {
+            "_id": 41362,
+            "name": "Dulce de Leche Dazzler",
+            "details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 143,
+            "discount": 12,
+            "calories": 143,
+            "weight": 143,
+            "isFavorite": false,
+			"status": "new",
+			"glutten": false,
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-dulce-de-leche.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item3.webp"
+                }
+            ]
+        },
+        {
+            "_id": 26896,
+            "name": "Midnight Cookies & Cream Dazzler",
+            "details": "Midnight cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and hot fudge. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 193,
+            "discount": 15,
+            "calories": 143,
+            "weight": 143,
+            "isFavorite": true,
+			"status": "",
+			"glutten": false,
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-midnight-cookies-n-cream.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item4.webp"
+                }
+            ]
+        },
+        {
+            "_id": 2449,
+            "name": "Mint Chip Dazzler",
+            "details": "Mint chip ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate sprinkles. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 93,
+            "discount": 0,
+            "calories": 143,
+            "weight": 143,
+            "isFavorite": true,
+			"status": "",
+			"glutten": false,
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-mint-chip%20%281%29.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item4.webp"
+                }
+            ]
+        },
+        {
+            "_id": 5800,
+            "name": "Rocky Road Dazzler",
+            "details": "Rocky road ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate cookie crunch. Served with toppings.",
+            "rating": 5,
+            "link": "",
+            "icon": "",
+            "price": 123,
+            "discount": 2,
+            "calories": 143,
+            "weight": 143,
+            "isFavorite": false,
+			"status": "new",
+			"glutten": false,
+            "images": [
+                {
+                    "image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png"
+                }
+            ],
+            "imageWebps": [
+                {
+                    "imageWeb": "item6.webp"
+                }
+            ]
+        }
+	],
+	"menu2": [
+		{
+			"_id": 1455,
+			"name": "Peppermint Bark Ice Cream Bar",
+			"details": "Our peppermint bark ice cream bars start with decadent white chocolate ice cream, dipped in thick, dark chocolate, then speckled with cool peppermint candy pieces.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
 			"price": 123,
 			"discount": 60,
-			"calories": 143,
+			"calories": 280,
 			"weight": 143,
 			"isFavorite": false,
-			"isNew": false,
+			"status": "new",
+			"glutten": false,
 			"images": [
 				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-BSDDazzler_Olo_0.png"
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-peppermintbarkbar.jpg"
 				}
 			],
 			"imageWebps": [
@@ -25,9 +178,34 @@
 			]
 		},
 		{
-			"_id": 2,
-			"name": "Cookies & Cream Dazzler",
-			"details": "Cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and cookie crunch. Served with toppings.",
+			"_id": 27361,
+			"name": "Ruby Cacao Ice Cream Bar",
+			"details": "Indulge in the decadent crunch of a ruby cacao shell and our creamy sweet cream ice cream, for a sensorial experience of luscious smoothness with berry fruity notes.",
+			"rating": 5,
+			"link": "",
+			"icon": "",
+			"price": 123,
+			"discount": 2,
+			"calories": 143,
+			"weight": 143,
+			"isFavorite": false,
+			"status": "limited edition",
+			"glutten": true,
+			"images": [
+				{
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/HD_rubyBar_PDP.png"
+				}
+			],
+			"imageWebps": [
+				{
+					"imageWeb": "item6.webp"
+				}
+			]
+		},
+		{
+			"_id": 99793,
+			"name": "Caramel Cone Ice Cream Bar",
+			"details": "Your favorite Caramel Pizzelle Bar, renamed. Golden ribbons of caramel in creamy vanilla gelato, enrobed in rich milk chocolate and crunchy italian style cone pieces.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -36,10 +214,11 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"isNew": true,
+			"status": "new name",
+			"glutten": true,
 			"images": [
 				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-cookies-n-cream.png"
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-vanilla-caramel-pizzelle-bar.jpg"
 				}
 			],
 			"imageWebps": [
@@ -49,9 +228,9 @@
 			]
 		},
 		{
-			"_id": 3,
-			"name": "Dulce de Leche Dazzler",
-			"details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings.",
+			"_id": 57082,
+			"name": "Chocolate Dark Chocolate Ice Cream Bar",
+			"details": "Between the classic rich and creamy chocolate ice cream inside, and the thick and crunchy dark chocolate coating finely drizzled on the outside, this is a chocolate connoisseur's delight.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -60,10 +239,11 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"isNew": false,
+			"status": "",
+			"glutten": true,
 			"images": [
 				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-dulce-de-leche.png"
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-chocolatedarkchocolatebar.jpg"
 				}
 			],
 			"imageWebps": [
@@ -73,9 +253,9 @@
 			]
 		},
 		{
-			"_id": 4,
-			"name": "Midnight Cookies & Cream Dazzler",
-			"details": "Midnight cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and hot fudge. Served with toppings.",
+			"_id": 92739,
+			"name": "Irish Cream Cookie Squares",
+			"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate. *Contains Less Than 0.5% Alcohol by Volume.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -84,10 +264,11 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"isNew": true,
+			"status": "",
+			"glutten": false,
 			"images": [
 				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-midnight-cookies-n-cream.png"
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-IrishCreamCookieSquare.png"
 				}
 			],
 			"imageWebps": [
@@ -97,33 +278,9 @@
 			]
 		},
 		{
-			"_id": 5,
-			"name": "Mint Chip Dazzler",
-			"details": "Mint chip ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate sprinkles. Served with toppings.",
-			"rating": 5,
-			"link": "",
-			"icon": "",
-			"price": 93,
-			"discount": 0,
-			"calories": 143,
-			"weight": 143,
-			"isFavorite": true,
-			"isNew": true,
-			"images": [
-				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-mint-chip%20%281%29.png"
-				}
-			],
-			"imageWebps": [
-				{
-					"imageWeb": "item4.webp"
-				}
-			]
-		},
-		{
-			"_id": 6,
-			"name": "Rocky Road Dazzler",
-			"details": "Rocky road ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate cookie crunch. Served with toppings.",
+			"_id": 75846,
+			"name": "Peppermint Bark Ice Cream Bar",
+			"details": "Our peppermint bark ice cream bars start with decadent white chocolate ice cream, dipped in thick, dark chocolate, then speckled with cool peppermint candy pieces.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -132,10 +289,11 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"isNew": false,
+			"status": "limited edition",
+			"glutten": true,
 			"images": [
 				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png"
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-peppermintbarkbar.jpg"
 				}
 			],
 			"imageWebps": [
@@ -145,10 +303,9 @@
 			]
 		}
 	],
-	"menu2": [],
 	"menu3": [
 		{
-			"_id": 7,
+			"_id": 7141,
 			"name": "Belgian Chocolate Shake",
 			"details": "Belgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.",
 			"rating": 5,
@@ -159,7 +316,8 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"isNew": false,
+			"status": "new name",
+			"glutten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-belgian-chocolate.png"
@@ -172,7 +330,7 @@
 			]
 		},
 		{
-			"_id": 8,
+			"_id": 97449,
 			"name": "Cookies and Cream Shake",
 			"details": "Pieces of crunchy chocolate cookies in vanilla ice cream blended and topped with whipped cream and cookie crunch. Served with toppings.",
 			"rating": 5,
@@ -183,7 +341,8 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"isNew": true,
+			"status": "new",
+			"glutten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-cookiesncream.png"
@@ -196,7 +355,7 @@
 			]
 		},
 		{
-			"_id": 9,
+			"_id": 37519,
 			"name": "Dulce de Leche Shake",
 			"details": "Sweet caramel ice cream blended and topped with whipped cream and warm caramel. Served with toppings.",
 			"rating": 5,
@@ -207,7 +366,8 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"isNew": false,
+			"status": "new name",
+			"glutten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-dulcedeleche.png"
@@ -222,7 +382,7 @@
 	],
 	"menu4": [
 		{
-			"_id": 10,
+			"_id": 81480,
 			"name": "Coffee Frappes",
 			"details": "Chilled beverage blending coffee ice cream with ice, milk, espresso and syrup. Finished with a chocolate or caramel drizzle. Available in Coffee, Dulce and Mocha.",
 			"rating": 5,
@@ -233,7 +393,8 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"isNew": true,
+			"status": "new",
+			"glutten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Coffee-Frapee-.png"
@@ -246,7 +407,7 @@
 			]
 		},
 		{
-			"_id": 11,
+			"_id": 24875,
 			"name": "Aloha Mango",
 			"details": "Peaches and banana with mango sorbet and pineapple juice and vanilla yogurt.",
 			"rating": 5,
@@ -257,7 +418,8 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"isNew": true,
+			"status": "new",
+			"glutten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Smoothies.png"
@@ -272,7 +434,7 @@
 	],
 	"menu5": [
 		{
-			"_id": 12,
+			"_id": 87633,
 			"name": "Brownie Cookie Sandwiches",
 			"details": "Brownie Cookies perfectly paired with the ice cream and topping of your choosing.",
 			"rating": 5,
@@ -283,7 +445,8 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"isNew": false,
+			"status": "new name",
+			"glutten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Brownie-Cookie-Ice-Cream-Sandwich.png"
@@ -292,6 +455,31 @@
 			"imageWebps": [
 				{
 					"imageWeb": "item12.webp"
+				}
+			]
+		},
+		{
+			"_id": 53209,
+			"name": "Irish Cream Cookie Squares",
+			"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate.",
+			"rating": 5,
+			"link": "",
+			"icon": "",
+			"price": 144,
+			"discount": 20,
+			"calories": 143,
+			"weight": 193,
+			"isFavorite": false,
+			"status": "new",
+			"glutten": false,
+			"images": [
+				{
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-IrishCreamCookieSquare.png"
+				}
+			],
+			"imageWebps": [
+				{
+					"imageWeb": "item13.webp"
 				}
 			]
 		}

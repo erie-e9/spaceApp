@@ -320,7 +320,7 @@ export const lightTheme = {
   THIRD_TEXT_COLOR_LIGHT: 'rgba(169, 169, 169, 1)',
 
   PRIMARY_TEXT_BACKGROUND_COLOR: '#FFFFFF',
-  SECONDARY_TEXT_BACKGROUND_COLOR: '#3D3D3D',
+  SECONDARY_TEXT_BACKGROUND_COLOR: '#333333',
   MAPSTYLE: [
     {
       elementType: 'geometry',

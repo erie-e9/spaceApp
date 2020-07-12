@@ -9,9 +9,10 @@ import {
 	Feather,
 	Octicons,
 } from '@icons'
-import {Context} from '@context'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
+import { connect } from 'react-redux'
+import { LOGOUT } from '@redux/user/actions'
 
 const iconSize = 23
 
@@ -58,13 +59,25 @@ const IconContainer = styled.View`
 	background-color: transparent;
 `
 
-const ProfileContentComponent = () => {
+const mapStateToProps = () => {
+	return {}	
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	logoutUser: () => {
+		dispatch({
+			type: LOGOUT,
+			payload: {}
+		})
+	}
+})
+
+const ProfileContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const {logOut} = useContext(Context)
 
 	const logout = () => {
-		logOut()
+		logoutUser()
 	}
 
 	return (
@@ -429,4 +442,9 @@ const ProfileContentComponent = () => {
 	)
 }
 
-export default ProfileContentComponent
+const ProfileContentComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(ProfileContentComponent)
+
+export default ProfileContentComponentConnect

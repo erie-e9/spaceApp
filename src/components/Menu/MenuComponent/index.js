@@ -1,11 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform, Animated, ScrollView, Dimensions} from 'react-native'
-import {ETACarousel} from '@etaui'
-import carouselData from '@utils/carouselData.json'
 import MenuList from './menuList'
 import HeadCategoryList from './HeadCategoryList'
 import PromoBannerComponent from './PromoBannerComponent'
+import { connect } from 'react-redux'
+import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/actions'
+import CarouselComponent from './CarouselComponent'
 
 const HEADER_MIN_HEIGHT = 90
 const HEADER_MAX_HEIGHT = 90
@@ -16,19 +17,31 @@ const Root = styled.View`
 	align-items: center;
 	background-color: transparent;
 `
-const HeaderContainer = styled.View`
-	flex: 1;
-	justify-content: center;
-	margin: -1px 0px 0px 0px;
-`
 
-const MenuComponent = (data) => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.menu
+	return { data }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST
+		})
+  	}
+})
+
+const MenuComponent = ({ getAllItemsRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const [scrollYAnimatedValue] = useState(new Animated.Value(0))
 	const [animatedValueTransform] = useState(new Animated.Value(0.96))
 	const [opacity] = useState(new Animated.Value(0))
 	const delayValue = 700
 
+	useEffect(() => {
+		getAllItemsRequest()
+	}, [data])
+	
 	const headerHeight = scrollYAnimatedValue.interpolate({
 		inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
 		outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
@@ -68,78 +81,82 @@ const MenuComponent = (data) => {
 	return (
 		<>
 			<Root>
-				<ScrollView
-					contentContainerStyle={{
-						paddingTop: HEADER_MAX_HEIGHT,
-					}}
-					scrollEventThrottle={16}
-					showsHorizontalScrollIndicator={false}
-					showsVerticalScrollIndicator={false}
-					onScroll={Animated.event(
-						[
-							{
-								nativeEvent: {
-									contentOffset: {
-										y: scrollYAnimatedValue,
+				{
+					data.length !== 0
+					?	<>
+							<ScrollView
+								contentContainerStyle={{
+									paddingTop: HEADER_MAX_HEIGHT,
+								}}
+								scrollEventThrottle={16}
+								showsHorizontalScrollIndicator={false}
+								showsVerticalScrollIndicator={false}
+								onScroll={Animated.event(
+									[
+										{
+											nativeEvent: {
+												contentOffset: {
+													y: scrollYAnimatedValue,
+												},
+											},
+										},
+									],
+									{
+										useNativeDriver: !true,
 									},
-								},
-							},
-						],
-						{
-							useNativeDriver: !true,
-						},
-					)}>
-					<Animated.View
-						style={{
-							transform: [{translateY}],
-							opacity,
-						}}>
-						<HeaderContainer>
-							<ETACarousel
-								posts={carouselData.data}
-								data={data.menu1}
-								autoplay
-								time={6000}
-							/>
-						</HeaderContainer>
-						<PromoBannerComponent />
-					</Animated.View>
-					<MenuList
-						data={data.menu1}
-						title='Dazzler sundaes'
-					/>
-					<MenuList
-						data={data.menu2}
-						title='Cups and cones'
-					/>
-					<MenuList data={data.menu3} title='Milkshakes' />
-					<MenuList
-						data={data.menu4}
-						title='Smoothies and frappes'
-					/>
-					<MenuList
-						data={data.menu5}
-						title='Cookie sandwiches'
-					/>
-				</ScrollView>
+								)}>
+								<Animated.View
+									style={{
+										transform: [{translateY}],
+										opacity,
+									}}>
+										<CarouselComponent items={data.menu1} />
+									<PromoBannerComponent />
+								</Animated.View>
+								<MenuList
+									data={data.menu1}
+									title='Dazzler sundaes'
+								/>
+								<MenuList
+									data={data.menu2}
+									title='Bars'
+								/>
+								<MenuList data={data.menu3} title='Milkshakes' />
+								<MenuList
+									data={data.menu4}
+									title='Smoothies and frappes'
+								/>
+								<MenuList
+									data={data.menu5}
+									title='Cookie sandwiches'
+								/>
+							</ScrollView>
 
-				<Animated.View
-					style={{
-						position: 'absolute',
-						top: Platform.OS === 'ios' ? 0 : 0,
-						left: 0,
-						right: 0,
-						justifyContent: 'center',
-						alignItems: 'center',
-						height: headerHeight,
-						width,
-						backgroundColor: headerbackgroundColor,
-					}}>
-					<HeadCategoryList items={data.menu1} />
-				</Animated.View>
+							<Animated.View
+								style={{
+									position: 'absolute',
+									top: Platform.OS === 'ios' ? 0 : 0,
+									left: 0,
+									right: 0,
+									justifyContent: 'center',
+									alignItems: 'center',
+									height: headerHeight,
+									width,
+									backgroundColor: headerbackgroundColor,
+								}}>
+								<HeadCategoryList items={data.menu1} />
+							</Animated.View>
+						</>
+					:	null
+				}
 			</Root>
 		</>
 	)
 }
 
-export default MenuComponent
+const MenuComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(MenuComponent)
+
+export default MenuComponentConnect

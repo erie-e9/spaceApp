@@ -1,9 +1,9 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Platform, Dimensions} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
-import {useIsFocused, useNavigation} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
-import {Context} from '@context/cartContext'
+import { connect } from 'react-redux'
 
 const {width} = Dimensions.get('window')
 
@@ -75,37 +75,39 @@ const ButtonPayContainer = styled.View`
 	align-items: center;
 	background-color: transparent;
 `
+const mapStateToProps = (state, props) => {
+	const { data } = state.cart
+	return { data }
+}
 
-const CartDetailsComponent = () => {
+const CartDetailsComponent = ({data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const {getCartItems, state} = useContext(Context)
-	const [totalItems, settotalItems] = useState(0)
+	const [totalItems, settotalItems] = useState(data.length)
 	const [total, settotal] = useState(0)
 	const [subtotal, setsubtotal] = useState(0)
 	const [shipping] = useState(35)
 	const [isSubmitting] = useState(false)
-	const isFocused = useIsFocused()
 	let subtotalValue = 0
+	let sum = 0
 
 	useEffect(() => {
-		getCartItems()
 		_getsumatory()
-		console.log('CartDetailsComponent isFocused', isFocused)
-	}, [state.data])
+	}, [data])
 
 	const _getsumatory = async () => {
-		const itemsArray = state.data
-		let sum = 0
-		await itemsArray.forEach((element) => {
-			console.log('element.howMany', element.howMany)
+		await data.forEach((element) => {
 			sum += element.howMany
-			subtotalValue += element.price * element.howMany
-			console.log('subtotalValue:', subtotalValue)
+			settotalItems(sum)
+			subtotalValue = subtotalValue + ((100 - element.discount) * element.price / 100) * element.howMany
+			// console.log('element.howMany', element.howMany)
+			// console.log('element.howMany', ((100 - element.discount) * element.price / 100) )
+			// console.log('______________subtotalValue:', subtotalValue)
 		})
-		settotalItems(sum)
+		
 		setsubtotal(subtotalValue)
 		settotal(subtotalValue + shipping)
+		// settotalItems(sum)
 	}
 
 	return (
@@ -115,7 +117,7 @@ const CartDetailsComponent = () => {
 				weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
 				color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 				align='left'>
-				Summary ({totalItems} items)
+				Summary ({data.length === 0 ? '0' : totalItems} {data.length === 0 ? 'items' : totalItems === 1 ? 'item' : 'items'})
 			</ETASimpleText>
 			<ResumeContainer>
 				<ETASimpleText
@@ -156,7 +158,7 @@ const CartDetailsComponent = () => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					${shipping.toFixed(2)}
+					${data.length === 0 ? data.length.toFixed(2) : shipping.toFixed(2)}
 				</ETASimpleText>
 			</ResumeContainer>
 			<TotalContainer>
@@ -186,7 +188,7 @@ const CartDetailsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						${total.toFixed(2)}
+						${data.length === 0 ? data.length.toFixed(2) : total.toFixed(2)}
 					</ETASimpleText>
 				</ResumeTotalContainer>
 			</TotalContainer>
@@ -221,7 +223,7 @@ const CartDetailsComponent = () => {
 			<ButtonPayContainer>
 				<ETAButtonFilled
 					title='Check out'
-					onPress={() => console.log(state.data)}
+					onPress={() => console.log(data)}
 					disabled={!!isSubmitting}
 					colorButton={
 						themeContext.SECONDARY_BACKGROUND_COLOR
@@ -235,4 +237,10 @@ const CartDetailsComponent = () => {
 	)
 }
 
-export default React.memo(CartDetailsComponent)
+const CartDetailsComponentConnect = connect(
+	mapStateToProps,
+	null
+)(CartDetailsComponent)
+
+// export default CartDetailsComponentConnect
+export default React.memo(CartDetailsComponentConnect)

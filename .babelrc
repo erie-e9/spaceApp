@@ -15,7 +15,7 @@
           "@assets": "./assets",
           "@context": "./src/context",
           "@icons": "./src/components/commons/Icons",
-          "@models": "./src/models"
+          "@redux": "./src/redux"
         }
       }
     ]

@@ -15,7 +15,7 @@ import ETANetInfo from '@etaui/netinfo'
 import ETACarousel from '@etaui/carousel'
 import ETASearchBar from '@etaui/searchbar'
 import ETASwitch from '@etaui/switch'
-import ETAStarRaiting from '@etaui/starraiting'
+import ETAStarRating from '@etaui/starrating'
 import ETAAutoScroll from '@etaui/autoscroll'
 import ETACreditCard from '@etaui/creditcard'
 import ETAValidationInput from '@etaui/inputs/validationnput'
@@ -38,7 +38,7 @@ export {
   ETACarousel,
   ETASearchBar,
   ETASwitch,
-  ETAStarRaiting,
+  ETAStarRating,
   ETAAutoScroll,
   ETACreditCard,
   ETAValidationInput,

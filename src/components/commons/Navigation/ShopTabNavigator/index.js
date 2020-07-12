@@ -1,5 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {View, Text} from 'react-native'
+import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import {
@@ -8,7 +7,6 @@ import {
 } from '@react-navigation/stack'
 import {Ionicons} from '@icons'
 import {fakeavatar, variables} from '@utils/constants'
-import {Context} from '@context/cartContext'
 import DinamycTabButton from './DinamycTabButton'
 // import {eq, multiply, greaterThan, cond} from 'react-native-reanimated';
 // import {withTransition} from 'react-native-redash';
@@ -16,6 +14,7 @@ import {MenuNavigator, GetOneItemNavigator} from './MenuNavigator'
 import {ChatNavigator, ChatItemNavigator} from './ChatNavigator'
 import CartNavigator from './CartNavigator'
 import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator'
+import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
 // import {ETASearchBar} from '@etaui';
 
@@ -24,56 +23,6 @@ const AvatarContainer = styled.View`
 	align-items: center;
 `
 const Avatar = styled.Image``
-
-const IconWithBadge = ({name, badgeCount, color, size}) => {
-	const themeContext = useContext(ThemeContext)
-
-	return (
-		<View style={{width: 24, height: 24, margin: 5}}>
-			<Ionicons name={name} size={size} color={color} />
-			{badgeCount > 0 && (
-				<View
-					style={{
-						// On React Native < 0.57 overflow outside of parent will not work on Android, see https://git.io/fhLJ8
-						position: 'absolute',
-						right: -6,
-						top: -3,
-						backgroundColor: themeContext.REDBADGE,
-						borderRadius: 8,
-						width: 16,
-						height: 16,
-						justifyContent: 'center',
-						alignItems: 'center',
-						borderWidth: 1,
-						borderColor:
-							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-					}}>
-					<Text
-						style={{
-							color: 'white',
-							fontSize: 8,
-							fontWeight: 'bold',
-						}}>
-						{badgeCount}
-					</Text>
-				</View>
-			)}
-		</View>
-	)
-}
-
-const CartIconWithBadge = (props) => {
-	const {getCartItems, state} = useContext(Context)
-
-	let badgeCountCart = 0
-	useEffect(() => {
-		getCartItems()
-	}, [])
-
-	badgeCountCart = state.data.length
-
-	return <IconWithBadge {...props} badgeCount={badgeCountCart} />
-}
 
 const ShopTab = createBottomTabNavigator()
 const ShopTabNavigator = () => {
@@ -136,7 +85,7 @@ const ShopTabNavigator = () => {
 						)
 					} else if (route.name === 'Chats') {
 						return (
-							<CartIconWithBadge
+							<Ionicons
 								name={
 									focused
 										? 'ios-chatbubbles'
@@ -168,7 +117,8 @@ const ShopTabNavigator = () => {
 						)
 					} else if (route.name === 'Cart') {
 						return (
-							<CartIconWithBadge
+							<IconWithBadge
+								badgeCount={1}
 								name={
 									focused
 										? 'ios-cart'

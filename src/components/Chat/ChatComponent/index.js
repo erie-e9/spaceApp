@@ -3,6 +3,8 @@ import styled from 'styled-components/native'
 import {FlatList} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import ChatCard from './ChatCard'
+import { connect } from 'react-redux'
+import { GET_ALL_ITEMS_REQUEST } from '@redux/chats/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -11,10 +13,29 @@ const Root = styled.View`
 `
 const Touchable = styled.TouchableOpacity``
 
-const ChatComponent = ({data}) => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.chats;
+	return { data }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST
+		})
+	}
+})
+
+const ChatComponent = ({getAllItemsRequest, data}) => {
 	const navigation = useNavigation()
-	const [chats, setchats] = useState([])
-	const [refresher, setrefresher] = useState(!true)
+	const [ items, setitems ] = useState([])
+	const [ refresher, setrefresher ] = useState(!true)
+
+	useEffect(() => {
+		getAllItemsRequest()
+		setitems(data)
+		_getData()
+	}, [data])
 
 	const _onPress = (item) => {
 		navigation.navigate('ChatItemNavigator', {
@@ -25,15 +46,9 @@ const ChatComponent = ({data}) => {
 		})
 	}
 
-	useEffect(() => {
-		setchats(data.getChats)
-		_getData()
-	}, [])
-
 	const _getData = () => {
-		// console.log('getting data...', data.getChats);
 		setrefresher(true)
-		setchats(data.getChats)
+		setitems(data)
 		setrefresher(!true)
 	}
 
@@ -43,7 +58,7 @@ const ChatComponent = ({data}) => {
 				contentContainerStyle={{
 					alignSelf: 'stretch',
 				}}
-				data={chats}
+				data={items}
 				keyExtractor={(item) => item._id.toString()}
 				showsVerticalScrollIndicator={false}
 				refreshing={refresher}
@@ -60,4 +75,9 @@ const ChatComponent = ({data}) => {
 	)
 }
 
-export default ChatComponent
+const ChatComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(ChatComponent)
+
+export default ChatComponentConnect

@@ -1,9 +1,10 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import {Platform, Dimensions} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
 import {Ionicons, FontAwesome} from '@icons'
-import {Context} from '@context/cartContext'
+import { connect } from 'react-redux'
+import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_ITEM_FROM_CART } from '@redux/cart/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -85,6 +86,30 @@ const CartItemLeftContainer = styled.View`
 	padding-horizontal: 2px;
 	background-color: transparent;
 `
+const DiscountContainer = styled.View`
+	flex: 0.5;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-end;
+	margin-top: 2px;
+	z-index: 100;
+	margin-bottom: 3px;
+`
+const PercentContainer = styled.View`
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	border-width: 0px;
+	padding-horizontal: 5px;
+	padding-vertical: 1px;
+	border-color: white;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	margin-left: 5px;
+`
 const UnitPriceContainer = styled.View`
 	justify-content: center;
 	align-items: center;
@@ -164,46 +189,61 @@ const RemoveCart = styled.TouchableOpacity`
 	flex-direction: row;
 	z-index: 1000;
 `
+const mapDispatchProps = (dispatch, props) => ({
+	addToCart: (paramItem) => {
+		dispatch({
+			type: ADD_TO_CART,
+			payload: {
+				data: paramItem
+			}
+		})
+	},
 
-const CartItemComponent = ({item}) => {
+	removeFromCart: (_id) => {
+		dispatch({
+			type: REMOVE_FROM_CART,
+			payload: {
+				data: _id
+			}
+		})
+	},
+
+	removeItemFromCart: (_id) => {
+		dispatch({
+			type: REMOVE_ITEM_FROM_CART,
+			payload: {
+				data: _id
+			}
+		})
+	}
+})
+
+const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item, howMany}) => {
 	const themeContext = useContext(ThemeContext)
-	const [addedCounter, setaddedCounter] = useState(item.howMany)
-	const {addToCart, removeToCart, removeItemToCart} = useContext(Context)
+	const [ addedCounter, setaddedCounter ] = useState()
 
-	const _addCart = (propitem) => {
-		addToCart(propitem)
+	useEffect(() => {
+		setaddedCounter(howMany)
+	}, [howMany])
+
+	const _addCart = (paramItem) => {
 		setaddedCounter(addedCounter + 1)
+		addToCart(paramItem)
 	}
 
-	const _removeCart = (_id) => {
-		removeToCart(_id)
+	const _removeFromCart = (_id) => {
 		setaddedCounter(addedCounter - 1)
+		removeFromCart(_id)
 	}
 
-	const _removeItemCart = (_id) => {
-		removeItemToCart(_id)
+	const _removeItemFromCart = (_id) => {
+		removeItemFromCart(_id)
 	}
 
 	return (
 		<Root>
 			<Item>
 				<ItemImage source={{uri: item.images[0].image}} />
-				{item.isNew ? (
-					<NewContainer>
-						<ETASimpleText
-							size={8}
-							weight={
-								Platform.OS === 'ios'
-									? '400'
-									: '200'
-							}
-							// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-							color='white'
-							align='center'>
-							new
-						</ETASimpleText>
-					</NewContainer>
-				) : null}
 				<CartItemData>
 					<CartItemHeadContainer>
 						<CartTitleContainer>
@@ -224,7 +264,7 @@ const CartItemComponent = ({item}) => {
 						<CardItemFunctions>
 							<Touchable
 								onPress={() =>
-									_removeItemCart(
+									_removeItemFromCart(
 										item._id,
 									)
 								}>
@@ -243,31 +283,6 @@ const CartItemComponent = ({item}) => {
 					</CartItemHeadContainer>
 					<CartItemContainer>
 						<CartItemLeftContainer>
-							{/* {
-                        item.discount > 0
-                        ? <DiscountContainer>
-                            <ETASimpleText
-                                size={10}
-                                weight={Platform.OS === 'ios' ? '400' : '400'}
-                                color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                                align={'center'}
-                                style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
-                                ${(item.price.toFixed(2))}
-                            </ETASimpleText>
-                            <PercentContainer>
-                            <ETASimpleText
-                                size={9}
-                                weight={Platform.OS === 'ios' ? '500' : '900'}
-                                color={themeContext.PRIMARY_COLOR}
-                                align={'left'}
-                                style={{ z-index: 100 }}>
-                                -{item.discount}%
-                            </ETASimpleText>
-                        </PercentContainer>
-                        </DiscountContainer>
-                        : null
-                    } */}
-
 							<UnitPriceContainer>
 								<ETASimpleText
 									size={9}
@@ -320,6 +335,30 @@ const CartItemComponent = ({item}) => {
 									).toFixed(2)}
 								</ETASimpleText>
 							</PriceContainer>
+							{/* {
+								item.discount > 0
+								? <DiscountContainer>
+									<ETASimpleText
+										size={10}
+										weight={Platform.OS === 'ios' ? '400' : '400'}
+										color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+										align={'center'}
+										style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
+										${(item.price.toFixed(2))}
+									</ETASimpleText>
+									<PercentContainer>
+										<ETASimpleText
+											size={9}
+											weight={Platform.OS === 'ios' ? '500' : '900'}
+											color={themeContext.PRIMARY_COLOR}
+											align={'left'}
+											style={{ zIndex: 100 }}>
+											-{item.discount}%
+										</ETASimpleText>
+									</PercentContainer>
+								</DiscountContainer>
+								:	null
+							} */}
 						</CartItemLeftContainer>
 						<CartItemRightContainer>
 							<AddCartContainer>
@@ -360,7 +399,7 @@ const CartItemComponent = ({item}) => {
 									<AddRemoveContainer>
 										<RemoveCart
 											onPress={() =>
-												_removeCart(
+												_removeFromCart(
 													item._id,
 												)
 											}>
@@ -404,7 +443,7 @@ const CartItemComponent = ({item}) => {
 										<AddCart
 											onPress={() =>
 												_addCart(
-													item,
+													item
 												)
 											}>
 											<AddRemoveButtonContainer>
@@ -437,4 +476,10 @@ const CartItemComponent = ({item}) => {
 	)
 }
 
-export default React.memo(CartItemComponent)
+const CartItemComponentConnect = connect(
+	null,
+	mapDispatchProps
+)(CartItemComponent)
+// export default CartItemComponentConnect
+
+export default React.memo(CartItemComponentConnect)

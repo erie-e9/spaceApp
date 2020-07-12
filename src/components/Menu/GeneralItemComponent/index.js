@@ -33,15 +33,15 @@ const ItemImage = styled.Image`
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 `
-const NewContainer = styled.View`
+const StatusContainer = styled.View`
 	position: absolute;
 	z-index: 100;
-	height: 14px;
-	width: 28px;
-	top: 10px;
-	left: 8px;
+	height: 13px;
+	paddingHorizontal: 4px;
+	bottom: 2px;
+	left: 3px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
-	border-radius: 5px;
+	border-radius: 2px;
 	border-width: 0px;
 	border-color: white;
 	justify-content: flex-end;
@@ -128,22 +128,24 @@ const GeneralItemComponent = ({item}) => {
 			onPress={() => _onPressItem(item)}>
 			<Card>
 				<CardTop>
-					{item.isNew ? (
-						<NewContainer>
-							<ETASimpleText
-								size={11}
-								weight={
-									Platform.OS === 'ios'
-										? '400'
-										: '300'
-								}
-								// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-								color='white'
-								align='center'>
-								new
-							</ETASimpleText>
-						</NewContainer>
-					) : null}
+					{
+						item.status !== ''
+						?	<StatusContainer>
+								<ETASimpleText
+									size={10}
+									weight={
+										Platform.OS === 'ios'
+											? '400'
+											: '300'
+									}
+									// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+									color='white'
+									align='center'>
+									{item.status}
+								</ETASimpleText>
+							</StatusContainer>
+						:	null
+					}
 					<ItemImage
 						source={{
 							uri: item.images[0].image,
@@ -228,7 +230,7 @@ const GeneralItemComponent = ({item}) => {
 													: '900'
 											}
 											color={
-												themeContext.PRIMARY_COLOR
+												themeContext.PRIMARY_TEXT_COLOR_LIGHT
 											}
 											align='left'
 											style={{

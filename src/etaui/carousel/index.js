@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {Animated, Dimensions} from 'react-native'
 import styled from 'styled-components'
-import carouselData from '@utils/carouselData.json'
+import carouselData from '@utils/carousel.json'
 import {useNavigation} from '@react-navigation/native'
 import ETACarouselItem from './item'
 
@@ -25,6 +25,7 @@ const TouchableWithoutFeedbackContainer = styled.View``
 const ETACarousel = ({posts, data, autoplay, time}) => {
 	const navigation = useNavigation()
 	const [dataList, setdataList] = useState([])
+	const [postsLenght] = useState(posts.length)
 	const scrollX = new Animated.Value(0)
 	const position = Animated.divide(scrollX, width)
 	const flatList = useRef(0)
@@ -32,35 +33,29 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 
 	useEffect(() => {
 		setdataList(carouselData.data)
-		if (autoplay) {
+		if (postsLenght) {
 			infiniteScroll(dataList)
 		} else {
 			stopAutoPlay()
 		}
-	}, [])
+	}, [posts])
 
-	const infiniteScroll = (datalist) => {
-		const numberOfData = posts.length
-
-		let scrollValue = 0
-		let scrolled = 0
-
+	const infiniteScroll = () => {		
+		let scrollValue = 0;
+		let scrolled = 0;
+	
 		timerID = setInterval(() => {
-			scrolled++
-			if (scrolled < numberOfData) {
-				scrollValue += 1
-			} else {
-				scrollValue = 0
-				scrolled = 0
-			}
-
-			flatList.current.scrollToIndex({
-				animated: true,
-				index: scrollValue || 0,
-			})
-			// flatList.scrollView({animated: true, offset: scrollValue});
-		}, time)
-	}
+		  scrolled++;
+		  if (scrolled < postsLenght) {
+			scrollValue = scrollValue + 1;      
+		  } else {
+			scrollValue = 0;
+			scrolled = 0;
+		  }
+	
+		  flatList.current.scrollToIndex({ animated: true, index: scrollValue ? scrollValue : 0 });
+		}, time ? time : 3000);
+	  };
 
 	const stopAutoPlay = () => {
 		if (timerID) {
@@ -70,8 +65,6 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 	}
 
 	const _onPressPromo = (selecteditem) => {
-		console.log('_onPressPromo pressed:', selecteditem.title)
-
 		navigation.navigate('PromotionScreen', {
 			screen: 'MenuScreen',
 			params: {

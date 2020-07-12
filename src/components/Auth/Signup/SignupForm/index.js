@@ -3,7 +3,6 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {Formik} from 'formik'
 import * as yup from 'yup'
 import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
-import {Context} from '@context'
 // import { graphql, compose } from 'react-apollo';
 // import { connect } from 'react-redux';
 // import signupMutation from '../graphql/mutations/signup'

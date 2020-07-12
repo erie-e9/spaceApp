@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components/native'
 import {useNavigation} from '@react-navigation/native'
-import addresses from '@utils/addresses.json'
 import Card from './Card'
+import { connect } from 'react-redux'
+import { GET_ALL_ITEMS_REQUEST } from '@redux/profile/addresses/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -15,15 +16,29 @@ const AddressesList = styled.FlatList`
 `
 const Touchable = styled.TouchableOpacity``
 
-const AddressesListComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.addresses
+	return { data }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST
+		})
+	}
+})
+
+const AddressesListComponent = ({getAllItemsRequest, data}) => {
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
-		setitems(addresses.data)
+		getAllItemsRequest()
+		setitems(data)
 		_getData()
-	}, [])
+	}, [data])
 
 	const _onPress = (item) => {
 		navigation.navigate('SettingsNavigator', {
@@ -36,7 +51,7 @@ const AddressesListComponent = () => {
 
 	const _getData = () => {
 		setrefresher(true)
-		setitems(addresses.data)
+		setitems(data)
 		setrefresher(!true)
 	}
 
@@ -63,4 +78,9 @@ const AddressesListComponent = () => {
 	)
 }
 
-export default AddressesListComponent
+const AddressesListConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(AddressesListComponent)
+
+export default AddressesListConnect

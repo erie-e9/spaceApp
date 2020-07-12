@@ -5,7 +5,7 @@ import {
 	createStackNavigator,
 	CardStyleInterpolators,
 } from '@react-navigation/stack'
-import {FontAwesome, AntDesign} from '@icons'
+import {FontAwesome, Ionicons} from '@icons'
 import {ETASimpleText, ETASearchBar} from '@etaui'
 import {variables} from '@utils/constants'
 import MenuScreen from '@screens/Menu/MenuScreen'
@@ -20,6 +20,14 @@ const Header = styled.View`
 `
 const HeaderLeft = styled.TouchableOpacity`
 	margin-left: 15px;
+`
+const CircleContainer = styled.TouchableOpacity`
+	align-items: center;
+	justify-content: center;
+	height: 30px;
+	width: 30px;
+	border-radius: 15px;
+	background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const HeaderLeftCard = styled.TouchableOpacity`
 	margin-left: 15px;
@@ -249,13 +257,15 @@ const GetOneItemNavigator = () => {
 					headerLeft: () => (
 						<HeaderLeftCard
 							onPress={() => navigation.goBack()}>
-							<AntDesign
-								name='closecircle'
-								size={25}
-								color={
-									themeContext.SECONDARY_BACKGROUND_COLOR
-								}
-							/>
+							<CircleContainer>
+								<Ionicons
+									name='md-close'
+									size={20}
+									color={
+										themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+									}
+								/>
+							</CircleContainer>
 						</HeaderLeftCard>
 					),
 					headerTintColor:

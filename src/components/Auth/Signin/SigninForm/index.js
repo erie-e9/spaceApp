@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Formik} from 'formik'
 import * as yup from 'yup'
 import {Entypo} from '@icons'
 import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
 import { connect } from 'react-redux'
-import { GET_ALL_USER_INFO_REQUEST } from '@models/user/actions'
+import { SIGNIN } from '@redux/user/actions'
 
 const FormContainer = styled.View`
 	flex: 1;
@@ -38,25 +38,19 @@ const validationSchema = yup.object().shape({
 		.uppercase(),
 })
 
-const mapStateToProps = (state, props) => {
-  const { cellphone, password } = state.user;
-
-  return { cellphone, password }
-}
-
 const mapDispatchProps = (dispatch, props) => ({
 	getAllUserInfoUser: ({cellphone, password}) => {
 		dispatch({
-		type: GET_ALL_USER_INFO_REQUEST,
-		payload: {
-			cellphone: cellphone,
-			password: password,
-		}
+			type: SIGNIN,
+			payload: {
+				cellphone: cellphone,
+				password: password,
+			}
 		})
-  }  
+  	}  
 })
 
-const SigninForm = ({ cellphone, password, getAllUserInfoUser }) => {
+const SigninForm = ({getAllUserInfoUser}) => {
 	const themeContext = useContext(ThemeContext)
 	const [toogleEye, settoogleEye] = useState(true)
 	const [mysecureTextEntry, mysetSecureTextEntry] = useState(true)
@@ -237,8 +231,8 @@ const SigninForm = ({ cellphone, password, getAllUserInfoUser }) => {
 }
 
 const SignConnect = connect(
-	mapStateToProps,
+	null,
 	mapDispatchProps
-  )(SigninForm)
+)(SigninForm)
 
 export default SignConnect

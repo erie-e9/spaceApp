@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components/native'
 import {useNavigation} from '@react-navigation/native'
-import branchOffices from '@utils/branchOffices.json'
 import Card from './Card'
+import { connect } from 'react-redux'
+import { GET_ALL_ITEMS_REQUEST } from '@redux/profile/branchoffices/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -15,15 +16,29 @@ const BranchOfficesList = styled.FlatList`
 `
 const Touchable = styled.TouchableOpacity``
 
-const BranchOfficesListComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.branchoffices
+	return { data }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST
+		})
+	}
+})
+
+const BranchOfficesListComponent = ({getAllItemsRequest, data}) => {
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
-		setitems(branchOffices.data)
+		getAllItemsRequest()
+		setitems(data)
 		_getData()
-	}, [])
+	}, [data])
 
 	const _onPress = (item) => {
 		navigation.navigate('SettingsNavigator', {
@@ -36,7 +51,7 @@ const BranchOfficesListComponent = () => {
 
 	const _getData = () => {
 		setrefresher(true)
-		setitems(branchOffices.data)
+		setitems(data)
 		setrefresher(!true)
 	}
 
@@ -63,4 +78,9 @@ const BranchOfficesListComponent = () => {
 	)
 }
 
-export default BranchOfficesListComponent
+const BranchOfficesListComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)
+(BranchOfficesListComponent)
+export default BranchOfficesListComponentConnect

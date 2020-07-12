@@ -3,7 +3,6 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {Formik} from 'formik'
 import * as yup from 'yup'
 import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
-import {Context} from '@context'
 // import { graphql, compose } from 'react-apollo';
 // import { connect } from 'react-redux';
 // import signupMutation from '../graphql/mutations/signup'
@@ -74,7 +73,6 @@ const validationSchema = yup.object().shape({
 
 const SubHeadAccountComponent = () => {
 	const themeContext = useContext(ThemeContext)
-	const {signUp} = useContext(Context)
 	const [mysecureTextEntry] = useState(true)
 
 	return (
@@ -88,12 +86,6 @@ const SubHeadAccountComponent = () => {
 					password: '',
 				}}
 				onSubmit={(values, actions) => {
-					signUp({
-						fullname: values.fullname,
-						username: values.username,
-						cellphone: values.cellphone,
-						password: values.password,
-					})
 					setTimeout(() => {
 						actions.setSubmitting(false)
 						// alert(JSON.stringify(values))

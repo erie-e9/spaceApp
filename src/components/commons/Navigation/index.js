@@ -2,7 +2,6 @@ import React, {useEffect, useContext} from 'react'
 import {StatusBar, useColorScheme} from 'react-native'
 // import AsyncStorage from '@react-native-community/async-storage';
 import {ETANetInfo} from '@etaui'
-// import {Context} from '@context'
 import SplashScreen from '@components/commons/SplashScreen'
 import {lightTheme, darkTheme} from '@utils/constants'
 import SigninStackScreen from './SigninStack'
@@ -18,7 +17,7 @@ const mapStateToProps = (state, props) => {
 const Navigation = ({userToken}) => {
 	const colorSchema = useColorScheme()
 
-	// if (state.isLoading) {
+	// if (userToken) {
 	// 	return <SplashScreen />
 	// }
 

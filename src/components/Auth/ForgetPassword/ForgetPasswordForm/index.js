@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import {Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Formik} from 'formik'
@@ -9,7 +9,8 @@ import {
 	ETAErrorMessage,
 	ETASimpleText,
 } from '@etaui'
-import {Context} from '@context'
+import { connect } from 'react-redux'
+import { RECOVERY_PASS } from '@redux/user/actions'
 
 const validationSchema = yup.object().shape({
 	cellphone: yup
@@ -43,15 +44,35 @@ const RecoverTextContainer = styled.View`
 	margin-top: 15px;
 `
 
-const ForgetPasswordScreen = () => {
+const mapStateToProps = (state, props) => {
+	const { cellphone } = state.user
+
+	return { cellphone }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	recoveryPassUser: ({cellphone}) => {
+		dispatch({
+			type: RECOVERY_PASS,
+			payload: {
+				cellphone: cellphone
+			}
+		})
+	}
+})
+
+const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 	const themeContext = useContext(ThemeContext)
-	const {recoveryPass} = useContext(Context)
 	const [recoverytext, setrecoverytext] = useState(
 		'We will send you a SMS with instructions for recover your password.',
 	)
 	const [buttonrecoverytext, setbuttonrecoverytext] = useState(
 		'Recover password',
 	)
+
+	useEffect(() => {
+		console.log('ForgetPasswordComponent cellphone:', cellphone);
+	}, [])
 
 	return (
 		<Root>
@@ -61,9 +82,10 @@ const ForgetPasswordScreen = () => {
 					cellphone: '',
 				}}
 				onSubmit={(values, actions) => {
-					recoveryPass({
-						cellphone: values.cellphone,
+					recoveryPassUser({
+						cellphone: values.cellphone
 					})
+					
 					setTimeout(() => {
 						actions.setSubmitting(false)
 						setbuttonrecoverytext('Send again')
@@ -158,4 +180,9 @@ const ForgetPasswordScreen = () => {
 	)
 }
 
-export default ForgetPasswordScreen
+const ForgetPasswordComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(ForgetPasswordComponent)
+
+export default ForgetPasswordComponentConnect

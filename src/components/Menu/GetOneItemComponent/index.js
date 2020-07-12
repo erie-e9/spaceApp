@@ -2,10 +2,11 @@ import React, {useState, useEffect, useContext, memo} from 'react'
 import {Dimensions, Platform, Animated} from 'react-native'
 import {useRoute} from '@react-navigation/native'
 import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText, ETAStarRaiting} from '@etaui'
+import {ETASimpleText, ETAStarRating} from '@etaui'
 import {Ionicons, FontAwesome} from '@icons'
-import {Context} from '@context/cartContext'
 import SuggestionsComponent from './SuggestionsComponent'
+import { connect } from 'react-redux'
+import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -26,11 +27,10 @@ const SuggestionsContainer = styled.View`
 	background-color: transparent;
 	z-index: 999;
 `
-const ItemImage = styled.ImageBackground`
+const ItemImage = styled.Image`
 	flex: 1;
 	width: null;
 	height: null;
-	resize-mode: cover;
 	justify-content: center;
 `
 const ItemBottomContainer = styled.View`
@@ -126,13 +126,13 @@ const CardTop = styled.View`
 	justify-content: center;
 	margin-top: 10px;
 `
-const NewContainer = styled.View`
+const StatusContainer = styled.View`
 	position: absolute;
 	z-index: 100;
-	height: 15px;
-	width: 30px;
+	height: 16px;
+	paddingHorizontal: 4px;
 	top: -15px;
-	border-radius: 5px;
+	border-radius: 2px;
 	border-width: 1px;
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -277,28 +277,50 @@ const Touchable = styled.TouchableOpacity`
 	align-items: center;
 `
 
-const GetOneItemComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.cart
+	return { data }
+}
+const mapDispatchProps = (dispatch, props) => ({
+	addToCart: (paramItem) => {
+		dispatch({
+			type: ADD_TO_CART,
+			payload: {
+				data: paramItem
+			}
+		})
+	},
+
+	removeFromCart: (_id) => {
+		dispatch({
+			type: REMOVE_FROM_CART,
+			payload: {
+				data: _id
+			}
+		})
+	}
+})
+
+const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 	const themeContext = useContext(ThemeContext)
-	const {addToCart, removeToCart, state} = useContext(Context)
-	const [addedCounter, setaddedCounter] = useState(0)
-	const [animatedValueTransform] = useState(new Animated.Value(0.9))
+	const [ addedCounter, setaddedCounter ] = useState(0)
+	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const route = useRoute()
 	const {item} = route.params
 	const delayValue = 1500
 
 	useEffect(() => {
-		if (state.data.length > 0) {
-			const itemFound = state.data.find(
+		if (data.length > 0) {
+			const itemFound = data.find(
 				(element) => element._id === item._id,
 			)
-			// console.log('itemFound:', itemFound);
 			if (itemFound) {
 				setaddedCounter(itemFound.howMany)
 			}
 		} else {
-			// console.log('state.data: ', state.data);
+			// console.log('data: ', data);
 		}
-	}, [state])
+	}, [data])
 
 	useEffect(() => {
 		Animated.spring(animatedValueTransform, {
@@ -318,9 +340,9 @@ const GetOneItemComponent = () => {
 		addToCart(paramItem)
 	}
 
-	const _removeCart = (_id) => {
-		removeToCart(_id)
+	const _removeFromCart = (_id) => {
 		setaddedCounter(addedCounter - 1)
+		removeFromCart(_id)
 	}
 
 	return (
@@ -328,9 +350,13 @@ const GetOneItemComponent = () => {
 			<ItemContainer>
 				<BackgroundPresentationContainer>
 					<ItemImage
+						style={{
+							resizeMode: 'cover'
+						}}
 						source={{
 							uri:
-								'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg',
+								// 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg',
+							item.images[0].image
 						}}
 					/>
 				</BackgroundPresentationContainer>
@@ -394,7 +420,7 @@ const GetOneItemComponent = () => {
 								<AddRemoveContainer>
 									<RemoveCart
 										onPress={() =>
-											_removeCart(
+											_removeFromCart(
 												item._id,
 											)
 										}>
@@ -458,8 +484,8 @@ const GetOneItemComponent = () => {
 							</AddCartContainer>
 						)}
 						<CardTop>
-							{item.isNew ? (
-								<NewContainer>
+							{item.status ? (
+								<StatusContainer>
 									<ETASimpleText
 										size={11}
 										weight={
@@ -471,9 +497,9 @@ const GetOneItemComponent = () => {
 										// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 										color='white'
 										align='center'>
-										new
+										{item.status}
 									</ETASimpleText>
-								</NewContainer>
+								</StatusContainer>
 							) : null}
 							<CardTopHead>
 								<NameContainer>
@@ -580,8 +606,8 @@ const GetOneItemComponent = () => {
 							</CardTopHead>
 							<ItemInfoContainer>
 								<ItemInfoRating>
-									<ETAStarRaiting
-										raitings={4}
+									<ETAStarRating
+										ratings={item.rating}
 									/>
 								</ItemInfoRating>
 								<ItemInfoCalories>
@@ -652,11 +678,12 @@ const GetOneItemComponent = () => {
 							</ItemDetailsContainer>
 							<FavoriteContainer>
 								<Touchable
-									onPress={() =>
-										console.log(
-											'ñeñe ñeñe ñeñe',
-										)
-									}>
+									// onPress={() =>
+									// 	console.log(
+									// 		'ñeñe ñeñe ñeñe',
+									// 	)
+									// }
+								>
 									<Ionicons
 										name={
 											item.isFavorite
@@ -683,4 +710,8 @@ const GetOneItemComponent = () => {
 	)
 }
 
-export default memo(GetOneItemComponent)
+const GetOneItemComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(GetOneItemComponent)
+export default GetOneItemComponentConnect

@@ -59,6 +59,7 @@
     "prettier": "^2.0.5",
     "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "16.11.0",
+    "redux-devtools": "^3.5.0",
     "stylelint": "^13.3.3",
     "stylelint-react-native": "^2.2.0"
   },

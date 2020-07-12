@@ -4,10 +4,11 @@ import {Platform, Dimensions} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
 import {Ionicons} from '@icons'
-import cards from '@utils/cards.json'
 import PaymentCardComponent from './Card'
+import { connect } from 'react-redux'
+import { GET_ALL_ITEMS_REQUEST } from '@redux/profile/paymentmethods/actions';
 
-const {width} = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 const iconSize = 26
 
 const Root = styled.View`
@@ -48,11 +49,31 @@ const CompanyIconContainer = styled.View`
 	padding-horizontal: 10px;
 `
 
-const PaymentMethodsListComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.paymentmethods
+	return { data }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST,
+			payload: {}
+		})
+	}
+})
+
+const PaymentMethodsListComponent = ({getAllItemsRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [items] = useState(cards.data)
+	const [ items, setitems ] = useState([])
 	const [refresher, setrefresher] = useState(!true)
+
+	useEffect(() => {
+		getAllItemsRequest()
+		setitems(data)
+		_getData()
+	}, [data])
 
 	const _onPress = (item) => {
 		navigation.navigate('SettingsNavigator', {
@@ -63,13 +84,9 @@ const PaymentMethodsListComponent = () => {
 		})
 	}
 
-	useEffect(() => {
-		// setchats(data.getChats)
-		_getData()
-	}, [])
-
 	const _getData = () => {
 		setrefresher(true)
+		setitems(data)
 		setrefresher(!true)
 	}
 
@@ -79,7 +96,7 @@ const PaymentMethodsListComponent = () => {
 				contentContainerStyle={{
 					alignSelf: 'stretch',
 				}}
-				data={items}
+				data={data}
 				keyExtractor={(item) => item._id.toString()}
 				showsVerticalScrollIndicator={false}
 				refreshing={refresher}
@@ -146,4 +163,9 @@ const PaymentMethodsListComponent = () => {
 	)
 }
 
-export default PaymentMethodsListComponent
+const PaymentMethodsListComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(PaymentMethodsListComponent)
+
+export default PaymentMethodsListComponentConnect

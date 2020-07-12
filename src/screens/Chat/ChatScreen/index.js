@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import ChatComponent from '@components/Chat/ChatComponent'
-import data from '@utils/chats.json'
 
 const Root = styled.View`
 	flex: 1;
@@ -11,7 +10,7 @@ const Root = styled.View`
 
 const ChatScreen = () => (
 	<Root>
-		<ChatComponent data={data} />
+		<ChatComponent />
 	</Root>
 )
 

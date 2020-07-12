@@ -132,8 +132,6 @@ const removeToCart = (dispatch) => async (_id) => {
 const removeItemToCart = (dispatch) => async (_id) => {
 	try {
 		if (localDataCart.length >= 0) {
-			// let itemFound = localDataCart.find((element) => element._id === _id);
-
 			for (var i = localDataCart.length; i--; ) {
 				if (localDataCart[i]._id === _id) {
 					localDataCart.splice(i, 1)

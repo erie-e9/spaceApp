@@ -39,15 +39,15 @@ const ETACarouselItem = ({item}) => (
 			<ETASimpleText
 				size={18}
 				weight='700'
-				color='white'
+				color={item.titleColor}
 				align='center'
 				style={{
 					marginBottom: 2,
-					elevation: 4,
-					textShadowColor: 'rgba(0, 0, 0, 0.7)',
+					elevation: 3,
+					textShadowColor: 'rgba(0, 0, 0, 0.4)',
 					textShadowOffset: {
 						width: 0.5,
-						height: 0.7,
+						height: 0.4,
 					},
 					textShadowRadius: 3,
 				}}>
@@ -56,15 +56,15 @@ const ETACarouselItem = ({item}) => (
 			<ETASimpleText
 				size={14}
 				weight='400'
-				color='white'
+				color={item.descriptionColor}
 				align='center'
 				style={{
 					marginBottom: 5,
-					elevation: 4,
-					textShadowColor: 'rgba(0, 0, 0, 0.7)',
+					elevation: 3,
+					textShadowColor: 'rgba(0, 0, 0, 0.4)',
 					textShadowOffset: {
 						width: 0.5,
-						height: 0.7,
+						height: 0.4,
 					},
 					textShadowRadius: 3,
 				}}>

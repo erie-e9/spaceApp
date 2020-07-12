@@ -9,13 +9,13 @@ const Root = styled.View`
 	background-color: transparent;
 `
 
-const ETAStarRaiting = ({raitings}) => {
+const ETAStarRating = ({ratings}) => {
 	const themeContext = useContext(ThemeContext)
 	const stars = []
 
 	for (let index = 1; index <= 5; index++) {
 		let name = 'ios-star'
-		if (index > raitings) {
+		if (index > ratings) {
 			name = 'ios-star-outline'
 		}
 		stars.push(
@@ -32,4 +32,4 @@ const ETAStarRaiting = ({raitings}) => {
 	return <Root>{stars}</Root>
 }
 
-export default React.memo(ETAStarRaiting)
+export default React.memo(ETAStarRating)
