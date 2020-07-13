@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import styled from 'styled-components/native'
 import {useNavigation} from '@react-navigation/native'
 import Card from './Card'
-import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/profile/branchoffices/actions'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/branchoffices/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -17,16 +17,16 @@ const BranchOfficesList = styled.FlatList`
 const Touchable = styled.TouchableOpacity``
 
 const mapStateToProps = (state, props) => {
-	const { data } = state.branchoffices
-	return { data }
+	const {data} = state.branchoffices
+	return {data}
 }
 
 const mapDispatchProps = (dispatch, props) => ({
 	getAllItemsRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST
+			type: GET_ALL_ITEMS_REQUEST,
 		})
-	}
+	},
 })
 
 const BranchOfficesListComponent = ({getAllItemsRequest, data}) => {
@@ -80,7 +80,6 @@ const BranchOfficesListComponent = ({getAllItemsRequest, data}) => {
 
 const BranchOfficesListComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
-)
-(BranchOfficesListComponent)
+	mapDispatchProps,
+)(BranchOfficesListComponent)
 export default BranchOfficesListComponentConnect

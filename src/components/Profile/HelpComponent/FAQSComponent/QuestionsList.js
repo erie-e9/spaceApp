@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components/native'
-import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/profile/help/faqs/actions'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/help/faqs/actions'
 import Card from './Card'
 
 const Root = styled.View`
@@ -15,21 +15,21 @@ const FAQSList = styled.FlatList`
 	padding: 10px 10px;
 `
 const mapStateToProps = (state, props) => {
-	const { data } = state.faqs
-	return { data }
+	const {data} = state.faqs
+	return {data}
 }
 
 const mapDispatchProps = (dispatch, props) => ({
 	getAllItemsRequest: () => {
 		dispatch({
 			type: GET_ALL_ITEMS_REQUEST,
-			payload: {}
+			payload: {},
 		})
-	}
+	},
 })
 
 const FAQSComponent = ({getAllItemsRequest, data}) => {
-	const [ items, setitems ] = useState([])
+	const [items, setitems] = useState([])
 
 	useEffect(() => {
 		getAllItemsRequest()
@@ -45,7 +45,9 @@ const FAQSComponent = ({getAllItemsRequest, data}) => {
 				data={items}
 				keyExtractor={(item) => item._id.toString()}
 				showsVerticalScrollIndicator={false}
-				renderItem={({item}) => <Card key={item._id} {...item} />}
+				renderItem={({item}) => (
+					<Card key={item._id} {...item} />
+				)}
 			/>
 		</Root>
 	)
@@ -53,7 +55,7 @@ const FAQSComponent = ({getAllItemsRequest, data}) => {
 
 const FAQSComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
+	mapDispatchProps,
 )(FAQSComponent)
 
 export default FAQSComponentConnect

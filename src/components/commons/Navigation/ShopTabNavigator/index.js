@@ -55,9 +55,7 @@ const ShopTabNavigator = () => {
 							? 'ios-analytics'
 							: 'ios-analytics'
 					} else if (route.name === 'Menu') {
-						iconName = focused
-							? 'apps'
-							: 'apps'
+						iconName = focused ? 'apps' : 'apps'
 						// return (
 						//   <Animated.View style={{ direction }} >
 						//     <View style={StyleSheet.absoluteFill}>

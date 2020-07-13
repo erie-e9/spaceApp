@@ -21,10 +21,10 @@ const ETAButtonOutline = ({
 	padding,
 	borderRadius,
 	width,
-	borderWidth
+	borderWidth,
 }) => {
 	const themeContext = useContext(ThemeContext)
-	
+
 	return (
 		<>
 			<Root>

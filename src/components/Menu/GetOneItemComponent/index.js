@@ -5,8 +5,8 @@ import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText, ETAStarRating} from '@etaui'
 import {Ionicons, FontAwesome} from '@icons'
 import SuggestionsComponent from './SuggestionsComponent'
-import { connect } from 'react-redux'
-import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
+import {connect} from 'react-redux'
+import {ADD_TO_CART, REMOVE_FROM_CART} from '@redux/cart/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -132,7 +132,7 @@ const StatusContainer = styled.View`
 	position: absolute;
 	z-index: 100;
 	height: 14px;
-	paddingHorizontal: 4px;
+	paddinghorizontal: 4px;
 	top: -15px;
 	border-radius: 4px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -276,16 +276,16 @@ const Touchable = styled.TouchableOpacity`
 `
 
 const mapStateToProps = (state, props) => {
-	const { data } = state.cart
-	return { data }
+	const {data} = state.cart
+	return {data}
 }
 const mapDispatchProps = (dispatch, props) => ({
 	addToCart: (paramItem) => {
 		dispatch({
 			type: ADD_TO_CART,
 			payload: {
-				data: paramItem
-			}
+				data: paramItem,
+			},
 		})
 	},
 
@@ -293,16 +293,16 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: REMOVE_FROM_CART,
 			payload: {
-				data: _id
-			}
+				data: _id,
+			},
 		})
-	}
+	},
 })
 
 const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 	const themeContext = useContext(ThemeContext)
-	const [ addedCounter, setaddedCounter ] = useState(0)
-	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
+	const [addedCounter, setaddedCounter] = useState(0)
+	const [animatedValueTransform] = useState(new Animated.Value(0.9))
 	const route = useRoute()
 	const {item} = route.params
 	const delayValue = 1500
@@ -349,12 +349,12 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 				<BackgroundPresentationContainer>
 					<ItemImage
 						style={{
-							resizeMode: 'cover'
+							resizeMode: 'cover',
 						}}
 						source={{
 							uri:
 								// 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg',
-							item.images[0].image
+								item.images[0].image,
 						}}
 					/>
 				</BackgroundPresentationContainer>
@@ -605,7 +605,9 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 							<ItemInfoContainer>
 								<ItemInfoRating>
 									<ETAStarRating
-										ratings={item.rating}
+										ratings={
+											item.rating
+										}
 									/>
 								</ItemInfoRating>
 								<ItemInfoCalories>
@@ -676,11 +678,11 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 							</ItemDetailsContainer>
 							<FavoriteContainer>
 								<Touchable
-									// onPress={() =>
-									// 	console.log(
-									// 		'ñeñe ñeñe ñeñe',
-									// 	)
-									// }
+								// onPress={() =>
+								// 	console.log(
+								// 		'ñeñe ñeñe ñeñe',
+								// 	)
+								// }
 								>
 									<Ionicons
 										name={
@@ -710,6 +712,6 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 
 const GetOneItemComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
+	mapDispatchProps,
 )(GetOneItemComponent)
 export default GetOneItemComponentConnect

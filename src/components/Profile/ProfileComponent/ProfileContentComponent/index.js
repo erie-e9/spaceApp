@@ -11,8 +11,8 @@ import {
 } from '@icons'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
-import { connect } from 'react-redux'
-import { LOGOUT } from '@redux/user/actions'
+import {connect} from 'react-redux'
+import {LOGOUT} from '@redux/user/actions'
 
 const iconSize = 23
 
@@ -60,19 +60,19 @@ const IconContainer = styled.View`
 `
 
 const mapStateToProps = () => {
-	return {}	
+	return {}
 }
 
 const mapDispatchProps = (dispatch, props) => ({
 	logoutUser: () => {
 		dispatch({
 			type: LOGOUT,
-			payload: {}
+			payload: {},
 		})
-	}
+	},
 })
 
-const ProfileContentComponent = ({ logoutUser }) => {
+const ProfileContentComponent = ({logoutUser}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 
@@ -444,7 +444,7 @@ const ProfileContentComponent = ({ logoutUser }) => {
 
 const ProfileContentComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
+	mapDispatchProps,
 )(ProfileContentComponent)
 
 export default ProfileContentComponentConnect

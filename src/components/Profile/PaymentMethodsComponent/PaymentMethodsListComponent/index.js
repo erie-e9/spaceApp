@@ -5,10 +5,10 @@ import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
 import {Ionicons} from '@icons'
 import PaymentCardComponent from './Card'
-import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/profile/paymentmethods/actions';
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/paymentmethods/actions'
 
-const { width } = Dimensions.get('window')
+const {width} = Dimensions.get('window')
 const iconSize = 26
 
 const Root = styled.View`
@@ -50,23 +50,23 @@ const CompanyIconContainer = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const { data } = state.paymentmethods
-	return { data }
+	const {data} = state.paymentmethods
+	return {data}
 }
 
 const mapDispatchProps = (dispatch, props) => ({
 	getAllItemsRequest: () => {
 		dispatch({
 			type: GET_ALL_ITEMS_REQUEST,
-			payload: {}
+			payload: {},
 		})
-	}
+	},
 })
 
 const PaymentMethodsListComponent = ({getAllItemsRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [ items, setitems ] = useState([])
+	const [items, setitems] = useState([])
 	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
@@ -165,7 +165,7 @@ const PaymentMethodsListComponent = ({getAllItemsRequest, data}) => {
 
 const PaymentMethodsListComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
+	mapDispatchProps,
 )(PaymentMethodsListComponent)
 
 export default PaymentMethodsListComponentConnect

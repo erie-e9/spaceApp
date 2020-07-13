@@ -11,16 +11,16 @@ import { reducer as paymentmethodsReducer } from './profile/paymentmethods/reduc
 import { reducer as faqsReducer } from './profile/help/faqs/reducers'
 
 const reducer = combineReducers({
-    user: userReducer,
-    menu: menuReducer,
-    categories: categoriesReducer,
-    carousel: carouselReducer,
-    cart: cartReducer,
-    chats: chatsReducer,
-    addresses: addressesReducer,
-    branchoffices: branchofficesReducer,
-    paymentmethods: paymentmethodsReducer,
-    faqs: faqsReducer
+  user: userReducer,
+  menu: menuReducer,
+  categories: categoriesReducer,
+  carousel: carouselReducer,
+  cart: cartReducer,
+  chats: chatsReducer,
+  addresses: addressesReducer,
+  branchoffices: branchofficesReducer,
+  paymentmethods: paymentmethodsReducer,
+  faqs: faqsReducer,
 })
 
 export { reducer }

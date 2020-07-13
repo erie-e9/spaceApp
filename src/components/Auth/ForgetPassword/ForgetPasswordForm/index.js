@@ -9,8 +9,8 @@ import {
 	ETAErrorMessage,
 	ETASimpleText,
 } from '@etaui'
-import { connect } from 'react-redux'
-import { RECOVERY_PASS } from '@redux/user/actions'
+import {connect} from 'react-redux'
+import {RECOVERY_PASS} from '@redux/user/actions'
 
 const validationSchema = yup.object().shape({
 	cellphone: yup
@@ -37,7 +37,7 @@ const FormContainer = styled.View`
 `
 const ButtonForgetPasswordContainer = styled.View`
 	height: 20px;
-	marginTop: 15px
+	margintop: 15px;
 `
 const RecoverTextContainer = styled.View`
 	justify-content: center;
@@ -46,9 +46,9 @@ const RecoverTextContainer = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const { cellphone } = state.user
+	const {cellphone} = state.user
 
-	return { cellphone }
+	return {cellphone}
 }
 
 const mapDispatchProps = (dispatch, props) => ({
@@ -56,10 +56,10 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: RECOVERY_PASS,
 			payload: {
-				cellphone: cellphone
-			}
+				cellphone: cellphone,
+			},
 		})
-	}
+	},
 })
 
 const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
@@ -72,7 +72,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 	)
 
 	useEffect(() => {
-		console.log('ForgetPasswordComponent cellphone:', cellphone);
+		console.log('ForgetPasswordComponent cellphone:', cellphone)
 	}, [])
 
 	return (
@@ -84,9 +84,9 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 				}}
 				onSubmit={(values, actions) => {
 					recoveryPassUser({
-						cellphone: values.cellphone
+						cellphone: values.cellphone,
 					})
-					
+
 					setTimeout(() => {
 						actions.setSubmitting(false)
 						setbuttonrecoverytext('Send again')
@@ -183,7 +183,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 
 const ForgetPasswordComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
+	mapDispatchProps,
 )(ForgetPasswordComponent)
 
 export default ForgetPasswordComponentConnect

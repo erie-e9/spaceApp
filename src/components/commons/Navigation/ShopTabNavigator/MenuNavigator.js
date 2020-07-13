@@ -27,7 +27,7 @@ const CircleContainer = styled.TouchableOpacity`
 	height: 30px;
 	width: 30px;
 	border-radius: 15px;
-	background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const HeaderLeftCard = styled.TouchableOpacity`
 	justify-content: center;
@@ -37,7 +37,7 @@ const HeaderLeftCard = styled.TouchableOpacity`
 	margin-left: 15px;
 	margin-top: 25px;
 	border-radius: 15px;
-	background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 
 const MenuStack = createStackNavigator()
@@ -259,13 +259,13 @@ const GetOneItemNavigator = () => {
 					headerLeft: () => (
 						<HeaderLeftCard
 							onPress={() => navigation.goBack()}>
-								<Ionicons
-									name='md-close'
-									size={20}
-									color={
-										themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-									}
-								/>
+							<Ionicons
+								name='md-close'
+								size={20}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
 						</HeaderLeftCard>
 					),
 					headerTintColor:

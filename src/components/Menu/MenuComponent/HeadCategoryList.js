@@ -4,8 +4,8 @@ import styled, {ThemeContext} from 'styled-components'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
 import HeadCategoryItem from './HeadCategoryItem'
-import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/categories/actions'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/categories/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -36,24 +36,24 @@ const Touchable = styled.TouchableOpacity`
 `
 
 const mapStateToProps = (state) => {
-	const { data } = state.categories
-	return { data }
+	const {data} = state.categories
+	return {data}
 }
 
 const mapDispatchProps = (dispatch) => ({
 	getAllItemsRequest: () => {
 		dispatch({
 			type: GET_ALL_ITEMS_REQUEST,
-			dispatch: {}
+			dispatch: {},
 		})
-	}
+	},
 })
 
 const Categories = ({items, getAllItemsRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [ categoryitems, setcategoryitems ] = useState([])
-	const [ animatedValueTransform ] = useState(new Animated.Value(0))
+	const [categoryitems, setcategoryitems] = useState([])
+	const [animatedValueTransform] = useState(new Animated.Value(0))
 	let delayValue = 1000
 
 	useEffect(() => {
@@ -176,9 +176,6 @@ const Categories = ({items, getAllItemsRequest, data}) => {
 	)
 }
 
-const CategoriesConnect = connect(
-    mapStateToProps,
-    mapDispatchProps
-)(Categories)
+const CategoriesConnect = connect(mapStateToProps, mapDispatchProps)(Categories)
 
 export default CategoriesConnect

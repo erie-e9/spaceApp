@@ -26,7 +26,7 @@ const FormContainer = styled.View`
 `
 const ButtonSignupContainer = styled.View`
 	height: 20px;
-	marginTop: 15px
+	margintop: 15px;
 `
 
 const validationSchema = yup.object().shape({

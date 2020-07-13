@@ -4,7 +4,7 @@ import {Easing} from 'react-native'
 import {
 	createStackNavigator,
 	// TransitionPresets,
-	CardStyleInterpolators
+	CardStyleInterpolators,
 } from '@react-navigation/stack'
 import {FontAwesome} from '@icons'
 import AuthScreen from '@screens/Auth/AuthScreen'

@@ -52,13 +52,15 @@ const SearchBoxComponent = ({currentPosition}) => {
 				/>
 			</HeaderLeft>
 			<GooglePlacesAutocomplete
-        placeholder='Search address'
-        placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+				placeholder='Search address'
+				placeholderTextColor={
+					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+				}
 				minLength={2} // minimum length of text to search
 				autoFocus={false}
-        fetchDetails
-        loader={() => <Loader />}
-        enablePoweredByContainer={false}
+				fetchDetails
+				loader={() => <Loader />}
+				enablePoweredByContainer={false}
 				onPress={(data, details = null) => {
 					// 'details' is provided when fetchDetails = true
 					console.log(data)
@@ -75,20 +77,25 @@ const SearchBoxComponent = ({currentPosition}) => {
 				}}
 				styles={{
 					description: {
-            fontWeight: '600',
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontWeight: '600',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
 					},
 					textInputContainer: {
-            borderTopWidth: 0,
+						borderTopWidth: 0,
 						borderBottomWidth: 0,
-						backgroundColor: themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
-          },
-          textInput: {
-            backgroundColor: themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
-            color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-          },
+						backgroundColor:
+							themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
+					},
+					textInput: {
+						backgroundColor:
+							themeContext.THIRD_BACKGROUND_COLOR_LIGHT,
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+					},
 					predefinedPlacesDescription: {
-						color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
 					},
 				}}
 				currentLocation // Will add a 'Current location' button at the top of the predefined places list

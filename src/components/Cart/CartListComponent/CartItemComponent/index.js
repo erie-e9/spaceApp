@@ -4,8 +4,12 @@ import {Platform, Dimensions} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
 import {Ionicons, FontAwesome} from '@icons'
-import { connect } from 'react-redux'
-import { ADD_TO_CART, REMOVE_FROM_CART, REMOVE_ITEM_FROM_CART } from '@redux/cart/actions'
+import {connect} from 'react-redux'
+import {
+	ADD_TO_CART,
+	REMOVE_FROM_CART,
+	REMOVE_ITEM_FROM_CART,
+} from '@redux/cart/actions'
 import {currencySeparator} from '@functions'
 
 const {width} = Dimensions.get('window')
@@ -196,8 +200,8 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: ADD_TO_CART,
 			payload: {
-				data: paramItem
-			}
+				data: paramItem,
+			},
 		})
 	},
 
@@ -205,8 +209,8 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: REMOVE_FROM_CART,
 			payload: {
-				data: _id
-			}
+				data: _id,
+			},
 		})
 	},
 
@@ -214,16 +218,22 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: REMOVE_ITEM_FROM_CART,
 			payload: {
-				data: _id
-			}
+				data: _id,
+			},
 		})
-	}
+	},
 })
 
-const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item, howMany}) => {
+const CartItemComponent = ({
+	addToCart,
+	removeFromCart,
+	removeItemFromCart,
+	item,
+	howMany,
+}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [ addedCounter, setaddedCounter ] = useState()
+	const [addedCounter, setaddedCounter] = useState()
 
 	useEffect(() => {
 		setaddedCounter(howMany)
@@ -253,8 +263,7 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 	}
 
 	return (
-		<Touchable
-			onPress={() => _onPressItem(item)}>
+		<Touchable onPress={() => _onPressItem(item)}>
 			<Root>
 				<Item>
 					<ItemImage source={{uri: item.images[0].image}} />
@@ -264,7 +273,8 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 								<ETASimpleText
 									size={13}
 									weight={
-										Platform.OS === 'ios'
+										Platform.OS ===
+										'ios'
 											? '400'
 											: '800'
 									}
@@ -289,7 +299,8 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 										}
 										style={{
-											alignSelf: 'center',
+											alignSelf:
+												'center',
 										}}
 									/>
 								</Touchable>
@@ -313,7 +324,15 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 										style={{
 											zIndex: 100,
 										}}>
-										${currencySeparator((((100 - item.discount) * item.price) / 100).toFixed(2))}{' '}
+										$
+										{currencySeparator(
+											(
+												((100 -
+													item.discount) *
+													item.price) /
+												100
+											).toFixed(2),
+										)}{' '}
 										unit price
 									</ETASimpleText>
 								</UnitPriceContainer>
@@ -333,7 +352,16 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 										style={{
 											zIndex: 100,
 										}}>
-										${currencySeparator(((100 - item.discount) * (item.price / 100) *addedCounter).toFixed(2))}
+										$
+										{currencySeparator(
+											(
+												(100 -
+													item.discount) *
+												(item.price /
+													100) *
+												addedCounter
+											).toFixed(2),
+										)}
 									</ETASimpleText>
 								</PriceContainer>
 								{/* {
@@ -388,7 +416,9 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 											</AddRemoveButtonContainer>
 											<FontAwesome
 												name='shopping-cart'
-												size={18}
+												size={
+													18
+												}
 												color='white'
 												style={{
 													alignSelf:
@@ -444,7 +474,7 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 											<AddCart
 												onPress={() =>
 													_addCart(
-														item
+														item,
 													)
 												}>
 												<AddRemoveButtonContainer>
@@ -480,7 +510,7 @@ const CartItemComponent = ({addToCart, removeFromCart, removeItemFromCart, item,
 
 const CartItemComponentConnect = connect(
 	null,
-	mapDispatchProps
+	mapDispatchProps,
 )(CartItemComponent)
 
 export default React.memo(CartItemComponentConnect)

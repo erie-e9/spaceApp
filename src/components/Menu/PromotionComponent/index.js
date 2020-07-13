@@ -220,7 +220,9 @@ const PromoComponent = () => {
 							<ETASimpleText
 								size={14}
 								weight='400'
-								color={selectedItem.descriptionColor}
+								color={
+									selectedItem.descriptionColor
+								}
 								align='center'
 								style={{
 									marginBottom: 5,

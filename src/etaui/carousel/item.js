@@ -43,8 +43,7 @@ const ETACarouselItem = ({item}) => (
 				align='center'
 				style={{
 					elevation: 4,
-					textShadowColor:
-						'rgba(0, 0, 0, 0.7)',
+					textShadowColor: 'rgba(0, 0, 0, 0.7)',
 					textShadowOffset: {
 						width: 0.5,
 						height: 0.7,
@@ -61,8 +60,7 @@ const ETACarouselItem = ({item}) => (
 				style={{
 					marginBottom: 5,
 					elevation: 4,
-					textShadowColor:
-						'rgba(0, 0, 0, 0.7)',
+					textShadowColor: 'rgba(0, 0, 0, 0.7)',
 					textShadowOffset: {
 						width: 0.5,
 						height: 0.7,

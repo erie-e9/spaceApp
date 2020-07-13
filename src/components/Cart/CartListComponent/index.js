@@ -4,8 +4,8 @@ import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
-import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/cart/actions'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/cart/actions'
 
 const Root = styled.View`
 	flex: 0.6;
@@ -24,23 +24,23 @@ const EmptyListContainer = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const { data } = state.cart
-	return { data }
+	const {data} = state.cart
+	return {data}
 }
 
 const mapDispatchProps = (dispatch, props) => ({
 	getAllItemsRequest: () => {
 		dispatch({
 			type: GET_ALL_ITEMS_REQUEST,
-			payload: {}
+			payload: {},
 		})
-	}
+	},
 })
 
 const CartListComponent = ({getAllItemsRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [ items, setitems ] = useState([])
+	const [items, setitems] = useState([])
 
 	useEffect(() => {
 		getAllItemsRequest()
@@ -86,7 +86,7 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 									'ShopTabNavigator',
 									{
 										screen: 'Menu',
-									}
+									},
 								)
 							}
 							disabled={false}
@@ -100,7 +100,12 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 					</EmptyListContainer>
 				)}
 				renderItem={({item, i}) => {
-					return <CartItemComponent item={item} howMany={item.howMany} />
+					return (
+						<CartItemComponent
+							item={item}
+							howMany={item.howMany}
+						/>
+					)
 				}}
 			/>
 		</Root>
@@ -109,7 +114,7 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 
 const CartListComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
+	mapDispatchProps,
 )(CartListComponent)
 
 export default CartListComponentConnect

@@ -40,7 +40,7 @@ const StatusContainer = styled.View`
 	position: absolute;
 	z-index: 100;
 	height: 14px;
-	paddingHorizontal: 4px;
+	paddinghorizontal: 4px;
 	bottom: 2px;
 	left: 3px;
 	border-radius: 4px;
@@ -123,29 +123,25 @@ const GeneralItemComponent = ({item}) => {
 	}
 
 	return (
-		<Touchable
-			key={item._id}
-			onPress={() => _onPressItem(item)}>
+		<Touchable key={item._id} onPress={() => _onPressItem(item)}>
 			<Card>
 				<CardTop>
-					{
-						item.status !== ''
-						?	<StatusContainer>
-								<ETASimpleText
-									size={10}
-									weight={
-										Platform.OS === 'ios'
-											? '400'
-											: '300'
-									}
-									// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-									color='white'
-									align='center'>
-									{item.status}
-								</ETASimpleText>
-							</StatusContainer>
-						:	null
-					}
+					{item.status !== '' ? (
+						<StatusContainer>
+							<ETASimpleText
+								size={10}
+								weight={
+									Platform.OS === 'ios'
+										? '400'
+										: '300'
+								}
+								// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+								color='white'
+								align='center'>
+								{item.status}
+							</ETASimpleText>
+						</StatusContainer>
+					) : null}
 					<ItemImage
 						source={{
 							uri: item.images[0].image,
@@ -187,8 +183,7 @@ const GeneralItemComponent = ({item}) => {
 								}}>
 								$
 								{(
-									((100 -
-										item.discount) *
+									((100 - item.discount) *
 										item.price) /
 									100
 								).toFixed(2)}

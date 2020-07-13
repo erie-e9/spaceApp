@@ -48,11 +48,11 @@ const SignupScreen = ({navigation}) => (
 		<Root>
 			{/* <BackImage style={{width: null, height: null}}
                         source={require('@assets/background1.png')}> */}
-				<SignupContainer>
-					<Card>
-						<SignupForm navigation={navigation} />
-					</Card>
-				</SignupContainer>
+			<SignupContainer>
+				<Card>
+					<SignupForm navigation={navigation} />
+				</Card>
+			</SignupContainer>
 			{/* </BackImage> */}
 		</Root>
 	</KeyboardMisser>

@@ -6,12 +6,12 @@ import SplashScreen from '@components/commons/SplashScreen'
 import {lightTheme, darkTheme} from '@utils/constants'
 import SigninStackScreen from './SigninStack'
 import ShopTabNavigator from './ShopTabNavigator'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 const mapStateToProps = (state, props) => {
-	const { userToken } = state.user;
-  
-	return { userToken }
+	const {userToken} = state.user
+
+	return {userToken}
 }
 
 const Navigation = ({userToken}) => {
@@ -46,8 +46,6 @@ const Navigation = ({userToken}) => {
 	)
 }
 
-const NavigationConnect = connect(
-	mapStateToProps
-  )(Navigation)
-  
+const NavigationConnect = connect(mapStateToProps)(Navigation)
+
 export default NavigationConnect

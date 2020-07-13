@@ -40,22 +40,28 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 		}
 	}, [posts])
 
-	const infiniteScroll = () => {		
-		let scrollValue = 0;
-		let scrolled = 0;
-	
-		timerID = setInterval(() => {
-		  scrolled++;
-		  if (scrolled < postsLenght) {
-			scrollValue = scrollValue + 1;      
-		  } else {
-			scrollValue = 0;
-			scrolled = 0;
-		  }
-	
-		  flatList.current.scrollToIndex({ animated: true, index: scrollValue ? scrollValue : 0 });
-		}, time ? time : 3000);
-	  };
+	const infiniteScroll = () => {
+		let scrollValue = 0
+		let scrolled = 0
+
+		timerID = setInterval(
+			() => {
+				scrolled++
+				if (scrolled < postsLenght) {
+					scrollValue = scrollValue + 1
+				} else {
+					scrollValue = 0
+					scrolled = 0
+				}
+
+				flatList.current.scrollToIndex({
+					animated: true,
+					index: scrollValue ? scrollValue : 0,
+				})
+			},
+			time ? time : 3000,
+		)
+	}
 
 	const stopAutoPlay = () => {
 		if (timerID) {

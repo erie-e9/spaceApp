@@ -4,8 +4,8 @@ import {Formik} from 'formik'
 import * as yup from 'yup'
 import {Entypo} from '@icons'
 import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
-import { connect } from 'react-redux'
-import { SIGNIN } from '@redux/user/actions'
+import {connect} from 'react-redux'
+import {SIGNIN} from '@redux/user/actions'
 
 const FormContainer = styled.View`
 	flex: 1;
@@ -45,9 +45,9 @@ const mapDispatchProps = (dispatch, props) => ({
 			payload: {
 				cellphone: cellphone,
 				password: password,
-			}
+			},
 		})
-  	}  
+	},
 })
 
 const SigninForm = ({getAllUserInfoUser}) => {
@@ -73,7 +73,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 						cellphone: values.cellphone,
 						password: values.password,
 					})
-					
+
 					setTimeout(() => {
 						actions.setSubmitting(false)
 					}, 3000)
@@ -230,9 +230,6 @@ const SigninForm = ({getAllUserInfoUser}) => {
 	)
 }
 
-const SignConnect = connect(
-	null,
-	mapDispatchProps
-)(SigninForm)
+const SignConnect = connect(null, mapDispatchProps)(SigninForm)
 
 export default SignConnect

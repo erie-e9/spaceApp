@@ -3,9 +3,8 @@ import {Platform, Dimensions} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 import {currencySeparator} from '@functions'
-
 
 const {width} = Dimensions.get('window')
 
@@ -81,8 +80,8 @@ const ButtonPayContainer = styled.View`
 	background-color: transparent;
 `
 const mapStateToProps = (state, props) => {
-	const { data } = state.cart
-	return { data }
+	const {data} = state.cart
+	return {data}
 }
 
 const CartDetailsComponent = ({data}) => {
@@ -104,12 +103,15 @@ const CartDetailsComponent = ({data}) => {
 		await data.forEach((element) => {
 			sum += element.howMany
 			settotalItems(sum)
-			subtotalValue = subtotalValue + ((100 - element.discount) * element.price / 100) * element.howMany
+			subtotalValue =
+				subtotalValue +
+				(((100 - element.discount) * element.price) / 100) *
+					element.howMany
 			// console.log('element.howMany', element.howMany)
 			// console.log('element.howMany', ((100 - element.discount) * element.price / 100) )
 			// console.log('______________subtotalValue:', subtotalValue)
 		})
-		
+
 		setsubtotal(subtotalValue)
 		settotal(subtotalValue + shipping)
 		// settotalItems(sum)
@@ -121,14 +123,24 @@ const CartDetailsComponent = ({data}) => {
 				<ETASimpleText
 					size={15}
 					weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
-					color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+					color={
+						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+					}
 					align='left'>
-					Summary ({data.length === 0 ? '0' : totalItems} {data.length === 0 ? 'items' : totalItems === 1 ? 'item' : 'items'})
+					Summary ({data.length === 0 ? '0' : totalItems}{' '}
+					{data.length === 0
+						? 'items'
+						: totalItems === 1
+						? 'item'
+						: 'items'}
+					)
 				</ETASimpleText>
 				<ResumeContainer>
 					<ETASimpleText
 						size={11}
-						weight={Platform.OS === 'ios' ? '400' : '400'}
+						weight={
+							Platform.OS === 'ios' ? '400' : '400'
+						}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
@@ -138,18 +150,27 @@ const CartDetailsComponent = ({data}) => {
 
 					<ETASimpleText
 						size={11}
-						weight={Platform.OS === 'ios' ? '400' : '400'}
+						weight={
+							Platform.OS === 'ios' ? '400' : '400'
+						}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						${data.length === 0 ? data.length.toFixed(2) : currencySeparator(subtotal.toFixed(2))}
+						$
+						{data.length === 0
+							? data.length.toFixed(2)
+							: currencySeparator(
+									subtotal.toFixed(2),
+							  )}
 					</ETASimpleText>
 				</ResumeContainer>
 				<ResumeContainer>
 					<ETASimpleText
 						size={11}
-						weight={Platform.OS === 'ios' ? '400' : '400'}
+						weight={
+							Platform.OS === 'ios' ? '400' : '400'
+						}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
@@ -159,12 +180,19 @@ const CartDetailsComponent = ({data}) => {
 
 					<ETASimpleText
 						size={11}
-						weight={Platform.OS === 'ios' ? '400' : '400'}
+						weight={
+							Platform.OS === 'ios' ? '400' : '400'
+						}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						${data.length === 0 ? data.length.toFixed(2) : currencySeparator(shipping.toFixed(2))}
+						$
+						{data.length === 0
+							? data.length.toFixed(2)
+							: currencySeparator(
+									shipping.toFixed(2),
+							  )}
 					</ETASimpleText>
 				</ResumeContainer>
 				<TotalContainer>
@@ -194,7 +222,12 @@ const CartDetailsComponent = ({data}) => {
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}
 							align='left'>
-							${data.length === 0 ? data.length.toFixed(2) : currencySeparator(total.toFixed(2))}
+							$
+							{data.length === 0
+								? data.length.toFixed(2)
+								: currencySeparator(
+										total.toFixed(2),
+								  )}
 						</ETASimpleText>
 					</ResumeTotalContainer>
 				</TotalContainer>
@@ -202,20 +235,25 @@ const CartDetailsComponent = ({data}) => {
 					<ETAButtonOutline
 						title='Send to Home'
 						onPress={() =>
-							navigation.navigate('SettingsNavigator', {
-								screen: 'MapAddressesScreen',
-								params: {
-									data: {
-										_id: 1,
-										headTitle: 'Home',
-										details:
-											'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
-										latitude: 24.02574090527505,
-										isDefault: true,
-										longitude: -104.67300467638253,
+							navigation.navigate(
+								'SettingsNavigator',
+								{
+									screen:
+										'MapAddressesScreen',
+									params: {
+										data: {
+											_id: 1,
+											headTitle:
+												'Home',
+											details:
+												'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
+											latitude: 24.02574090527505,
+											isDefault: true,
+											longitude: -104.67300467638253,
+										},
 									},
 								},
-							})
+							)
 						}
 						disabled={false}
 						colorButton={
@@ -247,7 +285,7 @@ const CartDetailsComponent = ({data}) => {
 
 const CartDetailsComponentConnect = connect(
 	mapStateToProps,
-	null
+	null,
 )(CartDetailsComponent)
 
 // export default CartDetailsComponentConnect

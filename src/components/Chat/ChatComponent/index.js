@@ -3,8 +3,8 @@ import styled from 'styled-components/native'
 import {FlatList} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import ChatCard from './ChatCard'
-import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/chats/actions'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/chats/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -14,22 +14,22 @@ const Root = styled.View`
 const Touchable = styled.TouchableOpacity``
 
 const mapStateToProps = (state, props) => {
-	const { data } = state.chats;
-	return { data }
+	const {data} = state.chats
+	return {data}
 }
 
 const mapDispatchProps = (dispatch, props) => ({
 	getAllItemsRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST
+			type: GET_ALL_ITEMS_REQUEST,
 		})
-	}
+	},
 })
 
 const ChatComponent = ({getAllItemsRequest, data}) => {
 	const navigation = useNavigation()
-	const [ items, setitems ] = useState([])
-	const [ refresher, setrefresher ] = useState(!true)
+	const [items, setitems] = useState([])
+	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
 		getAllItemsRequest()
@@ -77,7 +77,7 @@ const ChatComponent = ({getAllItemsRequest, data}) => {
 
 const ChatComponentConnect = connect(
 	mapStateToProps,
-	mapDispatchProps
+	mapDispatchProps,
 )(ChatComponent)
 
 export default ChatComponentConnect
