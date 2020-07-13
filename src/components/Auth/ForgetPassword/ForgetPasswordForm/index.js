@@ -35,8 +35,9 @@ const FormContainer = styled.View`
 	align-items: center;
 	padding-horizontal: 10px;
 `
-const ButtonSigninContainer = styled.View`
+const ButtonForgetPasswordContainer = styled.View`
 	height: 20px;
+	marginTop: 15px
 `
 const RecoverTextContainer = styled.View`
 	justify-content: center;
@@ -149,7 +150,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}
-						<ButtonSigninContainer>
+						<ButtonForgetPasswordContainer>
 							<ETAButtonFilled
 								title={buttonrecoverytext}
 								onPress={handleSubmit}
@@ -163,7 +164,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 									isSubmitting ? 20 : 3
 								}
 							/>
-						</ButtonSigninContainer>
+						</ButtonForgetPasswordContainer>
 					</FormContainer>
 				)}
 			</Formik>

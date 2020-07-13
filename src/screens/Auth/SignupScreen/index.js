@@ -1,8 +1,9 @@
 import React from 'react'
-import {Keyboard, Platform} from 'react-native'
+import {Keyboard, Platform, Dimensions} from 'react-native'
 import styled from 'styled-components/native'
 import SignupForm from '@components/Auth/Signup/SignupForm'
 
+const {width} = Dimensions.get('window')
 const KeyboardMisser = styled.TouchableWithoutFeedback``
 const Root = styled.View`
 	flex: 1;
@@ -13,21 +14,22 @@ const Root = styled.View`
 //   resize-mode: cover;
 //   justify-content: center;
 // `;
-// const InfoContainer = styled.View`
-const InfoContainer = styled.KeyboardAvoidingView.attrs({
+// const SignupContainer = styled.View`
+const SignupContainer = styled.KeyboardAvoidingView.attrs({
 	behavior: Platform.OS === 'ios' ? 'position' : 'height',
 })`
-	flex: 0.6;
+	flex: 0.5;
 	align-items: center;
 	justify-content: center;
 	z-index: 10;
 `
 const Card = styled.View`
-	flex: 1;
+	min-height: 400px;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	width: ${width * 0.8}px;
 	padding-horizontal: 20px;
 	margin-horizontal: 20px;
 	shadow-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
@@ -46,11 +48,11 @@ const SignupScreen = ({navigation}) => (
 		<Root>
 			{/* <BackImage style={{width: null, height: null}}
                         source={require('@assets/background1.png')}> */}
-			<InfoContainer>
-				<Card>
-					<SignupForm navigation={navigation} />
-				</Card>
-			</InfoContainer>
+				<SignupContainer>
+					<Card>
+						<SignupForm navigation={navigation} />
+					</Card>
+				</SignupContainer>
 			{/* </BackImage> */}
 		</Root>
 	</KeyboardMisser>

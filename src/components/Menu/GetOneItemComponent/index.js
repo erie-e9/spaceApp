@@ -127,17 +127,15 @@ const CardTop = styled.View`
 	margin-top: 10px;
 `
 const StatusContainer = styled.View`
-	position: absolute;
-	z-index: 100;
-	height: 16px;
-	paddingHorizontal: 4px;
-	top: -15px;
-	border-radius: 2px;
-	border-width: 1px;
-	border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	justify-content: flex-end;
 	align-items: center;
+	position: absolute;
+	z-index: 100;
+	height: 14px;
+	paddingHorizontal: 4px;
+	top: -15px;
+	border-radius: 4px;
+	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
 const CardTopHead = styled.View`
 	min-height: 40px;
@@ -585,7 +583,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 																: '900'
 														}
 														color={
-															themeContext.PRIMARY_COLOR
+															themeContext.PRIMARY_TEXT_COLOR_LIGHT
 														}
 														align='left'
 														style={{

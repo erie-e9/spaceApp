@@ -203,7 +203,7 @@ const PromoComponent = () => {
 										: '700'
 								}
 								// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-								color='white'
+								color={selectedItem.titleColor}
 								align='center'
 								style={{
 									elevation: 4,
@@ -220,7 +220,7 @@ const PromoComponent = () => {
 							<ETASimpleText
 								size={14}
 								weight='400'
-								color='white'
+								color={selectedItem.descriptionColor}
 								align='center'
 								style={{
 									marginBottom: 5,

@@ -26,6 +26,7 @@ const FormContainer = styled.View`
 `
 const ButtonSignupContainer = styled.View`
 	height: 20px;
+	marginTop: 15px
 `
 
 const validationSchema = yup.object().shape({
@@ -74,7 +75,6 @@ const validationSchema = yup.object().shape({
 
 const SignupForm = () => {
 	const themeContext = useContext(ThemeContext)
-	const {signUp} = useContext(Context)
 	const [mysecureTextEntry] = useState(true)
 
 	return (
@@ -88,12 +88,12 @@ const SignupForm = () => {
 					password: '',
 				}}
 				onSubmit={(values, actions) => {
-					signUp({
-						fullname: values.fullname,
-						username: values.username,
-						cellphone: values.cellphone,
-						password: values.password,
-					})
+					// signUp({
+					// 	fullname: values.fullname,
+					// 	username: values.username,
+					// 	cellphone: values.cellphone,
+					// 	password: values.password,
+					// })
 					setTimeout(() => {
 						actions.setSubmitting(false)
 						// alert(JSON.stringify(values))

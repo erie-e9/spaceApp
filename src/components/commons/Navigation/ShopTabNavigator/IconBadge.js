@@ -48,7 +48,7 @@ const IconWithBadge = ({name, badgeCount, color, size, data}) => {
                         <Text
                             style={{
                                 color: 'white',
-                                fontSize: 10,
+                                fontSize: 8.5,
                                 fontWeight: '600',
                             }}>
                             {totalItems}

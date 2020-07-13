@@ -14,7 +14,7 @@ const Root = styled.View`
 // const Touchable = styled.TouchableOpacity`
 //   z-index: 100;
 // `;
-const CategorytItems = styled.FlatList``
+const CategorytItemsList = styled.FlatList``
 
 const ItemsByCategoryComponent = () => {
 	const themeContext = useContext(ThemeContext)
@@ -53,7 +53,7 @@ const ItemsByCategoryComponent = () => {
 
 	return (
 		<Root>
-			<CategorytItems
+			<CategorytItemsList
 				contentContainerStyle={{
 					flexDirection: 'column',
 				}}

@@ -4,31 +4,36 @@ import styled, {ThemeContext} from 'styled-components'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
 import { connect } from 'react-redux'
+import {currencySeparator} from '@functions'
+
 
 const {width} = Dimensions.get('window')
 
 const Root = styled.View`
-	flex: 0.6;
+	flex: 0.4;
+`
+const CartDetailsContainer = styled.View`
 	flex-direction: column;
 	width: ${width - 20}px;
+	height: 100%;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
 	position: absolute;
-	padding: 20px 20px;
+	padding: 25px 30px;
 	align-self: center;
-	bottom: -2px;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	bottom: 0px;
 	border-width: 0px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const ResumeContainer = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: stretch;
 	width: 100%;
-	margin: 5px 0px 0px 0px;
+	margin: 2px 0px 0px 0px;
 	padding: 5px 10px;
 	background-color: transparent;
 `
@@ -112,127 +117,130 @@ const CartDetailsComponent = ({data}) => {
 
 	return (
 		<Root>
-			<ETASimpleText
-				size={16}
-				weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
-				color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-				align='left'>
-				Summary ({data.length === 0 ? '0' : totalItems} {data.length === 0 ? 'items' : totalItems === 1 ? 'item' : 'items'})
-			</ETASimpleText>
-			<ResumeContainer>
+			<CartDetailsContainer>
 				<ETASimpleText
-					size={11}
-					weight={Platform.OS === 'ios' ? '400' : '400'}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
+					size={15}
+					weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+					color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 					align='left'>
-					Subtotal
+					Summary ({data.length === 0 ? '0' : totalItems} {data.length === 0 ? 'items' : totalItems === 1 ? 'item' : 'items'})
 				</ETASimpleText>
-
-				<ETASimpleText
-					size={11}
-					weight={Platform.OS === 'ios' ? '400' : '400'}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-					align='left'>
-					${subtotal.toFixed(2)}
-				</ETASimpleText>
-			</ResumeContainer>
-			<ResumeContainer>
-				<ETASimpleText
-					size={11}
-					weight={Platform.OS === 'ios' ? '400' : '400'}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-					align='left'>
-					Shipping
-				</ETASimpleText>
-
-				<ETASimpleText
-					size={11}
-					weight={Platform.OS === 'ios' ? '400' : '400'}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-					align='left'>
-					${data.length === 0 ? data.length.toFixed(2) : shipping.toFixed(2)}
-				</ETASimpleText>
-			</ResumeContainer>
-			<TotalContainer>
-				<ResumeTotalContainer>
+				<ResumeContainer>
 					<ETASimpleText
-						size={16}
-						weight={
-							Platform.OS === 'ios'
-								? 'bold'
-								: 'bold'
-						}
+						size={11}
+						weight={Platform.OS === 'ios' ? '400' : '400'}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						Total
+						Subtotal
 					</ETASimpleText>
 
 					<ETASimpleText
-						size={16}
-						weight={
-							Platform.OS === 'ios'
-								? 'bold'
-								: 'bold'
-						}
+						size={11}
+						weight={Platform.OS === 'ios' ? '400' : '400'}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						${data.length === 0 ? data.length.toFixed(2) : total.toFixed(2)}
+						${data.length === 0 ? data.length.toFixed(2) : currencySeparator(subtotal.toFixed(2))}
 					</ETASimpleText>
-				</ResumeTotalContainer>
-			</TotalContainer>
-			<DirectionContainer>
-				<ETAButtonOutline
-					title='Send to Home'
-					onPress={() =>
-						navigation.navigate('SettingsNavigator', {
-							screen: 'MapAddressesScreen',
-							params: {
-								data: {
-									_id: 1,
-									headTitle: 'Home',
-									details:
-										'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
-									latitude: 24.02574090527505,
-									isDefault: true,
-									longitude: -104.67300467638253,
+				</ResumeContainer>
+				<ResumeContainer>
+					<ETASimpleText
+						size={11}
+						weight={Platform.OS === 'ios' ? '400' : '400'}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+						align='left'>
+						Shipping
+					</ETASimpleText>
+
+					<ETASimpleText
+						size={11}
+						weight={Platform.OS === 'ios' ? '400' : '400'}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+						align='left'>
+						${data.length === 0 ? data.length.toFixed(2) : currencySeparator(shipping.toFixed(2))}
+					</ETASimpleText>
+				</ResumeContainer>
+				<TotalContainer>
+					<ResumeTotalContainer>
+						<ETASimpleText
+							size={15}
+							weight={
+								Platform.OS === 'ios'
+									? 'bold'
+									: 'bold'
+							}
+							color={
+								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+							}
+							align='left'>
+							Total
+						</ETASimpleText>
+
+						<ETASimpleText
+							size={15}
+							weight={
+								Platform.OS === 'ios'
+									? 'bold'
+									: 'bold'
+							}
+							color={
+								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+							}
+							align='left'>
+							${data.length === 0 ? data.length.toFixed(2) : currencySeparator(total.toFixed(2))}
+						</ETASimpleText>
+					</ResumeTotalContainer>
+				</TotalContainer>
+				<DirectionContainer>
+					<ETAButtonOutline
+						title='Send to Home'
+						onPress={() =>
+							navigation.navigate('SettingsNavigator', {
+								screen: 'MapAddressesScreen',
+								params: {
+									data: {
+										_id: 1,
+										headTitle: 'Home',
+										details:
+											'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
+										latitude: 24.02574090527505,
+										isDefault: true,
+										longitude: -104.67300467638253,
+									},
 								},
-							},
-						})
-					}
-					disabled={false}
-					colorButton={
-						themeContext.PRIMARY_TEXT_COLOR_LIGHT
-					}
-					padding={10}
-					width={250}
-					borderRadius={3}
-				/>
-			</DirectionContainer>
-			<ButtonPayContainer>
-				<ETAButtonFilled
-					title='Check out'
-					onPress={() => console.log(data)}
-					disabled={!!isSubmitting}
-					colorButton={
-						themeContext.SECONDARY_BACKGROUND_COLOR
-					}
-					padding={10}
-					width={isSubmitting ? 40 : 250}
-					borderRadius={isSubmitting ? 20 : 3}
-				/>
-			</ButtonPayContainer>
+							})
+						}
+						disabled={false}
+						colorButton={
+							themeContext.PRIMARY_TEXT_COLOR_LIGHT
+						}
+						padding={10}
+						width={250}
+						borderRadius={3}
+						borderWidth={0.3}
+					/>
+				</DirectionContainer>
+				<ButtonPayContainer>
+					<ETAButtonFilled
+						title='Check out'
+						onPress={() => console.log(data)}
+						disabled={!!isSubmitting}
+						colorButton={
+							themeContext.SECONDARY_BACKGROUND_COLOR
+						}
+						padding={10}
+						width={isSubmitting ? 40 : 250}
+						borderRadius={isSubmitting ? 20 : 3}
+					/>
+				</ButtonPayContainer>
+			</CartDetailsContainer>
 		</Root>
 	)
 }

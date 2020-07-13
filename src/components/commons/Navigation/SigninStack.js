@@ -4,7 +4,7 @@ import {Easing} from 'react-native'
 import {
 	createStackNavigator,
 	// TransitionPresets,
-	// CardStyleInterpolators,
+	CardStyleInterpolators
 } from '@react-navigation/stack'
 import {FontAwesome} from '@icons'
 import AuthScreen from '@screens/Auth/AuthScreen'
@@ -88,13 +88,14 @@ const SigninStackScreen = () => {
 								name='angle-left'
 								size={25}
 								color={
-									themeContext.SECONDARY_BACKGROUND_COLOR
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
 							/>
 						</Touchable>
 					),
 					headerTransparent: true,
-					// animationTypeForReplace: 'push'
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
 				})}
 			/>
 
@@ -110,13 +111,14 @@ const SigninStackScreen = () => {
 								name='angle-left'
 								size={25}
 								color={
-									themeContext.SECONDARY_BACKGROUND_COLOR
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
 							/>
 						</Touchable>
 					),
 					headerTransparent: true,
-					// animationTypeForReplace: 'push'
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
 				})}
 			/>
 		</SigninStack.Navigator>

@@ -1,14 +1,14 @@
 import React, {useState, useEffect, useContext} from 'react'
-import {Animated, Platform} from 'react-native'
+import {Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText, ETAButtonOutline} from '@etaui'
+import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
 import { connect } from 'react-redux'
 import { GET_ALL_ITEMS_REQUEST } from '@redux/cart/actions'
 
 const Root = styled.View`
-	flex: 0.58;
+	flex: 0.6;
 	justify-content: flex-start;
 	align-items: center;
 	background-color: transparent;
@@ -16,11 +16,11 @@ const Root = styled.View`
 const CategorytItemsList = styled.FlatList``
 const EmptyListContainer = styled.View`
 	flex: 1;
-	height: 100%;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-color: transparent;
+	margin-top: 100px;
 `
 
 const mapStateToProps = (state, props) => {
@@ -45,7 +45,7 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 	useEffect(() => {
 		getAllItemsRequest()
 		setitems(data)
-		console.log('CartListComponent data', data)
+		// console.log('CartListComponent data', data)
 		// return () => {
 		// 	getAllItemsRequest()
 		// }
@@ -79,23 +79,22 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 							align='left'>
 							Your cart doesn´t have products yet
 						</ETASimpleText>
-
-						<ETAButtonOutline
+						<ETAButtonFilled
 							title='See menu'
 							onPress={() =>
 								navigation.navigate(
 									'ShopTabNavigator',
 									{
 										screen: 'Menu',
-									},
+									}
 								)
 							}
 							disabled={false}
 							colorButton={
-								themeContext.PRIMARY_TEXT_COLOR_LIGHT
+								themeContext.SECONDARY_BACKGROUND_COLOR
 							}
 							padding={10}
-							width={250}
+							width={240}
 							borderRadius={3}
 						/>
 					</EmptyListContainer>

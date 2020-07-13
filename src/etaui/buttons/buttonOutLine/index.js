@@ -21,9 +21,10 @@ const ETAButtonOutline = ({
 	padding,
 	borderRadius,
 	width,
+	borderWidth
 }) => {
 	const themeContext = useContext(ThemeContext)
-
+	
 	return (
 		<>
 			<Root>
@@ -32,7 +33,7 @@ const ETAButtonOutline = ({
 						width,
 						backgroundColor: 'transparent',
 						borderColor: colorButton,
-						borderWidth: 0.3,
+						borderWidth: borderWidth,
 						paddingLeft: padding || 20,
 						paddingRight: padding || 20,
 						borderRadius,
@@ -66,4 +67,4 @@ const ETAButtonOutline = ({
 	)
 }
 
-export default ETAButtonOutline
+export default React.memo(ETAButtonOutline)

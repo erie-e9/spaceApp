@@ -18,12 +18,12 @@ const Card = styled.View`
 	height: 100px;
 	width: ${(props) => (props.data.length > 1 ? CARD_WIDTH : width - 20)}px;
 	padding: 15px;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 	shadow-color: #333;
 	shadow-opacity: 0.5;
 	shadow-offset: 10px 10px;
 	shadow-radius: 2px;
 	elevation: 3;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const InfoContainer = styled.View``
 const LonelyContainer = styled.View`

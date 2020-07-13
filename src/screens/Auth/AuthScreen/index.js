@@ -1,10 +1,11 @@
 import React from 'react'
-import {Keyboard, Platform} from 'react-native'
+import {Keyboard, Platform, Dimensions} from 'react-native'
 import styled from 'styled-components/native'
 import SigninHead from '@components/Auth/Signin/SigninHead'
 import SigninForm from '@components/Auth/Signin/SigninForm'
 import SigninBody from '@components/Auth/Signin/SigninBody'
 
+const {width} = Dimensions.get('window')
 const KeyboardMisser = styled.TouchableWithoutFeedback``
 const Root = styled.View`
 	flex: 1;
@@ -17,8 +18,7 @@ const Root = styled.View`
 //   justify-content: center;
 //   z-index: 10;
 // `;
-// const InfoContainer = styled.View`
-const InfoContainer = styled.KeyboardAvoidingView.attrs({
+const SigninContainer = styled.KeyboardAvoidingView.attrs({
 	behavior: Platform.OS === 'ios' ? 'padding' : 'height',
 })`
 	flex: 0.5;
@@ -32,7 +32,7 @@ const Card = styled.View`
 	justify-content: center;
 	align-items: center;
 	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
-	width: 80%;
+	width: ${width * 0.8}px;
 	min-height: 250px;
 	padding-vertical: 10px;
 	margin-vertical: 5px;
@@ -53,12 +53,12 @@ const AuthScreen = ({navigation}) => (
 			{/* <BackImage style={{width: null, height: null}}
                         source={require('@assets/background1.png')}> */}
 			<SigninHead />
-			<InfoContainer>
+			<SigninContainer>
 				<Card>
 					<SigninForm />
 					<SigninBody navigation={navigation} />
 				</Card>
-			</InfoContainer>
+			</SigninContainer>
 			{/* </BackImage> */}
 		</Root>
 	</KeyboardMisser>

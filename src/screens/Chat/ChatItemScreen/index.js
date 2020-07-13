@@ -7,7 +7,6 @@ import {truncateString} from '@functions'
 
 const Root = styled.View`
 	flex: 1;
-	background-color: green;
 `
 const HeaderContainer = styled.View`
 	flex: 1;

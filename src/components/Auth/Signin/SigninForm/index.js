@@ -55,7 +55,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 	const [toogleEye, settoogleEye] = useState(true)
 	const [mysecureTextEntry, mysetSecureTextEntry] = useState(true)
 
-	const _onPassPress = () => {
+	const _onPress = () => {
 		mysetSecureTextEntry(!mysecureTextEntry)
 		settoogleEye(!toogleEye)
 	}
@@ -168,28 +168,28 @@ const SigninForm = ({getAllUserInfoUser}) => {
 								'password',
 							)}
 							onBlur={handleBlur('password')}
-							rightIcon={
-								<TextInputIcon
-									onPress={() =>
-										_onPassPress()
-									}>
-									<Entypo
-										style={{
-											color: '#777',
-											marginRight: 65,
-										}}
-										color={
-											themeContext.PRIMARY_TEXT_COLOR_LIGHT
-										}
-										name={
-											toogleEye
-												? 'eye'
-												: 'eye-with-line'
-										}
-										size={18}
-									/>
-								</TextInputIcon>
-							}
+							// rightIcon={
+							// 	<TextInputIcon
+							// 		onPress={() =>
+							// 			_onPress()
+							// 		}>
+							// 		<Entypo
+							// 			style={{
+							// 				color: '#777',
+							// 				marginRight: 65,
+							// 			}}
+							// 			color={
+							// 				themeContext.PRIMARY_TEXT_COLOR_LIGHT
+							// 			}
+							// 			name={
+							// 				toogleEye
+							// 					? 'eye'
+							// 					: 'eye-with-line'
+							// 			}
+							// 			size={18}
+							// 		/>
+							// 	</TextInputIcon>
+							// }
 							selectionColor={
 								themeContext.PRIMARY_COLOR
 							}
@@ -201,7 +201,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							// ref={(input) => {this.emailInput = input }}
 							// onKeyPress={}
 							// onScroll={}
-							paddingHorizontal={60}
+							paddingHorizontal={15}
 						/>
 						{errors.password ? (
 							<ETAErrorMessage size={12}>

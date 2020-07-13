@@ -75,7 +75,7 @@ const PromoBannerComponent = () => {
 							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR
 						}
 						align='center'>
-						Extra discount
+						Products with
 					</ETASimpleText>
 					<ETASimpleText
 						size={9}
@@ -86,7 +86,7 @@ const PromoBannerComponent = () => {
 							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR
 						}
 						align='center'>
-						Code: JUN50
+						alcohol
 					</ETASimpleText>
 				</BannerRight>
 				<BannerLeft>
@@ -99,7 +99,7 @@ const PromoBannerComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='center'>
-						Free shipping
+						Free gluten
 					</ETASimpleText>
 					<ETASimpleText
 						size={9}
@@ -110,7 +110,7 @@ const PromoBannerComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='center'>
-						First order
+						products
 					</ETASimpleText>
 				</BannerLeft>
 			</Item>

@@ -27,6 +27,8 @@ const TextInput = styled.TextInput.attrs({})`
 	align-items: center;
 	align-self: center;
 	align-content: center;
+	border-bottom-width: 0.3px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `
 
 const ETATextInputOutLine = ({

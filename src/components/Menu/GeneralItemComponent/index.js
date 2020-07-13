@@ -4,6 +4,7 @@ import {Dimensions, Platform} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {Ionicons} from '@icons'
 import {ETASimpleText} from '@etaui'
+import {truncateString} from '@functions'
 
 const {width} = Dimensions.get('window')
 
@@ -34,17 +35,16 @@ const ItemImage = styled.Image`
 	border-top-right-radius: 15px;
 `
 const StatusContainer = styled.View`
+	justify-content: center;
+	align-items: center;
 	position: absolute;
 	z-index: 100;
-	height: 13px;
+	height: 14px;
 	paddingHorizontal: 4px;
 	bottom: 2px;
 	left: 3px;
+	border-radius: 4px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
-	border-radius: 2px;
-	border-width: 0px;
-	border-color: white;
-	justify-content: flex-end;
 `
 const CardBottom = styled.View`
 	flex: 0.75;
@@ -54,7 +54,7 @@ const CardBottom = styled.View`
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-	border-width: 0.5px;
+	border-width: 0.4px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `
 const ShopContainer = styled.View`
@@ -166,7 +166,7 @@ const GeneralItemComponent = ({item}) => {
 							}
 							align='left'
 							style={{zIndex: 100}}>
-							{item.name}
+							{truncateString(item.name, 30)}
 						</ETASimpleText>
 					</NameContainer>
 					<ShopContainer>
