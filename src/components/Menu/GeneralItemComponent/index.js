@@ -40,7 +40,7 @@ const StatusContainer = styled.View`
 	position: absolute;
 	z-index: 100;
 	height: 14px;
-	paddinghorizontal: 4px;
+	padding-horizontal: 4px;
 	bottom: 2px;
 	left: 3px;
 	border-radius: 4px;
