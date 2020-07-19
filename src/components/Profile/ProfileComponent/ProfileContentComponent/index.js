@@ -20,14 +20,14 @@ const Scroll = styled.ScrollView``
 const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	background-color: red;
 `
 const Card = styled.View`
 	flex-direction: row;
 	align-items: stretch;
 	min-height: 30px;
 	padding-horizontal: 10px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const Metadata = styled.View`
 	flex: 1;

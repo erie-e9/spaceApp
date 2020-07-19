@@ -3,6 +3,8 @@ import {Animated} from 'react-native'
 import styled from 'styled-components'
 import {useNavigation} from '@react-navigation/native'
 import CategoryItemComponent from './CategoryItemComponent'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/categories/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -14,15 +16,33 @@ const Root = styled.View`
 const CategoryList = styled.FlatList``
 const Touchable = styled.TouchableOpacity``
 
-const CategoryListComponent = ({categories, menu}) => {
-	const [items, setitems] = useState([])
+const mapStateToProps = (state) => {
+	const {data} = state.categories
+	return {data}
+}
+
+const mapDispatchProps = (dispatch) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST,
+			dispatch: {},
+		})
+	},
+})
+
+const CategoryListComponent = ({getAllItemsRequest, data}) => {
 	const navigation = useNavigation()
-	const [animatedValueTransform] = useState(new Animated.Value(0))
-	const [opacity] = useState(new Animated.Value(0))
+	const [ items, setitems ] = useState([])
+	const [ animatedValueTransform ] = useState(new Animated.Value(0))
+	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
 
 	useEffect(() => {
-		setitems(categories.data)
+		getAllItemsRequest()
+		setitems(data)
+	}, [data])
+
+	useEffect(() => {
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -40,9 +60,7 @@ const CategoryListComponent = ({categories, menu}) => {
 		navigation.navigate('CategoryItemsScreen', {
 			screen: 'MenuScreen',
 			params: {
-				category: item.name,
-				categories: categories.data,
-				items: menu.menu1,
+				category: item.name
 			},
 		})
 	}
@@ -95,4 +113,8 @@ const CategoryListComponent = ({categories, menu}) => {
 	)
 }
 
-export default CategoryListComponent
+const CategoryListComponentConnect = connect(
+mapStateToProps,
+mapDispatchProps)(CategoryListComponent)
+
+export default CategoryListComponentConnect

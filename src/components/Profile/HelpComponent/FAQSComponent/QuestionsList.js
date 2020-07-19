@@ -8,7 +8,7 @@ const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 const FAQSList = styled.FlatList`
 	flex-direction: column;

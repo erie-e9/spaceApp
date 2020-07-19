@@ -24,7 +24,7 @@
     "date-fns": "^2.14.0",
     "formik": "^2.1.4",
     "react": "^16.13.1",
-    "react-native": "^0.63.0",
+    "react-native": "^0.63.1",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-google-places-autocomplete": "^1.8.0",
     "react-native-maps": "0.27.1",

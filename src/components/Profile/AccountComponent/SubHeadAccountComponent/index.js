@@ -16,7 +16,7 @@ const Root = styled.View`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 const FormContainer = styled.View`
 	flex-direction: column;
@@ -25,8 +25,9 @@ const FormContainer = styled.View`
 	align-items: center;
 	padding-horizontal: 10px;
 `
-const ButtonSignupContainer = styled.View`
+const ButtonContainer = styled.View`
 	height: 20px;
+	margin-top: 15px;
 `
 
 const validationSchema = yup.object().shape({
@@ -130,15 +131,15 @@ const SubHeadAccountComponent = () => {
 							returnKeyType='next'
 							textsize={13}
 							height={40}
-							width={240}
-							borderWidth={0.3}
+							width={270}
+							borderWidth={0.7}
 							onChangeText={handleChange(
 								'fullname',
 							)}
 							onBlur={handleBlur('fullname')}
-							selectionColor={
+							selectionColor='{
 								themeContext.PRIMARY_COLOR
-							}
+							}'
 						/>
 						{errors.fullname ? (
 							<ETAErrorMessage size={12}>
@@ -174,8 +175,8 @@ const SubHeadAccountComponent = () => {
 							returnKeyType='next'
 							textsize={13}
 							height={40}
-							width={240}
-							borderWidth={0.3}
+							width={270}
+							borderWidth={0.7}
 							onChangeText={handleChange(
 								'username',
 							)}
@@ -218,8 +219,8 @@ const SubHeadAccountComponent = () => {
 							returnKeyType='next'
 							textsize={13}
 							height={40}
-							width={240}
-							borderWidth={0.3}
+							width={270}
+							borderWidth={0.7}
 							onChangeText={handleChange(
 								'cellphone',
 							)}
@@ -262,8 +263,8 @@ const SubHeadAccountComponent = () => {
 							returnKeyType='none'
 							textsize={13}
 							height={40}
-							width={240}
-							borderWidth={0.3}
+							width={270}
+							borderWidth={0.7}
 							onChangeText={handleChange(
 								'password',
 							)}
@@ -307,8 +308,8 @@ const SubHeadAccountComponent = () => {
 							returnKeyType='none'
 							textsize={13}
 							height={40}
-							width={240}
-							borderWidth={0.3}
+							width={270}
+							borderWidth={0.7}
 							onChangeText={handleChange('email')}
 							onBlur={handleBlur('email')}
 							selectionColor={
@@ -320,7 +321,7 @@ const SubHeadAccountComponent = () => {
 								{errors.email}
 							</ETAErrorMessage>
 						) : null}
-						<ButtonSignupContainer>
+						<ButtonContainer>
 							<ETAButtonFilled
 								title={signup}
 								onPress={handleSubmit}
@@ -329,12 +330,12 @@ const SubHeadAccountComponent = () => {
 									themeContext.SECONDARY_BACKGROUND_COLOR
 								}
 								padding={10}
-								width={isSubmitting ? 40 : 240}
+								width={isSubmitting ? 40 : 270}
 								borderRadius={
 									isSubmitting ? 20 : 3
 								}
 							/>
-						</ButtonSignupContainer>
+						</ButtonContainer>
 					</FormContainer>
 				)}
 			</Formik>

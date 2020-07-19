@@ -8,12 +8,12 @@ const Root = styled.ScrollView`
 	flex: 1;
 	flex-direction: column;
 	padding-top: 15px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const NotificationSettingContainer = styled.View`
 	flex-direction: column;
 	padding: 5px 15px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 
 const NotificationsComponent = () => {

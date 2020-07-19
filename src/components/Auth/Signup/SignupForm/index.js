@@ -24,9 +24,9 @@ const FormContainer = styled.View`
 	align-items: center;
 	padding-horizontal: 10px;
 `
-const ButtonSignupContainer = styled.View`
+const ButtonContainer = styled.View`
 	height: 20px;
-	margintop: 15px;
+	margin-top: 15px;
 `
 
 const validationSchema = yup.object().shape({
@@ -138,7 +138,7 @@ const SignupForm = () => {
 							returnKeyType='next'
 							textsize={14}
 							height={40}
-							width={240}
+							width={270}
 							borderWidth={0.3}
 							onChangeText={handleChange(
 								'fullname',
@@ -182,7 +182,7 @@ const SignupForm = () => {
 							returnKeyType='next'
 							textsize={14}
 							height={40}
-							width={240}
+							width={270}
 							borderWidth={0.3}
 							onChangeText={handleChange(
 								'username',
@@ -226,7 +226,7 @@ const SignupForm = () => {
 							returnKeyType='next'
 							textsize={14}
 							height={40}
-							width={240}
+							width={270}
 							borderWidth={0.3}
 							onChangeText={handleChange(
 								'cellphone',
@@ -270,7 +270,7 @@ const SignupForm = () => {
 							returnKeyType='none'
 							textsize={14}
 							height={40}
-							width={240}
+							width={270}
 							borderWidth={0.3}
 							onChangeText={handleChange(
 								'password',
@@ -315,7 +315,7 @@ const SignupForm = () => {
 							returnKeyType='none'
 							textsize={14}
 							height={40}
-							width={240}
+							width={270}
 							borderWidth={0.3}
 							onChangeText={handleChange(
 								'confirmPassword',
@@ -330,7 +330,7 @@ const SignupForm = () => {
 								{errors.confirmPassword}
 							</ETAErrorMessage>
 						) : null}
-						<ButtonSignupContainer>
+						<ButtonContainer>
 							<ETAButtonFilled
 								title={signup}
 								onPress={handleSubmit}
@@ -339,12 +339,12 @@ const SignupForm = () => {
 									themeContext.SECONDARY_BACKGROUND_COLOR
 								}
 								padding={10}
-								width={isSubmitting ? 40 : 240}
+								width={isSubmitting ? 40 : 270}
 								borderRadius={
 									isSubmitting ? 20 : 3
 								}
 							/>
-						</ButtonSignupContainer>
+						</ButtonContainer>
 					</FormContainer>
 				)}
 			</Formik>

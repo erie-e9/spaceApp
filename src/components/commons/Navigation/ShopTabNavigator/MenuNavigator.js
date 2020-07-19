@@ -12,6 +12,7 @@ import MenuScreen from '@screens/Menu/MenuScreen'
 import CategoryListScreen from '@screens/Menu/Categories/CategoryListScreen'
 import CategoryItemsScreen from '@screens/Menu/Categories/CategoryItemsScreen'
 import PromotionScreen from '@screens/Menu/PromotionScreen'
+import SectionScreen from '@screens/Menu/SectionScreen'
 import AllItemsScreen from '@screens/Menu/AllItemsScreen'
 import GetOneItemScreen from '@screens/Menu/GetOneItemScreen'
 
@@ -159,6 +160,53 @@ const MenuNavigator = () => {
 			<MenuStack.Screen
 				name='PromotionScreen'
 				component={PromotionScreen}
+				options={({navigation, route}) => ({
+					headerTitle: '',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerStyle: {
+						backgroundColor:
+							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+						shadowColor: 'black',
+						shadowOpacity:
+							Platform.OS === 'ios' ? 0.6 : 0.3,
+						shadowOffset: {
+							height:
+								Platform.OS === 'ios'
+									? 0.3
+									: 0.2,
+						},
+						shadowRadius: 5,
+						elevation: 5,
+					},
+					headerTitleStyle: {
+						fontWeight: '500',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<MenuStack.Screen
+				name='SectionScreen'
+				component={SectionScreen}
 				options={({navigation, route}) => ({
 					headerTitle: '',
 					headerShown: true,

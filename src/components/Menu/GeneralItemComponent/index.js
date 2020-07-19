@@ -162,7 +162,7 @@ const GeneralItemComponent = ({item}) => {
 							}
 							align='left'
 							style={{zIndex: 100}}>
-							{truncateString(item.name, 30)}
+							{truncateString(item.name, 26)}
 						</ETASimpleText>
 					</NameContainer>
 					<ShopContainer>

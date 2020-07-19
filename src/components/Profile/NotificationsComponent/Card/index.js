@@ -9,7 +9,7 @@ const Card = styled.View`
 	min-height: 40px;
 	align-items: center;
 	padding-horizontal: 10px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const MetadataInfo = styled.View`
 	width: 100%;
@@ -30,7 +30,7 @@ const MessageContainer = styled.View`
 	min-height: 30px;
 	align-items: center;
 	padding-horizontal: 10px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 
 const NotificationCardComponent = ({headTitle, message}) => {

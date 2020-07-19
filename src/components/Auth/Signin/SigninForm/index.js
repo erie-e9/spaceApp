@@ -16,8 +16,9 @@ const FormContainer = styled.View`
 	padding-horizontal: 10px;
 `
 const TextInputIcon = styled.TouchableOpacity``
-const ButtonSigninContainer = styled.View`
+const ButtonContainer = styled.View`	
 	height: 20px;
+	margin-top: 15px;
 `
 
 const validationSchema = yup.object().shape({
@@ -117,8 +118,8 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							returnKeyType='next'
 							textsize={14}
 							height={40}
-							width={240}
-							borderWidth={0.3}
+							width={270}
+							borderWidth={0.5}
 							onChangeText={handleChange(
 								'cellphone',
 							)}
@@ -162,8 +163,8 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							returnKeyType='none'
 							textsize={14}
 							height={40}
-							width={240}
-							borderWidth={0.3}
+							width={270}
+							borderWidth={0.5}
 							onChangeText={handleChange(
 								'password',
 							)}
@@ -208,7 +209,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 								{errors.password}
 							</ETAErrorMessage>
 						) : null}
-						<ButtonSigninContainer>
+						<ButtonContainer>
 							<ETAButtonFilled
 								title='Sign in'
 								onPress={handleSubmit}
@@ -217,12 +218,12 @@ const SigninForm = ({getAllUserInfoUser}) => {
 									themeContext.SECONDARY_BACKGROUND_COLOR
 								}
 								padding={10}
-								width={isSubmitting ? 40 : 240}
+								width={isSubmitting ? 40 : 270}
 								borderRadius={
 									isSubmitting ? 20 : 3
 								}
 							/>
-						</ButtonSigninContainer>
+						</ButtonContainer>
 					</FormContainer>
 				)}
 			</Formik>

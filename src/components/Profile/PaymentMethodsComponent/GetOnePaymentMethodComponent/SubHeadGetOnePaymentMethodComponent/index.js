@@ -97,6 +97,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 				padding={10}
 				width={240}
 				borderRadius={3}
+				borderWidth={0.3}
 			/>
 			<ETAButtonFilled
 				title='Remove'
@@ -106,7 +107,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 				padding={10}
 				width={240}
 				borderRadius={3}
-				borderWidth={0.3}
+				borderWidth={0.7}
 			/>
 		</Root>
 	)

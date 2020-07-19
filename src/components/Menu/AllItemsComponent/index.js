@@ -11,9 +11,6 @@ const Root = styled.View`
 	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-// const Touchable = styled.TouchableOpacity`
-//   z-index: 100;
-// `;
 const CategorytItemsList = styled.FlatList``
 
 const AllItemsComponent = () => {

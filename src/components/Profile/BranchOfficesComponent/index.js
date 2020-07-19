@@ -7,7 +7,7 @@ import BranchOfficesListComponent from './BranchOfficesListComponent'
 const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 
 const BranchOfficesComponent = () => (

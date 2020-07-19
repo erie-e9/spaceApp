@@ -10,14 +10,14 @@ const Root = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 const InfoContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
 	justify-content: center;
 	width: ${width - 40}px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 
 const SubHeadNoticeOfPrivacyComponent = () => {

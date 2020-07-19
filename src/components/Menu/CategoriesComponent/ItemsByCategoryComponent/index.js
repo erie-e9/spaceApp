@@ -4,6 +4,8 @@ import {useNavigation, useRoute} from '@react-navigation/native'
 import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
+import { connect } from 'react-redux'
+import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/categories/itemsbycategory/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -11,23 +13,38 @@ const Root = styled.View`
 	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-// const Touchable = styled.TouchableOpacity`
-//   z-index: 100;
-// `;
 const CategorytItemsList = styled.FlatList``
 
-const ItemsByCategoryComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.itemsbycategory
+	return { data }
+}
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST,
+			payload: {
+				id: 1
+			}
+		}) 
+	}
+})
+
+
+const ItemsByCategoryComponent = ({ getAllItemsRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const route = useRoute()
-	const {items} = route.params.params
-	const [itemparams, setitemparams] = useState([])
+	const [ items, setitems ] = useState([])
 	const [animatedValueTransform] = useState(new Animated.Value(0))
 	const [opacity] = useState(new Animated.Value(0))
 	let delayValue = 700
 
 	useEffect(() => {
-		setitemparams(items)
+		getAllItemsRequest()
+		setitems(data)
+	}, [data])
+
+	useEffect(() => {
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -57,7 +74,7 @@ const ItemsByCategoryComponent = () => {
 				contentContainerStyle={{
 					flexDirection: 'column',
 				}}
-				data={itemparams}
+				data={items}
 				keyExtractor={(item) => item._id.toString()}
 				horizontal={!true}
 				numColumns={2}
@@ -116,4 +133,8 @@ const ItemsByCategoryComponent = () => {
 	)
 }
 
-export default ItemsByCategoryComponent
+const ItemsByCategoryComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(ItemsByCategoryComponent)
+export default ItemsByCategoryComponentConnect

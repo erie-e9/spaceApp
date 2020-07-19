@@ -49,7 +49,7 @@ const mapDispatchProps = (dispatch) => ({
 	},
 })
 
-const Categories = ({items, getAllItemsRequest, data}) => {
+const Categories = ({getAllItemsRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [categoryitems, setcategoryitems] = useState([])
@@ -70,8 +70,7 @@ const Categories = ({items, getAllItemsRequest, data}) => {
 		navigation.navigate('CategoryItemsScreen', {
 			screen: 'MenuScreen',
 			params: {
-				category: item.name,
-				items,
+				name: item.name,
 			},
 		})
 	}
@@ -112,9 +111,7 @@ const Categories = ({items, getAllItemsRequest, data}) => {
 								<Touchable
 									key={item._id}
 									onPress={() =>
-										_onPressCategory(
-											item,
-										)
+										_onPressCategory(item)
 									}>
 									<Animated.View
 										style={{
@@ -176,6 +173,8 @@ const Categories = ({items, getAllItemsRequest, data}) => {
 	)
 }
 
-const CategoriesConnect = connect(mapStateToProps, mapDispatchProps)(Categories)
+const CategoriesConnect = connect(
+mapStateToProps,
+mapDispatchProps)(Categories)
 
 export default CategoriesConnect

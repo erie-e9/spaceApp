@@ -75,7 +75,6 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 			screen: 'MenuScreen',
 			params: {
 				name: selecteditem.title,
-				promoitems: data,
 				selectedItem: selecteditem,
 			},
 		})

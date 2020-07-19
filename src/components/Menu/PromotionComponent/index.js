@@ -1,9 +1,11 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Platform, Animated, ScrollView, Dimensions} from 'react-native'
-import {useNavigation, useRoute} from '@react-navigation/native'
 import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
+import {useRoute} from '@react-navigation/native'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/promotions/actions'
 
 const HEADER_MIN_HEIGHT = 50
 const HEADER_MAX_HEIGHT = 130
@@ -14,9 +16,6 @@ const Root = styled.View`
 	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-// const Touchable = styled.TouchableOpacity`
-//   z-index: 100;
-// `;
 const CategorytItemsList = styled.FlatList``
 const PromoHeadContainer = styled.View`
 	flex-direction: row;
@@ -40,11 +39,26 @@ const PromoHeadImage = styled.ImageBackground`
 	height: 100%;
 `
 
-const PromoComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { data } = state.promotions
+	return { data }
+}
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST,
+			payload: {
+				id: 1
+			}
+		}) 
+	}
+})
+
+const PromoComponent = ({ getAllItemsRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
-	const navigation = useNavigation()
+	const [ items, setitems ] = useState([])
 	const route = useRoute()
-	const {promoitems, selectedItem} = route.params.params
+	const {selectedItem} = route.params.params
 	const [scrollYAnimatedValue] = useState(new Animated.Value(0))
 	const [animatedValueTransform] = useState(new Animated.Value(0))
 	const [opacity] = useState(new Animated.Value(0))
@@ -65,6 +79,11 @@ const PromoComponent = () => {
 		// outputRange: [ 'rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.95)' ],
 		extrapolate: 'extend',
 	})
+
+	useEffect(() => {
+		getAllItemsRequest()
+		setitems(data)
+	}, [data])
 
 	useEffect(() => {
 		Animated.spring(animatedValueTransform, {
@@ -117,7 +136,7 @@ const PromoComponent = () => {
 					contentContainerStyle={{
 						flexDirection: 'column',
 					}}
-					data={promoitems}
+					data={items}
 					keyExtractor={(item) => item._id.toString()}
 					horizontal={!true}
 					numColumns={2}
@@ -245,4 +264,8 @@ const PromoComponent = () => {
 	)
 }
 
-export default React.memo(PromoComponent)
+const PromoComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(PromoComponent)
+export default PromoComponentConnect

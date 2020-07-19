@@ -236,7 +236,7 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 					}}>
 					<Animated.View
 						style={{
-							backgroundColor: '#262626',
+							backgroundColor: '#181818',
 							justifyContent: 'center',
 							alignItems: 'center',
 							height: 56,

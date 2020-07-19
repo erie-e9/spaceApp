@@ -21,7 +21,7 @@ const Root = styled.View`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 const InfoContainer = styled.View`
 	flex-direction: row;

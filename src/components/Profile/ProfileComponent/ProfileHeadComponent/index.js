@@ -9,7 +9,7 @@ const Root = styled.View`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 
 const ProfileHeadComponent = () => {

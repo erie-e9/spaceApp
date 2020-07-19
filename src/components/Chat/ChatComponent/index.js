@@ -29,27 +29,19 @@ const mapDispatchProps = (dispatch, props) => ({
 const ChatComponent = ({getAllItemsRequest, data}) => {
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
-	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
 		getAllItemsRequest()
 		setitems(data)
-		_getData()
 	}, [data])
 
 	const _onPress = (item) => {
 		navigation.navigate('ChatItemNavigator', {
 			screen: 'ChatItemScreen',
 			params: {
-				item,
+				item
 			},
 		})
-	}
-
-	const _getData = () => {
-		setrefresher(true)
-		setitems(data)
-		setrefresher(!true)
 	}
 
 	return (
@@ -61,8 +53,6 @@ const ChatComponent = ({getAllItemsRequest, data}) => {
 				data={items}
 				keyExtractor={(item) => item._id.toString()}
 				showsVerticalScrollIndicator={false}
-				refreshing={refresher}
-				onRefresh={() => _getData()}
 				renderItem={({item}) => (
 					<Touchable
 						key={item._id}

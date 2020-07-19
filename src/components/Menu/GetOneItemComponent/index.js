@@ -168,13 +168,13 @@ const PriceContainer = styled.View`
 	background-color: transparent;
 `
 const DiscountContainer = styled.View`
-  flex: 0.34
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3px;
-  z-index: 100;
-  background-color: transparent;
+	flex: 0.34
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 3px;
+	z-index: 100;
+	background-color: transparent;
 `
 const PercentContainer = styled.View`
 	justify-content: center;
@@ -362,6 +362,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 					<Animated.View
 						style={{
 							width: width - 60,
+							minHeight: 100,
 							bottom: -10,
 							backgroundColor:
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,

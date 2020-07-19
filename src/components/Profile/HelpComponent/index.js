@@ -10,7 +10,7 @@ const Root = styled.ScrollView`
 	flex: 1;
 	flex-direction: column;
 	padding-top: 15px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const Touchable = styled.TouchableWithoutFeedback`
 	z-index: 100;

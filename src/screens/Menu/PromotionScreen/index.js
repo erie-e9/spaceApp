@@ -1,7 +1,6 @@
 import React, {useLayoutEffect} from 'react'
 import styled from 'styled-components/native'
 import PromotionComponent from '@components/Menu/PromotionComponent'
-// import data from '@utils/categories.json';
 
 const Root = styled.View`
 	flex: 1;

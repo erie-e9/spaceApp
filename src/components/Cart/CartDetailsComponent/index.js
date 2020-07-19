@@ -97,16 +97,22 @@ const CartDetailsComponent = ({data}) => {
 
 	useEffect(() => {
 		_getsumatory()
+		
+		return () => {
+			_getsumatory()
+		}
 	}, [data])
 
 	const _getsumatory = async () => {
 		await data.forEach((element) => {
-			sum += element.howMany
+			// sum += element.howMany
+			sum += 1
 			settotalItems(sum)
 			subtotalValue =
 				subtotalValue +
 				(((100 - element.discount) * element.price) / 100) *
-					element.howMany
+					// element.howMany
+					1
 			// console.log('element.howMany', element.howMany)
 			// console.log('element.howMany', ((100 - element.discount) * element.price / 100) )
 			// console.log('______________subtotalValue:', subtotalValue)

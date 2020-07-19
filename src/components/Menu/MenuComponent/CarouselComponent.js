@@ -37,7 +37,7 @@ const CarouselComponent = ({getAllItemsRequest, data, items}) => {
 					posts={data}
 					data={items}
 					autoplay
-					time={6000}
+					time={60000}
 				/>
 			) : null}
 		</HeaderContainer>

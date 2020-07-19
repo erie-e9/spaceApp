@@ -7,7 +7,7 @@ const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const Scroll = styled.ScrollView`
 	flex: 1;

@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
+import {ETASimpleText, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
 import {connect} from 'react-redux'
@@ -45,10 +45,11 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 	useEffect(() => {
 		getAllItemsRequest()
 		setitems(data)
-		// console.log('CartListComponent data', data)
-		// return () => {
-		// 	getAllItemsRequest()
-		// }
+		console.log('++++++++++++++CartListComponent data', data)
+		
+		return () => {
+			getAllItemsRequest()
+		}
 	}, [data])
 
 	return (
@@ -103,7 +104,8 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 					return (
 						<CartItemComponent
 							item={item}
-							howMany={item.howMany}
+							// howMany={item.howMany}
+							howMany={231}
 						/>
 					)
 				}}

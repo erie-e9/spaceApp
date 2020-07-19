@@ -8,7 +8,7 @@ import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/branchoffices/actions'
 const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const BranchOfficesList = styled.FlatList`
 	flex-direction: column;

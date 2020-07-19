@@ -8,6 +8,7 @@ const KeyboardMisser = styled.TouchableWithoutFeedback``
 const Root = styled.View`
 	flex: 1;
 	justify-content: center;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
 // const BackImage = styled.ImageBackground`
 //   flex: 1;
@@ -28,7 +29,6 @@ const Card = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 	width: ${width * 0.8}px;
 	padding-horizontal: 20px;
 	margin-horizontal: 20px;
@@ -37,8 +37,9 @@ const Card = styled.View`
 	shadow-radius: 2px;
 	shadow-opacity: 0.1;
 	border-radius: 5px;
-	border-width: 0.075px;
+	border-width: 0px;
 	border-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
 // height: 300px;
 // min-height: 240px;

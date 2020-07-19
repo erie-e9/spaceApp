@@ -4,7 +4,6 @@ import styled, {ThemeContext} from 'styled-components/native'
 const TextInputContainer = styled.View`
 	height: ${(props) => (props.height ? props.height : 0.3)}px;
 	width: ${(props) => (props.width ? props.width : 0.3)}px;
-	border-radius: 30px;
 	margin-vertical: 5px;
 	margin-horizontal: 5px;
 	padding-horizontal: 5px;
@@ -13,10 +12,10 @@ const TextInputContainer = styled.View`
 	align-items: center;
 	align-self: center;
 	align-content: center;
-	border-width: ${(props) => props.borderWidth - props.width}px;
 	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+	border-width: 0px;
 	border-radius: 3px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 const TextInput = styled.TextInput.attrs({})`
 	height: ${(props) => (props.height ? props.height : 40)}px;
@@ -27,8 +26,10 @@ const TextInput = styled.TextInput.attrs({})`
 	align-items: center;
 	align-self: center;
 	align-content: center;
-	border-bottom-width: 0.3px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	border-radius: 3px;
+	border-width: 0px;
+	border-bottom-width: ${(props) => props.borderWidth}px;
+	border-bottom-color: ${(props) => props.theme.GRAYFACEBOOK}
 `
 
 const ETATextInputOutLine = ({
@@ -116,6 +117,7 @@ const ETATextInputOutLine = ({
 					// onKeyPress={}
 					// onScroll={}
 					paddingHorizontal={paddingHorizontal || 15}
+					borderWidth={borderWidth}
 				/>
 				{rightIcon}
 			</TextInputContainer>

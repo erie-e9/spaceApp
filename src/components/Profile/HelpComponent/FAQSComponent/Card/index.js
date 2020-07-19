@@ -16,7 +16,7 @@ const Card = styled.View`
     align-items: center;
     border-radius: 5px
     margin-bottom: 1px;
-    background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+    background-color: transparent;
 `
 const MetadataInfo = styled.View`
 	flex: 1;

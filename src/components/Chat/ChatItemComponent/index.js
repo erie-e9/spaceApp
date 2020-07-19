@@ -17,7 +17,7 @@ const BackgroundDoodle = styled.ImageBackground`
 const MessagesList = styled.FlatList``
 
 const ChatItemComponent = () => {
-	const [items] = useState(messages.data) // slice: only first 4 items
+	const [items] = useState(messages.data)
 	const [animatedValueTransform] = useState(new Animated.Value(0.9))
 	const [opacity] = useState(new Animated.Value(0))
 	let delayValue = 2000

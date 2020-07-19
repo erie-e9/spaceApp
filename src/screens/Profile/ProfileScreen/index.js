@@ -4,7 +4,7 @@ import ProfileComponent from '@components/Profile/ProfileComponent'
 
 const Root = styled.View`
 	flex: 1;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 
 const ProfileScreen = () => (

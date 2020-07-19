@@ -14,7 +14,7 @@ const iconSize = 26
 const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const PaymentMethodsList = styled.FlatList`
 	flex-direction: column;

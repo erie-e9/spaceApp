@@ -231,7 +231,7 @@
 			"_id": 57082,
 			"name": "Chocolate Dark Chocolate Ice Cream Bar",
 			"details": "Between the classic rich and creamy chocolate ice cream inside, and the thick and crunchy dark chocolate coating finely drizzled on the outside, this is a chocolate connoisseur's delight.",
-			"rating": 5,
+			"rating": 3,
 			"link": "",
 			"icon": "",
 			"price": 143,
@@ -278,27 +278,27 @@
 			]
 		},
 		{
-			"_id": 75846,
-			"name": "Peppermint Bark Ice Cream Bar",
-			"details": "Our peppermint bark ice cream bars start with decadent white chocolate ice cream, dipped in thick, dark chocolate, then speckled with cool peppermint candy pieces.",
-			"rating": 5,
+			"_id": 65402,
+			"name": "Vanilla Milk Chocolate Almond Ice Cream Bar",
+			"details": "We start with pure, sweet vanilla and blend it with sweet, fresh cream to make our incredibly smooth vanilla ice cream. Then we dip it in a crunchy roasted almond and milk chocolate coating.",
+			"rating": 3,
 			"link": "",
 			"icon": "",
-			"price": 123,
-			"discount": 2,
+			"price": 103,
+			"discount": 13,
 			"calories": 143,
 			"weight": 143,
-			"isFavorite": false,
-			"status": "limited edition",
-			"glutten": true,
+			"isFavorite": true,
+			"status": "",
+			"glutten": false,
 			"images": [
 				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-peppermintbarkbar.jpg"
+					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-vanillamilkchocolatealmondbar.jpg"
 				}
 			],
 			"imageWebps": [
 				{
-					"imageWeb": "item6.webp"
+					"imageWeb": "item4.webp"
 				}
 			]
 		}
@@ -308,7 +308,7 @@
 			"_id": 7141,
 			"name": "Belgian Chocolate Shake",
 			"details": "Belgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.",
-			"rating": 5,
+			"rating": 3,
 			"link": "",
 			"icon": "",
 			"price": 123,
@@ -385,7 +385,7 @@
 			"_id": 81480,
 			"name": "Coffee Frappes",
 			"details": "Chilled beverage blending coffee ice cream with ice, milk, espresso and syrup. Finished with a chocolate or caramel drizzle. Available in Coffee, Dulce and Mocha.",
-			"rating": 5,
+			"rating": 3,
 			"link": "",
 			"icon": "",
 			"price": 123,
@@ -437,7 +437,7 @@
 			"_id": 87633,
 			"name": "Brownie Cookie Sandwiches",
 			"details": "Brownie Cookies perfectly paired with the ice cream and topping of your choosing.",
-			"rating": 5,
+			"rating": 3,
 			"link": "",
 			"icon": "",
 			"price": 123,

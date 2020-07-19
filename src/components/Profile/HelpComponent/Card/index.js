@@ -10,7 +10,7 @@ const Card = styled.View`
 	align-items: center;
 	padding-horizontal: 10px;
 	margin-top: 5px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 const MetadataInfo = styled.View`
 	width: 100%;
@@ -25,7 +25,7 @@ const MessageContainer = styled.View`
 	min-height: 20px;
 	align-items: center;
 	padding-horizontal: 0px;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+	background-color: transparent;
 `
 
 const HelpCardComponent = ({message}) => {

@@ -16,11 +16,16 @@ const IconWithBadge = ({name, badgeCount, color, size, data}) => {
 
 	useEffect(() => {
 		_getsumatory()
+
+		return () => {
+			_getsumatory()
+		}
 	}, [data])
 
 	const _getsumatory = async () => {
 		await data.forEach((element) => {
-			sum += element.howMany
+			// sum += element.howMany
+			sum += 1
 			settotalItems(sum)
 		})
 	}

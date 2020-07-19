@@ -12,8 +12,8 @@ const Root = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: transparent;
 	padding: 15px;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const ContentContainer = styled.View`
 	min-height: 20px;

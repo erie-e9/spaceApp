@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {Platform, Animated, ScrollView, Dimensions} from 'react-native'
 import MenuList from './menuList'
 import HeadCategoryList from './HeadCategoryList'
-import PromoBannerComponent from './PromoBannerComponent'
+import SectionsComponent from './SectionsComponent'
 import {connect} from 'react-redux'
 import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/actions'
 import CarouselComponent from './CarouselComponent'
@@ -112,7 +112,7 @@ const MenuComponent = ({getAllItemsRequest, data}) => {
 								<CarouselComponent
 									items={data.menu1}
 								/>
-								<PromoBannerComponent />
+								<SectionsComponent />
 							</Animated.View>
 							<MenuList
 								data={data.menu1}
@@ -151,9 +151,7 @@ const MenuComponent = ({getAllItemsRequest, data}) => {
 								width,
 								backgroundColor: headerbackgroundColor,
 							}}>
-							<HeadCategoryList
-								items={data.menu1}
-							/>
+							<HeadCategoryList />
 						</Animated.View>
 					</>
 				) : null}

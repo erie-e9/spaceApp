@@ -16,19 +16,24 @@ const info = 'Member from 5 jun 2017'
 const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
+	background-color: transparent
 `
 const ProfileUserContent = styled.View`
 	flex-direction: column;
 	justify-content: flex-start;
+	background-color: transparent
+
 `
-const Scroll = styled.ScrollView``
+const Scroll = styled.ScrollView`
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+`
 const Card = styled.View`
 	flex-direction: row;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 	margin-bottom: 1px;
 	min-height: 40px;
 	align-items: center;
 	padding-horizontal: 10px;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const MetadataHeader = styled.View`
 	flex-direction: column;

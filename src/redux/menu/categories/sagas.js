@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects'
-import data from '@utils/categories.json'
 import { GET_ALL_ITEMS_REQUEST, GET_ALL_ITEMS_REQUEST_SUCCESS } from './actions'
+import data from '@utils/categories.json'
 
 function* handler() {
   yield takeEvery(GET_ALL_ITEMS_REQUEST, getAllItemsRequest)

@@ -24,7 +24,7 @@ const HeaderLeft = styled.TouchableOpacity`
 `
 const HeaderRight = styled.TouchableOpacity`
 	margin-right: 15px;
-	margin-top: 10px;
+	margin-top: 15px;
 `
 
 const SearchBoxComponent = ({currentPosition}) => {

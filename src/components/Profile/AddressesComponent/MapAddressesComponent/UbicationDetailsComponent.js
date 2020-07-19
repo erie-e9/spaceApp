@@ -72,6 +72,7 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
 				padding={10}
 				width={240}
 				borderRadius={3}
+				borderWidth={0.3}
 			/>
 			<ETAButtonFilled
 				title='Save'
@@ -81,7 +82,7 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
 				padding={10}
 				width={240}
 				borderRadius={3}
-				borderWidth={0.3}
+				borderWidth={0.7}
 			/>
 		</Root>
 	)

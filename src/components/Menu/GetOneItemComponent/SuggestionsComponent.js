@@ -2,6 +2,8 @@ import React, {useState, useEffect, useContext, memo} from 'react'
 import styled, {ThemeContext} from 'styled-components'
 import {Dimensions, Animated, Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
+import {connect} from 'react-redux'
+import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/similarto/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -45,12 +47,32 @@ const SuggestionItemImage = styled.Image`
 	height: 50px;
 	border-radius: 10px;
 `
+const mapStateToProps = (state, props) => {
+	const {data} = state.similarto
+	return {data}
+}
 
-const SuggestionsComponent = ({selectedItemName}) => {
+const mapDispatchProps = (dispatch, props) => ({
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST,
+			payload: {
+				_id: 1
+			}
+		})
+	}
+})
+
+const SuggestionsComponent = ({selectedItemName, getAllItemsRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
-	const [items] = useState([{}])
+	const [items, setitems] = useState([])
 	const [animatedValueTransform] = useState(new Animated.Value(0.9))
 	let delayValue = 1000
+
+	useEffect(() => {
+		getAllItemsRequest()
+		setitems(data)
+	}, [data])
 
 	useEffect(() => {
 		Animated.spring(animatedValueTransform, {
@@ -95,105 +117,7 @@ const SuggestionsComponent = ({selectedItemName}) => {
 							</ETASimpleText>
 						</Animated.View>
 						<SuggestionItemsList
-							data={[
-								{
-									key: 1,
-									_id: 1,
-									name:
-										'Banana Split Dazzler',
-									details:
-										'Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge  ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.',
-									images: [
-										{
-											image:
-												'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-BSDDazzler_Olo_0.png',
-										},
-									],
-								},
-								{
-									key: 2,
-									_id: 2,
-									name:
-										'Cookies & Cream Dazzler',
-									details:
-										'Cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and cookie crunch. Served with toppings.',
-									images: [
-										{
-											image:
-												'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-cookies-n-cream.png',
-										},
-									],
-								},
-								{
-									key: 3,
-									_id: 3,
-									name:
-										'Dulce de Leche Dazzler',
-									details:
-										'Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings.',
-									images: [
-										{
-											image:
-												'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-dulce-de-leche.png',
-										},
-									],
-								},
-								{
-									key: 4,
-									_id: 4,
-									name:
-										'Midnight Cookies & Cream Dazzler',
-									details:
-										'Midnight cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and hot fudge. Served with toppings.',
-									images: [
-										{
-											image:
-												'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-midnight-cookies-n-cream.png',
-										},
-									],
-								},
-								{
-									key: 5,
-									_id: 5,
-									name: 'Mint Chip Dazzler',
-									details:
-										'Mint chip ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate sprinkles. Served with toppings.',
-									images: [
-										{
-											image:
-												'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-mint-chip%20%281%29.png',
-										},
-									],
-								},
-								{
-									key: 6,
-									_id: 6,
-									name:
-										'Rocky Road Dazzler',
-									details:
-										'Rocky road ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate cookie crunch. Served with toppings.',
-									images: [
-										{
-											image:
-												'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png',
-										},
-									],
-								},
-								{
-									key: 7,
-									_id: 7,
-									name:
-										'Belgian Chocolate Shake',
-									details:
-										'RBelgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.',
-									images: [
-										{
-											image:
-												'https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-belgian-chocolate.png',
-										},
-									],
-								},
-							]}
+							data={items}
 							keyExtractor={(item) =>
 								item._id.toString()
 							}
@@ -261,4 +185,11 @@ const SuggestionsComponent = ({selectedItemName}) => {
 	)
 }
 
-export default memo(SuggestionsComponent)
+
+const SuggestionsComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps,
+)(SuggestionsComponent)
+
+
+export default memo(SuggestionsComponentConnect)

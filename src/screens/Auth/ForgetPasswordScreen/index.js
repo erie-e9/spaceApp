@@ -8,6 +8,7 @@ const Root = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
 const InfoContainer = styled.KeyboardAvoidingView.attrs({
 	behavior: Platform.OS === 'ios' ? 'padding' : 'height',
@@ -22,7 +23,6 @@ const Card = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 	width: 80%;
 	min-height: 250px;
 	padding-vertical: 10px;
@@ -34,8 +34,9 @@ const Card = styled.View`
 	shadow-radius: 2px;
 	shadow-opacity: 0.1;
 	border-radius: 5px;
-	border-width: 0.075px;
+	border-width: 0px;
 	border-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
 
 const ForgetPasswordScreen = () => (
