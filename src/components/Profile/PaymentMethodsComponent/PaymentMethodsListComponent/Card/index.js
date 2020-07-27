@@ -10,12 +10,12 @@ const iconSize = 23
 const Card = styled.View`
     flex-direction: row;
     width: ${width - 20}px;
-    min-height: 70px;
+    min-height: 60px;
     justify-content: center;
     align-self: center;
     background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
     border-radius: 5px
-    padding: 10px;
+    padding: 5px 10px;
     margin-bottom: 5px;
 `
 const MetadataInfo = styled.View`
@@ -23,7 +23,6 @@ const MetadataInfo = styled.View`
 	width: 100%;
 	flex-direction: column;
 	justify-content: flex-start;
-	padding-bottom: 5px;
 	background-color: transparent;
 `
 const MetadaInfoHead = styled.View`

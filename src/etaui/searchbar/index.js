@@ -22,7 +22,10 @@ const HeaderInner = styled.View`
 `
 const ImageContainer = styled.View``
 // const Img = styled.Image``;
-const IconButton = styled.TouchableOpacity`
+const IconButton = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
@@ -33,7 +36,10 @@ const IconButton = styled.TouchableOpacity`
 	margin-horizontal: 5px;
 	margin-right: 15px;
 `
-const IconButtonClose = styled.TouchableOpacity`
+const IconButtonClose = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;

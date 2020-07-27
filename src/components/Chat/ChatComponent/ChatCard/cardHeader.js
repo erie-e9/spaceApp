@@ -35,10 +35,12 @@ const TimeContainer = styled.View`
 	justify-content: flex-end;
 	right: 5px;
 `
-const Touchable = styled.TouchableOpacity``
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})``
 
 const CardHeader = ({username, firstname, lastname, createdAt}) => {
-	// console.log('ewe', createdAt);
 	const themeContext = useContext(ThemeContext)
 	const fullname = `${firstname} ${lastname}`
 

@@ -35,7 +35,6 @@ const UbicationDetailsComponent = ({data}) => {
 	const themeContext = useContext(ThemeContext)
 	const [items, setitems] = useState([])
 	const mapAnimation = new Animated.Value(0)
-	// console.log('UbicationDetailsComponent ewe data: ', data);
 
 	useEffect(() => {
 		if (Array.isArray(data)) {

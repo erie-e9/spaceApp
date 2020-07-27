@@ -1,6 +1,8 @@
-import React, {useState, useRef} from 'react'
-import styled from 'styled-components/native'
+import React, {useState, useContext, useRef} from 'react'
+import styled, {ThemeContext} from 'styled-components/native'
+import {Platform} from 'react-native'
 import {TouchableWithoutFeedback, Animated, Easing} from 'react-native'
+import {ETASimpleText} from '@etaui'
 
 const Root = styled.View`
 	flex-direction: row;
@@ -9,20 +11,34 @@ const Root = styled.View`
 	background-color: transparent;
 `
 const Switch = styled.View`
+	flex-direction: row;
+	align-items: flex-start;
 	height: 20px;
 	width: 40px;
 	border-width: 0.5px;
 	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	margin: 10px;
 	border-radius: 20px;
-	align-items: flex-start;
 	padding: 1px;
 	background-color: transparent;
+	z-index: 1000;
+`
+const IndicatorContainer = styled.View`
+	flex-direction: row;
+	align-items: center;
+	position: absolute;
+	bottom: 3px;
+	width: 100%;
+	justify-content: space-between;
+	padding-horizontal: 5px;
+	background-color: transparent;
+	z-index: 10;
 `
 
 const ETASwitch = ({color, onChange, activated}) => {
 	const animation = useRef(new Animated.Value(activated ? 1 : 0)).current
 	const [toggled, setToggled] = useState(!!activated)
+	const themeContext = useContext(ThemeContext)
 	const [containerWidth] = useState(0)
 
 	const _switchAnimated = () => {
@@ -52,7 +68,7 @@ const ETASwitch = ({color, onChange, activated}) => {
 					_switchAnimated()
 				}}
 				style={{flex: 1}}>
-				<Switch>
+				<Switch activated={activated}>
 					<Animated.View
 						style={[
 							{
@@ -83,11 +99,26 @@ const ETASwitch = ({color, onChange, activated}) => {
 							},
 						]}
 					/>
+					<IndicatorContainer>
+						<ETASimpleText
+							size={11}
+							weight={Platform.OS === 'ios' ? '700' : '800'}
+							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+							align='left'>
+							o
+						</ETASimpleText>
+						<ETASimpleText
+							size={11}
+							weight='300'
+							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+							align='left'>
+							|
+						</ETASimpleText>
+					</IndicatorContainer>
 				</Switch>
 			</TouchableWithoutFeedback>
 		</Root>
 	)
 }
 
-// export default React.memo(ETASwitch);
-export default ETASwitch
+export default React.memo(ETASwitch);

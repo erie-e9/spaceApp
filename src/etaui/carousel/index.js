@@ -19,7 +19,10 @@ const DotCarousel = styled.View`
 	position: absolute;
 	bottom: 5px;
 `
-const Touchable = styled.TouchableWithoutFeedback``
+const Touchable = styled.TouchableWithoutFeedback`
+	height: 100%;
+	width: 100%;
+`
 const TouchableWithoutFeedbackContainer = styled.View``
 
 const ETACarousel = ({posts, data, autoplay, time}) => {
@@ -54,7 +57,7 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 					scrolled = 0
 				}
 
-				flatList.current.scrollToIndex({
+				flatList.current?.scrollToIndex({
 					animated: true,
 					index: scrollValue ? scrollValue : 0,
 				})

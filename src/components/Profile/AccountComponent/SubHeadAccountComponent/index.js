@@ -74,7 +74,6 @@ const validationSchema = yup.object().shape({
 
 const SubHeadAccountComponent = () => {
 	const themeContext = useContext(ThemeContext)
-	const [mysecureTextEntry] = useState(true)
 
 	return (
 		<Root>
@@ -142,7 +141,7 @@ const SubHeadAccountComponent = () => {
 							}'
 						/>
 						{errors.fullname ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.fullname}
 							</ETAErrorMessage>
 						) : null}
@@ -186,7 +185,7 @@ const SubHeadAccountComponent = () => {
 							}
 						/>
 						{errors.username ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.username}
 							</ETAErrorMessage>
 						) : null}
@@ -230,7 +229,7 @@ const SubHeadAccountComponent = () => {
 							}
 						/>
 						{errors.cellphone ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}
@@ -257,7 +256,7 @@ const SubHeadAccountComponent = () => {
 							multiline={false}
 							numberOfLines={1} // android
 							returnKeyLabel='next' // android
-							secureTextEntry={mysecureTextEntry} // password
+							secureTextEntry={!true} // password
 							spellCheck
 							textContentType='none'
 							returnKeyType='none'
@@ -275,7 +274,7 @@ const SubHeadAccountComponent = () => {
 						/>
 
 						{errors.password ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.password}
 							</ETAErrorMessage>
 						) : null}
@@ -294,7 +293,7 @@ const SubHeadAccountComponent = () => {
 							caretHidden={false}
 							clearButtonMode='while-editing'
 							contextMenuHidden={false}
-							editable
+							editable={!true}
 							enablesReturnKeyAutomatically={false}
 							underlineColorAndroid='transparent'
 							keyboardAppearance='dark'
@@ -302,7 +301,7 @@ const SubHeadAccountComponent = () => {
 							multiline={false}
 							numberOfLines={1} // android
 							returnKeyLabel='next' // android
-							secureTextEntry={mysecureTextEntry} // password
+							secureTextEntry={!true} // password
 							spellCheck
 							textContentType='none'
 							returnKeyType='none'
@@ -317,7 +316,7 @@ const SubHeadAccountComponent = () => {
 							}
 						/>
 						{errors.email ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.email}
 							</ETAErrorMessage>
 						) : null}

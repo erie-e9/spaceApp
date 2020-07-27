@@ -1,14 +1,19 @@
-import React, {useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled, {ThemeContext} from 'styled-components'
 import {Dimensions, Platform} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {Ionicons} from '@icons'
 import {ETASimpleText} from '@etaui'
-import {truncateString} from '@functions'
+import {truncateString, currencySeparator} from '@functions'
+import {connect} from 'react-redux'
+import { GET_ALL_ITEMS_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
 
 const {width} = Dimensions.get('window')
 
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	z-index: 100;
 `
 const Card = styled.View`
@@ -99,8 +104,8 @@ const PercentContainer = styled.View`
 	border-top-right-radius: 4px;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 	margin-left: 5px;
+	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `
 const FavoriteContainer = styled.View`
 	position: absolute;
@@ -108,10 +113,56 @@ const FavoriteContainer = styled.View`
 	right: 15px;
 	z-index: 1000;
 `
+const mapStateToProps = (state, props) => {
+	const favoritesdata = state.favorites.data
+	return { favoritesdata }
+}
 
-const GeneralItemComponent = ({item}) => {
+const mapDispatchProps = (dispatch, props) => ({	
+
+	getAllFavoriteItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_FAVORITE_ITEMS_REQUEST,
+			payload: {}
+		})
+	},
+
+	toogleFavorite: (paramItem) => {
+		dispatch({
+			type: TOOGLE_FAVORITE,
+			payload: {
+				paramItem,
+			}
+		})
+	},
+})
+
+const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogleFavorite, item }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const [ isFavorite, setisFavorite ] = useState(false)
+
+	useEffect(() => {
+		getAllFavoriteItemsRequest()
+		_isFavorite()
+	}, [favoritesdata, isFavorite, item])
+	
+	const _isFavorite = async () => {
+		if (favoritesdata.length > 0) {
+			const favoriteItem = await favoritesdata.find(
+				(element) => element._id === item._id,
+			)
+
+			if (favoriteItem) {
+				setisFavorite(true)
+				console.log('Es favorito');
+			}
+			else {
+				console.log('No es favorito');
+				setisFavorite(!true)
+			}
+		}
+	}
 
 	const _onPressItem = (propitem) => {
 		navigation.navigate('GetOneItemNavigator', {
@@ -168,7 +219,7 @@ const GeneralItemComponent = ({item}) => {
 					<ShopContainer>
 						<PriceContainer>
 							<ETASimpleText
-								size={12}
+								size={13}
 								weight={
 									Platform.OS === 'ios'
 										? '600'
@@ -182,11 +233,11 @@ const GeneralItemComponent = ({item}) => {
 									zIndex: 100,
 								}}>
 								$
-								{(
+								{currencySeparator((
 									((100 - item.discount) *
 										item.price) /
 									100
-								).toFixed(2)}
+								).toFixed(2))}
 							</ETASimpleText>
 						</PriceContainer>
 						<DiscountContainer>
@@ -211,9 +262,9 @@ const GeneralItemComponent = ({item}) => {
 												'solid',
 										}}>
 										$
-										{item.price.toFixed(
+										{currencySeparator(item.price.toFixed(
 											2,
-										)}
+										))}
 									</ETASimpleText>
 									<PercentContainer>
 										<ETASimpleText
@@ -243,20 +294,17 @@ const GeneralItemComponent = ({item}) => {
 						</DiscountContainer>
 						<FavoriteContainer>
 							<Touchable
-								onPress={() =>
-									console.log(
-										'ñeñe ñeñe ñeñe',
-									)
-								}>
+								onPress={() => toogleFavorite(item)}
+								>
 								<Ionicons
 									name={
-										item.isFavorite
+										isFavorite
 											? 'md-heart'
 											: 'md-heart-outline'
 									}
 									size={20}
 									color={
-										item.isFavorite
+										isFavorite
 											? themeContext.PRIMARY_COLOR
 											: themeContext.PRIMARY_TEXT_COLOR_LIGHT
 									}
@@ -281,4 +329,9 @@ const GeneralItemComponent = ({item}) => {
 	)
 }
 
-export default React.memo(GeneralItemComponent)
+const GeneralItemComponenttConnect = connect(
+	mapStateToProps,
+	mapDispatchProps,
+)(GeneralItemComponent)
+
+export default React.memo(GeneralItemComponenttConnect)

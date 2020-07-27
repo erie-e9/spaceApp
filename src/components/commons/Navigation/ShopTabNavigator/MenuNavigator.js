@@ -19,10 +19,20 @@ import GetOneItemScreen from '@screens/Menu/GetOneItemScreen'
 const Header = styled.View`
 	margin-left: 15px;
 `
-const HeaderLeft = styled.TouchableOpacity`
+const HeaderLeft = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+	width: 50px;
 	margin-left: 15px;
 `
-const CircleContainer = styled.TouchableOpacity`
+const CircleContainer = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+	width: 10px;
 	align-items: center;
 	justify-content: center;
 	height: 30px;
@@ -30,7 +40,12 @@ const CircleContainer = styled.TouchableOpacity`
 	border-radius: 15px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const HeaderLeftCard = styled.TouchableOpacity`
+const HeaderLeftCard = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+	width: 10px;
 	justify-content: center;
 	align-items: center;
 	height: 30px;

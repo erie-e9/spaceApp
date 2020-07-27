@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
-import {TouchableWithoutFeedback, TouchableOpacity} from 'react-native'
+import {TouchableWithoutFeedback} from 'react-native'
 import {ETASimpleText} from '@etaui'
 
 const Root = styled.View`
@@ -21,6 +21,13 @@ const TitleContainer = styled.View`
 	margin-vertical: 10px;
 	justify-content: center;
 	align-items: center;
+`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	height: 40px;
+	padding: 10px;
 `
 
 const ETACheckBox = ({
@@ -48,7 +55,7 @@ const ETACheckBox = ({
 				/>
 			</TouchableWithoutFeedback>
 
-			<TouchableOpacity onPress={onPressTitle}>
+			<Touchable onPress={onPressTitle}>
 				<TitleContainer>
 					<ETASimpleText
 						size={14}
@@ -60,7 +67,7 @@ const ETACheckBox = ({
 						{checked ? checkedTitle : title}
 					</ETASimpleText>
 				</TitleContainer>
-			</TouchableOpacity>
+			</Touchable>
 		</Root>
 	)
 }

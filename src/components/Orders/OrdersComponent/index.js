@@ -8,7 +8,10 @@ const Root = styled.View`
 	justify-content: center;
 	align-items: center;
 `
-const Touchable = styled.TouchableOpacity``
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})``
 
 const OrdersComponent = ({data}) => {
 	const _onPress = (item) => {

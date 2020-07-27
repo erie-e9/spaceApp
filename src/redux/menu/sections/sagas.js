@@ -11,7 +11,8 @@ function* getAllItemsRequest(action){
         yield put({
             type: GET_ALL_ITEMS_REQUEST_SUCCESS,
             payload: {
-                data: data.menu2
+                data: data.menu2,
+                _id: action.payload._id
             }
         })
     } catch (error) {

@@ -72,7 +72,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const ProfileContentComponent = ({logoutUser}) => {
+const ProfileContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 

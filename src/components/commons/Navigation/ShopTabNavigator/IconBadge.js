@@ -24,8 +24,7 @@ const IconWithBadge = ({name, badgeCount, color, size, data}) => {
 
 	const _getsumatory = async () => {
 		await data.forEach((element) => {
-			// sum += element.howMany
-			sum += 1
+			sum += element.howMany
 			settotalItems(sum)
 		})
 	}

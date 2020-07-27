@@ -10,7 +10,6 @@ const Root = styled.View`
 
 const GetOnePaymentMethodComponent = () => (
 	<Root>
-		{/* <HeadGetOnePaymentMethodComponent /> */}
 		<SubHeadGetOnePaymentMethodComponent />
 	</Root>
 )

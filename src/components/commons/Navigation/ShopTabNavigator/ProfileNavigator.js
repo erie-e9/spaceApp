@@ -12,6 +12,8 @@ import BranchOfficesScreen from '@screens/Profile/BranchOfficesScreen'
 import AddressesScreen from '@screens/Profile/AddressesScreen'
 import MapAddressesScreen from '@screens/Profile/AddressesScreen/MapAddressesScreen'
 import FavoritesScreen from '@screens/Profile/FavoritesScreen'
+import PreviousOrdersScreen from '@screens/Profile/PreviousOrdersScreen'
+import GetOnePreviousOrderScreen from '@screens/Profile/PreviousOrdersScreen/GetOnePreviousOrderScreen'
 import PaymentMethodsScreen from '@screens/Profile/PaymentMethodsScreen'
 import NewPaymentMethodScreen from '@screens/Profile/PaymentMethodsScreen/NewPaymentMethodScreen'
 import GetOnePaymentMethodScreen from '@screens/Profile/PaymentMethodsScreen/GetOnePaymentMethodScreen'
@@ -25,7 +27,12 @@ import NoticeOfPrivacyScreen from '@screens/Profile/HelpScreen/NoticeOfPrivacySc
 import {ETASimpleText} from '@etaui'
 import {FontAwesome} from '@icons'
 
-const HeaderLeft = styled.TouchableOpacity`
+const HeaderLeft = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+	width: 60px;
 	margin-left: 15px;
 `
 const Header = styled.View`
@@ -267,6 +274,72 @@ const SettingsNavigator = () => {
 				component={FavoritesScreen}
 				options={({navigation, route}) => ({
 					headerTitle: 'Favorites',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<SettingsStack.Screen
+				name='PreviousOrdersScreen'
+				component={PreviousOrdersScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Previous orders',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+			
+			<SettingsStack.Screen
+				name='GetOnePreviousOrderScreen'
+				component={GetOnePreviousOrderScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Previous order',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',

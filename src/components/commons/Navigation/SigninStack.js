@@ -31,7 +31,10 @@ const configClose = {
 	},
 }
 
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	margin-left: 10px;
 `
 

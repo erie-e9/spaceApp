@@ -37,7 +37,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const CartListComponent = ({getAllItemsRequest, data}) => {
+const CartListComponent = ({ getAllItemsRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
@@ -45,7 +45,7 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 	useEffect(() => {
 		getAllItemsRequest()
 		setitems(data)
-		console.log('++++++++++++++CartListComponent data', data)
+		// console.log('++++++++++++++CartListComponent data', data)
 		
 		return () => {
 			getAllItemsRequest()
@@ -104,8 +104,7 @@ const CartListComponent = ({getAllItemsRequest, data}) => {
 					return (
 						<CartItemComponent
 							item={item}
-							// howMany={item.howMany}
-							howMany={231}
+							howMany={item.howMany}
 						/>
 					)
 				}}

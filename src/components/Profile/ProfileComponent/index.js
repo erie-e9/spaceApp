@@ -49,7 +49,10 @@ const MetadataInfo = styled.View`
 	margin-vertical: 5px;
 	padding-right: 40px;
 `
-const Touchable = styled.TouchableOpacity``
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})``
 
 const ProfileComponent = () => {
 	const themeContext = useContext(ThemeContext)

@@ -1,10 +1,13 @@
 import { takeEvery, put } from 'redux-saga/effects'
 import {
-  GET_ALL_ITEMS_REQUEST,
-  GET_ALL_ITEMS_REQUEST_SUCCESS,
-  ADD_TO_CART,
-  REMOVE_FROM_CART,
-  REMOVE_ITEM_FROM_CART,
+        GET_ALL_ITEMS_REQUEST,
+        GET_ALL_ITEMS_REQUEST_SUCCESS,
+        ADD_TO_CART,
+        ADD_TO_CART_SUCCESS,
+        REMOVE_FROM_CART,
+        REMOVE_FROM_CART_SUCCESS,
+        REMOVE_ITEM_FROM_CART,
+        REMOVE_ITEM_FROM_CART_SUCCESS,
 } from './actions'
 
 function* handler() {
@@ -28,11 +31,13 @@ function* getAllItemsRequest(action) {
 }
 
 function* addToCart(action) {
+  let { paramItem } = action.payload
   try {
     yield put({
-      type: ADD_TO_CART,
+      type: ADD_TO_CART_SUCCESS,
       payload: {
         data: [],
+        paramItem
       },
     })
   } catch (error) {
@@ -40,12 +45,14 @@ function* addToCart(action) {
   }
 }
 
-function* removeFromCart() {
+function* removeFromCart(action) {
+  let { paramItem } = action.payload
   try {
     yield put({
-      type: REMOVE_FROM_CART,
+      type: REMOVE_FROM_CART_SUCCESS,
       payload: {
         data: [],
+        paramItem
       },
     })
   } catch (error) {
@@ -53,12 +60,14 @@ function* removeFromCart() {
   }
 }
 
-function* removeItemFromCart() {
+function* removeItemFromCart(action) {
+  let { paramItem } = action.payload
   try {
     yield put({
-      type: REMOVE_FROM_CART,
+      type: REMOVE_ITEM_FROM_CART_SUCCESS,
       payload: {
         data: [],
+        paramItem
       },
     })
   } catch (error) {

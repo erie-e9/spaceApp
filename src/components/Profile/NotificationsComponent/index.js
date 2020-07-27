@@ -31,15 +31,15 @@ const NotificationsComponent = () => {
 				</ETASimpleText>
 				<Card
 					headTitle='Email'
-					message='Will send you info relevant, promotions and offers about our products via email.'
+					message='Will send you relevant information, promotions and offers about our products via email.'
 				/>
 				<Card
 					headTitle='Push notifications'
-					message='Will send you info relevant, promotions and offers about our products via notifications.'
+					message='Will send you relevant information, promotions and offers about our products via notifications.'
 				/>
 				<Card
 					headTitle='SMS'
-					message='Will send you info relevant, promotions and offers about our products via message sms.'
+					message='Will send you relevant information, promotions and offers about our products via message sms.'
 				/>
 			</NotificationSettingContainer>
 
@@ -53,7 +53,7 @@ const NotificationsComponent = () => {
 				</ETASimpleText>
 				<Card
 					headTitle='Paused orders'
-					message='Will send you info relevant, promotions and offers about our products via email.'
+					message='Will send you relevant information, promotions and offers about our products via email.'
 				/>
 			</NotificationSettingContainer>
 
@@ -67,7 +67,7 @@ const NotificationsComponent = () => {
 				</ETASimpleText>
 				<Card
 					headTitle='Weekly offers'
-					message='Will send you info relevant, promotions and offers about our products via email.'
+					message='Will send you relevant information, promotions and offers about our products via email.'
 				/>
 			</NotificationSettingContainer>
 		</Root>

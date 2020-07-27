@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect} from 'react'
-import {UIManager, SafeAreaView, useColorScheme} from 'react-native'
+import {UIManager, SafeAreaView, useColorScheme, LogBox} from 'react-native'
 import {ThemeProvider} from 'styled-components'
 import {NavigationContainer} from '@react-navigation/native'
 import Navigation from '@components/commons/Navigation'
@@ -17,7 +17,8 @@ if (UIManager.setLayoutAnimationEnabledExperimental) {
 
 const App = () => {
   const colorSchema = useColorScheme()
-  console.disableYellowBox = true
+  // console.disableYellowBox = true
+  LogBox.ignoreAllLogs()
 
   useEffect(() => { 
     OneSignal.init('7df7e613-b790-43dd-9fda-f9d97f93b190', {

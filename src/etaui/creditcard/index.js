@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText, ETAButtonFilled} from '@etaui'
+import { creditnumberSeparator, expirationDateSeparator } from '@functions'
 
 const {width, height} = Dimensions.get('window')
 
@@ -59,6 +60,15 @@ const CardIBacktemsContainer = styled.View`
 	align-items: flex-start;
 	padding: 10px 20px 20px 20px;
 `
+const CVCContainer = styled.View`
+	height: 25px;
+	width: 35px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 3px;
+	background-color: #fdfdfd;
+`
 const TextInputsContainer = styled.View`
 	flex-direction: row;
 	justify-content: flex-start;
@@ -92,17 +102,16 @@ const TextInput = styled.TextInput.attrs({})`
 const ETACreditCard = ({lang, placeholderTextColor}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [creditCard, setcreditCard] = useState('1234 5678 9012 3456')
-	const [expiry, setexpiry] = useState(lang === 'es' ? 'MM/AA' : 'MM/YY')
-	const [cvc, setcvc] = useState('123')
-	const [onwerName, setonwerName] = useState(
+	const [ creditCard, setcreditCard ] = useState('1234 5678 9012 3456')
+	const [ expiry, setexpiry ] = useState(lang === 'es' ? 'MM/AA' : 'MM/YY')
+	const [ cvc, setcvc ] = useState('123')
+	const [ onwerName, setonwerName ] = useState(
 		lang === 'es' ? 'NOMBRE DE PROPIETARIO' : 'ONWER NAME',
 	)
 	const animatedValue = new Animated.Value(0)
 
 	useLayoutEffect(() => {
 		animatedValue.addListener(({value}) => {
-			// let letvalue = value;
 		})
 	}, [])
 
@@ -147,7 +156,6 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 				break
 			default:
 				return false
-				break
 		}
 	}
 
@@ -184,13 +192,14 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 										align='center'>
 										{creditCard === ''
 											? '1234 5678 9012 3456'.padEnd(
-													19,
+													16,
 													'•',
 											  )
-											: creditCard.padEnd(
-													19,
+											: creditnumberSeparator(creditCard.padEnd(
+													16,
 													'•',
-											  )}
+											  ))
+										}
 									</ETASimpleText>
 									<ETASimpleText
 										size={13}
@@ -207,7 +216,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 											  'es'
 												? 'MM/AA'
 												: 'MM/YY'
-											: expiry}
+											: expirationDateSeparator(expiry)}
 									</ETASimpleText>
 									<ETASimpleText
 										size={13}
@@ -249,23 +258,25 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 								}}>
 								<CardBackBand />
 								<CardIBacktemsContainer>
-									<ETASimpleText
-										size={14}
-										weight={
-											Platform.OS ===
-											'ios'
-												? '500'
-												: '300'
-										}
-										color='#333'
-										align='center'>
-										{cvc === ''
-											? lang ===
-											  'es'
-												? 'MM/AA'
-												: 'MM/YY'
-											: cvc}
-									</ETASimpleText>
+									<CVCContainer>
+										<ETASimpleText
+											size={14}
+											weight={
+												Platform.OS ===
+												'ios'
+													? '500'
+													: '300'
+											}
+											color='#333'
+											align='center'>
+											{cvc === ''
+												? lang ===
+												'es'
+													? 'MM/AA'
+													: 'MM/YY'
+												: cvc}
+										</ETASimpleText>
+									</CVCContainer>
 								</CardIBacktemsContainer>
 							</CardBackContainer>
 						</Card>
@@ -298,7 +309,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 								}
 								underlineColorAndroid='transparent'
 								keyboardAppearance='dark'
-								maxLength={19}
+								maxLength={16}
 								multiline={false}
 								numberOfLines={1} // android
 								returnKeyLabel='next' // android

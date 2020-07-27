@@ -8,13 +8,19 @@ const Root = styled.View`
 	justify-content: flex-end;
 	margin-top: 24px;
 `
-const ButtonForgetPassword = styled.TouchableOpacity`
+const ButtonForgetPassword = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	justify-content: center;
 	align-items: center;
 	z-index: 1;
 	margin-bottom: 15px;
 `
-const ButtonSignup = styled.TouchableOpacity`
+const ButtonSignup = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	justify-content: center;
 	align-items: center;
 	z-index: 1;

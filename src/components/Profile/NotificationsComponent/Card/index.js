@@ -36,11 +36,7 @@ const MessageContainer = styled.View`
 const NotificationCardComponent = ({headTitle, message}) => {
 	const themeContext = useContext(ThemeContext)
 	const [switchItem, setswitchItem] = useState(!true)
-
-	// useEffect(() => {
-	//   console.log('ewe switchItem: ', switchItem);
-	// }, [switchItem])
-
+	
 	return (
 		<>
 			<Card>

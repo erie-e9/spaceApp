@@ -10,20 +10,35 @@ import ChatScreen from '@screens/Chat/ChatScreen'
 import ChatItemScreen from '@screens/Chat/ChatItemScreen'
 import {ETASimpleText} from '@etaui'
 
-const HeaderLeft = styled.TouchableOpacity`
+const HeaderLeft = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+	width: 10px;
 	margin-left: 15px;
 `
 const HeaderRight = styled.View`
 	flex-direction: row;
 	margin-right: 15px;
 `
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+	width: 10px;
 	margin-left: 10px;
 `
 const Header = styled.View`
 	margin-left: 15px;
 `
-const IconButton = styled.TouchableOpacity`
+const IconButton = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+	width: 10px
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;

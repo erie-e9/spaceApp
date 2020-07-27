@@ -1,3 +1,7 @@
 React Navigation v5: https://www.youtube.com/watch?v=RyMF8WyMoZE
 SVG to React & RN: https://react-svgr.com/playground/?native=true
 Toggle custom: https://blog.bitsrc.io/creating-a-toggle-animation-in-react-native-1501c7ead6c1
+
+Desintalar una app que ha sido instalada y mal desintalda desde consola: adb -s 45C0219430002265 uninstall com.exitusmovil.debug
+Android Screenshots: https://www.appstorescreenshot.com/
+Android Banner: https://www.norio.be/android-feature-graphic-generator/

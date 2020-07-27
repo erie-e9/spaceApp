@@ -2,7 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import {variables} from '@utils/constants'
 
-const TouchableOpacity = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	height: 40px;
 `
 const AvatarContainer = styled.View``
@@ -14,7 +17,7 @@ const ETAAvatar = ({image, size}) => {
 
 	return (
 		<>
-			<TouchableOpacity
+			<Touchable
 				style={{
 					height:
 						size === 'middle'
@@ -48,7 +51,7 @@ const ETAAvatar = ({image, size}) => {
 						}}
 					/>
 				</AvatarContainer>
-			</TouchableOpacity>
+			</Touchable>
 		</>
 	)
 }

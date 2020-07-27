@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.icecream"
+        applicationId "com.appsoftlog_store"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

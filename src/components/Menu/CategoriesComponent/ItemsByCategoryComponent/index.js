@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Animated, Platform} from 'react-native'
-import {useNavigation, useRoute} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native'
 import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'

@@ -7,7 +7,10 @@ const Root = styled.View`
 	margin-vertical: 5px;
 	padding-horizontal: 10px;
 `
-const TouchableOpacity = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	height: 40px;
 	padding: 10px;
 `
@@ -28,7 +31,7 @@ const ETAButtonOutline = ({
 	return (
 		<>
 			<Root>
-				<TouchableOpacity
+				<Touchable
 					style={{
 						width,
 						backgroundColor: 'transparent',
@@ -61,7 +64,7 @@ const ETAButtonOutline = ({
 							{title || 'Text'}
 						</ETASimpleText>
 					)}
-				</TouchableOpacity>
+				</Touchable>
 			</Root>
 		</>
 	)

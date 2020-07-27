@@ -1,4 +1,4 @@
-package com.icecream;
+package com.appsoftlog_store;
 
 import com.facebook.react.ReactActivity;
 

@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react'
 import {Animated, Platform} from 'react-native'
-import {useRoute} from '@react-navigation/native'
 import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
@@ -19,12 +18,13 @@ const mapStateToProps = (state, props) => {
 	const { data } = state.sections
 	return { data }
 }
+
 const mapDispatchProps = (dispatch, props) => ({
 	getAllItemsRequest: () => {
 		dispatch({
 			type: GET_ALL_ITEMS_REQUEST,
 			payload: {
-				id: 1
+				_id: 1
 			}
 		}) 
 	}

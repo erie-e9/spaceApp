@@ -16,6 +16,7 @@ const ItemGeneratorContainer = styled.View`
 `
 const ItemGeneratorButton = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
 })`
 	z-index: 2000;
 `
@@ -37,7 +38,8 @@ const SecondaryButton = styled.View`
 	z-index: 2000;
 `
 const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
-	underlayColor: 'red',
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
 })`
 	z-index: 2000;
 `

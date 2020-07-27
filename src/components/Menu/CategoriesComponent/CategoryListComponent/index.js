@@ -14,7 +14,10 @@ const Root = styled.View`
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const CategoryList = styled.FlatList``
-const Touchable = styled.TouchableOpacity``
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})``
 
 const mapStateToProps = (state) => {
 	const {data} = state.categories

@@ -7,11 +7,12 @@ const initialState = {
 const reducer = (state=initialState, action) => {
     switch (action.type) {
         case GET_ALL_ITEMS_REQUEST_SUCCESS:
+            console.log('reducer dasdaas', action.payload.data);
             const { data } = action.payload
             return { data }
     
         default:
-            return { state }
+            return state
     }
 }
 

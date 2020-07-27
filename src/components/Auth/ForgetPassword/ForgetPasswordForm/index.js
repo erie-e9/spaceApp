@@ -146,7 +146,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 							}
 						/>
 						{errors.cellphone ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}
@@ -170,7 +170,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 			</Formik>
 			<RecoverTextContainer>
 				<ETASimpleText
-					size={12}
+					size={13}
 					weight={Platform.OS === 'ios' ? '500' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='center'>

@@ -10,13 +10,15 @@ const Root = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: ${width}px;
 	background-color: transparent;
 `
 const InfoContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
 	justify-content: center;
-	width: ${width - 40}px;
+	width: 93%;
+	align-self: center;
 	background-color: transparent;
 `
 
@@ -28,7 +30,7 @@ const SubHeadTermsOfServiceComponent = () => {
 			<ETAAutoScroll>
 				<InfoContainer time={5000}>
 					<ETASimpleText
-						size={12}
+						size={13}
 						weight={
 							Platform.OS === 'ios' ? '300' : '200'
 						}
@@ -47,7 +49,7 @@ const SubHeadTermsOfServiceComponent = () => {
 					</ETASimpleText>
 
 					<ETASimpleText
-						size={12}
+						size={13}
 						weight={
 							Platform.OS === 'ios' ? '300' : '200'
 						}
@@ -79,7 +81,7 @@ const SubHeadTermsOfServiceComponent = () => {
 					</ETASimpleText>
 
 					<ETASimpleText
-						size={12}
+						size={13}
 						weight={
 							Platform.OS === 'ios' ? '300' : '200'
 						}
@@ -101,7 +103,7 @@ const SubHeadTermsOfServiceComponent = () => {
 					</ETASimpleText>
 
 					<ETASimpleText
-						size={12}
+						size={13}
 						weight={
 							Platform.OS === 'ios' ? '300' : '200'
 						}
@@ -124,7 +126,7 @@ const SubHeadTermsOfServiceComponent = () => {
 					</ETASimpleText>
 
 					<ETASimpleText
-						size={12}
+						size={13}
 						weight={
 							Platform.OS === 'ios' ? '300' : '200'
 						}

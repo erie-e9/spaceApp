@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
+import {Ionicons} from '@icons'
 import {Platform} from 'react-native'
 import {
 	createStackNavigator,
@@ -11,6 +12,32 @@ import {ETASimpleText} from '@etaui'
 const Header = styled.View`
 	margin-left: 15px;
 `
+const IconsRightContainer = styled.View`
+	flex-direction: row;
+	align-items: center;
+	margin-right: 15px;
+`
+const LastOrderButtonContainer = styled.View`
+	margin-horizontal: 10px;
+	background-color: transparent;
+	border-width: 0.9px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	border-radius: 5px;
+	padding: 3px 5px;
+`
+const LastOrderButton = styled.TouchableHighlight.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	z-index: 100;
+`
+
 
 const CartStack = createStackNavigator()
 const CartNavigator = () => {
@@ -59,17 +86,38 @@ const CartNavigator = () => {
 							</ETASimpleText>
 						</Header>
 					),
-					// headerRight: () => {
-					//     return (
-					//         <IconButton
-					//             activeOpacity={1}
-					//             underlayColor='#ccd0d5'
-					//             // onPress={(event) => _onFocus(event)}
-					//         >
-					//             <FontAwesome name='search' size={18} color='#000' />
-					//         </IconButton>
-					//     )
-					// },
+					headerRight: () => {
+					    return (
+					        <IconsRightContainer>
+								<Touchable
+									onPress={() => navigation.navigate('SettingsNavigator', {
+										screen: 'FavoritesScreen'
+									})}>
+									<Ionicons
+										name='md-heart'
+										size={20}
+										color={themeContext.PRIMARY_COLOR}
+									/>
+								</Touchable>
+								<LastOrderButton
+									onPress={() => navigation.navigate('SettingsNavigator', {
+										screen: 'PreviousOrdersScreen'
+									})}>
+									<LastOrderButtonContainer>
+										<ETASimpleText
+											size={11}
+											weight='600'
+											color={
+												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+											}
+											align='left'>
+											Previous orders
+										</ETASimpleText>
+									</LastOrderButtonContainer>
+								</LastOrderButton>
+					        </IconsRightContainer>
+					    )
+					},
 					headerTintColor:
 						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
 					cardStyleInterpolator:

@@ -39,18 +39,6 @@ const ItemImage = styled.Image`
 	border-radius: 5px;
 	margin-left: 5px;
 `
-const StatusContainer = styled.View`
-	justify-content: center;
-	position: absolute;
-	height: 12px;
-	width: 23px;
-	top: 15px;
-	left: 11px;
-	background-color: ${(props) => props.theme.PRIMARY_COLOR};
-	border-radius: 4px;
-	border-width: 0px;
-	border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-`
 const CartItemData = styled.View`
 	flex: 1;
 	flex-direction: column;
@@ -64,57 +52,46 @@ const CartItemHeadContainer = styled.View`
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
-	background-color: transparent;
 	padding: 5px 5px 0px 5px;
+	background-color: transparent;
 `
 const CartTitleContainer = styled.View`
 	flex: 1;
-	background-color: transparent;
 	align-items: flex-start;
+	background-color: transparent;
 `
 const CardItemFunctions = styled.View`
-	flex: 0.5;
+	flex: 0.1;
 	align-items: flex-end;
 	justify-content: center;
 	margin: 0px 10px 10px 0px;
 	padding-horizontal: 2px;
 `
-const Touchable = styled.TouchableOpacity``
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	min-height: 25px;
+	min-width: 25px;
+`
 const CartItemContainer = styled.View`
-	flex: 0.7;
+	flex: 0.8;
 	flex-direction: row;
 `
 const CartItemLeftContainer = styled.View`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	margin: 5px 0px 0px 0px;
+	margin: 5px 0px 5px 0px;
 	padding-horizontal: 2px;
 	background-color: transparent;
 `
-const DiscountContainer = styled.View`
-	flex: 0.5;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-end;
-	margin-top: 2px;
-	z-index: 100;
-	margin-bottom: 3px;
-`
-const PercentContainer = styled.View`
-	justify-content: center;
+const PriceContainer = styled.View`
+	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
-	z-index: 100;
-	border-width: 0px;
-	padding-horizontal: 5px;
-	padding-vertical: 1px;
-	border-color: white;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
-	margin-left: 5px;
+	margin-bottom: 4px;
+	background-color: transparent;
 `
 const UnitPriceContainer = styled.View`
 	justify-content: center;
@@ -129,12 +106,6 @@ const UnitPriceContainer = styled.View`
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
-`
-const PriceContainer = styled.View`
-	flex: 0.4;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
 `
 const CartItemRightContainer = styled.View`
 	flex: 1;
@@ -158,7 +129,7 @@ const AddCartContainer = styled.View`
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	margin-horizontal: 7px;
 	padding-horizontal: 10px;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	align-self: center;
 	z-index: 1000;
@@ -185,22 +156,38 @@ const AddRemoveButtonContainer = styled.View`
 	justify-content: center;
 	background-color: transparent;
 `
-const AddCart = styled.TouchableOpacity`
-	padding-horizontal: 5px;
+const AddCart = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	flex-direction: row;
+	height: 25px;
+	width: 25px;
+	padding-horizontal: 5px;
 	z-index: 1000;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
 `
-const RemoveCart = styled.TouchableOpacity`
-	padding-horizontal: 5px;
+const RemoveCart = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	flex-direction: row;
+	height: 25px;
+	width: 25px;
+	padding-horizontal: 5px;
 	z-index: 1000;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
 `
 const mapDispatchProps = (dispatch, props) => ({
 	addToCart: (paramItem) => {
 		dispatch({
 			type: ADD_TO_CART,
 			payload: {
-				data: paramItem,
+				paramItem,
 			},
 		})
 	},
@@ -209,7 +196,7 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: REMOVE_FROM_CART,
 			payload: {
-				data: _id,
+				paramItem: _id,
 			},
 		})
 	},
@@ -218,7 +205,7 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: REMOVE_ITEM_FROM_CART,
 			payload: {
-				data: _id,
+				paramItem: _id,
 			},
 		})
 	},
@@ -229,17 +216,15 @@ const CartItemComponent = ({
 	removeFromCart,
 	removeItemFromCart,
 	item,
-	// howMany,
+	howMany,
 }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [addedCounter, setaddedCounter] = useState()
 
 	useEffect(() => {
-		// setaddedCounter(howMany)
-		setaddedCounter(1)
-	// }, [howMany])
-	}, [])
+		setaddedCounter(howMany)
+	}, [howMany])
 
 	const _addCart = (paramItem) => {
 		setaddedCounter(addedCounter + 1)
@@ -311,34 +296,6 @@ const CartItemComponent = ({
 					</CartItemHeadContainer>
 					<CartItemContainer>
 						<CartItemLeftContainer>
-							<UnitPriceContainer>
-								<ETASimpleText
-									size={9}
-									weight={
-										Platform.OS ===
-										'ios'
-											? '500'
-											: '900'
-									}
-									color={
-										themeContext.PRIMARY_TEXT_COLOR_LIGHT
-									}
-									align='left'
-									style={{
-										zIndex: 100,
-									}}>
-									$
-									{currencySeparator(
-										(
-											((100 -
-												item.discount) *
-												item.price) /
-											100
-										).toFixed(2),
-									)}{' '}
-									unit price
-								</ETASimpleText>
-							</UnitPriceContainer>
 							<PriceContainer>
 								<ETASimpleText
 									size={13}
@@ -367,6 +324,34 @@ const CartItemComponent = ({
 									)}
 								</ETASimpleText>
 							</PriceContainer>
+							<UnitPriceContainer>
+								<ETASimpleText
+									size={9}
+									weight={
+										Platform.OS ===
+										'ios'
+											? '500'
+											: '900'
+									}
+									color={
+										themeContext.PRIMARY_TEXT_COLOR_LIGHT
+									}
+									align='left'
+									style={{
+										zIndex: 100,
+									}}>
+									$
+									{currencySeparator(
+										(
+											((100 -
+												item.discount) *
+												item.price) /
+											100
+										).toFixed(2),
+									)}{' '}
+									unit price
+								</ETASimpleText>
+							</UnitPriceContainer>
 							{/* {
 								item.discount > 0
 								? <DiscountContainer>
@@ -459,7 +444,7 @@ const CartItemComponent = ({
 										<CounterContainer>
 											<ETASimpleText
 												size={
-													12
+													11
 												}
 												weight={
 													Platform.OS ===

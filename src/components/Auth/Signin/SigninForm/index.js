@@ -15,7 +15,10 @@ const FormContainer = styled.View`
 	align-items: center;
 	padding-horizontal: 10px;
 `
-const TextInputIcon = styled.TouchableOpacity``
+const TextInputIcon = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})``
 const ButtonContainer = styled.View`	
 	height: 20px;
 	margin-top: 15px;
@@ -130,7 +133,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							paddingHorizontal={15}
 						/>
 						{errors.cellphone ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}
@@ -205,7 +208,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							paddingHorizontal={15}
 						/>
 						{errors.password ? (
-							<ETAErrorMessage size={12}>
+							<ETAErrorMessage size={13}>
 								{errors.password}
 							</ETAErrorMessage>
 						) : null}

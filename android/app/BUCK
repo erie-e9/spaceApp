@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.icecream",
+    package = "appsoftlog_store",
 )
 
 android_resource(
     name = "res",
-    package = "com.icecream",
+    package = "appsoftlog_store",
     res = "src/main/res",
 )
 

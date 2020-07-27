@@ -20,7 +20,10 @@ const NameContainer = styled.View`
 	justify-content: center;
 	align-items: center;
 `
-const Touchable = styled.TouchableOpacity``
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})``
 const AvatarContainer = styled.View`
 	padding: 2px 10px;
 	border-radius: 50px;
@@ -45,7 +48,7 @@ const ChatItemScreen = ({navigation, route}) => {
 					</AvatarContainer>
 					<NameContainer>
 						<ETASimpleText
-							size={15}
+							size={13}
 							weight={
 								Platform.OS === 'ios'
 									? '500'
@@ -59,7 +62,7 @@ const ChatItemScreen = ({navigation, route}) => {
 						</ETASimpleText>
 						<Touchable>
 							<ETASimpleText
-								size={12}
+								size={11}
 								weight={
 									Platform.OS === 'ios'
 										? '400'

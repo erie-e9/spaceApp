@@ -92,18 +92,6 @@ const ShopTabNavigator = () => {
 								size={size - 2}
 								color={color}
 							/>
-
-							// <Animated.View style={{ direction }} onPress={(item) => _activedIcon(item)}>
-							//   <View style={StyleSheet.absoluteFill}>
-							//     <SunIcon focused={focused} color={focused ? themeContext.PRIMARY_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={size} />
-							//   </View>
-							//   <Animated.View style={{ overflow: 'hidden', width }}>
-							//     {
-							//       cloneElement(<SunIcon onPress={console.warn('ewe')} focused={focused} color={focused ? themeContext.PRIMARY_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={size} />,
-							//       { active: true })
-							//     }
-							//   </Animated.View>
-							// </Animated.View>
 						)
 					} else if (route.name === 'ItemGenerator') {
 						return (

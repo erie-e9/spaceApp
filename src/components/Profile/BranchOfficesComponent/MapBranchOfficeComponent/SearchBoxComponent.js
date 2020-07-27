@@ -18,11 +18,17 @@ const SearchBox = styled.View`
 	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 	elevation: 1;
 `
-const HeaderLeft = styled.TouchableOpacity`
+const HeaderLeft = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	margin-left: 15px;
 	margin-top: 10px;
 `
-const HeaderRight = styled.TouchableOpacity`
+const HeaderRight = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	margin-right: 15px;
 	margin-top: 15px;
 `

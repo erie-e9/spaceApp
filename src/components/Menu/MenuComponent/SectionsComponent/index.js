@@ -34,7 +34,10 @@ const BannerRight = styled.View`
 	background-color: ${(props) =>
 		props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 `
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	flex: 1;
 	justify-content: center;
 	align-items: center;

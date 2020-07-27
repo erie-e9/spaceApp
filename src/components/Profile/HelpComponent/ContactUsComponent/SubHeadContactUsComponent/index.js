@@ -17,7 +17,7 @@ const iconSize = 23
 
 const Root = styled.View`
 	flex: 1;
-	width: ${width - 30}px;
+	width: ${width}px;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
@@ -25,7 +25,7 @@ const Root = styled.View`
 `
 const InfoContainer = styled.View`
 	flex-direction: row;
-	width: ${width - 30}px;
+	width: 100%;
 	justify-content: center;
 	align-items: center;
 	padding-vertical: 10px;
@@ -37,9 +37,16 @@ const TitleContainer = styled.View`
 const LinkContainer = styled.View``
 const Touchable = styled.TouchableWithoutFeedback`
 	z-index: 100;
+	width: 100%;
 `
 const TouchableContainer = styled.View`
 	z-index: 100;
+	width: 75%;
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	margin-top: 10px;
+	background-color: transparent;
 `
 
 const SubHeadAboutUsComponent = () => {
@@ -268,22 +275,20 @@ const SubHeadAboutUsComponent = () => {
 						})
 					}>
 					<TouchableContainer>
-						<TitleContainer>
-							<ETASimpleText
-								size={13}
-								weight={
-									Platform.OS === 'ios'
-										? '300'
-										: '200'
-								}
-								color={
-									themeContext.PRIMARY_TEXT_COLOR_LIGHT
-								}
-								align='center'>
-								Have you seen our frecuently
-								question asked section?
-							</ETASimpleText>
-						</TitleContainer>
+						<ETASimpleText
+							size={13}
+							weight={
+								Platform.OS === 'ios'
+									? '300'
+									: '200'
+							}
+							color={
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
+							}
+							align='center'>
+							Have you seen our frecuently
+							question asked section?
+						</ETASimpleText>
 					</TouchableContainer>
 				</Touchable>
 			</InfoContainer>

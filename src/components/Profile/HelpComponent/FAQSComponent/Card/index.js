@@ -49,7 +49,7 @@ const MetadaAnswerContainer = styled.View`
 	justify-content: flex-start;
 	align-items: center;
 	padding-left: 40px;
-	padding-top: 5px;
+	padding-vertical: 5px;
 	background-color: transparent;
 `
 

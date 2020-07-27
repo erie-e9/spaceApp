@@ -6,7 +6,10 @@ import {ETASimpleText, ETAStarRating} from '@etaui'
 import {Ionicons, FontAwesome} from '@icons'
 import SuggestionsComponent from './SuggestionsComponent'
 import {connect} from 'react-redux'
-import {ADD_TO_CART, REMOVE_FROM_CART} from '@redux/cart/actions'
+import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
+import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/similarto/actions'
+import { GET_ALL_ITEMS_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import {currencySeparator} from '@functions'
 
 const {width} = Dimensions.get('window')
 
@@ -62,7 +65,10 @@ const AddCartContainer = styled.View`
 	align-self: center;
 	z-index: 1000;
 `
-const AddCartTouchable = styled.TouchableOpacity`
+const AddCartTouchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	position: absolute;
 	top: -25px;
 	flex-direction: row;
@@ -96,7 +102,12 @@ const CounterContainer = styled.View`
 	align-items: center;
 	justify-content: center;
 `
-const AddCart = styled.TouchableOpacity`
+const AddCart = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	height: 25px;
+	width: 25px;
 	padding: 5px;
 	flex-direction: row;
 	z-index: 1000;
@@ -111,7 +122,12 @@ const AddRemoveButtonContainer = styled.View`
 	align-items: center;
 	background-color: transparent;
 `
-const RemoveCart = styled.TouchableOpacity`
+const RemoveCart = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
+	height: 25px;
+	width: 25px;
 	padding: 5px;
 	flex-direction: row;
 	z-index: 1000;
@@ -270,21 +286,28 @@ const FavoriteContainer = styled.View`
 	right: 5px;
 	z-index: 1000;
 `
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+})`
 	justify-content: center;
 	align-items: center;
 `
 
 const mapStateToProps = (state, props) => {
-	const {data} = state.cart
-	return {data}
+	const cartdata = state.cart.data 
+	const favoritesdata = state.favorites.data
+	const similartodata = state.similarto.data
+	const similarto_id = state.similarto._id
+	return { cartdata, favoritesdata, similartodata, similarto_id }
 }
+
 const mapDispatchProps = (dispatch, props) => ({
 	addToCart: (paramItem) => {
 		dispatch({
 			type: ADD_TO_CART,
 			payload: {
-				data: paramItem,
+				paramItem,
 			},
 		})
 	},
@@ -293,32 +316,79 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: REMOVE_FROM_CART,
 			payload: {
-				data: _id,
+				paramItem: _id,
 			},
+		})
+	},
+
+	getAllItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_ITEMS_REQUEST,
+			payload: {
+				_id: 1
+			}
+		})
+	},
+
+	getAllFavoriteItemsRequest: () => {
+		dispatch({
+			type: GET_ALL_FAVORITE_ITEMS_REQUEST,
+			payload: {}
+		})
+	},
+
+	toogleFavorite: (paramItem) => {
+		dispatch({
+			type: TOOGLE_FAVORITE,
+			payload: {
+				paramItem,
+			}
 		})
 	},
 })
 
-const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
+const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
 	const themeContext = useContext(ThemeContext)
-	const [addedCounter, setaddedCounter] = useState(0)
-	const [animatedValueTransform] = useState(new Animated.Value(0.9))
 	const route = useRoute()
 	const {item} = route.params
+	const [ addedCounter, setaddedCounter ] = useState(0)
+	const [ isFavorite, setisFavorite ] = useState(false)
+	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
+	const [ selectedItem, setselectedItem ] = useState(item)
+	const [ similarid, setsimilarid ] = useState(0)
 	const delayValue = 1500
+	
+	useEffect(() => {
+		getAllItemsRequest()
+		let newArray = [item, ...similartodata]
+		let se = newArray[similarid || 0]
+		setselectedItem(se)
+	}, [similartodata, similarto_id])
 
 	useEffect(() => {
-		if (data.length > 0) {
-			const itemFound = data.find(
-				(element) => element._id === item._id,
+		setsimilarid(similarto_id)
+		getAllFavoriteItemsRequest()
+		console.log('favoritesdata: ', favoritesdata)
+		_isFavorite()
+	}, [similarto_id, favoritesdata, isFavorite, selectedItem])
+
+
+	useEffect(() => {
+		if (cartdata.length > 0) {
+			const itemFound = cartdata.find(
+				(element) => element._id === selectedItem._id,
 			)
+
 			if (itemFound) {
 				setaddedCounter(itemFound.howMany)
 			}
+			else {
+				setaddedCounter(0)
+			}
 		} else {
-			// console.log('data: ', data);
+			// console.log('cartdata: ', cartdata);
 		}
-	}, [data])
+	}, [item, selectedItem])
 
 	useEffect(() => {
 		Animated.spring(animatedValueTransform, {
@@ -343,20 +413,43 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 		removeFromCart(_id)
 	}
 
+	const _isFavorite = async () => {
+		if (favoritesdata.length > 0) {
+			const favoriteItem = await favoritesdata.find(
+				(element) => element._id === selectedItem._id,
+			)
+
+			if (favoriteItem) {
+				setisFavorite(true)
+				console.log('Es favorito');
+			}
+			else {
+				console.log('No es favorito');
+				setisFavorite(!true)
+			}
+		}
+	}
+
 	return (
 		<Root>
-			<ItemContainer>
+			{
+				selectedItem
+				?	<ItemContainer>
 				<BackgroundPresentationContainer>
-					<ItemImage
-						style={{
-							resizeMode: 'cover',
-						}}
-						source={{
-							uri:
-								// 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg',
-								item.images[0].image,
-						}}
-					/>
+					{
+						selectedItem
+						?	<ItemImage
+								style={{
+									resizeMode: 'cover',
+								}}
+								source={{
+									uri:
+										// 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg',
+										selectedItem.images[0].image,
+								}}
+							/>
+						:	null
+					}
 				</BackgroundPresentationContainer>
 				<ItemBottomContainer>
 					<Animated.View
@@ -390,10 +483,10 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 						}}>
 						{addedCounter === 0 ? (
 							<AddCartTouchable
-								onPress={() => _addCart(item)}>
+								onPress={() => _addCart(selectedItem)}>
 								<AddRemoveButtonContainer>
 									<ETASimpleText
-										size={18}
+										size={16}
 										weight={
 											Platform.OS ===
 											'ios'
@@ -407,7 +500,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 								</AddRemoveButtonContainer>
 								<FontAwesome
 									name='shopping-cart'
-									size={18}
+									size={16}
 									color='white'
 									style={{
 										alignSelf: 'center',
@@ -420,7 +513,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 									<RemoveCart
 										onPress={() =>
 											_removeFromCart(
-												item._id,
+												selectedItem._id,
 											)
 										}>
 										<AddRemoveButtonContainer>
@@ -444,7 +537,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 									</RemoveCart>
 									<CounterContainer>
 										<ETASimpleText
-											size={12}
+											size={11}
 											weight={
 												Platform.OS ===
 												'ios'
@@ -458,7 +551,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 									</CounterContainer>
 									<AddCart
 										onPress={() =>
-											_addCart(item)
+											_addCart(selectedItem)
 										}>
 										<AddRemoveButtonContainer>
 											{/* <CounterContainer> */}
@@ -483,7 +576,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 							</AddCartContainer>
 						)}
 						<CardTop>
-							{item.status ? (
+							{selectedItem.status ? (
 								<StatusContainer>
 									<ETASimpleText
 										size={11}
@@ -496,7 +589,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 										// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 										color='white'
 										align='center'>
-										{item.status}
+										{selectedItem.status}
 									</ETASimpleText>
 								</StatusContainer>
 							) : null}
@@ -514,7 +607,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 										}
 										align='left'>
-										{item.name}
+										{selectedItem.name}
 									</ETASimpleText>
 								</NameContainer>
 								<ShopContainer>
@@ -535,16 +628,16 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 												zIndex: 100,
 											}}>
 											$
-											{(
+											{currencySeparator((
 												((100 -
-													item.discount) *
-													item.price) /
+													selectedItem.discount) *
+													selectedItem.price) /
 												100
-											).toFixed(2)}
+											).toFixed(2))}
 										</ETASimpleText>
 									</PriceContainer>
 									<DiscountContainer>
-										{item.discount >
+										{selectedItem.discount >
 										0 ? (
 											<>
 												<ETASimpleText
@@ -568,9 +661,9 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 															'solid',
 													}}>
 													$
-													{item.price.toFixed(
+													{currencySeparator(selectedItem.price.toFixed(
 														2,
-													)}
+													))}
 												</ETASimpleText>
 												<PercentContainer>
 													<ETASimpleText
@@ -592,7 +685,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 														}}>
 														-
 														{
-															item.discount
+															selectedItem.discount
 														}
 
 														%
@@ -607,7 +700,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 								<ItemInfoRating>
 									<ETAStarRating
 										ratings={
-											item.rating
+											selectedItem.rating
 										}
 									/>
 								</ItemInfoRating>
@@ -624,7 +717,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 											themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
 										}
 										align='left'>
-										{item.calories}{' '}
+										{selectedItem.calories}{' '}
 										calories
 									</ETASimpleText>
 								</ItemInfoCalories>
@@ -641,7 +734,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 											themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
 										}
 										align='left'>
-										{item.weight} g
+										{selectedItem.weight} g
 									</ETASimpleText>
 								</ItemInfoWeight>
 							</ItemInfoContainer>
@@ -649,7 +742,7 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 						<CardBottom>
 							<ItemDetailsContainer>
 								<ETASimpleText
-									size={12}
+									size={13}
 									weight={
 										Platform.OS ===
 										'ios'
@@ -674,26 +767,22 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 										themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
 									}
 									align='left'>
-									{item.details}
+									{selectedItem.details}
 								</ETASimpleText>
 							</ItemDetailsContainer>
 							<FavoriteContainer>
 								<Touchable
-								// onPress={() =>
-								// 	console.log(
-								// 		'ñeñe ñeñe ñeñe',
-								// 	)
-								// }
+									onPress={() => toogleFavorite(selectedItem)}
 								>
 									<Ionicons
 										name={
-											item.isFavorite
+											isFavorite
 												? 'md-heart'
 												: 'md-heart-outline'
 										}
 										size={20}
 										color={
-											item.isFavorite
+											isFavorite
 												? themeContext.PRIMARY_COLOR
 												: themeContext.PRIMARY_TEXT_COLOR_LIGHT
 										}
@@ -704,8 +793,10 @@ const GetOneItemComponent = ({addToCart, removeFromCart, data}) => {
 					</Animated.View>
 				</ItemBottomContainer>
 			</ItemContainer>
+				:	null
+			}
 			<SuggestionsContainer>
-				<SuggestionsComponent selectedItemName={item.name} />
+				<SuggestionsComponent selectedItem={item} />
 			</SuggestionsContainer>
 		</Root>
 	)
