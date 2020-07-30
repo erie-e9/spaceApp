@@ -28,7 +28,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 			<DataContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? '700' : 'bold'}
+					weight={Platform.OS === 'ios' ? '400' : '800'}
 					color={
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
@@ -44,7 +44,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 			<DataContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? '700' : 'bold'}
+					weight={Platform.OS === 'ios' ? '400' : '800'}
 					color={
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
@@ -60,7 +60,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 			<DataContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? '700' : 'bold'}
+					weight={Platform.OS === 'ios' ? '400' : '800'}
 					color={
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
@@ -76,7 +76,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 			<DataContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? '700' : 'bold'}
+					weight={Platform.OS === 'ios' ? '400' : '800'}
 					color={
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}

@@ -21,7 +21,7 @@ const Header = styled.View`
 `
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 	width: 50px;
@@ -29,7 +29,7 @@ const HeaderLeft = styled.TouchableOpacity.attrs({
 `
 const CircleContainer = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 	width: 10px;
@@ -42,7 +42,7 @@ const CircleContainer = styled.TouchableOpacity.attrs({
 `
 const HeaderLeftCard = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 	width: 10px;
@@ -69,7 +69,7 @@ const MenuNavigator = () => {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 					shadowColor: 'black',
-					shadowOpacity: Platform.OS === 'ios' ? 0.1 : 0,
+					shadowOpacity: Platform.OS === 'ios' ? 0 : 0,
 					shadowOffset: {
 						height: Platform.OS === 'ios' ? 0.1 : 0,
 					},
@@ -185,7 +185,7 @@ const MenuNavigator = () => {
 							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 						shadowColor: 'black',
 						shadowOpacity:
-							Platform.OS === 'ios' ? 0.6 : 0.3,
+							Platform.OS === 'ios' ? 0.3 : 0.3,
 						shadowOffset: {
 							height:
 								Platform.OS === 'ios'
@@ -232,7 +232,7 @@ const MenuNavigator = () => {
 							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 						shadowColor: 'black',
 						shadowOpacity:
-							Platform.OS === 'ios' ? 0.6 : 0.3,
+							Platform.OS === 'ios' ? 0 : 0,
 						shadowOffset: {
 							height:
 								Platform.OS === 'ios'

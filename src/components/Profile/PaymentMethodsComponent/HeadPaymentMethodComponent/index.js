@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 
-const logoSize = 110
+const logoSize = 70
 const avatarRadius = logoSize / 2
 
 const Root = styled.View`
@@ -27,17 +27,17 @@ const LogoContainer = styled.View`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 80px;
-	width: 80px;
-	border-radius: ${avatarRadius}px;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	height: ${Platform.OS === 'ios' ? logoSize + 10: 80}px;
+	width: ${Platform.OS === 'ios' ? logoSize + 10: 80}px;
+	border-radius: 40px;
 	border-width: 0.3px;
 	border-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `
 const Logo = styled.Image`
-	height: ${Platform.OS === 'ios' ? logoSize : 70}px;
-	width: ${Platform.OS === 'ios' ? logoSize : 70}px;
-	border-radius: 45px;
+	height: ${Platform.OS === 'ios' ? logoSize : logoSize}px;
+	width: ${Platform.OS === 'ios' ? logoSize : logoSize}px;
+	border-radius: ${avatarRadius}px;
 `
 
 const HeadPaymentMethodComponent = () => {

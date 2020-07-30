@@ -27,13 +27,13 @@ const LastOrderButtonContainer = styled.View`
 `
 const LastOrderButton = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 10, bottom: 0, right: 5, left: 5}
 })`
 	z-index: 100;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 `
@@ -53,7 +53,7 @@ const CartNavigator = () => {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 					shadowColor: 'black',
-					shadowOpacity: 0.15,
+					shadowOpacity: 0,
 					shadowOffset: {height: 0.2},
 					shadowRadius: 5,
 					elevation: 5,
@@ -106,7 +106,7 @@ const CartNavigator = () => {
 									<LastOrderButtonContainer>
 										<ETASimpleText
 											size={11}
-											weight='600'
+											weight='400'
 											color={
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}

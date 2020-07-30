@@ -21,7 +21,7 @@ const ETASimpleText = ({
 		style={{
 			textAlign: align || 'center',
 			color: color || 'black',
-			fontWeight: weight || '500',
+			fontWeight: weight || '400',
 			fontSize: size || 14,
 			...style,
 		}}>

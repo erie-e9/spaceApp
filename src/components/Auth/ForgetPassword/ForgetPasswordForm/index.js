@@ -146,7 +146,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 							}
 						/>
 						{errors.cellphone ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}

@@ -18,7 +18,7 @@ const Item = styled.View`
 	width: ${width - 50}px;
 	height: 35px;
 	border-radius: 1px;
-	border-width: 0.75px;
+	border-width: ${Platform.OS === 'ios' ? 0.5 : 0.75}px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `
 const BannerLeft = styled.View`
@@ -36,7 +36,7 @@ const BannerRight = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	flex: 1;
 	justify-content: center;
@@ -64,7 +64,7 @@ const SectionsComponent = () => {
 						<ETASimpleText
 							size={10}
 							weight={
-								Platform.OS === 'ios' ? '700' : 'bold'
+								Platform.OS === 'ios' ? '600' : 'bold'
 							}
 							color={
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -92,7 +92,7 @@ const SectionsComponent = () => {
 						<ETASimpleText
 							size={10}
 							weight={
-								Platform.OS === 'ios' ? '700' : 'bold'
+								Platform.OS === 'ios' ? '600' : 'bold'
 							}
 							color={
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR
@@ -119,7 +119,7 @@ const SectionsComponent = () => {
 						<ETASimpleText
 							size={10}
 							weight={
-								Platform.OS === 'ios' ? '700' : 'bold'
+								Platform.OS === 'ios' ? '600' : 'bold'
 							}
 							color={
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR

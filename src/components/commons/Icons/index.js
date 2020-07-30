@@ -18,6 +18,7 @@ import IcecreamIcon2 from './icecream2'
 import IcecreamIcon3 from './icecream3'
 import IcecreamIcon4 from './icecream4'
 import MasterCardIcon from './mastercard'
+import VisaIcon from './visa'
 
 export {
   Ionicons,
@@ -31,11 +32,12 @@ export {
   Feather,
   MaterialCommunityIcons,
   SimpleLineIcons,
+  Fontisto,
   SunIcon,
   IcecreamIcon,
   IcecreamIcon2,
   IcecreamIcon3,
   IcecreamIcon4,
   MasterCardIcon,
-  Fontisto,
+  VisaIcon
 }

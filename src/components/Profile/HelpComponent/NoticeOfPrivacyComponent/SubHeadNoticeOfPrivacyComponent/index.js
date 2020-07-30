@@ -32,7 +32,7 @@ const SubHeadNoticeOfPrivacyComponent = () => {
 					<ETASimpleText
 						size={13}
 						weight={
-							Platform.OS === 'ios' ? '300' : '200'
+							Platform.OS === 'ios' ? '400' : '200'
 						}
 						color={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
@@ -51,7 +51,7 @@ const SubHeadNoticeOfPrivacyComponent = () => {
 					<ETASimpleText
 						size={13}
 						weight={
-							Platform.OS === 'ios' ? '300' : '200'
+							Platform.OS === 'ios' ? '400' : '200'
 						}
 						color={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
@@ -83,7 +83,7 @@ const SubHeadNoticeOfPrivacyComponent = () => {
 					<ETASimpleText
 						size={13}
 						weight={
-							Platform.OS === 'ios' ? '300' : '200'
+							Platform.OS === 'ios' ? '400' : '200'
 						}
 						color={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
@@ -105,7 +105,7 @@ const SubHeadNoticeOfPrivacyComponent = () => {
 					<ETASimpleText
 						size={13}
 						weight={
-							Platform.OS === 'ios' ? '300' : '200'
+							Platform.OS === 'ios' ? '400' : '200'
 						}
 						color={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
@@ -128,7 +128,7 @@ const SubHeadNoticeOfPrivacyComponent = () => {
 					<ETASimpleText
 						size={13}
 						weight={
-							Platform.OS === 'ios' ? '300' : '200'
+							Platform.OS === 'ios' ? '400' : '200'
 						}
 						color={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT

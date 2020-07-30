@@ -7,7 +7,7 @@ const {width, height} = Dimensions.get('window')
 
 const Root = styled.View`
 	width: ${width - 20}px;
-	height: ${height / 5.6}px;
+	height: 150px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 	margin-horizontal: 10px;
 	margin-vertical: 10px;
@@ -22,7 +22,7 @@ const Root = styled.View`
 // shadow-offset: ${{width: 0.5, height: 0.5}};
 const ItemImage = styled.Image`
 	width: ${width - 20}px;
-	height: ${height / 5.6}px;
+	height: 150px;
 	border-radius: 10px;
 `
 const ContentContainer = styled.View`
@@ -38,7 +38,7 @@ const ETACarouselItem = ({item}) => (
 		<ContentContainer>
 			<ETASimpleText
 				size={18}
-				weight='700'
+				weight='600'
 				color={item.titleColor}
 				align='center'
 				style={{

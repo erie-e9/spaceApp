@@ -24,7 +24,7 @@ const MapAddressesComponent = () => {
 
 	useEffect(() => {
 		let isSubscribed = true
-		if (data) {
+		if (data !== null) {
 			setgetLatitude(data.latitude)
 			setgetLongitude(data.longitude)
 		} else {

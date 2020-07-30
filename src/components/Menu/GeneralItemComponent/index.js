@@ -12,14 +12,13 @@ const {width} = Dimensions.get('window')
 
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
 })`
 	z-index: 100;
 `
 const Card = styled.View`
 	height: 220px;
 	width: ${width / 2.65}px;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 	margin-horizontal: ${width / 30}px;
 	margin-vertical: 10px;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
@@ -27,6 +26,7 @@ const Card = styled.View`
 	shadow-offset: 2px 3px;
 	shadow-radius: 2px;
 	shadow-opacity: 0;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const CardTop = styled.View`
 	flex: 1.25;
@@ -58,9 +58,9 @@ const CardBottom = styled.View`
 	width: 100%;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-	border-width: 0.4px;
+	border-width: ${Platform.OS === 'ios' ? 0.35 : 0.4}px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const ShopContainer = styled.View`
 	flex: 0.6;
@@ -186,7 +186,6 @@ const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogl
 										? '400'
 										: '300'
 								}
-								// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								color='white'
 								align='center'>
 								{item.status}
@@ -205,7 +204,7 @@ const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogl
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: '600'
 							}
 							color={
@@ -222,7 +221,7 @@ const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogl
 								size={13}
 								weight={
 									Platform.OS === 'ios'
-										? '600'
+										? '400'
 										: '600'
 								}
 								color={

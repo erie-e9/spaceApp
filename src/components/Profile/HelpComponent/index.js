@@ -55,7 +55,7 @@ const HelpComponent = () => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '700'
+									? '600'
 									: '800'
 							}
 							color={
@@ -93,7 +93,7 @@ const HelpComponent = () => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '700'
+									? '600'
 									: '800'
 							}
 							color={
@@ -131,7 +131,7 @@ const HelpComponent = () => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '700'
+									? '600'
 									: '800'
 							}
 							color={
@@ -169,7 +169,7 @@ const HelpComponent = () => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '700'
+									? '600'
 									: '800'
 							}
 							color={
@@ -207,7 +207,7 @@ const HelpComponent = () => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '700'
+									? '600'
 									: '800'
 							}
 							color={

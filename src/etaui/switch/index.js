@@ -102,7 +102,7 @@ const ETASwitch = ({color, onChange, activated}) => {
 					<IndicatorContainer>
 						<ETASimpleText
 							size={11}
-							weight={Platform.OS === 'ios' ? '700' : '800'}
+							weight={Platform.OS === 'ios' ? '300' : '800'}
 							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 							align='left'>
 							o

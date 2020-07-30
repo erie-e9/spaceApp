@@ -24,7 +24,7 @@ const ImageContainer = styled.View``
 // const Img = styled.Image``;
 const IconButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -38,7 +38,7 @@ const IconButton = styled.TouchableOpacity.attrs({
 `
 const IconButtonClose = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	flex-direction: row;
 	justify-content: center;

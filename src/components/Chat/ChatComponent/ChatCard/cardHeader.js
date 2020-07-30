@@ -37,7 +37,7 @@ const TimeContainer = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 
 const CardHeader = ({username, firstname, lastname, createdAt}) => {
@@ -51,7 +51,7 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
 					<ETASimpleText
 						size={14}
 						weight={
-							Platform.OS === 'ios' ? '500' : '800'
+							Platform.OS === 'ios' ? '400' : '800'
 						}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -78,7 +78,7 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
 					<ETASimpleText
 						size={11}
 						weight={
-							Platform.OS === 'ios' ? '500' : '300'
+							Platform.OS === 'ios' ? '400' : '300'
 						}
 						color={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT

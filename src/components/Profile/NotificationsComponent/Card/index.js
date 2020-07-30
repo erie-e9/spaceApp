@@ -46,7 +46,7 @@ const NotificationCardComponent = ({headTitle, message}) => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '600'
 									: 'bold'
 							}
 							color={

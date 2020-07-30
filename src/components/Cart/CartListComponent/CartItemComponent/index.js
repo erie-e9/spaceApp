@@ -69,7 +69,7 @@ const CardItemFunctions = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	min-height: 25px;
 	min-width: 25px;
@@ -150,7 +150,7 @@ const CounterContainer = styled.View`
 	justify-content: center;
 `
 const AddRemoveButtonContainer = styled.View`
-	height: 18px;
+	height: 20px;
 	width: 12px;
 	align-items: center;
 	justify-content: center;
@@ -158,29 +158,31 @@ const AddRemoveButtonContainer = styled.View`
 `
 const AddCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	flex-direction: row;
-	height: 25px;
-	width: 25px;
-	padding-horizontal: 5px;
-	z-index: 1000;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: ${Platform.OS === 'ios' ?  7 : 0}px;
+	height: 25px;
+	width: 25px;
+	left: 1px;
 	background-color: transparent;
+	z-index: 1000;
 `
 const RemoveCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	flex-direction: row;
-	height: 25px;
-	width: 25px;
-	padding-horizontal: 5px;
-	z-index: 1000;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: ${Platform.OS === 'ios' ?  7 : 0}px;
+	height: 25px;
+	width: 25px;
+	right: 1px;
 	background-color: transparent;
+	z-index: 1000;
 `
 const mapDispatchProps = (dispatch, props) => ({
 	addToCart: (paramItem) => {
@@ -302,7 +304,7 @@ const CartItemComponent = ({
 									weight={
 										Platform.OS ===
 										'ios'
-											? '500'
+											? '400'
 											: '400'
 									}
 									color={
@@ -330,7 +332,7 @@ const CartItemComponent = ({
 									weight={
 										Platform.OS ===
 										'ios'
-											? '500'
+											? '400'
 											: '900'
 									}
 									color={

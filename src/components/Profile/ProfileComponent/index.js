@@ -22,7 +22,6 @@ const ProfileUserContent = styled.View`
 	flex-direction: column;
 	justify-content: flex-start;
 	background-color: transparent
-
 `
 const Scroll = styled.ScrollView`
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
@@ -51,7 +50,7 @@ const MetadataInfo = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 
 const ProfileComponent = () => {
@@ -78,7 +77,7 @@ const ProfileComponent = () => {
 								size={14}
 								weight={
 									Platform.OS === 'ios'
-										? '700'
+										? '600'
 										: 'bold'
 								}
 								color={
@@ -93,7 +92,7 @@ const ProfileComponent = () => {
 									weight={
 										Platform.OS ===
 										'ios'
-											? '500'
+											? '400'
 											: '300'
 									}
 									color={themeContext.LINK}
@@ -109,7 +108,7 @@ const ProfileComponent = () => {
 									weight={
 										Platform.OS ===
 										'ios'
-											? '300'
+											? '400'
 											: '300'
 									}
 									color={

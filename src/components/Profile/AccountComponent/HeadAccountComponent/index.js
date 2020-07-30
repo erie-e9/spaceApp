@@ -4,7 +4,7 @@ import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 import {fakeavatar} from '@utils/constants'
 
-const logoSize = 80
+const logoSize = 70
 const avatarRadius = logoSize / 2
 
 const Root = styled.View`

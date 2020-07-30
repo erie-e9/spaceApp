@@ -32,7 +32,7 @@ const Card = styled.View`
 	shadow-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
 	shadow-offset: 0px 2px;
 	shadow-radius: 2px;
-	shadow-opacity: 0.1;
+	shadow-opacity: 0;
 	border-radius: 5px;
 	border-width: 0px;
 	border-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};

@@ -67,7 +67,7 @@ const AddCartContainer = styled.View`
 `
 const AddCartTouchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	position: absolute;
 	top: -25px;
@@ -104,19 +104,20 @@ const CounterContainer = styled.View`
 `
 const AddCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
-	height: 25px;
-	width: 25px;
-	padding: 5px;
 	flex-direction: row;
-	z-index: 1000;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: ${Platform.OS === 'ios' ?  10 : 0}px;
+	height: 25px;
+	width: 25px;
+	left: 1px;
 	background-color: transparent;
+	z-index: 1000;
 `
 const AddRemoveButtonContainer = styled.View`
-	height: 18px;
+	height: 20px;
 	width: 12px;
 	justify-content: center;
 	align-items: center;
@@ -124,16 +125,17 @@ const AddRemoveButtonContainer = styled.View`
 `
 const RemoveCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
-	height: 25px;
-	width: 25px;
-	padding: 5px;
 	flex-direction: row;
-	z-index: 1000;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: ${Platform.OS === 'ios' ?  10 : 0}px;
+	height: 25px;
+	width: 25px;
+	right: 1px;
 	background-color: transparent;
+	z-index: 1000;
 `
 const CardTop = styled.View`
 	min-height: 10px;
@@ -267,28 +269,32 @@ const ItemInfoWeight = styled.View`
 const CardBottom = styled.View`
 	flex-direction: column;
 	justify-content: space-between;
-	min-height: 90px;
+	min-height: 70px;
 	width: 100%;
 	align-items: flex-start;
 	padding-horizontal: 10px;
 	margin-top: 10px;
-	background-color: transparent;
+	background-color: transparent;;
 `
 const ItemDetailsContainer = styled.View`
-	min-height: 50px;
+	min-height: 30px;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
+	background-color: transparent;
 `
 const FavoriteContainer = styled.View`
+	width: 100%;
+	align-items: flex-end;
 	position: absolute;
 	bottom: 0px;
 	right: 5px;
 	z-index: 1000;
+	background-color: transparent;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	justify-content: center;
 	align-items: center;
@@ -456,7 +462,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 						style={{
 							width: width - 60,
 							minHeight: 100,
-							bottom: -10,
+							bottom: 0,
 							backgroundColor:
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 							marginVertical: 15,
@@ -586,7 +592,6 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 												? '400'
 												: '300'
 										}
-										// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 										color='white'
 										align='center'>
 										{selectedItem.status}
@@ -600,7 +605,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 										weight={
 											Platform.OS ===
 											'ios'
-												? '500'
+												? '400'
 												: '400'
 										}
 										color={
@@ -617,7 +622,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 											weight={
 												Platform.OS ===
 												'ios'
-													? '500'
+													? '400'
 													: '400'
 											}
 											color={
@@ -760,7 +765,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 									weight={
 										Platform.OS ===
 										'ios'
-											? '300'
+											? '400'
 											: '300'
 									}
 									color={

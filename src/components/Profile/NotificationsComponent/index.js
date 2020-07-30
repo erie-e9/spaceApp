@@ -24,7 +24,7 @@ const NotificationsComponent = () => {
 			<NotificationSettingContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? '700' : '800'}
+					weight={Platform.OS === 'ios' ? '400' : '800'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
 					Messages
@@ -46,7 +46,7 @@ const NotificationsComponent = () => {
 			<NotificationSettingContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? '700' : '800'}
+					weight={Platform.OS === 'ios' ? '400' : '800'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
 					Reminders
@@ -60,7 +60,7 @@ const NotificationsComponent = () => {
 			<NotificationSettingContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? '700' : '800'}
+					weight={Platform.OS === 'ios' ? '400' : '800'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
 					Promotions

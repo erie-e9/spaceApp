@@ -316,7 +316,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 								secureTextEntry={false} // password
 								spellCheck
 								textContentType='postalCode'
-								returnKeyType='none'
+								returnKeyType='default'
 								textsize={14}
 								clearButtonMode='always'
 								onChangeText={(value) =>
@@ -367,7 +367,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 								secureTextEntry={false} // password
 								spellCheck
 								textContentType='none'
-								returnKeyType='none'
+								returnKeyType='default'
 								textsize={14}
 								clearButtonMode='always'
 								onChangeText={(value) =>
@@ -410,7 +410,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 								secureTextEntry={false} // password
 								spellCheck
 								textContentType='none'
-								returnKeyType='none'
+								returnKeyType='default'
 								textsize={14}
 								clearButtonMode='always'
 								onChangeText={(value) =>
@@ -458,7 +458,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 								secureTextEntry={false} // password
 								spellCheck
 								textContentType='none'
-								returnKeyType='none'
+								returnKeyType='default'
 								textsize={14}
 								clearButtonMode='always'
 								onChangeText={(value) =>

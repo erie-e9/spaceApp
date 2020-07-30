@@ -45,7 +45,7 @@ const PaymentCardComponent = ({headTitle, message}) => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: 'bold'
 							}
 							color={

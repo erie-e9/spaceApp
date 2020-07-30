@@ -85,7 +85,7 @@ const ItemsByCategoryComponent = ({ getAllItemsRequest, data}) => {
 					<ETASimpleText
 						size={14}
 						weight={
-							Platform.OS === 'ios' ? '500' : '300'
+							Platform.OS === 'ios' ? '400' : '300'
 						}
 						color={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT

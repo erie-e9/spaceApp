@@ -136,12 +136,12 @@ const SubHeadAccountComponent = () => {
 								'fullname',
 							)}
 							onBlur={handleBlur('fullname')}
-							selectionColor='{
+							selectionColor={
 								themeContext.PRIMARY_COLOR
-							}'
+							}
 						/>
 						{errors.fullname ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.fullname}
 							</ETAErrorMessage>
 						) : null}
@@ -185,7 +185,7 @@ const SubHeadAccountComponent = () => {
 							}
 						/>
 						{errors.username ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.username}
 							</ETAErrorMessage>
 						) : null}
@@ -229,7 +229,7 @@ const SubHeadAccountComponent = () => {
 							}
 						/>
 						{errors.cellphone ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}
@@ -274,7 +274,7 @@ const SubHeadAccountComponent = () => {
 						/>
 
 						{errors.password ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.password}
 							</ETAErrorMessage>
 						) : null}
@@ -316,7 +316,7 @@ const SubHeadAccountComponent = () => {
 							}
 						/>
 						{errors.email ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.email}
 							</ETAErrorMessage>
 						) : null}

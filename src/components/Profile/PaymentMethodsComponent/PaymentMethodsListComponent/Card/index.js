@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import {Platform, Dimensions} from 'react-native'
 import styled, {ThemeContext} from 'styled-components/native'
-import {Ionicons, FontAwesome, Feather, MasterCardIcon} from '@icons'
+import {Ionicons, Feather, MasterCardIcon, VisaIcon} from '@icons'
 import {ETASimpleText} from '@etaui'
 
 const {width} = Dimensions.get('window')
@@ -55,17 +55,11 @@ const DirectionCardComponent = ({
 	const companySwitch = () => {
 		switch (company) {
 			case 'MasterCard':
-				return <MasterCardIcon size={15} />
+				return <MasterCardIcon size={35} />
 				break
 			case 'Visa':
 				return (
-					<FontAwesome
-						name='cc-visa'
-						size={iconSize - 6}
-						color={
-							themeContext.PRIMARY_TEXT_COLOR_LIGHT
-						}
-					/>
+					<VisaIcon />
 				)
 				break
 
@@ -83,7 +77,7 @@ const DirectionCardComponent = ({
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: '800'
 							}
 							color={

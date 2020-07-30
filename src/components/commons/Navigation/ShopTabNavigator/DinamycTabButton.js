@@ -16,7 +16,7 @@ const ItemGeneratorContainer = styled.View`
 `
 const ItemGeneratorButton = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 2000;
 `
@@ -39,7 +39,7 @@ const SecondaryButton = styled.View`
 `
 const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 2000;
 `
@@ -244,10 +244,8 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 							height: 56,
 							width: 56,
 							borderRadius: 28,
-							// position: 'absolute',
-							// top: -35,
-							// right: -25,
-							borderWidth: 6,
+							padding: 10,
+							borderWidth: 7,
 							borderColor:
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 							transform: [
@@ -258,11 +256,11 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 							zIndex: 1000,
 						}}>
 						{/* <IcecreamIcon
-              focused={focused}
-              color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-              color='white'
-              size={size}
-            /> */}
+							focused={focused}
+							color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+							color='white'
+							size={size}
+							/> */}
 						<Ionicons
 							name='ios-ice-cream'
 							size={size}

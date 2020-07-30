@@ -211,7 +211,7 @@ const SubHeadAboutUsComponent = () => {
 					<ETASimpleText
 						size={13}
 						weight={
-							Platform.OS === 'ios' ? '500' : '300'
+							Platform.OS === 'ios' ? '300' : '300'
 						}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -244,7 +244,7 @@ const SubHeadAboutUsComponent = () => {
 					<ETASimpleText
 						size={13}
 						weight={
-							Platform.OS === 'ios' ? '500' : '300'
+							Platform.OS === 'ios' ? '300' : '300'
 						}
 						color={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR

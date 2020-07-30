@@ -32,7 +32,7 @@ const ListContainer = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 `
@@ -75,8 +75,8 @@ const MenuList = ({data, title}) => {
 				<Root>
 					<HeadContainer>
 						<ETAHeaderText
-							size={14}
-							weight='700'
+							size={15}
+							weight='600'
 							color={
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}

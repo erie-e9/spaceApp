@@ -4,7 +4,7 @@ import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 import {variables} from '@utils/constants'
 
-const logoSize = 80
+const logoSize = 70
 const avatarRadius = logoSize / 2
 
 const Root = styled.View`
@@ -52,7 +52,7 @@ const GeneralHeadComponent = ({imagePath}) => {
 			<ContentContainer>
 				<ETASimpleText
 					size={17}
-					weight={Platform.OS === 'ios' ? '500' : '300'}
+					weight={Platform.OS === 'ios' ? '400' : '300'}
 					color={
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
@@ -61,7 +61,7 @@ const GeneralHeadComponent = ({imagePath}) => {
 				</ETASimpleText>
 				<ETASimpleText
 					size={13}
-					weight={Platform.OS === 'ios' ? '500' : '300'}
+					weight={Platform.OS === 'ios' ? '300' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
 					{variables.COMPANYSLOGAN}

@@ -9,7 +9,7 @@ import {currencySeparator} from '@functions'
 const {width} = Dimensions.get('window')
 
 const Root = styled.View`
-	flex: 0.4;
+	flex: 0.5;
 `
 const CartDetailsContainer = styled.View`
 	flex-direction: column;
@@ -122,7 +122,7 @@ const CartDetailsComponent = ({data}) => {
 			<CartDetailsContainer>
 				<ETASimpleText
 					size={15}
-					weight={Platform.OS === 'ios' ? 'bold' : 'bold'}
+					weight={Platform.OS === 'ios' ? '600' : 'bold'}
 					color={
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
@@ -201,7 +201,7 @@ const CartDetailsComponent = ({data}) => {
 							size={15}
 							weight={
 								Platform.OS === 'ios'
-									? 'bold'
+									? '600'
 									: 'bold'
 							}
 							color={
@@ -215,7 +215,7 @@ const CartDetailsComponent = ({data}) => {
 							size={15}
 							weight={
 								Platform.OS === 'ios'
-									? 'bold'
+									? '600'
 									: 'bold'
 							}
 							color={

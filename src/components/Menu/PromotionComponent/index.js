@@ -84,7 +84,6 @@ const PromoComponent = ({ getAllItemsRequest, data }) => {
 	useEffect(() => {
 		getAllItemsRequest()
 		setitems(data)
-		console.log('datadsadsa', data);
 	}, [data])
 
 	useEffect(() => {
@@ -150,7 +149,7 @@ const PromoComponent = ({ getAllItemsRequest, data }) => {
 							size={14}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: '300'
 							}
 							color={
@@ -220,8 +219,8 @@ const PromoComponent = ({ getAllItemsRequest, data }) => {
 								size={18}
 								weight={
 									Platform.OS === 'ios'
-										? '700'
-										: '700'
+										? '600'
+										: '600'
 								}
 								// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								color={selectedItem.titleColor}

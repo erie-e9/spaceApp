@@ -12,7 +12,7 @@ import {ETASimpleText} from '@etaui'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 	width: 10px;
@@ -24,7 +24,7 @@ const HeaderRight = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 	width: 10px;
@@ -35,7 +35,7 @@ const Header = styled.View`
 `
 const IconButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
 	width: 10px
@@ -64,7 +64,7 @@ const ChatNavigator = () => {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 					shadowColor: 'black',
-					shadowOpacity: 0.15,
+					shadowOpacity: 0,
 					shadowOffset: {height: 0.2},
 					shadowRadius: 5,
 					elevation: 5,

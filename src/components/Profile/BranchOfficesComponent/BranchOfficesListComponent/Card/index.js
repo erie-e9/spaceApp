@@ -50,7 +50,7 @@ const AddressCardComponent = ({title, details, isDefault}) => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: '800'
 							}
 							color={

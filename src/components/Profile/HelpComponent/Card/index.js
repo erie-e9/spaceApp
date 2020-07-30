@@ -49,7 +49,7 @@ const HelpCardComponent = ({message}) => {
 							size={11}
 							weight={
 								Platform.OS === 'ios'
-									? '300'
+									? '400'
 									: '200'
 							}
 							color={

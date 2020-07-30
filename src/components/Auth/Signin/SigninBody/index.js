@@ -10,7 +10,7 @@ const Root = styled.View`
 `
 const ButtonForgetPassword = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	justify-content: center;
 	align-items: center;
@@ -19,7 +19,7 @@ const ButtonForgetPassword = styled.TouchableOpacity.attrs({
 `
 const ButtonSignup = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	justify-content: center;
 	align-items: center;

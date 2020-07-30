@@ -17,7 +17,7 @@ const FormContainer = styled.View`
 `
 const TextInputIcon = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 const ButtonContainer = styled.View`	
 	height: 20px;
@@ -133,7 +133,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							paddingHorizontal={15}
 						/>
 						{errors.cellphone ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}
@@ -208,7 +208,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							paddingHorizontal={15}
 						/>
 						{errors.password ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.password}
 							</ETAErrorMessage>
 						) : null}

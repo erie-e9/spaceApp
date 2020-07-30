@@ -149,7 +149,7 @@ const SignupForm = () => {
 							}
 						/>
 						{errors.fullname ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.fullname}
 							</ETAErrorMessage>
 						) : null}
@@ -193,7 +193,7 @@ const SignupForm = () => {
 							}
 						/>
 						{errors.username ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.username}
 							</ETAErrorMessage>
 						) : null}
@@ -237,7 +237,7 @@ const SignupForm = () => {
 							}
 						/>
 						{errors.cellphone ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.cellphone}
 							</ETAErrorMessage>
 						) : null}
@@ -282,7 +282,7 @@ const SignupForm = () => {
 						/>
 
 						{errors.password ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.password}
 							</ETAErrorMessage>
 						) : null}
@@ -326,7 +326,7 @@ const SignupForm = () => {
 							}
 						/>
 						{errors.confirmPassword ? (
-							<ETAErrorMessage size={13}>
+							<ETAErrorMessage size={12}>
 								{errors.confirmPassword}
 							</ETAErrorMessage>
 						) : null}

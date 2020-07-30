@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 
-const logoSize = 90
+const logoSize = 70
 const avatarRadius = logoSize / 2
 
 const Root = styled.View`

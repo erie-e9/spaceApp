@@ -21,14 +21,14 @@ const SearchBox = styled.View`
 `
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	margin-left: 17px;
 	margin-top: 10px;
 `
 const HeaderRight = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	margin-right: 17px;
 	margin-top: 10px;

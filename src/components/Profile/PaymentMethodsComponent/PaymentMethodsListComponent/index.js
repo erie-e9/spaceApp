@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {Platform, Dimensions} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
-import {Ionicons} from '@icons'
+import {Ionicons, FontAwesome} from '@icons'
 import PaymentCardComponent from './Card'
 import {connect} from 'react-redux'
 import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/paymentmethods/actions'
@@ -118,7 +118,7 @@ const PaymentMethodsListComponent = ({getAllItemsRequest, data}) => {
 										weight={
 											Platform.OS ===
 											'ios'
-												? '500'
+												? '400'
 												: '800'
 										}
 										color={
@@ -128,11 +128,11 @@ const PaymentMethodsListComponent = ({getAllItemsRequest, data}) => {
 										Cash
 									</ETASimpleText>
 									<CompanyIconContainer>
-										<Ionicons
-											name='md-cash'
+										<FontAwesome
+											name='money'
 											size={
 												iconSize -
-												6
+												8
 											}
 											color={
 												themeContext.PRIMARY_TEXT_COLOR_LIGHT

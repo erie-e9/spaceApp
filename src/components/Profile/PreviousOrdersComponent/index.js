@@ -16,16 +16,16 @@ const Root = styled.View`
 const CategorytItemsList = styled.FlatList``
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 const EmptyListContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: transparent;
 	margin-top: 100px;
-`
+	background-color: transparent;
+	`
 
 const mapStateToProps = (state, props) => {
 	const {data} = state.previousorders
@@ -89,7 +89,7 @@ const PreviousOrdersComponent = ({ getAllItemsRequest, data }) => {
 							size={14}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: '300'
 							}
 							color={

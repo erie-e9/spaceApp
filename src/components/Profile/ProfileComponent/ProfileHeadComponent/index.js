@@ -4,7 +4,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {ETASimpleText} from '@etaui'
 
 const Root = styled.View`
-	flex: 0.6;
+	height: 120px;
 	width: 100%;
 	flex-direction: row;
 	justify-content: center;
@@ -19,7 +19,7 @@ const ProfileHeadComponent = () => {
 		<Root>
 			<ETASimpleText
 				size={42}
-				weight={Platform.OS === 'ios' ? '700' : '600'}
+				weight={Platform.OS === 'ios' ? '400' : '600'}
 				color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 				align='left'>
 				100

@@ -22,7 +22,7 @@ const NameContainer = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 const AvatarContainer = styled.View`
 	padding: 2px 10px;
@@ -51,7 +51,7 @@ const ChatItemScreen = ({navigation, route}) => {
 							size={13}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: '400'
 							}
 							color={
@@ -65,7 +65,7 @@ const ChatItemScreen = ({navigation, route}) => {
 								size={11}
 								weight={
 									Platform.OS === 'ios'
-										? '400'
+										? '500'
 										: '300'
 								}
 								color={themeContext.LINK}

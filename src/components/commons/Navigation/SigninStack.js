@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
-import {Easing} from 'react-native'
+import {Platform, Easing} from 'react-native'
 import {
 	createStackNavigator,
 	// TransitionPresets,
@@ -33,9 +33,9 @@ const configClose = {
 
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
-	margin-left: 10px;
+	margin-left: ${Platform.OS === 'ios' ? 25 : 10}px;
 `
 
 /** Auth screens - No logged */

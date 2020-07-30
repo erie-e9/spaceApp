@@ -15,7 +15,7 @@ const Item = styled.View`
     flex-direction: column;
 	justify-content: center;
 	align-items: stretch;
-	min-height: 80px;
+	min-height: 65px;
 	padding: 5px 20px 0px 20px;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	shadow-offset: 2px 3px;

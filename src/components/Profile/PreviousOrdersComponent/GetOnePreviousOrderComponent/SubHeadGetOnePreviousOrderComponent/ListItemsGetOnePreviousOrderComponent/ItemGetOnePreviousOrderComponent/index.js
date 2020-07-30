@@ -55,16 +55,19 @@ const CartTitleContainer = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	min-height: 25px;
 	min-width: 25px;
 `
 const CartItemContainer = styled.View`
-	flex: 0.8;
+	flex: 1;
 	flex-direction: row;
+	justify-content: space-between;
+	background-color: transparent;
 `
 const CartItemLeftContainer = styled.View`
+	flex: 0.9;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -94,23 +97,23 @@ const UnitPriceContainer = styled.View`
 	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `
 const CartItemRightContainer = styled.View`
-	flex: 1;
+	flex: 0.1;
 	flex-direction: column;
 	justify-content: center;
-	align-items: flex-end;
-	margin: 5px 0px 10px 5px;
+	align-items: center;
+	margin: 5px 5px 10px 5px;
 	padding-horizontal: 2px;
+	background-color: transparent;
 `
 const AddCartContainer = styled.View`
 	justify-content: center;
 	align-items: center;
 	align-self: center;
 	position: absolute;
-	right: 5px;
 	flex-direction: row;
-	height: 30px;
-	width: 30px;
-	border-radius: 15px;
+	min-height: 25px;
+	min-width: 20px;
+	border-radius: 12.5px;
 	shadow-offset: 0px 1px;
 	shadow-radius: 2px;
 	shadow-opacity: 0.2;
@@ -128,8 +131,6 @@ const CounterContainer = styled.View`
 	height: 20px;
 	width: 20px;
 	border-radius: 12px;
-	border-width: 0.5px;
-	border-color: white;
 	align-items: center;
 	justify-content: center;
 `
@@ -181,7 +182,7 @@ const ItemGetOnePreviousOrderComponent = ({ item }) => {
 									weight={
 										Platform.OS ===
 										'ios'
-											? '500'
+											? '400'
 											: '400'
 									}
 									color={
@@ -209,7 +210,7 @@ const ItemGetOnePreviousOrderComponent = ({ item }) => {
 									weight={
 										Platform.OS ===
 										'ios'
-											? '500'
+											? '400'
 											: '900'
 									}
 									color={

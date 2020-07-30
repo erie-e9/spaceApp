@@ -19,8 +19,8 @@ const EmptyListContainer = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: transparent;
 	margin-top: 100px;
+	background-color: transparent;
 `
 
 const mapStateToProps = (state, props) => {
@@ -70,7 +70,7 @@ const FavoritesListComponent = ({ getAllItemsRequest, data }) => {
 							size={14}
 							weight={
 								Platform.OS === 'ios'
-									? '500'
+									? '400'
 									: '300'
 							}
 							color={

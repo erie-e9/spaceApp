@@ -72,7 +72,7 @@ const CardItemFunctions = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	min-height: 25px;
 	min-width: 25px;
@@ -126,7 +126,7 @@ const AddFavoriteContainer = styled.View`
 `
 const AddFavorite = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlot: {top: 50, bottom: 50, right: 50, left: 50}
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	flex-direction: row;
 	height: 30px;

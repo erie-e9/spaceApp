@@ -4,7 +4,7 @@ import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 import {variables} from '@utils/constants'
 
-const logoSize = 80
+const logoSize = 45
 const avatarRadius = logoSize / 2
 
 const Root = styled.View`
@@ -53,7 +53,7 @@ const NoticeOfPrivacyComponent = () => {
 			<ContentContainer>
 				<ETASimpleText
 					size={14}
-					weight={Platform.OS === 'ios' ? '500' : '300'}
+					weight={Platform.OS === 'ios' ? '400' : '300'}
 					color={
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
@@ -62,7 +62,7 @@ const NoticeOfPrivacyComponent = () => {
 				</ETASimpleText>
 				<ETASimpleText
 					size={11}
-					weight={Platform.OS === 'ios' ? '500' : '300'}
+					weight={Platform.OS === 'ios' ? '400' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
 					{variables.COMPANYSLOGAN}
