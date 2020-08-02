@@ -10,6 +10,7 @@ import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
 import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/similarto/actions'
 import { GET_ALL_ITEMS_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
 import {currencySeparator} from '@functions'
+import LinearGradient from 'react-native-linear-gradient'
 
 const {width} = Dimensions.get('window')
 
@@ -35,6 +36,9 @@ const ItemImage = styled.Image`
 	width: null;
 	height: null;
 	justify-content: center;
+`
+const GradientContainer = styled.View`
+	height: 20px;
 `
 const ItemBottomContainer = styled.View`
 	flex: 1;
@@ -94,8 +98,10 @@ const AddRemoveContainer = styled.View`
 	justify-content: space-between;
 `
 const CounterContainer = styled.View`
-	height: 24px;
-	width: 24px;
+	min-height: 24px;
+	min-width: 24px;
+	padding-horizontal: 2px;
+	padding-vertical: 1px;
 	border-radius: 12px;
 	border-width: 0.5px;
 	border-color: white;
@@ -139,19 +145,21 @@ const RemoveCart = styled.TouchableOpacity.attrs({
 `
 const CardTop = styled.View`
 	min-height: 10px;
-	flex-direction: column;
 	width: 100%;
+	flex-direction: column;
 	justify-content: center;
 	margin-top: 10px;
+	padding-horizontal: 10px;
 `
 const StatusContainer = styled.View`
 	justify-content: flex-end;
 	align-items: center;
 	position: absolute;
-	z-index: 100;
 	height: 14px;
 	padding-horizontal: 4px;
 	top: -15px;
+	left: 10px;
+	z-index: 100;
 	border-radius: 4px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
@@ -269,12 +277,12 @@ const ItemInfoWeight = styled.View`
 const CardBottom = styled.View`
 	flex-direction: column;
 	justify-content: space-between;
-	min-height: 70px;
+	min-height: 80px;
 	width: 100%;
 	align-items: flex-start;
 	padding-horizontal: 10px;
 	margin-top: 10px;
-	background-color: transparent;;
+	background-color: transparent;
 `
 const ItemDetailsContainer = styled.View`
 	min-height: 30px;
@@ -284,9 +292,10 @@ const ItemDetailsContainer = styled.View`
 	background-color: transparent;
 `
 const FavoriteContainer = styled.View`
+	min-height: 10px;
 	width: 100%;
 	align-items: flex-end;
-	position: absolute;
+	position: relative;
 	bottom: 0px;
 	right: 5px;
 	z-index: 1000;
@@ -373,10 +382,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 
 	useEffect(() => {
 		setsimilarid(similarto_id)
-		getAllFavoriteItemsRequest()
-		console.log('favoritesdata: ', favoritesdata)
-		_isFavorite()
-	}, [similarto_id, favoritesdata, isFavorite, selectedItem])
+	}, [similarto_id, item])
 
 
 	useEffect(() => {
@@ -393,6 +399,23 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 			}
 		} else {
 			// console.log('cartdata: ', cartdata);
+		}
+
+		if (favoritesdata.length > 0) {
+			const favoriteItem = favoritesdata.find(
+				(element) => element._id === selectedItem._id,
+			)
+			// console.log('favoriteItem: ', favoriteItem);
+			
+			if (favoriteItem !== undefined) {
+				// console.log('Favorito es');
+				setisFavorite(true)
+			}
+			else {
+				// console.log('Es no favorito');
+				setisFavorite(!true)
+			}
+			
 		}
 	}, [item, selectedItem])
 
@@ -420,20 +443,8 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 	}
 
 	const _isFavorite = async () => {
-		if (favoritesdata.length > 0) {
-			const favoriteItem = await favoritesdata.find(
-				(element) => element._id === selectedItem._id,
-			)
-
-			if (favoriteItem) {
-				setisFavorite(true)
-				console.log('Es favorito');
-			}
-			else {
-				console.log('No es favorito');
-				setisFavorite(!true)
-			}
-		}
+		setisFavorite(!isFavorite)		
+		toogleFavorite(selectedItem)
 	}
 
 	return (
@@ -457,17 +468,21 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 						:	null
 					}
 				</BackgroundPresentationContainer>
+				<GradientContainer>
+					<LinearGradient 
+						// colors={[ themeContext.PRIMARY_TEXT_BACKGROUND_COLOR, 'transparent', 'transparent' ]} 
+						colors={[ 'transparent', themeContext.FOURTH_BACKGROUND_COLOR_LIGHT, themeContext.FOURTH_BACKGROUND_COLOR_LIGHT ]} 
+						style={{ flex: 1, bottom: 15, zIndex: 100 }}>
+					</LinearGradient>
+				</GradientContainer>
 				<ItemBottomContainer>
 					<Animated.View
 						style={{
 							width: width - 60,
 							minHeight: 100,
-							bottom: 0,
-							backgroundColor:
-								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 							marginVertical: 15,
 							shadowColor:
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
 							shadowOffset: {
 								width: 0,
 								height: 1,
@@ -484,8 +499,12 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 							alignItems: 'center',
 							borderWidth: 0,
 							borderColor:
-								themeContext.GRAYFACEBOOK,
+							themeContext.GRAYFACEBOOK,
 							transform: [{translateY}],
+							bottom: 0,
+							zIndex: 1000,
+							backgroundColor:
+								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 						}}>
 						{addedCounter === 0 ? (
 							<AddCartTouchable
@@ -777,7 +796,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 							</ItemDetailsContainer>
 							<FavoriteContainer>
 								<Touchable
-									onPress={() => toogleFavorite(selectedItem)}
+									onPress={() => _isFavorite()}
 								>
 									<Ionicons
 										name={

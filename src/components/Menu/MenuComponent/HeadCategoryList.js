@@ -96,7 +96,8 @@ const Categories = ({getAllItemsRequest, data}) => {
 						keyExtractor={(item) => item._id.toString()}
 						horizontal
 						snapToAlignment='center'
-						scrollEventThrottle={16}
+						scrollEventThrottle={16}								
+						snapToInterval={50}
 						decelerationRate='fast'
 						showsHorizontalScrollIndicator={false}
 						renderItem={({item}) => {

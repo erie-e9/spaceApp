@@ -11,7 +11,7 @@ const reducer = (state=initialState, action) => {
             return { data, _id: action.payload._id }
 
         case SET_ITEM_VALUE_SUCCESS:
-            console.log('******* action.payload._id', action.payload._id);
+            // console.log('******* action.payload._id', action.payload._id);
             // state._id = action.payload._id
             return { data: state.data, _id: action.payload._id }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled, {ThemeContext} from 'styled-components'
 import {Dimensions, Platform} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
+import {useNavigation, useIsFocused} from '@react-navigation/native'
 import {Ionicons} from '@icons'
 import {ETASimpleText} from '@etaui'
 import {truncateString, currencySeparator} from '@functions'
@@ -141,27 +141,34 @@ const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogl
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ isFavorite, setisFavorite ] = useState(false)
+	const isFocused = useIsFocused();
 
 	useEffect(() => {
-		getAllFavoriteItemsRequest()
-		_isFavorite()
-	}, [favoritesdata, isFavorite, item])
-	
-	const _isFavorite = async () => {
+		if (isFocused) {
+			getAllFavoriteItemsRequest()
+		}
+	}, [isFocused])
+
+	useEffect(() => {
 		if (favoritesdata.length > 0) {
-			const favoriteItem = await favoritesdata.find(
+			const favoriteItem = favoritesdata.find(
 				(element) => element._id === item._id,
 			)
 
-			if (favoriteItem) {
+			if (favoriteItem !== undefined) {
 				setisFavorite(true)
-				console.log('Es favorito');
+				// console.log('Es favorito');
 			}
 			else {
-				console.log('No es favorito');
+				// console.log('No es favorito');
 				setisFavorite(!true)
 			}
 		}
+}, [isFocused, item])
+	
+	const _isFavorite = () => {
+		setisFavorite(!isFavorite)		
+		toogleFavorite(item)
 	}
 
 	const _onPressItem = (propitem) => {
@@ -293,7 +300,7 @@ const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogl
 						</DiscountContainer>
 						<FavoriteContainer>
 							<Touchable
-								onPress={() => toogleFavorite(item)}
+								onPress={() => _isFavorite()}
 								>
 								<Ionicons
 									name={

@@ -117,7 +117,7 @@ const GetOnePreviousOrderComponent = (item) => {
                             Platform.OS ===
                             'ios'
                             ? '400'
-                            : 'bold'
+                            : '400'
                         }
                         color={
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -142,7 +142,7 @@ const GetOnePreviousOrderComponent = (item) => {
                             Platform.OS ===
                             'ios'
                             ? '400'
-                            : 'bold'
+                            : '400'
                         }
                         color={
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -181,7 +181,7 @@ const GetOnePreviousOrderComponent = (item) => {
                             Platform.OS ===
                             'ios'
                             ? '400'
-                            : 'bold'
+                            : '400'
                         }
                         color={
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -219,7 +219,7 @@ const GetOnePreviousOrderComponent = (item) => {
                                     Platform.OS ===
                                     'ios'
                                     ? '400'
-                                    : 'bold'
+                                    : '400'
                                 }
                                 color={
                                     themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -257,7 +257,7 @@ const GetOnePreviousOrderComponent = (item) => {
                             Platform.OS ===
                             'ios'
                             ? '400'
-                            : 'bold'
+                            : '400'
                         }
                         color={
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -293,7 +293,7 @@ const GetOnePreviousOrderComponent = (item) => {
                             Platform.OS ===
                             'ios'
                             ? '400'
-                            : 'bold'
+                            : '400'
                         }
                         color={
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -329,7 +329,7 @@ const GetOnePreviousOrderComponent = (item) => {
                             Platform.OS ===
                             'ios'
                             ? '400'
-                            : 'bold'
+                            : '400'
                         }
                         color={
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR

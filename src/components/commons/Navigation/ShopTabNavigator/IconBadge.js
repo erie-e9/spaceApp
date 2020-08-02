@@ -39,12 +39,14 @@ const IconWithBadge = ({name, badgeCount, color, size, data}) => {
 						right: -6,
 						top: -3,
 						backgroundColor: themeContext.REDBADGE,
-						borderRadius: 8,
-						width: 16,
-						height: 16,
+						minHeight: 16,
+						minWidth: 16,
+						paddingHorizontal: 2,
+						paddingVertical: 1,
 						justifyContent: 'center',
 						alignItems: 'center',
-						borderWidth: 1,
+						borderWidth: 0.7,
+						borderRadius: 8,
 						borderColor:
 							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 					}}>

@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Formik} from 'formik'
 import * as yup from 'yup'
@@ -204,7 +204,7 @@ const SubHeadAccountComponent = () => {
 							caretHidden={false}
 							clearButtonMode='while-editing'
 							contextMenuHidden={false}
-							editable
+							editable={false}
 							enablesReturnKeyAutomatically={false}
 							underlineColorAndroid='transparent'
 							keyboardAppearance='dark'
@@ -338,49 +338,6 @@ const SubHeadAccountComponent = () => {
 					</FormContainer>
 				)}
 			</Formik>
-			{/* <Wrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Fullname'
-                    returnKeyType={'next'}
-                    autoCapitalize='words'
-                    onChangeText={text => setfullName(text)}
-                    underlineColorAndroid='transparent'
-                    onSubmitEditing={() => emailInput.focus()}
-                    />
-                </InputWrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Email'
-                    keyboardType='email-address'
-                    autoCapitalize='none'
-                    onChangeText={text => setemail(text)}
-                    underlineColorAndroid='transparent'
-                    ref={(input) => {this.emailInput = input }}
-                    />
-                </InputWrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Username'
-                    autoCapitalize='none'
-                    onChangeText={text => setusername(text)}
-                    underlineColorAndroid='transparent'
-                    />
-                </InputWrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Password'
-                    secureTextEntry
-                    onChangeText={text => setpassword(text)}
-                    underlineColorAndroid='transparent'
-                    />
-                </InputWrapper>
-                <ButtonConfirm onPress={() => _onSignupPress()} disabled={() => _checkIfDisabled()}>
-                    <ButtonConfirmText>
-                        {signup}
-                    </ButtonConfirmText>
-                </ButtonConfirm>
-            </Wrapper> */}
 		</Root>
 	)
 }

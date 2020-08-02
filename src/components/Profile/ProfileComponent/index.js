@@ -78,7 +78,7 @@ const ProfileComponent = () => {
 								weight={
 									Platform.OS === 'ios'
 										? '600'
-										: 'bold'
+										: '800'
 								}
 								color={
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR

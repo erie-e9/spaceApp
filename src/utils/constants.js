@@ -78,7 +78,7 @@ export const darkTheme = {
   THIRD_BACKGROUND_COLOR_LIGHT: '#333333',
 
   FOURTH_BACKGROUND_COLOR: '#EFEFF4',
-  FOURTH_BACKGROUND_COLOR_LIGHT: '#262626', // background navigation
+  FOURTH_BACKGROUND_COLOR_LIGHT: '#181818', // background navigation
 
   REDGRAY: 'rgba(237, 41, 57, 1)',
   REDBADGE: 'rgba(230, 0, 0, 1)',

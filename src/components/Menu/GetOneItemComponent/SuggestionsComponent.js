@@ -70,7 +70,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 	
 	setItemValue: (_id) => {
-		console.log('+++++++++ setItemValue _id:', _id);
+		// console.log('+++++++++ setItemValue _id:', _id);
 		dispatch({
 			type: SET_ITEM_VALUE,
 			payload: {
@@ -108,7 +108,6 @@ const SuggestionsComponent = ({ selectedItem, getAllItemsRequest, data, setItemV
 
 	const _setItem = (index) => {
 		setItemValue(index + 1)
-		console.log('index: ', index)
 	}
 
 	return (
@@ -172,6 +171,7 @@ const SuggestionsComponent = ({ selectedItem, getAllItemsRequest, data, setItemV
 								horizontal
 								snapToAlignment='center'
 								scrollEventThrottle={16}
+								snapToInterval={50}
 								decelerationRate='fast'
 								showsHorizontalScrollIndicator={false}
 								renderItem={({item, index}) => {

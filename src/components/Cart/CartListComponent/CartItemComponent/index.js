@@ -82,7 +82,6 @@ const CartItemLeftContainer = styled.View`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	margin: 5px 0px 5px 0px;
 	padding-horizontal: 2px;
 	background-color: transparent;
 `
@@ -141,8 +140,10 @@ const AddRemoveContainer = styled.View`
 	justify-content: space-between;
 `
 const CounterContainer = styled.View`
-	height: 20px;
-	width: 20px;
+	min-height: 20px;
+	min-width: 20px;
+	padding-horizontal: 2px;
+	padding-vertical: 1px;
 	border-radius: 12px;
 	border-width: 0.5px;
 	border-color: white;

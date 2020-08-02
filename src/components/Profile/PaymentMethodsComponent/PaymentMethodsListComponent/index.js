@@ -132,7 +132,7 @@ const PaymentMethodsListComponent = ({getAllItemsRequest, data}) => {
 											name='money'
 											size={
 												iconSize -
-												8
+												10
 											}
 											color={
 												themeContext.PRIMARY_TEXT_COLOR_LIGHT

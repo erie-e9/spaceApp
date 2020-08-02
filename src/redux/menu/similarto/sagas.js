@@ -25,7 +25,7 @@ function* getAllItemsRequest(action){
 
 function* setItemValue(action){
     let { _id } = action.payload
-    console.log('----------setItemValue', _id);
+    // console.log('----------setItemValue', _id);
     try {
         yield put({
             type: SET_ITEM_VALUE_SUCCESS,
