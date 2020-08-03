@@ -4,19 +4,20 @@
 			"_id": 1,
 			"text": "Iusto quis ut eum ducimus aliquam cupiditate nostrum sit.",
 			"createdAt": "2019, 1, 23",
+			"active": true,
 			"employee": {
 				"username": "Aiden.Becker97",
 				"firstname": "Cordelia",
 				"lastname": "Fritsch",
 				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adityasutomo/128.jpg",
 				"createdAt": "2020, 1, 23"
-			},
-			"favoriteCount": false
+			}
 		},
 		{
 			"_id": 2,
 			"text": "Ut at vel quis.",
 			"createdAt": "2020, 3, 5",
+			"active": true,
 			"employee": {
 				"username": "Marlee_Johnston55",
 				"firstname": "Kailey",
@@ -29,6 +30,7 @@
 			"_id": 3,
 			"text": "Et et omnis.",
 			"createdAt": "2020, 5, 10",
+			"active": false,
 			"employee": {
 				"username": "Jewel_Nienow62",
 				"firstname": "Josianne",
@@ -41,19 +43,20 @@
 			"_id": 4,
 			"text": "Quidem officia tempore officia ut sed.",
 			"createdAt": "2020, 1, 13",
+			"active": false,
 			"employee": {
 				"username": "Deron_Schmidt69",
 				"firstname": "Dolly",
 				"lastname": "Mante",
 				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/carlosjgsousa/128.jpg",
 				"createdAt": "2020, 1, 13"
-			},
-			"favoriteCount": false
+			}
 		},
 		{
 			"_id": 5,
 			"text": "Autem repudiandae non minus voluptatem aut commodi.",
 			"createdAt": "2020, 6, 15",
+			"active": true,
 			"employee": {
 				"username": "Kyra.Bins27",
 				"firstname": "Caleb",
@@ -66,6 +69,7 @@
 			"_id": 6,
 			"text": "Voluptatem veritatis aut est qui iure alias architecto quam.",
 			"createdAt": "2020, 2, 9",
+			"active": false,
 			"employee": {
 				"username": "Scottie69",
 				"firstname": "Rubie",
@@ -78,6 +82,7 @@
 			"_id": 7,
 			"text": "Et provident similique sit id praesentium consequatur earum dolor quasi.",
 			"createdAt": "2020, 5, 29",
+			"active": true,
 			"employee": {
 				"username": "Julianne.Kuphal",
 				"firstname": "Hilbert",
@@ -90,6 +95,7 @@
 			"_id": 8,
 			"text": "Maxime et voluptas occaecati sit praesentium illum ut.",
 			"createdAt": "2020, 6, 12",
+			"active": true,
 			"employee": {
 				"username": "Joe4",
 				"firstname": "Camren",
@@ -102,6 +108,7 @@
 			"_id": 9,
 			"text": "Doloribus aut et sit ut facere ullam.",
 			"createdAt": "2020, 5, 8",
+			"active": true,
 			"employee": {
 				"username": "Cecile_Murphy",
 				"firstname": "Cicero",
@@ -114,6 +121,7 @@
 			"_id": 10,
 			"text": "Dicta ab dolorum maiores consectetur deleniti aspernatur et laudantium.",
 			"createdAt": "2020, 1, 18",
+			"active": false,
 			"employee": {
 				"username": "Gilberto_Schneider0",
 				"firstname": "Garth0",

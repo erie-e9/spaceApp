@@ -4,7 +4,7 @@ import {FlatList} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import ChatCard from './ChatCard'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/chats/actions'
+import {GET_DATA_REQUEST} from '@redux/chats/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -22,19 +22,19 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 		})
 	},
 })
 
-const ChatComponent = ({getAllItemsRequest, data}) => {
+const ChatComponent = ({getDataRequest, data}) => {
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 	}, [data])
 

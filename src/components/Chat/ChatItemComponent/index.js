@@ -3,6 +3,7 @@ import {Animated} from 'react-native'
 import styled from 'styled-components'
 import messages from '@utils/messages.json'
 import MessageBubbleComponent from './MessageBubbleComponent'
+import ChatInputComponent from './ChatInputComponent'
 
 const Root = styled.View`
 	flex: 1;
@@ -78,12 +79,7 @@ const ChatItemComponent = () => {
 						)
 					}}
 				/>
-				{/* <ItemTopContainer>
-          <ItemPresentation>
-          </ItemPresentation>
-        </ItemTopContainer>
-        <ItemBottomContainer>
-        </ItemBottomContainer> */}
+				<ChatInputComponent/>
 			</BackgroundDoodle>
 		</Root>
 	)

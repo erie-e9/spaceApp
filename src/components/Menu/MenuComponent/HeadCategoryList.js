@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText} from '@etaui'
 import HeadCategoryItem from './HeadCategoryItem'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/categories/actions'
+import {GET_DATA_REQUEST} from '@redux/menu/categories/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -44,15 +44,15 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchProps = (dispatch) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			dispatch: {},
 		})
 	},
 })
 
-const Categories = ({getAllItemsRequest, data}) => {
+const Categories = ({getDataRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [categoryitems, setcategoryitems] = useState([])
@@ -60,7 +60,7 @@ const Categories = ({getAllItemsRequest, data}) => {
 	let delayValue = 1000
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setcategoryitems(data)
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,

@@ -25,10 +25,17 @@ const Touchable = styled.TouchableOpacity.attrs({
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 const AvatarContainer = styled.View`
-	padding: 2px 10px;
+	height: 37px;
+	width: 37px;
+	padding: 2px;
 	border-radius: 50px;
 	justify-content: center;
 	align-items: center;
+	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
+	border-width: 2px;
+	margin-right: 10px;
+	margin-top: 5px;
+	background-color: transparent;
 `
 
 const ChatItemScreen = ({navigation, route}) => {
@@ -40,7 +47,7 @@ const ChatItemScreen = ({navigation, route}) => {
 		navigation.setOptions({
 			headerTitle: () => (
 				<HeaderContainer>
-					<AvatarContainer>
+					<AvatarContainer active={item.active}>
 						<ETAAvatar
 							image={item.employee.avatar}
 							size='small'

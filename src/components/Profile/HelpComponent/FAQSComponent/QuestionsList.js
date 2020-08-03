@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components/native'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/help/faqs/actions'
+import {GET_DATA_REQUEST} from '@redux/profile/help/faqs/actions'
 import Card from './Card'
 
 const Root = styled.View`
@@ -20,19 +20,19 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {},
 		})
 	},
 })
 
-const FAQSComponent = ({getAllItemsRequest, data}) => {
+const FAQSComponent = ({getDataRequest, data}) => {
 	const [items, setitems] = useState([])
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 	}, [data])
 

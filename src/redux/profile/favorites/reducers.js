@@ -1,5 +1,5 @@
 import { 
-        GET_ALL_ITEMS_REQUEST_SUCCESS,
+        GET_DATA_REQUEST_SUCCESS,
         TOOGLE_FAVORITE_SUCCESS
 } from './actions'
 
@@ -9,7 +9,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_ITEMS_REQUEST_SUCCESS:
+    case GET_DATA_REQUEST_SUCCESS:
       return { data: state.data }
     
     case TOOGLE_FAVORITE_SUCCESS:

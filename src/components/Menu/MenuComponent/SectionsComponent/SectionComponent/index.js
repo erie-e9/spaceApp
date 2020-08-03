@@ -4,7 +4,7 @@ import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/sections/actions'
+import { GET_DATA_REQUEST } from '@redux/menu/sections/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -20,9 +20,9 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {
 				_id: 1
 			}
@@ -30,7 +30,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	}
 })
 
-const SectionComponent = ({ getAllItemsRequest, data }) => {
+const SectionComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState([])
 	const [animatedValueTransform] = useState(new Animated.Value(0))
@@ -38,7 +38,7 @@ const SectionComponent = ({ getAllItemsRequest, data }) => {
 	let delayValue = 700
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 	}, [data])
 

@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {useNavigation} from '@react-navigation/native'
 import {ETAButtonFilled} from '@etaui'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/branchoffices/actions'
+import {GET_DATA_REQUEST} from '@redux/profile/branchoffices/actions'
 
 const Root = styled.View`
 	min-height: 10px;
@@ -27,19 +27,19 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 		})
 	},
 })
 
-const SubHeadBranchOfficesComponent = ({getAllItemsRequest, data}) => {
+const SubHeadBranchOfficesComponent = ({getDataRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 	}, [data])
 
 	return (

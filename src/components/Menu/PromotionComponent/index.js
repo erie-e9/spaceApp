@@ -5,7 +5,7 @@ import {ETASimpleText} from '@etaui'
 import {useRoute} from '@react-navigation/native'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/promotions/actions'
+import { GET_DATA_REQUEST } from '@redux/menu/promotions/actions'
 
 const HEADER_MIN_HEIGHT = 50
 const HEADER_MAX_HEIGHT = 130
@@ -45,9 +45,9 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {
 				_id: 1
 			}
@@ -55,7 +55,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	}
 })
 
-const PromoComponent = ({ getAllItemsRequest, data }) => {
+const PromoComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState([])
 	const route = useRoute()
@@ -82,7 +82,7 @@ const PromoComponent = ({ getAllItemsRequest, data }) => {
 	})
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 	}, [data])
 

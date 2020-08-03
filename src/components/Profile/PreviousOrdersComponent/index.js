@@ -5,7 +5,7 @@ import {ETASimpleText, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import PreviousOrdersItemComponent from './PreviousOrdersItemComponent'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/previousorders/actions'
+import {GET_DATA_REQUEST} from '@redux/profile/previousorders/actions'
 
 const Root = styled.View`
 	flex: 0.6;
@@ -33,25 +33,25 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {},
 		})
 	},
 })
 
-const PreviousOrdersComponent = ({ getAllItemsRequest, data }) => {
+const PreviousOrdersComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 		
 		return () => {
-			getAllItemsRequest()
+			getDataRequest()
 		}
 	}, [data])
 

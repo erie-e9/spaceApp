@@ -1,7 +1,9 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components/native'
 import {ETASimpleText, ETASwitch} from '@etaui'
+import {connect} from 'react-redux'
+import {GET_DATA_REQUEST} from '@redux/profile/notifications/actions'
 
 const Card = styled.View`
 	flex-direction: row;
@@ -32,10 +34,35 @@ const MessageContainer = styled.View`
 	padding-horizontal: 10px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
+const mapStateToProps = (state, props) => {
+	const { email,
+		 	push_notifications,
+	 		sms,
+ 			paused_orders,
+			weekly_offers } = state.notifications
+	return { email,
+			 push_notifications,
+			 sms,
+			 paused_orders,
+			 weekly_offers }
+}
 
-const NotificationCardComponent = ({headTitle, message}) => {
+const mapDispatchProps = (dispatch, props) => ({
+	getDataRequest: () => {
+		dispatch({
+			type: GET_DATA_REQUEST,
+		})
+	},
+})
+
+const NotificationCardComponent = ({headTitle, message, getDataRequest, email, push_notifications, sms, paused_orders, weekly_offers }) => {
 	const themeContext = useContext(ThemeContext)
 	const [switchItem, setswitchItem] = useState(!true)
+
+	useEffect(() => {
+		getDataRequest()
+		console.log({ email, push_notifications, sms, paused_orders, weekly_offers });
+	}, [switchItem])
 	
 	return (
 		<>
@@ -86,4 +113,9 @@ const NotificationCardComponent = ({headTitle, message}) => {
 	)
 }
 
-export default React.memo(NotificationCardComponent)
+const NotificationCardComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps,
+)(NotificationCardComponent)
+
+export default React.memo(NotificationCardComponentConnect)

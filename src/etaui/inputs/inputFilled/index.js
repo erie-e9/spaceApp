@@ -22,7 +22,7 @@ const TextInput = styled.TextInput.attrs({})`
 	width: ${(props) => (props.width ? props.width : 300)}px;
 	height: ${(props) => (props.height ? props.height : 40)}px;
 	font-size: ${(props) => (props.textsize ? props.textsize : 14)}px;
-	color: ${(props) => props.theme.PRIMARY_COLOR};
+	color: ${(props) => props.textColor ? props.textColor : props.theme.PRIMARY_COLOR};
 	margin: 5px;
 	justify-content: center;
 	align-items: center;
@@ -57,6 +57,7 @@ const ETATextInputFilled = ({
 	textContentType,
 	returnkeytype,
 	textAlign,
+	textColor,
 	textsize,
 	height,
 	width,
@@ -110,6 +111,7 @@ const ETATextInputFilled = ({
 					// ref={(input) => {this.emailInput = input }}
 					// onKeyPress={}
 					// onScroll={}
+					textColor={textColor}
 					paddingHorizontal={paddingHorizontal || 15}
 				/>
 				{rightIcon}

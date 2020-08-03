@@ -66,6 +66,7 @@ export const base = {
 
 export const darkTheme = {
   PRIMARY_COLOR: '#F54F8E',
+  PRIMARY_COLOR_LIGHT: '#FFF6F9',
   // PRIMARY_COLOR: '#7B3F00',
   PRIMARY_BACKGROUND_COLOR: '#595959',
   PRIMARY_BACKGROUND_COLOR_LIGHT: '#797979',
@@ -83,7 +84,7 @@ export const darkTheme = {
   REDGRAY: 'rgba(237, 41, 57, 1)',
   REDBADGE: 'rgba(230, 0, 0, 1)',
   SUCCESS_COLOR: 'rgba(0, 255, 0, 1)',
-  FAIL_COLOR: 'rgba(255, 0, 0, 1)',
+  ACTIVE: '#25D3660, 0, 1)',
   LINK: '#2196F3',
   GRAYFACEBOOK: '#777777',
   STAR: '#FFBF00',
@@ -289,6 +290,7 @@ export const darkTheme = {
 
 export const lightTheme = {
   PRIMARY_COLOR: '#F54F8E',
+  PRIMARY_COLOR_LIGHT: '#FFF6F9',
   PRIMARY_BACKGROUND_COLOR: '#E6E6E6',
   PRIMARY_BACKGROUND_COLOR_LIGHT: '#F7F7F7',
 
@@ -305,6 +307,7 @@ export const lightTheme = {
   REDGRAY: 'rgba(141, 148, 158, 1)',
   REDBADGE: 'rgba(230, 0, 0, 1)',
   SUCCESS_COLOR: 'rgba(0, 205, 0, 1)',
+  ACTIVE: '#25D366',
   FAIL_COLOR: 'rgba(255, 0, 0, 1)',
   LINK: '#2196F3',
   GRAYFACEBOOK: '#E4E6EB',

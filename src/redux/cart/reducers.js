@@ -1,5 +1,5 @@
 import {
-        GET_ALL_ITEMS_REQUEST_SUCCESS,
+        GET_DATA_REQUEST_SUCCESS,
         ADD_TO_CART_SUCCESS,
         REMOVE_FROM_CART_SUCCESS,
         REMOVE_ITEM_FROM_CART_SUCCESS,
@@ -11,7 +11,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ALL_ITEMS_REQUEST_SUCCESS:
+    case GET_DATA_REQUEST_SUCCESS:
       // console.log('state.data:', state.data);
       return { data: state.data }
 

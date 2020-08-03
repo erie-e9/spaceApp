@@ -5,7 +5,7 @@ import {ETASimpleText, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/cart/actions'
+import {GET_DATA_REQUEST} from '@redux/cart/actions'
 
 const Root = styled.View`
 	flex: 0.6;
@@ -29,26 +29,26 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {},
 		})
 	},
 })
 
-const CartListComponent = ({ getAllItemsRequest, data }) => {
+const CartListComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 		// console.log('++++++++++++++CartListComponent data', data)
 		
 		return () => {
-			getAllItemsRequest()
+			getDataRequest()
 		}
 	}, [data])
 

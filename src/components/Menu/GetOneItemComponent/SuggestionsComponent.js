@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components'
 import {Dimensions, Animated, Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 import { connect } from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST, SET_ITEM_VALUE } from '@redux/menu/similarto/actions'
+import { GET_DATA_REQUEST, SET_ITEM_VALUE } from '@redux/menu/similarto/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -60,9 +60,9 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {
 				_id: 1
 			}
@@ -82,14 +82,14 @@ const mapDispatchProps = (dispatch, props) => ({
 
 })
 
-const SuggestionsComponent = ({ selectedItem, getAllItemsRequest, data, setItemValue, _id }) => {
+const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue, _id }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState([])
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	let delayValue = 1000
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 	}, [data])
 

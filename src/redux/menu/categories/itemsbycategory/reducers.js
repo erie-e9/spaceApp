@@ -1,4 +1,4 @@
-import { GET_ALL_ITEMS_REQUEST_SUCCESS } from './actions'
+import { GET_DATA_REQUEST_SUCCESS } from './actions'
 
 const initialState = {
   data: [],
@@ -6,7 +6,7 @@ const initialState = {
 
 const reducer = (state=initialState, action) => {
   switch (action.type) {
-    case GET_ALL_ITEMS_REQUEST_SUCCESS:
+    case GET_DATA_REQUEST_SUCCESS:
       const { data } = action.payload
       return { data }
 

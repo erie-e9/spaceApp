@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
-import {Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components/native'
+import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 // import eoLocale from 'date-fns/locale/es';

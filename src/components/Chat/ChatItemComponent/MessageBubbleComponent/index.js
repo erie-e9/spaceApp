@@ -34,9 +34,8 @@ const MessageText = styled.Text`
 	line-height: 22px;
 `
 const MessageTimeText = styled.Text`
-	color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
 	font-size: 11px;
-	font-weight: ${Platform.OS === 'ios' ? 400 : 600};
+	font-weight: ${Platform.OS === 'ios' ? 400 : 400};
 	line-height: 22px;
 	align-self: flex-end;
 `
@@ -81,7 +80,13 @@ const MessageBubbleComponent = ({item}) => {
 						{item.text}
 					</MessageText>
 				) : null}
-				<MessageTimeText>12:00 a.m.</MessageTimeText>
+				<MessageTimeText
+					style={{
+						color: item.mine
+							? 'white'
+							: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					}}>12:00 a.m.
+				</MessageTimeText>
 				<ArrowContainer
 					style={{
 						alignItems: item.mine

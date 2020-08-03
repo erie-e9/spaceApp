@@ -86,25 +86,25 @@ const MenuNavigator = () => {
 				options={{
 					headerTitle: '',
 					headerShown: true,
-					headerLeft: () => (
-						<Header>
-							<ETASimpleText
-								size={22}
-								weight={
-									Platform.OS === 'ios'
-										? 'bold'
-										: 'bold'
-								}
-								color={
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								}
-								align='left'>
-								{variables.COMPANYNAME}
-							</ETASimpleText>
-						</Header>
-					),
-					headerRight: () => <ETASearchBar />,
-					// header: () =>  <ETASearchBar />,
+					// headerLeft: () => (
+					// 	<Header>
+					// 		<ETASimpleText
+					// 			size={22}
+					// 			weight={
+					// 				Platform.OS === 'ios'
+					// 					? 'bold'
+					// 					: 'bold'
+					// 			}
+					// 			color={
+					// 				themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+					// 			}
+					// 			align='left'>
+					// 			{variables.COMPANYNAME}
+					// 		</ETASimpleText>
+					// 	</Header>
+					// ),
+					// headerRight: () => <ETASearchBar />,
+					header: () =>  <ETASearchBar leftContent={variables.COMPANYNAME} placeholderText={`Search on ${variables.COMPANYNAME}`} />,
 				}}
 			/>
 

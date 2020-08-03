@@ -5,7 +5,7 @@ import MenuList from './menuList'
 import HeadCategoryList from './HeadCategoryList'
 import SectionsComponent from './SectionsComponent'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/actions'
+import {GET_DATA_REQUEST} from '@redux/menu/actions'
 import CarouselComponent from './CarouselComponent'
 
 const HEADER_MIN_HEIGHT = 90
@@ -24,14 +24,14 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 		})
 	},
 })
 
-const MenuComponent = ({getAllItemsRequest, data}) => {
+const MenuComponent = ({getDataRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const [scrollYAnimatedValue] = useState(new Animated.Value(0))
 	const [animatedValueTransform] = useState(new Animated.Value(0.96))
@@ -39,7 +39,7 @@ const MenuComponent = ({getAllItemsRequest, data}) => {
 	const delayValue = 700
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 	}, [data])
 
 	const headerHeight = scrollYAnimatedValue.interpolate({

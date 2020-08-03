@@ -1,7 +1,7 @@
 import { takeEvery, put } from 'redux-saga/effects'
 import {
-        GET_ALL_ITEMS_REQUEST,
-        GET_ALL_ITEMS_REQUEST_SUCCESS,
+        GET_DATA_REQUEST,
+        GET_DATA_REQUEST_SUCCESS,
         ADD_TO_CART,
         ADD_TO_CART_SUCCESS,
         REMOVE_FROM_CART,
@@ -11,16 +11,16 @@ import {
 } from './actions'
 
 function* handler() {
-  yield takeEvery(GET_ALL_ITEMS_REQUEST, getAllItemsRequest)
+  yield takeEvery(GET_DATA_REQUEST, getDataRequest)
   yield takeEvery(ADD_TO_CART, addToCart)
   yield takeEvery(REMOVE_FROM_CART, removeFromCart)
   yield takeEvery(REMOVE_ITEM_FROM_CART, removeItemFromCart)
 }
 
-function* getAllItemsRequest(action) {
+function* getDataRequest(action) {
   try {
     yield put({
-      type: GET_ALL_ITEMS_REQUEST_SUCCESS,
+      type: GET_DATA_REQUEST_SUCCESS,
       payload: {
         data: [],
       },

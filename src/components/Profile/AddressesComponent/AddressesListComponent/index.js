@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 import {useNavigation} from '@react-navigation/native'
 import Card from './Card'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/addresses/actions'
+import {GET_DATA_REQUEST} from '@redux/profile/addresses/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -25,20 +25,20 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 		})
 	},
 })
 
-const AddressesListComponent = ({getAllItemsRequest, data}) => {
+const AddressesListComponent = ({getDataRequest, data}) => {
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 		_getData()
 	}, [data])

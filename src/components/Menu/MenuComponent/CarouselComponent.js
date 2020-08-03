@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import styled from 'styled-components/native'
 import {ETACarousel} from '@etaui'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/carousel/actions'
+import {GET_DATA_REQUEST} from '@redux/menu/carousel/actions'
 
 const HeaderContainer = styled.View`
 	flex: 1;
@@ -17,17 +17,17 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {},
 		})
 	},
 })
 
-const CarouselComponent = ({getAllItemsRequest, data, items}) => {
+const CarouselComponent = ({getDataRequest, data, items}) => {
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 	}, [data])
 
 	return (

@@ -1,15 +1,15 @@
 import { takeEvery, put } from 'redux-saga/effects'
-import { GET_ALL_ITEMS_REQUEST, GET_ALL_ITEMS_REQUEST_SUCCESS } from './actions'
+import { GET_DATA_REQUEST, GET_DATA_REQUEST_SUCCESS } from './actions'
 import data from '@utils/previousorders.json'
 
 function* handler(){
-    yield takeEvery(GET_ALL_ITEMS_REQUEST, getAllItemsRequest)
+    yield takeEvery(GET_DATA_REQUEST, getDataRequest)
 }
 
-function* getAllItemsRequest(action) {
+function* getDataRequest(action) {
     try {
         yield put({
-            type: GET_ALL_ITEMS_REQUEST_SUCCESS,
+            type: GET_DATA_REQUEST_SUCCESS,
             payload: {
                 data: data.data
             }

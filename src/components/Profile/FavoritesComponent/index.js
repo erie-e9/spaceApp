@@ -5,7 +5,7 @@ import {ETASimpleText, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import FavoriteItemComponent from './FavoriteItemComponent'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/favorites/actions'
+import {GET_DATA_REQUEST} from '@redux/profile/favorites/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -29,25 +29,25 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {},
 		})
 	},
 })
 
-const FavoritesListComponent = ({ getAllItemsRequest, data }) => {
+const FavoritesListComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 		
 		return () => {
-			getAllItemsRequest()
+			getDataRequest()
 		}
 	}, [data])
 

@@ -6,7 +6,7 @@ import {ETASimpleText} from '@etaui'
 import {Ionicons, FontAwesome} from '@icons'
 import PaymentCardComponent from './Card'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/profile/paymentmethods/actions'
+import {GET_DATA_REQUEST} from '@redux/profile/paymentmethods/actions'
 
 const {width} = Dimensions.get('window')
 const iconSize = 26
@@ -55,22 +55,22 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {},
 		})
 	},
 })
 
-const PaymentMethodsListComponent = ({getAllItemsRequest, data}) => {
+const PaymentMethodsListComponent = ({getDataRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 		_getData()
 	}, [data])

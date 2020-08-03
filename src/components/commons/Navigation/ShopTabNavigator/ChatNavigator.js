@@ -8,7 +8,7 @@ import {
 import {Feather, FontAwesome} from '@icons'
 import ChatScreen from '@screens/Chat/ChatScreen'
 import ChatItemScreen from '@screens/Chat/ChatItemScreen'
-import {ETASimpleText} from '@etaui'
+import {ETASearchBar} from '@etaui'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -80,34 +80,35 @@ const ChatNavigator = () => {
 					headerTitle: '',
 					headerShown: true,
 					headerTransparent: !true,
-					headerLeft: () => (
-						<Header>
-							<ETASimpleText
-								size={22}
-								weight={
-									Platform.OS === 'ios'
-										? 'bold'
-										: 'bold'
-								}
-								color={
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								}
-								align='left'>
-								Chat room
-							</ETASimpleText>
-						</Header>
-					),
-					headerRight: () => (
-						<IconButton
-							activeOpacity={1}
-							underlayColor='#ccd0d5'>
-							<FontAwesome
-								name='search'
-								size={18}
-								color='#000'
-							/>
-						</IconButton>
-					),
+					// headerLeft: () => (
+					// 	<Header>
+					// 		<ETASimpleText
+					// 			size={22}
+					// 			weight={
+					// 				Platform.OS === 'ios'
+					// 					? 'bold'
+					// 					: 'bold'
+					// 			}
+					// 			color={
+					// 				themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+					// 			}
+					// 			align='left'>
+					// 			Chat room
+					// 		</ETASimpleText>
+					// 	</Header>
+					// ),
+					// headerRight: () => (
+					// 	<IconButton
+					// 		activeOpacity={1}
+					// 		underlayColor='#ccd0d5'>
+					// 		<FontAwesome
+					// 			name='search'
+					// 			size={18}
+					// 			color='#000'
+					// 		/>
+					// 	</IconButton>
+					// ),
+					header: () =>  <ETASearchBar leftContent='Chat room' placeholderText='Search a chat' />,
 					headerTintColor:
 						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
 					cardStyleInterpolator:

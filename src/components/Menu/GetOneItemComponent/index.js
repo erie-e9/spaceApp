@@ -7,8 +7,8 @@ import {Ionicons, FontAwesome} from '@icons'
 import SuggestionsComponent from './SuggestionsComponent'
 import {connect} from 'react-redux'
 import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
-import { GET_ALL_ITEMS_REQUEST } from '@redux/menu/similarto/actions'
-import { GET_ALL_ITEMS_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { GET_DATA_REQUEST } from '@redux/menu/similarto/actions'
+import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
 import {currencySeparator} from '@functions'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -336,9 +336,9 @@ const mapDispatchProps = (dispatch, props) => ({
 		})
 	},
 
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			payload: {
 				_id: 1
 			}
@@ -362,7 +362,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
+const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getDataRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
 	const {item} = route.params
@@ -374,7 +374,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getAllItemsR
 	const delayValue = 1500
 	
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		let newArray = [item, ...similartodata]
 		let se = newArray[similarid || 0]
 		setselectedItem(se)

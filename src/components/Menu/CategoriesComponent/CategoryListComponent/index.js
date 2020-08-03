@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {useNavigation} from '@react-navigation/native'
 import CategoryItemComponent from './CategoryItemComponent'
 import {connect} from 'react-redux'
-import {GET_ALL_ITEMS_REQUEST} from '@redux/menu/categories/actions'
+import {GET_DATA_REQUEST} from '@redux/menu/categories/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -25,15 +25,15 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchProps = (dispatch) => ({
-	getAllItemsRequest: () => {
+	getDataRequest: () => {
 		dispatch({
-			type: GET_ALL_ITEMS_REQUEST,
+			type: GET_DATA_REQUEST,
 			dispatch: {},
 		})
 	},
 })
 
-const CategoryListComponent = ({getAllItemsRequest, data}) => {
+const CategoryListComponent = ({getDataRequest, data}) => {
 	const navigation = useNavigation()
 	const [ items, setitems ] = useState([])
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
@@ -41,7 +41,7 @@ const CategoryListComponent = ({getAllItemsRequest, data}) => {
 	let delayValue = 700
 
 	useEffect(() => {
-		getAllItemsRequest()
+		getDataRequest()
 		setitems(data)
 	}, [data])
 

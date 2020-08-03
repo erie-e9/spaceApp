@@ -6,7 +6,7 @@ import {Ionicons} from '@icons'
 import {ETASimpleText} from '@etaui'
 import {truncateString, currencySeparator} from '@functions'
 import {connect} from 'react-redux'
-import { GET_ALL_ITEMS_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
 
 const {width} = Dimensions.get('window')
 

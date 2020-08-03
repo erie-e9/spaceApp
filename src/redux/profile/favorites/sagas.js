@@ -1,20 +1,20 @@
 import { takeEvery, put } from 'redux-saga/effects'
 import {
-        GET_ALL_ITEMS_REQUEST,
-        GET_ALL_ITEMS_REQUEST_SUCCESS,
+        GET_DATA_REQUEST,
+        GET_DATA_REQUEST_SUCCESS,
         TOOGLE_FAVORITE,
         TOOGLE_FAVORITE_SUCCESS
 } from './actions'
 
 function* handler() {
-    yield takeEvery(GET_ALL_ITEMS_REQUEST, getAllItemsRequest)
+    yield takeEvery(GET_DATA_REQUEST, getDataRequest)
     yield takeEvery(TOOGLE_FAVORITE, toogleFavorite)
 }
 
-function* getAllItemsRequest(action) {
+function* getDataRequest(action) {
   try {
     yield put({
-      type: GET_ALL_ITEMS_REQUEST_SUCCESS,
+      type: GET_DATA_REQUEST_SUCCESS,
       payload: {
         data: [],
       },
