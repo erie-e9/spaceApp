@@ -108,7 +108,7 @@ const ChatNavigator = () => {
 					// 		/>
 					// 	</IconButton>
 					// ),
-					header: () =>  <ETASearchBar leftContent='Chat room' placeholderText='Search a chat' />,
+					header: () =>  <ETASearchBar leftContent='Chat room' leftContentColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} placeholderText='Search a chat' />,
 					headerTintColor:
 						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
 					cardStyleInterpolator:

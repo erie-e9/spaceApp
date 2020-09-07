@@ -1,8 +1,10 @@
-import React, {useContext} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 import Card from './Card'
+import {connect} from 'react-redux'
+import {GET_DATA_REQUEST} from '@redux/profile/notifications/actions'
 
 const Root = styled.ScrollView`
 	flex: 1;
@@ -16,8 +18,35 @@ const NotificationSettingContainer = styled.View`
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 
-const NotificationsComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { email,
+		 	push_notifications,
+	 		sms,
+ 			paused_orders,
+			weekly_offers } = state.notifications
+	return { email,
+			 push_notifications,
+			 sms,
+			 paused_orders,
+			 weekly_offers }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getDataRequest: () => {
+		dispatch({
+			type: GET_DATA_REQUEST,
+		})
+	},
+})
+
+const NotificationsComponent = ({ getDataRequest, email, push_notifications, sms, paused_orders, weekly_offers }) => {
 	const themeContext = useContext(ThemeContext)
+	const [switchItem, setswitchItem] = useState(true)
+	
+	useEffect(() => {
+		getDataRequest()
+		console.log('NotificationsComponent: ',  { email, push_notifications, sms, paused_orders, weekly_offers });
+	}, [])
 
 	return (
 		<Root>
@@ -32,14 +61,17 @@ const NotificationsComponent = () => {
 				<Card
 					headTitle='Email'
 					message='Will send you relevant information, promotions and offers about our products via email.'
+					active={email}
 				/>
 				<Card
 					headTitle='Push notifications'
 					message='Will send you relevant information, promotions and offers about our products via notifications.'
+					active={push_notifications}
 				/>
 				<Card
 					headTitle='SMS'
 					message='Will send you relevant information, promotions and offers about our products via message sms.'
+					active={sms}
 				/>
 			</NotificationSettingContainer>
 
@@ -54,6 +86,7 @@ const NotificationsComponent = () => {
 				<Card
 					headTitle='Paused orders'
 					message='Will send you relevant information, promotions and offers about our products via email.'
+					active={paused_orders}
 				/>
 			</NotificationSettingContainer>
 
@@ -68,10 +101,17 @@ const NotificationsComponent = () => {
 				<Card
 					headTitle='Weekly offers'
 					message='Will send you relevant information, promotions and offers about our products via email.'
+					active={weekly_offers}
 				/>
 			</NotificationSettingContainer>
 		</Root>
 	)
 }
 
-export default NotificationsComponent
+const NotificationsComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps,
+)(NotificationsComponent)
+
+export default React.memo(NotificationsComponentConnect)
+// export default NotificationsComponent

@@ -24,4 +24,4 @@ const ETAErrorMessage = ({children, size}) => {
 	)
 }
 
-export default ETAErrorMessage
+export default React.memo(ETAErrorMessage)

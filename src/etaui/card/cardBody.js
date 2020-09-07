@@ -31,4 +31,4 @@ const CardBody = ({text}) => {
 	)
 }
 
-export default CardBody
+export default React.memo(CardBody)

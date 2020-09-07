@@ -23,4 +23,4 @@ const ETALink = ({url, text, size, weight, color, align}) => {
 	)
 }
 
-export default ETALink
+export default React.memo(ETALink)

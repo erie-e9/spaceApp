@@ -6,7 +6,7 @@ import {
 	CardStyleInterpolators,
 } from '@react-navigation/stack'
 import {FontAwesome, Ionicons} from '@icons'
-import {ETASimpleText, ETASearchBar} from '@etaui'
+import {ETASearchBar} from '@etaui'
 import {variables} from '@utils/constants'
 import MenuScreen from '@screens/Menu/MenuScreen'
 import CategoryListScreen from '@screens/Menu/Categories/CategoryListScreen'
@@ -74,7 +74,7 @@ const MenuNavigator = () => {
 						height: Platform.OS === 'ios' ? 0.1 : 0,
 					},
 					shadowRadius: 5,
-					elevation: 5,
+					elevation: 0,
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold',
@@ -104,7 +104,8 @@ const MenuNavigator = () => {
 					// 	</Header>
 					// ),
 					// headerRight: () => <ETASearchBar />,
-					header: () =>  <ETASearchBar leftContent={variables.COMPANYNAME} placeholderText={`Search on ${variables.COMPANYNAME}`} />,
+					header: () =>  <ETASearchBar leftContent={variables.COMPANYNAME} leftContentColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} placeholderText={`Search on ${variables.COMPANYNAME}`} />,
+				
 				}}
 			/>
 
@@ -240,7 +241,7 @@ const MenuNavigator = () => {
 									: 0.2,
 						},
 						shadowRadius: 5,
-						elevation: 5,
+						elevation: 0,
 					},
 					headerTitleStyle: {
 						fontWeight: '500',

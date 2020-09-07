@@ -28,4 +28,4 @@ const ETACard = ({text, client, createdAt, favoriteCount}) => (
 	</Root>
 )
 
-export default ETACard
+export default React.memo(ETACard)

@@ -72,4 +72,4 @@ const ETACheckBox = ({
 	)
 }
 
-export default ETACheckBox
+export default React.memo(ETACheckBox)

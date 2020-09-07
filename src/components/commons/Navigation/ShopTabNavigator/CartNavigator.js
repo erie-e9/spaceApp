@@ -56,7 +56,7 @@ const CartNavigator = () => {
 					shadowOpacity: 0,
 					shadowOffset: {height: 0.2},
 					shadowRadius: 5,
-					elevation: 5,
+					elevation: 0,
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold',

@@ -56,7 +56,7 @@ const ProfileNavigator = () => {
 					shadowOpacity: 0.15,
 					shadowOffset: {height: 0.2},
 					shadowRadius: 5,
-					elevation: 5,
+					elevation: 0,
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold',
@@ -130,7 +130,7 @@ const SettingsNavigator = () => {
 					shadowOpacity: 0,
 					shadowOffset: {height: 0},
 					shadowRadius: 5,
-					elevation: 5,
+					elevation: 0,
 				},
 				headerTitleStyle: {
 					fontWeight: '400',

@@ -1,5 +1,5 @@
-import React, {useState, useContext, useRef} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
+import React from 'react'
+import styled from 'styled-components/native'
 import {FontAwesome} from '@icons'
 import {ETASimpleText} from '@etaui'
 import {variables} from '@utils/constants'
@@ -34,12 +34,12 @@ const IconButton = styled.TouchableOpacity.attrs({
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	background-color: #e4e6eb;
 	width: 32px;
 	height: 32px;
 	border-radius: 32px;
 	margin-horizontal: 5px;
 	margin-right: 15px;
+	background-color: #e4e6eb;
 `
 const IconButtonClose = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -90,8 +90,7 @@ const SearchItem = styled.View`
     border-bottom-color: #e6e4eb;
 `
 
-class FBSearchBar extends React.Component {
-	// const themeContext = useContext(ThemeContext)
+class ETASearchBar extends React.Component {
   
   constructor(props){
     super(props)
@@ -187,174 +186,171 @@ class FBSearchBar extends React.Component {
 
   }
   
-  render(){
-    return (
-      <>
-        <HeaderSafeArea>
-          <Header>
-            <HeaderInner>
-              <HeaderContainer>
-                {/* <Img
-                //   source={require('../Assets/Facebook-Logo.png')} 
-                  style={{width: 152, height: 30}}
-                /> */}
-				<ETASimpleText
-					size={22}
-					weight={
-						Platform.OS === 'ios'
-							? 'bold'
-							: 'bold'
-					}
-					// color={
-					// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					// }
-					color='#333'
-					align='left'>
-					{this.props.leftContent}
-				</ETASimpleText>
-              </HeaderContainer>
-				<IconButton
-					activeOpacity={1}
-					underlayColor='#ccd0d5'
-					// onPress={(event) => _onFocus(event)}
-	                onPress={this._onFocus}
-					>
-					<FontAwesome
-						name='search'
-						size={18}
-						color='#000'
-					/>
-				</IconButton>
-              <Animated.View
-                style={{
-					height: 50,
-					flexDirection: 'row',
-					alignItems: 'center',
-					position: 'absolute',
-					top:0,
-					left:0,
-					backgroundColor: 'white',
-					width: width - 32,
-					transform: [
-						{
-							translateX: this._input_box_translate_x
-						},
-					]
-				}}
-              >
-                <Animated.View style={{opacity: this._back_button_opacity}}>
-					<IconButtonClose
-						activeOpacity={1}
-						underlayColor={"#ccd0d5"}
-						onPress={this._onBlur}
-						style={styles.back_icon_box}
-					>
-					<FontAwesome
-						name='chevron-left'
-						size={18}
-						color='#000'
+  render() {
+	return (
+    	<>
+			<HeaderSafeArea>
+				<Header>
+					<HeaderInner>
+						<HeaderContainer>
+							{/* <Img
+							//   source={require('../Assets/Facebook-Logo.png')} 
+							style={{width: 152, height: 30}}
+							/> */}
+							<ETASimpleText
+								size={22}
+								weight={
+									Platform.OS === 'ios'
+										? 'bold'
+										: 'bold'
+								}
+								color={this.props.leftContentColor}
+								align='left'>
+								{this.props.leftContent}
+							</ETASimpleText>
+						</HeaderContainer>
+						<IconButton
+							activeOpacity={1}
+							underlayColor='#ccd0d5'
+							// onPress={(event) => _onFocus(event)}
+							onPress={this._onFocus}
+							>
+							<FontAwesome
+								name='search'
+								size={18}
+								color='#000'
+							/>
+						</IconButton>
+					<Animated.View
 						style={{
-							zIndex: 2000,
+							height: 50,
+							flexDirection: 'row',
+							alignItems: 'center',
+							position: 'absolute',
+							top:0,
+							left:0,
+							backgroundColor: 'white',
+							width: width - 32,
+							transform: [
+								{
+									translateX: this._input_box_translate_x
+								},
+							]
 						}}
-					/>
-                  </IconButtonClose>
-                </Animated.View>
-					<TextInput
-						ref="input"
-						placeholder={this.props.placeholderText}
-						placeholderTextColor='#333'
-						clearButtonMode='always'
-						// value={keyword}
-						onChangeText={(value) => this.setState({keyword: value}) }
-						underlineColorAndroid='transparent'
-						style={{
-							flex: 1,
-							height: 40,
-							backgroundColor:
-								'#e4e6eb',
-							borderRadius: 18,
-							paddingHorizontal: 16,
-							fontSize: 15,
-							marginRight: 15,
-							color: '#333',
-						}}
-					/>
-              </Animated.View>
-            </HeaderInner>
-          </Header>
-        </HeaderSafeArea>
+					>
+						<Animated.View style={{opacity: this._back_button_opacity}}>
+							<IconButtonClose
+								activeOpacity={1}
+								underlayColor={"#ccd0d5"}
+								onPress={this._onBlur}
+								style={styles.back_icon_box}
+							>
+							<FontAwesome
+								name='chevron-left'
+								size={18}
+								color='#000'
+								style={{
+									zIndex: 2000,
+								}}
+							/>
+						</IconButtonClose>
+						</Animated.View>
+							<TextInput
+								ref="input"
+								placeholder={this.props.placeholderText}
+								placeholderTextColor='#333'
+								clearButtonMode='always'
+								// value={keyword}
+								onChangeText={(value) => this.setState({keyword: value}) }
+								underlineColorAndroid='transparent'
+								style={{
+									flex: 1,
+									height: 40,
+									backgroundColor:
+										'#e4e6eb',
+									borderRadius: 18,
+									paddingHorizontal: 16,
+									fontSize: 15,
+									marginRight: 15,
+									color: '#333',
+								}}
+							/>
+					</Animated.View>
+					</HeaderInner>
+				</Header>
+			</HeaderSafeArea>
 
-        <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
-          <ContentSafeArea>
-            <ContentInner>
-              <Separator />
-              {
-                this.state.keyword === ''
-                ?
-                  <EmptySearchContainer>
-						<EmptySearchImage
-							source={require('@assets/search.png')}
-						/>
-						<ETASimpleText
-							size={14}
-							weight={
-								Platform.OS ===
-								'ios'
-									? '500'
-									: '300'
-							}
-							color='#333'
-							// color={
-							// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							// }
-							align='center'>
-							Enter a few
-							words
-							{'\n'}
-							to search on{' '}
-							{
-								variables.COMPANYNAME
-							}
-						</ETASimpleText>
-                  </EmptySearchContainer>
-                :
-                  <Scroll>
-                    <SearchItem style={styles.search_item}>
-						<FontAwesome
-							name='search'
-							size={16}
-							color='#ccc'
-							style={{
-								marginRight: 15,
-							}}
-						/>
-						<ETASimpleText
-							size={14}
-							weight={
-								Platform.OS ===
-								'ios'
-									? '700'
-									: '600'
-							}
-							// color={
-							// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							// }
-							color='#333'
-							align='left'>
-							Fake result 1
-						</ETASimpleText>
-                    </SearchItem>
-                  </Scroll>
-              }
-            </ContentInner>
-          </ContentSafeArea>
-        </Animated.View>
-      </>
+			<Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
+			<ContentSafeArea>
+				<ContentInner>
+				<Separator />
+				{
+					this.state.keyword === ''
+					?
+					<EmptySearchContainer>
+							<EmptySearchImage
+								source={require('@assets/search.png')}
+							/>
+							<ETASimpleText
+								size={14}
+								weight={
+									Platform.OS ===
+									'ios'
+										? '500'
+										: '300'
+								}
+								color='#333'
+								// color={
+								// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								// }
+								align='center'>
+								Enter a few
+								words
+								{'\n'}
+								to search on{' '}
+								{
+									variables.COMPANYNAME
+								}
+							</ETASimpleText>
+					</EmptySearchContainer>
+					:
+					<Scroll>
+						<SearchItem style={styles.search_item}>
+							<FontAwesome
+								name='search'
+								size={16}
+								color='#ccc'
+								style={{
+									marginRight: 15,
+								}}
+							/>
+							<ETASimpleText
+								size={14}
+								weight={
+									Platform.OS ===
+									'ios'
+										? '700'
+										: '600'
+								}
+								// color={
+								// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								// }
+								color='#333'
+								align='left'>
+								Fake result 1
+							</ETASimpleText>
+						</SearchItem>
+					</Scroll>
+				}
+				</ContentInner>
+			</ContentSafeArea>
+			</Animated.View>
+		</>
     )
   }
 }
 
-export default FBSearchBar
+export default ETASearchBar
 
 const styles = StyleSheet.create({
   back_icon_box: {

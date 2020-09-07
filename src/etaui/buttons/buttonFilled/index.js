@@ -67,4 +67,4 @@ const ETAButtonFilled = ({
 	)
 }
 
-export default ETAButtonFilled
+export default React.memo(ETAButtonFilled)

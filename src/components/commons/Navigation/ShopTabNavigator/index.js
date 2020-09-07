@@ -17,7 +17,6 @@ import CartNavigator from './CartNavigator'
 import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator'
 import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
-// import {ETASearchBar} from '@etaui';
 
 const AvatarContainer = styled.View`
 	justify-content: center;

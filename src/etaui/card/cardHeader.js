@@ -78,4 +78,4 @@ const CardHeader = ({username, firstname, lastname}) => {
 	)
 }
 
-export default CardHeader
+export default React.memo(CardHeader)
