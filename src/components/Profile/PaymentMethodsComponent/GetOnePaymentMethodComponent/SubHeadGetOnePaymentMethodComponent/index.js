@@ -37,7 +37,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 				</ETASimpleText>
 				<Card
 					headTitle={item.details}
-					message='16 digits of your card number'
+					message='16 digits of your card'
 				/>
 			</DataContainer>
 

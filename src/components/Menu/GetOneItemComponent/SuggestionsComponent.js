@@ -151,7 +151,7 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 										onPress={() =>
 											_setItem(-1)
 										}>
-										<SuggestionItem style={{ height: 55, width: 55,borderWidth: 10, borderColor: themeContext.GRAYFACEBOOK, marginRight: 7 }}>
+										<SuggestionItem style={{ height: 55, width: 55, borderWidth: 3.5, borderColor: themeContext.GRAYFACEBOOK, marginRight: 7 }}>
 											<SuggestionItemImage
 												source={{
 													uri:

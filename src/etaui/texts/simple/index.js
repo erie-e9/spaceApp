@@ -1,9 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/native'
+import { PixelRatio } from 'react-native'
 
 const Text = styled.Text`
 	align-items: center;
 	justify-content: center;
+	font-size: 12px
 `
 
 const ETASimpleText = ({
@@ -22,7 +24,7 @@ const ETASimpleText = ({
 			textAlign: align || 'center',
 			color: color || 'black',
 			fontWeight: weight || '400',
-			fontSize: size || 14,
+			fontSize: size || PixelRatio.getFontScale(),
 			...style,
 		}}>
 		{children || 'Text'}

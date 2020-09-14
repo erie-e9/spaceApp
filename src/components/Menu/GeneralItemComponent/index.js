@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, {ThemeContext} from 'styled-components'
-import {Dimensions, Platform} from 'react-native'
+import {Dimensions, Platform, PixelRatio} from 'react-native'
 import {useNavigation, useIsFocused} from '@react-navigation/native'
 import {Ionicons} from '@icons'
 import {ETASimpleText} from '@etaui'
@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
 
 const {width} = Dimensions.get('window')
+const size = 75
 
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'red',
@@ -16,6 +17,8 @@ const Touchable = styled.TouchableOpacity.attrs({
 })`
 	z-index: 100;
 `
+
+// width: ${PixelRatio.getPixelSizeForLayoutSize(size)}
 const Card = styled.View`
 	height: 220px;
 	width: ${width / 2.65}px;
@@ -204,6 +207,10 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 						source={{
 							uri: item.images[0].image,
 						}}
+						// style={{
+						// 	height: PixelRatio.getPixelSizeForLayoutSize(size),
+						// 	width: PixelRatio.getPixelSizeForLayoutSize(size)
+						// }}
 					/>
 				</CardTop>
 				<CardBottom>

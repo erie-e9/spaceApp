@@ -44,7 +44,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 			style={{
 				shadowColor: '#333',
 				shadowOpacity: 0.5,
-				shadowOffset: {height: 7},
+				shadowOffset: {height: 1},
 				shadowRadius: 2,
 				elevation: 5,
 			}}>
