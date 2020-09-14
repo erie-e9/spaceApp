@@ -7,7 +7,7 @@ import { Dimensions, StyleSheet, TextInput } from 'react-native'
 import Animated, { Easing } from 'react-native-reanimated'
 
 const { Value, timing } = Animated
-const { height, width} = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 
 const HeaderSafeArea = styled.SafeAreaView`
 	z-index: 1000;

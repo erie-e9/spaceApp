@@ -2,18 +2,16 @@ import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {
-	createStackNavigator,
-	CardStyleInterpolators,
-} from '@react-navigation/stack'
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 import {Ionicons} from '@icons'
 import {fakeavatar, variables} from '@utils/constants'
 import DinamycTabButton from './DinamycTabButton'
 // import {eq, multiply, greaterThan, cond} from 'react-native-reanimated';
 // import {withTransition} from 'react-native-redash';
-import {MenuNavigator, GetOneItemNavigator} from './MenuNavigator'
+import {MenuNavigator, GetOneItemNavigator, CustomProductNavigator} from './MenuNavigator'
 import {ChatNavigator, ChatItemNavigator} from './ChatNavigator'
 import CartNavigator from './CartNavigator'
+// import CustomProductNavigator from './CustomProductNavigator'
 import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator'
 import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
@@ -180,6 +178,7 @@ const ShopTabNavigator = () => {
 			<ShopTab.Screen name='Chats' component={ChatNavigator} />
 			<ShopTab.Screen name='ItemGenerator' component={() => null} />
 			<ShopTab.Screen name='Cart' component={CartNavigator} />
+			{/* <ShopTab.Screen name='CustomProductNavigator' component={CustomProductNavigator} /> */}
 			{/* <ShopTab.Screen name='Favs' component={FavsScreen} /> */}
 			<ShopTab.Screen name='Profile' component={ProfileNavigator} />
 		</ShopTab.Navigator>
@@ -201,6 +200,14 @@ const ShopNavigator = () => (
 		<Stack.Screen
 			name='GetOneItemNavigator'
 			component={GetOneItemNavigator}
+			options={{
+				cardStyleInterpolator:
+					CardStyleInterpolators.forModalPresentationIOS,
+			}}
+		/>
+		<Stack.Screen
+			name='CustomProductNavigator'
+			component={CustomProductNavigator}
 			options={{
 				cardStyleInterpolator:
 					CardStyleInterpolators.forModalPresentationIOS,

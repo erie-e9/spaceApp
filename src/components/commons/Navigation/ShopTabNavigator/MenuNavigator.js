@@ -1,10 +1,7 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
-import {
-	createStackNavigator,
-	CardStyleInterpolators,
-} from '@react-navigation/stack'
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 import {FontAwesome, Ionicons} from '@icons'
 import {ETASearchBar} from '@etaui'
 import {variables} from '@utils/constants'
@@ -15,6 +12,9 @@ import PromotionScreen from '@screens/Menu/PromotionScreen'
 import SectionScreen from '@screens/Menu/SectionScreen'
 import AllItemsScreen from '@screens/Menu/AllItemsScreen'
 import GetOneItemScreen from '@screens/Menu/GetOneItemScreen'
+import CustomProductNavigator from './CustomProductNavigator'
+// import CustomProductScreen from '@screens/CustomProduct/CustomProductScreen'
+
 
 const Header = styled.View`
 	margin-left: 15px;
@@ -342,4 +342,4 @@ const GetOneItemNavigator = () => {
 	)
 }
 
-export {MenuNavigator, GetOneItemNavigator}
+export {MenuNavigator, GetOneItemNavigator, CustomProductNavigator}

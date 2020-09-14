@@ -20,10 +20,14 @@ import { handler as paymentmethodsSaga } from '@redux/profile/paymentmethods/sag
 import { handler as faqsSaga } from '@redux/profile/help/faqs/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+// const store = createStore(
+//   reducer,
+//   composeEnhancers(applyMiddleware(sagaMiddleware)),
+// )
 const store = createStore(
-  reducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware)),
+    reducer,
+    applyMiddleware(sagaMiddleware)
 )
 
 sagaMiddleware.run(userSaga)

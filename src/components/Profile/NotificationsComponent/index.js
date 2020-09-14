@@ -2,6 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
+import _ from 'lodash'
 import Card from './Card'
 import {connect} from 'react-redux'
 import {GET_DATA_REQUEST} from '@redux/profile/notifications/actions'
@@ -19,16 +20,9 @@ const NotificationSettingContainer = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const { email,
-		 	push_notifications,
-	 		sms,
- 			paused_orders,
-			weekly_offers } = state.notifications
-	return { email,
-			 push_notifications,
-			 sms,
-			 paused_orders,
-			 weekly_offers }
+	const { data } = state.notifications
+
+	return { data }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
@@ -39,17 +33,56 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const NotificationsComponent = ({ getDataRequest, email, push_notifications, sms, paused_orders, weekly_offers }) => {
+const NotificationsComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
-	const [switchItem, setswitchItem] = useState(true)
+	const [groupedBy, setgroupedBy] = useState() 
 	
 	useEffect(() => {
 		getDataRequest()
-		console.log('NotificationsComponent: ',  { email, push_notifications, sms, paused_orders, weekly_offers });
-	}, [])
+		console.log('NotificationsComponent: data',  { data });
+		if (data) {
+			let grouped = _.groupBy(data, 'group')
+			console.alert('[NotificationsComponent] useEffect grouped: ', grouped[0]);
+			setgroupedBy(grouped)
+		}
+	}, [data])
 
 	return (
 		<Root>
+			{/* {
+				data
+				?	<>
+						{
+							groupedBy.map((item) => {
+								return (
+									<NotificationSettingContainer key={element._id}>
+										<ETASimpleText
+											size={15}
+											weight={Platform.OS === 'ios' ? '400' : '800'}
+											color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+											align='left'>
+											{element.group}
+										</ETASimpleText>
+											{
+												item.forEach(element => {
+													return (
+															<Card
+																headTitle={element.headTitle}
+																headTitleID={element.headTitleID}
+																message={element.message}
+																active={element.active}
+															/>
+													)
+												})
+											}
+									</NotificationSettingContainer>
+								)
+							})
+						}
+					</>
+				:	null
+			} */}
+			
 			<NotificationSettingContainer>
 				<ETASimpleText
 					size={15}
@@ -60,18 +93,21 @@ const NotificationsComponent = ({ getDataRequest, email, push_notifications, sms
 				</ETASimpleText>
 				<Card
 					headTitle='Email'
+					headTitleID='email'
 					message='Will send you relevant information, promotions and offers about our products via email.'
-					active={email}
+					// active={email}
 				/>
 				<Card
 					headTitle='Push notifications'
+					headTitleID='push_notifications'
 					message='Will send you relevant information, promotions and offers about our products via notifications.'
-					active={push_notifications}
+					// active={push_notifications}
 				/>
 				<Card
 					headTitle='SMS'
+					headTitleID='sms'
 					message='Will send you relevant information, promotions and offers about our products via message sms.'
-					active={sms}
+					// active={sms}
 				/>
 			</NotificationSettingContainer>
 
@@ -85,8 +121,9 @@ const NotificationsComponent = ({ getDataRequest, email, push_notifications, sms
 				</ETASimpleText>
 				<Card
 					headTitle='Paused orders'
+					headTitleID='paused_orders'
 					message='Will send you relevant information, promotions and offers about our products via email.'
-					active={paused_orders}
+					// active={paused_orders}
 				/>
 			</NotificationSettingContainer>
 
@@ -100,8 +137,9 @@ const NotificationsComponent = ({ getDataRequest, email, push_notifications, sms
 				</ETASimpleText>
 				<Card
 					headTitle='Weekly offers'
+					headTitleID='weekly_offers'
 					message='Will send you relevant information, promotions and offers about our products via email.'
-					active={weekly_offers}
+					// active={weekly_offers}
 				/>
 			</NotificationSettingContainer>
 		</Root>

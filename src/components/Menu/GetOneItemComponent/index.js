@@ -11,6 +11,7 @@ import { GET_DATA_REQUEST } from '@redux/menu/similarto/actions'
 import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
 import {currencySeparator} from '@functions'
 import LinearGradient from 'react-native-linear-gradient'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const {width} = Dimensions.get('window')
 
@@ -51,28 +52,6 @@ const ItemBottomContainer = styled.View`
 	z-index: 100;
 `
 const AddCartContainer = styled.View`
-	position: absolute;
-	top: -25px;
-	flex-direction: row;
-	height: 40px;
-	width: 120px;
-	border-radius: 30px;
-	shadow-offset: 0px 1px;
-	shadow-radius: 2px;
-	shadow-opacity: 0.2;
-	elevation: 0.3;
-	background-color: ${(props) => props.theme.PRIMARY_COLOR};
-	margin-horizontal: 7px;
-	padding-horizontal: 10px;
-	justify-content: center;
-	align-items: center;
-	align-self: center;
-	z-index: 1000;
-`
-const AddCartTouchable = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
-})`
 	position: absolute;
 	top: -25px;
 	flex-direction: row;
@@ -220,7 +199,7 @@ const PercentContainer = styled.View`
 const ItemInfoContainer = styled.View`
 	min-height: 10px;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: center;
 	padding-horizontal: 10px;
 	align-items: stretch;
 	background-color: transparent;
@@ -507,40 +486,65 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getDataReque
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 						}}>
 						{addedCounter === 0 ? (
-							<AddCartTouchable
-								onPress={() => _addCart(selectedItem)}>
-								<AddRemoveButtonContainer>
-									<ETASimpleText
-										size={16}
-										weight={
-											Platform.OS ===
-											'ios'
-												? '600'
-												: '300'
-										}
-										color='white'
-										align='center'>
-										+
-									</ETASimpleText>
-								</AddRemoveButtonContainer>
-								<FontAwesome
-									name='shopping-cart'
-									size={16}
-									color='white'
+							<AddCartContainer>
+								<TouchableOpacity
+									onPress={() => _addCart(selectedItem)}
 									style={{
+										flexDirection: 'row',
+										height: 40,
+										width: 120,
+										borderRadius: 30,
+										justifyContent: 'center',
+										zIndex: 1000,
+										justifyContent: 'center',
+										alignItems: 'center',
 										alignSelf: 'center',
-									}}
-								/>
-							</AddCartTouchable>
+										backgroundColor: themeContext.PRIMARY_COLOR,
+									}}>
+									<AddRemoveButtonContainer>
+										<ETASimpleText
+											size={16}
+											weight={
+												Platform.OS ===
+												'ios'
+													? '600'
+													: '300'
+											}
+											color='white'
+											align='center'>
+											+
+										</ETASimpleText>
+									</AddRemoveButtonContainer>
+									<FontAwesome
+										name='shopping-cart'
+										size={16}
+										color='white'
+										style={{
+											alignSelf: 'center',
+										}}
+									/>
+								</TouchableOpacity>
+							</AddCartContainer>
 						) : (
 							<AddCartContainer>
 								<AddRemoveContainer>
-									<RemoveCart
+									<TouchableOpacity
 										onPress={() =>
 											_removeFromCart(
 												selectedItem._id,
 											)
-										}>
+										}
+										style={{
+											flexDirection: 'row',
+											justifyContent: 'center',
+											alignItems: 'center',
+											marginBottom: Platform.OS === 'ios' ?  10 : 0,
+											height: 25,
+											width: 25,
+											right: 1,
+											backgroundColor: 'transparent',
+											zIndex: 1000,
+										}}>
 										<AddRemoveButtonContainer>
 											{/* <CounterContainer> */}
 											<ETASimpleText
@@ -559,7 +563,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getDataReque
 											</ETASimpleText>
 											{/* </CounterContainer> */}
 										</AddRemoveButtonContainer>
-									</RemoveCart>
+									</TouchableOpacity>
 									<CounterContainer>
 										<ETASimpleText
 											size={11}
@@ -574,10 +578,21 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getDataReque
 											{addedCounter}
 										</ETASimpleText>
 									</CounterContainer>
-									<AddCart
+									<TouchableOpacity
 										onPress={() =>
 											_addCart(selectedItem)
-										}>
+										}
+										style={{
+											flexDirection: 'row',
+											justifyContent: 'center',
+											alignItems: 'center',
+											marginBottom: Platform.OS === 'ios' ?  10 : 0,
+											height: 25,
+											width: 25,
+											left: 1,
+											backgroundColor: 'transparent',
+											zIndex: 1000,
+										}}>
 										<AddRemoveButtonContainer>
 											{/* <CounterContainer> */}
 											<ETASimpleText
@@ -596,7 +611,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getDataReque
 											</ETASimpleText>
 											{/* </CounterContainer> */}
 										</AddRemoveButtonContainer>
-									</AddCart>
+									</TouchableOpacity>
 								</AddRemoveContainer>
 							</AddCartContainer>
 						)}

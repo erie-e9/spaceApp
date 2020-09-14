@@ -5,6 +5,7 @@ import {
         TOOGLE_NOTIFICATION,
         TOOGLE_NOTIFICATION_SUCCESS
 } from './actions'
+import data from '@utils/notifications.json'
 
 function* handler() {
     yield takeEvery(GET_DATA_REQUEST, getDataRequest)
@@ -15,7 +16,9 @@ function* getDataRequest(action) {
   try {
     yield put({
       type: GET_DATA_REQUEST_SUCCESS,
-      payload: {},
+      payload: {
+        data: data.data,
+      },
     })
   } catch (error) {
     console.log('Notifications error: ', error)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, {ThemeContext} from 'styled-components'
 import {Dimensions, Platform} from 'react-native'
 import {useNavigation, useIsFocused} from '@react-navigation/native'
@@ -11,8 +11,8 @@ import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } f
 const {width} = Dimensions.get('window')
 
 const Touchable = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
+	underlayColor: 'red',
+	// hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
 })`
 	z-index: 100;
 `
@@ -32,6 +32,7 @@ const CardTop = styled.View`
 	flex: 1.25;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
+	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `
 const ItemImage = styled.Image`
 	height: 100%;
@@ -137,11 +138,11 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogleFavorite, item }) => {
+const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, toogleFavorite, item }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ isFavorite, setisFavorite ] = useState(false)
-	const isFocused = useIsFocused();
+	const isFocused = useIsFocused()
 
 	useEffect(() => {
 		if (isFocused) {
@@ -333,7 +334,7 @@ const GeneralItemComponent = ({ getAllFavoriteItemsRequest, favoritesdata, toogl
 			</Card>
 		</Touchable>
 	)
-}
+})
 
 const GeneralItemComponenttConnect = connect(
 	mapStateToProps,

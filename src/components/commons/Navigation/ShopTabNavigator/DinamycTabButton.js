@@ -9,6 +9,8 @@ import {
 	IcecreamIcon2,
 	IcecreamIcon3,
 } from '@icons'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import {useNavigation} from '@react-navigation/native'
 
 const ItemGeneratorContainer = styled.View`
 	position: absolute;
@@ -18,14 +20,16 @@ const ItemGeneratorButton = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
+	justify-content: center;
+	align-items: center;
 	z-index: 2000;
 `
 const SecondaryButton = styled.View`
 	justify-content: center;
 	align-items: center;
-	height: 30px;
-	width: 30px;
-	border-radius: 36px;
+	height: 35px;
+	width: 35px;
+	border-radius: 17.5px;
 	position: absolute;
 	top: -60px;
 	shadow-color: black;
@@ -33,19 +37,14 @@ const SecondaryButton = styled.View`
 	shadow-offset: 10px;
 	shadow-opacity: 0;
 	border-width: 0px;
-	border-color: red;
+	border-color: transparent;
+	z-index: 2000;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
-	z-index: 2000;
-`
-const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
-})`
-	z-index: 2000;
 `
 
-const DinamycTabButton = ({focused, size, onPress}) => {
+const DinamycTabButton = ({ focused, size, onPress }) => {
 	const themeContext = useContext(ThemeContext)
+	const navigation = useNavigation()
 	const buttonSize = new Animated.Value(1)
 	const mode = new Animated.Value(0)
 
@@ -103,14 +102,32 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 
 	const _handlePressButton1 = () => {
 		console.log('_handlePressButton1 pressed')
+		navigation.navigate('CustomProductNavigator', {
+			screen: 'CustomProductScreen',
+			params: {
+				itemTitle: 'propitem 1',
+			},
+		})
 	}
 
 	const _handlePressButton2 = () => {
 		console.log('_handlePressButton2 pressed')
+		navigation.navigate('CustomProductNavigator', {
+			screen: 'CustomProductScreen',
+			params: {
+				itemTitle: 'propitem 2',
+			},
+		})
 	}
 
 	const _handlePressButton3 = () => {
 		console.log('_handlePressButton3 pressed')
+		navigation.navigate('CustomProductNavigator', {
+			screen: 'CustomProductScreen',
+			params: {
+				itemTitle: 'propitem 3',
+			},
+		})
 	}
 
 	return (
@@ -122,11 +139,15 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 					top: SecondaryButton1Y,
 					zIndex: 1000,
 				}}>
-				<SecondaryButton>
-					<SubItemGeneratorButton
+				<SecondaryButton 
+					style={{}}
+				>
+					<TouchableOpacity
+						style={{}}
 						onPress={() => {
-							_handlePressButton1()
-							onPress()
+							_handlePressButton1();
+							onPress();
+							hide();
 						}}>
 						<Animated.View
 							style={{
@@ -136,18 +157,13 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 									},
 								],
 							}}>
-							{/* <IcecreamIcon
-                focused={focused}
-                color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
-                color='white'
-                size={size-7} /> */}
 							<MaterialCommunityIcons
 								name='ice-cream'
 								size={size - 7}
 								color='white'
 							/>
 						</Animated.View>
-					</SubItemGeneratorButton>
+					</TouchableOpacity>
 				</SecondaryButton>
 			</Animated.View>
 
@@ -159,10 +175,12 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 					zIndex: 1000,
 				}}>
 				<SecondaryButton>
-					<SubItemGeneratorButton
+					<TouchableOpacity
+						style={{}}
 						onPress={() => {
-							_handlePressButton2()
-							onPress()
+							_handlePressButton2();
+							onPress();
+							hide();
 						}}>
 						<Animated.View
 							style={{
@@ -174,12 +192,11 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 							}}>
 							<SunIcon
 								focused={focused}
-								// color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
 								color='white'
 								size={size - 7}
 							/>
 						</Animated.View>
-					</SubItemGeneratorButton>
+					</TouchableOpacity>
 				</SecondaryButton>
 			</Animated.View>
 
@@ -191,15 +208,16 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 					zIndex: 1000,
 				}}>
 				<SecondaryButton>
-					{/* <IcecreamIcon3
-            focused={focused}
-            // color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
-            color='white'
-          size={size-7} /> */}
-					<SubItemGeneratorButton
-						onPress={() => _handlePressButton3()}>
+					<TouchableOpacity
+						style={{}}
+						onPress={() => {
+							_handlePressButton3();
+							onPress();
+							hide();
+						}}>
 						<Animated.View
 							style={{
+								
 								transform: [
 									{
 										scale: buttonSize,
@@ -212,7 +230,7 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 							size={size - 7}
 							color='white'
 						/>
-					</SubItemGeneratorButton>
+					</TouchableOpacity>
 				</SecondaryButton>
 			</Animated.View>
 
@@ -248,22 +266,16 @@ const DinamycTabButton = ({focused, size, onPress}) => {
 							borderWidth: 7,
 							borderColor:
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-							transform: [
-								{
-									scale: buttonSize,
-								},
-							],
+							// transform: [
+							// 	{
+							// 		scale: buttonSize,
+							// 	},
+							// ],
 							zIndex: 1000,
 						}}>
-						{/* <IcecreamIcon
-							focused={focused}
-							color={focused ? themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-							color='white'
-							size={size}
-							/> */}
 						<Ionicons
 							name='ios-ice-cream'
-							size={size}
+							size={size - 1}
 							color='white'
 						/>
 					</Animated.View>

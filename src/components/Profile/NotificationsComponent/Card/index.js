@@ -2,6 +2,8 @@ import React, {useState, useEffect, useContext} from 'react'
 import {Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components/native'
 import {ETASimpleText, ETASwitch} from '@etaui'
+import {connect} from 'react-redux'
+import {TOOGLE_NOTIFICATION} from '@redux/profile/notifications/actions'
 
 const Card = styled.View`
 	flex-direction: row;
@@ -15,7 +17,7 @@ const MetadataInfo = styled.View`
 	width: 100%;
 	flex-direction: column;
 	justify-content: center;
-	padding-bottom: 5px;
+	padding-bottom: 2px;
 	padding-horizontal: 1px;
 	background-color: transparent;
 `
@@ -23,6 +25,7 @@ const MetadaInfoHead = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	padding-top: 2px;
 	background-color: transparent;
 `
 const MessageContainer = styled.View`
@@ -30,12 +33,24 @@ const MessageContainer = styled.View`
 	min-height: 30px;
 	align-items: center;
 	padding-horizontal: 10px;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	background-color: transparent;
 `
 
-const NotificationCardComponent = ({headTitle, message, active }) => {
+const mapDispatchProps = (dispatch, props) => ({
+	toogleNotification: (id) => {
+		dispatch({
+			type: TOOGLE_NOTIFICATION,
+			payload: {
+				id
+			}
+		})
+	}
+
+})
+
+const NotificationCardComponent = ({ headTitle, headTitleID, message, active, toogleNotification }) => {
 	const themeContext = useContext(ThemeContext)
-	const [switchItem, setswitchItem] = useState(!true)
+	// const [switchItem, setswitchItem] = useState(!true)
 
 	return (
 		<>
@@ -56,9 +71,10 @@ const NotificationCardComponent = ({headTitle, message, active }) => {
 							{headTitle}
 						</ETASimpleText>
 						<ETASwitch
-							onChange={() =>
-								setswitchItem(!switchItem)
-							}
+							onChange={() => toogleNotification(headTitleID)}
+							// onChange={() =>
+							// 	setswitchItem(!switchItem)
+							// }
 							activated={active}
 							color={
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -86,10 +102,10 @@ const NotificationCardComponent = ({headTitle, message, active }) => {
 	)
 }
 
-// const NotificationCardComponentConnect = connect(
-// 	mapStateToProps,
-// 	mapDispatchProps,
-// )(NotificationCardComponent)
+const NotificationCardComponentConnect = connect(
+	null,
+	mapDispatchProps,
+)(NotificationCardComponent)
 
-// export default React.memo(NotificationCardComponentConnect)
-export default React.memo(NotificationCardComponent)
+export default React.memo(NotificationCardComponentConnect)
+// export default React.memo(NotificationCardComponent)

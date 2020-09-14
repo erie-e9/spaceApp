@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
-import {Platform, Dimensions} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
+import {Platform, Dimensions} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
 import {connect} from 'react-redux'
@@ -79,6 +79,7 @@ const ButtonPayContainer = styled.View`
 	align-items: center;
 	background-color: transparent;
 `
+
 const mapStateToProps = (state, props) => {
 	const {data} = state.cart
 	return {data}

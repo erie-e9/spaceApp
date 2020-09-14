@@ -17,7 +17,7 @@ const Switch = styled.View`
 	width: 40px;
 	border-width: 0.5px;
 	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-	margin: 10px;
+	margin: 5px;
 	border-radius: 20px;
 	padding: 1px;
 	background-color: transparent;

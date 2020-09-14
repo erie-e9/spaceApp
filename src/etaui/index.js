@@ -19,6 +19,7 @@ import ETAStarRating from '@etaui/starrating'
 import ETAAutoScroll from '@etaui/autoscroll'
 import ETACreditCard from '@etaui/creditcard'
 import ETAValidationInput from '@etaui/inputs/validationnput'
+import ETAMultiStep from '@etaui/multistep'
 
 export {
   ETAButtonOutline,
@@ -42,4 +43,5 @@ export {
   ETAAutoScroll,
   ETACreditCard,
   ETAValidationInput,
+  ETAMultiStep
 }

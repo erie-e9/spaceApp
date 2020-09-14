@@ -1,7 +1,7 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
-import ItemGetOnePreviousOrderComponent from './ItemGetOnePreviousOrderComponent'
+import Item from './Item'
 import {ETASimpleText} from '@etaui'
 
 const Root = styled.View`
@@ -53,7 +53,7 @@ const ListItemsGetOnePreviousOrderComponent = ({ items }) => {
                 showsHorizontalScrollIndicator={!true}
                 showsVerticalScrollIndicator
                 renderItem={({item}) => {
-                    return <ItemGetOnePreviousOrderComponent item={item} />
+                    return <Item item={item} />
                 }}
             />
         </Root>
