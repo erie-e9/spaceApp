@@ -60,7 +60,7 @@ const ContentSafeArea = styled.SafeAreaView`
 `
 const ContentInner = styled.View`
 	flex: 1;
-    padding-top: 50
+    padding-top: 50px
 `
 const Separator = styled.View`
 	height: 1px;

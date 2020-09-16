@@ -37,11 +37,13 @@ const MessageContainer = styled.View`
 `
 
 const mapDispatchProps = (dispatch, props) => ({
-	toogleNotification: (id) => {
+	toogleNotification: (paramItem) => {
+		console.log('[NotificationCardComponent] mapDispatchProps toogleNotification paramItem: ', paramItem);
+		
 		dispatch({
 			type: TOOGLE_NOTIFICATION,
 			payload: {
-				id
+				paramItem
 			}
 		})
 	}
@@ -50,7 +52,20 @@ const mapDispatchProps = (dispatch, props) => ({
 
 const NotificationCardComponent = ({ headTitle, headTitleID, message, active, toogleNotification }) => {
 	const themeContext = useContext(ThemeContext)
-	// const [switchItem, setswitchItem] = useState(!true)
+	const [switchItem, setswitchItem] = useState(active)
+	const [_switchItem, _setswitchItem] = useState()
+
+	const _switch = async (item) => {
+		console.log('ewe: ', item);
+		await setswitchItem(!switchItem)
+		await _setswitchItem(item)
+		// toogleNotification(id)
+	}
+
+	// useEffect(() => {
+	// 	setswitchItem(!switchItem)
+	// 	toogleNotification(_switchItem)
+	// },[_switchItem])
 
 	return (
 		<>
@@ -71,11 +86,9 @@ const NotificationCardComponent = ({ headTitle, headTitleID, message, active, to
 							{headTitle}
 						</ETASimpleText>
 						<ETASwitch
-							onChange={() => toogleNotification(headTitleID)}
-							// onChange={() =>
-							// 	setswitchItem(!switchItem)
-							// }
-							activated={active}
+							// onChange={() => { setswitchItem(!switchItem); _setswitchItem(headTitleID)}}
+							onChange={() => _switch({ headTitleID, active: !switchItem })}
+							activated={switchItem}
 							color={
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}

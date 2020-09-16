@@ -2,8 +2,8 @@ import React, {useState, useEffect, useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform, Dimensions} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText} from '@etaui'
-import {Ionicons, FontAwesome} from '@icons'
+import {ETASimpleText, ETALoader} from '@etaui'
+import {FontAwesome} from '@icons'
 import PaymentCardComponent from './Card'
 import {connect} from 'react-redux'
 import {GET_DATA_REQUEST} from '@redux/profile/paymentmethods/actions'
@@ -92,73 +92,77 @@ const PaymentMethodsListComponent = ({getDataRequest, data}) => {
 
 	return (
 		<Root>
-			<PaymentMethodsList
-				contentContainerStyle={{
-					alignSelf: 'stretch',
-				}}
-				data={data}
-				keyExtractor={(item) => item._id.toString()}
-				showsVerticalScrollIndicator={false}
-				refreshing={refresher}
-				onRefresh={() => _getData()}
-				renderItem={({item}) => (
-					<Touchable
-						key={item._id}
-						onPress={() => _onPress(item)}>
-						<PaymentCardComponent {...item} />
-					</Touchable>
-				)}
-				ListFooterComponent={() => (
-					<Touchable>
-						<Card>
-							<MetadataInfo>
-								<MetadaInfoHead>
-									<ETASimpleText
-										size={13}
-										weight={
-											Platform.OS ===
-											'ios'
-												? '400'
-												: '800'
-										}
-										color={
-											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-										}
-										align='left'>
-										Cash
-									</ETASimpleText>
-									<CompanyIconContainer>
-										<FontAwesome
-											name='money'
-											size={
-												iconSize -
-												10
+			{
+				items.length !== 0
+				?	<PaymentMethodsList
+						contentContainerStyle={{
+							alignSelf: 'stretch',
+						}}
+						data={items}
+						keyExtractor={(item) => item._id.toString()}
+						showsVerticalScrollIndicator={false}
+						refreshing={refresher}
+						onRefresh={() => _getData()}
+						renderItem={({item}) => (
+							<Touchable
+								key={item._id}
+								onPress={() => _onPress(item)}>
+								<PaymentCardComponent {...item} />
+							</Touchable>
+						)}
+						ListFooterComponent={() => (
+							<Touchable>
+								<Card>
+									<MetadataInfo>
+										<MetadaInfoHead>
+											<ETASimpleText
+												size={13}
+												weight={
+													Platform.OS ===
+													'ios'
+														? '400'
+														: '800'
+												}
+												color={
+													themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+												}
+												align='left'>
+												Cash
+											</ETASimpleText>
+											<CompanyIconContainer>
+												<FontAwesome
+													name='money'
+													size={
+														iconSize -
+														10
+													}
+													color={
+														themeContext.PRIMARY_TEXT_COLOR_LIGHT
+													}
+												/>
+											</CompanyIconContainer>
+										</MetadaInfoHead>
+										<ETASimpleText
+											size={11}
+											weight={
+												Platform.OS ===
+												'ios'
+													? '300'
+													: '200'
 											}
 											color={
 												themeContext.PRIMARY_TEXT_COLOR_LIGHT
 											}
-										/>
-									</CompanyIconContainer>
-								</MetadaInfoHead>
-								<ETASimpleText
-									size={11}
-									weight={
-										Platform.OS ===
-										'ios'
-											? '300'
-											: '200'
-									}
-									color={
-										themeContext.PRIMARY_TEXT_COLOR_LIGHT
-									}
-									align='left'>
-									You can pay with cash too
-								</ETASimpleText>
-							</MetadataInfo>
-						</Card>
-					</Touchable>
-				)}
-			/>
+											align='left'>
+											You can pay with cash too
+										</ETASimpleText>
+									</MetadataInfo>
+								</Card>
+							</Touchable>
+						)}
+					/>
+				:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+			}
 		</Root>
 	)
 }

@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef} from 'react'
+import React, {useState, useContext, useRef, memo} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
 import {TouchableWithoutFeedback, Animated, Easing} from 'react-native'
@@ -35,11 +35,12 @@ const IndicatorContainer = styled.View`
 	z-index: 10;
 `
 
-const ETASwitch = ({color, onChange, activated}) => {
+const ETASwitch = memo(({ color, onChange, activated }) => {
 	const animation = useRef(new Animated.Value(activated ? 1 : 0)).current
 	const [toggled, setToggled] = useState(!!activated)
 	const themeContext = useContext(ThemeContext)
 	const [containerWidth] = useState(0)
+	console.log('[ETASwitch] activated:', activated);
 
 	const _switchAnimated = () => {
 		setToggled(!toggled)
@@ -119,6 +120,6 @@ const ETASwitch = ({color, onChange, activated}) => {
 			</TouchableWithoutFeedback>
 		</Root>
 	)
-}
+})
 
-export default React.memo(ETASwitch);
+export default ETASwitch

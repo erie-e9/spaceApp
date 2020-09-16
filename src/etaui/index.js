@@ -20,6 +20,7 @@ import ETAAutoScroll from '@etaui/autoscroll'
 import ETACreditCard from '@etaui/creditcard'
 import ETAValidationInput from '@etaui/inputs/validationnput'
 import ETAMultiStep from '@etaui/multistep'
+import ETALoader from '@etaui/loader'
 
 export {
   ETAButtonOutline,
@@ -43,5 +44,6 @@ export {
   ETAAutoScroll,
   ETACreditCard,
   ETAValidationInput,
-  ETAMultiStep
+  ETAMultiStep,
+  ETALoader
 }

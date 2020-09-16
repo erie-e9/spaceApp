@@ -40,7 +40,7 @@ const Logo = styled.Image`
 	border-radius: 45px;
 `
 
-const HeadDirectionComponent = () => {
+const HeadDirectionComponent = React.memo(() => {
 	const themeContext = useContext(ThemeContext)
 
 	return (
@@ -67,6 +67,6 @@ const HeadDirectionComponent = () => {
 			</ContentContainer>
 		</Root>
 	)
-}
+})
 
-export default React.memo(HeadDirectionComponent)
+export default HeadDirectionComponent

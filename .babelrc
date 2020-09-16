@@ -2,7 +2,7 @@
   "env": {
       "production": {
           "plugins": [
-              "transform-remove-console",
+              // "transform-remove-console",
               ["module-resolver", {
                 "root": ["./src"],
                 "alias": {
@@ -24,7 +24,7 @@
       },
       "development": {
           "plugins": [
-              "transform-remove-console",
+              // "transform-remove-console",
               ["module-resolver", {
                 "root": ["./src"],
                 "alias": {

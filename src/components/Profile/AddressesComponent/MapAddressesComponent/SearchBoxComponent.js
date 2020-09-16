@@ -4,7 +4,7 @@ import {Platform} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
 import {FontAwesome} from '@icons'
-import Loader from '@commons/Loader'
+import {ETALoader} from '@etaui'
 
 const SearchBox = styled.View`
 	position: absolute;
@@ -65,7 +65,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 				minLength={2} // minimum length of text to search
 				autoFocus={false}
 				fetchDetails
-				loader={() => <Loader />}
+				loader={() => <ETALoader color={themeContext.GRAYFACEBOOK} size={12}/>}
 				enablePoweredByContainer={false}
 				onPress={(data, details = null) => {
 					// 'details' is provided when fetchDetails = true

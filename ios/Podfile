@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 
 # Convert all permission pods into static libraries
-use_frameworks!
+# use_frameworks!
 pre_install do |installer|
   installer.pod_targets.each do |pod|
     if pod.name.start_with?('RNFB') || pod.name.eql?('RNPermissions') || pod.name.start_with?('Permission-')
@@ -121,10 +121,10 @@ target 'iceCream' do
   #//
   #pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
-  target 'iceCreamTests' do
-    inherit! :complete
-    # Pods for testing
-  end
+  # target 'iceCreamTests' do
+  #   inherit! :complete
+  #   # Pods for testing
+  # end
 
   use_native_modules!
 # Convert all permission pods into static libraries
@@ -160,11 +160,11 @@ end
   end
 end
 
-target 'iceCream-tvOS' do
-  # Pods for iceCream-tvOS
+# target 'iceCream-tvOS' do
+#   # Pods for iceCream-tvOS
 
-  target 'iceCream-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
+#   target 'iceCream-tvOSTests' do
+#     inherit! :search_paths
+#     # Pods for testing
+#   end
+# end

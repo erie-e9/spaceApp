@@ -5,13 +5,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 import {Ionicons} from '@icons'
 import {fakeavatar, variables} from '@utils/constants'
-import DinamycTabButton from './DinamycTabButton'
+import DynamicTabButton from './DynamicTabButton'
 // import {eq, multiply, greaterThan, cond} from 'react-native-reanimated';
 // import {withTransition} from 'react-native-redash';
 import {MenuNavigator, GetOneItemNavigator, CustomProductNavigator} from './MenuNavigator'
 import {ChatNavigator, ChatItemNavigator} from './ChatNavigator'
 import CartNavigator from './CartNavigator'
-// import CustomProductNavigator from './CustomProductNavigator'
 import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator'
 import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
@@ -21,6 +20,8 @@ const AvatarContainer = styled.View`
 	align-items: center;
 `
 const Avatar = styled.Image``
+
+const NullComponent = () => (null)
 
 const ShopTab = createBottomTabNavigator()
 const ShopTabNavigator = () => {
@@ -93,7 +94,7 @@ const ShopTabNavigator = () => {
 						)
 					} else if (route.name === 'ItemGenerator') {
 						return (
-							<DinamycTabButton
+							<DynamicTabButton
 								focused={focused}
 								size={Platform.OS === 'ios' ? size - 3 : size}
 								onPress={() => null}
@@ -176,9 +177,8 @@ const ShopTabNavigator = () => {
 			<ShopTab.Screen name='Menu' component={MenuNavigator} />
 			{/* <ShopTab.Screen name='Orders' component={OrdersScreen} /> */}
 			<ShopTab.Screen name='Chats' component={ChatNavigator} />
-			<ShopTab.Screen name='ItemGenerator' component={() => null} />
+			<ShopTab.Screen name='ItemGenerator' component={NullComponent} />
 			<ShopTab.Screen name='Cart' component={CartNavigator} />
-			{/* <ShopTab.Screen name='CustomProductNavigator' component={CustomProductNavigator} /> */}
 			{/* <ShopTab.Screen name='Favs' component={FavsScreen} /> */}
 			<ShopTab.Screen name='Profile' component={ProfileNavigator} />
 		</ShopTab.Navigator>

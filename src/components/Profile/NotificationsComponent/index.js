@@ -14,10 +14,11 @@ const Root = styled.ScrollView`
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const NotificationSettingContainer = styled.View`
-	flex-direction: column;
-	padding: 5px 15px;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+flex-direction: column;
+padding: 5px 15px;
+background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
+const View = styled.View``
 
 const mapStateToProps = (state, props) => {
 	const { data } = state.notifications
@@ -35,113 +36,51 @@ const mapDispatchProps = (dispatch, props) => ({
 
 const NotificationsComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
-	const [groupedBy, setgroupedBy] = useState() 
 	
 	useEffect(() => {
 		getDataRequest()
-		console.log('NotificationsComponent: data',  { data });
-		if (data) {
-			let grouped = _.groupBy(data, 'group')
-			console.alert('[NotificationsComponent] useEffect grouped: ', grouped[0]);
-			setgroupedBy(grouped)
-		}
+		console.log('[NotificationsComponent] data: ', data);
 	}, [data])
 
 	return (
 		<Root>
-			{/* {
+			
+			{
 				data
-				?	<>
+				?	<NotificationSettingContainer>
 						{
-							groupedBy.map((item) => {
+							data.map((element, i) => {
+								// console.log('element: ', element);
 								return (
-									<NotificationSettingContainer key={element._id}>
+									<View key={i}>
 										<ETASimpleText
 											size={15}
 											weight={Platform.OS === 'ios' ? '400' : '800'}
 											color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-											align='left'>
+											align='left'
+											style={{ marginTop: 5, marginBottom: 7 }}>
 											{element.group}
 										</ETASimpleText>
-											{
-												item.forEach(element => {
-													return (
-															<Card
-																headTitle={element.headTitle}
-																headTitleID={element.headTitleID}
-																message={element.message}
-																active={element.active}
-															/>
-													)
-												})
-											}
-									</NotificationSettingContainer>
+										{
+											element.items.map((item, j) => {
+												return (
+													<Card
+														key={j}
+														headTitle={item.headTitle}
+														headTitleID={item.headTitleID}
+														message={item.message}
+														active={item.active}
+													/>
+												)
+											})
+										}
+									</View >
 								)
 							})
 						}
-					</>
+					</NotificationSettingContainer>
 				:	null
-			} */}
-			
-			<NotificationSettingContainer>
-				<ETASimpleText
-					size={15}
-					weight={Platform.OS === 'ios' ? '400' : '800'}
-					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					align='left'>
-					Messages
-				</ETASimpleText>
-				<Card
-					headTitle='Email'
-					headTitleID='email'
-					message='Will send you relevant information, promotions and offers about our products via email.'
-					// active={email}
-				/>
-				<Card
-					headTitle='Push notifications'
-					headTitleID='push_notifications'
-					message='Will send you relevant information, promotions and offers about our products via notifications.'
-					// active={push_notifications}
-				/>
-				<Card
-					headTitle='SMS'
-					headTitleID='sms'
-					message='Will send you relevant information, promotions and offers about our products via message sms.'
-					// active={sms}
-				/>
-			</NotificationSettingContainer>
-
-			<NotificationSettingContainer>
-				<ETASimpleText
-					size={15}
-					weight={Platform.OS === 'ios' ? '400' : '800'}
-					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					align='left'>
-					Reminders
-				</ETASimpleText>
-				<Card
-					headTitle='Paused orders'
-					headTitleID='paused_orders'
-					message='Will send you relevant information, promotions and offers about our products via email.'
-					// active={paused_orders}
-				/>
-			</NotificationSettingContainer>
-
-			<NotificationSettingContainer>
-				<ETASimpleText
-					size={15}
-					weight={Platform.OS === 'ios' ? '400' : '800'}
-					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					align='left'>
-					Promotions
-				</ETASimpleText>
-				<Card
-					headTitle='Weekly offers'
-					headTitleID='weekly_offers'
-					message='Will send you relevant information, promotions and offers about our products via email.'
-					// active={weekly_offers}
-				/>
-			</NotificationSettingContainer>
+			}
 		</Root>
 	)
 }

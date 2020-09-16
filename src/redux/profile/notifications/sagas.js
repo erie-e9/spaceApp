@@ -17,6 +17,7 @@ function* getDataRequest(action) {
     yield put({
       type: GET_DATA_REQUEST_SUCCESS,
       payload: {
+        // data: [],
         data: data.data,
       },
     })

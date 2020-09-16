@@ -1,11 +1,14 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, memo} from 'react'
 import styled from 'styled-components/native'
 import {Animated} from 'react-native'
 
 const Root = styled.View`
 	flex: 1;
+	width: 100%;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	background-color: transparent;
 `
 const LoaderContainer = styled.View`
 	width: 40px;
@@ -14,13 +17,13 @@ const LoaderContainer = styled.View`
 	align-items: center;
 `
 const Ball = styled.View`
-	height: ${(props) => props.size};
-	width: ${(props) => props.size};
-	border-radius: ${(props) => props.size / 2};
+	height: ${(props) => props.size}px;
+	width: ${(props) => props.size}px;
+	border-radius: ${(props) => props.size / 2}px;
 	background-color: ${(props) => props.color};
 `
 
-const Loader = ({color, size}) => {
+const ETALoader = memo(({color, size}) => {
 	const animations = {
 		one: new Animated.Value(0),
 		two: new Animated.Value(0),
@@ -97,6 +100,6 @@ const Loader = ({color, size}) => {
 			</LoaderContainer>
 		</Root>
 	)
-}
+})
 
-export default React.memo(Loader)
+export default ETALoader

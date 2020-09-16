@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, memo} from 'react'
 import {Animated} from 'react-native'
 import styled, {ThemeContext} from 'styled-components/native'
 import {
@@ -9,7 +9,7 @@ import {
 	IcecreamIcon2,
 	IcecreamIcon3,
 } from '@icons'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { TouchableHighlight } from 'react-native-gesture-handler'
 import {useNavigation} from '@react-navigation/native'
 
 const ItemGeneratorContainer = styled.View`
@@ -18,18 +18,16 @@ const ItemGeneratorContainer = styled.View`
 `
 const ItemGeneratorButton = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	// hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
-	justify-content: center;
-	align-items: center;
 	z-index: 2000;
 `
 const SecondaryButton = styled.View`
 	justify-content: center;
 	align-items: center;
-	height: 35px;
-	width: 35px;
-	border-radius: 17.5px;
+	height: 30px;
+	width: 30px;
+	border-radius: 15px;
 	position: absolute;
 	top: -60px;
 	shadow-color: black;
@@ -41,8 +39,14 @@ const SecondaryButton = styled.View`
 	z-index: 2000;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
+const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+})`
+	z-index: 2000;
+`
 
-const DinamycTabButton = ({ focused, size, onPress }) => {
+const DynamicTabButton = memo(({ focused, size, onPress }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const buttonSize = new Animated.Value(1)
@@ -142,13 +146,15 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 				<SecondaryButton 
 					style={{}}
 				>
-					<TouchableOpacity
+					<TouchableHighlight
+						underlayColor='transparent'
 						style={{}}
 						onPress={() => {
 							_handlePressButton1();
 							onPress();
 							hide();
 						}}>
+						<>
 						<Animated.View
 							style={{
 								transform: [
@@ -163,7 +169,8 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 								color='white'
 							/>
 						</Animated.View>
-					</TouchableOpacity>
+						</>
+					</TouchableHighlight>
 				</SecondaryButton>
 			</Animated.View>
 
@@ -175,13 +182,15 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 					zIndex: 1000,
 				}}>
 				<SecondaryButton>
-					<TouchableOpacity
+					<TouchableHighlight
+						underlayColor='transparent'
 						style={{}}
 						onPress={() => {
 							_handlePressButton2();
 							onPress();
 							hide();
 						}}>
+						<>
 						<Animated.View
 							style={{
 								transform: [
@@ -196,7 +205,8 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 								size={size - 7}
 							/>
 						</Animated.View>
-					</TouchableOpacity>
+						</>
+					</TouchableHighlight>
 				</SecondaryButton>
 			</Animated.View>
 
@@ -208,13 +218,15 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 					zIndex: 1000,
 				}}>
 				<SecondaryButton>
-					<TouchableOpacity
+					<TouchableHighlight
+						underlayColor='transparent'
 						style={{}}
 						onPress={() => {
 							_handlePressButton3();
 							onPress();
 							hide();
 						}}>
+						<>
 						<Animated.View
 							style={{
 								
@@ -230,7 +242,8 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 							size={size - 7}
 							color='white'
 						/>
-					</TouchableOpacity>
+						</>
+					</TouchableHighlight>
 				</SecondaryButton>
 			</Animated.View>
 
@@ -283,6 +296,6 @@ const DinamycTabButton = ({ focused, size, onPress }) => {
 			</Animated.View>
 		</ItemGeneratorContainer>
 	)
-}
+})
 
-export default React.memo(DinamycTabButton)
+export default DynamicTabButton

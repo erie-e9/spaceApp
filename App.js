@@ -18,7 +18,7 @@ if (UIManager.setLayoutAnimationEnabledExperimental) {
 const App = () => {
   const colorSchema = useColorScheme()
   // console.disableYellowBox = true
-  LogBox.ignoreAllLogs()
+  // LogBox.ignoreAllLogs()
 
   useEffect(() => { 
     OneSignal.init('7df7e613-b790-43dd-9fda-f9d97f93b190', {

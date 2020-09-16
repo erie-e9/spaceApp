@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
-import styled from 'styled-components/native'
+import React, {useState, useEffect, useContext} from 'react'
+import styled, {ThemeContext}from 'styled-components/native'
 import {useNavigation} from '@react-navigation/native'
 import Card from './Card'
+import {ETALoader} from '@etaui'
 import {connect} from 'react-redux'
 import {GET_DATA_REQUEST} from '@redux/profile/branchoffices/actions'
 
@@ -33,6 +34,7 @@ const mapDispatchProps = (dispatch, props) => ({
 })
 
 const BranchOfficesListComponent = ({getDataRequest, data}) => {
+	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 	const [refresher, setrefresher] = useState(!true)
@@ -60,23 +62,27 @@ const BranchOfficesListComponent = ({getDataRequest, data}) => {
 
 	return (
 		<Root>
-			<BranchOfficesList
-				contentContainerStyle={{
-					alignSelf: 'stretch',
-				}}
-				data={items}
-				keyExtractor={(item) => item._id.toString()}
-				showsVerticalScrollIndicator={false}
-				refreshing={refresher}
-				onRefresh={() => _getData()}
-				renderItem={({item}) => (
-					<Touchable
-						key={item._id}
-						onPress={() => _onPress(item)}>
-						<Card {...item} />
-					</Touchable>
-				)}
-			/>
+			{
+				items.length !== 0
+				?	<BranchOfficesList
+						contentContainerStyle={{
+							alignSelf: 'stretch',
+						}}
+						data={items}
+						keyExtractor={(item) => item._id.toString()}
+						showsVerticalScrollIndicator={false}
+						refreshing={refresher}
+						onRefresh={() => _getData()}
+						renderItem={({item}) => (
+							<Touchable
+								key={item._id}
+								onPress={() => _onPress(item)}>
+								<Card {...item} />
+							</Touchable>
+						)}
+					/>
+				:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+			}
 		</Root>
 	)
 }
