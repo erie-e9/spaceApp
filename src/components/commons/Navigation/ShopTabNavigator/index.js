@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
+import {Platform, View} from 'react-native'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 import {Ionicons} from '@icons'
@@ -167,16 +167,27 @@ const ShopTabNavigator = () => {
 				// activeTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
 				inactiveTintColor:
 					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-				style: {
-					borderTopColor: 'transparent',
-					backgroundColor:
-						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-				},
+				// style: {
+				// 	borderTopColor: 'transparent',
+				// 	backgroundColor:
+				// 		themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+						
+				// },
+				style: () => {
+					if (route.name === 'Chats') {
+						return {
+							backgroundColor: 'red',
+							// width: 'auto'
+						}
+					}
+				}
 			}}>
 			{/* <ShopTab.Screen name='Analytics' component={AnalyticsScreen} /> */}
 			<ShopTab.Screen name='Menu' component={MenuNavigator} />
 			{/* <ShopTab.Screen name='Orders' component={OrdersScreen} /> */}
-			<ShopTab.Screen name='Chats' component={ChatNavigator} />
+			<ShopTab.Screen name='Chats' component={ChatNavigator} 
+			// tabBarOptions={{ style: { backgroundColor: 'red' } }}
+			/>
 			<ShopTab.Screen name='ItemGenerator' component={NullComponent} />
 			<ShopTab.Screen name='Cart' component={CartNavigator} />
 			{/* <ShopTab.Screen name='Favs' component={FavsScreen} /> */}

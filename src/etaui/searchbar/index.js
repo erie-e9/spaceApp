@@ -114,7 +114,7 @@ class ETASearchBar extends React.Component {
     // animation config
     // input box
     const input_box_translate_x_config = {
-      duration: 200,
+      duration: 100,
       toValue: 0,
       easing: Easing.inOut(Easing.ease)
     }
@@ -153,7 +153,7 @@ class ETASearchBar extends React.Component {
     // animation config
     // input box
     const input_box_translate_x_config = {
-      duration: 200,
+      duration: 100,
       toValue: width,
       easing: Easing.inOut(Easing.ease)
     }
@@ -364,8 +364,8 @@ const styles = StyleSheet.create({
   },
   content: {
     width: width,
-    height: height,
-    position:'absolute',
+    // height: height,
+    position: 'absolute',
     left: 0,
     bottom: 0,
     zIndex: 999

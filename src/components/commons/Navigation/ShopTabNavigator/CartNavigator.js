@@ -18,7 +18,6 @@ const IconsRightContainer = styled.View`
 	margin-right: 15px;
 `
 const LastOrderButtonContainer = styled.View`
-	margin-horizontal: 10px;
 	background-color: transparent;
 	border-width: 0.9px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
@@ -27,15 +26,17 @@ const LastOrderButtonContainer = styled.View`
 `
 const LastOrderButton = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 10, bottom: 0, right: 5, left: 5}
+	hitSlop: {top: 5, bottom: 0, right: 0, left: 0}
 })`
 	z-index: 100;
+	margin: 0px;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
+	margin: 0px 5px 0px 0px;
 `
 
 

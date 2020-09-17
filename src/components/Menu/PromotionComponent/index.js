@@ -23,7 +23,7 @@ const PromoHeadContainer = styled.View`
 	align-items: center;
 	width: ${width}px;
 	height: 100%;
-	padding-bottom: 5px;
+	padding: -10px 0px 5px 0px;
 `
 const PromoHeadTitle = styled.View`
 	flex: 1;

@@ -20,6 +20,8 @@ import IcecreamIcon4 from './icecream4'
 import MasterCardIcon from './mastercard'
 import VisaIcon from './visa'
 
+import IceCreamComponent from './products/icecream1'
+
 export {
   Ionicons,
   FontAwesome,
@@ -39,5 +41,6 @@ export {
   IcecreamIcon3,
   IcecreamIcon4,
   MasterCardIcon,
-  VisaIcon
+  VisaIcon,
+  IceCreamComponent
 }
