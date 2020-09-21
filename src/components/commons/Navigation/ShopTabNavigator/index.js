@@ -167,20 +167,20 @@ const ShopTabNavigator = () => {
 				// activeTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
 				inactiveTintColor:
 					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-				// style: {
-				// 	borderTopColor: 'transparent',
-				// 	backgroundColor:
-				// 		themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+				style: {
+					borderTopColor: 'transparent',
+					backgroundColor:
+						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 						
-				// },
-				style: () => {
-					if (route.name === 'Chats') {
-						return {
-							backgroundColor: 'red',
-							// width: 'auto'
-						}
-					}
-				}
+				},
+				// style: () => {
+				// 	if (route.name === 'Chats') {
+				// 		return {
+				// 			backgroundColor: 'red',
+				// 			// width: 'auto'
+				// 		}
+				// 	}
+				// }
 			}}>
 			{/* <ShopTab.Screen name='Analytics' component={AnalyticsScreen} /> */}
 			<ShopTab.Screen name='Menu' component={MenuNavigator} />

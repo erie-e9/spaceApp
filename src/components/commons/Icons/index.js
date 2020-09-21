@@ -20,7 +20,7 @@ import IcecreamIcon4 from './icecream4'
 import MasterCardIcon from './mastercard'
 import VisaIcon from './visa'
 
-import IceCreamComponent from './products/icecream1'
+import CustomProductIcon1 from './products/customproducticon1'
 
 export {
   Ionicons,
@@ -42,5 +42,5 @@ export {
   IcecreamIcon4,
   MasterCardIcon,
   VisaIcon,
-  IceCreamComponent
+  CustomProductIcon1
 }

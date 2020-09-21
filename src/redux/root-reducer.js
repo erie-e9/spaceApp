@@ -16,6 +16,8 @@ import { reducer as branchofficesReducer } from './profile/branchoffices/reducer
 import { reducer as previousordersReducer } from './profile/previousorders/reducers'
 import { reducer as paymentmethodsReducer } from './profile/paymentmethods/reducers'
 import { reducer as faqsReducer } from './profile/help/faqs/reducers'
+import { reducer as customproductReducer } from './customproduct/reducers'
+import { reducer as flavorsReducer } from './customproduct/flavors/reducers'
 
 const reducer = combineReducers({
   user: userReducer,
@@ -35,6 +37,8 @@ const reducer = combineReducers({
   previousorders: previousordersReducer,
   paymentmethods: paymentmethodsReducer,
   faqs: faqsReducer,
+  customproduct: customproductReducer,
+  flavors: flavorsReducer
 })
 
 export { reducer }

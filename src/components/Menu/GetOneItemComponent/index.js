@@ -341,7 +341,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getDataRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
+const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getDataRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
 	const {item} = route.params
@@ -839,7 +839,7 @@ const GetOneItemComponent = ({ addToCart, removeFromCart, cartdata, getDataReque
 			</SuggestionsContainer>
 		</Root>
 	)
-}
+})
 
 const GetOneItemComponentConnect = connect(
 	mapStateToProps,

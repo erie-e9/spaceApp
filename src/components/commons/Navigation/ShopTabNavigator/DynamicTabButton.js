@@ -1,4 +1,4 @@
-import React, {useContext, memo} from 'react'
+import React, {useEffect, useContext, memo} from 'react'
 import {Animated} from 'react-native'
 import styled, {ThemeContext} from 'styled-components/native'
 import {
@@ -8,9 +8,12 @@ import {
 	IcecreamIcon,
 	IcecreamIcon2,
 	IcecreamIcon3,
+	IceCreamComponent
 } from '@icons'
 import { TouchableHighlight } from 'react-native-gesture-handler'
 import {useNavigation} from '@react-navigation/native'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/customproduct/actions'
 
 const ItemGeneratorContainer = styled.View`
 	position: absolute;
@@ -45,12 +48,30 @@ const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
 })`
 	z-index: 2000;
 `
+const mapStateToProps = (state, props) => {
+	const { data } = state.customproduct
 
-const DynamicTabButton = memo(({ focused, size, onPress }) => {
+	return { data }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getDataRequest: () => {
+		dispatch({
+			type: GET_DATA_REQUEST,
+		})
+	},
+})
+
+const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const buttonSize = new Animated.Value(1)
 	const mode = new Animated.Value(0)
+
+	useEffect(() => {
+		getDataRequest()
+		console.log('[DynamicTabButton] data: ', data);
+	}, [data])
 
 	const _handlePress = () => {
 		// console.warn('pressed');
@@ -109,8 +130,8 @@ const DynamicTabButton = memo(({ focused, size, onPress }) => {
 		navigation.navigate('CustomProductNavigator', {
 			screen: 'CustomProductScreen',
 			params: {
-				itemTitle: 'propitem 1',
-			},
+				paramData: data[0]
+			}
 		})
 	}
 
@@ -119,8 +140,8 @@ const DynamicTabButton = memo(({ focused, size, onPress }) => {
 		navigation.navigate('CustomProductNavigator', {
 			screen: 'CustomProductScreen',
 			params: {
-				itemTitle: 'propitem 2',
-			},
+				paramData: data[1]
+			}
 		})
 	}
 
@@ -129,8 +150,8 @@ const DynamicTabButton = memo(({ focused, size, onPress }) => {
 		navigation.navigate('CustomProductNavigator', {
 			screen: 'CustomProductScreen',
 			params: {
-				itemTitle: 'propitem 3',
-			},
+				paramData: data[2]
+			}
 		})
 	}
 
@@ -298,4 +319,8 @@ const DynamicTabButton = memo(({ focused, size, onPress }) => {
 	)
 })
 
-export default DynamicTabButton
+const DynamicTabButtonConnect = connect(
+	mapStateToProps,
+	mapDispatchProps
+)(DynamicTabButton)
+export default DynamicTabButtonConnect

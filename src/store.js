@@ -19,6 +19,8 @@ import { handler as branchofficesSaga } from '@redux/profile/branchoffices/sagas
 import { handler as previousordersSaga } from '@redux/profile/previousorders/sagas'
 import { handler as paymentmethodsSaga } from '@redux/profile/paymentmethods/sagas'
 import { handler as faqsSaga } from '@redux/profile/help/faqs/sagas'
+import { handler as customproductSaga } from '@redux/customproduct/sagas'
+import { handler as flavorsSaga } from '@redux/customproduct/flavors/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -48,5 +50,7 @@ sagaMiddleware.run(branchofficesSaga)
 sagaMiddleware.run(previousordersSaga)
 sagaMiddleware.run(paymentmethodsSaga)
 sagaMiddleware.run(faqsSaga)
+sagaMiddleware.run(customproductSaga)
+sagaMiddleware.run(flavorsSaga)
 
 export { store }

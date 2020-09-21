@@ -22,14 +22,14 @@ const Root = styled.View`
 const Item = styled.View`
 	flex: 1;
 	min-height: 50px;
+	justify-content: center;
+	align-items: center;
 	flex-direction: row;
 	padding-horizontal: 5px;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	shadow-offset: 2px 3px;
 	shadow-radius: 2px;
 	shadow-opacity: 0;
-	justify-content: center;
-	align-items: center;
 	margin: 0px 0px 0px 0px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `

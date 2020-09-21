@@ -1,0 +1,91 @@
+{
+    "data": [
+        {
+            "_id": 70613,
+            "name": "custom item 1",
+            "icon": 1,
+            "variations": [
+                {
+                    "_id": 32650,
+                    "itemsize": "baby",
+                    "size": 16,
+                    "price": 12
+                },
+                {
+                    "_id": 13103,
+                    "itemsize": "small",
+                    "size": 14,
+                    "price": 18
+                },
+                {
+                    "_id": 15919,
+                    "itemsize": "middle",
+                    "size": 13,
+                    "price": 26
+                },
+                {
+                    "_id": 37101,
+                    "itemsize": "big",
+                    "size": 11,
+                    "price": 50
+                },
+                {
+                    "_id": 71279,
+                    "itemsize": "extra big",
+                    "size": 9,
+                    "price": 58
+                }
+            ]
+        },
+        {
+            "_id": 95715,
+            "name": "custom item 2",
+            "icon": 2,
+            "variations": [
+                {
+                    "_id": 98138,
+                    "itemsize": "small",
+                    "size": 11,
+                    "price": 63
+                },
+                {
+                    "_id": 44939,
+                    "itemsize": "middle",
+                    "size": 11,
+                    "price": 38
+                },
+                {
+                    "_id": 25995,
+                    "itemsize": "big",
+                    "size": 11,
+                    "price": 86
+                }
+            ]
+        },
+        {
+            "_id": 44842,
+            "name": "custom item 3",
+            "icon": 3,
+            "variations": [
+                {
+                    "_id": 44630,
+                    "itemsize": "small",
+                    "size": 11,
+                    "price": 79
+                },
+                {
+                    "_id": 73434,
+                    "itemsize": "middle",
+                    "size": 11,
+                    "price": 84
+                },
+                {
+                    "_id": 10933,
+                    "itemsize": "big",
+                    "size": 11,
+                    "price": 97
+                }
+            ]
+        }
+    ]
+}
