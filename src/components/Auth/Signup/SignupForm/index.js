@@ -1,402 +1,395 @@
-import React, {useState, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Formik} from 'formik'
-import * as yup from 'yup'
-import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
-// import { graphql, compose } from 'react-apollo';
-// import { connect } from 'react-redux';
-// import signupMutation from '../graphql/mutations/signup'
-// import Loading from '../Loading';
-// import { login } from '../actions/client'
-
-const signup = 'Sign up'
+import React, { useState, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETAMultiStep, ETARadio } from '@etaui'
+import {connect} from 'react-redux'
+import {SIGNUP} from '@redux/user/actions'
 
 const Root = styled.TouchableWithoutFeedback`
 	flex: 1;
-	position: relative;
-	justify-content: center;
+    background-color: red;
+`
+const StepContainer = styled.View`
+	flex: 1;
+	flex-direction: column;
+    background-color: transparent;
+`
+const HeadContainer = styled.View`
+	flex: 0.2;
+    justify-content: center;
+    align-items: flex-start;
+	margin-top: 100px;
+	padding-horizontal: 20px;
+    background-color: transparent;
 `
 const FormContainer = styled.View`
-	flex: 1;
+	flex: 0.5;
 	flex-direction: column;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	padding-horizontal: 10px;
+    background-color: transparent;
 `
 const ButtonContainer = styled.View`
 	height: 20px;
 	margin-top: 15px;
 `
+const GenreContainer = styled.View`
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-around;
+	padding-horizontal: 10px;
+	margin-top: 15px;
+	background-color: transparent;
+`
 
-const validationSchema = yup.object().shape({
-	fullname: yup
-		.string()
-		.matches(
-			/^[A-Za-zÑñ ]*$/,
-			'Please do not insert special characters',
-		)
-		.required('This field is required')
-		.uppercase(),
-	username: yup
-		.string()
-		.matches(
-			/^[A-Za-z0-9]*$/,
-			'Please do not insert special characters',
-		)
-		.required('This field is required')
-		.uppercase(),
-	cellphone: yup
-		.string()
-		.matches(/^[0-9]*$/, 'Cellphone should has only numbers')
-		.min(10, 'Cellphone should has 10 characters')
-		.max(10, 'Cellphone should has 10 characters')
-		.typeError('Phone should has only numbers')
-		.required('This field is required'),
-	password: yup
-		.string()
-		.matches(
-			/^[A-Za-z0-9]*$/,
-			'Please do not insert special characters',
-		)
-		.required('This field is required')
-		.min(5, 'Password must be bigger')
-		.uppercase(),
-	confirmPassword: yup
-		.string()
-		.matches(
-			/^[A-Za-z0-9]*$/,
-			'Please do not insert special characters',
-		)
-		.required('This field is required')
-		.min(5, 'Password must be bigger')
-		.oneOf([yup.ref('password'), null], 'Passwords must match'),
+const mapDispatchProps = (dispatch, props) => ({
+	getAllUserInfoUser: ({cellphone, password}) => {
+		dispatch({
+			type: SIGNUP,
+			payload: {
+				cellphone: cellphone,
+				password: password,
+			},
+		})
+	},
 })
 
-const SignupForm = () => {
-	const themeContext = useContext(ThemeContext)
-	const [mysecureTextEntry] = useState(true)
+const SignupForm = ({getAllUserInfoUser}) => {
+    const themeContext = useContext(ThemeContext)
+	const [ mysecureTextEntry ] = useState(true)
+	const [ radioItem, setradioItem ] = useState(true)
+	const [ radioItem2, setradioItem2 ] = useState(false)
+
+	const _radioChange = async (item) => {
+		console.log({radioItem, radioItem2});
+		await setradioItem(!radioItem)
+		await setradioItem2(!radioItem2)
+		// await _setswitchItem(item)
+		// toogleNotification(id)
+	}
 
 	return (
 		<Root>
-			<Formik
-				enableReinitialize
-				initialValues={{
-					fullname: '',
-					username: '',
-					cellphone: '',
-					password: '',
-				}}
-				onSubmit={(values, actions) => {
-					// signUp({
-					// 	fullname: values.fullname,
-					// 	username: values.username,
-					// 	cellphone: values.cellphone,
-					// 	password: values.password,
-					// })
-					setTimeout(() => {
-						actions.setSubmitting(false)
-						// alert(JSON.stringify(values))
-					}, 2000)
-				}}
-				validationSchema={validationSchema}>
-				{({
-					handleChange,
-					handleBlur,
-					handleSubmit,
-					values,
-					isSubmitting,
-					errors,
-				}) => (
-					<FormContainer>
-						<ETATextInputOutline
-							value={values.fullname}
-							placeholder='Fullname'
-							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							keyboardType='default'
-							autoCapitalize='none'
-							allowFontScaling
-							autoCorrect
-							autoFocus
-							blurOnSubmit={false}
-							caretHidden={false}
-							clearButtonMode='while-editing'
-							contextMenuHidden={false}
-							editable
-							enablesReturnKeyAutomatically={false}
-							underlineColorAndroid='transparent'
-							keyboardAppearance='dark'
-							maxLength={10}
-							multiline={false}
-							numberOfLines={1} // android
-							returnKeyLabel='next' // android
-							secureTextEntry={false} // password
-							spellCheck
-							textContentType='none'
-							returnKeyType='next'
-							textsize={14}
-							height={40}
-							width={270}
-							borderWidth={0.3}
-							onChangeText={handleChange(
-								'fullname',
-							)}
-							onBlur={handleBlur('fullname')}
-							selectionColor={
-								themeContext.PRIMARY_COLOR
-							}
-						/>
-						{errors.fullname ? (
-							<ETAErrorMessage size={12}>
-								{errors.fullname}
-							</ETAErrorMessage>
-						) : null}
-						<ETATextInputOutline
-							value={values.username}
-							placeholder='Username'
-							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							keyboardType='default'
-							autoCapitalize='none'
-							allowFontScaling
-							autoCorrect
-							autoFocus
-							blurOnSubmit={false}
-							caretHidden={false}
-							clearButtonMode='while-editing'
-							contextMenuHidden={false}
-							editable
-							enablesReturnKeyAutomatically={false}
-							underlineColorAndroid='transparent'
-							keyboardAppearance='dark'
-							maxLength={10}
-							multiline={false}
-							numberOfLines={1} // android
-							returnKeyLabel='next' // android
-							secureTextEntry={false} // password
-							spellCheck
-							textContentType='none'
-							returnKeyType='next'
-							textsize={14}
-							height={40}
-							width={270}
-							borderWidth={0.3}
-							onChangeText={handleChange(
-								'username',
-							)}
-							onBlur={handleBlur('username')}
-							selectionColor={
-								themeContext.PRIMARY_COLOR
-							}
-						/>
-						{errors.username ? (
-							<ETAErrorMessage size={12}>
-								{errors.username}
-							</ETAErrorMessage>
-						) : null}
-						<ETATextInputOutline
-							value={values.cellphone}
-							placeholder='Cellphone'
-							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							keyboardType='phone-pad'
-							autoCapitalize='none'
-							allowFontScaling
-							autoCorrect
-							autoFocus
-							blurOnSubmit={false}
-							caretHidden={false}
-							clearButtonMode='while-editing'
-							contextMenuHidden={false}
-							editable
-							enablesReturnKeyAutomatically={false}
-							underlineColorAndroid='transparent'
-							keyboardAppearance='dark'
-							maxLength={10}
-							multiline={false}
-							numberOfLines={1} // android
-							returnKeyLabel='next' // android
-							secureTextEntry={false} // password
-							spellCheck
-							textContentType='none'
-							returnKeyType='next'
-							textsize={14}
-							height={40}
-							width={270}
-							borderWidth={0.3}
-							onChangeText={handleChange(
-								'cellphone',
-							)}
-							onBlur={handleBlur('cellphone')}
-							selectionColor={
-								themeContext.PRIMARY_COLOR
-							}
-						/>
-						{errors.cellphone ? (
-							<ETAErrorMessage size={12}>
-								{errors.cellphone}
-							</ETAErrorMessage>
-						) : null}
-						<ETATextInputOutline
-							value={values.password}
-							placeholder='Password'
-							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							keyboardType='default'
-							autoCapitalize='none'
-							allowFontScaling
-							autoCorrect
-							autoFocus={false}
-							blurOnSubmit={false}
-							caretHidden={false}
-							clearButtonMode='while-editing'
-							contextMenuHidden={false}
-							editable
-							enablesReturnKeyAutomatically={false}
-							underlineColorAndroid='transparent'
-							keyboardAppearance='dark'
-							maxLength={100}
-							multiline={false}
-							numberOfLines={1} // android
-							returnKeyLabel='next' // android
-							secureTextEntry={mysecureTextEntry} // password
-							spellCheck
-							textContentType='none'
-							returnKeyType='none'
-							textsize={14}
-							height={40}
-							width={270}
-							borderWidth={0.3}
-							onChangeText={handleChange(
-								'password',
-							)}
-							onBlur={handleBlur('password')}
-							selectionColor={
-								themeContext.PRIMARY_COLOR
-							}
-						/>
-
-						{errors.password ? (
-							<ETAErrorMessage size={12}>
-								{errors.password}
-							</ETAErrorMessage>
-						) : null}
-						<ETATextInputOutline
-							value={values.confirmPassword}
-							placeholder='Confirm password'
-							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							keyboardType='default'
-							autoCapitalize='none'
-							allowFontScaling
-							autoCorrect
-							autoFocus={false}
-							blurOnSubmit={false}
-							caretHidden={false}
-							clearButtonMode='while-editing'
-							contextMenuHidden={false}
-							editable
-							enablesReturnKeyAutomatically={false}
-							underlineColorAndroid='transparent'
-							keyboardAppearance='dark'
-							maxLength={100}
-							multiline={false}
-							numberOfLines={1} // android
-							returnKeyLabel='next' // android
-							secureTextEntry={mysecureTextEntry} // password
-							spellCheck
-							textContentType='none'
-							returnKeyType='none'
-							textsize={14}
-							height={40}
-							width={270}
-							borderWidth={0.3}
-							onChangeText={handleChange(
-								'confirmPassword',
-							)}
-							onBlur={handleBlur('confirmPassword')}
-							selectionColor={
-								themeContext.PRIMARY_COLOR
-							}
-						/>
-						{errors.confirmPassword ? (
-							<ETAErrorMessage size={12}>
-								{errors.confirmPassword}
-							</ETAErrorMessage>
-						) : null}
-						<ButtonContainer>
-							<ETAButtonFilled
-								title={signup}
-								onPress={handleSubmit}
-								disabled={!!isSubmitting}
-								colorButton={
-									themeContext.SECONDARY_BACKGROUND_COLOR
+            <ETAMultiStep>
+                <ETAMultiStep.Step>
+                    <StepContainer>
+						<HeadContainer>
+							<ETASimpleText
+								size={24}
+								weight={
+									Platform.OS === 'ios'
+									? '700'
+									: 'bold'
 								}
-								padding={10}
-								width={isSubmitting ? 40 : 270}
-								borderRadius={
-									isSubmitting ? 20 : 3
+								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								align='left'
+								style={{ marginTop: 10 }}>
+								Welcome to create new account
+							</ETASimpleText>
+							<ETASimpleText
+								size={13}
+								weight={
+									Platform.OS === 'ios'
+									? '400'
+									: '500'
+								}
+								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								align='left'
+								style={{ marginTop: 10 }}>
+								Please use a real cellphone. We'll send a confirmation code.
+							</ETASimpleText>
+						</HeadContainer>
+                        <FormContainer>
+							<ETATextInputOutline
+								// value={values.cellphone}
+								placeholder='Cellphone'
+								placeholderTextColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								keyboardType='phone-pad'
+								autoCapitalize='none'
+								allowFontScaling
+								autoCorrect
+								autoFocus
+								blurOnSubmit={false}
+								caretHidden={false}
+								clearButtonMode='while-editing'
+								contextMenuHidden={false}
+								editable
+								enablesReturnKeyAutomatically={false}
+								underlineColorAndroid='transparent'
+								keyboardAppearance='dark'
+								maxLength={10}
+								multiline={false}
+								numberOfLines={1} // android
+								returnKeyLabel='next' // android
+								secureTextEntry={false} // password
+								spellCheck
+								textContentType='none'
+								returnKeyType='next'
+								textsize={14}
+								height={40}
+								width={270}
+								borderWidth={0.3}
+								// onChangeText={handleChange(
+								// 	'cellphone',
+								// )}
+								// onBlur={handleBlur('cellphone')}
+								selectionColor={themeContext.PRIMARY_COLOR}
+							/>
+						</FormContainer>
+                    </StepContainer>
+                </ETAMultiStep.Step>
+
+                <ETAMultiStep.Step>
+                    <StepContainer>
+						<HeadContainer>
+							<ETASimpleText
+								size={24}
+								weight={
+									Platform.OS === 'ios'
+									? '700'
+									: 'bold'
+								}
+								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								align='left'
+								style={{ marginTop: 10 }}>
+								Personal Data
+							</ETASimpleText>
+							<ETASimpleText
+								size={13}
+								weight={
+									Platform.OS === 'ios'
+									? '400'
+									: '500'
+								}
+								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								align='left'
+								style={{ marginTop: 10 }}>
+								Your personal data is confidential. We need it for identification use.
+							</ETASimpleText>
+						</HeadContainer>
+						<FormContainer>
+							<ETATextInputOutline
+								// value={values.fullname}
+								placeholder='Fullname'
+								placeholderTextColor={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+								keyboardType='default'
+								autoCapitalize='none'
+								allowFontScaling
+								autoCorrect
+								autoFocus
+								blurOnSubmit={false}
+								caretHidden={false}
+								clearButtonMode='while-editing'
+								contextMenuHidden={false}
+								editable
+								enablesReturnKeyAutomatically={false}
+								underlineColorAndroid='transparent'
+								keyboardAppearance='dark'
+								maxLength={10}
+								multiline={false}
+								numberOfLines={1} // android
+								returnKeyLabel='next' // android
+								secureTextEntry={false} // password
+								spellCheck
+								textContentType='none'
+								returnKeyType='next'
+								textsize={14}
+								height={40}
+								width={270}
+								borderWidth={0.3}
+								// onChangeText={handleChange(
+								// 	'fullname',
+								// )}
+								// onBlur={handleBlur('fullname')}
+								selectionColor={
+									themeContext.PRIMARY_COLOR
 								}
 							/>
-						</ButtonContainer>
-					</FormContainer>
-				)}
-			</Formik>
-			{/* <Wrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Fullname'
-                    returnKeyType={'next'}
-                    autoCapitalize='words'
-                    onChangeText={text => setfullName(text)}
-                    underlineColorAndroid='transparent'
-                    onSubmitEditing={() => emailInput.focus()}
-                    />
-                </InputWrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Email'
-                    keyboardType='email-address'
-                    autoCapitalize='none'
-                    onChangeText={text => setemail(text)}
-                    underlineColorAndroid='transparent'
-                    ref={(input) => {this.emailInput = input }}
-                    />
-                </InputWrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Username'
-                    autoCapitalize='none'
-                    onChangeText={text => setusername(text)}
-                    underlineColorAndroid='transparent'
-                    />
-                </InputWrapper>
-                <InputWrapper>
-                    <Input
-                    placeholder='Password'
-                    secureTextEntry
-                    onChangeText={text => setpassword(text)}
-                    underlineColorAndroid='transparent'
-                    />
-                </InputWrapper>
-                <ButtonConfirm onPress={() => _onSignupPress()} disabled={() => _checkIfDisabled()}>
-                    <ButtonConfirmText>
-                        {signup}
-                    </ButtonConfirmText>
-                </ButtonConfirm>
-            </Wrapper> */}
-		</Root>
-	)
+
+							<GenreContainer>
+								<ETARadio 
+									text='Men'
+									sizeText={14}
+									colorText={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+									onChange={() => _radioChange(radioItem)}
+									activated={radioItem}
+									sizeRadio={15}
+									colorRadio={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								/>
+								
+								<ETARadio 
+									text='Women'
+									sizeText={14}
+									colorText={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+									onChange={() => _radioChange(radioItem2)}
+									activated={radioItem2}
+									sizeRadio={15}
+									colorRadio={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								/>
+							</GenreContainer>
+
+						</FormContainer>
+					</StepContainer>
+				</ETAMultiStep.Step>
+
+				<ETAMultiStep.Step>
+                    <StepContainer>
+						<HeadContainer>
+							<ETASimpleText
+								size={24}
+								weight={
+									Platform.OS === 'ios'
+									? '700'
+									: 'bold'
+								}
+								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								align='left'
+								style={{ marginTop: 10 }}>
+								Account Data
+							</ETASimpleText>
+							<ETASimpleText
+								size={13}
+								weight={
+									Platform.OS === 'ios'
+									? '400'
+									: '500'
+								}
+								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								align='left'
+								style={{ marginTop: 10 }}>
+								The data will be usefull for use our app, please fill fields to finish your sign in.
+							</ETASimpleText>
+						</HeadContainer>
+						<FormContainer>
+							<ETATextInputOutline
+								// value={values.username}
+								placeholder='Username'
+								placeholderTextColor={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+								keyboardType='default'
+								autoCapitalize='none'
+								allowFontScaling
+								autoCorrect
+								autoFocus
+								blurOnSubmit={false}
+								caretHidden={false}
+								clearButtonMode='while-editing'
+								contextMenuHidden={false}
+								editable
+								enablesReturnKeyAutomatically={false}
+								underlineColorAndroid='transparent'
+								keyboardAppearance='dark'
+								maxLength={10}
+								multiline={false}
+								numberOfLines={1} // android
+								returnKeyLabel='next' // android
+								secureTextEntry={false} // password
+								spellCheck
+								textContentType='none'
+								returnKeyType='next'
+								textsize={14}
+								height={40}
+								width={270}
+								borderWidth={0.3}
+								// onChangeText={handleChange(
+								// 	'username',
+								// )}
+								// onBlur={handleBlur('username')}
+								selectionColor={
+									themeContext.PRIMARY_COLOR
+								}
+							/>
+
+							<ETATextInputOutline
+								// value={values.password}
+								placeholder='Password'
+								placeholderTextColor={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+								keyboardType='default'
+								autoCapitalize='none'
+								allowFontScaling
+								autoCorrect
+								autoFocus={false}
+								blurOnSubmit={false}
+								caretHidden={false}
+								clearButtonMode='while-editing'
+								contextMenuHidden={false}
+								editable
+								enablesReturnKeyAutomatically={false}
+								underlineColorAndroid='transparent'
+								keyboardAppearance='dark'
+								maxLength={100}
+								multiline={false}
+								numberOfLines={1} // android
+								returnKeyLabel='next' // android
+								secureTextEntry={mysecureTextEntry} // password
+								spellCheck
+								textContentType='none'
+								returnKeyType='none'
+								textsize={14}
+								height={40}
+								width={270}
+								borderWidth={0.3}
+								// onChangeText={handleChange(
+								// 	'password',
+								// )}
+								// onBlur={handleBlur('password')}
+								selectionColor={
+									themeContext.PRIMARY_COLOR
+								}
+							/>
+							
+							<ETATextInputOutline
+								// value={values.confirmPassword}
+								placeholder='Confirm password'
+								placeholderTextColor={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+								keyboardType='default'
+								autoCapitalize='none'
+								allowFontScaling
+								autoCorrect
+								autoFocus={false}
+								blurOnSubmit={false}
+								caretHidden={false}
+								clearButtonMode='while-editing'
+								contextMenuHidden={false}
+								editable
+								enablesReturnKeyAutomatically={false}
+								underlineColorAndroid='transparent'
+								keyboardAppearance='dark'
+								maxLength={100}
+								multiline={false}
+								numberOfLines={1} // android
+								returnKeyLabel='next' // android
+								secureTextEntry={mysecureTextEntry} // password
+								spellCheck
+								textContentType='none'
+								returnKeyType='none'
+								textsize={14}
+								height={40}
+								width={270}
+								borderWidth={0.3}
+								// onChangeText={handleChange(
+								// 	'confirmPassword',
+								// )}
+								// onBlur={handleBlur('confirmPassword')}
+								selectionColor={
+									themeContext.PRIMARY_COLOR
+								}
+							/>
+						</FormContainer>
+					</StepContainer>
+				</ETAMultiStep.Step>
+            </ETAMultiStep>
+        </Root>
+    )
 }
 
-export default SignupForm
-// export default compose(
-//         graphql(signupMutation),
-//         connect(undefined, { login }),
-//             )(SignupForm);
+const SignupFormConnect = connect(null, mapDispatchProps)(SignupForm)
+export default SignupFormConnect

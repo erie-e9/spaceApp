@@ -47,7 +47,7 @@ const SigninHead = () => {
 				<Logo source={require('@assets/icons/app-icon.png')} />
 			</LogoContainer>
 			<ETASimpleText
-				size={11}
+				size={13}
 				weight={Platform.OS === 'ios' ? '300' : '300'}
 				color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 				align='left'>

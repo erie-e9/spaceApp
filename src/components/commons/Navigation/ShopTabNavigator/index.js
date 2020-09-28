@@ -9,8 +9,8 @@ import DynamicTabButton from './DynamicTabButton'
 // import {eq, multiply, greaterThan, cond} from 'react-native-reanimated';
 // import {withTransition} from 'react-native-redash';
 import {MenuNavigator, GetOneItemNavigator, CustomProductNavigator} from './MenuNavigator'
-import {ChatNavigator, ChatItemNavigator} from './ChatNavigator'
-import CartNavigator from './CartNavigator'
+import {ChatNavigator, ChatItemNavigator, NewChatNavigator} from './ChatNavigator'
+import {CartNavigator, CheckoutNavigator} from './CartNavigator'
 import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator'
 import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
@@ -129,18 +129,19 @@ const ShopTabNavigator = () => {
 						return (
 							<AvatarContainer
 								style={{
-									height: size + 1.5,
-									width: size + 1.5,
-									borderRadius: size / 2,
-									backgroundColor: color,
+									height: size + 3,
+									width: size + 3,
+									borderRadius: (size + 3) / 2,
+									borderWidth: 2,
 									padding: 2,
+									borderColor: themeContext.ACTIVE,
+									backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 								}}>
 								<Avatar
 									style={{
-										height: size,
-										width: size,
-										borderRadius:
-											size / 2,
+										height: size - 3,
+										width: size - 3,
+										borderRadius: (size - 3) / 2,
 									}}
 									source={{
 										uri:
@@ -225,8 +226,24 @@ const ShopNavigator = () => (
 			}}
 		/>
 		<Stack.Screen
+			name='CheckoutNavigator'
+			component={CheckoutNavigator}
+			options={{
+				cardStyleInterpolator:
+					CardStyleInterpolators.forHorizontalIOS,
+			}}
+		/>
+		<Stack.Screen
 			name='ChatItemNavigator'
 			component={ChatItemNavigator}
+			options={{
+				cardStyleInterpolator:
+					CardStyleInterpolators.forHorizontalIOS,
+			}}
+		/>
+		<Stack.Screen
+			name='NewChatNavigator'
+			component={NewChatNavigator}
 			options={{
 				cardStyleInterpolator:
 					CardStyleInterpolators.forHorizontalIOS,

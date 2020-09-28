@@ -234,6 +234,5 @@ const SigninForm = ({getAllUserInfoUser}) => {
 	)
 }
 
-const SignConnect = connect(null, mapDispatchProps)(SigninForm)
-
-export default SignConnect
+const SigninConnect = connect(null, mapDispatchProps)(SigninForm)
+export default SigninConnect

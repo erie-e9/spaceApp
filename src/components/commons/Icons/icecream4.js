@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Svg, {Path} from 'react-native-svg'
 
-const AppIcon4 = ({focused, color, size}) => (
+const AppIcon4 = ({color, size}) => (
 	<Svg viewBox='60 60 0 0' width={size} height={size}>
 		<Path
 			fill={color}

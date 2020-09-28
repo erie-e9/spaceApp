@@ -12,6 +12,7 @@ import { handler as promotionsSaga } from '@redux/menu/promotions/sagas'
 import { handler as sectionsSaga } from '@redux/menu/sections/sagas'
 import { handler as cartSaga } from '@redux/cart/sagas'
 import { handler as chatsSaga } from '@redux/chats/sagas'
+import { handler as contactsSaga } from '@redux/chats/contacts/sagas'
 import { handler as addressesSaga } from '@redux/profile/addresses/sagas'
 import { handler as favoritesSaga } from '@redux/profile/favorites/sagas'
 import { handler as notificationsSaga } from '@redux/profile/notifications/sagas'
@@ -23,15 +24,7 @@ import { handler as customproductSaga } from '@redux/customproduct/sagas'
 import { handler as flavorsSaga } from '@redux/customproduct/flavors/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-// const store = createStore(
-//   reducer,
-//   composeEnhancers(applyMiddleware(sagaMiddleware)),
-// )
-const store = createStore(
-    reducer,
-    composeWithDevTools(applyMiddleware(sagaMiddleware))
-)
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(sagaMiddleware)))
 
 sagaMiddleware.run(userSaga)
 sagaMiddleware.run(menuSaga)
@@ -43,6 +36,7 @@ sagaMiddleware.run(sectionsSaga)
 sagaMiddleware.run(carouselSaga)
 sagaMiddleware.run(cartSaga)
 sagaMiddleware.run(chatsSaga)
+sagaMiddleware.run(contactsSaga)
 sagaMiddleware.run(addressesSaga)
 sagaMiddleware.run(favoritesSaga)
 sagaMiddleware.run(notificationsSaga)

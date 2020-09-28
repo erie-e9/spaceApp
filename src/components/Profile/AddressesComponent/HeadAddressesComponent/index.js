@@ -23,21 +23,21 @@ const ContentContainer = styled.View`
 	padding: 10px 20px;
 `
 const LogoContainer = styled.View`
+	height: ${Platform.OS === 'ios' ? logoSize + 10: logoSize + 10}px;
+	width: ${Platform.OS === 'ios' ? logoSize + 10: logoSize + 10}px;
+	border-radius: ${avatarRadius + 10}px;
 	flex-direction: row;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 80px;
-	width: 80px;
-	border-radius: ${avatarRadius}px;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 	border-width: 0.3px;
 	border-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `
 const Logo = styled.Image`
 	height: ${Platform.OS === 'ios' ? logoSize : 70}px;
 	width: ${Platform.OS === 'ios' ? logoSize : 70}px;
-	border-radius: 45px;
+	border-radius: ${avatarRadius}px;
 `
 
 const HeadDirectionComponent = React.memo(() => {

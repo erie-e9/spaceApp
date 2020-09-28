@@ -1,8 +1,8 @@
 import {
-        GET_DATA_REQUEST_SUCCESS,
-        ADD_TO_CART_SUCCESS,
-        REMOVE_FROM_CART_SUCCESS,
-        REMOVE_ITEM_FROM_CART_SUCCESS,
+  GET_DATA_REQUEST_SUCCESS,
+  ADD_TO_CART_SUCCESS,
+  REMOVE_FROM_CART_SUCCESS,
+  REMOVE_ITEM_FROM_CART_SUCCESS,
 } from './actions'
 
 const initialState = {
@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
           })
         }
       }
-      // console.log('state.data:', state.data);
+
       return { data: [...state.data] }
 
     case REMOVE_FROM_CART_SUCCESS:
@@ -44,7 +44,7 @@ const reducer = (state = initialState, action) => {
         } else {
           itemFound.howMany = 0
           if (itemFound.howMany === 0) {
-            for (var i = state.data.length; i--;) {
+            for (let i = state.data.length; i--;) {
               if (
                 state.data[i]._id
 								=== action.payload.paramItem
@@ -66,7 +66,7 @@ const reducer = (state = initialState, action) => {
 
         itemFound.howMany = 0
         if (itemFound.howMany === 0) {
-          for (var i = state.data.length; i--;) {
+          for (let i = state.data.length; i--;) {
             if (
               state.data[i]._id
 							=== action.payload.paramItem
@@ -78,7 +78,7 @@ const reducer = (state = initialState, action) => {
       }
 
       return { data: [...state.data] }
-      
+
     default:
       return state
   }

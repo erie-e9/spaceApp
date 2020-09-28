@@ -2,9 +2,11 @@
 import React, { useState, useContext, memo } from 'react'
 import styled from 'styled-components/native'
 import {ETASimpleText} from '@etaui'
+import ETAStepperPoint from './points'
 
 const Root = styled.View`
-	flex: 1;
+    flex: 1;
+    background-color: transparent;
 `
 const ButtonsContainer = styled.View`
     flex-direction: row;
@@ -25,6 +27,12 @@ const ActionButton = styled.TouchableOpacity.attrs({
     min-width: 100%;
     padding: 10px;
 `
+const PointsContainer = styled.View`
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+	background-color: transparent;
+`
 
 const MultiStepContext = React.createContext();
 
@@ -39,7 +47,8 @@ const useStepContext = () => {
 }
 
 const ETAMultiStep = memo(({ children }) => {
-    const [index, setindex] = useState(0)
+    const [ index, setindex ] = useState(0)
+    const [ itemslength ] = useState(children.length)
     
     const _nextStep = () => {
           if (index !== children.length - 1) {
@@ -66,34 +75,56 @@ const ETAMultiStep = memo(({ children }) => {
       };
   
     return (
-      <MultiStepContext.Provider value={{ index, setindex }}>
-          <Root>
-              {
-                  React.Children.map(children, (element, i) => {
-                      if (i === index) {
-                          return React.cloneElement(element, {
-                              itemsLength: children.length,
-                              currentIndex: index,
-                              nextStep: _nextStep,
-                              prevStep: _prevStep,
-                              isLast: index === children.length - 1,
-                          })
-                      }
-  
-                      return null;
-                  })
-              }
-          </Root>
-      </MultiStepContext.Provider>
+        <MultiStepContext.Provider value={{ index, setindex, itemslength }}>
+            <Root>
+                {
+                    React.Children.map(children, (element, i) => {
+                        if (i === index) {
+                            return React.cloneElement(element, {
+                                itemsLength: children.length,
+                                currentIndex: index,
+                                nextStep: _nextStep,
+                                prevStep: _prevStep,
+                                isLast: index === children.length - 1,
+                            })
+                        }
+
+                        return null;
+                    })
+                }
+            </Root>
+        </MultiStepContext.Provider>
     );
 })
 
+const Points = (itemsLength) => {
+    for (let index = 0; index < itemsLength; index++) {
+        console.log('ewew---', index);
+        return (
+            <ETAStepperPoint 
+                onChange={() => console.log('ewe')} 
+                activated={true} 
+                size={10}  
+                color='transparent' 
+                direction='row' 
+            />
+        )
+    }
+}
+
 const Step = (props) => {
     const { index, setindex } = useStepContext()
+    // console.log('ewe---D: ', index);
 
     return (
         <Root>
             {props.children}
+            
+            <PointsContainer>
+                {/* {
+                    Points(props.itemsLength)
+                } */}
+            </PointsContainer>
             <ButtonsContainer>                    
                 <ButtonContainer>
                     <ActionButton

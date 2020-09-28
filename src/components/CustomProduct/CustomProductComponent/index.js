@@ -1,12 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Animated, Dimensions, ScrollView} from 'react-native'
-import {useRoute} from '@react-navigation/native'
-import {ETASimpleText, ETAMultiStep, ETALoader} from '@etaui'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Animated, Dimensions } from 'react-native'
+import { useRoute } from '@react-navigation/native'
+import { ETASimpleText, ETAMultiStep, ETALoader } from '@etaui'
 import { currencySeparator } from '@functions'
-import { CustomProductIcon1 } from '@icons'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/customproduct/flavors/actions'
+import { CustomProductIcon1, FontAwesome } from '@icons'
+import { connect} from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/customproduct/flavors/actions'
 import ProductComponent from './ProductComponent'
 import { interpolate } from 'react-native-reanimated'
 
@@ -36,8 +36,7 @@ const ItemsContainer = styled.View`
     align-items: center;
     background-color: transparent;
 `
-const ItemsList = styled.FlatList`
-`
+const ItemsList = styled.FlatList``
 const StepItemContainer = styled.View`
     flex-direction: column;
     justify-content: flex-start;
@@ -94,31 +93,77 @@ const CustomProductIconButton = styled.TouchableOpacity`
 	background-color: transparent;
 `
 const CustomProductImage = styled.Image`
-    height: 27px;
-    min-width: 27px;
+    min-height: 29px;
+    min-width: 32px;
     position: absolute;
-    bottom: 5px;
-    right: 105px;
+    bottom: 3px;
+    right: 100px;
 `
-const ResumeContainer = styled.View`
-    min-width: ${width - 100}px;
-    min-height: 100px;
-    justify-content: center;
+const SumamryView = styled.View`
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 5px;
-    padding-horizontal: 10px;
+    background-color: transparent;
+`
+const SumamryContainer = styled.View`
+    min-height: 100px;
+    min-width: ${width - 30}px;
+    margin: 1px 10px;
+    justify-content: center;
+    align-items: stretch;
     border-radius: 5px;
-    shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+    elevation: 4;
     shadow-offset: 1px 3px;
     shadow-radius: 5px;
-    shadow-opacity: 0.15;
-    background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+    shadow-opacity: 0.5;
+	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+	border-top-width: 0px;
+	border-top-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const ResumeRow = styled.View`
+const SumamryRow = styled.View`
+    min-height: 30px;
     flex-direction: row;
-    margin-vertical: 5px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-horizontal: 20px;
+    margin-vertical: 1px;
+    background-color: transparent;
 `
-
+const SumamryRowFlavor = styled.View`
+    height: 25px;
+    width: 25px;
+    border-radius: 12.5px;
+	border-width: 1.5px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+`
+const ButtonAddToCartContainer = styled.View`
+	height: 50px;
+	width: 100%;
+	align-items: center;
+	margin-vertical: 8px;
+	background-color: transparent;
+`
+const AddCart = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+})`
+    height: 40px;
+    width: 250px;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: ${Platform.OS === 'ios' ?  10 : 0}px;
+    z-index: 1000;
+	background-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
+`
+const AddCartPlus = styled.View`
+	height: 20px;
+	width: 12px;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+`
 
 const mapStateToProps = (state, props) => {
 	const { data } = state.flavors
@@ -138,6 +183,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
     const themeContext = useContext(ThemeContext)
 	const route = useRoute()
     const { paramData } = route?.params;
+    const [ items, setitems ] = useState([])
     const [ itemsize, setitemsize ] = useState()
     const [ itemfirstcolor, setitemfirstcolor ] = useState()
     const [ itemmiddlecolor, setitemsecondcolor ] = useState()
@@ -149,10 +195,11 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
     
     useEffect(() => {
 		getDataRequest()
-		console.log('[CustomProductComponent] data: ', data);
+		// console.log('[CustomProductComponent] data: ', data);
     }, [data])
     
     useEffect(() => {
+        setitems(paramData.variations)
         Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -176,8 +223,8 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
     })
 
     useEffect(() => {
-        console.log('itemfirstcolor: ', itemfirstcolor);
-    }, [itemfirstcolor])
+        console.log('itemsize: ', itemsize);
+    }, [itemsize])
     
     // const rotate = interpolate(rotate,{
     //     inputRange: [0, 2],
@@ -276,17 +323,17 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                             </ETASimpleText>
                             <ItemsContainer>
                                 {
-                                    paramData.variations.length !== 0
+                                    items.length !== 0
                                     ?	<ItemsList
                                             contentContainerStyle={{
-                                                height: 160,
+                                                // height: 160,
                                                 alignSelf: 'stretch',
                                                 alignItems: 'center',
                                                 backgroundColor: 'transparent'
                                             }}
                                             // horizontal
                                             numColumns={3}
-                                            data={paramData.variations}
+                                            data={items}
                                             keyExtractor={(item) => item._id.toString()}
                                             showsVerticalScrollIndicator={false}
                                             showsHorizontalScrollIndicator={false}
@@ -313,7 +360,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                                             ],
                                                         }}>
                                                         <ItemContainer key={item._id}>
-                                                            <IconContainerButton onPress={setitemsize(item.size)}>
+                                                            <IconContainerButton onPress={() => setitemsize(item.itemsize)}>
                                                                 {SwitchIconComponent({size: item.size})}
                                                             </IconContainerButton>
                                                             <ETASimpleText
@@ -416,7 +463,9 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                             firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
                                             middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
                                             lastcolor={itemlastcolor ? itemlastcolor.color : 'transparent'}
-                                            strokeColor={themeContext.GRAYFACEBOOK} 
+                                            firststrokeColor={itemfirstcolor ? itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                            middlestrokeColor={itemmiddlecolor ? itemmiddlecolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                            laststrokeColor={itemlastcolor ? itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                                         />
                                     </Animated.View>
                                 </ProductComponent>
@@ -476,7 +525,9 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                         firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
                                         middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
                                         lastcolor={itemlastcolor ? itemlastcolor.color : 'transparent'}
-                                        strokeColor={themeContext.GRAYFACEBOOK} 
+                                        firststrokeColor={itemfirstcolor ? itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                        middlestrokeColor={itemmiddlecolor ? itemmiddlecolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                        laststrokeColor={itemlastcolor ? itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                                     />
                                 </ProductComponent>
                             </CustomProductContainer>
@@ -535,7 +586,9 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                         firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
                                         middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
                                         lastcolor={itemlastcolor ? itemlastcolor.color : 'transparent'}
-                                        strokeColor={themeContext.GRAYFACEBOOK} 
+                                        firststrokeColor={itemfirstcolor ? itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                        middlestrokeColor={itemmiddlecolor ? itemmiddlecolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                        laststrokeColor={itemlastcolor ? itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                                     />
                                 </ProductComponent>
                             </CustomProductContainer>
@@ -547,84 +600,100 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                 <ETAMultiStep.Step>
                     <StepContainer>
                         <StepItemContainer>
-                            <ETASimpleText
-                                size={18}
-                                weight={
-                                    Platform.OS === 'ios'
-                                    ? '700'
-                                    : 'bold'
-                                }
-                                color={themeContext.SECONARY_TEXT_BACKGROUND_COLOR}
-                                align='center'
-                                style={{ marginBottom: 18 }}
-                                >
-                                Resume
-                            </ETASimpleText>
-                            
-                            <ScrollView>
+                            <SumamryView>
+                                <ETASimpleText
+                                    size={18}
+                                    weight={
+                                        Platform.OS === 'ios'
+                                        ? '700'
+                                        : 'bold'
+                                    }
+                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                    align='center'
+                                    style={{ marginBottom: 18 }}
+                                    >
+                                    Purchase summary
+                                </ETASimpleText>
+                                <SumamryContainer>
                                 {
                                     itemlastcolor
                                     ?   <>
-                                            <ResumeContainer>
-                                                    <ResumeRow>
-                                                        <ETASimpleText
-                                                            size={14}
-                                                            weight={
-                                                                Platform.OS === 'ios'
-                                                                ? '700'
-                                                                : 'bold'
-                                                            }
-                                                            color={themeContext.SECONARY_TEXT_BACKGROUND_COLOR}
-                                                            align='center'
-                                                            >
-                                                            Size: {' '}
-                                                        </ETASimpleText>
-                                                        <ETASimpleText
-                                                            size={14}
-                                                            weight={
-                                                                Platform.OS === 'ios'
-                                                                ? '400'
-                                                                : '300'
-                                                            }
-                                                            color={themeContext.SECONARY_TEXT_BACKGROUND_COLOR}
-                                                            align='center'
-                                                            >
-                                                            {itemsize}
-                                                        </ETASimpleText>
-                                                    </ResumeRow>
+                                            <SumamryRow>
+                                                <ETASimpleText
+                                                    size={14}
+                                                    weight={
+                                                        Platform.OS === 'ios'
+                                                        ? '700'
+                                                        : 'bold'
+                                                    }
+                                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                                    align='center'
+                                                    >
+                                                    Size: {' '}
+                                                </ETASimpleText>
+                                                <ETASimpleText
+                                                    size={14}
+                                                    weight={
+                                                        Platform.OS === 'ios'
+                                                        ? '400'
+                                                        : '300'
+                                                    }
+                                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                                    align='center'
+                                                    >
+                                                    {itemsize}
+                                                </ETASimpleText>
+                                            </SumamryRow>
 
-                                                    <ResumeRow>
-                                                        <ETASimpleText
-                                                            size={14}
-                                                            weight={
-                                                                Platform.OS === 'ios'
-                                                                ? '700'
-                                                                : 'bold'
-                                                            }
-                                                            color={themeContext.SECONARY_TEXT_BACKGROUND_COLOR}
-                                                            align='center'
-                                                            >
-                                                            Flavors chosen: {' '}
-                                                        </ETASimpleText>
-                                                        <ETASimpleText
-                                                            size={14}
-                                                            weight={
-                                                                Platform.OS === 'ios'
-                                                                ? '400'
-                                                                : '300'
-                                                            }
-                                                            color={themeContext.SECONARY_TEXT_BACKGROUND_COLOR}
-                                                            align='center'
-                                                            >
-                                                            {itemfirstcolor.name}, {itemmiddlecolor.name}, {itemlastcolor.name} 
-                                                        </ETASimpleText>
-                                                    </ResumeRow>
-                                                </ResumeContainer>
+                                            <SumamryRow style={{ justifyContent: 'space-between' }}>
+                                                <ETASimpleText
+                                                    size={14}
+                                                    weight={
+                                                        Platform.OS === 'ios'
+                                                        ? '700'
+                                                        : 'bold'
+                                                    }
+                                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                                    align='center'
+                                                    >
+                                                    Flavors chosen: {' '}
+                                                </ETASimpleText>
+                                                <SumamryRowFlavor style={{ backgroundColor: itemfirstcolor.color }}/>
+                                                <SumamryRowFlavor style={{ backgroundColor: itemmiddlecolor.color }}/>
+                                                <SumamryRowFlavor style={{ backgroundColor: itemlastcolor.color }}/>
+                                            </SumamryRow>
                                         </>
                                     :   null
                                 }
-                            </ScrollView>
-
+                                </SumamryContainer>
+                                <ButtonAddToCartContainer>
+                                    <AddCart
+                                        onPress={() => console.log('Add to cart')}>
+                                        <AddCartPlus>
+                                            <ETASimpleText
+                                                size={16}
+                                                weight={
+                                                    Platform.OS ===
+                                                    'ios'
+                                                        ? '600'
+                                                        : '300'
+                                                }
+                                                color='white'
+                                                align='center'>
+                                                +
+                                            </ETASimpleText>
+                                        </AddCartPlus>
+                                        <FontAwesome
+                                            name='shopping-cart'
+                                            size={16}
+                                            color='white'
+                                            style={{
+                                                alignSelf: 'center',
+                                            }}
+                                        />
+                                    </AddCart>
+                                </ButtonAddToCartContainer>
+                            </SumamryView>
                         </StepItemContainer>
                     </StepContainer>
                 </ETAMultiStep.Step>

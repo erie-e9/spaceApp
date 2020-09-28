@@ -1,13 +1,14 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Ionicons} from '@icons'
-import {Platform} from 'react-native'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
 import {
 	createStackNavigator,
 	CardStyleInterpolators,
 } from '@react-navigation/stack'
+import { Ionicons, FontAwesome } from '@icons'
+import { Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
 import CartScreen from '@screens/Cart/CartScreen'
-import {ETASimpleText} from '@etaui'
+import PaymentScreen from '@screens/Cart/PaymentScreen'
 
 const Header = styled.View`
 	margin-left: 15px;
@@ -36,9 +37,8 @@ const Touchable = styled.TouchableOpacity.attrs({
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	z-index: 100;
-	margin: 0px 5px 0px 0px;
+	margin: 0px 5px 0px 15px;
 `
-
 
 const CartStack = createStackNavigator()
 const CartNavigator = () => {
@@ -54,13 +54,16 @@ const CartNavigator = () => {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 					shadowColor: 'black',
-					shadowOpacity: 0,
-					shadowOffset: {height: 0.2},
+					shadowOpacity: Platform.OS === 'ios' ? 0 : 0,
+					shadowOffset: {
+						height: Platform.OS === 'ios' ? 0.1 : 0,
+					},
 					shadowRadius: 5,
 					elevation: 0,
 				},
 				headerTitleStyle: {
-					fontWeight: 'bold',
+					// fontWeight: '400',
+					color: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 				},
 			}}>
 			<CartStack.Screen
@@ -129,4 +132,62 @@ const CartNavigator = () => {
 	)
 }
 
-export default CartNavigator
+
+const CheckoutStack = createStackNavigator()
+const CheckoutNavigator = () => {
+	const themeContext = useContext(ThemeContext)
+
+	return (
+		<CheckoutStack.Navigator
+			screenOptions={{
+				headerTransparent: !true,
+				headerShown: !true,
+				headerTintColor: themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+				headerStyle: {
+					backgroundColor:
+						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+					shadowColor: 'black',
+					shadowOpacity: 0,
+					shadowOffset: {height: 0},
+					shadowRadius: 5,
+					elevation: 0,
+				},
+				headerTitleStyle: {
+					fontWeight: 'bold',
+				},
+			}}>
+			<CheckoutStack.Screen
+				name='PaymentScreen'
+				component={PaymentScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Checkout',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '500',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+					},
+					headerLeft: () => (
+						<Touchable onPress={navigation.goBack}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</Touchable>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+		</CheckoutStack.Navigator>
+	)
+}
+
+export {CartNavigator, CheckoutNavigator}

@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Platform, Dimensions} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
-import {connect} from 'react-redux'
-import {currencySeparator} from '@functions'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Platform, Dimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText, ETAButtonOutline, ETAButtonFilled } from '@etaui'
+import { connect } from 'react-redux'
+import { currencySeparator } from '@functions'
 
 const {width} = Dimensions.get('window')
 
@@ -116,6 +116,15 @@ const CartDetailsComponent = ({data}) => {
 		setsubtotal(subtotalValue)
 		settotal(subtotalValue + shipping)
 		// settotalItems(sum)
+	}
+
+	const _onPressItem = () => {
+		navigation.navigate('CheckoutNavigator', {
+			screen: 'PaymentScreen',
+			// params: {
+			// 	item: propitem,
+			// },
+		})
 	}
 
 	return (
@@ -269,7 +278,7 @@ const CartDetailsComponent = ({data}) => {
 				<ButtonPayContainer>
 					<ETAButtonFilled
 						title='Check out'
-						onPress={() => console.log(data)}
+						onPress={() => _onPressItem()}
 						disabled={!!isSubmitting}
 						colorButton={
 							themeContext.SECONDARY_BACKGROUND_COLOR

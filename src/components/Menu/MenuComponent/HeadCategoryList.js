@@ -15,6 +15,7 @@ const Root = styled.View`
 	align-items: center;
 	padding-vertical: 4px;
 	width: ${width}px;
+	background-color: transparent;
 `
 const ItemsList = styled.FlatList`
 	width: ${width}px;
@@ -25,10 +26,10 @@ const Item = styled.View`
 	border-radius: 20px;
 	border-width: 0.5px;
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 	margin: 5px 9px;
 	justify-content: center;
 	align-items: center;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',

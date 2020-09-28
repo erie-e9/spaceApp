@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
+import { useColorScheme } from 'react-native'
 
 const TextInputContainer = styled.View`
 	height: ${(props) => (props.height ? props.height : 0.3)}px;
@@ -67,13 +68,13 @@ const ETATextInputOutLine = ({
 	paddingHorizontal,
 }) => {
 	const themeContext = useContext(ThemeContext)
+	const colorSchema = useColorScheme()
 
 	return (
 		<>
 			<TextInputContainer
 				height={height}
-				width={width}
-				borderWidth={borderWidth}>
+				width={width}>
 				<TextInput
 					value={value}
 					placeholder={placeholder}
@@ -117,7 +118,7 @@ const ETATextInputOutLine = ({
 					// onKeyPress={}
 					// onScroll={}
 					paddingHorizontal={paddingHorizontal || 15}
-					borderWidth={borderWidth}
+					borderWidth={colorSchema === 'dark' ? borderWidth : borderWidth + 0.4}
 				/>
 				{rightIcon}
 			</TextInputContainer>

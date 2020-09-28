@@ -30,7 +30,7 @@ function* singinUser(action) {
       },
     })
   } catch (error) {
-    console.log('Sign in error: ', error)
+    console.log('[User Saga] singinUser error: ', error)
   }
 }
 
@@ -43,7 +43,7 @@ function* logoutUser(action) {
       },
     })
   } catch (error) {
-    console.log('Log out error: ', error)
+    console.log('[User Saga] logoutUser error: ', error)
   }
 }
 
@@ -57,7 +57,7 @@ function* signupUser(action) {
       },
     })
   } catch (error) {
-    console.log('signup error: ', error)
+    console.log('[User Saga] signupUser error: ', error)
   }
 }
 
@@ -71,7 +71,7 @@ function* recoveryPassUser(action) {
       },
     })
   } catch (error) {
-    console.log('recoveryPass error: ', error)
+    console.log('[User Saga] recoveryPassUser error: ', error)
   }
 }
 

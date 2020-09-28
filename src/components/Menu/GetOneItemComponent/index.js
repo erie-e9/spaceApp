@@ -490,15 +490,14 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 								<TouchableOpacity
 									onPress={() => _addCart(selectedItem)}
 									style={{
-										flexDirection: 'row',
 										height: 40,
 										width: 120,
-										borderRadius: 30,
-										justifyContent: 'center',
-										zIndex: 1000,
+										flexDirection: 'row',
 										justifyContent: 'center',
 										alignItems: 'center',
 										alignSelf: 'center',
+										borderRadius: 30,
+										zIndex: 1000,
 										backgroundColor: themeContext.PRIMARY_COLOR,
 									}}>
 									<AddRemoveButtonContainer>

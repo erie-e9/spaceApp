@@ -20,6 +20,8 @@ const HeaderLeftCard = styled.TouchableOpacity.attrs({
 	margin-left: 15px;
 	margin-top: 25px;
 	border-radius: 15px;
+	border-width: 0.5px;
+	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 

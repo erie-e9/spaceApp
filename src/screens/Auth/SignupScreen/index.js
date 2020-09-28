@@ -41,20 +41,17 @@ const Card = styled.View`
 	border-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
-// height: 300px;
-// min-height: 240px;
 
-const SignupScreen = ({navigation}) => (
+const SignupScreen = () => (
 	<KeyboardMisser onPress={() => Keyboard.dismiss()}>
 		<Root>
-			{/* <BackImage style={{width: null, height: null}}
-                        source={require('@assets/background1.png')}> */}
-			<SignupContainer>
+			<SignupForm />
+			
+			{/* <SignupContainer>
 				<Card>
-					<SignupForm navigation={navigation} />
+					<SignupForm />
 				</Card>
-			</SignupContainer>
-			{/* </BackImage> */}
+			</SignupContainer> */}
 		</Root>
 	</KeyboardMisser>
 )

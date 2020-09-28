@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects'
-import { GET_DATA_REQUEST, GET_DATA_REQUEST_SUCCESS } from './actions'
 import data from '@utils/categories.json'
+import { GET_DATA_REQUEST, GET_DATA_REQUEST_SUCCESS } from './actions'
 
 function* handler() {
   yield takeEvery(GET_DATA_REQUEST, getDataRequest)
@@ -15,7 +15,7 @@ function* getDataRequest(action) {
       },
     })
   } catch (error) {
-    console.log('Categories error: ', error)
+    console.log('[Categories Saga] getDataRequest error: ', error)
   }
 }
 

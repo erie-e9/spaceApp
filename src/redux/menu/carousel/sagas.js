@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects'
-import { GET_DATA_REQUEST, GET_DATA_REQUEST_SUCCESS } from './actions'
 import data from '@utils/carousel.json'
+import { GET_DATA_REQUEST, GET_DATA_REQUEST_SUCCESS } from './actions'
 
 function* handler() {
   yield takeEvery(GET_DATA_REQUEST, getDataRequest)
@@ -15,7 +15,7 @@ function* getDataRequest(action) {
       },
     })
   } catch (error) {
-    console.log('Carousel error: ', error)
+    console.log('[Carousel Saga] getDataRequest error: ', error)
   }
 }
 

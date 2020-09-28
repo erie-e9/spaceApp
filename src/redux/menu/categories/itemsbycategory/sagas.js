@@ -1,6 +1,6 @@
 import { takeEvery, put } from 'redux-saga/effects'
-import { GET_DATA_REQUEST, GET_DATA_REQUEST_SUCCESS } from './actions'
 import data from '@utils/menu.json'
+import { GET_DATA_REQUEST, GET_DATA_REQUEST_SUCCESS } from './actions'
 
 function* handler() {
   yield takeEvery(GET_DATA_REQUEST, getDataRequest)
@@ -11,11 +11,11 @@ function* getDataRequest(action) {
     yield put({
       type: GET_DATA_REQUEST_SUCCESS,
       payload: {
-        data: data.menu3
-      }
+        data: data.menu3,
+      },
     })
   } catch (error) {
-    console.log('Items by category error: ', error)
+    console.log('[Items by category Saga] getDataRequest error: ', error)
   }
 }
 

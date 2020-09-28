@@ -1,5 +1,4 @@
 export default function truncateString(string, limit) {
-
   if (string.length <= limit) {
     return string
   }

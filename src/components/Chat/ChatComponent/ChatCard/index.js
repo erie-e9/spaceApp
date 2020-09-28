@@ -1,5 +1,5 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
+import React from 'react'
+import styled from 'styled-components/native'
 import {ETAAvatar} from '@etaui'
 import CardHeader from './cardHeader'
 import CardBody from './cardBody'
@@ -22,27 +22,23 @@ const ContactContainer = styled.View`
 	max-width: 100%;
 `
 const AvatarContainer = styled.View`
-	padding: 2px;
+	padding: 1.75px;
 	border-radius: 50px;
 	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
 	border-width: 2px;
 	background-color: transparent;
 `
 
-const ChatCard = ({text, employee, createdAt, active}) => {
-	const themeContext = useContext(ThemeContext)
-	
-	return (
-		<Root>
-			<AvatarContainer active={active}>
-				<ETAAvatar image={employee.avatar} size='middle' />
-			</AvatarContainer>
-			<ContactContainer>
-				<CardHeader {...employee} createdAt={createdAt} />
-				<CardBody text={text} />
-			</ContactContainer>
-		</Root>
-	)
-}
+const ChatCard = ({text, employee, createdAt, active}) => (
+	<Root>
+		<AvatarContainer active={active}>
+			<ETAAvatar image={employee.avatar} size='middle' />
+		</AvatarContainer>
+		<ContactContainer>
+			<CardHeader {...employee} createdAt={createdAt} />
+			<CardBody text={text} />
+		</ContactContainer>
+	</Root>
+)
 
 export default ChatCard

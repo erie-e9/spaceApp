@@ -20,8 +20,8 @@ const Switch = styled.View`
 	margin: 5px;
 	border-radius: 20px;
 	padding: 1px;
-	background-color: transparent;
 	z-index: 1000;
+	background-color: transparent;
 `
 const IndicatorContainer = styled.View`
 	flex-direction: row;
@@ -31,8 +31,8 @@ const IndicatorContainer = styled.View`
 	width: 100%;
 	justify-content: space-between;
 	padding-horizontal: 5px;
-	background-color: transparent;
 	z-index: 10;
+	background-color: transparent;
 `
 
 const ETASwitch = memo(({ color, onChange, activated }) => {
@@ -69,7 +69,7 @@ const ETASwitch = memo(({ color, onChange, activated }) => {
 					_switchAnimated()
 				}}
 				style={{flex: 1}}>
-				<Switch activated={activated}>
+				<Switch>
 					<Animated.View
 						style={[
 							{

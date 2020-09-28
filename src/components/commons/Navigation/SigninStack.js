@@ -35,7 +35,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
-	margin-left: ${Platform.OS === 'ios' ? 25 : 10}px;
+	margin-left: ${Platform.OS === 'ios' ? 25 : 15}px;
 `
 
 /** Auth screens - No logged */
@@ -83,7 +83,7 @@ const SigninStackScreen = () => {
 				name='SignupScreen'
 				component={SignupScreen}
 				options={({navigation, route}) => ({
-					title: 'New account',
+					title: 'Sign up',
 					headerShown: true,
 					headerLeft: () => (
 						<Touchable onPress={navigation.goBack}>

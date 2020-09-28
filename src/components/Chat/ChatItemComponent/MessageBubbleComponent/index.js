@@ -12,7 +12,7 @@ const Cloud = styled.View`
 	padding-top: ${moderateScale(5, 2)}px;
 	padding-bottom: ${moderateScale(7, 2)}px;
 	padding-horizontal: ${moderateScale(10, 2)}px;
-	border-radius: 20px;
+	border-radius: 15px;
 `
 const ArrowContainer = styled.View`
 	flex: 1;
@@ -36,7 +36,7 @@ const MessageText = styled.Text`
 const MessageTimeText = styled.Text`
 	font-size: 11px;
 	font-weight: ${Platform.OS === 'ios' ? 400 : 400};
-	line-height: 22px;
+	line-height: 15px;
 	align-self: flex-end;
 `
 

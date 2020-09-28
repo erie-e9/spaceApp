@@ -19,6 +19,7 @@ import IcecreamIcon3 from './icecream3'
 import IcecreamIcon4 from './icecream4'
 import MasterCardIcon from './mastercard'
 import VisaIcon from './visa'
+import BroadcastIcon from './broadcast'
 
 import CustomProductIcon1 from './products/customproducticon1'
 
@@ -42,5 +43,6 @@ export {
   IcecreamIcon4,
   MasterCardIcon,
   VisaIcon,
-  CustomProductIcon1
+  CustomProductIcon1,
+  BroadcastIcon
 }

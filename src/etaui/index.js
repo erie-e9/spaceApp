@@ -21,6 +21,7 @@ import ETACreditCard from '@etaui/creditcard'
 import ETAValidationInput from '@etaui/inputs/validationnput'
 import ETAMultiStep from '@etaui/multistep'
 import ETALoader from '@etaui/loader'
+import ETARadio from '@etaui/radio'
 
 export {
   ETAButtonOutline,
@@ -45,5 +46,6 @@ export {
   ETACreditCard,
   ETAValidationInput,
   ETAMultiStep,
-  ETALoader
+  ETALoader,
+  ETARadio,
 }

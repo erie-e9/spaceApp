@@ -9,6 +9,7 @@ import { reducer as promotionsReducer } from './menu/promotions/reducers'
 import { reducer as sectionsReducer } from './menu/sections/reducers'
 import { reducer as cartReducer } from './cart/reducers'
 import { reducer as chatsReducer } from './chats/reducers'
+import { reducer as contactsReducer } from './chats/contacts/reducers'
 import { reducer as addressesReducer } from './profile/addresses/reducers'
 import { reducer as favoritesReducer } from './profile/favorites/reducers'
 import { reducer as notificationsReducer } from './profile/notifications/reducers'
@@ -30,6 +31,7 @@ const reducer = combineReducers({
   sections: sectionsReducer,
   cart: cartReducer,
   chats: chatsReducer,
+  contacts: contactsReducer,
   addresses: addressesReducer,
   favorites: favoritesReducer,
   notifications: notificationsReducer,
@@ -38,7 +40,7 @@ const reducer = combineReducers({
   paymentmethods: paymentmethodsReducer,
   faqs: faqsReducer,
   customproduct: customproductReducer,
-  flavors: flavorsReducer
+  flavors: flavorsReducer,
 })
 
 export { reducer }

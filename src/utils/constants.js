@@ -5,7 +5,7 @@ export const SLUG = 'iceCreamUnicorn'
 
 export const variables = {
   COMPANYNAME: 'iceCream Unicorn',
-  COMPANYSLOGAN: '❝Change the World, One Scoop at a time...❞',
+  COMPANYSLOGAN: '❝ Change the World, One Scoop at a time...❞',
   COMPANYURL: `https://www.${SLUG}.com`,
   COMPANYFACEBOOK: `https://www.facebook.com/${SLUG}`,
   COMPANYTWITTER: `https://www.twitter.com/${SLUG}`,
@@ -17,6 +17,7 @@ export const variables = {
   AVATAR_USER_DEFAULT:
 		'https://www.researchgate.net/profile/Maria_Monreal2/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook.png',
 }
+
 export const base = {
   FONT_SIZE_TINY: 8,
   FONT_SIZE_SEMISMALL: 10,

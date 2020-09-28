@@ -1,13 +1,13 @@
 import { takeEvery, put } from 'redux-saga/effects'
 import {
-        GET_DATA_REQUEST,
-        GET_DATA_REQUEST_SUCCESS,
-        ADD_TO_CART,
-        ADD_TO_CART_SUCCESS,
-        REMOVE_FROM_CART,
-        REMOVE_FROM_CART_SUCCESS,
-        REMOVE_ITEM_FROM_CART,
-        REMOVE_ITEM_FROM_CART_SUCCESS,
+  GET_DATA_REQUEST,
+  GET_DATA_REQUEST_SUCCESS,
+  ADD_TO_CART,
+  ADD_TO_CART_SUCCESS,
+  REMOVE_FROM_CART,
+  REMOVE_FROM_CART_SUCCESS,
+  REMOVE_ITEM_FROM_CART,
+  REMOVE_ITEM_FROM_CART_SUCCESS,
 } from './actions'
 
 function* handler() {
@@ -26,52 +26,52 @@ function* getDataRequest(action) {
       },
     })
   } catch (error) {
-    console.log('Cart error: ', error)
+    console.log('[Cart Saga] getDataRequest error: ', error)
   }
 }
 
 function* addToCart(action) {
-  let { paramItem } = action.payload
+  const { paramItem } = action.payload
   try {
     yield put({
       type: ADD_TO_CART_SUCCESS,
       payload: {
         data: [],
-        paramItem
+        paramItem,
       },
     })
   } catch (error) {
-    console.log('Cart add error: ', error)
+    console.log('[Cart Saga] addToCart error: ', error)
   }
 }
 
 function* removeFromCart(action) {
-  let { paramItem } = action.payload
+  const { paramItem } = action.payload
   try {
     yield put({
       type: REMOVE_FROM_CART_SUCCESS,
       payload: {
         data: [],
-        paramItem
+        paramItem,
       },
     })
   } catch (error) {
-    console.log('Cart remove error: ', error)
+    console.log('[Cart Saga] removeFromCart error: ', error)
   }
 }
 
 function* removeItemFromCart(action) {
-  let { paramItem } = action.payload
+  const { paramItem } = action.payload
   try {
     yield put({
       type: REMOVE_ITEM_FROM_CART_SUCCESS,
       payload: {
         data: [],
-        paramItem
+        paramItem,
       },
     })
   } catch (error) {
-    console.log('Cart remove item error: ', error)
+    console.log('[Cart Saga] removeItemFromCart error: ', error)
   }
 }
 

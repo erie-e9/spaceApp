@@ -9,6 +9,12 @@ const initialState = {
   cellphone: null,
   password: null,
   userToken: null,
+  signUp: {
+    fullname: null,
+    username: null,
+    cellphone: null,
+    password: null,
+  }
 }
 
 const reducer = (state = initialState, action) => {
