@@ -22,6 +22,8 @@ import VisaIcon from './visa'
 import BroadcastIcon from './broadcast'
 
 import CustomProductIcon1 from './products/customproducticon1'
+import CustomProductIcon2 from './products/customproducticon2'
+// import CustomProductIcon3 from './products/customproducticon3'
 
 export {
   Ionicons,
@@ -44,5 +46,6 @@ export {
   MasterCardIcon,
   VisaIcon,
   CustomProductIcon1,
+  CustomProductIcon2,
   BroadcastIcon
 }

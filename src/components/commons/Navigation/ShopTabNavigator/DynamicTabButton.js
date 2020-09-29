@@ -1,6 +1,6 @@
-import React, {useEffect, useContext, memo} from 'react'
-import {Animated} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
+import React, { useEffect, useContext, memo } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Animated } from 'react-native'
 import {
 	Ionicons,
 	MaterialCommunityIcons,

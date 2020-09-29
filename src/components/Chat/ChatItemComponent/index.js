@@ -27,7 +27,7 @@ const SubHeadContainer = styled.View`
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	padding: 4px 50px;
+	padding: 4px 90px;
 	background-color: transparent;
 ` 
 const ButtonContainer = styled.TouchableOpacity`

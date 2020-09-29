@@ -69,10 +69,8 @@ const MenuNavigator = () => {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 					shadowColor: 'black',
-					shadowOpacity: Platform.OS === 'ios' ? 0 : 0,
-					shadowOffset: {
-						height: Platform.OS === 'ios' ? 0.1 : 0,
-					},
+					shadowOpacity: 0,
+					shadowOffset: {height: 0},
 					shadowRadius: 5,
 					elevation: 0,
 				},
@@ -181,21 +179,6 @@ const MenuNavigator = () => {
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
-					headerStyle: {
-						backgroundColor:
-							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-						shadowColor: 'black',
-						shadowOpacity:
-							Platform.OS === 'ios' ? 0.3 : 0.3,
-						shadowOffset: {
-							height:
-								Platform.OS === 'ios'
-									? 0.3
-									: 0.2,
-						},
-						shadowRadius: 5,
-						elevation: 5,
-					},
 					headerTitleStyle: {
 						fontWeight: '500',
 						color:

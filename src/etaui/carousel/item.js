@@ -6,9 +6,9 @@ import {ETASimpleText} from '@etaui'
 const {width, height} = Dimensions.get('window')
 
 const Root = styled.View`
+	min-height: ${props => props.sizeHeight}px;
 	width: ${width - 20}px;
-	height: 150px;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	justify-content: center;
 	margin-horizontal: 10px;
 	margin-vertical: 10px;
 	border-radius: 8px;
@@ -17,12 +17,12 @@ const Root = styled.View`
 	shadow-opacity: 0;
 	shadow-radius: 3px;
 	elevation: 0;
-	justify-content: center;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 // shadow-offset: ${{width: 0.5, height: 0.5}};
 const ItemImage = styled.Image`
+	height: ${props => props.sizeHeight}px;
 	width: ${width - 20}px;
-	height: 150px;
 	border-radius: 10px;
 `
 const ContentContainer = styled.View`
@@ -32,9 +32,11 @@ const ContentContainer = styled.View`
 	left: 5px;
 `
 
-const ETACarouselItem = ({item}) => (
-	<Root>
-		<ItemImage source={{uri: item.image}} />
+const ETACarouselItem = ({item, sizeHeight}) => (
+	<Root
+		sizeHeight={sizeHeight}>
+		<ItemImage source={{uri: item.image}} 
+			sizeHeight={sizeHeight}/>
 		<ContentContainer>
 			<ETASimpleText
 				size={18}

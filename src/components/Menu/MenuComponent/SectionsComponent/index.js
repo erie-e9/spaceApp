@@ -27,8 +27,8 @@ const BannerLeft = styled.View`
 	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const BannerRight = styled.View`
-	flex: 1;
+flex: 1;
+const		 BannerRight = styled.View`
 	justify-content: center;
 	align-items: center;
 	background-color: ${(props) =>
@@ -36,7 +36,7 @@ const BannerRight = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	// hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
 	flex: 1;
 	justify-content: center;
@@ -59,8 +59,10 @@ const SectionsComponent = () => {
 	return (
 		<Root>
 			<Item>
-				<BannerLeft>
-					<Touchable onPress={() => _onPress('Offers of the week')}>
+				<Touchable 
+					style={{ backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR }}
+					onPress={() => _onPress('Offers of the week')}>
+					<BannerLeft>
 						<ETASimpleText
 							size={10}
 							weight={
@@ -84,11 +86,13 @@ const SectionsComponent = () => {
 							time={2000}>
 							of the week
 						</ETASimpleText>
-					</Touchable>
-				</BannerLeft>
+					</BannerLeft>
+				</Touchable>
 
-				<BannerRight>
-					<Touchable onPress={() => _onPress('Products with alcohol')}>
+				<Touchable 
+					onPress={() => _onPress('Products with alcohol')}
+					style={{ backgroundColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR }}>
+					<BannerRight>
 						<ETASimpleText
 							size={10}
 							weight={
@@ -111,11 +115,13 @@ const SectionsComponent = () => {
 							align='center'>
 							alcohol
 						</ETASimpleText>
-					</Touchable>
-				</BannerRight>
+					</BannerRight>
+				</Touchable>
 
-				<BannerLeft>
-					<Touchable onPress={() => _onPress('Free gluten products')}>
+				<Touchable 
+					style={{ backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR }}
+					onPress={() => _onPress('Free gluten products')}>
+					<BannerLeft>
 						<ETASimpleText
 							size={10}
 							weight={
@@ -138,8 +144,8 @@ const SectionsComponent = () => {
 							align='center'>
 							products
 						</ETASimpleText>
-					</Touchable>
-				</BannerLeft>
+					</BannerLeft>
+				</Touchable>
 			</Item>
 		</Root>
 	)

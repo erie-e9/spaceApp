@@ -12,9 +12,9 @@ const Root = styled.View`
     align-items: center;
     border-radius: 5px;
     elevation: 4;
-    shadow-offset: 1px 3px;
+    shadow-offset: 0px 1px;
     shadow-radius: 5px;
-    shadow-opacity: 0.5;
+    shadow-opacity: 0.15;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `

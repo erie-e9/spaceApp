@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext, memo } from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Dimensions, Platform, PixelRatio} from 'react-native'
-import {useNavigation, useIsFocused} from '@react-navigation/native'
-import {Ionicons} from '@icons'
-import {ETASimpleText} from '@etaui'
-import {truncateString, currencySeparator} from '@functions'
-import {connect} from 'react-redux'
+import styled, { ThemeContext } from 'styled-components'
+import { Dimensions, Platform, PixelRatio, useColorScheme } from 'react-native'
+import { useNavigation, useIsFocused } from '@react-navigation/native'
+import { Ionicons } from '@icons'
+import { ETASimpleText } from '@etaui'
+import { truncateString, currencySeparator } from '@functions'
+import { connect} from 'react-redux'
 import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
 
 const {width} = Dimensions.get('window')
@@ -62,7 +62,6 @@ const CardBottom = styled.View`
 	width: 100%;
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
-	border-width: ${Platform.OS === 'ios' ? 0.35 : 0.4}px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
@@ -143,6 +142,7 @@ const mapDispatchProps = (dispatch, props) => ({
 
 const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, toogleFavorite, item }) => {
 	const themeContext = useContext(ThemeContext)
+	const colorSchema = useColorScheme()
 	const navigation = useNavigation()
 	const [ isFavorite, setisFavorite ] = useState(false)
 	const isFocused = useIsFocused()
@@ -213,7 +213,11 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 						// }}
 					/>
 				</CardTop>
-				<CardBottom>
+				<CardBottom
+					style={{
+						borderWidth: colorSchema === 'dark' ? 0.4 : 0.75
+					}}
+				>
 					<NameContainer>
 						<ETASimpleText
 							size={13}
@@ -306,7 +310,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 								</>
 							) : null}
 						</DiscountContainer>
-						<FavoriteContainer>
+						{/* <FavoriteContainer>
 							<Touchable
 								onPress={() => _isFavorite()}
 								>
@@ -324,7 +328,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 									}
 								/>
 							</Touchable>
-						</FavoriteContainer>
+						</FavoriteContainer> */}
 						{/* {
                 item.discount !== 0
                 ? <ETASimpleText size={10} weight={Platform.OS === 'ios' ? '400' : '400'} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} align={'center'}

@@ -3,6 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import { Dimensions } from 'react-native'
 import {ETATextInputFilled} from '@etaui'
 import {Feather} from '@icons'
+import { TouchableHighlight } from 'react-native-gesture-handler'
 
 const { width } = Dimensions.get('window')
 
@@ -31,12 +32,17 @@ const InputIcon = styled.TouchableOpacity.attrs({
 const ChatInputComponent = () => {
     const themeContext = useContext(ThemeContext)
     
+    const _sendMessage = () => {
+        console.log('ewe');
+        
+    }
+
     return (
         <>
             <Root>
                 <ETATextInputFilled
                     // value={values.cellphone}
-                    placeholder='Type message'
+                    placeholder='Type message...'
                     placeholderTextColor={
                         themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                     }
@@ -75,7 +81,18 @@ const ChatInputComponent = () => {
                     textColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     paddingHorizontal={15}
                 />
-                <InputIcon>
+                <TouchableHighlight
+                    underlayColor='transparent'
+                    onPress={() => _sendMessage()}
+                    style={{
+                        height: 40,
+                        width: 40,
+                        borderRadius: 20,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: themeContext.PRIMARY_COLOR,
+                    }}
+                >
                     <Feather
                         name='send'
                         size={18}
@@ -85,7 +102,7 @@ const ChatInputComponent = () => {
                                 'center',
                         }}
                     />
-                </InputIcon>
+                </TouchableHighlight>
             </Root>
         </>
     )

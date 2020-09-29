@@ -254,10 +254,10 @@ const ItemInfoWeight = styled.View`
 	align-items: center;
 `
 const CardBottom = styled.View`
+	min-height: 60px;
+	width: 100%;
 	flex-direction: column;
 	justify-content: space-between;
-	min-height: 80px;
-	width: 100%;
 	align-items: flex-start;
 	padding-horizontal: 10px;
 	margin-top: 10px;

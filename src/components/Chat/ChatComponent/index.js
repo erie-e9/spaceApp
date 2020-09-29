@@ -3,6 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {Dimensions, Animated} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import ChatCard from './ChatCard'
+import {ETALoader} from '@etaui'
 import {connect} from 'react-redux'
 import {GET_DATA_REQUEST} from '@redux/chats/actions'
 import { MaterialCommunityIcons, MaterialIcons, Octicons } from '@icons'
@@ -98,58 +99,65 @@ const ChatComponent = ({getDataRequest, data}) => {
 
 	return (
 		<Root>
-			<ChatsFlatList
-				contentContainerStyle={{
-					alignSelf: 'stretch',
-					paddingTop: HEADER_MAX_HEIGHT,
-				}}
-				data={items}
-				keyExtractor={(item) => item._id.toString()}
-				showsVerticalScrollIndicator={false}
-				renderItem={({item}) => (
-					<Touchable
-						key={item._id}
-						onPress={() => _onPress(item)}>
-						<ChatCard {...item} />
-					</Touchable>
-				)}
-			/>
+			{
+				items
+				?	<>
+						<ChatsFlatList
+							contentContainerStyle={{
+								alignSelf: 'stretch',
+								paddingTop: HEADER_MAX_HEIGHT,
+							}}
+							data={items}
+							keyExtractor={(item) => item._id.toString()}
+							showsVerticalScrollIndicator={false}
+							renderItem={({item}) => (
+								<Touchable
+									key={item._id}
+									onPress={() => _onPress(item)}>
+									<ChatCard {...item} />
+								</Touchable>
+							)}
+						/>
+
+						<Animated.View
+							style={{
+								position: 'absolute',
+								top:
+									Platform.OS === 'ios'
+										? 0
+										: 0,
+								left: 0,
+								right: 0,
+								justifyContent: 'center',
+								alignItems: 'flex-start',
+								height: headerHeight,
+								width,
+								backgroundColor: headerbackgroundColor,
+							}}>
+							<SubHeadContainer>
+								<ButtonContainer 
+									onPress={() => _onPressNewChat()}
+								>
+									<MaterialCommunityIcons name='chat-plus' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
+								</ButtonContainer>
+
+								<ButtonContainer 
+									onPress={() => console.log('test')}
+								>
+									<Octicons name='broadcast' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
+								</ButtonContainer>
+
+								<ButtonContainer 
+									onPress={() => console.log('test')}
+								>
+									<MaterialIcons name='settings' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
+								</ButtonContainer>
+							</SubHeadContainer>
+						</Animated.View>
+					</>
+				:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+			}
 			
-			<Animated.View
-				style={{
-					position: 'absolute',
-					top:
-						Platform.OS === 'ios'
-							? 0
-							: 0,
-					left: 0,
-					right: 0,
-					justifyContent: 'center',
-					alignItems: 'flex-start',
-					height: headerHeight,
-					width,
-					backgroundColor: headerbackgroundColor,
-				}}>
-				<SubHeadContainer>
-					<ButtonContainer 
-						onPress={() => _onPressNewChat()}
-					>
-						<MaterialCommunityIcons name='chat-plus' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
-					</ButtonContainer>
-
-					<ButtonContainer 
-						onPress={() => console.log('test')}
-					>
-						<Octicons name='broadcast' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
-					</ButtonContainer>
-
-					<ButtonContainer 
-						onPress={() => console.log('test')}
-					>
-						<MaterialIcons name='settings' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
-					</ButtonContainer>
-				</SubHeadContainer>
-			</Animated.View>
 		</Root>
 	)
 }

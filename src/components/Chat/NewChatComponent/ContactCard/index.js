@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import {ETAAvatar} from '@etaui'
+import { ETAAvatar } from '@etaui'
 import CardHeader from './cardHeader'
 import CardBody from './cardBody'
 

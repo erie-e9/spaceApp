@@ -20,7 +20,7 @@ const CategorytItemsList = styled.FlatList``
 const PromoHeadContainer = styled.View`
 	flex-direction: row;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	width: ${width}px;
 	height: 100%;
 	padding: -10px 0px 5px 0px;
@@ -37,6 +37,7 @@ const PromoHeadImage = styled.ImageBackground`
 	align-items: center;
 	width: 100%;
 	height: 100%;
+	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `
 
 const mapStateToProps = (state, props) => {
@@ -204,6 +205,7 @@ const PromoComponent = ({ getDataRequest, data }) => {
 					top: Platform.OS == 'ios' ? 0 : 0,
 					left: 0,
 					right: 0,
+					bottom: 10,
 					alignItems: 'center',
 					height: headerHeight,
 					width,

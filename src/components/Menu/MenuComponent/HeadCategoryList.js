@@ -10,19 +10,20 @@ import {GET_DATA_REQUEST} from '@redux/menu/categories/actions'
 const {width} = Dimensions.get('window')
 
 const Root = styled.View`
+	min-height: 60px;
+	width: ${width}px;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	padding-vertical: 4px;
-	width: ${width}px;
-	background-color: transparent;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const ItemsList = styled.FlatList`
 	width: ${width}px;
 `
 const Item = styled.View`
-	width: 40px;
 	height: 60px;
+	width: 40px;
 	border-radius: 20px;
 	border-width: 0.5px;
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};

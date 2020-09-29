@@ -38,6 +38,7 @@ const CarouselComponent = ({getDataRequest, data, items}) => {
 					data={items}
 					autoplay
 					time={6000}
+					sizeHeight={155}
 				/>
 			) : null}
 		</HeaderContainer>

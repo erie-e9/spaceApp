@@ -4,7 +4,7 @@ import { Animated, Dimensions } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { ETASimpleText, ETAMultiStep, ETALoader } from '@etaui'
 import { currencySeparator } from '@functions'
-import { CustomProductIcon1, FontAwesome } from '@icons'
+import { CustomProductIcon1, CustomProductIcon2, FontAwesome } from '@icons'
 import { connect} from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/customproduct/flavors/actions'
 import ProductComponent from './ProductComponent'
@@ -113,9 +113,9 @@ const SumamryContainer = styled.View`
     align-items: stretch;
     border-radius: 5px;
     elevation: 4;
-    shadow-offset: 1px 3px;
+    shadow-offset: 0px 1px;
     shadow-radius: 5px;
-    shadow-opacity: 0.5;
+    shadow-opacity: 0.15;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	border-top-width: 0px;
 	border-top-color: ${(props) => props.theme.GRAYFACEBOOK};
@@ -243,15 +243,15 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                         strokeColor={themeContext.GRAYFACEBOOK} 
                     />);
             case 2:
-                return (<CustomProductIcon1
+                return (<CustomProductIcon2
                         size={size}
                         firstcolor='#EE569E'
                         middlecolor='#F181B2'
-                        lastcolor='#000'
+                        lastcolor='#F6B9D3'
                         strokeColor={themeContext.GRAYFACEBOOK} 
                     />);
             case 3:
-                return (<CustomProductIcon1
+                return (<CustomProductIcon2
                         size={size}
                         firstcolor='#EE569E'
                         middlecolor='#F181B2'
@@ -458,7 +458,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                                 },
                                             ],
                                         }}>
-                                        <CustomProductIcon1 
+                                        <CustomProductIcon2 
                                             size={4}
                                             firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
                                             middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
@@ -520,7 +520,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 
                             <CustomProductContainer>
                                 <ProductComponent stepTtitle='Choose your second flavor'>
-                                    <CustomProductIcon1 
+                                    <CustomProductIcon2 
                                         size={4}
                                         firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
                                         middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
@@ -581,7 +581,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 
                             <CustomProductContainer>
                                 <ProductComponent stepTtitle='Choose your last flavor'>
-                                    <CustomProductIcon1 
+                                    <CustomProductIcon2 
                                         size={4}
                                         firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
                                         middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}

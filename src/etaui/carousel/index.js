@@ -8,6 +8,7 @@ import ETACarouselItem from './item'
 const {width} = Dimensions.get('window')
 
 const Root = styled.View`
+	min-height: ${props => props.sizeHeight + 10}px;
 	justify-content: center;
 	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
@@ -25,7 +26,7 @@ const Touchable = styled.TouchableWithoutFeedback`
 `
 const TouchableWithoutFeedbackContainer = styled.View``
 
-const ETACarousel = ({posts, data, autoplay, time}) => {
+const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 	const navigation = useNavigation()
 	const [dataList, setdataList] = useState([])
 	const [postsLenght] = useState(posts.length)
@@ -84,7 +85,7 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 	}
 
 	return (
-		<Root>
+		<Root sizeHeight={sizeHeight}>
 			{dataList && dataList.length ? (
 				<>
 					<CarouselList
@@ -121,6 +122,7 @@ const ETACarousel = ({posts, data, autoplay, time}) => {
 									<ETACarouselItem
 										key={item._id}
 										item={item}
+										sizeHeight={sizeHeight}
 									/>
 								</TouchableWithoutFeedbackContainer>
 							</Touchable>
