@@ -1,9 +1,9 @@
-import React, {useState, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
 import { Dimensions } from 'react-native'
-import {ETATextInputFilled} from '@etaui'
-import {Feather} from '@icons'
-import { TouchableHighlight } from 'react-native-gesture-handler'
+import { ETATextInputFilled } from '@etaui'
+import { Feather, MaterialIcons } from '@icons'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
 const { width } = Dimensions.get('window')
 
@@ -69,7 +69,7 @@ const ChatInputComponent = () => {
                     returnKeyType='next'
                     textsize={16}
                     height={45}
-                    width={width - 60}
+                    width={width - 105}
                     borderWidth={0.5}
                     // onChangeText={handleChange(
                     //     'cellphone',
@@ -81,7 +81,30 @@ const ChatInputComponent = () => {
                     textColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     paddingHorizontal={15}
                 />
-                <TouchableHighlight
+                <TouchableWithoutFeedback
+                    underlayColor='transparent'
+                    onPress={() => _fileUoloader()}
+                    style={{
+                        height: 40,
+                        width: 40,
+                        borderRadius: 20,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginHorizontal: 2,
+                        backgroundColor: themeContext.PRIMARY_COLOR,
+                    }}
+                >
+                    <MaterialIcons
+                        name='attach-file'
+                        size={18}
+                        color='white'
+                        style={{
+                            alignSelf:
+                                'center',
+                        }}
+                    />
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback
                     underlayColor='transparent'
                     onPress={() => _sendMessage()}
                     style={{
@@ -90,6 +113,7 @@ const ChatInputComponent = () => {
                         borderRadius: 20,
                         justifyContent: 'center',
                         alignItems: 'center',
+                        marginHorizontal: 2,
                         backgroundColor: themeContext.PRIMARY_COLOR,
                     }}
                 >
@@ -102,7 +126,7 @@ const ChatInputComponent = () => {
                                 'center',
                         }}
                     />
-                </TouchableHighlight>
+                </TouchableWithoutFeedback>
             </Root>
         </>
     )

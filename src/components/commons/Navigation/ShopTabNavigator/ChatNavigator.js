@@ -8,6 +8,7 @@ import { Feather, FontAwesome } from '@icons'
 import ChatScreen from '@screens/Chat/ChatScreen'
 import ChatItemScreen from '@screens/Chat/ChatItemScreen'
 import NewChatScreen from '@screens/Chat/NewChatScreen'
+import ContactProfileScreen from '@screens/Chat/ContactProfileScreen'
 import { ETASearchBar } from '@etaui'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
@@ -26,10 +27,6 @@ const HeaderRight = styled.TouchableOpacity.attrs({
 	z-index: 100;
 	margin-right: 15px;
 `
-// const HeaderRight = styled.View`
-// 	flex-direction: row;
-// 	margin-right: 15px;
-// `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
@@ -44,15 +41,14 @@ const Header = styled.View`
 const IconButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
-})`
-	z-index: 100;
-	width: 10px
+	})`
+	height: 35px;
+	width: 35px;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	background-color: #e4e6eb;
-	width: 35px;
-	height: 35px;
+	z-index: 100;
 	border-radius: 35px;
 	margin-horizontal: 5px;
 	margin-right: 15px;
@@ -154,6 +150,38 @@ const ChatItemNavigator = () => {
 			<ChatItemStack.Screen
 				name='ChatItemScreen'
 				component={ChatItemScreen}
+				options={({navigation, route}) => ({
+					headerTitle: '',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '500',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+					},
+					headerLeft: '',
+					headerRight: () => (
+						<HeaderRight
+							onPress={() => navigation.goBack()}>
+							<Feather
+								name='more-vertical'
+								size={20}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderRight>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+			<ChatItemStack.Screen
+				name='ContactProfileScreen'
+				component={ContactProfileScreen}
 				options={({navigation, route}) => ({
 					headerTitle: '',
 					headerShown: true,

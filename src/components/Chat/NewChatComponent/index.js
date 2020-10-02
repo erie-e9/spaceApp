@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
 import ContactCard from './ContactCard'
-import {ETALoader} from '@etaui'
+import { ETALoader } from '@etaui'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/chats/contacts/actions'
 
@@ -41,10 +41,20 @@ const NewChatComponent = ({getDataRequest, data}) => {
 	}, [data])
 
 	const _onPress = (item) => {
+		console.log('ewe',  item.cellphone);
 		navigation.navigate('ChatItemNavigator', {
 			screen: 'ChatItemScreen',
 			params: {
-				item
+				paramData: { 
+					active: item.active,
+					employee: { 
+						avatar: item.avatar,
+						firstname: item.firstname,
+						lastname: item.lastname,
+						username: item.username,
+						cellphone: item.cellphone
+					}
+				}
 			},
 		})
 	}
@@ -61,12 +71,12 @@ const NewChatComponent = ({getDataRequest, data}) => {
 						keyExtractor={(item) => item._id.toString()}
 						showsVerticalScrollIndicator={false}
 						renderItem={({item}) => (
-							// <Touchable
-							// 	key={item._id}
-							// 	onPress={() => _onPress(item)}>
-							// 	<ContactCard item={item} />
-							// </Touchable>				
+							<Touchable
+								key={item._id}
+								onPress={() => _onPress(item)}>
 								<ContactCard item={item} />
+							</Touchable>				
+								// <ContactCard item={item} />
 						)}
 					/>
 				:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>

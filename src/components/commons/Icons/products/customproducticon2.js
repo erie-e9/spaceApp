@@ -4,7 +4,7 @@ import Svg, { Defs, ClipPath, Path, G, Circle } from "react-native-svg"
 const sizewidth = 800
 const sizeheight = 870
 
-const CustomProductIcon2 = ({ firstcolor, middlecolor, lastcolor, size, firststrokeColor, middlestrokeColor, laststrokeColor }) => {
+const CustomProductIcon2 = ({ firstcolor, secondcolor, lastcolor, size, firststrokeColor, secondstrokeColor, laststrokeColor }) => {
   return (
     <Svg width={sizewidth/size} height={(sizeheight)/size} viewBox={`0 0 ${sizewidth} ${sizeheight}`}>
       <Defs>
@@ -43,9 +43,11 @@ const CustomProductIcon2 = ({ firstcolor, middlecolor, lastcolor, size, firststr
           fill={lastcolor} strokeWidth={2.5} stroke={laststrokeColor}
         />
         <Path
+        
+          transform="translate(0, 3)"
           data-name="Trazado 31"
           d="M750.376 553.747c-12.825-140.373-130.541-247.825-271.5-247.825S220.203 413.374 207.378 553.748z"
-          fill={middlecolor} strokeWidth={2.5} stroke={middlestrokeColor}
+          fill={secondcolor} strokeWidth={2.5} stroke={secondstrokeColor}
         />
         <G data-name="Grupo 11">
           <G data-name="Grupo 6">
@@ -76,7 +78,7 @@ const CustomProductIcon2 = ({ firstcolor, middlecolor, lastcolor, size, firststr
         <Path
           data-name="Trazado 39"
           d="M524.768 340.126v-8.621l-17.141 1.27s-1.557-2.139-6.361-2.46-6.047 2.072-10.447 2.46-3.389-.956-7.379-1.275-3.821 1.757-8.515 1.757c-1.7 0-2.856-.9-4.6-1.264a14.1 14.1 0 00-4.669 0l-9-.494-6.331 8.621z"
-          fill={middlecolor}
+          fill={secondcolor}
         />
         <G
           data-name="Grupo 10"

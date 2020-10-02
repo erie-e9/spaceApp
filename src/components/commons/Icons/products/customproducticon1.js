@@ -6,11 +6,11 @@ const sizeheight = 870
 
 /*
 EE569E: first
-F181B2 middle
+F181B2 second
 F6B9D3: last
 */
 
-const CustomProductIcon1 = ({ firstcolor, middlecolor, lastcolor, size, firststrokeColor, middlestrokeColor, laststrokeColor }) => {
+const CustomProductIcon1 = ({ firstcolor, secondcolor, lastcolor, size, firststrokeColor, secondstrokeColor, laststrokeColor }) => {
   return (
     <Svg width={sizewidth/size} height={(sizeheight)/size} viewBox={`0 0 ${sizewidth} ${sizeheight}`}>
       <Defs>
@@ -112,7 +112,7 @@ const CustomProductIcon1 = ({ firstcolor, middlecolor, lastcolor, size, firststr
           <Path
             data-name='Trazado 13'
             d='M335.104 308.049a127.647 127.647 0 002.388-41.44c-8.151-78.307-83.738-140.423-168.851-138.723-85.127 1.7-147.512 66.555-139.385 144.856a138.257 138.257 0 0010.966 41.174c-15.6 6.6-25.477 21.6-23.687 38.834 2.382 22.936 24.506 41.108 49.432 40.605 20.366-.4 36.273-13.143 40.1-30.3 7.406 16.927 25.882 28.987 46.237 28.579 21.026-.417 37.271-14.011 40.413-32.027 6.872 17.815 25.858 30.716 46.874 30.288 20.391-.4 36.278-13.145 40.138-30.3 7.376 16.932 25.848 28.994 46.215 28.589 24.913-.5 43.168-19.478 40.8-42.4-1.79-17.238-14.734-31.771-31.641-37.731'
-            fill={middlecolor} strokeWidth={2.5} stroke={middlestrokeColor}
+            fill={secondcolor} strokeWidth={2.5} stroke={secondstrokeColor}
           />
           <Path
             data-name='Trazado 14'
@@ -170,12 +170,12 @@ const CustomProductIcon1 = ({ firstcolor, middlecolor, lastcolor, size, firststr
           <Path
             data-name='Trazado 17'
             d='M271.72 428.118c0 7.524-5.191 13.624-11.6 13.624s-11.6-6.1-11.6-13.624 5.192-13.624 11.6-13.624 11.6 6.1 11.6 13.624'
-            fill={middlecolor}
+            fill={secondcolor}
           />
           <Path
             data-name='Trazado 18'
             d='M92.81 354.548c0 6.019-4.079 10.9-9.111 10.9s-9.112-4.88-9.112-10.9 4.08-10.9 9.112-10.9 9.111 4.879 9.111 10.9'
-            fill={middlecolor}
+            fill={secondcolor}
           />
           <G
             data-name='Grupo 3'
@@ -186,18 +186,18 @@ const CustomProductIcon1 = ({ firstcolor, middlecolor, lastcolor, size, firststr
             <Path
               data-name='Trazado 19'
               d='M142.381 284.838c0 4.514-4.079 8.174-9.111 8.174s-9.111-3.66-9.111-8.174 4.079-8.175 9.111-8.175 9.111 3.66 9.111 8.175'
-              fill={middlecolor}
+              fill={secondcolor}
             />
           </G>
           <Path
             data-name='Trazado 21'
             d='M72.199 426.301l-.387 3.61c-.426 3.968-3.736 6.833-7.355 6.366l-14.808-1.911c-3.619-.467-6.232-4.1-5.806-8.065l.387-3.609c.426-3.969 3.736-6.834 7.355-6.367l14.808 1.911c3.62.467 6.232 4.1 5.806 8.065'
-            fill={middlecolor}
+            fill={secondcolor}
           />
           <Path
             data-name='Trazado 22'
             d='M160.168 416.31h-2.19a10.532 10.532 0 01-10.5-10.5v-4.43a10.532 10.532 0 0110.5-10.5h2.19a10.533 10.533 0 0110.5 10.5v4.43a10.533 10.533 0 01-10.5 10.5'
-            fill={middlecolor}
+            fill={secondcolor}
           />
           <G
             data-name='Grupo 4'

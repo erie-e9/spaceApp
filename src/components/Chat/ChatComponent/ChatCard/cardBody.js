@@ -1,8 +1,8 @@
-import React, {useContext} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETASimpleText} from '@etaui'
-import {truncateString} from '@functions'
+import React, { useContext, memo } from 'react'
+import { Platform } from 'react-native'
+import styled, { ThemeContext } from 'styled-components/native'
+import { ETASimpleText } from '@etaui'
+import { truncateString } from '@functions'
 
 const Root = styled.View`
 	flex: 1;
@@ -23,7 +23,7 @@ const ChatContentContainer = styled.View`
 	padding-horizontal: 10px;
 `
 
-const CardBody = ({text}) => {
+const CardBody = memo(({text}) => {
 	const themeContext = useContext(ThemeContext)
 
 	return (
@@ -39,6 +39,6 @@ const CardBody = ({text}) => {
 			</ChatContentContainer>
 		</Root>
 	)
-}
+})
 
 export default CardBody

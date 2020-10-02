@@ -96,7 +96,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							value={values.cellphone}
 							placeholder='Cellphone'
 							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							keyboardType='phone-pad'
 							autoCapitalize='none'
@@ -141,7 +141,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 							value={values.password}
 							placeholder='Password'
 							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							keyboardType='default'
 							autoCapitalize='none'

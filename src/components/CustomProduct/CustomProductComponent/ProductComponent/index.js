@@ -25,7 +25,7 @@ const ProductComponent = memo(({ stepTtitle, children }) => {
     return (
         <Root>
             {children}
-            <ETASimpleText
+            {/* <ETASimpleText
                 size={16}
                 weight={
                     Platform.OS === 'ios'
@@ -37,7 +37,7 @@ const ProductComponent = memo(({ stepTtitle, children }) => {
                 style={{ marginTop: 20 }}
                 >
                 {stepTtitle}
-            </ETASimpleText>
+            </ETASimpleText> */}
         </Root>
     )
 })

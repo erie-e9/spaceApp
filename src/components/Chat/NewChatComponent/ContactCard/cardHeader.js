@@ -1,19 +1,21 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
-import {ETASimpleText} from '@etaui'
+import { Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 // import eoLocale from 'date-fns/locale/es';
-import {truncateString} from '@functions'
+import { truncateString } from '@functions'
+import { useNavigation } from '@react-navigation/native'
 
 const Root = styled.View`
-	flex: 1;
+	flex: 0.7;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	align-content: center;
 	padding-horizontal: 10px;
 	padding-right: 20px;
+	background-color: transparent;
 `
 const MetaContainer = styled.View`
 	flex: 1;
@@ -28,20 +30,14 @@ const UserDataContainer = styled.View`
 	align-items: flex-start;
 	justify-content: center;
 `
-const TimeContainer = styled.View`
-	flex: 1;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-end;
-	right: 10px;
-`
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 
-const CardHeader = ({username, firstname, lastname, createdAt}) => {
+const CardHeader = ({ username, firstname, lastname }) => {
 	const themeContext = useContext(ThemeContext)
+	const navigation = useNavigation()
 	const fullname = `${firstname} ${lastname}`
 
 	return (
@@ -59,7 +55,9 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
 						align='left'>
 						{truncateString(fullname, 40)}
 					</ETASimpleText>
-					<Touchable>
+					<Touchable
+						onPress={() => navigation.navigate('ChatItemNavigator', { screen: 'ContactProfileScreen' })}
+					>
 						<ETASimpleText
 							size={11}
 							weight={
@@ -73,20 +71,6 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
 						</ETASimpleText>
 					</Touchable>
 				</UserDataContainer>
-
-				<TimeContainer>
-					<ETASimpleText
-						size={11}
-						weight={
-							Platform.OS === 'ios' ? '400' : '300'
-						}
-						color={
-							themeContext.PRIMARY_TEXT_COLOR_LIGHT
-						}
-						align='left'>
-						Member from {createdAt}
-					</ETASimpleText>
-				</TimeContainer>
 			</MetaContainer>
 		</Root>
 	)

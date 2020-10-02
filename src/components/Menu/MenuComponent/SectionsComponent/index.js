@@ -27,16 +27,16 @@ const BannerLeft = styled.View`
 	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-flex: 1;
-const		 BannerRight = styled.View`
+const BannerRight = styled.View`
+	flex: 1;
 	justify-content: center;
 	align-items: center;
 	background-color: ${(props) =>
 		props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 `
-const Touchable = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	// hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+const Touchable = styled.TouchableWithoutFeedback.attrs({
+	underlayColor: 'red',
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex: 1;
 	justify-content: center;
@@ -60,8 +60,9 @@ const SectionsComponent = () => {
 		<Root>
 			<Item>
 				<Touchable 
+					onPress={() => _onPress('Offers of the week')}
 					style={{ backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR }}
-					onPress={() => _onPress('Offers of the week')}>
+					>
 					<BannerLeft>
 						<ETASimpleText
 							size={10}
@@ -119,8 +120,9 @@ const SectionsComponent = () => {
 				</Touchable>
 
 				<Touchable 
+					onPress={() => _onPress('Free gluten products')}
 					style={{ backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR }}
-					onPress={() => _onPress('Free gluten products')}>
+					>
 					<BannerLeft>
 						<ETASimpleText
 							size={10}

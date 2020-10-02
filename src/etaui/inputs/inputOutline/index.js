@@ -22,7 +22,7 @@ const TextInput = styled.TextInput.attrs({})`
 	height: ${(props) => (props.height ? props.height : 40)}px;
 	width: ${(props) => (props.width ? props.width : 300)}px;
 	font-size: ${(props) => (props.textsize ? props.textsize : 14)}px;
-	color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
+	color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	justify-content: center;
 	align-items: center;
 	align-self: center;

@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Dimensions, Animated} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
+import React, {useState, useEffect, useContext } from 'react'
+import styled, {ThemeContext } from 'styled-components/native'
+import { Dimensions, Animated } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import ChatCard from './ChatCard'
-import {ETALoader} from '@etaui'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/chats/actions'
+import { ETALoader } from '@etaui'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/chats/actions'
 import { MaterialCommunityIcons, MaterialIcons, Octicons } from '@icons'
 
 const HEADER_MIN_HEIGHT = 50
@@ -83,17 +83,17 @@ const ChatComponent = ({getDataRequest, data}) => {
 		navigation.navigate('ChatItemNavigator', {
 			screen: 'ChatItemScreen',
 			params: {
-				item
+				paramData: item
 			},
 		})
+		
+		console.log('ewe', item)
+
 	}
 
 	const _onPressNewChat = (item) => {
 		navigation.navigate('NewChatNavigator', {
-			screen: 'NewChatScreen',
-			// params: {
-			// 	item
-			// },
+			screen: 'NewChatScreen'
 		})
 	}
 
@@ -126,8 +126,8 @@ const ChatComponent = ({getDataRequest, data}) => {
 									Platform.OS === 'ios'
 										? 0
 										: 0,
-								left: 0,
-								right: 0,
+								// left: 0,
+								// right: 0,
 								justifyContent: 'center',
 								alignItems: 'flex-start',
 								height: headerHeight,

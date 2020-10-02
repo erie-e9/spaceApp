@@ -43,17 +43,15 @@ const Card = styled.View`
 `
 
 const SignupScreen = () => (
-	<KeyboardMisser onPress={() => Keyboard.dismiss()}>
-		<Root>
-			<SignupForm />
-			
-			{/* <SignupContainer>
-				<Card>
-					<SignupForm />
-				</Card>
-			</SignupContainer> */}
-		</Root>
-	</KeyboardMisser>
+	<Root>
+		<SignupForm />
+		
+		{/* <SignupContainer>
+			<Card>
+				<SignupForm />
+			</Card>
+		</SignupContainer> */}
+	</Root>
 )
 
 export default SignupScreen

@@ -1,6 +1,5 @@
-import React, {useState, useContext, useRef, memo} from 'react'
+import React, {useState, useEffect, useContext, useRef, memo} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
 import {Animated, Easing} from 'react-native'
 import {ETASimpleText} from '@etaui'
 
@@ -23,7 +22,7 @@ const Radio = styled.View`
 	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	margin: 0px 5px;
 	z-index: 1000;
-	background-color: ${(props) => (props.activated ? props.colorRadio : 'transparent' )};
+	background-color: transparent;
 `
 const Touchable = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
@@ -35,39 +34,31 @@ const Touchable = styled.TouchableHighlight.attrs({
 
 const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeText, colorText }) => {
 	const animation = useRef(new Animated.Value(activated ? 1 : 0)).current
-	const [ toggled, setToggled ] = useState(!!activated)
-	const themeContext = useContext(ThemeContext)
-	const [ containerWidth ] = useState(0)
-	console.log('[ETARadio] activated:', activated);
-
-	const _switchAnimated = () => {
-        // setToggled(!toggled)
-        // console.log('ewe');
-		// if (!toggled) {
-		// 	Animated.timing(animation, {
-		// 		duration: 100,
-		// 		toValue: 1,
-		// 		easing: Easing.materialUIStandard,
-		// 		useNativeDriver: true,
-		// 	}).start()
-		// } else {
-		// 	Animated.timing(animation, {
-		// 		duration: 100,
-		// 		toValue: 0,
-		// 		easing: Easing.materialUIStandard,
-		// 		useNativeDriver: true,
-		// 	}).start()
-		// }
-	}
+    
+    useEffect(() => {
+        if (activated) {
+            console.log('actived');
+            Animated.timing(animation, {
+				duration: 200,
+				toValue: 1,
+				easing: Easing.materialUIStandard,
+				useNativeDriver: true,
+			}).start()
+		} else {
+            console.log('!actived');
+			Animated.timing(animation, {
+				duration: 200,
+				toValue: 0,
+				easing: Easing.materialUIStandard,
+				useNativeDriver: true,
+			}).start()
+		}
+    }, [activated])
 
 	return (
 		<Root>
 			<Touchable
-				// onPress={() => {
-				// 	onChange()
-				// 	_switchAnimated()
-                // }}
-                onPress={onChange}
+				onPress={() => onChange()}
                 >
                 <>
                     <Radio 
@@ -75,36 +66,37 @@ const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeT
                         sizeRadio={sizeRadio}
                         colorRadio={colorRadio}
                         >
-                        {/* <Animated.View
+                        <Animated.View
                             style={[
                                 {
-                                    height: 18,
-                                    width: 18,
-                                    borderRadius: 9,
+                                    height: sizeRadio - 4,
+                                    width: sizeRadio - 4,
+                                    borderRadius: sizeRadio / 2,
                                     backgroundColor:
-                                        color || '#333',
+                                        activated ? colorRadio : 'transparent',
                                     justifyContent: 'center',
-                                    bottom: 0.5,
+                                    alignSelf: 'center',
                                     transform: [
                                         {
-                                            translateX: animation.interpolate(
+                                            scaleX: animation.interpolate(
                                                 {
-                                                    inputRange: [
-                                                        0,
-                                                        1,
-                                                    ],
-                                                    outputRange: [
-                                                        0,
-                                                        containerWidth +
-                                                            18.5,
-                                                    ],
+                                                    inputRange: [0,1],
+                                                    outputRange: [0, 1],
+                                                },
+                                            ),
+                                        },
+                                        {
+                                            scaleY: animation.interpolate(
+                                                {
+                                                    inputRange: [0,1],
+                                                    outputRange: [0, 1],
                                                 },
                                             ),
                                         },
                                     ],
                                 },
                             ]}
-                        /> */}
+                        />
                     </Radio>
                     <ETASimpleText
                         size={sizeText}

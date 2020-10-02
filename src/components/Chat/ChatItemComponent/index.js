@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Dimensions, Animated} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Dimensions, Animated, Linking } from 'react-native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import messages from '@utils/messages.json'
 import MessageBubbleComponent from './MessageBubbleComponent'
 import ChatInputComponent from './ChatInputComponent'
-import { MaterialCommunityIcons, MaterialIcons, Octicons, Entypo } from '@icons'
+import { Octicons, Entypo, FontAwesome } from '@icons'
 
 const HEADER_MIN_HEIGHT = 50
 const HEADER_MAX_HEIGHT = 50
@@ -42,10 +42,12 @@ const ButtonContainer = styled.TouchableOpacity`
 const ChatItemComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [items] = useState(messages.data)
-	const [scrollYAnimatedValue] = useState(new Animated.Value(0))
-	const [animatedValueTransform] = useState(new Animated.Value(0.9))
-	const [opacity] = useState(new Animated.Value(0))
+	const route = useRoute()
+    const { paramData } = route?.params;
+	const [ items ] = useState(messages.data)
+	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
+	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
+	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 2000
 
 	useEffect(() => {
@@ -60,6 +62,7 @@ const ChatItemComponent = () => {
 			duration: 500,
 			useNativeDriver: true,
 		}).start()
+		console.log('cellphone', paramData);
 	}, [])
 
 	const headerHeight = scrollYAnimatedValue.interpolate({
@@ -138,19 +141,20 @@ const ChatItemComponent = () => {
 					}}>
 					<SubHeadContainer>
 						<ButtonContainer 
-							onPress={() => navigation.navigate('Chats', { screen: 'NewChatScreen'})}
+							onPress={() => Linking.openURL(`tel:${paramData.employee.cellphone}`).catch((err) => console.error('An error occurred opening link on contact card: ', err))}
+							// onPress={() => console.log('ewe', paramData.employee.cellphone)}
 						>
 							<Entypo name='phone' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
 						</ButtonContainer>
 
 						<ButtonContainer 
-							onPress={() => console.log('test')}
+							onPress={() => navigation.navigate('Chats', { screen: 'NewChatScreen'})}
 						>
-							<Octicons name='broadcast' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
+							<FontAwesome name='folder-open' size={16} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
 						</ButtonContainer>
 
 						<ButtonContainer 
-							onPress={() => console.log('test')}
+							onPress={() => navigation.navigate('ChatItemNavigator', { screen: 'ContactProfileScreen' })}
 						>
 							<Entypo name='info-with-circle' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
 						</ButtonContainer>

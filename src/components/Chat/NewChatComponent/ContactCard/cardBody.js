@@ -1,26 +1,22 @@
-import React, { useContext } from 'react'
-import { Dimensions, Linking } from 'react-native'
+import React, { useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
-import { MaterialCommunityIcons, Ionicons, Octicons, Entypo } from '@icons'
-
-const {width} = Dimensions.get('window')
+import { ETASimpleText } from '@etaui'
 
 const Root = styled.View`
-	flex: 1;
 	flex-direction: column;
+	justify-content: center;
 	align-content: center;
-	padding-horizontal: 10px;
-	padding-right: 20px;
+	padding: 0px 20px;
 	border-bottom-width: 0px;
 	border-bottom-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: transparent;
 `
 const SubHeadContainer = styled.View`
-	flex: 1;
+	flex: 0.7;
 	flex-direction: row;
+	justify-content: space-between;
 	align-items: center;
-	justify-content: flex-end;
 	padding-right: 20px;
 	background-color: transparent;
 ` 
@@ -33,15 +29,36 @@ const ButtonContainer = styled.TouchableOpacity`
 	border-radius: 15px;
 	background-color: ${props => props.theme.GRAYFACEBOOK};
 `
+const TimeContainer = styled.View`
+	flex: 1;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	background-color: transparent;
+`
 
-const CardBody = ({ username, firstname, lastname, active, avatar, cellphone }) => {
+
+const CardBody = memo(({ username, firstname, lastname, active, avatar, cellphone, createdAt }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 
 	return (
 		<Root>
 			<SubHeadContainer>
-				<ButtonContainer 
+				<TimeContainer>
+					<ETASimpleText
+						size={11}
+						weight={
+							Platform.OS === 'ios' ? '400' : '300'
+						}
+						color={
+							themeContext.PRIMARY_TEXT_COLOR_LIGHT
+						}
+						align='left'>
+						Member from {createdAt}
+					</ETASimpleText>
+				</TimeContainer>
+			{/* 	<ButtonContainer 
 					onPress={() => navigation.navigate('ChatItemNavigator', { screen: 'ChatItemScreen', params: {item: { active, employee: { avatar, firstname, lastname, username } }} })}
 				>
 					<Ionicons name='chatbubble-ellipses-sharp' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
@@ -57,10 +74,10 @@ const CardBody = ({ username, firstname, lastname, active, avatar, cellphone }) 
 					onPress={() => console.log('test')}
 				>
 					<Entypo name='info-with-circle' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
-				</ButtonContainer>
-			</SubHeadContainer>
+				</ButtonContainer> */}
+			</SubHeadContainer> 
 		</Root>
 	)
-}
+})
 
 export default CardBody

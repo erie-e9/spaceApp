@@ -3,11 +3,9 @@ import {Keyboard, Platform} from 'react-native'
 import styled from 'styled-components/native'
 import ForgetPasswordForm from '@components/Auth/ForgetPassword/ForgetPasswordForm'
 
-const KeyboardMisser = styled.TouchableWithoutFeedback``
 const Root = styled.View`
 	flex: 1;
 	justify-content: center;
-	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
 const InfoContainer = styled.KeyboardAvoidingView.attrs({
@@ -40,15 +38,14 @@ const Card = styled.View`
 `
 
 const ForgetPasswordScreen = () => (
-	<KeyboardMisser onPress={() => Keyboard.dismiss()}>
-		<Root>
-			<InfoContainer>
-				<Card>
-					<ForgetPasswordForm />
-				</Card>
-			</InfoContainer>
-		</Root>
-	</KeyboardMisser>
+	<Root>
+		<ForgetPasswordForm />
+		{/* <InfoContainer>
+			<Card>
+				<ForgetPasswordForm />
+			</Card>
+		</InfoContainer> */}
+	</Root>
 )
 
 export default ForgetPasswordScreen

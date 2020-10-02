@@ -9,9 +9,9 @@ const Root = styled.View`
 `
 const Cloud = styled.View`
 	max-width: ${moderateScale(250, 2)}px;
-	padding-top: ${moderateScale(5, 2)}px;
-	padding-bottom: ${moderateScale(7, 2)}px;
-	padding-horizontal: ${moderateScale(10, 2)}px;
+	padding-top: ${moderateScale(2, 2)}px;
+	padding-bottom: ${moderateScale(3, 2)}px;
+	padding-horizontal: ${moderateScale(8, 2)}px;
 	border-radius: 15px;
 `
 const ArrowContainer = styled.View`
@@ -40,14 +40,14 @@ const MessageTimeText = styled.Text`
 	align-self: flex-end;
 `
 
-const MessageBubbleComponent = ({item}) => {
+const MessageBubbleComponent = ({ item }) => {
 	const themeContext = useContext(ThemeContext)
 
 	return (
 		<Root
 			style={{
 				alignSelf: item.mine ? 'flex-end' : 'flex-start',
-				marginLeft: item.mine ? 0 : 10,
+				marginLeft: item.mine ? 0 : 12,
 				marginRight: item.mine ? 10 : 0,
 				marginVertical: item.mine ? 2 : moderateScale(8, 2),
 			}}>
@@ -97,7 +97,7 @@ const MessageBubbleComponent = ({item}) => {
 						style={{
 							left: item.mine
 								? moderateScale(4, 0.5)
-								: -2,
+								: -3,
 							right: item.mine
 								? 0
 								: moderateScale(30, 0.5),

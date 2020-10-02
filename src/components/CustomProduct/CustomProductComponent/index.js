@@ -1,76 +1,92 @@
 import React, { useState, useEffect, useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
-import { Animated, Dimensions } from 'react-native'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform, KeyboardAvoidingView, Keyboard, Animated, Dimensions } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import { ETASimpleText, ETAMultiStep, ETALoader } from '@etaui'
+import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETALoader, ETAMultiStep, ETARadio } from '@etaui'
 import { currencySeparator } from '@functions'
 import { CustomProductIcon1, CustomProductIcon2, FontAwesome } from '@icons'
-import { connect} from 'react-redux'
+import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/customproduct/flavors/actions'
 import ProductComponent from './ProductComponent'
-import { interpolate } from 'react-native-reanimated'
 
-const { width } = Dimensions.get('window')
-
-const Root = styled.View`
+const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
-    background-color: transparent;
+	width: 100%;
+`
+const Root = styled.TouchableWithoutFeedback`
+	flex: 1;
 `
 const StepContainer = styled.View`
-    flex: 1;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 40px;
+	flex: 1;
+	flex-direction: column;
+	background-color: transparent;
+`
+const ContentContainer = styled.View`
+	flex: 1;
+	width: 100%;
     background-color: transparent;
 `
 const HeadContainer = styled.View`
-    flex: 0.3;
-    justify-content: center;
-    align-items: center;
-    padding-horizontal: 30px;
+	flex: 0.25;
+    justify-content: flex-end;
+    align-items: flex-start;
+	width: 100%;
+	padding-horizontal: 20px;
+	padding-vertical: 20px;
     background-color: transparent;
 `
-const ItemsContainer = styled.View`
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+const FormContainer = styled.View`
+	flex: 0.75;
+	width: 100%;
+	justify-content: center;
+	flex-direction: column;
+	display: flex;
     background-color: transparent;
 `
-const ItemsList = styled.FlatList``
-const StepItemContainer = styled.View`
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-color: transparent;
-`
-const ListContainer = styled.View`
-    flex: 0.7;
-    justify-content: center;
-    padding-horizontal: 10px;
-    background-color: transparent;
-`
-const ItemSecondStepsList = styled.FlatList`
-    flex: 1;
-    background-color: transparent;
-`
-const CustomProductContainer = styled.View`
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
+const GenreContainer = styled.View`
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-around;
+	padding-horizontal: 10px;
+	margin-top: 15px;
+	background-color: transparent;
 `
 const ItemContainer = styled.View`
     margin: 10px 15px;
     align-items: center;
     background-color: transparent;
 `
-const IconContainerButton = styled.TouchableOpacity`
+const IconContainerButton = styled.TouchableHighlight.attrs({
+	underlayColor: 'transparent',
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
+})`
     height: 80px;
     width: 80px;
     justify-content: center;
     align-items: center;
     border-radius: 40px;
-	background-color: #F6F6F6;
+`
+const RadioContainer = styled.View`
+    flex: 0.9;
+	flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
+`
+const ItemsContainer = styled.View`
+	height: 50px;
+	margin-bottom: 30px;
+	background-color: transparent;
+`
+const ItemsList = styled.FlatList``
+const CustomProductIconButton = styled.TouchableOpacity`
+    height: 30px;
+    min-width: 60px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+	margin: 4px 11px;
+	background-color: transparent;
 `
 const CustomProductIconContainer = styled.View`
     flex-direction: row;
@@ -83,15 +99,6 @@ const CustomProductIconContainer = styled.View`
 	border-width: 0px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `
-const CustomProductIconButton = styled.TouchableOpacity`
-    height: 30px;
-    min-width: 60px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 40px;
-	margin: 4px 11px;
-	background-color: transparent;
-`
 const CustomProductImage = styled.Image`
     min-height: 29px;
     min-width: 32px;
@@ -99,70 +106,11 @@ const CustomProductImage = styled.Image`
     bottom: 3px;
     right: 100px;
 `
-const SumamryView = styled.View`
+const CustomProductContainer = styled.View`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: transparent;
-`
-const SumamryContainer = styled.View`
-    min-height: 100px;
-    min-width: ${width - 30}px;
-    margin: 1px 10px;
-    justify-content: center;
-    align-items: stretch;
-    border-radius: 5px;
-    elevation: 4;
-    shadow-offset: 0px 1px;
-    shadow-radius: 5px;
-    shadow-opacity: 0.15;
-	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-	border-top-width: 0px;
-	border-top-color: ${(props) => props.theme.GRAYFACEBOOK};
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-`
-const SumamryRow = styled.View`
-    min-height: 30px;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding-horizontal: 20px;
-    margin-vertical: 1px;
-    background-color: transparent;
-`
-const SumamryRowFlavor = styled.View`
-    height: 25px;
-    width: 25px;
-    border-radius: 12.5px;
-	border-width: 1.5px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
-`
-const ButtonAddToCartContainer = styled.View`
-	height: 50px;
-	width: 100%;
-	align-items: center;
-	margin-vertical: 8px;
-	background-color: transparent;
-`
-const AddCart = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
-})`
-    height: 40px;
-    width: 250px;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: ${Platform.OS === 'ios' ?  10 : 0}px;
-    z-index: 1000;
-	background-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
-`
-const AddCartPlus = styled.View`
-	height: 20px;
-	width: 12px;
-	justify-content: center;
-	align-items: center;
-	background-color: transparent;
+    background-color: green;
 `
 
 const mapStateToProps = (state, props) => {
@@ -183,23 +131,18 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
     const themeContext = useContext(ThemeContext)
 	const route = useRoute()
     const { paramData } = route?.params;
-    const [ items, setitems ] = useState([])
-    const [ itemsize, setitemsize ] = useState()
-    const [ itemfirstcolor, setitemfirstcolor ] = useState()
-    const [ itemmiddlecolor, setitemsecondcolor ] = useState()
-    const [ itemlastcolor, setitemlastcolor ] = useState()
+	const [ radioItem, setradioItem ] = useState(true)
     const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
 	const [ rotate ] = useState(new Animated.Value(0))
 	let delayValue = 1000
-    
+  
     useEffect(() => {
 		getDataRequest()
 		// console.log('[CustomProductComponent] data: ', data);
-    }, [data])
-    
+	}, [data])
+	
     useEffect(() => {
-        setitems(paramData.variations)
         Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -222,41 +165,43 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 		}).start()
     })
 
-    useEffect(() => {
-        console.log('itemsize: ', itemsize);
-    }, [itemsize])
-    
-    // const rotate = interpolate(rotate,{
-    //     inputRange: [0, 2],
-    //     outputRange: [3, 2],
-    //     extrapolate: 'clamp',
-    // });
-    
-    const SwitchIconComponent = ({ size }) => {
+	const _radioChange = async (item) => {
+		await setradioItem(radioItem ? !radioItem : true)
+		// await _setswitchItem(item)
+		// toogleNotification(id)
+	}
+
+    const SwitchIconComponent = ({ size, itemfirstcolor, itemsecondcolor, itemlastcolor, firststrokeColor, secondstrokeColor, laststrokeColor }) => {
         switch (paramData.icon) {
             case 1:
                 return (<CustomProductIcon1
                         size={size}
-                        firstcolor='#EE569E'
-                        middlecolor='#F181B2'
-                        lastcolor='#F6B9D3'
-                        strokeColor={themeContext.GRAYFACEBOOK} 
+                        firstcolor={itemfirstcolor}
+                        secondcolor={itemsecondcolor}
+                        lastcolor={itemlastcolor}
+						firststrokeColor={firststrokeColor}
+						secondstrokeColor={secondstrokeColor}
+						laststrokeColor={laststrokeColor}
                     />);
             case 2:
                 return (<CustomProductIcon2
                         size={size}
-                        firstcolor='#EE569E'
-                        middlecolor='#F181B2'
-                        lastcolor='#F6B9D3'
-                        strokeColor={themeContext.GRAYFACEBOOK} 
+                        firstcolor={itemfirstcolor}
+                        secondcolor={itemsecondcolor}
+						lastcolor={itemlastcolor}
+						firststrokeColor={firststrokeColor}
+						secondstrokeColor={secondstrokeColor}
+						laststrokeColor={laststrokeColor}
                     />);
             case 3:
                 return (<CustomProductIcon2
                         size={size}
-                        firstcolor='#EE569E'
-                        middlecolor='#F181B2'
-                        lastcolor='#fff'
-                        strokeColor={themeContext.GRAYFACEBOOK} 
+                        firstcolor={itemfirstcolor}
+                        secondcolor={itemsecondcolor}
+						lastcolor={itemlastcolor}
+						firststrokeColor={firststrokeColor}
+						secondstrokeColor={secondstrokeColor}
+						laststrokeColor={laststrokeColor}
                     />);
         
             default:
@@ -264,441 +209,378 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
         }
     }
 
-    const _submitCustomProduct = () => {
-        const vars = {
-            itemsize,
-            itemfirstcolor,
-            itemmiddlecolor,
-            itemlastcolor
-        }
-
-        console.log(vars)
-    }
-
-    return (
-        <Root>
-            <HeadContainer>
-                <ETASimpleText
-                    size={20}
-                    weight={
-                        Platform.OS === 'ios'
-                        ? '700'
-                        : 'bold'
+	const form = [
+		{
+			title: `Create your own ${paramData.name}`,
+			description: `Here you can choose that flavors and colors you want to taste.`,
+			items: [
+				{
+					placeholder: 'Choose a size',
+					name: 'itemsize',
+					controller: {
+						type: 'radioinput1',
+                        values: paramData.variations
                     }
-                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                    align='center'
-                    style={{ marginTop: 10 }}>
-                    Create your own style
-                </ETASimpleText>
-                <ETASimpleText
-                    size={14}
-                    weight={
-                        Platform.OS === 'ios'
-                        ? '400'
-                        : '500'
+				}
+			]
+		},
+		{
+			title: `Choose your first flavor`,
+			description: `We have fruit, cream, milk and alcohol flavors.`,
+			items: [
+				{
+					placeholder: 'Choose a flavor',
+					name: 'itemfirstcolor',
+					controller: {
+						type: 'radioinput2',
+                        values: data
                     }
-                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                    align='center'
-                    style={{ marginTop: 10 }}>
-                    Here you can choose flavors and colors for your {paramData.name}
-                </ETASimpleText>
-            </HeadContainer>
+				}
+			]
+		},
+		{
+			title: `Choose your second flavor`,
+			description: `We have fruit, cream, milk and alcohol flavors.`,
+			items: [
+				{
+					placeholder: 'Choose a flavor',
+					name: 'itemsecondcolor',
+					controller: {
+						type: 'radioinput2',
+                        values: data
+                    }
+				}
+			]
+		},
+		{
+			title: `Delicious!, choose your last flavor`,
+			description: `We have fruit, cream, milk and alcohol flavors.`,
+			items: [
+				{
+					placeholder: 'Choose a flavor',
+					name: 'itemlastcolor',
+					controller: {
+						type: 'radioinput2',
+                        values: data
+                    }
+				}
+			]
+		}
+	]
+	
 
-            <ETAMultiStep>
-                <ETAMultiStep.Step>
-                    <StepContainer>
-                        <StepItemContainer>
-                            <ETASimpleText
-                                size={16}
-                                weight={
-                                    Platform.OS === 'ios'
-                                    ? '700'
-                                    : 'bold'
-                                }
-                                color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                align='center'
-                                style={{ marginBottom: 20 }}
-                                >
-                                Choose a size
-                            </ETASimpleText>
-                            <ItemsContainer>
-                                {
-                                    items.length !== 0
-                                    ?	<ItemsList
-                                            contentContainerStyle={{
-                                                // height: 160,
-                                                alignSelf: 'stretch',
-                                                alignItems: 'center',
-                                                backgroundColor: 'transparent'
-                                            }}
-                                            // horizontal
-                                            numColumns={3}
-                                            data={items}
-                                            keyExtractor={(item) => item._id.toString()}
-                                            showsVerticalScrollIndicator={false}
-                                            showsHorizontalScrollIndicator={false}
-                                            // refreshing={refresher}
-                                            // onRefresh={() => _getData()}
-                                            renderItem={({item}) => {
-                                                delayValue += 700
-                                                const translateY = animatedValueTransform.interpolate(
-                                                    {
-                                                        inputRange: [0, 1],
-                                                        outputRange: [delayValue, 1],
-                                                        extrapolate: 'clamp',
-                                                    },
-                                                )
-                                                
-                                                return (
-                                                    <Animated.View
-                                                        style={{
-                                                            opacity,
-                                                            transform: [
-                                                                {
-                                                                    translateY,
-                                                                },
-                                                            ],
-                                                        }}>
-                                                        <ItemContainer key={item._id}>
-                                                            <IconContainerButton onPress={() => setitemsize(item.itemsize)}>
-                                                                {SwitchIconComponent({size: item.size})}
-                                                            </IconContainerButton>
-                                                            <ETASimpleText
-                                                                size={14}
-                                                                weight={
-                                                                    Platform.OS === 'ios'
-                                                                    ? '400'
-                                                                    : '300'
-                                                                }
-                                                                color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                                align='center'
-                                                                style={{ marginTop: 10 }}
-                                                                >
-                                                                {item.itemsize}
-                                                            </ETASimpleText>
-                                                            <ETASimpleText
-                                                                size={12}
-                                                                weight={
-                                                                    Platform.OS === 'ios'
-                                                                    ? '400'
-                                                                    : '300'
-                                                                }
-                                                                color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                                align='center'
-                                                                >
-                                                                ${currencySeparator(item.price.toFixed(
-                                                                    2,
-                                                                ))}
-                                                            </ETASimpleText>
-                                                        </ItemContainer>
-                                                    </Animated.View>
-                                                )}
-                                            }
-                                        />
-                                    :	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
-                                }
-                            </ItemsContainer>
-                        </StepItemContainer>
-                    </StepContainer>
-                    
-                </ETAMultiStep.Step>
-                
-                <ETAMultiStep.Step>
-                    <StepContainer>
-                        <StepItemContainer>
-                            <ListContainer>
-                                {
-                                    data
-                                    ?   <ItemSecondStepsList 
-                                            contentContainerStyle={{
-                                                alignSelf: 'center',
-                                            }}
-                                            horizontal
-                                            // numColumns={data.length / 2}
-                                            data={data}
-                                            keyExtractor={(item) => item._id.toString()}
-                                            showsVerticalScrollIndicator={false}
-                                            showsHorizontalScrollIndicator={false}
-                                            // refreshing={refresher}
-                                            // onRefresh={() => _getData()}
-                                            renderItem={({item}) => (
-                                                <CustomProductIconButton
-                                                    onPress={() => setitemfirstcolor(item)}>
-                                                    <CustomProductIconContainer
-                                                        style={{ backgroundColor: item.color }}>
-                                                        <CustomProductImage 
-                                                            source={{ uri: item.imageitem }}/>
-                                                        <ETASimpleText
-                                                            size={14}
-                                                            weight={
-                                                                Platform.OS === 'ios'
-                                                                ? '400'
-                                                                : '300'
-                                                            }
-                                                            color={item.colortext}
-                                                            align='center'
-                                                            >
-                                                            {item.name}
-                                                        </ETASimpleText>
-                                                    </CustomProductIconContainer>
-                                                </CustomProductIconButton>
-                                            )}
-                                        />
-                                    :	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
-                                }
-                            </ListContainer>
-                            
-                            <CustomProductContainer>
-                                <ProductComponent stepTtitle='Choose your first flavor'>
-                                    <Animated.View
-                                        style={{
-                                            transform: [
-                                                {
-                                                    rotate,
-                                                },
-                                            ],
-                                        }}>
-                                        <CustomProductIcon2 
-                                            size={4}
-                                            firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
-                                            middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
-                                            lastcolor={itemlastcolor ? itemlastcolor.color : 'transparent'}
-                                            firststrokeColor={itemfirstcolor ? itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                            middlestrokeColor={itemmiddlecolor ? itemmiddlecolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                            laststrokeColor={itemlastcolor ? itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                        />
-                                    </Animated.View>
-                                </ProductComponent>
-                            </CustomProductContainer>
-                        </StepItemContainer>
-                    </StepContainer>
-                </ETAMultiStep.Step>
-                
-                <ETAMultiStep.Step>
-                    <StepContainer>
-                        <StepItemContainer>
-                            <ListContainer>
-                                {
-                                    data
-                                    ?   <ItemSecondStepsList 
-                                            contentContainerStyle={{
-                                                alignSelf: 'center',
-                                            }}
-                                            horizontal
-                                            data={data}
-                                            keyExtractor={(item) => item._id.toString()}
-                                            showsVerticalScrollIndicator={false}
-                                            showsHorizontalScrollIndicator={false}
-                                            // refreshing={refresher}
-                                            // onRefresh={() => _getData()}
-                                            renderItem={({item}) => (
-                                                <CustomProductIconButton
-                                                    onPress={() => setitemsecondcolor(item)}>
-                                                    <CustomProductIconContainer
-                                                        style={{ backgroundColor: item.color }}>
-                                                        <CustomProductImage 
-                                                            source={{ uri: item.imageitem }}/>
-                                                        <ETASimpleText
-                                                            size={14}
-                                                            weight={
-                                                                Platform.OS === 'ios'
-                                                                ? '400'
-                                                                : '300'
-                                                            }
-                                                            color={item.colortext}
-                                                            align='center'
-                                                            >
-                                                            {item.name}
-                                                        </ETASimpleText>
-                                                    </CustomProductIconContainer>
-                                                </CustomProductIconButton>
-                                            )}
-                                        />
-                                    :	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
-                                }
-                            </ListContainer>
+	return (
+		<Root>
+            <ETAMultiStep
+				prevText='Previous'
+				nextText='Next'
+				finishText='Add to cart'
+				initialValues={{
+					itemsize: '',
+					itemfirstcolor: '',
+					itemsecondcolor: '',
+					itemlastcolor: '',
+				}}
+			>
+             {
+				 form.map((element, index) => (
+					<ETAMultiStep.Step key={index}>
+						{({ onChangeValue, values }) => (
+							<StepContainer>
+								<KeyboardAvoidingView 
+										behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+										// contentContainerStyle=''
+										style={{flex: 1}}
+									>	
+									<KeyboardMisser onPress={() => Keyboard.dismiss()}>
+										<ContentContainer>
+											<HeadContainer>
+												<ETASimpleText
+													size={24}
+													weight={
+														Platform.OS === 'ios'
+														? '700'
+														: 'bold'
+													}
+													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+													align='left'
+													style={{ marginTop: 10 }}>
+													{element.title}
+												</ETASimpleText>
+												<ETASimpleText
+													size={13}
+													weight={
+														Platform.OS === 'ios'
+														? '400'
+														: '500'
+													}
+													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+													align='left'
+													style={{ marginTop: 10 }}>
+													{element.description}
+												</ETASimpleText>
+											</HeadContainer>
 
-                            <CustomProductContainer>
-                                <ProductComponent stepTtitle='Choose your second flavor'>
-                                    <CustomProductIcon2 
-                                        size={4}
-                                        firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
-                                        middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
-                                        lastcolor={itemlastcolor ? itemlastcolor.color : 'transparent'}
-                                        firststrokeColor={itemfirstcolor ? itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                        middlestrokeColor={itemmiddlecolor ? itemmiddlecolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                        laststrokeColor={itemlastcolor ? itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                    />
-                                </ProductComponent>
-                            </CustomProductContainer>
-                        </StepItemContainer>
-                    </StepContainer>
-                </ETAMultiStep.Step>
+											<FormContainer>
+												{
+													element.items.map((subelement, i) => {
+														switch (subelement.controller.type) {
+															case 'textinput':
+																return (
+																	<ETATextInputOutline
+																		key={i}
+																		value={values?.[subelement.name]}
+																		placeholder={subelement.placeholder}
+																		placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+																		keyboardType={subelement.controller.keyboardtype}
+																		autoCapitalize='none'
+																		allowFontScaling
+																		autoCorrect
+																		autoFocus
+																		blurOnSubmit={false}
+																		caretHidden={false}
+																		clearButtonMode='while-editing'
+																		contextMenuHidden={false}
+																		editable
+																		enablesReturnKeyAutomatically={false}
+																		underlineColorAndroid='transparent'
+																		keyboardAppearance='dark'
+																		maxLength={10}
+																		multiline={false}
+																		numberOfLines={1} // android
+																		returnKeyLabel='next' // android
+																		secureTextEntry={false} // password
+																		spellCheck
+																		textContentType='none'
+																		returnKeyType='next'
+																		textsize={14}
+																		height={40}
+																		width={270}
+																		borderWidth={0.3}
+																		onChangeText={text => onChangeValue(
+																			[subelement.name], text
+																		)}
+																		// onBlur={handleBlur('cellphone')}
+																		selectionColor={themeContext.PRIMARY_COLOR}
+																	/>
+																)
+															case 'radioinput1':
+																return (
+																	<RadioContainer key={i}>
+                                                                         <ETASimpleText
+                                                                            size={18}
+                                                                            weight={
+                                                                                Platform.OS === 'ios'
+                                                                                ? '700'
+                                                                                : 'bold'
+                                                                            }
+                                                                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                                                            align='center'
+                                                                            style={{
+																				marginBottom: 20
+																			}}
+                                                                            >
+                                                                            Choose a size
+                                                                        </ETASimpleText>
+                                                                        {
+                                                                            subelement.controller.values.length !== 0
+                                                                            ?	<ItemsList
+                                                                                    contentContainerStyle={{
+                                                                                        // height: 160,
+                                                                                        alignSelf: 'stretch',
+                                                                                        alignItems: 'center',
+                                                                                        backgroundColor: 'transparent'
+                                                                                    }}
+                                                                                    // horizontal
+                                                                                    numColumns={3}
+                                                                                    data={subelement.controller.values}
+                                                                                    keyExtractor={(item) => item._id.toString()}
+                                                                                    showsVerticalScrollIndicator={false}
+                                                                                    showsHorizontalScrollIndicator={false}
+                                                                                    // refreshing={refresher}
+                                                                                    // onRefresh={() => _getData()}
+                                                                                    // renderItem={({ip}) => {
+                                                                                    renderItem={({item}) => {
+                                                                                        delayValue += 700
+                                                                                        const translateY = animatedValueTransform.interpolate(
+                                                                                            {
+                                                                                                inputRange: [0, 1],
+                                                                                                outputRange: [delayValue, 1],
+                                                                                                extrapolate: 'clamp',
+                                                                                            },
+                                                                                        )
 
-                <ETAMultiStep.Step>
-                    <StepContainer>
-                        <StepItemContainer>
-                            <ListContainer>
-                                {
-                                    data
-                                    ?   <ItemSecondStepsList 
-                                            contentContainerStyle={{
-                                                alignSelf: 'center',
-                                            }}
-                                            horizontal
-                                            data={data}
-                                            keyExtractor={(item) => item._id.toString()}
-                                            showsVerticalScrollIndicator={false}
-                                            showsHorizontalScrollIndicator={false}
-                                            // refreshing={refresher}
-                                            // onRefresh={() => _getData()}
-                                            renderItem={({item}) => (
-                                                <CustomProductIconButton
-                                                    onPress={() => setitemlastcolor(item)}>
-                                                    <CustomProductIconContainer
-                                                        style={{ backgroundColor: item.color }}>
-                                                        <CustomProductImage 
-                                                            source={{ uri: item.imageitem }}/>
-                                                        <ETASimpleText
-                                                            size={14}
-                                                            weight={
-                                                                Platform.OS === 'ios'
-                                                                ? '400'
-                                                                : '300'
-                                                            }
-                                                            color={item.colortext}
-                                                            align='center'
-                                                            >
-                                                            {item.name}
-                                                        </ETASimpleText>
-                                                    </CustomProductIconContainer>
-                                                </CustomProductIconButton>
-                                            )}
-                                        />
-                                    :	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
-                                }
-                            </ListContainer>
+                                                                                        return (
+                                                                                            <Animated.View
+                                                                                                style={{
+                                                                                                    opacity,
+                                                                                                    transform: [
+                                                                                                        {
+                                                                                                            translateY,
+                                                                                                        },
+                                                                                                    ],
+                                                                                                }}>
+                                                                                                <ItemContainer>
+                                                                                                    <IconContainerButton 
+                                                                                                        onPress={() => onChangeValue([subelement.name], item?.itemsize)}
+                                                                                                        style={{ borderWidth: 3, borderColor: values?.itemsize === item?.itemsize ? '#ffff4a' : '#F6F6F6', backgroundColor: values?.itemsize === item?.itemsize ? '#ffff4a' : 'transparent' }}
+                                                                                                        >
+                                                                                                        {SwitchIconComponent({size: item.size, itemfirstcolor: '#EE569E', itemsecondcolor: '#F181B2', itemlastcolor: '#F6B9D3', firststrokeColor: '#EE569E', secondstrokeColor: '#F181B2', laststrokeColor: '#F6B9D3' })}
+                                                                                                    </IconContainerButton>
+                                                                                                    <ETASimpleText
+                                                                                                        size={14}
+                                                                                                        weight={
+                                                                                                            Platform.OS === 'ios'
+                                                                                                            ? '400'
+                                                                                                            : '300'
+                                                                                                        }
+                                                                                                        color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                                                                                        align='center'
+                                                                                                        style={{ marginTop: 10 }}
+                                                                                                        >
+                                                                                                        {item.itemsize.charAt(0).toUpperCase() + item.itemsize.slice(1)}
+                                                                                                    </ETASimpleText>
+                                                                                                    <ETASimpleText
+                                                                                                        size={12}
+                                                                                                        weight={
+                                                                                                            Platform.OS === 'ios'
+                                                                                                            ? '400'
+                                                                                                            : '300'
+                                                                                                        }
+                                                                                                        color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                                                                                        align='center'
+                                                                                                        >
+                                                                                                        ${currencySeparator(item.price.toFixed(
+                                                                                                            2,
+                                                                                                        ))}
+                                                                                                    </ETASimpleText>
+                                                                                                </ItemContainer>
+                                                                                            </Animated.View>
+                                                                                        )
+                                                                                    }}
+                                                                                />
+                                                                            :	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+                                                                        }
+																	</RadioContainer>
+																)
+															case 'radioinput2':
 
-                            <CustomProductContainer>
-                                <ProductComponent stepTtitle='Choose your last flavor'>
-                                    <CustomProductIcon2 
-                                        size={4}
-                                        firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
-                                        middlecolor={itemmiddlecolor ? itemmiddlecolor.color : 'transparent'}
-                                        lastcolor={itemlastcolor ? itemlastcolor.color : 'transparent'}
-                                        firststrokeColor={itemfirstcolor ? itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                        middlestrokeColor={itemmiddlecolor ? itemmiddlecolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                        laststrokeColor={itemlastcolor ? itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                    />
-                                </ProductComponent>
-                            </CustomProductContainer>
+																return (
+																	<RadioContainer key={i}>
+																		<ItemsContainer>
+																		{
+                                                                            subelement.controller.values.length !== 0
+                                                                            ?	<ItemsList
+																					contentContainerStyle={{
+																						alignSelf: 'flex-start',
+																					}}
+																					horizontal
+																					// numColumns={data.length / 2}
+                                                                                    data={subelement.controller.values}
+																					keyExtractor={(item) => item._id.toString()}
+																					showsVerticalScrollIndicator={false}
+																					showsHorizontalScrollIndicator={false}
+                                                                                    // refreshing={refresher}
+                                                                                    // onRefresh={() => _getData()}
+                                                                                    // renderItem={({ip}) => {
+                                                                                    renderItem={({item}) => {
+                                                                                        delayValue += 700
+                                                                                        const translateY = animatedValueTransform.interpolate(
+                                                                                            {
+                                                                                                inputRange: [0, 1],
+                                                                                                outputRange: [delayValue, 1],
+                                                                                                extrapolate: 'clamp',
+                                                                                            },
+                                                                                        )
 
-                        </StepItemContainer>
-                    </StepContainer>
-                </ETAMultiStep.Step>
-
-                <ETAMultiStep.Step>
-                    <StepContainer>
-                        <StepItemContainer>
-                            <SumamryView>
-                                <ETASimpleText
-                                    size={18}
-                                    weight={
-                                        Platform.OS === 'ios'
-                                        ? '700'
-                                        : 'bold'
-                                    }
-                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                    align='center'
-                                    style={{ marginBottom: 18 }}
-                                    >
-                                    Purchase summary
-                                </ETASimpleText>
-                                <SumamryContainer>
-                                {
-                                    itemlastcolor
-                                    ?   <>
-                                            <SumamryRow>
-                                                <ETASimpleText
-                                                    size={14}
-                                                    weight={
-                                                        Platform.OS === 'ios'
-                                                        ? '700'
-                                                        : 'bold'
-                                                    }
-                                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                    align='center'
-                                                    >
-                                                    Size: {' '}
-                                                </ETASimpleText>
-                                                <ETASimpleText
-                                                    size={14}
-                                                    weight={
-                                                        Platform.OS === 'ios'
-                                                        ? '400'
-                                                        : '300'
-                                                    }
-                                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                    align='center'
-                                                    >
-                                                    {itemsize}
-                                                </ETASimpleText>
-                                            </SumamryRow>
-
-                                            <SumamryRow style={{ justifyContent: 'space-between' }}>
-                                                <ETASimpleText
-                                                    size={14}
-                                                    weight={
-                                                        Platform.OS === 'ios'
-                                                        ? '700'
-                                                        : 'bold'
-                                                    }
-                                                    color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                    align='center'
-                                                    >
-                                                    Flavors chosen: {' '}
-                                                </ETASimpleText>
-                                                <SumamryRowFlavor style={{ backgroundColor: itemfirstcolor.color }}/>
-                                                <SumamryRowFlavor style={{ backgroundColor: itemmiddlecolor.color }}/>
-                                                <SumamryRowFlavor style={{ backgroundColor: itemlastcolor.color }}/>
-                                            </SumamryRow>
-                                        </>
-                                    :   null
-                                }
-                                </SumamryContainer>
-                                <ButtonAddToCartContainer>
-                                    <AddCart
-                                        onPress={() => console.log('Add to cart')}>
-                                        <AddCartPlus>
-                                            <ETASimpleText
-                                                size={16}
-                                                weight={
-                                                    Platform.OS ===
-                                                    'ios'
-                                                        ? '600'
-                                                        : '300'
-                                                }
-                                                color='white'
-                                                align='center'>
-                                                +
-                                            </ETASimpleText>
-                                        </AddCartPlus>
-                                        <FontAwesome
-                                            name='shopping-cart'
-                                            size={16}
-                                            color='white'
-                                            style={{
-                                                alignSelf: 'center',
-                                            }}
-                                        />
-                                    </AddCart>
-                                </ButtonAddToCartContainer>
-                            </SumamryView>
-                        </StepItemContainer>
-                    </StepContainer>
-                </ETAMultiStep.Step>
-
-
+                                                                                        return (
+                                                                                            <Animated.View
+                                                                                                style={{
+                                                                                                    opacity,
+                                                                                                    transform: [
+                                                                                                        {
+                                                                                                            translateY,
+                                                                                                        },
+                                                                                                    ],
+                                                                                                }}>
+                                                                                                <>
+                                                                                                    <CustomProductIconButton 
+                                                                                                        onPress={() => onChangeValue([subelement.name], item={ color: item.color, name: item.name })}
+                                                                                                        style={{  backgroundColor: item.color }}
+																										// onPress={() => setitemfirstcolor(item)}
+																									>
+																										<CustomProductIconContainer
+																											style={{ backgroundColor: item.color }}>
+																											<CustomProductImage 
+																												source={{ uri: item.imageitem }}/>
+																											<ETASimpleText
+																												size={14}
+																												weight={
+																													Platform.OS === 'ios'
+																													? '400'
+																													: '300'
+																												}
+																												color={item.colortext}
+																												align='center'
+																												>
+																												{item.name}
+																											</ETASimpleText>
+																										</CustomProductIconContainer>
+                                                                                                    </CustomProductIconButton>
+                                                                                                </>
+                                                                                            </Animated.View>
+                                                                                        )
+                                                                                    }}
+                                                                                />
+                                                                            :	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+                                                                        }
+																		</ItemsContainer>
+																		<>
+																			<ProductComponent>
+																				<Animated.View
+																					style={{
+																						transform: [
+																							{
+																								rotate,
+																							},
+																						],
+																					}}>
+																					{SwitchIconComponent({ 
+																						size: 4, 
+																						itemfirstcolor: values?.itemfirstcolor ? values?.itemfirstcolor.color : 'transparent', 
+																						itemsecondcolor: values?.itemsecondcolor ? values?.itemsecondcolor.color : 'transparent', 
+																						itemlastcolor: values?.itemlastcolor ? values?.itemlastcolor.color : 'transparent', 
+																						firststrokeColor: values?.itemfirstcolor ? values?.itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR, 
+																						secondstrokeColor: values?.itemsecondcolor ? values?.itemsecondcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+																						laststrokeColor: values?.itemlastcolor ? values?.itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR })} 
+																					{/* <CustomProductIcon2 
+																						size={4}
+																						firstcolor={itemfirstcolor ? itemfirstcolor.color : 'transparent'}
+																						secondcolor={itemsecondcolor ? itemsecondcolor.color : 'transparent'}
+																						lastcolor={itemlastcolor ? itemlastcolor.color : 'transparent'}
+																						firststrokeColor={itemfirstcolor ? itemfirstcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																						secondstrokeColor={itemsecondcolor ? itemsecondcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																						laststrokeColor={itemlastcolor ? itemlastcolor.color : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																					/> */}
+																				</Animated.View>
+																			</ProductComponent>
+																		</>
+																	</RadioContainer>
+																)
+															default:
+																return;
+														}
+													})
+												}
+											</FormContainer>
+										</ContentContainer>
+									</KeyboardMisser>
+								</KeyboardAvoidingView>
+							</StepContainer>
+						)}
+					</ETAMultiStep.Step>
+				 ))
+			 }   
             </ETAMultiStep>
         </Root>
     )
@@ -709,5 +591,4 @@ const CustomProductComponentConnect = connect(
 	mapDispatchProps,
 )(CustomProductComponent)
 
-export default React.memo(CustomProductComponentConnect)
-// export default CustomProductComponent
+export default CustomProductComponentConnect

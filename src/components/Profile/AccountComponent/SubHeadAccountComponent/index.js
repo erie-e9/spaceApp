@@ -105,7 +105,7 @@ const SubHeadAccountComponent = () => {
 							value={values.fullname}
 							placeholder='Fullname'
 							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							keyboardType='default'
 							autoCapitalize='none'
@@ -149,7 +149,7 @@ const SubHeadAccountComponent = () => {
 							value={values.username}
 							placeholder='Username'
 							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							keyboardType='default'
 							autoCapitalize='none'
@@ -193,7 +193,7 @@ const SubHeadAccountComponent = () => {
 							value={values.cellphone}
 							placeholder='Cellphone'
 							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							keyboardType='phone-pad'
 							autoCapitalize='none'
@@ -237,7 +237,7 @@ const SubHeadAccountComponent = () => {
 							value={values.password}
 							placeholder='Password'
 							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							keyboardType='default'
 							autoCapitalize='none'
@@ -282,7 +282,7 @@ const SubHeadAccountComponent = () => {
 							value={values.email}
 							placeholder='Email'
 							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							keyboardType='default'
 							autoCapitalize='none'

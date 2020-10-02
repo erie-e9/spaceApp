@@ -1,10 +1,11 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
-import {ETASimpleText} from '@etaui'
+import { Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 // import eoLocale from 'date-fns/locale/es';
-import {truncateString} from '@functions'
+import { truncateString } from '@functions'
+import { useNavigation } from '@react-navigation/native'
 
 const Root = styled.View`
 	flex: 1;
@@ -31,8 +32,8 @@ const UserDataContainer = styled.View`
 const TimeContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
-	align-items: center;
 	justify-content: flex-end;
+	align-items: center;
 	right: 5px;
 `
 const Touchable = styled.TouchableOpacity.attrs({
@@ -42,6 +43,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 
 const CardHeader = ({username, firstname, lastname, createdAt}) => {
 	const themeContext = useContext(ThemeContext)
+	const navigation = useNavigation()
 	const fullname = `${firstname} ${lastname}`
 
 	return (
@@ -59,7 +61,9 @@ const CardHeader = ({username, firstname, lastname, createdAt}) => {
 						align='left'>
 						{truncateString(fullname, 40)}
 					</ETASimpleText>
-					<Touchable>
+					<Touchable
+						onPress={() => navigation.navigate('ChatItemNavigator', { screen: 'ContactProfileScreen' })}
+					>
 						<ETASimpleText
 							size={11}
 							weight={

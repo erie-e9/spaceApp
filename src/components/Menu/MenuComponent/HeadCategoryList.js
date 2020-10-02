@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {Dimensions, Platform, Animated} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText} from '@etaui'
+import React, { useState, useEffect, useContext } from 'react'
+import { Dimensions, Platform, Animated } from 'react-native'
+import styled, {ThemeContext } from 'styled-components'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText } from '@etaui'
 import HeadCategoryItem from './HeadCategoryItem'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/menu/categories/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/menu/categories/actions'
 
 const {width} = Dimensions.get('window')
 
@@ -54,7 +54,7 @@ const mapDispatchProps = (dispatch) => ({
 	},
 })
 
-const Categories = ({getDataRequest, data}) => {
+const Categories = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [categoryitems, setcategoryitems] = useState([])

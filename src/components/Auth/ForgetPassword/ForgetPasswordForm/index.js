@@ -1,48 +1,51 @@
-import React, {useState, useContext, useEffect} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Formik} from 'formik'
-import * as yup from 'yup'
-import {
-	ETATextInputOutline,
-	ETAButtonFilled,
-	ETAErrorMessage,
-	ETASimpleText,
-} from '@etaui'
+import React, { useState, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import {Platform, KeyboardAvoidingView, Keyboard} from 'react-native'
+import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETAMultiStep, ETARadio } from '@etaui'
 import {connect} from 'react-redux'
 import {RECOVERY_PASS} from '@redux/user/actions'
 
-const validationSchema = yup.object().shape({
-	cellphone: yup
-		.string()
-		.matches(/^[0-9]*$/, 'Cellphone should has only numbers')
-		.min(10, 'Cellphone should has 10 characters')
-		.max(10, 'Cellphone should has 10 characters')
-		.typeError('Phone should has only numbers')
-		.required('This field is required'),
-})
-
-const Root = styled.View`
+const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
-	justify-content: center;
-	align-items: center;
+	width: 100%;
+`
+const Root = styled.TouchableWithoutFeedback`
+	flex: 1;
+`
+const StepContainer = styled.View`
+	flex: 1;
+	flex-direction: column;
+	background-color: transparent;
+`
+const ContentContainer = styled.View`
+	flex: 1;
+    align-items: center;
+    background-color: transparent;
+`
+const HeadContainer = styled.View`
+	flex: 0.25;
+    justify-content: flex-end;
+    align-items: flex-start;
+	width: 100%;
+	padding-horizontal: 20px;
+	padding-vertical: 20px;
+    background-color: transparent;
 `
 const FormContainer = styled.View`
-	flex: 0.7;
+	flex: 0.75;
 	flex-direction: column;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	width: 100%;
+    background-color: transparent;
+`
+const GenreContainer = styled.View`
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-around;
 	padding-horizontal: 10px;
-`
-const ButtonContainer = styled.View`
-	height: 20px;
 	margin-top: 15px;
-`
-const RecoverTextContainer = styled.View`
-	justify-content: center;
-	align-items: center;
-	margin-top: 15px;
+	background-color: transparent;
 `
 
 const mapStateToProps = (state, props) => {
@@ -63,122 +66,210 @@ const mapDispatchProps = (dispatch, props) => ({
 })
 
 const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
-	const themeContext = useContext(ThemeContext)
-	const [recoverytext, setrecoverytext] = useState(
-		'We will send you a SMS with instructions for recover your password.',
-	)
-	const [buttonrecoverytext, setbuttonrecoverytext] = useState(
-		'Recover password',
-	)
+    const themeContext = useContext(ThemeContext)
+	const [ mysecureTextEntry ] = useState(true)
+	const [ radioItem, setradioItem ] = useState(true)
 
-	useEffect(() => {
-		console.log('ForgetPasswordComponent cellphone:', cellphone)
-	}, [])
+	const _radioChange = async (item) => {
+		await setradioItem(radioItem ? !radioItem : true)
+		// await _setswitchItem(item)
+		// toogleNotification(id)
+	}
+
+	const form = [
+		{
+			title: `Don't remember your password?`,
+			description: `Don't worry, we will send you a SMS with instructions for get a new password.`,
+			items: [
+				{
+					placeholder: 'What is your cellphone?',
+					name: 'cellphone',
+					controller: {
+						type: 'textinput',
+						keyboardtype: 'phone-pad',
+						secureTextEntry: false
+					}
+				}
+			]
+		},
+		{
+			title: `Please insert code`,
+			description: `We need to confirm that you are who you say you are.`,
+			items: [
+				{
+					placeholder: 'Code',
+					name: 'code',
+					controller: {
+						type: 'textinput',
+						keyboardtype: 'phone-pad',
+						secureTextEntry: false
+					}
+				}
+			]
+		},
+		{
+			title: `Great!, now you can choose a new password`,
+			description: `Choose your new password.`,
+			items: [
+				{
+					placeholder: 'New password',
+					name: 'password',
+					controller: {
+						type: 'textinput',
+						keyboardtype: 'default',
+						secureTextEntry: true
+					}
+				},
+				{
+					placeholder: 'Repeat password',
+					name: 'confirmPassword',
+					controller: {
+						type: 'textinput',
+						keyboardtype: 'default',
+						secureTextEntry: false
+					}
+				}
+			]
+		},
+	]
+	
 
 	return (
 		<Root>
-			<Formik
-				enableReinitialize
+            <ETAMultiStep
+				prevText='Previous'
+				nextText='Next'
+				finishText='Send'
 				initialValues={{
 					cellphone: '',
+					name: '',
+					lastname: '',
+					genre: 'men',
+					username: '',
+					password: '',
+					confirmPassword: ''
+					// email: ''
 				}}
-				onSubmit={(values, actions) => {
-					recoveryPassUser({
-						cellphone: values.cellphone,
-					})
+			>
+             {
+				 form.map((element, index) => (
+					<ETAMultiStep.Step key={index}>
+						{({ onChangeValue, values }) => (
+							<StepContainer>
+								<KeyboardAvoidingView 
+										behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+										// contentContainerStyle=''
+										style={{flex: 1}}
+									>	
+									<KeyboardMisser onPress={() => Keyboard.dismiss()}>
+										<ContentContainer>
+											<HeadContainer>
+												<ETASimpleText
+													size={24}
+													weight={
+														Platform.OS === 'ios'
+														? '700'
+														: 'bold'
+													}
+													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+													align='left'
+													style={{ marginTop: 10 }}>
+													{element.title}
+												</ETASimpleText>
+												<ETASimpleText
+													size={13}
+													weight={
+														Platform.OS === 'ios'
+														? '400'
+														: '500'
+													}
+													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+													align='left'
+													style={{ marginTop: 10 }}>
+													{element.description}
+												</ETASimpleText>
+											</HeadContainer>
 
-					setTimeout(() => {
-						actions.setSubmitting(false)
-						setbuttonrecoverytext('Send again')
-						setrecoverytext(
-							'We have sent you a SMS with instructions for recover your password. If you did not receive it, click to send again.',
-						)
-						// alert(JSON.stringify(values))
-					}, 2000)
-				}}
-				validationSchema={validationSchema}>
-				{({
-					handleChange,
-					handleBlur,
-					handleSubmit,
-					values,
-					isSubmitting,
-					errors,
-				}) => (
-					<FormContainer>
-						<ETATextInputOutline
-							value={values.cellphone}
-							placeholder='Cellphone'
-							placeholderTextColor={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							keyboardType='phone-pad'
-							autoCapitalize='none'
-							allowFontScaling
-							autoCorrect
-							autoFocus
-							blurOnSubmit={false}
-							caretHidden={false}
-							clearButtonMode='while-editing'
-							contextMenuHidden={false}
-							editable
-							enablesReturnKeyAutomatically={false}
-							underlineColorAndroid='transparent'
-							keyboardAppearance='dark'
-							maxLength={10}
-							multiline={false}
-							numberOfLines={1} // android
-							returnKeyLabel='next' // android
-							secureTextEntry={false} // password
-							spellCheck
-							textContentType='none'
-							returnKeyType='next'
-							textsize={14}
-							height={40}
-							width={270}
-							borderWidth={0.7}
-							onChangeText={handleChange(
-								'cellphone',
-							)}
-							onBlur={handleBlur('cellphone')}
-							selectionColor={
-								themeContext.PRIMARY_COLOR
-							}
-						/>
-						{errors.cellphone ? (
-							<ETAErrorMessage size={12}>
-								{errors.cellphone}
-							</ETAErrorMessage>
-						) : null}
-						<ButtonContainer>
-							<ETAButtonFilled
-								title={buttonrecoverytext}
-								onPress={handleSubmit}
-								disabled={!!isSubmitting}
-								colorButton={
-									themeContext.SECONDARY_BACKGROUND_COLOR
-								}
-								padding={10}
-								width={isSubmitting ? 40 : 270}
-								borderRadius={
-									isSubmitting ? 20 : 3
-								}
-							/>
-						</ButtonContainer>
-					</FormContainer>
-				)}
-			</Formik>
-			<RecoverTextContainer>
-				<ETASimpleText
-					size={13}
-					weight={Platform.OS === 'ios' ? '500' : '300'}
-					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					align='center'>
-					{recoverytext}
-				</ETASimpleText>
-			</RecoverTextContainer>
-		</Root>
-	)
+											<FormContainer>
+												{
+													element.items.map((item, i) => {
+														switch (item.controller.type) {
+															case 'textinput':
+																return (
+																	<ETATextInputOutline
+																		key={i}
+																		value={values?.[item.name]}
+																		placeholder={item.placeholder}
+																		placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+																		keyboardType={item.controller.keyboardtype}
+																		autoCapitalize='none'
+																		allowFontScaling
+																		autoCorrect
+																		autoFocus
+																		blurOnSubmit={false}
+																		caretHidden={false}
+																		clearButtonMode='while-editing'
+																		contextMenuHidden={false}
+																		editable
+																		enablesReturnKeyAutomatically={false}
+																		underlineColorAndroid='transparent'
+																		keyboardAppearance='dark'
+																		maxLength={10}
+																		multiline={false}
+																		numberOfLines={1} // android
+																		returnKeyLabel='next' // android
+																		secureTextEntry={false} // password
+																		spellCheck
+																		textContentType='none'
+																		returnKeyType='next'
+																		textsize={14}
+																		height={40}
+																		width={270}
+																		borderWidth={0.3}
+																		onChangeText={text => onChangeValue(
+																			[item.name], text
+																		)}
+																		// onBlur={handleBlur('cellphone')}
+																		selectionColor={themeContext.PRIMARY_COLOR}
+																	/>
+																)
+															case 'radioinput': 
+																return (
+																	<GenreContainer>
+																		{
+																			item.controller.values.map((subitem) => {
+																				return (
+																					<ETARadio 
+																						text={subitem.value.charAt(0).toUpperCase() + subitem.value.slice(1)}
+																						sizeText={14}
+																						colorText={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																						onChange={() => onChangeValue([item.name], subitem?.value) }
+																						activated={values?.genre === subitem?.value ? true : false }
+																						sizeRadio={15}
+																						colorRadio={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																					/>
+																				)
+																			})
+																		}
+																	</GenreContainer>
+																)
+															default:
+																return;
+														}
+													})
+												}
+											</FormContainer>
+										</ContentContainer>
+									</KeyboardMisser>
+								</KeyboardAvoidingView>
+							</StepContainer>
+						)}
+					</ETAMultiStep.Step>
+				 ))
+			 }   
+            </ETAMultiStep>
+        </Root>
+    )
 }
 
 const ForgetPasswordComponentConnect = connect(
