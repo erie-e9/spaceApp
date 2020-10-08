@@ -43,7 +43,7 @@ const ChatItemComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const route = useRoute()
-    const { paramData } = route?.params;
+    const { paramData } = route?.params
 	const [ items ] = useState(messages.data)
 	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
@@ -62,7 +62,6 @@ const ChatItemComponent = () => {
 			duration: 500,
 			useNativeDriver: true,
 		}).start()
-		console.log('cellphone', paramData);
 	}, [])
 
 	const headerHeight = scrollYAnimatedValue.interpolate({
@@ -142,7 +141,6 @@ const ChatItemComponent = () => {
 					<SubHeadContainer>
 						<ButtonContainer 
 							onPress={() => Linking.openURL(`tel:${paramData.employee.cellphone}`).catch((err) => console.error('An error occurred opening link on contact card: ', err))}
-							// onPress={() => console.log('ewe', paramData.employee.cellphone)}
 						>
 							<Entypo name='phone' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
 						</ButtonContainer>

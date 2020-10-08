@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText, ETAButtonFilled} from '@etaui'
-import {useNavigation} from '@react-navigation/native'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Platform } from 'react-native'
+import { ETASimpleText, ETAButtonFilled } from '@etaui'
+import { useNavigation } from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/cart/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/cart/actions'
 
 const Root = styled.View`
 	flex: 0.6;
@@ -45,7 +45,6 @@ const CartListComponent = ({ getDataRequest, data }) => {
 	useEffect(() => {
 		getDataRequest()
 		setitems(data)
-		// console.log('++++++++++++++CartListComponent data', data)
 		
 		return () => {
 			getDataRequest()

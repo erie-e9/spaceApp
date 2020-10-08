@@ -1,16 +1,16 @@
-import React, {useState, useContext, useEffect} from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Platform, Dimensions} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText} from '@etaui'
-import {Ionicons, FontAwesome} from '@icons'
-import {connect} from 'react-redux'
+import React, { useState , useContext, useEffect } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Platform, Dimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText } from '@etaui'
+import { Ionicons, FontAwesome } from '@icons'
+import { connect } from 'react-redux'
 import {
 	ADD_TO_CART,
 	REMOVE_FROM_CART,
 	REMOVE_ITEM_FROM_CART,
 } from '@redux/cart/actions'
-import {currencySeparator} from '@functions'
+import { currencySeparator } from '@functions'
 
 const {width} = Dimensions.get('window')
 
@@ -219,7 +219,7 @@ const CartItemComponent = ({
 	removeFromCart,
 	removeItemFromCart,
 	item,
-	howMany,
+	howMany
 }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()

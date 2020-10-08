@@ -142,6 +142,19 @@ const StatusContainer = styled.View`
 	border-radius: 4px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
+const PointsContainer = styled.View`
+	justify-content: flex-end;
+	position: absolute;
+	min-height: 14px;
+	min-width: 30px;
+	top: -15px;
+	right: 15px;
+	padding-horizontal: 4px;
+	border-radius: 6px;
+	border-width: 0.75px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+`
 const CardTopHead = styled.View`
 	min-height: 40px;
 	flex-direction: row;
@@ -166,14 +179,14 @@ const ShopContainer = styled.View`
 	margin-bottom: 7px;
 `
 const PriceContainer = styled.View`
-	flex: 0.5;
-	flex-direction: column;
+	flex: 0.4;
+	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	background-color: transparent;
 `
 const DiscountContainer = styled.View`
-	flex: 0.34
+	flex: 0.3;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
@@ -186,8 +199,8 @@ const PercentContainer = styled.View`
 	align-items: center;
 	z-index: 100;
 	border-width: 0px;
-	padding-horizontal: 4px;
-	padding-vertical: 1.5px;
+	padding-horizontal: 3px;
+	padding-vertical: 0px;
 	border-color: white;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
@@ -286,6 +299,21 @@ const Touchable = styled.TouchableOpacity.attrs({
 })`
 	justify-content: center;
 	align-items: center;
+`
+const SummaryRow = styled.View`
+    min-height: 30px;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-vertical: 1px;
+    background-color: transparent;
+`
+const SumamryRowFlavor = styled.View`
+    height: 25px;
+    width: 25px;
+    border-radius: 12.5px;
+	border-width: 1.5px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `
 
 const mapStateToProps = (state, props) => {
@@ -615,7 +643,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 							</AddCartContainer>
 						)}
 						<CardTop>
-							{selectedItem.status ? (
+							{selectedItem.status !== '' ?  (
 								<StatusContainer>
 									<ETASimpleText
 										size={11}
@@ -631,6 +659,21 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 									</ETASimpleText>
 								</StatusContainer>
 							) : null}
+							
+							{
+								selectedItem.points > 0
+								?	<PointsContainer>
+										<ETASimpleText
+											size={11}
+											weight={Platform.OS === 'ios' ? '400' : '400'}
+											color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+											align='center'
+										>
+											{selectedItem.points}° pts
+										</ETASimpleText>
+									</PointsContainer>
+								:	null
+							}
 							<CardTopHead>
 								<NameContainer>
 									<ETASimpleText
@@ -651,7 +694,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 								<ShopContainer>
 									<PriceContainer>
 										<ETASimpleText
-											size={14}
+											size={13}
 											weight={
 												Platform.OS ===
 												'ios'
@@ -673,37 +716,9 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 												100
 											).toFixed(2))}
 										</ETASimpleText>
-									</PriceContainer>
-									<DiscountContainer>
-										{selectedItem.discount >
-										0 ? (
-											<>
-												<ETASimpleText
-													size={
-														10
-													}
-													weight={
-														Platform.OS ===
-														'ios'
-															? '400'
-															: '400'
-													}
-													color={
-														themeContext.PRIMARY_TEXT_COLOR_LIGHT
-													}
-													align='center'
-													style={{
-														textDecorationLine:
-															'line-through',
-														textDecorationStyle:
-															'solid',
-													}}>
-													$
-													{currencySeparator(selectedItem.price.toFixed(
-														2,
-													))}
-												</ETASimpleText>
-												<PercentContainer>
+										{
+											selectedItem.discount > 0
+											?	<PercentContainer>
 													<ETASimpleText
 														size={
 															9
@@ -729,53 +744,104 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 														%
 													</ETASimpleText>
 												</PercentContainer>
+											:	null
+										}
+									</PriceContainer>
+									<DiscountContainer>
+										{selectedItem.discount >
+										0 ? (
+											<>
+												<ETASimpleText
+													size={
+														11
+													}
+													weight={
+														Platform.OS ===
+														'ios'
+															? '400'
+															: '400'
+													}
+													color={
+														themeContext.PRIMARY_TEXT_COLOR_LIGHT
+													}
+													align='center'
+													style={{
+														textDecorationLine:
+															'line-through',
+														textDecorationStyle:
+															'solid',
+													}}>
+													$
+													{currencySeparator(selectedItem.price.toFixed(
+														2,
+													))}
+												</ETASimpleText>
 											</>
 										) : null}
 									</DiscountContainer>
 								</ShopContainer>
 							</CardTopHead>
-							<ItemInfoContainer>
-								<ItemInfoRating>
-									<ETAStarRating
-										ratings={
-											selectedItem.rating
-										}
-									/>
-								</ItemInfoRating>
-								<ItemInfoCalories>
-									<ETASimpleText
-										size={8.5}
-										weight={
-											Platform.OS ===
-											'ios'
+							{
+								selectedItem.status !== 'custom'
+								?	<ItemInfoContainer>
+										<ItemInfoRating>
+											<ETAStarRating
+												ratings={
+													selectedItem.rating
+												}
+											/>
+										</ItemInfoRating>
+										<ItemInfoCalories>
+											<ETASimpleText
+												size={8.5}
+												weight={
+													Platform.OS ===
+													'ios'
+														? '500'
+														: '300'
+												}
+												color={
+													themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+												}
+												align='left'>
+												{selectedItem.calories}{' '}
+												calories
+											</ETASimpleText>
+										</ItemInfoCalories>
+										<ItemInfoWeight>
+											<ETASimpleText
+												size={8.5}
+												weight={
+													Platform.OS ===
+													'ios'
+														? '500'
+														: '300'
+												}
+												color={
+													themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+												}
+												align='left'>
+												{selectedItem.weight} g
+											</ETASimpleText>
+										</ItemInfoWeight>
+									</ItemInfoContainer>
+								:	<SummaryRow style={{ justifyContent: 'space-between' }}>
+										<ETASimpleText
+											size={13}
+											weight={
+												Platform.OS === 'ios'
 												? '500'
-												: '300'
-										}
-										color={
-											themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
-										}
-										align='left'>
-										{selectedItem.calories}{' '}
-										calories
-									</ETASimpleText>
-								</ItemInfoCalories>
-								<ItemInfoWeight>
-									<ETASimpleText
-										size={8.5}
-										weight={
-											Platform.OS ===
-											'ios'
-												? '500'
-												: '300'
-										}
-										color={
-											themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
-										}
-										align='left'>
-										{selectedItem.weight} g
-									</ETASimpleText>
-								</ItemInfoWeight>
-							</ItemInfoContainer>
+												: '500'
+											}
+											color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+											align='center'
+											>
+											Flavors chosen: {' '}
+										</ETASimpleText>
+										<SumamryRowFlavor style={{ backgroundColor: '#93D932' }}/>
+										<SumamryRowFlavor style={{ backgroundColor: '#EE569E' }}/>
+										<SumamryRowFlavor style={{ backgroundColor: '#694B0C' }}/>
+									</SummaryRow>							}
 						</CardTop>
 						<CardBottom>
 							<ItemDetailsContainer>

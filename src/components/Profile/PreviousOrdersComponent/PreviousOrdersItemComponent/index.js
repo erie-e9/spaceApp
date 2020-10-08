@@ -96,7 +96,7 @@ const PreviousOrdersItemComponent = ({ item }) => {
                                 : '800'
                             }
                             color={
-                                themeContext.PRIMARY_TEXT_COLOR_LIGHT
+                                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
                             {item._id}

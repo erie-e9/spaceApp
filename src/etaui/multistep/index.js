@@ -10,12 +10,14 @@ const Root = styled.View`
     background-color: transparent;
 `
 
-const ETAMultiStep = memo(({ children, initialValues, prevText, nextText, finishText }) => {
+const ETAMultiStep = memo(({ children, initialValues, prevText, nextText, finishText, finishFunction, disabledNext }) => {
     const [ index, setindex ] = useState(0)
     const [ values, setvalues ] = useState(initialValues)
+    const [ nextDisabled, setnextDisabled ] = useState(true)
 
     const _nextStep = () => {
         if (index !== children.length - 1) {
+            setnextDisabled(true)
         //     // setindex(prevState => {
         //     //     return new Map(prevState).set(prevState.index + 1)
         //     //     // index: prevState.index + 1,
@@ -26,7 +28,7 @@ const ETAMultiStep = memo(({ children, initialValues, prevText, nextText, finish
 
         setindex(index + 1)
         }
-      }
+    }
   
     const _prevStep = () => {
         if (index !== 0) {
@@ -39,6 +41,12 @@ const ETAMultiStep = memo(({ children, initialValues, prevText, nextText, finish
     }
 
     const _onChangeValue = (name, value) => {
+        console.log('dadasd', {[name]: value})
+        if (value !== '' || value !== null) {
+            console.log('next activado');
+            setnextDisabled(false)
+        }
+
         setvalues(prevState => ({
             values: {
                 ...prevState.values, 
@@ -64,6 +72,8 @@ const ETAMultiStep = memo(({ children, initialValues, prevText, nextText, finish
                                 prevText,
                                 nextText,
                                 finishText,
+                                finishFunction,
+                                nextDisabled,
                             })
                         }
 

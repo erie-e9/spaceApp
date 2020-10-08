@@ -27,7 +27,7 @@ const CartDetailsContainer = styled.View`
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const ResumeContainer = styled.View`
+const SummaryContainer = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: stretch;
@@ -62,7 +62,7 @@ const TotalContainer = styled.View`
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: transparent;
 `
-const ResumeTotalContainer = styled.View`
+const SummaryTotalContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
 	justify-content: space-between;
@@ -85,14 +85,14 @@ const mapStateToProps = (state, props) => {
 	return {data}
 }
 
-const CartDetailsComponent = ({data}) => {
+const CartDetailsComponent = ({ data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [totalItems, settotalItems] = useState(data.length)
-	const [total, settotal] = useState(0)
-	const [subtotal, setsubtotal] = useState(0)
-	const [shipping] = useState(35)
-	const [isSubmitting] = useState(false)
+	const [ totalItems, settotalItems ] = useState(data.length)
+	const [ total, settotal ] = useState(0)
+	const [ subtotal, setsubtotal ] = useState(0)
+	const [ shipping ] = useState(35)
+	const [ isSubmitting ] = useState(false)
 	let subtotalValue = 0
 	let sum = 0
 
@@ -121,9 +121,11 @@ const CartDetailsComponent = ({data}) => {
 	const _onPressItem = () => {
 		navigation.navigate('CheckoutNavigator', {
 			screen: 'PaymentScreen',
-			// params: {
-			// 	item: propitem,
-			// },
+			params: {
+				data: data,
+				total: total,
+				subtotal: subtotal
+			},
 		})
 	}
 
@@ -145,7 +147,7 @@ const CartDetailsComponent = ({data}) => {
 						: 'items'}
 					)
 				</ETASimpleText>
-				<ResumeContainer>
+				<SummaryContainer>
 					<ETASimpleText
 						size={11}
 						weight={
@@ -174,8 +176,8 @@ const CartDetailsComponent = ({data}) => {
 									subtotal.toFixed(2),
 							  )}
 					</ETASimpleText>
-				</ResumeContainer>
-				<ResumeContainer>
+				</SummaryContainer>
+				<SummaryContainer>
 					<ETASimpleText
 						size={11}
 						weight={
@@ -204,9 +206,9 @@ const CartDetailsComponent = ({data}) => {
 									shipping.toFixed(2),
 							  )}
 					</ETASimpleText>
-				</ResumeContainer>
+				</SummaryContainer>
 				<TotalContainer>
-					<ResumeTotalContainer>
+					<SummaryTotalContainer>
 						<ETASimpleText
 							size={15}
 							weight={
@@ -239,7 +241,7 @@ const CartDetailsComponent = ({data}) => {
 										total.toFixed(2),
 								  )}
 						</ETASimpleText>
-					</ResumeTotalContainer>
+					</SummaryTotalContainer>
 				</TotalContainer>
 				<DirectionContainer>
 					<ETAButtonOutline

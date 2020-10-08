@@ -17,21 +17,20 @@ const Root = styled.View`
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const AvatarContainer = styled.View`
-	flex: 0.12;
-	padding: 2px;
+	padding: 1.75px;
 	border-radius: 50px;
 	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
 	border-width: 2px;
 	background-color: transparent;
 `
 const ContactContainer = styled.View`
-	flex: 0.8;
+	flex: 1;
 	flex-direction: column;
 	min-height: 70px;
 	background-color: transparent;
 `
 const IconContainer = styled.View`
-	flex: 0.08;
+	flex: 0.1;
 	justify-content: center;
 	align-items: center;
 	background-color: transparent;

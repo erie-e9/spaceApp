@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext, memo} from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Dimensions, Animated, Platform} from 'react-native'
-import {ETASimpleText} from '@etaui'
+import React, { useState, useEffect, useContext, memo } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Dimensions, Animated, Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST, SET_ITEM_VALUE } from '@redux/menu/similarto/actions'
 
@@ -151,7 +151,7 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 										onPress={() =>
 											_setItem(-1)
 										}>
-										<SuggestionItem style={{ height: 55, width: 55, borderWidth: 3.5, borderColor: themeContext.GRAYFACEBOOK, marginRight: 7 }}>
+										<SuggestionItem style={{ height: 55, width: 55, borderWidth: 2.5, borderColor: themeContext.GRAYFACEBOOK, marginRight: 7 }}>
 											<SuggestionItemImage
 												source={{
 													uri:

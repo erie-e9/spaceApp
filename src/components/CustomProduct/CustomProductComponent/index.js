@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, KeyboardAvoidingView, Keyboard, Animated, Dimensions } from 'react-native'
-import { useRoute } from '@react-navigation/native'
-import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETALoader, ETAMultiStep, ETARadio } from '@etaui'
+import { useRoute, useNavigation } from '@react-navigation/native'
+import { ETATextInputOutline, ETASimpleText, ETALoader, ETAMultiStep } from '@etaui'
 import { currencySeparator } from '@functions'
-import { CustomProductIcon1, CustomProductIcon2, FontAwesome } from '@icons'
+import { CustomProductIcon1, CustomProductIcon2 } from '@icons'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/customproduct/flavors/actions'
+import { ADD_TO_CART } from '@redux/cart/actions'
 import ProductComponent from './ProductComponent'
+
+const {width} = Dimensions.get('window')
 
 const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
@@ -43,14 +46,6 @@ const FormContainer = styled.View`
 	display: flex;
     background-color: transparent;
 `
-const GenreContainer = styled.View`
-	flex-direction: row;
-	width: 100%;
-	justify-content: space-around;
-	padding-horizontal: 10px;
-	margin-top: 15px;
-	background-color: transparent;
-`
 const ItemContainer = styled.View`
     margin: 10px 15px;
     align-items: center;
@@ -85,7 +80,7 @@ const CustomProductIconButton = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
     border-radius: 40px;
-	margin: 4px 11px;
+	margin: 9px 11px;
 	background-color: transparent;
 `
 const CustomProductIconContainer = styled.View`
@@ -107,10 +102,65 @@ const CustomProductImage = styled.Image`
     right: 100px;
 `
 const CustomProductContainer = styled.View`
-    flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 40px;
+`
+const SumamryContainer = styled.View`
+    min-height: 200px;
+    min-width: ${width - 30}px;
+    margin: 1px 10px;
+    justify-content: center;
+    align-items: stretch;
+    border-radius: 5px;
+    elevation: 4;
+    shadow-offset: 0px 1px;
+    shadow-radius: 5px;
+    shadow-opacity: 0.15;
+	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+	border-top-width: 0px;
+	border-top-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+`
+const SummaryRow = styled.View`
+    min-height: 30px;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    background-color: green;
+    padding-horizontal: 20px;
+    margin-vertical: 1px;
+    background-color: transparent;
+`
+const SumamryRowFlavor = styled.View`
+    height: 25px;
+    width: 25px;
+    border-radius: 12.5px;
+	border-width: 1.5px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+`
+const SizePriceContainer = styled.View`
+	justify-content: flex-end;
+	min-height: 13px;
+	min-width: 30px;
+	padding-horizontal: 4px;
+	margin-top: 3px;
+	border-radius: 5px;
+	border-width: 0.75px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.backgroundcolor};
+	`
+	const PriceContainer = styled.View`
+	justify-content: flex-end;
+	position: absolute;
+	min-height: 13px;
+	min-width: 30px;
+	top: 23px;
+	left: 2px;
+	padding-horizontal: 4px;
+	border-radius: 8px;
+	border-width: 0.75px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.backgroundcolor};
 `
 
 const mapStateToProps = (state, props) => {
@@ -120,6 +170,15 @@ const mapStateToProps = (state, props) => {
 }
 
 const mapDispatchProps = (dispatch, props) => ({
+	addToCart: (paramItem) => {
+		dispatch({
+			type: ADD_TO_CART,
+			payload: {
+				paramItem,
+			},
+		})
+	},
+
 	getDataRequest: () => {
 		dispatch({
 			type: GET_DATA_REQUEST,
@@ -127,8 +186,9 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const CustomProductComponent = ({ getDataRequest, data }) => {
+const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
     const themeContext = useContext(ThemeContext)
+	const navigation = useNavigation()
 	const route = useRoute()
     const { paramData } = route?.params;
 	const [ radioItem, setradioItem ] = useState(true)
@@ -136,10 +196,11 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 	const [ opacity ] = useState(new Animated.Value(0))
 	const [ rotate ] = useState(new Animated.Value(0))
 	let delayValue = 1000
+	const [ flavorsData, setflavorsData ] = useState() 
   
     useEffect(() => {
 		getDataRequest()
-		// console.log('[CustomProductComponent] data: ', data);
+		setflavorsData(data)
 	}, [data])
 	
     useEffect(() => {
@@ -207,7 +268,41 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
             default:
                 return null;
         }
-    }
+	}
+	
+	const _finishFunction = (values) => {
+		navigation.goBack()
+		addToCart({
+			"_id": 230415,
+				"calories": 143,
+				"details": "Custom ice-cream prepared with our flavors and your imagination.",
+			"discount": 10,
+				"glutten": false,
+			"howMany": 6,
+				"icon": "",
+				"imageWebps": [{"imageWeb": "item1.webp"}], 
+			"images": [
+				{"image": "https://i.pinimg.com/originals/cc/44/2c/cc442cec88ee51a34fe73dea4aaa78f0.png"},
+				{"image": "https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/843432"}
+			],
+				"isFavorite": false,
+				"link": "",
+			"name": "Custom ice-cream",
+			"price": 103,
+				"rating": 5,
+				"status": "custom",
+				"weight": 143
+		})
+
+		console.log('_finishFunction', 
+			{
+				itemsize: values?.itemsize,
+				itemfirstcolor: values?.itemfirstcolor,
+				itemsecondcolor: values?.itemsecondcolor,
+				itemlastcolor: values?.itemlastcolor
+			}
+		)
+	}
 
 	const form = [
 		{
@@ -233,7 +328,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 					name: 'itemfirstcolor',
 					controller: {
 						type: 'radioinput2',
-                        values: data
+                        values: flavorsData
                     }
 				}
 			]
@@ -247,7 +342,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 					name: 'itemsecondcolor',
 					controller: {
 						type: 'radioinput2',
-                        values: data
+                        values: flavorsData
                     }
 				}
 			]
@@ -261,13 +356,26 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 					name: 'itemlastcolor',
 					controller: {
 						type: 'radioinput2',
-                        values: data
+                        values: flavorsData
+                    }
+				}
+			]
+		},
+		{
+			title: `Purschase summary`,
+			description: `You've choose your custom ${paramData.name} with next flavors...`,
+			items: [
+				{
+					placeholder: 'Choose a flavor',
+					name: 'summary',
+					controller: {
+						type: 'summary',
+                        values: []
                     }
 				}
 			]
 		}
 	]
-	
 
 	return (
 		<Root>
@@ -275,6 +383,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 				prevText='Previous'
 				nextText='Next'
 				finishText='Add to cart'
+				finishFunction={() => _finishFunction()}
 				initialValues={{
 					itemsize: '',
 					itemfirstcolor: '',
@@ -282,16 +391,17 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 					itemlastcolor: '',
 				}}
 			>
-             {
-				 form.map((element, index) => (
-					<ETAMultiStep.Step key={index}>
+			{
+				form.map((element, index) => (
+					<ETAMultiStep.Step 
+						key={index}
+					>
 						{({ onChangeValue, values }) => (
 							<StepContainer>
 								<KeyboardAvoidingView 
-										behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-										// contentContainerStyle=''
-										style={{flex: 1}}
-									>	
+									behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+									style={{flex: 1}}
+								>
 									<KeyboardMisser onPress={() => Keyboard.dismiss()}>
 										<ContentContainer>
 											<HeadContainer>
@@ -372,7 +482,7 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                                                             weight={
                                                                                 Platform.OS === 'ios'
                                                                                 ? '700'
-                                                                                : 'bold'
+                                                                                : '600'
                                                                             }
                                                                             color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                                                                             align='center'
@@ -386,7 +496,6 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                                                             subelement.controller.values.length !== 0
                                                                             ?	<ItemsList
                                                                                     contentContainerStyle={{
-                                                                                        // height: 160,
                                                                                         alignSelf: 'stretch',
                                                                                         alignItems: 'center',
                                                                                         backgroundColor: 'transparent'
@@ -422,8 +531,11 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                                                                                 }}>
                                                                                                 <ItemContainer>
                                                                                                     <IconContainerButton 
-                                                                                                        onPress={() => onChangeValue([subelement.name], item?.itemsize)}
-                                                                                                        style={{ borderWidth: 3, borderColor: values?.itemsize === item?.itemsize ? '#ffff4a' : '#F6F6F6', backgroundColor: values?.itemsize === item?.itemsize ? '#ffff4a' : 'transparent' }}
+                                                                                                        onPress={() => onChangeValue([subelement.name], item={ size: item?.itemsize, price: item?.price })}
+																										style={{ borderWidth: 3,
+																											borderColor: values?.itemsize.size === item?.itemsize ? '#F3F3F3' : '#F6F6F6',
+																											backgroundColor: values?.itemsize.size === item?.itemsize ? '#ffff4a' : 'transparent',
+																											bottom: values?.itemsize.size === item?.itemsize ? 4 : 0  }}
                                                                                                         >
                                                                                                         {SwitchIconComponent({size: item.size, itemfirstcolor: '#EE569E', itemsecondcolor: '#F181B2', itemlastcolor: '#F6B9D3', firststrokeColor: '#EE569E', secondstrokeColor: '#F181B2', laststrokeColor: '#F6B9D3' })}
                                                                                                     </IconContainerButton>
@@ -440,20 +552,22 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                                                                                         >
                                                                                                         {item.itemsize.charAt(0).toUpperCase() + item.itemsize.slice(1)}
                                                                                                     </ETASimpleText>
-                                                                                                    <ETASimpleText
-                                                                                                        size={12}
-                                                                                                        weight={
-                                                                                                            Platform.OS === 'ios'
-                                                                                                            ? '400'
-                                                                                                            : '300'
-                                                                                                        }
-                                                                                                        color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                                                                        align='center'
-                                                                                                        >
-                                                                                                        ${currencySeparator(item.price.toFixed(
-                                                                                                            2,
-                                                                                                        ))}
-                                                                                                    </ETASimpleText>
+																									<SizePriceContainer
+																										backgroundcolor={values?.itemsize.size === item?.itemsize ?  themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+																									>
+																										<ETASimpleText
+																											size={12}
+																											weight={
+																												Platform.OS === 'ios'
+																												? '400'
+																												: '300'
+																											}
+																											color={values?.itemsize.size === item?.itemsize ?  themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																											align='center'
+																											>
+																											${currencySeparator(item.price.toFixed(2))}
+																										</ETASimpleText>
+																									</SizePriceContainer>
                                                                                                 </ItemContainer>
                                                                                             </Animated.View>
                                                                                         )
@@ -503,10 +617,9 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
                                                                                                         },
                                                                                                     ],
                                                                                                 }}>
-                                                                                                <>
                                                                                                     <CustomProductIconButton 
-                                                                                                        onPress={() => onChangeValue([subelement.name], item={ color: item.color, name: item.name })}
-                                                                                                        style={{  backgroundColor: item.color }}
+                                                                                                        onPress={() => onChangeValue([subelement.name], item={ color: item.color, name: item.name, price: item?.price })}
+                                                                                                        style={{  backgroundColor: item.color, bottom: values?.[subelement.name]?.color === item?.color ? 2 : 0 }}
 																										// onPress={() => setitemfirstcolor(item)}
 																									>
 																										<CustomProductIconContainer
@@ -526,8 +639,23 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 																												{item.name}
 																											</ETASimpleText>
 																										</CustomProductIconContainer>
+																										<PriceContainer
+																											backgroundcolor={values?.[subelement.name]?.color === item?.color ?  themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+																										>
+																											<ETASimpleText
+																												size={9}
+																												weight={
+																													Platform.OS === 'ios'
+																													? '400'
+																													: '200'
+																												}
+																												color={values?.[subelement.name]?.color === item?.color ?  themeContext.PRIMARY_TEXT_BACKGROUND_COLOR : themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																												align='center'
+																												>
+																												${currencySeparator(item.price.toFixed(2))}
+																											</ETASimpleText>
+																										</PriceContainer>
                                                                                                     </CustomProductIconButton>
-                                                                                                </>
                                                                                             </Animated.View>
                                                                                         )
                                                                                     }}
@@ -567,6 +695,88 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 																		</>
 																	</RadioContainer>
 																)
+															case 'summary': 
+																return (
+																	<SumamryContainer key={i}>
+																		{
+																			true
+																			?   <>
+																					<SummaryRow>
+																						<ETASimpleText
+																							size={14}
+																							weight={
+																								Platform.OS === 'ios'
+																								? '700'
+																								: 'bold'
+																							}
+																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																							align='center'
+																							>
+																							Size: {' '}
+																						</ETASimpleText>
+																						<ETASimpleText
+																							size={14}
+																							weight={
+																								Platform.OS === 'ios'
+																								? '400'
+																								: '300'
+																							}
+																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																							align='center'
+																							>
+																							{values?.itemsize.size.charAt(0).toUpperCase() + values?.itemsize.size.slice(1)}
+																						</ETASimpleText>
+																					</SummaryRow>
+
+																					<SummaryRow style={{ justifyContent: 'space-between' }}>
+																						<ETASimpleText
+																							size={14}
+																							weight={
+																								Platform.OS === 'ios'
+																								? '700'
+																								: 'bold'
+																							}
+																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																							align='center'
+																							>
+																							Flavors chosen: {' '}
+																						</ETASimpleText>
+																						<SumamryRowFlavor style={{ backgroundColor: values?.itemfirstcolor.color }}/>
+																						<SumamryRowFlavor style={{ backgroundColor: values?.itemsecondcolor.color }}/>
+																						<SumamryRowFlavor style={{ backgroundColor: values?.itemlastcolor.color }}/>
+																					</SummaryRow>
+
+																					<SummaryRow>
+																						<ETASimpleText
+																							size={14}
+																							weight={
+																								Platform.OS === 'ios'
+																								? '700'
+																								: 'bold'
+																							}
+																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																							align='center'
+																							>
+																							Total: {' '}
+																						</ETASimpleText>
+																						<ETASimpleText
+																							size={14}
+																							weight={
+																								Platform.OS === 'ios'
+																								? '700'
+																								: '600'
+																							}
+																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+																							align='center'
+																							>
+																							${currencySeparator((values?.itemsize.price + values?.itemfirstcolor.price + values?.itemsecondcolor.price + values?.itemlastcolor.price).toFixed(2))}
+																						</ETASimpleText>
+																					</SummaryRow>
+																				</>
+																			:   null
+																		}
+																		</SumamryContainer>
+																)
 															default:
 																return;
 														}
@@ -579,8 +789,8 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 							</StepContainer>
 						)}
 					</ETAMultiStep.Step>
-				 ))
-			 }   
+				))
+			}
             </ETAMultiStep>
         </Root>
     )

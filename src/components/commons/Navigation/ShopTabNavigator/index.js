@@ -1,17 +1,17 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform, View} from 'react-native'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
-import {Ionicons} from '@icons'
-import {fakeavatar, variables} from '@utils/constants'
+import React, { useContext } from 'react'
+import styled, {ThemeContext } from 'styled-components/native'
+import { Platform, View } from 'react-native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {  createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
+import { Ionicons } from '@icons'
+import { fakeavatar, variables } from '@utils/constants'
 import DynamicTabButton from './DynamicTabButton'
-// import {eq, multiply, greaterThan, cond} from 'react-native-reanimated';
-// import {withTransition} from 'react-native-redash';
-import {MenuNavigator, GetOneItemNavigator, CustomProductNavigator} from './MenuNavigator'
-import {ChatNavigator, ChatItemNavigator, NewChatNavigator} from './ChatNavigator'
-import {CartNavigator, CheckoutNavigator} from './CartNavigator'
-import {ProfileNavigator, SettingsNavigator} from './ProfileNavigator'
+// import { eq, multiply, greaterThan, cond } from 'react-native-reanimated';
+// import { withTransition } from 'react-native-redash';
+import { MenuNavigator, GetOneItemNavigator, CustomProductNavigator } from './MenuNavigator'
+import { ChatNavigator, ChatItemNavigator, NewChatNavigator } from './ChatNavigator'
+import { CartNavigator, CheckoutNavigator } from './CartNavigator'
+import { ProfileNavigator, SettingsNavigator } from './ProfileNavigator'
 import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
 

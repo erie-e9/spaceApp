@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
-import {Platform, KeyboardAvoidingView, Keyboard} from 'react-native'
+import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETAMultiStep, ETARadio } from '@etaui'
-import {connect} from 'react-redux'
-import {RECOVERY_PASS} from '@redux/user/actions'
+import { connect } from 'react-redux'
+import { RECOVERY_PASS } from '@redux/user/actions'
 
 const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
@@ -49,13 +50,13 @@ const GenreContainer = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const {cellphone} = state.user
+	const { cellphone } = state.user
 
-	return {cellphone}
+	return { cellphone }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	recoveryPassUser: ({cellphone}) => {
+	recoveryPassUser: ({ cellphone }) => {
 		dispatch({
 			type: RECOVERY_PASS,
 			payload: {
@@ -67,14 +68,20 @@ const mapDispatchProps = (dispatch, props) => ({
 
 const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
     const themeContext = useContext(ThemeContext)
+	const navigation = useNavigation()
 	const [ mysecureTextEntry ] = useState(true)
 	const [ radioItem, setradioItem ] = useState(true)
+	const [ disabledState, setdisabledState ] = useState(true)
 
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
 		// await _setswitchItem(item)
 		// toogleNotification(id)
 	}
+
+	useEffect(() => {
+		console.log('actual disabledState', disabledState);
+	}, [disabledState])
 
 	const form = [
 		{
@@ -132,7 +139,19 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 			]
 		},
 	]
-	
+
+	const _finishFunction = (values) => {
+		navigation.goBack()
+		console.log('_finishFunction', 
+			{
+				password: values?.password,
+			}
+		)
+	}
+
+	const _nextStepAvailable = () => {
+		setdisabledNext(false)
+	}
 
 	return (
 		<Root>
@@ -140,6 +159,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 				prevText='Previous'
 				nextText='Next'
 				finishText='Send'
+				finishFunction={() => _finishFunction()}
 				initialValues={{
 					cellphone: '',
 					name: '',
@@ -153,12 +173,14 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 			>
              {
 				 form.map((element, index) => (
-					<ETAMultiStep.Step key={index}>
+					<ETAMultiStep.Step
+						key={index}
+						disabledNext={disabledState}
+					>
 						{({ onChangeValue, values }) => (
 							<StepContainer>
 								<KeyboardAvoidingView 
 										behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-										// contentContainerStyle=''
 										style={{flex: 1}}
 									>	
 									<KeyboardMisser onPress={() => Keyboard.dismiss()}>
@@ -226,9 +248,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 																		height={40}
 																		width={270}
 																		borderWidth={0.3}
-																		onChangeText={text => onChangeValue(
-																			[item.name], text
-																		)}
+																		onChangeText={text => {onChangeValue([item.name], text); setdisabledState(values?.[item.name] !== '' ? false : true)}}
 																		// onBlur={handleBlur('cellphone')}
 																		selectionColor={themeContext.PRIMARY_COLOR}
 																	/>

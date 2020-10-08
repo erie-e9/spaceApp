@@ -34,9 +34,12 @@ const ChatInputComponent = () => {
     
     const _sendMessage = () => {
         console.log('ewe');
-        
     }
 
+    const _fileUoloader = () => {
+        console.log('ewe');
+    }
+    
     return (
         <>
             <Root>

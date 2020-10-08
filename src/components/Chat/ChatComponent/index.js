@@ -86,9 +86,6 @@ const ChatComponent = ({getDataRequest, data}) => {
 				paramData: item
 			},
 		})
-		
-		console.log('ewe', item)
-
 	}
 
 	const _onPressNewChat = (item) => {

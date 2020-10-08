@@ -50,14 +50,6 @@ const FavoriteItemHeadContainer = styled.View`
 	padding: 5px 5px 0px 5px;
 	background-color: transparent;
 `
-const PriceContainer = styled.View`
-	flex: 0.4;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 0px 5px 0px 5px;
-	background-color: transparent;
-`
 const FavoriteTitleContainer = styled.View`
 	flex: 1;
 	align-items: flex-start;
@@ -67,8 +59,8 @@ const CardItemFunctions = styled.View`
 	flex: 0.5;
 	align-items: flex-end;
 	justify-content: center;
-	margin: 0px 10px 10px 0px;
-	background-color: transparent;
+	margin: 10px 10px 10px 0px;
+	background-color: yellow;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -206,33 +198,22 @@ const FavoriteItemComponent = ({toogleFavorite,	item, howMany }) => {
 							</ETASimpleText>
 						</FavoriteTitleContainer>
 						<CardItemFunctions>
-							<PriceContainer>
-								<ETASimpleText
-									size={13}
-									weight={
-										Platform.OS ===
-										'ios'
-											? '500'
-											: '400'
-									}
-									color={
-										themeContext.PRIMARY_COLOR
-									}
-									align='center'
-									style={{
-										zIndex: 100,
-									}}>
-									$
-									{currencySeparator(
-										(
-											(100 -
-												item.discount) *
-											(item.price /
-												100) 
-										).toFixed(2),
-									)}
-								</ETASimpleText>
-							</PriceContainer>
+							<FavoriteItemRightContainer>
+								<AddFavoriteContainer>
+									<AddFavorite
+										onPress={() =>
+											_addFavorite(
+												item,
+											)
+										}>
+										<Ionicons
+											name='md-heart'
+											size={20}
+											color={themeContext.PRIMARY_COLOR}
+										/>
+									</AddFavorite>
+								</AddFavoriteContainer>
+							</FavoriteItemRightContainer>
 						</CardItemFunctions>
 					</FavoriteItemHeadContainer>
 					<FavoriteItemContainer>
@@ -257,22 +238,6 @@ const FavoriteItemComponent = ({toogleFavorite,	item, howMany }) => {
 								</ETASimpleText>
 							</DescriptionContainer>
 						</FavoriteItemLeftContainer>
-						<FavoriteItemRightContainer>
-							<AddFavoriteContainer>
-								<AddFavorite
-									onPress={() =>
-										_addFavorite(
-											item,
-										)
-									}>
-									<Ionicons
-										name='md-heart'
-										size={20}
-										color={themeContext.PRIMARY_COLOR}
-									/>
-								</AddFavorite>
-							</AddFavoriteContainer>
-						</FavoriteItemRightContainer>
 					</FavoriteItemContainer>
 				</FavoriteItemData>
 			</Item>

@@ -2,6 +2,10 @@
 #
 .DS_Store
 android/app/release/**
+
+# Android
+*.hprof
+
 # Xcode
 #
 build/

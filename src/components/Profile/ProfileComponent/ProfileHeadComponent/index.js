@@ -22,7 +22,7 @@ const ProfileHeadComponent = () => {
 				weight={Platform.OS === 'ios' ? '400' : '600'}
 				color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 				align='left'>
-				100
+				100°
 			</ETASimpleText>
 			<ETASimpleText
 				size={14}

@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/> -->
     
-    <!-- Own ermissions -->
+    <!-- Own permissions -->
     <!-- <uses-permission android:name="android.permission.ACCEPT_HANDOVER" /> -->
 <!-- <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> -->
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->

@@ -48,7 +48,8 @@ const PointsContainer = styled.View`
 const Step = memo((props) => {
     // const { index, setindex } = useStepContext()
     const themeContext = useContext(ThemeContext)
-    console.log('ETAMultiStep values: ', props.values)
+    // console.log('ETAMultiStep values: ', props.values)
+    console.log('ETAMultiStep nextButtonDisable: ', props.nextDisabled)
 
     return (
         <Root>
@@ -86,8 +87,7 @@ const Step = memo((props) => {
                     {
                         props.isLast
                         ?   <ActionButton
-                                onPress={props.nextStep}
-                                // disabled={props.isLast}
+                                onPress={props.finishFunction}
                                 style={{ backgroundColor: themeContext.PRIMARY_COLOR }}>
                                 <ETASimpleText
                                     size={14}
@@ -103,8 +103,8 @@ const Step = memo((props) => {
                             </ActionButton>
                         :   <ActionButton
                                 onPress={props.nextStep}
-                                disabled={props.isLast}
-                                style={{ backgroundColor: props.isLast ? 'transparent' : '#333333' }}>
+                                disabled={props.isLast || props.disabledNext}
+                                style={{ backgroundColor: props.isLast === true || props.disabledNext === true ? 'transparent' : '#333333' }}>
                                 <ETASimpleText
                                     size={14}
                                     weight={
@@ -112,7 +112,7 @@ const Step = memo((props) => {
                                             ? '400'
                                             : '300'
                                     }
-                                    color={props.isLast ? '#444' : 'white'}
+                                    color={props.isLast === true || props.disabledNext === true ? '#444' : 'white'}
                                     align='center'>
                                     {props.nextText ? props.nextText : 'Next'}
                                 </ETASimpleText>

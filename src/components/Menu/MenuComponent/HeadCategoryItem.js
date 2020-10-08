@@ -26,9 +26,9 @@ const NewContainer = styled.View`
 	width: 23px;
 	bottom: 12px;
 	right: 8px;
-	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	border-radius: 4px;
 	border-width: 1.3px;
+	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 

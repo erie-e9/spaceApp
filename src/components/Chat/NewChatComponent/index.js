@@ -30,18 +30,16 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const NewChatComponent = ({getDataRequest, data}) => {
+const NewChatComponent = ({ getDataRequest, data }) => {
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 
 	useEffect(() => {
 		getDataRequest()
 		setitems(data)
-		// console.log('[NewChatComponent] contacts json: ', data);
 	}, [data])
 
 	const _onPress = (item) => {
-		console.log('ewe',  item.cellphone);
 		navigation.navigate('ChatItemNavigator', {
 			screen: 'ChatItemScreen',
 			params: {

@@ -82,7 +82,7 @@ const NameContainer = styled.View`
 `
 const PriceContainer = styled.View`
 	flex: 1;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: flex-end;
 	align-items: flex-start;
 `
@@ -116,6 +116,21 @@ const FavoriteContainer = styled.View`
 	right: 15px;
 	z-index: 1000;
 `
+const PointsContainer = styled.View`
+	justify-content: flex-end;
+	position: absolute;
+	min-height: 13px;
+	min-width: 30px;
+	top: 5px;
+	right: 7px;
+	z-index: 100;
+	padding-horizontal: 4px;
+	border-radius: 4px;
+	border-width: 0.75px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: transparent;
+`
+
 const mapStateToProps = (state, props) => {
 	const favoritesdata = state.favorites.data
 	return { favoritesdata }
@@ -188,6 +203,30 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 		<Touchable key={item._id} onPress={() => _onPressItem(item)}>
 			<Card>
 				<CardTop>
+					{
+						item.points > 0
+						?	<PointsContainer>
+								<ETASimpleText
+									size={9}
+									weight={Platform.OS === 'ios' ? '400' : '400'}
+									color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+									align='center'
+									style={{
+										elevation: 4,
+										textShadowColor: 'rgba(0, 0, 0, 0.7)',
+										textShadowOffset: {
+											width: 0.1,
+											height: 0.2,
+										},
+										textShadowRadius: 1.5,
+									}}
+								>
+									{item.points}° pts
+								</ETASimpleText>
+							</PointsContainer>
+						:	null
+					}
+
 					{item.status !== '' ? (
 						<StatusContainer>
 							<ETASimpleText
@@ -257,7 +296,32 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 									100
 								).toFixed(2))}
 							</ETASimpleText>
+							
+									<PercentContainer>
+										<ETASimpleText
+											size={9}
+											weight={
+												Platform.OS ===
+												'ios'
+													? '500'
+													: '900'
+											}
+											color={
+												themeContext.PRIMARY_TEXT_COLOR_LIGHT
+											}
+											align='left'
+											style={{
+												zIndex: 100,
+											}}>
+											-
+											{
+												item.discount
+											}
+											%
+										</ETASimpleText>
+									</PercentContainer>
 						</PriceContainer>
+						
 						<DiscountContainer>
 							{item.discount > 0 ? (
 								<>
@@ -284,29 +348,6 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 											2,
 										))}
 									</ETASimpleText>
-									<PercentContainer>
-										<ETASimpleText
-											size={9}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '500'
-													: '900'
-											}
-											color={
-												themeContext.PRIMARY_TEXT_COLOR_LIGHT
-											}
-											align='left'
-											style={{
-												zIndex: 100,
-											}}>
-											-
-											{
-												item.discount
-											}
-											%
-										</ETASimpleText>
-									</PercentContainer>
 								</>
 							) : null}
 						</DiscountContainer>

@@ -42,12 +42,7 @@ const SecondaryButton = styled.View`
 	z-index: 2000;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
-const SubItemGeneratorButton = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
-})`
-	z-index: 2000;
-`
+
 const mapStateToProps = (state, props) => {
 	const { data } = state.customproduct
 

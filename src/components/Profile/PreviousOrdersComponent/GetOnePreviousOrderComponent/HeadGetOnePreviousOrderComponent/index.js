@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
-import {ETASimpleText} from '@etaui'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
 import { truncateString, currencySeparator, creditnumberSeparator, phoneSeparator } from '@functions'
-import {Ionicons} from '@icons'
+import { Ionicons } from '@icons'
 
 const logoSize = 90
 const avatarRadius = logoSize / 2
@@ -47,7 +47,8 @@ const OrderIDContainer = styled.View`
 	z-index: 100;
 	border-width: 0px;
 	padding-horizontal: 5px;
-	padding-vertical: 1px;
+	padding-vertical: 2px;
+	margin-bottom: 3px;
 	border-color: white;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
@@ -99,7 +100,7 @@ const GetOnePreviousOrderComponent = (item) => {
                                 Platform.OS ===
                                 'ios'
                                 ? '400'
-                                : '800'
+                                : '500'
                             }
                             color={
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -117,7 +118,7 @@ const GetOnePreviousOrderComponent = (item) => {
                             Platform.OS ===
                             'ios'
                             ? '400'
-                            : '400'
+                            : 'bold'
                         }
                         color={
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR

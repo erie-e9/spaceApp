@@ -56,7 +56,6 @@ const NotificationCardComponent = ({ headTitle, headTitleID, message, active, to
 	const [_switchItem, _setswitchItem] = useState()
 
 	const _switch = async (item) => {
-		console.log('ewe: ', item);
 		await setswitchItem(!switchItem)
 		await _setswitchItem(item)
 		// toogleNotification(id)

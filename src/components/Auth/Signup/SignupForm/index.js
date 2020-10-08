@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
-import {Platform, KeyboardAvoidingView, Keyboard} from 'react-native'
+import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETAMultiStep, ETARadio } from '@etaui'
-import {connect} from 'react-redux'
-import {SIGNUP} from '@redux/user/actions'
+import { connect } from 'react-redux'
+import { SIGNUP } from '@redux/user/actions'
 
 const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
@@ -71,6 +72,7 @@ const mapDispatchProps = (dispatch, props) => ({
 
 const SignupForm = ({getAllUserInfoUser}) => {
     const themeContext = useContext(ThemeContext)
+	const navigation = useNavigation()
 	const [ mysecureTextEntry ] = useState(true)
 	const [ radioItem, setradioItem ] = useState(true)
 
@@ -190,6 +192,11 @@ const SignupForm = ({getAllUserInfoUser}) => {
 			]
 		},
 	]
+	
+	const _finishFunction = (values) => {
+		navigation.goBack()
+		console.log('_finishFunction')
+	}
 
 	return (
 		<Root>
@@ -197,6 +204,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				prevText='Previous'
 				nextText='Next'
 				finishText='Send'
+				finishFunction={() => _finishFunction()}
 				initialValues={{
 					cellphone: '',
 					name: '',
