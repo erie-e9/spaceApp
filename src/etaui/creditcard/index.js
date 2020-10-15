@@ -1,5 +1,5 @@
-import React, {useState, useContext, useLayoutEffect} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
+import React, { useState, useContext, useLayoutEffect, memo, useRef } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
 import {
 	Dimensions,
 	KeyboardAvoidingView,
@@ -7,9 +7,10 @@ import {
 	Animated,
 	Platform,
 } from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText, ETAButtonFilled} from '@etaui'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText, ETAButtonFilled } from '@etaui'
 import { creditnumberSeparator, expirationDateSeparator } from '@functions'
+import TextInputMask from 'react-native-text-input-mask'
 
 const {width, height} = Dimensions.get('window')
 
@@ -99,7 +100,7 @@ const TextInput = styled.TextInput.attrs({})`
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 `
 
-const ETACreditCard = ({lang, placeholderTextColor}) => {
+const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ creditCard, setcreditCard ] = useState('1234 5678 9012 3456')
@@ -109,6 +110,8 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 		lang === 'es' ? 'NOMBRE DE PROPIETARIO' : 'ONWER NAME',
 	)
 	const animatedValue = new Animated.Value(0)
+	const numberCardRef = useRef()
+	const mmyy = useRef()
 
 	useLayoutEffect(() => {
 		animatedValue.addListener(({value}) => {
@@ -128,7 +131,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 		console.log('flip switch', animatedValue)
 		switch (true) {
 			case deg === 180: // front to back
-				console.log('front to back')
+				console.log('front to back === 180')
 				Animated.spring(animatedValue, {
 					toValue: 180,
 					friction: 8,
@@ -137,7 +140,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 				}).start()
 				break
 			case deg < 80: // back to front
-				console.log('back to front')
+				console.log('back to front < 80')
 				Animated.spring(animatedValue, {
 					toValue: 0,
 					friction: 8,
@@ -146,7 +149,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 				}).start()
 				break
 			case deg > 80: // back to front
-				console.log('front to back')
+				console.log('front to back > 80')
 				Animated.spring(animatedValue, {
 					toValue: 180,
 					friction: 8,
@@ -188,17 +191,18 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 												? '500'
 												: 'bold'
 										}
-										color='#333'
+										color={creditCard === '' ? themeContext.PRIMARY_TEXT_COLOR_LIGHT :  '#333'}
 										align='center'>
 										{creditCard === ''
 											? '1234 5678 9012 3456'.padEnd(
 													16,
 													'•',
 											  )
-											: creditnumberSeparator(creditCard.padEnd(
-													16,
-													'•',
-											  ))
+											: creditnumberSeparator(creditCard
+												// .padEnd(
+												// 	16,
+												// 	'•')
+											  )
 										}
 									</ETASimpleText>
 									<ETASimpleText
@@ -209,7 +213,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 												? '500'
 												: '300'
 										}
-										color='#333'
+										color={expiry === '' ? themeContext.PRIMARY_TEXT_COLOR_LIGHT :  '#333'}
 										align='center'>
 										{expiry === ''
 											? lang ===
@@ -226,7 +230,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 												? '500'
 												: '300'
 										}
-										color='#333'
+										color={onwerName === '' ? themeContext.PRIMARY_TEXT_COLOR_LIGHT :  '#333'}
 										align='center'>
 										{onwerName === ''
 											? lang ===
@@ -267,13 +271,13 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 													? '500'
 													: '300'
 											}
-											color='#333'
+											color={cvc === '' ? themeContext.PRIMARY_TEXT_COLOR_LIGHT :  '#333'}
 											align='center'>
 											{cvc === ''
 												? lang ===
 												'es'
-													? 'MM/AA'
-													: 'MM/YY'
+													? '123'
+													: '123'
 												: cvc}
 										</ETASimpleText>
 									</CVCContainer>
@@ -286,13 +290,35 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 				<CreditCardBottomContainer>
 					<TextInputsContainer>
 						<TextInputContainer>
-							<TextInput
+							<TextInputMask
+								refInput={numberCardRef}
+								placeholder='1234 5678 9012 3456'
+								placeholderTextColor={
+									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
+								}
+								onChangeText={(formatted, extracted) => {
+									setcreditCard(
+										formatted.replace(
+											/[^0-9]/g,
+											'',
+										),
+									)
+									console.log(extracted)
+								}}
+								mask={'[0000] [0000] [0000] [0000]'}
+								clearButtonMode='always'
+								keyboardType='phone-pad'
+								autoCapitalize='none'
+								allowFontScaling
+								style={{ backgroundColor: 'transparent', width: '100%', paddingHorizontal: 15 }}
+							/>
+
+							{/* <TextInput
 								// value={''}
 								defaultValue=''
 								placeholder='1234 5678 9012 3456'
 								placeholderTextColor={
-									placeholderTextColor ||
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
 								keyboardType='phone-pad'
 								autoCapitalize='none'
@@ -327,13 +353,34 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 										),
 									)
 								}
-							/>
+							/> */}
 						</TextInputContainer>
 					</TextInputsContainer>
 
 					<TextInputsContainer>
 						<TextInputContainer>
-							<TextInput
+							<TextInputMask
+								refInput={mmyy}
+								placeholder={
+									lang === 'es'
+										? 'MM/AA'
+										: 'MM/YY'
+								}
+								placeholderTextColor={
+									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
+								}
+								onChangeText={(formatted, extracted) => {
+									console.log(formatted)
+									console.log(extracted)
+								}}
+								mask={'[00]{/}[00]'}
+								clearButtonMode='always'
+								keyboardType='phone-pad'
+								autoCapitalize='none'
+								allowFontScaling
+								style={{ backgroundColor: 'transparent', width: '100%', paddingHorizontal: 15 }}
+							/>
+							{/* <TextInput
 								// value={}
 								defaultValue=''
 								placeholder={
@@ -342,8 +389,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 										: 'MM/YY'
 								}
 								placeholderTextColor={
-									placeholderTextColor ||
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
 								keyboardType='phone-pad'
 								autoCapitalize='none'
@@ -373,7 +419,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 								onChangeText={(value) =>
 									setexpiry(value)
 								}
-							/>
+							/> */}
 						</TextInputContainer>
 						<TextInputContainer>
 							<TextInput
@@ -385,8 +431,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 										: 'CVC/CCV'
 								}
 								placeholderTextColor={
-									placeholderTextColor ||
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
 								keyboardType='phone-pad'
 								autoCapitalize='none'
@@ -433,8 +478,7 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 										: 'ONWER NAME'
 								}
 								placeholderTextColor={
-									placeholderTextColor ||
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
 								keyboardType='default'
 								autoCapitalize='characters'
@@ -488,6 +532,6 @@ const ETACreditCard = ({lang, placeholderTextColor}) => {
 			</KeyboardAvoidingView>
 		</>
 	)
-}
+})
 
 export default ETACreditCard

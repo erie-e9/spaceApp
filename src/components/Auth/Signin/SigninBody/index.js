@@ -1,12 +1,13 @@
-import React, {useContext} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETASimpleText} from '@etaui'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
 
 const Root = styled.View`
-	flex: 0.5;
-	justify-content: flex-end;
-	margin-top: 24px;
+	flex: 0.1;
+	justify-content: center;
+	margin-top: 14px;
+	background-color: transparent
 `
 const ButtonForgetPassword = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -15,7 +16,6 @@ const ButtonForgetPassword = styled.TouchableOpacity.attrs({
 	justify-content: center;
 	align-items: center;
 	z-index: 1;
-	margin-bottom: 15px;
 `
 const ButtonSignup = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -32,13 +32,13 @@ const SignInBody = ({navigation}) => {
 	const signup = 'Sign up'
 	const dontaccount = 'Do not have an account? '
 	const forgetpass = 'Did you forget your password? '
-	const _onShowSignupPress = () => {
-		navigation.navigate('SignupScreen')
+	
+	const _onShowForgetPasswordPress = () => {
+		navigation.navigate('AuthNavigator', {
+			screen: 'ForgetPasswordScreen'
+		})
 	}
-
-	const _onShowForgetPasswordPress = () =>
-		navigation.navigate('ForgetPasswordScreen')
-
+	
 	return (
 		<Root>
 			<ButtonForgetPassword
@@ -52,7 +52,7 @@ const SignInBody = ({navigation}) => {
 				</ETASimpleText>
 			</ButtonForgetPassword>
 
-			<ButtonSignup onPress={() => _onShowSignupPress()}>
+			{/* <ButtonSignup onPress={() => _onShowSignupPress()}>
 				<ETASimpleText
 					size={14}
 					weight={Platform.OS === 'ios' ? '500' : '300'}
@@ -69,7 +69,7 @@ const SignInBody = ({navigation}) => {
 						{signup}
 					</ETASimpleText>
 				</ETASimpleText>
-			</ButtonSignup>
+			</ButtonSignup> */}
 		</Root>
 	)
 }

@@ -125,13 +125,13 @@ const AddCartContainer = styled.View`
 	shadow-radius: 2px;
 	shadow-opacity: 0.2;
 	elevation: 0.3;
-	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	margin-horizontal: 7px;
 	padding-horizontal: 10px;
 	justify-content: space-between;
 	align-items: center;
 	align-self: center;
 	z-index: 1000;
+	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
 const AddRemoveContainer = styled.View`
 	width: 100%;
@@ -254,170 +254,135 @@ const CartItemComponent = ({
 
 	return (
 		<Root>
-			<Item>
-				<Touchable onPress={() => _onPressItem(item)}>
-					<ItemImage source={{uri: item.images[0].image}} />
-				</Touchable>
-				<CartItemData>
-					<CartItemHeadContainer>
-						<CartTitleContainer>
-							<ETASimpleText
-								size={13}
-								weight={
-									Platform.OS ===
-									'ios'
-										? '400'
-										: '800'
-								}
-								color={
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								}
-								align='left'>
-								{item.name}
-							</ETASimpleText>
-						</CartTitleContainer>
-						<CardItemFunctions>
-							<Touchable
-								onPress={() =>
-									_removeItemFromCart(
-										item._id,
-									)
-								}>
-								<Ionicons
-									name='md-close'
-									size={18}
-									color={
-										themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-									}
-									style={{
-										alignSelf:
-											'center',
-									}}
-								/>
-							</Touchable>
-						</CardItemFunctions>
-					</CartItemHeadContainer>
-					<CartItemContainer>
-						<CartItemLeftContainer>
-							<PriceContainer>
+			{addedCounter !== 0 ? (
+				<Item>
+					<Touchable onPress={() => _onPressItem(item)}>
+						<ItemImage source={{uri: item.images[0].image}} />
+					</Touchable>
+					<CartItemData>
+						<CartItemHeadContainer>
+							<CartTitleContainer>
 								<ETASimpleText
 									size={13}
 									weight={
 										Platform.OS ===
 										'ios'
 											? '400'
-											: '400'
+											: '800'
 									}
 									color={
-										themeContext.PRIMARY_COLOR
+										themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 									}
-									align='center'
-									style={{
-										zIndex: 100,
-									}}>
-									$
-									{currencySeparator(
-										(
-											(100 -
-												item.discount) *
-											(item.price /
-												100) *
-											addedCounter
-										).toFixed(2),
-									)}
+									align='left'>
+									{item.name}
 								</ETASimpleText>
-							</PriceContainer>
-							<UnitPriceContainer>
-								<ETASimpleText
-									size={9}
-									weight={
-										Platform.OS ===
-										'ios'
-											? '400'
-											: '900'
-									}
-									color={
-										themeContext.PRIMARY_TEXT_COLOR_LIGHT
-									}
-									align='left'
-									style={{
-										zIndex: 100,
-									}}>
-									$
-									{currencySeparator(
-										(
-											((100 -
-												item.discount) *
-												item.price) /
-											100
-										).toFixed(2),
-									)}{' '}
-									unit price
-								</ETASimpleText>
-							</UnitPriceContainer>
-							{/* {
-								item.discount > 0
-								? <DiscountContainer>
+							</CartTitleContainer>
+							<CardItemFunctions>
+								<Touchable
+									onPress={() =>
+										_removeItemFromCart(
+											item._id,
+										)
+									}>
+									<Ionicons
+										name='md-close'
+										size={18}
+										color={
+											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+										}
+										style={{
+											alignSelf:
+												'center',
+										}}
+									/>
+								</Touchable>
+							</CardItemFunctions>
+						</CartItemHeadContainer>
+						<CartItemContainer>
+							<CartItemLeftContainer>
+								<PriceContainer>
 									<ETASimpleText
-										size={10}
-										weight={Platform.OS === 'ios' ? '400' : '400'}
-										color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-										align={'center'}
-										style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
-										${(item.price.toFixed(2))}
+										size={13}
+										weight={
+											Platform.OS ===
+											'ios'
+												? '400'
+												: '400'
+										}
+										color={
+											themeContext.PRIMARY_COLOR
+										}
+										align='center'
+										style={{
+											zIndex: 100,
+										}}>
+										$
+										{currencySeparator(
+											(
+												(100 -
+													item.discount) *
+												(item.price /
+													100) *
+												addedCounter
+											).toFixed(2),
+										)}
 									</ETASimpleText>
-									<PercentContainer>
+								</PriceContainer>
+								<UnitPriceContainer>
+									<ETASimpleText
+										size={9}
+										weight={
+											Platform.OS ===
+											'ios'
+												? '400'
+												: '900'
+										}
+										color={
+											themeContext.PRIMARY_TEXT_COLOR_LIGHT
+										}
+										align='left'
+										style={{
+											zIndex: 100,
+										}}>
+										$
+										{currencySeparator(
+											(
+												((100 -
+													item.discount) *
+													item.price) /
+												100
+											).toFixed(2),
+										)}{' '}
+										unit price
+									</ETASimpleText>
+								</UnitPriceContainer>
+								{/* {
+									item.discount > 0
+									? <DiscountContainer>
 										<ETASimpleText
-											size={9}
-											weight={Platform.OS === 'ios' ? '500' : '900'}
-											color={themeContext.PRIMARY_COLOR}
-											align={'left'}
-											style={{ zIndex: 100 }}>
-											-{item.discount}%
+											size={10}
+											weight={Platform.OS === 'ios' ? '400' : '400'}
+											color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+											align={'center'}
+											style={{textDecorationLine: 'line-through', textDecorationStyle: 'solid'}}>
+											${(item.price.toFixed(2))}
 										</ETASimpleText>
-									</PercentContainer>
-								</DiscountContainer>
-								:	null
-							} */}
-						</CartItemLeftContainer>
-						<CartItemRightContainer>
-							<AddCartContainer>
-								{addedCounter === 0 ? (
-									<AddCart
-										onPress={() =>
-											_addCart(
-												item,
-											)
-										}>
-										<AddRemoveButtonContainer>
+										<PercentContainer>
 											<ETASimpleText
-												size={
-													18
-												}
-												weight={
-													Platform.OS ===
-													'ios'
-														? '600'
-														: '300'
-												}
-												color='white'
-												align='center'>
-												+
+												size={9}
+												weight={Platform.OS === 'ios' ? '500' : '900'}
+												color={themeContext.PRIMARY_COLOR}
+												align={'left'}
+												style={{ zIndex: 100 }}>
+												-{item.discount}%
 											</ETASimpleText>
-										</AddRemoveButtonContainer>
-										<FontAwesome
-											name='shopping-cart'
-											size={
-												18
-											}
-											color='white'
-											style={{
-												alignSelf:
-													'center',
-											}}
-										/>
-									</AddCart>
-								) : (
+										</PercentContainer>
+									</DiscountContainer>
+									:	null
+								} */}
+							</CartItemLeftContainer>
+							<CartItemRightContainer>
+								<AddCartContainer>
 									<AddRemoveContainer>
 										<RemoveCart
 											onPress={() =>
@@ -488,12 +453,12 @@ const CartItemComponent = ({
 											</AddRemoveButtonContainer>
 										</AddCart>
 									</AddRemoveContainer>
-								)}
-							</AddCartContainer>
-						</CartItemRightContainer>
-					</CartItemContainer>
-				</CartItemData>
-			</Item>
+								</AddCartContainer>
+							</CartItemRightContainer>
+						</CartItemContainer>
+					</CartItemData>
+				</Item>
+			) : (null)}
 		</Root>
 	)
 }

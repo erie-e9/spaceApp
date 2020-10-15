@@ -154,7 +154,6 @@ const ChatComponent = ({getDataRequest, data}) => {
 					</>
 				:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
 			}
-			
 		</Root>
 	)
 }

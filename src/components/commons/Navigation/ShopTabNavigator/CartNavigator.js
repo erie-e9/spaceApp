@@ -100,7 +100,7 @@ const CartNavigator = () => {
 									<Ionicons
 										name='md-heart'
 										size={20}
-										color={themeContext.PRIMARY_COLOR}
+										color='#FF0000'
 									/>
 								</Touchable>
 								<LastOrderButton

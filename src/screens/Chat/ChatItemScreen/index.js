@@ -17,7 +17,6 @@ const HeaderLeft = styled.TouchableOpacity.attrs({
 	margin: 0px 10px 0px 10px;
 	background-color: transparent;
 `
-
 const Root = styled.View`
 	flex: 1;
 `
@@ -41,7 +40,7 @@ const AvatarContainer = styled.View`
 	height: 37px;
 	width: 37px;
 	padding: 2px;
-	border-radius: 17px;
+	border-radius: 50px;
 	justify-content: center;
 	align-items: center;
 	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
@@ -54,6 +53,19 @@ const ChatItemScreen = ({navigation, route}) => {
 	const { paramData } = route.params
 	const themeContext = useContext(ThemeContext)
 	const fullname = `${paramData?.employee.firstname} ${paramData?.employee.lastname}`
+
+	const _navigationContactProfile = () => {
+		navigation.navigate('ChatItemNavigator', { 
+			screen: 'ContactProfileScreen',
+			params: {
+				username: paramData?.employee.username,
+				firstname: paramData?.employee.firstname,
+				lastname: paramData?.employee.lastname,
+				createdAt: paramData?.createdAt,
+				avatar: paramData?.employee.avatar,
+			}
+		})
+	}
 
 	useLayoutEffect(() => {
 		navigation.setOptions({
@@ -93,7 +105,7 @@ const ChatItemScreen = ({navigation, route}) => {
 							{truncateString(fullname, 40)}
 						</ETASimpleText>
 						<Touchable 
-							onPress={() => navigation.navigate('ChatItemNavigator', { screen: 'ContactProfileScreen' })}
+							onPress={() => _navigationContactProfile()}
 						>
 							<ETASimpleText
 								size={11}

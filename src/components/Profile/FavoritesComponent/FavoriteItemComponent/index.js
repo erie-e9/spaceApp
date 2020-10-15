@@ -1,12 +1,13 @@
-import React, {useState, useContext, useEffect} from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Platform, Dimensions} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText} from '@etaui'
-import {Ionicons} from '@icons'
-import {connect} from 'react-redux'
+import React, { useState, useContext, useEffect, useRef } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Platform, Dimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText } from '@etaui'
+import { Ionicons } from '@icons'
+import { connect } from 'react-redux'
 import { TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
-import {currencySeparator, truncateString} from '@functions'
+import { currencySeparator, truncateString } from '@functions'
+import LottieView from 'lottie-react-native'
 
 const {width} = Dimensions.get('window')
 
@@ -56,11 +57,12 @@ const FavoriteTitleContainer = styled.View`
 	background-color: transparent;
 `
 const CardItemFunctions = styled.View`
-	flex: 0.5;
+	flex: 0.1;
 	align-items: flex-end;
 	justify-content: center;
 	margin: 10px 10px 10px 0px;
-	background-color: yellow;
+	z-index: 1000;
+	background-color: transparent;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -145,14 +147,19 @@ const FavoriteItemComponent = ({toogleFavorite,	item, howMany }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [addedCounter, setaddedCounter] = useState()
+	const heart = useRef(false)
 
 	useEffect(() => {
 		setaddedCounter(howMany)
 	}, [howMany])
 
-	const _addFavorite = (paramItem) => {
-		setaddedCounter(addedCounter + 1)
-		toogleFavorite(paramItem)
+	const _addFavorite = async (paramItem) => {
+		await heart.current?.play(169, 10)
+		setTimeout(() => {
+			heart.current?.pause()
+			setaddedCounter(addedCounter + 1)
+			toogleFavorite(paramItem)
+		}, 1690/2);
 	}
 
 	const _removeFromFavorite = (_id) => {
@@ -197,7 +204,7 @@ const FavoriteItemComponent = ({toogleFavorite,	item, howMany }) => {
 								{item.name}
 							</ETASimpleText>
 						</FavoriteTitleContainer>
-						<CardItemFunctions>
+						{/* <CardItemFunctions>
 							<FavoriteItemRightContainer>
 								<AddFavoriteContainer>
 									<AddFavorite
@@ -206,15 +213,27 @@ const FavoriteItemComponent = ({toogleFavorite,	item, howMany }) => {
 												item,
 											)
 										}>
-										<Ionicons
-											name='md-heart'
-											size={20}
-											color={themeContext.PRIMARY_COLOR}
-										/>
+										<LottieView
+											ref={heart}
+											source={require('@assets/heart2.json')}
+											style={{ height: 35, backgroundColor: 'transparent' }}
+											colorFilters={[
+												{
+													keypath: 'button',
+													color: themeContext.PRIMARY_COLOR
+												},
+												{
+													keypath: 'Sending Loader',
+													color: '#FFF000'
+												}
+											]}
+											progress={1}
+											autoSize={true}
+									/>
 									</AddFavorite>
 								</AddFavoriteContainer>
 							</FavoriteItemRightContainer>
-						</CardItemFunctions>
+						</CardItemFunctions> */}
 					</FavoriteItemHeadContainer>
 					<FavoriteItemContainer>
 						<FavoriteItemLeftContainer>
@@ -238,6 +257,35 @@ const FavoriteItemComponent = ({toogleFavorite,	item, howMany }) => {
 								</ETASimpleText>
 							</DescriptionContainer>
 						</FavoriteItemLeftContainer>
+						
+						<FavoriteItemRightContainer>
+							<AddFavoriteContainer>
+								<AddFavorite
+									onPress={() =>
+										_addFavorite(
+											item,
+										)
+									}>
+									<LottieView
+										ref={heart}
+										source={require('@assets/heart2.json')}
+										style={{ height: 35, backgroundColor: 'transparent' }}
+										colorFilters={[
+											{
+												keypath: 'button',
+												color: themeContext.PRIMARY_COLOR
+											},
+											{
+												keypath: 'Sending Loader',
+												color: '#FFF000'
+											}
+										]}
+										progress={1}
+										autoSize={true}
+								/>
+								</AddFavorite>
+							</AddFavoriteContainer>
+						</FavoriteItemRightContainer>
 					</FavoriteItemContainer>
 				</FavoriteItemData>
 			</Item>

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components/native'
-import {ETACarousel} from '@etaui'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/menu/carousel/actions'
+import { ETACarousel } from '@etaui'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/menu/carousel/actions'
 
 const HeaderContainer = styled.View`
 	flex: 1;
@@ -25,7 +25,8 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const CarouselComponent = ({getDataRequest, data, items}) => {
+const CarouselComponent = ({ getDataRequest, data, items }) => {
+	
 	useEffect(() => {
 		getDataRequest()
 	}, [data])
@@ -38,7 +39,7 @@ const CarouselComponent = ({getDataRequest, data, items}) => {
 					data={items}
 					autoplay
 					time={6000}
-					sizeHeight={155}
+					sizeHeight={145}
 				/>
 			) : null}
 		</HeaderContainer>

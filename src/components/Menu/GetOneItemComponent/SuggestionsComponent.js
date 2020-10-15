@@ -41,7 +41,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 const SuggestionItem = styled.View`
 	width: 50px;
 	height: 50px;
-	border-radius: 10px;
+	border-radius: 12px;
 	border-width: 0px;
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
@@ -212,14 +212,6 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 														}}
 													/>
 												</SuggestionItem>
-												{/* <ETASimpleText
-													size={9}
-													weight={Platform.OS === 'ios' ? '400' : '200'}
-													// color='white'
-													color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-													align={'center'}>
-													{item.name}
-												</ETASimpleText> */}
 											</Animated.View>
 										</Touchable>
 									)

@@ -185,7 +185,7 @@ const ChatItemNavigator = () => {
 				options={({navigation, route}) => ({
 					headerTitle: '',
 					headerShown: true,
-					headerTransparent: !true,
+					headerTransparent: true,
 					headerTitleAlign: 'center',
 					headerTitleStyle: {
 						fontWeight: '500',

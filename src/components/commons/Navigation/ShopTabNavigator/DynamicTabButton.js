@@ -11,7 +11,7 @@ import {
 	IceCreamComponent
 } from '@icons'
 import { TouchableHighlight } from 'react-native-gesture-handler'
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/customproduct/actions'
 
@@ -65,7 +65,7 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 
 	useEffect(() => {
 		getDataRequest()
-		console.log('[DynamicTabButton] data: ', data);
+		// console.log('[DynamicTabButton] data: ', data);
 	}, [data])
 
 	const _handlePress = () => {
@@ -169,7 +169,9 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 							_handlePressButton1();
 							onPress();
 							hide();
-						}}>
+						}}
+						onPressOut={(() => console.log('onpressout'))}
+					>
 						<>
 						<Animated.View
 							style={{
@@ -205,7 +207,9 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 							_handlePressButton2();
 							onPress();
 							hide();
-						}}>
+						}}
+						onPressOut={(() => console.log('onpressout'))}
+					>
 						<>
 						<Animated.View
 							style={{
@@ -241,7 +245,9 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 							_handlePressButton3();
 							onPress();
 							hide();
-						}}>
+						}}
+						onPressOut={(() => console.log('onpressout'))}
+					>
 						<>
 						<Animated.View
 							style={{

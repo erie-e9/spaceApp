@@ -124,7 +124,8 @@ const CartDetailsComponent = ({ data }) => {
 			params: {
 				data: data,
 				total: total,
-				subtotal: subtotal
+				subtotal: subtotal,
+				totalItems
 			},
 		})
 	}
@@ -267,7 +268,7 @@ const CartDetailsComponent = ({ data }) => {
 								},
 							)
 						}
-						disabled={false}
+						disabled={data.length === 0 ? true : false}
 						colorButton={
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
 						}
@@ -278,16 +279,17 @@ const CartDetailsComponent = ({ data }) => {
 					/>
 				</DirectionContainer>
 				<ButtonPayContainer>
+					
 					<ETAButtonFilled
 						title='Check out'
 						onPress={() => _onPressItem()}
-						disabled={!!isSubmitting}
+						disabled={data.length === 0 ? true : false}
 						colorButton={
 							themeContext.SECONDARY_BACKGROUND_COLOR
 						}
 						padding={10}
-						width={isSubmitting ? 40 : 250}
-						borderRadius={isSubmitting ? 20 : 3}
+						width={250}
+						borderRadius={3}
 					/>
 				</ButtonPayContainer>
 			</CartDetailsContainer>

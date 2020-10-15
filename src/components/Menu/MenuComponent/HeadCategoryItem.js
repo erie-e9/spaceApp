@@ -3,21 +3,24 @@ import {Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
 
+const _height = 55
+const _width = 37
+
 const Item = styled.View`
-	width: 40px;
-	height: 60px;
-	border-radius: 20px;
+	height: ${_height}px;
+	width: ${_width}px;
+	border-radius: ${_width / 2}px;
 	border-width: 0.5px;
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-	margin: 4px 9px;
+	margin: 4px 7px;
 	justify-content: center;
 	align-items: center;
 `
 const ItemImage = styled.Image`
-	width: 40px;
-	height: 60px;
-	border-radius: 20px;
+	height: ${_height}px;
+	width: ${_width}px;
+	border-radius: ${_width / 2}px;
 `
 const NewContainer = styled.View`
 	justify-content: flex-end;

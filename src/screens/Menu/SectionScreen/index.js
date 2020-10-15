@@ -7,7 +7,7 @@ const Root = styled.View`
 `
 
 const SectionScreen = ({navigation, route}) => {
-	const {name} = route.params.params
+	const { name } = route?.params
 
 	useLayoutEffect(() => {
 		navigation.setOptions({headerTitle: name})

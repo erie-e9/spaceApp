@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import {Animated, Platform} from 'react-native'
 import styled, {ThemeContext} from 'styled-components'
 import {ETASimpleText} from '@etaui'
@@ -33,8 +33,8 @@ const mapDispatchProps = (dispatch, props) => ({
 const SectionComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState([])
-	const [animatedValueTransform] = useState(new Animated.Value(0))
-	const [opacity] = useState(new Animated.Value(0))
+	const [ animatedValueTransform ] = useState(new Animated.Value(0))
+	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
 
 	useEffect(() => {

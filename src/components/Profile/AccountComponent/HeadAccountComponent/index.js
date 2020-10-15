@@ -4,7 +4,7 @@ import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
 import {fakeavatar} from '@utils/constants'
 
-const logoSize = 70
+const logoSize = 90
 const avatarRadius = logoSize / 2
 
 const Root = styled.View`
@@ -31,13 +31,13 @@ const LogoContainer = styled.View`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 	border-width: 0.3px;
 	border-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `
 const Logo = styled.Image`
-	height: ${Platform.OS === 'ios' ? logoSize : 70}px;
-	width: ${Platform.OS === 'ios' ? logoSize : 70}px;
+	height: ${Platform.OS === 'ios' ? logoSize : logoSize}px;
+	width: ${Platform.OS === 'ios' ? logoSize : logoSize}px;
 	border-radius: ${avatarRadius}px;
 `
 
@@ -51,7 +51,7 @@ const HeadPaymentMethodComponent = () => {
 			</LogoContainer>
 			<ContentContainer>
 				<ETASimpleText
-					size={11}
+					size={13}
 					weight={Platform.OS === 'ios' ? '300' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>

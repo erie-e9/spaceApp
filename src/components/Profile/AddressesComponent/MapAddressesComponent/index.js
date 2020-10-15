@@ -33,14 +33,14 @@ const MapAddressesComponent = () => {
 		return () => (isSubscribed = false)
 	}, [data])
 
-	const _findCoordinates = () => {
-		Geolocation.getCurrentPosition(
+	const _findCoordinates = async () => {
+		await Geolocation.getCurrentPosition(
 			(position) => {
 				setgetLatitude(position.coords.latitude)
 				setgetLongitude(position.coords.longitude)
 				// console.log(position.coords.latitude);
 			},
-			(error) => console.warn(error.message),
+			(error) => console.warn('ewe', error.message),
 			{
 				enableHighAccuracy: true,
 				timeout: 20000,

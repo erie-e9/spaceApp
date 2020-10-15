@@ -8,6 +8,8 @@ import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/categories/actions'
 
 const {width} = Dimensions.get('window')
+const _height = 55
+const _width = 35
 
 const Root = styled.View`
 	min-height: 60px;
@@ -22,9 +24,9 @@ const ItemsList = styled.FlatList`
 	width: ${width}px;
 `
 const Item = styled.View`
-	height: 60px;
-	width: 40px;
-	border-radius: 20px;
+	height: ${_height}px;
+	width: ${_width}px;
+	border-radius: ${_width / 2}px;
 	border-width: 0.5px;
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_COLOR_LIGHT};
 	margin: 5px 9px;
@@ -57,8 +59,8 @@ const mapDispatchProps = (dispatch) => ({
 const Categories = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [categoryitems, setcategoryitems] = useState([])
-	const [animatedValueTransform] = useState(new Animated.Value(0))
+	const [ categoryitems, setcategoryitems] = useState([])
+	const [ animatedValueTransform] = useState(new Animated.Value(0))
 	let delayValue = 1000
 
 	useEffect(() => {
@@ -72,8 +74,8 @@ const Categories = ({ getDataRequest, data }) => {
 	}, [data])
 
 	const _onPressCategory = (item) => {
-		navigation.navigate('CategoryItemsScreen', {
-			screen: 'MenuScreen',
+		navigation.navigate('SubMenuNavigator', {
+			screen: 'CategoryItemsScreen',
 			params: {
 				name: item.name,
 			},
@@ -81,8 +83,8 @@ const Categories = ({ getDataRequest, data }) => {
 	}
 
 	const _onPressCategoryList = () => {
-		navigation.navigate('CategoryListScreen', {
-			screen: 'MenuScreen',
+		navigation.navigate('SubMenuNavigator', {
+			screen: 'CategoryListScreen',
 			params: {
 				name: 'All categories',
 			},
@@ -156,7 +158,7 @@ const Categories = ({ getDataRequest, data }) => {
 									</ETASimpleText>
 								</Item>
 								<ETASimpleText
-									size={9}
+									size={8.5}
 									weight={
 										Platform.OS ===
 										'ios'

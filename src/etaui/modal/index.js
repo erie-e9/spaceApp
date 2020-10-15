@@ -1,7 +1,7 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Modal, TouchableOpacity } from 'react-native'
 import {Dimensions} from 'react-native'
-import styled from 'styled-components'
 import { ETASimpleText, ETAButtonFilled } from '@etaui'
 
 const {width} = Dimensions.get('window')

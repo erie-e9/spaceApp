@@ -1,6 +1,7 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
 import { useColorScheme } from 'react-native'
+import TextInputMask from 'react-native-text-input-mask'
 
 const TextInputContainer = styled.View`
 	height: ${(props) => (props.height ? props.height : 0.3)}px;
@@ -18,7 +19,7 @@ const TextInputContainer = styled.View`
 	border-radius: 3px;
 	background-color: transparent;
 `
-const TextInput = styled.TextInput.attrs({})`
+const TextInput = styled(TextInputMask).attrs({})`
 	height: ${(props) => (props.height ? props.height : 40)}px;
 	width: ${(props) => (props.width ? props.width : 300)}px;
 	font-size: ${(props) => (props.textsize ? props.textsize : 14)}px;
@@ -35,6 +36,7 @@ const TextInput = styled.TextInput.attrs({})`
 
 const ETATextInputOutLine = ({
 	rightIcon,
+	ref,
 	value,
 	placeholder,
 	placeholderTextColor,
@@ -66,6 +68,7 @@ const ETATextInputOutLine = ({
 	borderWidth,
 	onChangeText,
 	paddingHorizontal,
+	mask
 }) => {
 	const themeContext = useContext(ThemeContext)
 	const colorSchema = useColorScheme()
@@ -76,6 +79,7 @@ const ETATextInputOutLine = ({
 				height={height}
 				width={width}>
 				<TextInput
+					refInput={ref}
 					value={value}
 					placeholder={placeholder}
 					placeholderTextColor={
@@ -112,6 +116,7 @@ const ETATextInputOutLine = ({
 					// selection='1, 4'//? no sé we xd
 					// onBlur={text => this._onBlur(text)}
 					onChangeText={onChangeText}
+					mask={mask ? mask : ''}
 					// onEndEditing={text => this._onEndEditing(text)}
 					// onFocus={text => this._onFocus(text)}
 					// ref={(input) => {this.emailInput = input }}

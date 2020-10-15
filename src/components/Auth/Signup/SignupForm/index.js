@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -75,6 +75,14 @@ const SignupForm = ({getAllUserInfoUser}) => {
 	const navigation = useNavigation()
 	const [ mysecureTextEntry ] = useState(true)
 	const [ radioItem, setradioItem ] = useState(true)
+	const cellphoneRef = useRef()
+	const codeRef = useRef()
+	const nameRef = useRef()
+	const lastnameRef = useRef()
+	const genreRef = useRef()
+	const usernameRef = useRef()
+	const passwordRef = useRef()
+	const confirmPasswordRef = useRef()
 
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
@@ -90,11 +98,13 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'First, What is your cellphone?',
 					name: 'cellphone',
+					ref: cellphoneRef,
+					mask: '([000]) [000]-[00]-[00]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'phone-pad',
 						secureTextEntry: false,
-						maxLength: 10
+						maxLength: 24
 					}
 				},
 			]
@@ -106,10 +116,13 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'Code',
 					name: 'code',
+					ref: codeRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'phone-pad',
-						secureTextEntry: false
+						secureTextEntry: false,
+						maxLength: 5
 					}
 				}
 			]
@@ -121,6 +134,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'What is your name?',
 					name: 'name',
+					ref: nameRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -131,6 +146,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'Now your lastname',
 					name: 'lastname',
+					ref: lastnameRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -141,6 +158,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'Your genre:',
 					name: 'genre',
+					ref: genreRef,
+					mask: '',
 					controller: {
 						type: 'radioinput',
 						values: [
@@ -162,6 +181,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'Choose a unique username',
 					name: 'username',
+					ref: usernameRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -172,6 +193,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'Password',
 					name: 'password',
+					ref: passwordRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -182,6 +205,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 				{
 					placeholder: 'Confirm password',
 					name: 'confirmPassword',
+					ref: confirmPasswordRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -262,6 +287,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 															return (
 																<ETATextInputOutline
 																	key={i}
+																	ref={item.ref ? item.ref : null}
+																	mask={item.mask}
 																	value={values?.[item.name]}
 																	placeholder={item.placeholder}
 																	placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}

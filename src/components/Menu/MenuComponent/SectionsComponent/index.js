@@ -9,9 +9,9 @@ const Root = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
+	padding: 7px 0px;
+	margin-bottom: 7px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-	padding: 10px 0px;
-	margin-bottom: 10px;
 `
 const Item = styled.View`
 	flex-direction: row;
@@ -48,8 +48,8 @@ const SectionsComponent = () => {
 	const navigation = useNavigation()
 
 	const _onPress = (name) => {
-		navigation.navigate('SectionScreen', {
-			screen: 'MenuScreen',
+		navigation.navigate('SubMenuNavigator', {
+			screen: 'SectionScreen',
 			params: {
 				name: name,
 			},

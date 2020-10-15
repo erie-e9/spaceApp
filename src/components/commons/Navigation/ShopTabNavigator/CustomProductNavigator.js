@@ -11,12 +11,11 @@ const HeaderLeftCard = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
+	height: 25px;
+	width: 25px;
 	z-index: 100;
-	width: 10px;
 	justify-content: center;
 	align-items: center;
-	height: 30px;
-	width: 30px;
 	margin-left: 15px;
 	margin-top: 25px;
 	border-radius: 15px;
@@ -48,7 +47,7 @@ const CustomProductNavigator = () => {
 							onPress={() => navigation.goBack()}>
 							<Ionicons
 								name='md-close'
-								size={20}
+								size={18}
 								color={
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}

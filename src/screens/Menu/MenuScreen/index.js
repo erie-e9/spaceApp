@@ -14,7 +14,7 @@ const MenuScreen = () => {
 	);
 	
 	requestNotifications(['alert', 'sound']).then(({status, settings}) => {
-		console.log('status notifications: ', {status, settings});
+		// console.log('status notifications: ', {status, settings});
 		// …
 	});
 

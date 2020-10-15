@@ -7,8 +7,8 @@ import MessageBubbleComponent from './MessageBubbleComponent'
 import ChatInputComponent from './ChatInputComponent'
 import { Octicons, Entypo, FontAwesome } from '@icons'
 
-const HEADER_MIN_HEIGHT = 50
-const HEADER_MAX_HEIGHT = 50
+const HEADER_MIN_HEIGHT = 40
+const HEADER_MAX_HEIGHT = 40
 const {width} = Dimensions.get('window')
 
 const Root = styled.View`
@@ -79,6 +79,19 @@ const ChatItemComponent = () => {
 		// outputRange: [ 'rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.95)' ],
 		extrapolate: 'extend',
 	})
+
+	const _navigationContactProfile = () => {
+		navigation.navigate('ChatItemNavigator', { 
+			screen: 'ContactProfileScreen',
+			params: {
+				username: paramData?.employee.username,
+				firstname: paramData?.employee.firstname,
+				lastname: paramData?.employee.lastname,
+				createdAt: paramData?.createdAt,
+				avatar: paramData?.employee.avatar,
+			}
+		})
+	}
 
 	return (
 		<Root>
@@ -152,7 +165,7 @@ const ChatItemComponent = () => {
 						</ButtonContainer>
 
 						<ButtonContainer 
-							onPress={() => navigation.navigate('ChatItemNavigator', { screen: 'ContactProfileScreen' })}
+							onPress={() => _navigationContactProfile()}
 						>
 							<Entypo name='info-with-circle' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
 						</ButtonContainer>

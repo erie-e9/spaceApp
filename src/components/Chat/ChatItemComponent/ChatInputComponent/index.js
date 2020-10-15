@@ -4,6 +4,7 @@ import { Dimensions } from 'react-native'
 import { ETATextInputFilled } from '@etaui'
 import { Feather, MaterialIcons } from '@icons'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import { moderateScale } from 'react-native-size-matters'
 
 const { width } = Dimensions.get('window')
 
@@ -47,7 +48,7 @@ const ChatInputComponent = () => {
                     // value={values.cellphone}
                     placeholder='Type message...'
                     placeholderTextColor={
-                        themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                        themeContext.PRIMARY_TEXT_COLOR_LIGHT
                     }
                     keyboardType='default'
                     autoCapitalize='none'
@@ -62,7 +63,7 @@ const ChatInputComponent = () => {
                     enablesReturnKeyAutomatically={false}
                     underlineColorAndroid='transparent'
                     keyboardAppearance='dark'
-                    maxLength={10}
+                    maxLength={200}
                     multiline={false}
                     numberOfLines={1} // android
                     returnKeyLabel='next' // android
@@ -71,7 +72,7 @@ const ChatInputComponent = () => {
                     textContentType='none'
                     returnKeyType='next'
                     textsize={16}
-                    height={45}
+                    height={moderateScale(45, 2)}
                     width={width - 105}
                     borderWidth={0.5}
                     // onChangeText={handleChange(

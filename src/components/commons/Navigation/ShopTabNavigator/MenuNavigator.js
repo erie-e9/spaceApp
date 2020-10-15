@@ -1,10 +1,10 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
-import {FontAwesome, Ionicons} from '@icons'
-import {ETASearchBar} from '@etaui'
-import {variables} from '@utils/constants'
+import { FontAwesome, Ionicons } from '@icons'
+import { ETASearchBar } from '@etaui'
+import { variables } from '@utils/constants'
 import MenuScreen from '@screens/Menu/MenuScreen'
 import CategoryListScreen from '@screens/Menu/Categories/CategoryListScreen'
 import CategoryItemsScreen from '@screens/Menu/Categories/CategoryItemsScreen'
@@ -13,8 +13,7 @@ import SectionScreen from '@screens/Menu/SectionScreen'
 import AllItemsScreen from '@screens/Menu/AllItemsScreen'
 import GetOneItemScreen from '@screens/Menu/GetOneItemScreen'
 import CustomProductNavigator from './CustomProductNavigator'
-// import CustomProductScreen from '@screens/CustomProduct/CustomProductScreen'
-
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
 
 const Header = styled.View`
 	margin-left: 15px;
@@ -27,29 +26,15 @@ const HeaderLeft = styled.TouchableOpacity.attrs({
 	width: 50px;
 	margin-left: 15px;
 `
-const CircleContainer = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
-})`
-	z-index: 100;
-	width: 10px;
-	align-items: center;
-	justify-content: center;
-	height: 30px;
-	width: 30px;
-	border-radius: 15px;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-`
 const HeaderLeftCard = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
+	height: 25px;
+	width: 25px;
 	z-index: 100;
-	width: 10px;
 	justify-content: center;
 	align-items: center;
-	height: 30px;
-	width: 30px;
 	margin-left: 15px;
 	margin-top: 25px;
 	border-radius: 15px;
@@ -106,8 +91,18 @@ const MenuNavigator = () => {
 				
 				}}
 			/>
+		</MenuStack.Navigator>
+	)
+}
 
-			<MenuStack.Screen
+const SubMenuStack = createSharedElementStackNavigator()
+const SubMenuNavigator = () => {
+	const themeContext = useContext(ThemeContext)
+	
+	return (
+		<SubMenuStack.Navigator>
+			
+			<SubMenuStack.Screen
 				name='CategoryListScreen'
 				component={CategoryListScreen}
 				options={({navigation, route}) => ({
@@ -139,7 +134,7 @@ const MenuNavigator = () => {
 				})}
 			/>
 
-			<MenuStack.Screen
+			<SubMenuStack.Screen
 				name='CategoryItemsScreen'
 				component={CategoryItemsScreen}
 				options={({navigation, route}) => ({
@@ -171,7 +166,7 @@ const MenuNavigator = () => {
 				})}
 			/>
 
-			<MenuStack.Screen
+			<SubMenuStack.Screen
 				name='PromotionScreen'
 				component={PromotionScreen}
 				options={({navigation, route}) => ({
@@ -203,7 +198,7 @@ const MenuNavigator = () => {
 				})}
 			/>
 
-			<MenuStack.Screen
+			<SubMenuStack.Screen
 				name='SectionScreen'
 				component={SectionScreen}
 				options={({navigation, route}) => ({
@@ -250,7 +245,7 @@ const MenuNavigator = () => {
 				})}
 			/>
 
-			<MenuStack.Screen
+			<SubMenuStack.Screen
 				name='AllItemsScreen'
 				component={AllItemsScreen}
 				options={({navigation, route}) => ({
@@ -281,18 +276,23 @@ const MenuNavigator = () => {
 						CardStyleInterpolators.forHorizontalIOS,
 				})}
 			/>
-		</MenuStack.Navigator>
+		</SubMenuStack.Navigator>
 	)
 }
 
-const GetOneItemStack = createStackNavigator()
+const GetOneItemStack = createSharedElementStackNavigator()
 const GetOneItemNavigator = () => {
 	const themeContext = useContext(ThemeContext)
+	
 	return (
 		<GetOneItemStack.Navigator>
 			<GetOneItemStack.Screen
 				name='GetOneItemScreen'
 				component={GetOneItemScreen}
+				sharedElementsConfig={(route, otherRoute, showing) => {
+					const { item } = route.params;
+					return [`item.${item.id}.photo`];
+				}}
 				options={({navigation, route}) => ({
 					headerTitle: '',
 					headerShown: true,
@@ -308,7 +308,7 @@ const GetOneItemNavigator = () => {
 							onPress={() => navigation.goBack()}>
 							<Ionicons
 								name='md-close'
-								size={20}
+								size={18}
 								color={
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
@@ -317,12 +317,12 @@ const GetOneItemNavigator = () => {
 					),
 					headerTintColor:
 						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
-					cardStyleInterpolator:
-						CardStyleInterpolators.forModalPresentationIOS,
+					// cardStyleInterpolator:
+					// 	CardStyleInterpolators.forModalPresentationIOS,
 				})}
 			/>
 		</GetOneItemStack.Navigator>
 	)
 }
 
-export {MenuNavigator, GetOneItemNavigator, CustomProductNavigator}
+export { MenuNavigator, SubMenuNavigator, GetOneItemNavigator, CustomProductNavigator }

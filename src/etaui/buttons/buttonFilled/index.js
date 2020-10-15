@@ -11,7 +11,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
-	height: 40px;
+	height: 38px;
 	padding: 10px;
 `
 
@@ -33,34 +33,24 @@ const ETAButtonFilled = ({
 				<Touchable
 					style={{
 						width,
-						backgroundColor: colorButton,
+						backgroundColor: disabled ? themeContext.THIRD_BACKGROUND_COLOR : colorButton,
 						paddingLeft: padding || 20,
 						paddingRight: padding || 20,
 						borderRadius,
 					}}
 					onPress={onPress}
 					disabled={disabled || false}>
-					{disabled ? (
-						<ActivityIndicator
-							color={
-								colorButton === 'white'
-									? themeContext.PRIMARY_COLOR
-									: 'white'
-							}
-						/>
-					) : (
-						<ETASimpleText
-							size={13}
-							weight='400'
-							color={
-								colorButton === 'white'
-									? 'gray'
-									: 'white'
-							}
-							align={align}>
-							{title || 'Text'}
+					<ETASimpleText
+						size={13}
+						weight='400'
+						color={
+							colorButton === 'white'
+								? 'gray'
+								: 'white'
+						}
+						align={align}>
+						{title || 'Text'}
 						</ETASimpleText>
-					)}
 				</Touchable>
 			</Root>
 		</>

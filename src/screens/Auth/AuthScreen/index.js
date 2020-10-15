@@ -1,6 +1,6 @@
 import React from 'react'
-import {Keyboard, Platform, Dimensions} from 'react-native'
 import styled from 'styled-components/native'
+import { Keyboard, Platform, Dimensions } from 'react-native'
 import SigninHead from '@components/Auth/Signin/SigninHead'
 import SigninForm from '@components/Auth/Signin/SigninForm'
 import SigninBody from '@components/Auth/Signin/SigninBody'
@@ -22,13 +22,14 @@ const Root = styled.View`
 const SigninContainer = styled.KeyboardAvoidingView.attrs({
 	behavior: Platform.OS === 'ios' ? 'padding' : 'height',
 })`
-	flex: 0.5;
+	flex: 0.6;
 	align-self: stretch;
 	align-items: center;
-	justify-content: center;
+	justify-content: flex-start;
+	background-color: transparent;
 `
 const Card = styled.View`
-	flex: 0.3;
+	flex: 1;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
@@ -53,7 +54,7 @@ const AuthScreen = ({navigation}) => (
 		<Root>
 			{/* <BackImage style={{width: null, height: null}}
                         source={require('@assets/background1.png')}> */}
-			<SigninHead />
+			{/* <SigninHead /> */}
 			<SigninContainer>
 				<Card>
 					<SigninForm />

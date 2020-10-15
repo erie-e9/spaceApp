@@ -1,8 +1,8 @@
-import React, {useContext} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
+import React, { useContext } from 'react'
+import { Platform } from 'react-native'
+import styled, { ThemeContext } from 'styled-components'
 import Svg, {Path} from 'react-native-svg'
-import {moderateScale} from 'react-native-size-matters'
+import { moderateScale } from 'react-native-size-matters'
 
 const Root = styled.View`
 	flex-direction: row;

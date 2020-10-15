@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Platform } from 'react-native'
-import { ETASimpleText, ETAButtonFilled } from '@etaui'
+import { ETASimpleText, ETAButtonFilled, ETALoader } from '@etaui'
 import { useNavigation } from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
 import { connect } from 'react-redux'
@@ -40,11 +40,13 @@ const mapDispatchProps = (dispatch, props) => ({
 const CartListComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [items, setitems] = useState([])
+	const [items, setitems] = useState(null)
 
 	useEffect(() => {
 		getDataRequest()
-		setitems(data)
+		setTimeout(() => {
+			setitems(data)
+		}, 1000);
 		
 		return () => {
 			getDataRequest()
@@ -53,61 +55,67 @@ const CartListComponent = ({ getDataRequest, data }) => {
 
 	return (
 		<Root>
-			<CategorytItemsList
-				contentContainerStyle={{
-					flexDirection: 'column',
-					justifyContent: 'flex-start',
-				}}
-				data={items}
-				keyExtractor={(item) => item._id.toString()}
-				horizontal={!true}
-				initialNumToRender={5}
-				showsVerticalScrollIndicator={false}
-				updateCellsBatchingPeriod={3000}
-				ListEmptyComponent={() => (
-					<EmptyListContainer>
-						<ETASimpleText
-							size={14}
-							weight={
-								Platform.OS === 'ios'
-									? '400'
-									: '300'
-							}
-							color={
-								themeContext.PRIMARY_TEXT_COLOR_LIGHT
-							}
-							align='left'>
-							Your cart doesn´t have products yet
-						</ETASimpleText>
-						<ETAButtonFilled
-							title='See menu'
-							onPress={() =>
-								navigation.navigate(
-									'ShopTabNavigator',
-									{
-										screen: 'Menu',
-									},
+			{
+				items !== null
+				?	<CategorytItemsList
+						contentContainerStyle={{
+							flexDirection: 'column',
+							justifyContent: 'flex-start',
+						}}
+						data={items}
+						keyExtractor={(item) => item._id.toString()}
+						horizontal={!true}
+						initialNumToRender={5}
+						showsVerticalScrollIndicator={false}
+						updateCellsBatchingPeriod={3000}
+						ListEmptyComponent={() => (
+							<EmptyListContainer>
+								<ETASimpleText
+									size={14}
+									weight={
+										Platform.OS === 'ios'
+											? '400'
+											: '300'
+									}
+									color={
+										themeContext.PRIMARY_TEXT_COLOR_LIGHT
+									}
+									align='left'>
+									Your cart has no products yet.
+								</ETASimpleText>
+								<ETAButtonFilled
+									title='See menu'
+									onPress={() =>
+										navigation.navigate(
+											'ShopTabNavigator',
+											{
+												screen: 'Menu',
+											},
+										)
+									}
+									disabled={false}
+									colorButton={
+										themeContext.SECONDARY_BACKGROUND_COLOR
+									}
+									padding={10}
+									width={240}
+									borderRadius={3}
+								/>
+							</EmptyListContainer>
+						)}
+						renderItem={({item, i}) => {
+							if (item.howMany > 0) {
+								return (
+									<CartItemComponent
+										item={item}
+										howMany={item.howMany}
+									/>
 								)
 							}
-							disabled={false}
-							colorButton={
-								themeContext.SECONDARY_BACKGROUND_COLOR
-							}
-							padding={10}
-							width={240}
-							borderRadius={3}
-						/>
-					</EmptyListContainer>
-				)}
-				renderItem={({item, i}) => {
-					return (
-						<CartItemComponent
-							item={item}
-							howMany={item.howMany}
-						/>
-					)
-				}}
-			/>
+						}}
+					/>
+				:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+			}
 		</Root>
 	)
 }

@@ -16,9 +16,9 @@ const CategorytItemsList = styled.FlatList``
 const AllItemsComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
-	const {allitems} = route.params.params
-	const [animatedValueTransform] = useState(new Animated.Value(0))
-	const [opacity] = useState(new Animated.Value(0))
+	const { allitems } = route.params
+	const [ animatedValueTransform ] = useState(new Animated.Value(0))
+	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
 
 	useEffect(() => {

@@ -58,7 +58,7 @@ const ETAButtonOutline = ({
 							color={
 								colorButton === 'white'
 									? 'gray'
-									: colorButton
+									:  disabled ? themeContext.THIRD_BACKGROUND_COLOR : colorButton
 							}
 							align={align}>
 							{title || 'Text'}

@@ -10,6 +10,7 @@ import {FontAwesome} from '@icons'
 import AuthScreen from '@screens/Auth/AuthScreen'
 import ForgetPasswordScreen from '@screens/Auth/ForgetPasswordScreen'
 import SignupScreen from '@screens/Auth/SignupScreen'
+// import AuthWelcomeScreen from '@screens/Auth/AuthWelcomeScreen'
 
 const config = {
 	animation: 'spring',
@@ -39,12 +40,12 @@ const Touchable = styled.TouchableOpacity.attrs({
 `
 
 /** Auth screens - No logged */
-const SigninStack = createStackNavigator()
-const SigninStackScreen = () => {
+const AuthStack = createStackNavigator()
+const AuthNavigator = () => {
 	const themeContext = useContext(ThemeContext)
 
 	return (
-		<SigninStack.Navigator
+		<AuthStack.Navigator
 			// initialRouteName='Home'
 			mode='modal'
 			// headerMode='none'
@@ -68,7 +69,8 @@ const SigninStackScreen = () => {
 				// ...TransitionPresets.FadeFromBottomAndroid
 				// headerStyle: { background-color: 'tomato' },
 			}}>
-			<SigninStack.Screen
+			
+			<AuthStack.Screen
 				name='AuthScreen'
 				component={AuthScreen}
 				options={{
@@ -79,7 +81,7 @@ const SigninStackScreen = () => {
 				}}
 			/>
 
-			<SigninStack.Screen
+			<AuthStack.Screen
 				name='SignupScreen'
 				component={SignupScreen}
 				options={({navigation, route}) => ({
@@ -98,11 +100,11 @@ const SigninStackScreen = () => {
 					),
 					headerTransparent: true,
 					cardStyleInterpolator:
-						CardStyleInterpolators.forHorizontalIOS,
+						CardStyleInterpolators.forModalPresentationIOS,
 				})}
 			/>
 
-			<SigninStack.Screen
+			<AuthStack.Screen
 				name='ForgetPasswordScreen'
 				component={ForgetPasswordScreen}
 				options={({navigation, route}) => ({
@@ -121,12 +123,12 @@ const SigninStackScreen = () => {
 					),
 					headerTransparent: true,
 					cardStyleInterpolator:
-						CardStyleInterpolators.forHorizontalIOS,
+						CardStyleInterpolators.forModalPresentationIOS,
 				})}
 			/>
-		</SigninStack.Navigator>
+		</AuthStack.Navigator>
 	)
 }
 /** /Auth screens - No logged */
 
-export default SigninStackScreen
+export default AuthNavigator

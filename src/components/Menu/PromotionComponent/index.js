@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {Platform, Animated, ScrollView, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText} from '@etaui'
-import {useRoute} from '@react-navigation/native'
+import React, { useState, useEffect, useContext } from 'react'
+import { Platform, Animated, ScrollView, Dimensions } from 'react-native'
+import styled, {ThemeContext } from 'styled-components'
+import { ETASimpleText } from '@etaui'
+import { useRoute } from '@react-navigation/native'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/promotions/actions'
+import { SharedElement } from 'react-navigation-shared-element'
 
 const HEADER_MIN_HEIGHT = 50
 const HEADER_MAX_HEIGHT = 130
@@ -16,7 +17,7 @@ const Root = styled.View`
 	align-items: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const CategorytItemsList = styled.FlatList``
+const PromotionItemsList = styled.FlatList``
 const PromoHeadContainer = styled.View`
 	flex-direction: row;
 	justify-content: center;
@@ -60,11 +61,14 @@ const PromoComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState([])
 	const route = useRoute()
-	const {selectedItem} = route.params.params
-	const [scrollYAnimatedValue] = useState(new Animated.Value(0))
-	const [animatedValueTransform] = useState(new Animated.Value(0))
-	const [opacity] = useState(new Animated.Value(0))
+	const { selectedItem } = route?.params
+	// const { item } = props.route.params
+	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
+	const [ animatedValueTransform ] = useState(new Animated.Value(0))
+	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
+	let endAncestor;
+	let endNode
 
 	const headerHeight = scrollYAnimatedValue.interpolate({
 		inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
@@ -111,6 +115,26 @@ const PromoComponent = ({ getDataRequest, data }) => {
 	//   });
 	// };
 
+	const position = new Animated.Value(0);
+	const _sharedElement = () => (
+		<View style={StyleSheet.absoluteFill}>
+			<SharedElementTransition
+				start={{
+				node: startNode,
+				ancestor: startAncestor
+				}}
+				end={{
+				node: endNode,
+				ancestor: endAncestor
+				}}
+				position={position}
+				animation='move'
+				resize='auto'
+				align='auto'
+				/>
+		</View>
+	)
+
 	return (
 		<Root>
 			<ScrollView
@@ -134,7 +158,7 @@ const PromoComponent = ({ getDataRequest, data }) => {
 						useNativeDriver: !true,
 					},
 				)}>
-				<CategorytItemsList
+				<PromotionItemsList
 					contentContainerStyle={{
 						flexDirection: 'column',
 					}}
@@ -160,17 +184,6 @@ const PromoComponent = ({ getDataRequest, data }) => {
 							Empty list
 						</ETASimpleText>
 					)}
-					// ListFooterComponent={() => {
-					//   return (
-					//     <ETASimpleText
-					//       size={7}
-					//       weight={Platform.OS === 'ios' ? '500' : '300'}
-					//       color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					//       align={'left'}>
-					//       Go to up
-					//   </ETASimpleText>
-					//   );
-					// }}
 					renderItem={({item}) => {
 						delayValue += 700
 						const translateY = animatedValueTransform.interpolate(
@@ -212,55 +225,59 @@ const PromoComponent = ({ getDataRequest, data }) => {
 					backgroundColor: headerbackgroundColor,
 				}}>
 				<PromoHeadContainer>
-					<PromoHeadImage
-						source={{
-							uri: selectedItem.image,
-						}}>
-						<PromoHeadTitle>
-							<ETASimpleText
-								size={18}
-								weight={
-									Platform.OS === 'ios'
-										? '600'
-										: '600'
-								}
-								// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-								color={selectedItem.titleColor}
-								align='center'
-								style={{
-									elevation: 4,
-									textShadowColor:
-										'rgba(0, 0, 0, 0.7)',
-									textShadowOffset: {
-										width: 0.5,
-										height: 0.7,
-									},
-									textShadowRadius: 3,
-								}}>
-								{selectedItem.title}
-							</ETASimpleText>
-							<ETASimpleText
-								size={14}
-								weight='400'
-								color={
-									selectedItem.descriptionColor
-								}
-								align='center'
-								style={{
-									marginBottom: 5,
-									elevation: 4,
-									textShadowColor:
-										'rgba(0, 0, 0, 0.7)',
-									textShadowOffset: {
-										width: 0.5,
-										height: 0.7,
-									},
-									textShadowRadius: 3,
-								}}>
-								{selectedItem.description}
-							</ETASimpleText>
-						</PromoHeadTitle>
-					</PromoHeadImage>
+					{/* <SharedElement id={`item.${item.id}.photo`}> */}
+						<PromoHeadImage
+							// source={item.photoUrl}
+							source={{
+								uri: selectedItem.image,
+							}}
+						>
+							<PromoHeadTitle>
+								<ETASimpleText
+									size={18}
+									weight={
+										Platform.OS === 'ios'
+											? '600'
+											: '600'
+									}
+									// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+									color={selectedItem.titleColor}
+									align='center'
+									style={{
+										elevation: 4,
+										textShadowColor:
+											'rgba(0, 0, 0, 0.7)',
+										textShadowOffset: {
+											width: 0.5,
+											height: 0.7,
+										},
+										textShadowRadius: 3,
+									}}>
+									{selectedItem.title}
+								</ETASimpleText>
+								<ETASimpleText
+									size={14}
+									weight='400'
+									color={
+										selectedItem.descriptionColor
+									}
+									align='center'
+									style={{
+										marginBottom: 5,
+										elevation: 4,
+										textShadowColor:
+											'rgba(0, 0, 0, 0.7)',
+										textShadowOffset: {
+											width: 0.5,
+											height: 0.7,
+										},
+										textShadowRadius: 3,
+									}}>
+									{selectedItem.description}
+								</ETASimpleText>
+							</PromoHeadTitle>
+						</PromoHeadImage>
+					{/* </SharedElement> */}
 				</PromoHeadContainer>
 			</Animated.View>
 		</Root>

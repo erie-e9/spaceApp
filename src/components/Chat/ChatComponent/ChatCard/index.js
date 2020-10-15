@@ -29,7 +29,7 @@ const AvatarContainer = styled.View`
 	background-color: transparent;
 `
 
-const ChatCard = ({text, employee, createdAt, active}) => (
+const ChatCard = ({ text, employee, createdAt, active }) => (
 	<Root>
 		<AvatarContainer active={active}>
 			<ETAAvatar image={employee.avatar} size='middle' />

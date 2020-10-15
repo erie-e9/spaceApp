@@ -22,6 +22,9 @@ import ETAValidationInput from '@etaui/inputs/validationnput'
 import ETAMultiStep from '@etaui/multistep'
 import ETALoader from '@etaui/loader'
 import ETARadio from '@etaui/radio'
+import ETAProgressiveImage from '@etaui/progressiveimage'
+import ETABottomModal from '@etaui/modals/bottommodal'
+import ETAAuthSocialmedia from '@etaui/authsocialmedia'
 
 export {
   ETAButtonOutline,
@@ -48,4 +51,7 @@ export {
   ETAMultiStep,
   ETALoader,
   ETARadio,
+  ETAProgressiveImage,
+  ETABottomModal,
+  ETAAuthSocialmedia
 }

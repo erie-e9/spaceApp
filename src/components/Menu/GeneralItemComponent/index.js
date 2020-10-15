@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Dimensions, Platform, PixelRatio, useColorScheme } from 'react-native'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
-import { Ionicons } from '@icons'
-import { ETASimpleText } from '@etaui'
+import { ETASimpleText, ETAProgressiveImage } from '@etaui'
 import { truncateString, currencySeparator } from '@functions'
 import { connect} from 'react-redux'
 import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
@@ -20,8 +19,8 @@ const Touchable = styled.TouchableOpacity.attrs({
 
 // width: ${PixelRatio.getPixelSizeForLayoutSize(size)}
 const Card = styled.View`
-	height: 220px;
-	width: ${width / 2.65}px;
+	height: 210px;
+	width: ${width / 2.8}px;
 	margin-horizontal: ${width / 30}px;
 	margin-vertical: 10px;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
@@ -85,6 +84,8 @@ const PriceContainer = styled.View`
 	flex-direction: row;
 	justify-content: flex-end;
 	align-items: flex-start;
+	padding-vertical: 1.5px;
+	background-color: transparent;
 `
 const DiscountContainer = styled.View`
 	flex: 0.5;
@@ -121,13 +122,13 @@ const PointsContainer = styled.View`
 	position: absolute;
 	min-height: 13px;
 	min-width: 30px;
-	top: 5px;
-	right: 7px;
+	top: 7px;
+	right: 10px;
 	z-index: 100;
 	padding-horizontal: 4px;
 	border-radius: 4px;
-	border-width: 0.75px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	border-width: 0.5px;
+	border-color: white;
 	background-color: transparent;
 `
 
@@ -209,7 +210,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 								<ETASimpleText
 									size={9}
 									weight={Platform.OS === 'ios' ? '400' : '400'}
-									color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+									color='white'
 									align='center'
 									style={{
 										elevation: 4,
@@ -242,6 +243,16 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 							</ETASimpleText>
 						</StatusContainer>
 					) : null}
+					{/* <ETAProgressiveImage
+						thumbnailSource={{ uri: `${item.images[0].image}?w=50&buster=${Math.random()}` }}
+						source={{ uri: `${item.images[0].image}?w=${width * 2}&buster=${Math.random()}` }}
+						style={{
+							width: '100%',
+							height: '100%', 
+							borderTopLeftRadius: 15,
+							borderTopRightRadius: 15
+						}}
+					/> */}
 					<ItemImage
 						source={{
 							uri: item.images[0].image,
@@ -296,7 +307,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 									100
 								).toFixed(2))}
 							</ETASimpleText>
-							
+								{item.discount > 0 ? (
 									<PercentContainer>
 										<ETASimpleText
 											size={9}
@@ -320,6 +331,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 											%
 										</ETASimpleText>
 									</PercentContainer>
+								) : null}
 						</PriceContainer>
 						
 						<DiscountContainer>
@@ -393,4 +405,4 @@ const GeneralItemComponenttConnect = connect(
 	mapDispatchProps,
 )(GeneralItemComponent)
 
-export default React.memo(GeneralItemComponenttConnect)
+export default GeneralItemComponenttConnect

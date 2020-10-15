@@ -40,7 +40,7 @@ const SummaryRow = styled.View`
 const PaymentComponent = () => {
     const themeContext = useContext(ThemeContext)
 	const route = useRoute()
-    const { data, total, subtotal } = route?.params
+    const { data, total, subtotal, totalItems } = route?.params
 
     return (
         <Root>
@@ -87,7 +87,7 @@ const PaymentComponent = () => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            {data.length} Products
+                            {totalItems} Products
                         </ETASimpleText>
                     </SummaryRow>
                 </SummaryCard>

@@ -1,16 +1,16 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform, Animated, ScrollView, Dimensions} from 'react-native'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform, Animated, ScrollView, Dimensions } from 'react-native'
 import MenuList from './menuList'
 import HeadCategoryList from './HeadCategoryList'
 import SectionsComponent from './SectionsComponent'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/menu/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/menu/actions'
 import CarouselComponent from './CarouselComponent'
 
-const HEADER_MIN_HEIGHT = 90
-const HEADER_MAX_HEIGHT = 90
-const {width} = Dimensions.get('window')
+const HEADER_MIN_HEIGHT = 85
+const HEADER_MAX_HEIGHT = 85
+const { width } = Dimensions.get('window')
 
 const Root = styled.View`
 	justify-content: center;

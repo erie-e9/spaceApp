@@ -8,12 +8,20 @@ import { fakeavatar, variables } from '@utils/constants'
 import DynamicTabButton from './DynamicTabButton'
 // import { eq, multiply, greaterThan, cond } from 'react-native-reanimated';
 // import { withTransition } from 'react-native-redash';
-import { MenuNavigator, GetOneItemNavigator, CustomProductNavigator } from './MenuNavigator'
+import { MenuNavigator, SubMenuNavigator, GetOneItemNavigator, CustomProductNavigator } from './MenuNavigator'
 import { ChatNavigator, ChatItemNavigator, NewChatNavigator } from './ChatNavigator'
 import { CartNavigator, CheckoutNavigator } from './CartNavigator'
 import { ProfileNavigator, SettingsNavigator } from './ProfileNavigator'
+import { WelcomeNavigator, AuthNavigator } from './AuthNavigator'
 import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
+import { connect } from 'react-redux'
+
+const mapStateToProps = (state, props) => {
+	const { userToken } = state.user
+
+	return { userToken }
+}
 
 const AvatarContainer = styled.View`
 	justify-content: center;
@@ -24,12 +32,13 @@ const Avatar = styled.Image``
 const NullComponent = () => (null)
 
 const ShopTab = createBottomTabNavigator()
-const ShopTabNavigator = () => {
+const ShopTabNavigator = ({ userToken }) => {
 	const themeContext = useContext(ThemeContext)
+	console.log('ewe', userToken);
 
 	return (
 		<ShopTab.Navigator
-			screenOptions={({route}) => ({
+			screenOptions={({navigation, route}) => ({
 				tabBarIcon: ({focused, color, size}) => {
 					let iconName
 					// let active = new Value(0);
@@ -151,6 +160,31 @@ const ShopTabNavigator = () => {
 								/>
 							</AvatarContainer>
 						)
+					} else if (route.name === 'Auth') {
+						return (
+							<AvatarContainer
+								style={{
+									height: size + 3,
+									width: size + 3,
+									borderRadius: (size + 3) / 2,
+									borderWidth: 2,
+									padding: 2,
+									borderColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+									backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+								}}>
+								<Avatar
+									style={{
+										height: size - 3,
+										width: size - 3,
+										borderRadius: (size - 3) / 2,
+									}}
+									source={{
+										uri: 
+											variables.AVATAR_USER_DEFAULT,
+									}}
+								/>
+							</AvatarContainer>
+						)
 					}
 
 					return (
@@ -192,7 +226,12 @@ const ShopTabNavigator = () => {
 			<ShopTab.Screen name='ItemGenerator' component={NullComponent} />
 			<ShopTab.Screen name='Cart' component={CartNavigator} />
 			{/* <ShopTab.Screen name='Favs' component={FavsScreen} /> */}
-			<ShopTab.Screen name='Profile' component={ProfileNavigator} />
+			{userToken !== undefined && userToken !== null ? (
+				<ShopTab.Screen name='Profile' component={ProfileNavigator} />
+			) : (
+				<ShopTab.Screen name='Auth' component={WelcomeNavigator} />
+			)}
+			{/* <ShopTab.Screen name='Profile' component={ProfileNavigator} /> */}
 		</ShopTab.Navigator>
 	)
 }
@@ -208,6 +247,14 @@ const ShopNavigator = () => (
 		<Stack.Screen
 			name='ShopTabNavigator'
 			component={ShopTabNavigator}
+		/>
+		<Stack.Screen
+			name='SubMenuNavigator'
+			component={SubMenuNavigator}
+			options={{
+				cardStyleInterpolator:
+					CardStyleInterpolators.forHorizontalIOS,
+			}}
 		/>
 		<Stack.Screen
 			name='GetOneItemNavigator'
@@ -248,6 +295,14 @@ const ShopNavigator = () => (
 				cardStyleInterpolator:
 					CardStyleInterpolators.forHorizontalIOS,
 			}}
+		/>		
+		<Stack.Screen
+			name='AuthNavigator'
+			component={AuthNavigator}
+			options={{
+				cardStyleInterpolator:
+					CardStyleInterpolators.forModalPresentationIOS,
+			}}
 		/>
 		<Stack.Screen
 			name='SettingsNavigator'
@@ -260,4 +315,5 @@ const ShopNavigator = () => (
 	</Stack.Navigator>
 )
 
-export default ShopNavigator
+const ShopNavigatorConnect = connect(mapStateToProps)(ShopNavigator)
+export default ShopNavigatorConnect

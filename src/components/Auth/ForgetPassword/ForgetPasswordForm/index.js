@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -72,6 +72,10 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 	const [ mysecureTextEntry ] = useState(true)
 	const [ radioItem, setradioItem ] = useState(true)
 	const [ disabledState, setdisabledState ] = useState(true)
+	const cellphoneRef = useRef()
+	const codeRef = useRef()
+	const passwordRef = useRef()
+	const confirmPasswordRef = useRef()
 
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
@@ -91,10 +95,13 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 				{
 					placeholder: 'What is your cellphone?',
 					name: 'cellphone',
+					ref: cellphoneRef,
+					mask: '([000]) [000]-[00]-[00]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'phone-pad',
-						secureTextEntry: false
+						secureTextEntry: false,
+						maxLength: 24
 					}
 				}
 			]
@@ -106,10 +113,13 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 				{
 					placeholder: 'Code',
 					name: 'code',
+					ref: codeRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'phone-pad',
-						secureTextEntry: false
+						secureTextEntry: false,
+						maxLength: 10
 					}
 				}
 			]
@@ -121,19 +131,25 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 				{
 					placeholder: 'New password',
 					name: 'password',
+					ref: passwordRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
-						secureTextEntry: true
+						secureTextEntry: true,
+						maxLength: 10
 					}
 				},
 				{
 					placeholder: 'Repeat password',
 					name: 'confirmPassword',
+					ref: confirmPasswordRef,
+					mask: '',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
-						secureTextEntry: false
+						secureTextEntry: false,
+						maxLength: 10
 					}
 				}
 			]
@@ -220,6 +236,8 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 																return (
 																	<ETATextInputOutline
 																		key={i}
+																		ref={item.ref ? item.ref : null}
+																		mask={item.mask}
 																		value={values?.[item.name]}
 																		placeholder={item.placeholder}
 																		placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
@@ -236,7 +254,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 																		enablesReturnKeyAutomatically={false}
 																		underlineColorAndroid='transparent'
 																		keyboardAppearance='dark'
-																		maxLength={10}
+																		maxLength={item.controller.maxLength}
 																		multiline={false}
 																		numberOfLines={1} // android
 																		returnKeyLabel='next' // android

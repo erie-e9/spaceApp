@@ -35,10 +35,23 @@ const Touchable = styled.TouchableOpacity.attrs({
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })``
 
-const CardHeader = ({ username, firstname, lastname }) => {
+const CardHeader = ({ username, firstname, lastname, createdAt, avatar }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const fullname = `${firstname} ${lastname}`
+
+	const _navigationContactProfile = () => {
+		navigation.navigate('ChatItemNavigator', { 
+			screen: 'ContactProfileScreen',
+			params: {
+				username,
+				firstname,
+				lastname,
+				createdAt,
+				avatar,
+			}
+		})
+	}
 
 	return (
 		<Root>
@@ -56,7 +69,7 @@ const CardHeader = ({ username, firstname, lastname }) => {
 						{truncateString(fullname, 40)}
 					</ETASimpleText>
 					<Touchable
-						onPress={() => navigation.navigate('ChatItemNavigator', { screen: 'ContactProfileScreen' })}
+						onPress={() => _navigationContactProfile()}
 					>
 						<ETASimpleText
 							size={11}

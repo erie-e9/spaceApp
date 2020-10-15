@@ -1,28 +1,30 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {Platform, Animated, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText, ETAHeaderText} from '@etaui'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform, Animated, Dimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText, ETAHeaderText } from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
+import { AntDesign } from '@icons'
 
 const {width} = Dimensions.get('window')
 
 const Root = styled.View`
-  width: ${width - 20}px;
+  width: ${width - 30}px;
   justify-content: center;
   align-self: center;
-  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
   border-radius: 15px
-  padding-vertical: 10px;
-  margin-bottom: 12px;
+  padding-vertical: 5px;
+  margin-bottom: 7px;
+  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const HeadContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin: 10px 7px 5px 5px;
+	margin: 7px 7px 5px 5px;
 	padding-horizontal: 10px;
+	background-color: transparent
 `
 const ListContainer = styled.View`
 	flex: 1;
@@ -34,15 +36,18 @@ const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
 })`
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 	z-index: 100;
 `
 
-const MenuList = ({data, title}) => {
+const MenuList = ({ data, title }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [items] = useState(data.slice(0, 2)) // slice: only first 4 items
-	const [animatedValueTransform] = useState(new Animated.Value(0))
-	const [opacity] = useState(new Animated.Value(0))
+	const items = React.useMemo(() => data.slice(0, 2), []) // slice: only first 4 items
+	const [ animatedValueTransform ] = useState(new Animated.Value(0))
+	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
 
 	useEffect(() => {
@@ -60,8 +65,8 @@ const MenuList = ({data, title}) => {
 	}, [])
 
 	const _onPressAllItems = (item) => {
-		navigation.navigate('AllItemsScreen', {
-			screen: 'MenuScreen',
+		navigation.navigate('SubMenuNavigator', {
+			screen: 'AllItemsScreen',
 			params: {
 				name: item,
 				allitems: data,
@@ -87,6 +92,7 @@ const MenuList = ({data, title}) => {
 							onPress={() =>
 								_onPressAllItems(title)
 							}>
+							<AntDesign name='bars' size={12} color={themeContext.PRIMARY_TEXT_COLOR_LIGHT} style={{ paddingHorizontal: 5 }} />
 							<ETASimpleText
 								size={13}
 								weight={

@@ -1,8 +1,8 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Formik} from 'formik'
+import React, { useContext, useRef } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Formik } from 'formik'
 import * as yup from 'yup'
-import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
+import { ETATextInputOutline, ETAButtonFilled, ETAErrorMessage } from '@etaui'
 // import { graphql, compose } from 'react-apollo';
 // import { connect } from 'react-redux';
 // import signupMutation from '../graphql/mutations/signup'
@@ -74,6 +74,11 @@ const validationSchema = yup.object().shape({
 
 const SubHeadAccountComponent = () => {
 	const themeContext = useContext(ThemeContext)
+	const fullnameRef = useRef()
+	const usernameRef = useRef()
+	const cellphoneRef = useRef()
+	const passwordRef = useRef()
+	const emailRef = useRef()
 
 	return (
 		<Root>
@@ -102,6 +107,7 @@ const SubHeadAccountComponent = () => {
 				}) => (
 					<FormContainer>
 						<ETATextInputOutline
+							ref={fullnameRef}
 							value={values.fullname}
 							placeholder='Fullname'
 							placeholderTextColor={
@@ -146,6 +152,7 @@ const SubHeadAccountComponent = () => {
 							</ETAErrorMessage>
 						) : null}
 						<ETATextInputOutline
+							ref={usernameRef}
 							value={values.username}
 							placeholder='Username'
 							placeholderTextColor={
@@ -190,6 +197,8 @@ const SubHeadAccountComponent = () => {
 							</ETAErrorMessage>
 						) : null}
 						<ETATextInputOutline
+							ref={cellphoneRef}
+							mask={'([000]) [000]-[00]-[00]'}
 							value={values.cellphone}
 							placeholder='Cellphone'
 							placeholderTextColor={
@@ -204,11 +213,11 @@ const SubHeadAccountComponent = () => {
 							caretHidden={false}
 							clearButtonMode='while-editing'
 							contextMenuHidden={false}
-							editable={false}
+							editable={!false}
 							enablesReturnKeyAutomatically={false}
 							underlineColorAndroid='transparent'
 							keyboardAppearance='dark'
-							maxLength={10}
+							maxLength={24}
 							multiline={false}
 							numberOfLines={1} // android
 							returnKeyLabel='next' // android
@@ -234,6 +243,7 @@ const SubHeadAccountComponent = () => {
 							</ETAErrorMessage>
 						) : null}
 						<ETATextInputOutline
+							ref={passwordRef}
 							value={values.password}
 							placeholder='Password'
 							placeholderTextColor={
@@ -279,6 +289,7 @@ const SubHeadAccountComponent = () => {
 							</ETAErrorMessage>
 						) : null}
 						<ETATextInputOutline
+							ref={emailRef}
 							value={values.email}
 							placeholder='Email'
 							placeholderTextColor={

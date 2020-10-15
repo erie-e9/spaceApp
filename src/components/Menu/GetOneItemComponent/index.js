@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext, memo } from 'react'
+import React, { useState, useEffect, useContext, memo, useRef, createRef } from 'react'
 import { Dimensions, Platform, Animated } from 'react-native'
 import { useRoute } from '@react-navigation/native'
-import styled, {ThemeContext} from 'styled-components'
-import { ETASimpleText, ETAStarRating } from '@etaui'
+import styled, { ThemeContext } from 'styled-components'
+import { ETASimpleText, ETAStarRating, ETABottomModal } from '@etaui'
 import { Ionicons, FontAwesome } from '@icons'
 import SuggestionsComponent from './SuggestionsComponent'
 import { connect } from 'react-redux'
@@ -12,6 +12,7 @@ import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } f
 import { currencySeparator } from '@functions'
 import LinearGradient from 'react-native-linear-gradient'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import LottieView from 'lottie-react-native'
 
 const {width} = Dimensions.get('window')
 
@@ -29,8 +30,8 @@ const BackgroundPresentationContainer = styled.View`
 `
 const SuggestionsContainer = styled.View`
 	flex: 0.14;
-	background-color: transparent;
 	z-index: 999;
+	background-color: transparent;
 `
 const ItemImage = styled.Image`
 	flex: 1;
@@ -43,13 +44,13 @@ const GradientContainer = styled.View`
 `
 const ItemBottomContainer = styled.View`
 	flex: 1;
-	background-color: transparent;
 	justify-content: flex-end;
 	align-items: center;
 	align-self: center;
 	position: absolute;
 	height: 100%;
 	z-index: 100;
+	background-color: transparent;
 `
 const AddCartContainer = styled.View`
 	position: absolute;
@@ -119,8 +120,8 @@ const RemoveCart = styled.TouchableOpacity.attrs({
 	height: 25px;
 	width: 25px;
 	right: 1px;
-	background-color: transparent;
 	z-index: 1000;
+	background-color: transparent;
 `
 const CardTop = styled.View`
 	min-height: 10px;
@@ -128,7 +129,8 @@ const CardTop = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	margin-top: 10px;
-	padding-horizontal: 10px;
+	padding-horizontal: 15px;
+	background-color: transparent;
 `
 const StatusContainer = styled.View`
 	justify-content: flex-end;
@@ -137,7 +139,7 @@ const StatusContainer = styled.View`
 	height: 14px;
 	padding-horizontal: 4px;
 	top: -15px;
-	left: 10px;
+	left: 15px;
 	z-index: 100;
 	border-radius: 4px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -145,12 +147,12 @@ const StatusContainer = styled.View`
 const PointsContainer = styled.View`
 	justify-content: flex-end;
 	position: absolute;
-	min-height: 14px;
+	min-height: 13px;
 	min-width: 30px;
 	top: -15px;
-	right: 15px;
+	right: 30px;
 	padding-horizontal: 4px;
-	border-radius: 6px;
+	border-radius: 4px;
 	border-width: 0.75px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
@@ -163,25 +165,27 @@ const CardTopHead = styled.View`
 	background-color: transparent;
 `
 const NameContainer = styled.View`
-	flex: 1;
+	flex: 0.9;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding-horizontal: 2px;
+	background-color: transparent;
 `
 const ShopContainer = styled.View`
 	flex: 0.35;
 	min-height: 50px;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	padding-horizontal: 2px;
 	margin-bottom: 7px;
+	background-color: transparent;
 `
 const PriceContainer = styled.View`
 	flex: 0.4;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
 	background-color: transparent;
 `
@@ -217,7 +221,7 @@ const ItemInfoContainer = styled.View`
 	align-items: stretch;
 	background-color: transparent;
 `
-const ItemInfoRating = styled.View`
+const ItemInfoRating = styled.TouchableOpacity`
 	flex-direction: row;
 	height: 20px;
 	width: 75px;
@@ -234,7 +238,7 @@ const ItemInfoRating = styled.View`
 	justify-content: center;
 	align-items: center;
 `
-const ItemInfoCalories = styled.View`
+const ItemInfoCalories = styled.TouchableOpacity`
 	height: 20px;
 	width: 75px;
 	border-radius: 20px;
@@ -250,7 +254,7 @@ const ItemInfoCalories = styled.View`
 	justify-content: center;
 	align-items: center;
 `
-const ItemInfoWeight = styled.View`
+const ItemInfoWeight = styled.TouchableOpacity`
 	height: 20px;
 	width: 75px;
 	border-radius: 20px;
@@ -272,7 +276,6 @@ const CardBottom = styled.View`
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
-	padding-horizontal: 10px;
 	margin-top: 10px;
 	background-color: transparent;
 `
@@ -281,15 +284,16 @@ const ItemDetailsContainer = styled.View`
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
+	padding-horizontal: 20px;
 	background-color: transparent;
 `
 const FavoriteContainer = styled.View`
-	min-height: 10px;
+	height: 30px;
 	width: 100%;
+	margin-top: 4px;
+	right: 10px;
+	justify-content: flex-end;
 	align-items: flex-end;
-	position: relative;
-	bottom: 0px;
-	right: 5px;
 	z-index: 1000;
 	background-color: transparent;
 `
@@ -372,13 +376,18 @@ const mapDispatchProps = (dispatch, props) => ({
 const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getDataRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
-	const {item} = route.params
+	const { item } = route.params
 	const [ addedCounter, setaddedCounter ] = useState(0)
 	const [ isFavorite, setisFavorite ] = useState(false)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const [ selectedItem, setselectedItem ] = useState(item)
 	const [ similarid, setsimilarid ] = useState(0)
+	const [ isModalVisible, setisModalVisible ] = useState(false)
+	const [ contentModal, setcontentModal ] = useState()
+	const [ modalTitle, setmodalTitle ] = useState('')
 	const delayValue = 1500
+	const heart = useRef(false)
+	const bottomModalRef = useRef()
 	
 	useEffect(() => {
 		getDataRequest()
@@ -415,12 +424,14 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 			// console.log('favoriteItem: ', favoriteItem);
 			
 			if (favoriteItem !== undefined) {
-				// console.log('Favorito es');
+				console.log('Favorito es');
 				setisFavorite(true)
+				// heart.current?.play(25, 169)
 			}
 			else {
-				// console.log('Es no favorito');
+				console.log('Es no favorito');
 				setisFavorite(!true)
+				heart.current?.reset()
 			}
 			
 		}
@@ -450,8 +461,117 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 	}
 
 	const _isFavorite = async () => {
-		setisFavorite(!isFavorite)		
+		if (!isFavorite) {
+			await heart.current?.play(0, 169)
+			await setTimeout(() => {
+				heart.current?.pause()
+				setisFavorite(true)
+			}, 1690/2);
+		} else {
+			// await heart.current?.play(169, 0)
+			// await setTimeout(() => {
+			// 	heart.current?.pause()
+			// }, 1690/2)
+			setisFavorite(false)
+		}
+		
 		toogleFavorite(selectedItem)
+	}
+
+	const _onShowModal = (id, title) => {
+		console.log('_onShowModal')
+		// bottomModalRef.current?._show()
+		setmodalTitle(title)
+		setisModalVisible(true)
+		setcontentModal(id)
+	}
+
+	const _onCloseModal = () => {
+		console.log('_onCloseModal')
+		bottomModalRef.current?._close()
+		
+		setisModalVisible(false)
+	}
+
+	const _contentModal = () => {
+		switch (contentModal) {
+			case 1:
+				return (
+					<>
+						<ETASimpleText
+							size={16}
+							weight={
+								Platform.OS ===
+								'ios'
+									? '400'
+									: '400'
+							}
+							color={
+								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+							}
+							align='left'>
+							I am the modal reviews content!
+						</ETASimpleText>
+					</>
+				)
+			case 2:
+				return (
+					<>
+						<ETASimpleText
+							size={16}
+							weight={
+								Platform.OS ===
+								'ios'
+									? '400'
+									: '400'
+							}
+							color={
+								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+							}
+							align='left'>
+							I am the modal calories content!
+						</ETASimpleText>
+					</>
+				)
+			case 3:
+				return (
+					<>
+						<ETASimpleText
+							size={16}
+							weight={
+								Platform.OS ===
+								'ios'
+									? '400'
+									: '400'
+							}
+							color={
+								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+							}
+							align='left'>
+							I am the modal info content!
+						</ETASimpleText>
+					</>
+				)
+			default:
+				return (
+					<>
+						<ETASimpleText
+							size={12}
+							weight={
+								Platform.OS ===
+								'ios'
+									? '500'
+									: '300'
+							}
+							color={
+								themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+							}
+							align='left'>
+							I am the modal content!
+						</ETASimpleText>
+					</>
+				)
+		}
 	}
 
 	return (
@@ -498,9 +618,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 							shadowOpacity: 0,
 							borderRadius: 15,
 							paddingTop: 25,
-							paddingRight: 10,
 							paddingBottom: 10,
-							paddingLeft: 10,
 							elevation: 0,
 							justifyContent: 'center',
 							alignItems: 'center',
@@ -664,8 +782,13 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 								selectedItem.points > 0
 								?	<PointsContainer>
 										<ETASimpleText
-											size={11}
-											weight={Platform.OS === 'ios' ? '400' : '400'}
+											size={9.5}
+											weight={
+												Platform.OS ===
+												'ios'
+													? '400'
+													: '300'
+											}
 											color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 											align='center'
 										>
@@ -784,14 +907,18 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 							{
 								selectedItem.status !== 'custom'
 								?	<ItemInfoContainer>
-										<ItemInfoRating>
+										<ItemInfoRating
+											onPress={() => _onShowModal(1, 'Reviews')}
+										>
 											<ETAStarRating
 												ratings={
 													selectedItem.rating
 												}
 											/>
 										</ItemInfoRating>
-										<ItemInfoCalories>
+										<ItemInfoCalories
+											onPress={() => _onShowModal(2, 'Nutritional info')}
+										>
 											<ETASimpleText
 												size={8.5}
 												weight={
@@ -808,7 +935,9 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 												calories
 											</ETASimpleText>
 										</ItemInfoCalories>
-										<ItemInfoWeight>
+										<ItemInfoWeight
+											onPress={() => _onShowModal(3, 'Weight info')}
+										>
 											<ETASimpleText
 												size={8.5}
 												weight={
@@ -824,6 +953,32 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 												{selectedItem.weight} g
 											</ETASimpleText>
 										</ItemInfoWeight>
+										<ETABottomModal
+											title={modalTitle}
+											isVisible={isModalVisible}
+											onSwipeComplete={() => setisModalVisible(false)}
+										>
+											{
+												_contentModal(contentModal)
+											}
+										</ETABottomModal>
+										{/* <ETABottomModal
+											ref={bottomModalRef}
+											onTouchOutSide={_onCloseModal}
+										>
+											<ETASimpleText
+												size={13}
+												weight={
+													Platform.OS === 'ios'
+													? '500'
+													: '500'
+												}
+												color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+												align='center'
+												>
+												Flavors chosen: {' '}
+											</ETASimpleText>
+										</ETABottomModal> */}
 									</ItemInfoContainer>
 								:	<SummaryRow style={{ justifyContent: 'space-between' }}>
 										<ETASimpleText
@@ -878,7 +1033,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 								<Touchable
 									onPress={() => _isFavorite()}
 								>
-									<Ionicons
+									{/* <Ionicons
 										name={
 											isFavorite
 												? 'md-heart'
@@ -890,8 +1045,41 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 												? themeContext.PRIMARY_COLOR
 												: themeContext.PRIMARY_TEXT_COLOR_LIGHT
 										}
+									/> */}
+								
+									<LottieView
+										ref={heart}
+										source={require('@assets/heart2.json')}
+										style={{ height: 35, backgroundColor: 'transparent' }}
+										colorFilters={[
+											{
+												keypath: 'button',
+												color: themeContext.PRIMARY_COLOR
+											},
+											{
+												keypath: 'Sending Loader',
+												color: '#FFF000'
+											}
+										]}
+										progress={isFavorite ? 1 : 0}
+										autoSize={true}
 									/>
+									{/* <ETASimpleText
+										size={11}
+										weight={
+											Platform.OS ===
+											'ios'
+												? '400'
+												: '300'
+										}
+										color={
+											themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+										}
+										align='left'>
+									{JSON.stringify(isFavorite)}
+								</ETASimpleText> */}
 								</Touchable>
+								
 							</FavoriteContainer>
 						</CardBottom>
 					</Animated.View>
