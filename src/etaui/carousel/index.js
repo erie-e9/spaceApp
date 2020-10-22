@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Animated, Dimensions, TouchableWithoutFeedback } from 'react-native'
+import React, {useState, useEffect, useRef} from 'react'
+import {Animated, Dimensions} from 'react-native'
 import styled from 'styled-components'
-import { useNavigation } from '@react-navigation/native'
 import carouselData from '@utils/carousel.json'
+import {useNavigation} from '@react-navigation/native'
 import ETACarouselItem from './item'
 
 const {width} = Dimensions.get('window')
@@ -20,12 +20,13 @@ const DotCarousel = styled.View`
 	position: absolute;
 	bottom: 5px;
 `
-const Touchable = styled.TouchableOpacity`
+const Touchable = styled.TouchableWithoutFeedback`
 	height: 100%;
 	width: 100%;
 `
+const TouchableWithoutFeedbackContainer = styled.View``
 
-const ETACarousel = ({ posts, data, autoplay, time,sizeHeight }) => {
+const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 	const navigation = useNavigation()
 	const [dataList, setdataList] = useState([])
 	const [postsLenght] = useState(posts.length)
@@ -118,11 +119,13 @@ const ETACarousel = ({ posts, data, autoplay, time,sizeHeight }) => {
 								onPress={() =>
 									_onPressPromo(item)
 								}>
+								<TouchableWithoutFeedbackContainer>
 									<ETACarouselItem
 										key={item._id}
 										item={item}
 										sizeHeight={sizeHeight}
 									/>
+								</TouchableWithoutFeedbackContainer>
 							</Touchable>
 						)}
 					/>

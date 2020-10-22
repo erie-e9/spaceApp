@@ -1,0 +1,9 @@
+const GET_DATA_REQUEST = 'clientschatcontactlist/GET_DATA_REQUEST'
+const GET_DATA_REQUEST_SUCCESS = 'clientschatcontactlist/GET_DATA_REQUEST_SUCCESS'
+const GET_DATA_REQUEST_FAILED = 'clientschatcontactlist/GET_DATA_REQUEST_FAILED'
+
+export {
+  GET_DATA_REQUEST,
+  GET_DATA_REQUEST_SUCCESS,
+  GET_DATA_REQUEST_FAILED,
+}

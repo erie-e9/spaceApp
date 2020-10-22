@@ -197,7 +197,7 @@ const AuthNavigator = () => {
 						</HeaderLeftCard>
 					),
 					cardStyleInterpolator:
-						CardStyleInterpolators.forModalPresentationIOS,
+						CardStyleInterpolators.forHorizontalIOS,
 				})}
 			/>
 

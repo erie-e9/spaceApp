@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
 import { Dimensions, Platform, Animated } from 'react-native'
-import styled, {ThemeContext } from 'styled-components'
 import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
 import HeadCategoryItem from './HeadCategoryItem'
@@ -43,8 +43,8 @@ const Touchable = styled.TouchableOpacity.attrs({
 `
 
 const mapStateToProps = (state) => {
-	const {data} = state.categories
-	return {data}
+	const { data } = state.categories
+	return { data }
 }
 
 const mapDispatchProps = (dispatch) => ({
@@ -59,7 +59,7 @@ const mapDispatchProps = (dispatch) => ({
 const Categories = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [ categoryitems, setcategoryitems] = useState([])
+	const [ categoryitems, setcategoryitems ] = useState([])
 	const [ animatedValueTransform] = useState(new Animated.Value(0))
 	let delayValue = 1000
 

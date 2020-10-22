@@ -12,11 +12,11 @@ const Root = styled.View`
     width: 100%;
 	flex-direction: column;
 	align-items: center;
-	background-color: red;
+	background-color: transparent;
 `
 const TextContainer = styled.View`
     width: 100%;
-    padding: 20px;
+    padding: 20px 0px 10px 20px;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -49,17 +49,17 @@ const TextContainer = styled.View`
         <Root>
             <TextContainer>
                 <ETASimpleText
-                    size={16}
-                    weight={Platform.OS === 'ios' ? '700' : '900'}
+                    size={15}
+                    weight={Platform.OS === 'ios' ? '700' : '800'}
                     color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                     align='left'>
-                    Continue with...
+                    Continue with
                 </ETASimpleText>
             </TextContainer>
             <GoogleSigninButton
                 style={{ width: 255, height: 48, marginVertical: 20 }}
                 size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Light}
+                color={GoogleSigninButton.Color.Dark}
                 onPress={_signIn}
                 disabled={false} 
             />

@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {Animated, Platform} from 'react-native'
-import {useRoute} from '@react-navigation/native'
-import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText} from '@etaui'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Animated, Platform } from 'react-native'
+import { useRoute } from '@react-navigation/native'
+import { ETASimpleText } from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 
 const Root = styled.View`

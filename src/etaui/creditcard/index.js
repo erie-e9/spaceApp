@@ -8,7 +8,7 @@ import {
 	Platform,
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { ETASimpleText, ETAButtonFilled } from '@etaui'
+import { ETATextInputOutline, ETASimpleText, ETAButtonFilled } from '@etaui'
 import { creditnumberSeparator, expirationDateSeparator } from '@functions'
 import TextInputMask from 'react-native-text-input-mask'
 
@@ -290,12 +290,39 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 				<CreditCardBottomContainer>
 					<TextInputsContainer>
 						<TextInputContainer>
-							<TextInputMask
+							<ETATextInputOutline
 								refInput={numberCardRef}
+								// value={values?.[item.name]}
+								mask={'[0000] [0000] [0000] [0000]'}
 								placeholder='1234 5678 9012 3456'
 								placeholderTextColor={
 									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
+								clearButtonMode='always'
+								keyboardType='phone-pad'
+								autoCapitalize='none'
+								allowFontScaling
+								autoCorrect
+								autoFocus
+								blurOnSubmit={false}
+								caretHidden={false}
+								contextMenuHidden={false}
+								editable
+								enablesReturnKeyAutomatically={false}
+								underlineColorAndroid='transparent'
+								keyboardAppearance='dark'
+								maxLength={19}
+								multiline={false}
+								numberOfLines={1} // android
+								returnKeyLabel='next' // android
+								secureTextEntry={false} // password
+								spellCheck
+								textContentType='none'
+								returnKeyType='next'
+								textsize={14}
+								height={40}
+								width={width}
+								borderWidth={0.3}
 								onChangeText={(formatted, extracted) => {
 									setcreditCard(
 										formatted.replace(
@@ -305,62 +332,18 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 									)
 									console.log(extracted)
 								}}
-								mask={'[0000] [0000] [0000] [0000]'}
-								clearButtonMode='always'
-								keyboardType='phone-pad'
-								autoCapitalize='none'
-								allowFontScaling
-								style={{ backgroundColor: 'transparent', width: '100%', paddingHorizontal: 15 }}
+								// onBlur={handleBlur('cellphone')}
+								selectionColor={themeContext.PRIMARY_COLOR}
 							/>
-
-							{/* <TextInput
-								// value={''}
-								defaultValue=''
-								placeholder='1234 5678 9012 3456'
-								placeholderTextColor={
-									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
-								}
-								keyboardType='phone-pad'
-								autoCapitalize='none'
-								allowFontScaling
-								autoCorrect
-								autoFocus={false}
-								blurOnSubmit={false}
-								caretHidden={false}
-								clearButtonMode='while-editing'
-								contextMenuHidden={false}
-								editable
-								enablesReturnKeyAutomatically={
-									false
-								}
-								underlineColorAndroid='transparent'
-								keyboardAppearance='dark'
-								maxLength={16}
-								multiline={false}
-								numberOfLines={1} // android
-								returnKeyLabel='next' // android
-								secureTextEntry={false} // password
-								spellCheck
-								textContentType='postalCode'
-								returnKeyType='default'
-								textsize={14}
-								clearButtonMode='always'
-								onChangeText={(value) =>
-									setcreditCard(
-										value.replace(
-											/[^0-9]/g,
-											'',
-										),
-									)
-								}
-							/> */}
 						</TextInputContainer>
 					</TextInputsContainer>
 
 					<TextInputsContainer>
 						<TextInputContainer>
-							<TextInputMask
-								refInput={mmyy}
+							<ETATextInputOutline
+								// refInput={numberCardRef}
+								// value={values?.[item.name]}
+								mask={'[00]{/}[00]'}
 								placeholder={
 									lang === 'es'
 										? 'MM/AA'
@@ -369,60 +352,85 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								placeholderTextColor={
 									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
-								onChangeText={(formatted, extracted) => {
-									console.log(formatted)
-									console.log(extracted)
-								}}
-								mask={'[00]{/}[00]'}
 								clearButtonMode='always'
 								keyboardType='phone-pad'
 								autoCapitalize='none'
 								allowFontScaling
-								style={{ backgroundColor: 'transparent', width: '100%', paddingHorizontal: 15 }}
-							/>
-							{/* <TextInput
-								// value={}
-								defaultValue=''
-								placeholder={
-									lang === 'es'
-										? 'MM/AA'
-										: 'MM/YY'
-								}
-								placeholderTextColor={
-									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
-								}
-								keyboardType='phone-pad'
-								autoCapitalize='none'
-								allowFontScaling
 								autoCorrect
-								autoFocus={false}
+								autoFocus
 								blurOnSubmit={false}
 								caretHidden={false}
-								clearButtonMode='while-editing'
 								contextMenuHidden={false}
 								editable
-								enablesReturnKeyAutomatically={
-									false
-								}
+								enablesReturnKeyAutomatically={false}
 								underlineColorAndroid='transparent'
 								keyboardAppearance='dark'
-								maxLength={4}
+								maxLength={5}
 								multiline={false}
 								numberOfLines={1} // android
 								returnKeyLabel='next' // android
 								secureTextEntry={false} // password
 								spellCheck
 								textContentType='none'
-								returnKeyType='default'
+								returnKeyType='next'
 								textsize={14}
-								clearButtonMode='always'
-								onChangeText={(value) =>
-									setexpiry(value)
-								}
-							/> */}
+								height={40}
+								width={width / 2}
+								borderWidth={0.3}
+								onChangeText={(formatted, extracted) => {
+									console.log(formatted)
+									console.log(extracted)
+								}}
+								// onBlur={handleBlur('cellphone')}
+								selectionColor={themeContext.PRIMARY_COLOR}
+							/>
 						</TextInputContainer>
 						<TextInputContainer>
-							<TextInput
+						<ETATextInputOutline
+								// refInput={numberCardRef}
+								// value={values?.[item.name]}
+								mask={'[000]'}
+								placeholder={
+									lang === 'es'
+										? 'CVC/CCV'
+										: 'CVC/CCV'
+								}
+								placeholderTextColor={
+									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
+								}
+								clearButtonMode='always'
+								keyboardType='phone-pad'
+								autoCapitalize='none'
+								allowFontScaling
+								autoCorrect
+								autoFocus
+								blurOnSubmit={false}
+								caretHidden={false}
+								contextMenuHidden={false}
+								editable
+								enablesReturnKeyAutomatically={false}
+								underlineColorAndroid='transparent'
+								keyboardAppearance='dark'
+								maxLength={5}
+								multiline={false}
+								numberOfLines={1} // android
+								returnKeyLabel='next' // android
+								secureTextEntry={false} // password
+								spellCheck
+								textContentType='none'
+								returnKeyType='next'
+								textsize={14}
+								height={40}
+								width={width / 2}
+								borderWidth={0.3}
+								onChangeText={(formatted, extracted) => {
+									console.log(formatted)
+									console.log(extracted)
+								}}
+								// onBlur={handleBlur('cellphone')}
+								selectionColor={themeContext.PRIMARY_COLOR}
+							/>
+							{/* <TextInput
 								// value={}
 								defaultValue=''
 								placeholder={
@@ -463,7 +471,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								}
 								onFocus={() => flipCard(180)}
 								onBlur={() => flipCard(0)}
-							/>
+							/> */}
 						</TextInputContainer>
 					</TextInputsContainer>
 

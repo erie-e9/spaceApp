@@ -4,6 +4,7 @@ import { Platform, Animated, ScrollView, Dimensions } from 'react-native'
 import MenuList from './menuList'
 import HeadCategoryList from './HeadCategoryList'
 import SectionsComponent from './SectionsComponent'
+import StatusComponent from './StatusComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/actions'
 import CarouselComponent from './CarouselComponent'
@@ -113,6 +114,7 @@ const MenuComponent = ({getDataRequest, data}) => {
 									items={data.menu1}
 								/>
 								<SectionsComponent />
+								<StatusComponent />
 							</Animated.View>
 							<MenuList
 								data={data.menu1}

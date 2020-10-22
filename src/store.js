@@ -11,8 +11,10 @@ import { handler as carouselSaga } from '@redux/menu/carousel/sagas'
 import { handler as promotionsSaga } from '@redux/menu/promotions/sagas'
 import { handler as sectionsSaga } from '@redux/menu/sections/sagas'
 import { handler as cartSaga } from '@redux/cart/sagas'
-import { handler as chatsSaga } from '@redux/chats/sagas'
-import { handler as contactsSaga } from '@redux/chats/contacts/sagas'
+import { handler as clientsmessagesSaga } from '@redux/chats/clients/messages/sagas'
+import { handler as clientscontactlistSaga } from '@redux/chats/clients/contactlist/sagas'
+import { handler as employeesmessagesSaga } from '@redux/chats/employees/messages/sagas'
+import { handler as employeescontactlistSaga } from '@redux/chats/employees/contactlist/sagas'
 import { handler as addressesSaga } from '@redux/profile/addresses/sagas'
 import { handler as favoritesSaga } from '@redux/profile/favorites/sagas'
 import { handler as notificationsSaga } from '@redux/profile/notifications/sagas'
@@ -35,8 +37,10 @@ sagaMiddleware.run(promotionsSaga)
 sagaMiddleware.run(sectionsSaga)
 sagaMiddleware.run(carouselSaga)
 sagaMiddleware.run(cartSaga)
-sagaMiddleware.run(chatsSaga)
-sagaMiddleware.run(contactsSaga)
+sagaMiddleware.run(clientsmessagesSaga)
+sagaMiddleware.run(clientscontactlistSaga)
+sagaMiddleware.run(employeesmessagesSaga)
+sagaMiddleware.run(employeescontactlistSaga)
 sagaMiddleware.run(addressesSaga)
 sagaMiddleware.run(favoritesSaga)
 sagaMiddleware.run(notificationsSaga)

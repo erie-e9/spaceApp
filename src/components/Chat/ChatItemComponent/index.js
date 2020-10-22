@@ -43,7 +43,7 @@ const ChatItemComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const route = useRoute()
-    const { paramData } = route?.params
+    const { paramData, user } = route?.params
 	const [ items ] = useState(messages.data)
 	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
@@ -84,11 +84,11 @@ const ChatItemComponent = () => {
 		navigation.navigate('ChatItemNavigator', { 
 			screen: 'ContactProfileScreen',
 			params: {
-				username: paramData?.employee.username,
-				firstname: paramData?.employee.firstname,
-				lastname: paramData?.employee.lastname,
+				username: user?.username,
+				firstname: user?.firstname,
+				lastname: user?.lastname,
 				createdAt: paramData?.createdAt,
-				avatar: paramData?.employee.avatar,
+				avatar: user?.avatar,
 			}
 		})
 	}

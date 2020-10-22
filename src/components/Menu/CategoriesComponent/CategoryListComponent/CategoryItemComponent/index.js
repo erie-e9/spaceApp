@@ -1,13 +1,14 @@
-import React, {useContext} from 'react'
-import {Platform, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText} from '@etaui'
+import React, { useContext } from 'react'
+import { Platform, Dimensions } from 'react-native'
+import styled, { ThemeContext } from 'styled-components'
+import { ETASimpleText } from '@etaui'
+import LinearGradient from 'react-native-linear-gradient'
 
 const {width} = Dimensions.get('window')
 
 const Item = styled.View`
-	height: 180px;
-	width: ${width / 2.85}px;
+	height: 175px;
+	width: ${width / 2.80}px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 	margin-horizontal: ${width / 30}px;
 	margin-vertical: 10px;
@@ -41,6 +42,9 @@ const NewContainer = styled.View`
 	border-color: transparent;
 	justify-content: flex-end;
 `
+const GradientContainer = styled.View`
+	height: 35px;
+`
 
 const CategoryItemComponent = ({item}) => {
 	const themeContext = useContext(ThemeContext)
@@ -49,6 +53,16 @@ const CategoryItemComponent = ({item}) => {
 		<>
 			<Item>
 				<ItemImage source={{uri: item.image}} />
+				<GradientContainer>
+					<LinearGradient 
+						colors={[ 'transparent', 'rgba(0, 0, 0, 0.2)', 'rgba(0, 0, 0, 0.6)']} 
+						style={{ flex: 1,
+								bottom: 35,
+								zIndex: 100,
+								borderBottomLeftRadius: 15,
+								borderBottomRightRadius: 15, }}>
+					</LinearGradient>
+				</GradientContainer>
 				{item.isNew ? (
 					<NewContainer>
 						<ETASimpleText
@@ -73,8 +87,8 @@ const CategoryItemComponent = ({item}) => {
 					align='center'
 					style={{
 						position: 'absolute',
-						bottom: 15,
-						left: 10,
+						bottom: 1,
+						left: 7,
 						elevation: 4,
 						textShadowColor:
 							themeContext.THIRD_TEXT_COLOR_LIGHT,

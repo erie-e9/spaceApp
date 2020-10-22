@@ -14,15 +14,16 @@ const Root = styled.View`
 const CartDetailsContainer = styled.View`
 	flex-direction: column;
 	width: ${width - 20}px;
-	height: 100%;
+	min-height: 200px
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
 	position: absolute;
 	padding: 25px 30px;
-	align-self: center;
 	bottom: 0px;
+	justify-content: center;
+	align-self: center;
 	border-width: 0px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
@@ -32,8 +33,8 @@ const SummaryContainer = styled.View`
 	justify-content: space-between;
 	align-items: stretch;
 	width: 100%;
-	margin: 2px 0px 0px 0px;
-	padding: 5px 10px;
+	padding: 2px 10px;
+	margin-top: 3px;
 	background-color: transparent;
 `
 const DirectionContainer = styled.View`
@@ -55,7 +56,6 @@ const TotalContainer = styled.View`
 	align-items: center;
 	width: 100%;
 	height: 40px;
-	margin-vertical: 3px;
 	padding-vertical: 5px;
 	padding-horizontal: 10px;
 	border-width: 0px;
@@ -69,8 +69,6 @@ const SummaryTotalContainer = styled.View`
 	align-items: center;
 	min-height: 30px;
 	width: 100%;
-	margin-vertical: 3px;
-	padding-vertical: 5px;
 	background-color: transparent;
 `
 const ButtonPayContainer = styled.View`
@@ -268,18 +266,17 @@ const CartDetailsComponent = ({ data }) => {
 								},
 							)
 						}
-						disabled={data.length === 0 ? true : false}
+						// disabled={data.length === 0 ? true : false}
 						colorButton={
-							themeContext.PRIMARY_TEXT_COLOR_LIGHT
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						padding={10}
-						width={250}
+						width={240}
 						borderRadius={3}
 						borderWidth={0.3}
 					/>
 				</DirectionContainer>
 				<ButtonPayContainer>
-					
 					<ETAButtonFilled
 						title='Check out'
 						onPress={() => _onPressItem()}
@@ -288,7 +285,7 @@ const CartDetailsComponent = ({ data }) => {
 							themeContext.SECONDARY_BACKGROUND_COLOR
 						}
 						padding={10}
-						width={250}
+						width={240}
 						borderRadius={3}
 					/>
 				</ButtonPayContainer>

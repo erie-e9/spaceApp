@@ -21,8 +21,8 @@ const IconsRightContainer = styled.View`
 const LastOrderButtonContainer = styled.View`
 	background-color: transparent;
 	border-width: 0.9px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	border-radius: 5px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	padding: 3px 5px;
 `
 const LastOrderButton = styled.TouchableHighlight.attrs({

@@ -23,7 +23,8 @@ import ETAMultiStep from '@etaui/multistep'
 import ETALoader from '@etaui/loader'
 import ETARadio from '@etaui/radio'
 import ETAProgressiveImage from '@etaui/progressiveimage'
-import ETABottomModal from '@etaui/modals/bottommodal'
+import ETABottomModal from '@etaui/modals/bottom'
+import ETAFancyModal from '@etaui/modals/fancy'
 import ETAAuthSocialmedia from '@etaui/authsocialmedia'
 
 export {
@@ -53,5 +54,6 @@ export {
   ETARadio,
   ETAProgressiveImage,
   ETABottomModal,
+  ETAFancyModal,
   ETAAuthSocialmedia
 }

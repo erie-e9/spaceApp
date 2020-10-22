@@ -4,8 +4,10 @@ import {
 	createStackNavigator,
 	CardStyleInterpolators,
 } from '@react-navigation/stack'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import { Feather, FontAwesome } from '@icons'
-import ChatScreen from '@screens/Chat/ChatScreen'
+import ChatClientsScreen from '@screens/Chat/ChatClientsScreen'
+import ChatEmployeesScreen from '@screens/Chat/ChatEmployeesScreen'
 import ChatItemScreen from '@screens/Chat/ChatItemScreen'
 import NewChatScreen from '@screens/Chat/NewChatScreen'
 import ContactProfileScreen from '@screens/Chat/ContactProfileScreen'
@@ -54,6 +56,48 @@ const IconButton = styled.TouchableOpacity.attrs({
 	margin-right: 15px;
 `
 
+const Tab = createMaterialTopTabNavigator()
+const TopNavigatorChat = () => {
+	const themeContext = useContext(ThemeContext)
+	
+	return (
+		<Tab.Navigator
+			initialRouteName='ChatClientsNavigator'
+			tabBarOptions={{
+				allowFontScaling: true,
+				labelStyle: { fontSize: 12, textTransform: 'none' },
+				// tabStyle: { width: 100 },
+				activeTintColor: themeContext.PRIMARY_COLOR,
+				inactiveTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT, 
+				tabStyle: {
+					borderWidth: 0
+				},
+				style: { backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR },
+				indicatorStyle: {
+					borderBottomWidth: 2,
+					borderBottomColor: themeContext.PRIMARY_COLOR,
+				},
+			}}
+		>
+			<Tab.Screen 
+				name="ChatClientsNavigator" 
+				component={ChatClientsScreen}
+				options={{
+					tabBarLabel: 'Clients'
+				}}
+			/>
+			<Tab.Screen 
+				name="ChatEmployeesNavigator" 
+				component={ChatEmployeesScreen}
+				options={{
+					tabBarLabel: 'Employees'
+				}}
+			/>
+			
+		</Tab.Navigator>
+	)
+}
+
 const ChatStack = createStackNavigator()
 const ChatNavigator = () => {
 	const themeContext = useContext(ThemeContext)
@@ -67,11 +111,6 @@ const ChatNavigator = () => {
 				headerStyle: {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-					shadowColor: 'black',
-					shadowOpacity: 0,
-					shadowOffset: {height: 0.2},
-					shadowRadius: 5,
-					elevation: 5,
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold',
@@ -79,40 +118,17 @@ const ChatNavigator = () => {
 			}}>
 			<ChatStack.Screen
 				name='ChatScreen'
-				component={ChatScreen}
+				component={TopNavigatorChat}
 				options={({navigation, route}) => ({
 					headerTitle: '',
 					headerShown: true,
 					headerTransparent: !true,
-					// headerLeft: () => (
-					// 	<Header>
-					// 		<ETASimpleText
-					// 			size={22}
-					// 			weight={
-					// 				Platform.OS === 'ios'
-					// 					? 'bold'
-					// 					: 'bold'
-					// 			}
-					// 			color={
-					// 				themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					// 			}
-					// 			align='left'>
-					// 			Chat room
-					// 		</ETASimpleText>
-					// 	</Header>
-					// ),
-					// headerRight: () => (
-					// 	<IconButton
-					// 		activeOpacity={1}
-					// 		underlayColor='#ccd0d5'>
-					// 		<FontAwesome
-					// 			name='search'
-					// 			size={18}
-					// 			color='#000'
-					// 		/>
-					// 	</IconButton>
-					// ),
-					header: () =>  <ETASearchBar leftContent='Chat room' leftContentColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} placeholderText='Search a chat' />,
+					header: () =>  <ETASearchBar 
+										leftContent='Chat room' 
+										leftContentColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} 
+										placeholderText={`Search...`}
+										backgroundColorInput={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
+									/>,
 					headerTintColor:
 						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
 					cardStyleInterpolator:
@@ -144,7 +160,8 @@ const ChatItemNavigator = () => {
 					elevation: 0,
 				},
 				headerTitleStyle: {
-					fontWeight: 'bold',
+					fontWeight: '400',
+					fontSize: 12,
 				},
 			}}>
 			<ChatItemStack.Screen
@@ -239,11 +256,6 @@ const NewChatNavigator = () => {
 				headerStyle: {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-					shadowColor: 'black',
-					shadowOpacity: 0,
-					shadowOffset: {height: 0},
-					shadowRadius: 5,
-					elevation: 0,
 				},
 				headerTitleStyle: {
 					fontWeight: 'bold',

@@ -1,7 +1,6 @@
 import React, {useLayoutEffect} from 'react'
 import styled from 'styled-components/native'
 import AllItemsComponent from '@components/Menu/AllItemsComponent'
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 
 const Root = styled.View`
 	flex: 1;
@@ -12,6 +11,7 @@ const AllItemsScreen = ({ navigation, route }) => {
 
 	useLayoutEffect(() => {
 		navigation.setOptions({headerTitle: name})
+		console.log('AllItemsScreen params',  route)
 	}, [navigation, route])
 
 	return (

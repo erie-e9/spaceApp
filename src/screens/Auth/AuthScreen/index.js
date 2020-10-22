@@ -9,7 +9,6 @@ const {width} = Dimensions.get('window')
 const KeyboardMisser = styled.TouchableWithoutFeedback``
 const Root = styled.View`
 	flex: 1;
-	flex-direction: column;
 	justify-content: center;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
@@ -52,16 +51,13 @@ const Card = styled.View`
 const AuthScreen = ({navigation}) => (
 	<KeyboardMisser onPress={() => Keyboard.dismiss()}>
 		<Root>
-			{/* <BackImage style={{width: null, height: null}}
-                        source={require('@assets/background1.png')}> */}
-			{/* <SigninHead /> */}
-			<SigninContainer>
+			<SigninForm />
+			
+			{/* <SigninContainer>
 				<Card>
-					<SigninForm />
 					<SigninBody navigation={navigation} />
 				</Card>
-			</SigninContainer>
-			{/* </BackImage> */}
+			</SigninContainer> */}
 		</Root>
 	</KeyboardMisser>
 )

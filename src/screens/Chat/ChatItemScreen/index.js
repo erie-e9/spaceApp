@@ -6,6 +6,14 @@ import { FontAwesome } from '@icons'
 import {ETASimpleText, ETAAvatar} from '@etaui'
 import {truncateString} from '@functions'
 
+
+const HeadLeftContainer = styled.View`
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	background-color: transparent;
+`
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	// hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
@@ -45,24 +53,25 @@ const AvatarContainer = styled.View`
 	align-items: center;
 	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
 	border-width: 2px;
-	margin: 5px 10px 0px 10px;
+	margin: 5px 10px 0px 0px;
 	background-color: transparent;
 `
 
 const ChatItemScreen = ({navigation, route}) => {
-	const { paramData } = route.params
+	const { paramData, user } = route.params
 	const themeContext = useContext(ThemeContext)
-	const fullname = `${paramData?.employee.firstname} ${paramData?.employee.lastname}`
+	const fullname = `${user.firstname} ${user.lastname}`
+	console.log('ChatItemScreen: ', {paramData})
 
 	const _navigationContactProfile = () => {
 		navigation.navigate('ChatItemNavigator', { 
 			screen: 'ContactProfileScreen',
 			params: {
-				username: paramData?.employee.username,
-				firstname: paramData?.employee.firstname,
-				lastname: paramData?.employee.lastname,
+				username: user?.username,
+				firstname: user?.firstname,
+				lastname: user?.lastname,
 				createdAt: paramData?.createdAt,
-				avatar: paramData?.employee.avatar,
+				avatar: user?.avatar,
 			}
 		})
 	}
@@ -70,23 +79,25 @@ const ChatItemScreen = ({navigation, route}) => {
 	useLayoutEffect(() => {
 		navigation.setOptions({
 			headerLeft: () => (
-				<HeaderLeft
-					onPress={() => navigation.goBack()}>
-					<FontAwesome
-						name='angle-left'
-						size={25}
-						color={
-							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-						}
-					/>
+				<HeadLeftContainer>
+					<HeaderLeft
+						onPress={() => navigation.goBack()}>
+						<FontAwesome
+							name='angle-left'
+							size={25}
+							color={
+								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+							}
+						/>
+					</HeaderLeft>
 					
 					<AvatarContainer active={paramData?.active}>
 						<ETAAvatar
-							image={paramData?.employee.avatar}
+							image={user.avatar}
 							size='small'
 						/>
 					</AvatarContainer>
-				</HeaderLeft>
+				</HeadLeftContainer>
 			),
 			headerTitle: () => (
 				<HeaderContainer>
@@ -118,7 +129,7 @@ const ChatItemScreen = ({navigation, route}) => {
 								align='left'>
 								@
 								{truncateString(
-									paramData?.employee.username,
+									user.username,
 									30,
 								)}
 							</ETASimpleText>

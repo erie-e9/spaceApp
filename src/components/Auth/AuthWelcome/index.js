@@ -78,9 +78,9 @@ const AuthWelcomeComponent = () => {
 				<ETASimpleText
 					size={13}
 					weight={Platform.OS === 'ios' ? '300' : '300'}
-					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+					color={themeContext.PRIMARY_TEXT_COLOR}
 					align='center'>
-					Welcome, you will need an account to continue. Please sign in or sign up if you dont't have one.
+					You will need an account to continue. Please sign in or sign up if you don't have one.
 				</ETASimpleText>
 			</TextContainer>
 
@@ -99,10 +99,10 @@ const AuthWelcomeComponent = () => {
 				title='Sign up'
 				onPress={() => _onShowSignupPress()}
 				colorButton={
-					themeContext.SECONDARY_BACKGROUND_COLOR
+					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 				}
 				padding={10}
-				width={250}
+				width={240}
 				borderRadius={3}
 				borderWidth={0.3}
 			/>

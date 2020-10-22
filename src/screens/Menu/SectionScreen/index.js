@@ -11,6 +11,7 @@ const SectionScreen = ({navigation, route}) => {
 
 	useLayoutEffect(() => {
 		navigation.setOptions({headerTitle: name})
+		console.log('SectionScreen params',  route)
 	}, [navigation, route])
 
 	return (

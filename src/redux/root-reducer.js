@@ -8,8 +8,10 @@ import { reducer as carouselReducer } from './menu/carousel/reducers'
 import { reducer as promotionsReducer } from './menu/promotions/reducers'
 import { reducer as sectionsReducer } from './menu/sections/reducers'
 import { reducer as cartReducer } from './cart/reducers'
-import { reducer as chatsReducer } from './chats/reducers'
-import { reducer as contactsReducer } from './chats/contacts/reducers'
+import { reducer as clientsmessagesReducer } from './chats/clients/messages/reducers'
+import { reducer as clientscontactlistReducer } from './chats/clients/contactlist/reducers'
+import { reducer as employeesmessagesReducer } from './chats/employees/messages/reducers'
+import { reducer as employeescontactlistReducer } from './chats/employees/contactlist/reducers'
 import { reducer as addressesReducer } from './profile/addresses/reducers'
 import { reducer as favoritesReducer } from './profile/favorites/reducers'
 import { reducer as notificationsReducer } from './profile/notifications/reducers'
@@ -30,8 +32,10 @@ const reducer = combineReducers({
   promotions: promotionsReducer,
   sections: sectionsReducer,
   cart: cartReducer,
-  chats: chatsReducer,
-  contacts: contactsReducer,
+  clientsmessages: clientsmessagesReducer,
+  clientscontactlist: clientscontactlistReducer,
+  employeesmessages: employeesmessagesReducer,
+  employeescontactlist: employeescontactlistReducer,
   addresses: addressesReducer,
   favorites: favoritesReducer,
   notifications: notificationsReducer,

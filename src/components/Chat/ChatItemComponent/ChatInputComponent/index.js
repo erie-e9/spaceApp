@@ -64,7 +64,7 @@ const ChatInputComponent = () => {
                     underlineColorAndroid='transparent'
                     keyboardAppearance='dark'
                     maxLength={200}
-                    multiline={false}
+                    multiline={true}
                     numberOfLines={1} // android
                     returnKeyLabel='next' // android
                     secureTextEntry={false} // password

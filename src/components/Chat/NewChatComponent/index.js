@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import ContactCard from './ContactCard'
 import { ETALoader } from '@etaui'
 import { connect } from 'react-redux'
-import { GET_DATA_REQUEST } from '@redux/chats/contacts/actions'
+import { GET_DATA_REQUEST } from '@redux/chats/clients/contactlist/actions'
 
 const Root = styled.View`
 	flex: 1;
@@ -18,8 +18,8 @@ const Touchable = styled.TouchableOpacity.attrs({
 })``
 
 const mapStateToProps = (state, props) => {
-	const {data} = state.contacts
-	return {data}
+	const { data } = state.clientscontactlist
+	return { data }
 }
 
 const mapDispatchProps = (dispatch, props) => ({

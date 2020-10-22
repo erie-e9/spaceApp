@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, memo, useRef, createRef } from 'react'
-import { Dimensions, Platform, Animated } from 'react-native'
-import { useRoute } from '@react-navigation/native'
 import styled, { ThemeContext } from 'styled-components'
+import { Dimensions, Platform, Animated, useColorScheme } from 'react-native'
+import { useRoute } from '@react-navigation/native'
 import { ETASimpleText, ETAStarRating, ETABottomModal } from '@etaui'
-import { Ionicons, FontAwesome } from '@icons'
+import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@icons'
 import SuggestionsComponent from './SuggestionsComponent'
 import { connect } from 'react-redux'
 import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
@@ -13,6 +13,9 @@ import { currencySeparator } from '@functions'
 import LinearGradient from 'react-native-linear-gradient'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import LottieView from 'lottie-react-native'
+import InfoTopTabsComponent from './Info'
+import ReviewsComponent from './ReviewsComponent'
+import NoteProduct from '@commons/NoteProduct'
 
 const {width} = Dimensions.get('window')
 
@@ -128,8 +131,15 @@ const CardTop = styled.View`
 	width: 100%;
 	flex-direction: column;
 	justify-content: center;
-	margin-top: 10px;
+	margin-top: 0px;
 	padding-horizontal: 15px;
+	background-color: transparent;
+`
+const CardHeaderContainer = styled.View`
+	min-height: 15px;
+	justify-content: center;
+	align-items: stretch;
+	margin-bottom: 2px;
 	background-color: transparent;
 `
 const StatusContainer = styled.View`
@@ -138,8 +148,6 @@ const StatusContainer = styled.View`
 	position: absolute;
 	height: 14px;
 	padding-horizontal: 4px;
-	top: -15px;
-	left: 15px;
 	z-index: 100;
 	border-radius: 4px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -149,8 +157,7 @@ const PointsContainer = styled.View`
 	position: absolute;
 	min-height: 13px;
 	min-width: 30px;
-	top: -15px;
-	right: 30px;
+	right: 25px;
 	padding-horizontal: 4px;
 	border-radius: 4px;
 	border-width: 0.75px;
@@ -158,14 +165,15 @@ const PointsContainer = styled.View`
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const CardTopHead = styled.View`
-	min-height: 40px;
+	min-height: 30px;
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
+	margin-bottom: 7px;
 	background-color: transparent;
 `
 const NameContainer = styled.View`
-	flex: 0.9;
+	flex: 0.8;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -174,16 +182,14 @@ const NameContainer = styled.View`
 `
 const ShopContainer = styled.View`
 	flex: 0.35;
-	min-height: 50px;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
 	padding-horizontal: 2px;
-	margin-bottom: 7px;
 	background-color: transparent;
 `
 const PriceContainer = styled.View`
-	flex: 0.4;
+	flex: 0.6;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
@@ -216,59 +222,28 @@ const PercentContainer = styled.View`
 const ItemInfoContainer = styled.View`
 	min-height: 10px;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-around;
 	padding-horizontal: 10px;
 	align-items: stretch;
 	background-color: transparent;
 `
-const ItemInfoRating = styled.TouchableOpacity`
+const ItemInfo = styled.TouchableOpacity`
 	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 	height: 20px;
-	width: 75px;
+	min-width: 20px;
+	max-width: 75px;
+	padding-horizontal: 10px;
 	border-radius: 20px;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	shadow-offset: 0px 1px;
 	shadow-radius: 2px;
 	shadow-opacity: 0;
 	elevation: 0;
-	border-width: 0.5px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 	margin-horizontal: 7px;
-	justify-content: center;
-	align-items: center;
-`
-const ItemInfoCalories = styled.TouchableOpacity`
-	height: 20px;
-	width: 75px;
-	border-radius: 20px;
-	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-	shadow-offset: 0px 1px;
-	shadow-radius: 2px;
-	shadow-opacity: 0;
-	elevation: 0;
-	border-width: 0.5px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-	margin-horizontal: 7px;
-	justify-content: center;
-	align-items: center;
-`
-const ItemInfoWeight = styled.TouchableOpacity`
-	height: 20px;
-	width: 75px;
-	border-radius: 20px;
-	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-	shadow-offset: 0px 1px;
-	shadow-radius: 2px;
-	shadow-opacity: 0;
-	elevation: 0;
-	border-width: 0.5px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-	margin-horizontal: 7px;
-	justify-content: center;
-	align-items: center;
 `
 const CardBottom = styled.View`
 	min-height: 60px;
@@ -276,30 +251,41 @@ const CardBottom = styled.View`
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: flex-start;
-	margin-top: 10px;
+	margin-top: 7px;
 	background-color: transparent;
 `
 const ItemDetailsContainer = styled.View`
 	min-height: 30px;
+	width: 100%;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
 	padding-horizontal: 20px;
 	background-color: transparent;
 `
-const FavoriteContainer = styled.View`
-	height: 30px;
+const DetailsTextContainer = styled.View`
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
-	margin-top: 4px;
-	right: 10px;
+	padding: 4px 0px;
+	margin-bottom: 5px;
+	border-bottom-width: 0.5px;
+	border-bottom-color: ${(props) => props.theme.GRAYFACEBOOK};
+`
+const ToolsContainer = styled.View`
+	height: 30px;
+	width: 95%;
+	flex-direction: row;
+	margin-top: 2px;
 	justify-content: flex-end;
-	align-items: flex-end;
+	align-items: center;
 	z-index: 1000;
 	background-color: transparent;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 5, bottom: 5, right: 0, left: 0}
 })`
 	justify-content: center;
 	align-items: center;
@@ -376,15 +362,17 @@ const mapDispatchProps = (dispatch, props) => ({
 const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getDataRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
+	const colorScheme = useColorScheme()
 	const { item } = route.params
 	const [ addedCounter, setaddedCounter ] = useState(0)
 	const [ isFavorite, setisFavorite ] = useState(false)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const [ selectedItem, setselectedItem ] = useState(item)
 	const [ similarid, setsimilarid ] = useState(0)
-	const [ isModalVisible, setisModalVisible ] = useState(false)
+	const [ isBottomModalVisible, setisBottomModalVisible ] = useState(false)
 	const [ contentModal, setcontentModal ] = useState()
-	const [ modalTitle, setmodalTitle ] = useState('')
+	const [ bottommodalTitle, setbottommodalTitle ] = useState('')
+	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
 	const delayValue = 1500
 	const heart = useRef(false)
 	const bottomModalRef = useRef()
@@ -479,41 +467,15 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 	}
 
 	const _onShowModal = (id, title) => {
-		console.log('_onShowModal')
-		// bottomModalRef.current?._show()
-		setmodalTitle(title)
-		setisModalVisible(true)
+		setbottommodalTitle(title)
+		setisBottomModalVisible(true)
 		setcontentModal(id)
-	}
-
-	const _onCloseModal = () => {
-		console.log('_onCloseModal')
-		bottomModalRef.current?._close()
-		
-		setisModalVisible(false)
 	}
 
 	const _contentModal = () => {
 		switch (contentModal) {
 			case 1:
-				return (
-					<>
-						<ETASimpleText
-							size={16}
-							weight={
-								Platform.OS ===
-								'ios'
-									? '400'
-									: '400'
-							}
-							color={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							align='left'>
-							I am the modal reviews content!
-						</ETASimpleText>
-					</>
-				)
+				return <ReviewsComponent totalRaitings={selectedItem.rating} />
 			case 2:
 				return (
 					<>
@@ -534,24 +496,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 					</>
 				)
 			case 3:
-				return (
-					<>
-						<ETASimpleText
-							size={16}
-							weight={
-								Platform.OS ===
-								'ios'
-									? '400'
-									: '400'
-							}
-							color={
-								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-							}
-							align='left'>
-							I am the modal info content!
-						</ETASimpleText>
-					</>
-				)
+				return <InfoTopTabsComponent />
 			default:
 				return (
 					<>
@@ -579,305 +524,247 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 			{
 				selectedItem
 				?	<ItemContainer>
-				<BackgroundPresentationContainer>
-					{
-						selectedItem
-						?	<ItemImage
-								style={{
-									resizeMode: 'cover',
-								}}
-								source={{
-									uri:
-										// 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg',
-										selectedItem.images[0].image,
-								}}
-							/>
-						:	null
-					}
-				</BackgroundPresentationContainer>
-				<GradientContainer>
-					<LinearGradient 
-						// colors={[ themeContext.PRIMARY_TEXT_BACKGROUND_COLOR, 'transparent', 'transparent' ]} 
-						colors={[ 'transparent', themeContext.FOURTH_BACKGROUND_COLOR_LIGHT, themeContext.FOURTH_BACKGROUND_COLOR_LIGHT ]} 
-						style={{ flex: 1, bottom: 15, zIndex: 100 }}>
-					</LinearGradient>
-				</GradientContainer>
-				<ItemBottomContainer>
-					<Animated.View
-						style={{
-							width: width - 60,
-							minHeight: 100,
-							marginVertical: 15,
-							shadowColor:
-							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-							shadowOffset: {
-								width: 0,
-								height: 1,
-							},
-							shadowRadius: 2,
-							shadowOpacity: 0,
-							borderRadius: 15,
-							paddingTop: 25,
-							paddingBottom: 10,
-							elevation: 0,
-							justifyContent: 'center',
-							alignItems: 'center',
-							borderWidth: 0,
-							borderColor:
-							themeContext.GRAYFACEBOOK,
-							transform: [{translateY}],
-							bottom: 0,
-							zIndex: 1000,
-							backgroundColor:
-								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-						}}>
-						{addedCounter === 0 ? (
-							<AddCartContainer>
-								<TouchableOpacity
-									onPress={() => _addCart(selectedItem)}
-									style={{
-										height: 40,
-										width: 120,
-										flexDirection: 'row',
-										justifyContent: 'center',
-										alignItems: 'center',
-										alignSelf: 'center',
-										borderRadius: 30,
-										zIndex: 1000,
-										backgroundColor: themeContext.PRIMARY_COLOR,
-									}}>
-									<AddRemoveButtonContainer>
-										<ETASimpleText
-											size={16}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '600'
-													: '300'
-											}
-											color='white'
-											align='center'>
-											+
-										</ETASimpleText>
-									</AddRemoveButtonContainer>
-									<FontAwesome
-										name='shopping-cart'
-										size={16}
-										color='white'
+						<BackgroundPresentationContainer>
+							{
+								selectedItem
+								?	<ItemImage
 										style={{
-											alignSelf: 'center',
+											resizeMode: 'cover',
+										}}
+										source={{
+											uri:
+												// 'https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg',
+												selectedItem.images[0].image,
 										}}
 									/>
-								</TouchableOpacity>
-							</AddCartContainer>
-						) : (
-							<AddCartContainer>
-								<AddRemoveContainer>
-									<TouchableOpacity
-										onPress={() =>
-											_removeFromCart(
-												selectedItem._id,
-											)
-										}
-										style={{
-											flexDirection: 'row',
-											justifyContent: 'center',
-											alignItems: 'center',
-											marginBottom: Platform.OS === 'ios' ?  10 : 0,
-											height: 25,
-											width: 25,
-											right: 1,
-											backgroundColor: 'transparent',
-											zIndex: 1000,
-										}}>
-										<AddRemoveButtonContainer>
-											{/* <CounterContainer> */}
-											<ETASimpleText
-												size={
-													22
-												}
-												weight={
-													Platform.OS ===
-													'ios'
-														? '600'
-														: '300'
-												}
-												color='white'
-												align='center'>
-												-
-											</ETASimpleText>
-											{/* </CounterContainer> */}
-										</AddRemoveButtonContainer>
-									</TouchableOpacity>
-									<CounterContainer>
-										<ETASimpleText
-											size={11}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '600'
-													: '300'
-											}
-											color='white'
-											align='center'>
-											{addedCounter}
-										</ETASimpleText>
-									</CounterContainer>
-									<TouchableOpacity
-										onPress={() =>
-											_addCart(selectedItem)
-										}
-										style={{
-											flexDirection: 'row',
-											justifyContent: 'center',
-											alignItems: 'center',
-											marginBottom: Platform.OS === 'ios' ?  10 : 0,
-											height: 25,
-											width: 25,
-											left: 1,
-											backgroundColor: 'transparent',
-											zIndex: 1000,
-										}}>
-										<AddRemoveButtonContainer>
-											{/* <CounterContainer> */}
-											<ETASimpleText
-												size={
-													22
-												}
-												weight={
-													Platform.OS ===
-													'ios'
-														? '600'
-														: '300'
-												}
-												color='white'
-												align='center'>
-												+
-											</ETASimpleText>
-											{/* </CounterContainer> */}
-										</AddRemoveButtonContainer>
-									</TouchableOpacity>
-								</AddRemoveContainer>
-							</AddCartContainer>
-						)}
-						<CardTop>
-							{selectedItem.status !== '' ?  (
-								<StatusContainer>
-									<ETASimpleText
-										size={11}
-										weight={
-											Platform.OS ===
-											'ios'
-												? '400'
-												: '300'
-										}
-										color='white'
-										align='center'>
-										{selectedItem.status}
-									</ETASimpleText>
-								</StatusContainer>
-							) : null}
-							
-							{
-								selectedItem.points > 0
-								?	<PointsContainer>
-										<ETASimpleText
-											size={9.5}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '400'
-													: '300'
-											}
-											color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-											align='center'
-										>
-											{selectedItem.points}° pts
-										</ETASimpleText>
-									</PointsContainer>
 								:	null
 							}
-							<CardTopHead>
-								<NameContainer>
-									<ETASimpleText
-										size={16}
-										weight={
-											Platform.OS ===
-											'ios'
-												? '400'
-												: '400'
-										}
-										color={
-											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-										}
-										align='left'>
-										{selectedItem.name}
-									</ETASimpleText>
-								</NameContainer>
-								<ShopContainer>
-									<PriceContainer>
-										<ETASimpleText
-											size={13}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '400'
-													: '400'
-											}
-											color={
-												themeContext.PRIMARY_COLOR
-											}
-											align='center'
+						</BackgroundPresentationContainer>
+						<GradientContainer>
+							<LinearGradient 
+								colors={[ 'transparent', themeContext.FOURTH_BACKGROUND_COLOR_LIGHT, themeContext.FOURTH_BACKGROUND_COLOR_LIGHT ]} 
+								style={{ flex: 1, bottom: 15, zIndex: 100 }}>
+							</LinearGradient>
+						</GradientContainer>
+						<ItemBottomContainer>
+							<Animated.View
+								style={{
+									width: width - 60,
+									minHeight: 100,
+									marginVertical: 5,
+									shadowColor:
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+									shadowOffset: {
+										width: 0,
+										height: 1,
+									},
+									shadowRadius: 2,
+									shadowOpacity: 0,
+									borderRadius: 15,
+									paddingTop: 25,
+									paddingBottom: 10,
+									elevation: 0,
+									justifyContent: 'center',
+									alignItems: 'center',
+									borderWidth: 0,
+									borderColor:
+									themeContext.GRAYFACEBOOK,
+									transform: [{translateY}],
+									bottom: 0,
+									zIndex: 1000,
+									backgroundColor:
+										themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+								}}>
+								{addedCounter === 0 ? (
+									<AddCartContainer>
+										<TouchableOpacity
+											onPress={() => _addCart(selectedItem)}
 											style={{
-												zIndex: 100,
+												height: 40,
+												width: 120,
+												flexDirection: 'row',
+												justifyContent: 'center',
+												alignItems: 'center',
+												alignSelf: 'center',
+												borderRadius: 30,
+												zIndex: 1000,
+												backgroundColor: themeContext.PRIMARY_COLOR,
 											}}>
-											$
-											{currencySeparator((
-												((100 -
-													selectedItem.discount) *
-													selectedItem.price) /
-												100
-											).toFixed(2))}
-										</ETASimpleText>
-										{
-											selectedItem.discount > 0
-											?	<PercentContainer>
+											<AddRemoveButtonContainer>
+												<ETASimpleText
+													size={16}
+													weight={
+														Platform.OS ===
+														'ios'
+															? '600'
+															: '300'
+													}
+													color='white'
+													align='center'>
+													+
+												</ETASimpleText>
+											</AddRemoveButtonContainer>
+											<FontAwesome
+												name='shopping-cart'
+												size={16}
+												color='white'
+												style={{
+													alignSelf: 'center',
+												}}
+											/>
+										</TouchableOpacity>
+									</AddCartContainer>
+								) : (
+									<AddCartContainer>
+										<AddRemoveContainer>
+											<TouchableOpacity
+												onPress={() =>
+													_removeFromCart(
+														selectedItem._id,
+													)
+												}
+												style={{
+													flexDirection: 'row',
+													justifyContent: 'center',
+													alignItems: 'center',
+													marginBottom: Platform.OS === 'ios' ?  10 : 0,
+													height: 25,
+													width: 25,
+													right: 1,
+													backgroundColor: 'transparent',
+													zIndex: 1000,
+												}}>
+												<AddRemoveButtonContainer>
+													{/* <CounterContainer> */}
 													<ETASimpleText
 														size={
-															9
+															22
 														}
 														weight={
 															Platform.OS ===
 															'ios'
-																? '500'
-																: '900'
+																? '600'
+																: '300'
 														}
-														color={
-															themeContext.PRIMARY_TEXT_COLOR_LIGHT
-														}
-														align='left'
-														style={{
-															zIndex: 100,
-														}}>
+														color='white'
+														align='center'>
 														-
-														{
-															selectedItem.discount
-														}
-
-														%
 													</ETASimpleText>
-												</PercentContainer>
+													{/* </CounterContainer> */}
+												</AddRemoveButtonContainer>
+											</TouchableOpacity>
+											<CounterContainer>
+												<ETASimpleText
+													size={11}
+													weight={
+														Platform.OS ===
+														'ios'
+															? '600'
+															: '300'
+													}
+													color='white'
+													align='center'>
+													{addedCounter}
+												</ETASimpleText>
+											</CounterContainer>
+											<TouchableOpacity
+												onPress={() =>
+													_addCart(selectedItem)
+												}
+												style={{
+													flexDirection: 'row',
+													justifyContent: 'center',
+													alignItems: 'center',
+													marginBottom: Platform.OS === 'ios' ?  10 : 0,
+													height: 25,
+													width: 25,
+													left: 1,
+													backgroundColor: 'transparent',
+													zIndex: 1000,
+												}}>
+												<AddRemoveButtonContainer>
+													{/* <CounterContainer> */}
+													<ETASimpleText
+														size={
+															22
+														}
+														weight={
+															Platform.OS ===
+															'ios'
+																? '600'
+																: '300'
+														}
+														color='white'
+														align='center'>
+														+
+													</ETASimpleText>
+													{/* </CounterContainer> */}
+												</AddRemoveButtonContainer>
+											</TouchableOpacity>
+										</AddRemoveContainer>
+									</AddCartContainer>
+								)}
+								<CardTop>
+									<CardHeaderContainer>
+										{selectedItem.status !== '' ?  (
+											<StatusContainer>
+												<ETASimpleText
+													size={11}
+													weight={
+														Platform.OS ===
+														'ios'
+															? '400'
+															: '300'
+													}
+													color='white'
+													align='center'>
+													{selectedItem.status}
+												</ETASimpleText>
+											</StatusContainer>
+										) : null
+										}
+										
+										{
+											selectedItem.points > 0
+											?	<PointsContainer>
+													<ETASimpleText
+														size={9.5}
+														weight={
+															Platform.OS ===
+															'ios'
+																? '400'
+																: '300'
+														}
+														color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+														align='center'
+													>
+														{selectedItem.points}° pts
+													</ETASimpleText>
+												</PointsContainer>
 											:	null
 										}
-									</PriceContainer>
-									<DiscountContainer>
-										{selectedItem.discount >
-										0 ? (
-											<>
+									</CardHeaderContainer>
+									<CardTopHead>
+										<NameContainer>
+											<ETASimpleText
+												size={16}
+												weight={
+													Platform.OS ===
+													'ios'
+														? '400'
+														: '400'
+												}
+												color={
+													themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+												}
+												align='left'>
+												{selectedItem.name}
+											</ETASimpleText>
+										</NameContainer>
+										<ShopContainer>
+											<PriceContainer>
 												<ETASimpleText
-													size={
-														11
-													}
+													size={13}
 													weight={
 														Platform.OS ===
 														'ios'
@@ -885,206 +772,290 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 															: '400'
 													}
 													color={
-														themeContext.PRIMARY_TEXT_COLOR_LIGHT
+														themeContext.PRIMARY_COLOR
 													}
 													align='center'
 													style={{
-														textDecorationLine:
-															'line-through',
-														textDecorationStyle:
-															'solid',
+														zIndex: 100,
 													}}>
 													$
-													{currencySeparator(selectedItem.price.toFixed(
-														2,
-													))}
+													{currencySeparator((
+														((100 -
+															selectedItem.discount) *
+															selectedItem.price) /
+														100
+													).toFixed(2))}
 												</ETASimpleText>
-											</>
-										) : null}
-									</DiscountContainer>
-								</ShopContainer>
-							</CardTopHead>
-							{
-								selectedItem.status !== 'custom'
-								?	<ItemInfoContainer>
-										<ItemInfoRating
-											onPress={() => _onShowModal(1, 'Reviews')}
-										>
-											<ETAStarRating
-												ratings={
-													selectedItem.rating
+												{
+													selectedItem.discount > 0
+													?	<PercentContainer>
+															<ETASimpleText
+																size={
+																	9
+																}
+																weight={
+																	Platform.OS ===
+																	'ios'
+																		? '500'
+																		: '900'
+																}
+																color={
+																	themeContext.PRIMARY_TEXT_COLOR_LIGHT
+																}
+																align='left'
+																style={{
+																	zIndex: 100,
+																}}>
+																-
+																{
+																	selectedItem.discount
+																}
+
+																%
+															</ETASimpleText>
+														</PercentContainer>
+													:	null
 												}
-											/>
-										</ItemInfoRating>
-										<ItemInfoCalories
-											onPress={() => _onShowModal(2, 'Nutritional info')}
-										>
-											<ETASimpleText
-												size={8.5}
-												weight={
-													Platform.OS ===
-													'ios'
+											</PriceContainer>
+											<DiscountContainer>
+												{selectedItem.discount >
+												0 ? (
+													<>
+														<ETASimpleText
+															size={
+																11
+															}
+															weight={
+																Platform.OS ===
+																'ios'
+																	? '400'
+																	: '400'
+															}
+															color={
+																themeContext.PRIMARY_TEXT_COLOR_LIGHT
+															}
+															align='center'
+															style={{
+																textDecorationLine:
+																	'line-through',
+																textDecorationStyle:
+																	'solid',
+															}}>
+															$
+															{currencySeparator(selectedItem.price.toFixed(
+																2,
+															))}
+														</ETASimpleText>
+													</>
+												) : null}
+											</DiscountContainer>
+										</ShopContainer>
+									</CardTopHead>
+									{
+										selectedItem.status !== 'custom'
+										?	<ItemInfoContainer>
+												<ItemInfo
+													onPress={() => _onShowModal(1, 'Reviews')}
+													style={{ borderWidth: colorScheme === 'dark' ? 0.5 : 0.75}}
+												>
+													<ETAStarRating
+														ratings={
+															selectedItem.rating
+														}
+													/>
+												</ItemInfo>
+												<ItemInfo
+													onPress={() => _onShowModal(2, 'Nutritional info')}
+													style={{ borderWidth: colorScheme === 'dark' ? 0.5 : 0.75}}
+												>
+													<ETASimpleText
+														size={8.5}
+														weight={
+															Platform.OS ===
+															'ios'
+																? '500'
+																: '300'
+														}
+														color={
+															themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+														}
+														align='left'>
+														{selectedItem.calories}{' '}
+														calories
+													</ETASimpleText>
+												</ItemInfo>
+												<ItemInfo
+													onPress={() => _onShowModal(3, 'Information')}
+													style={{ borderWidth: colorScheme === 'dark' ? 0.5 : 0.75}}
+												>
+													<MaterialCommunityIcons 
+														name='information-variant'
+														size={14}
+														color={
+															themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+														}
+													/>
+													{/* <ETASimpleText
+														size={8.5}
+														weight={
+															Platform.OS ===
+															'ios'
+																? '500'
+																: '300'
+														}
+														color={
+															themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+														}
+														align='left'>
+														{selectedItem.weight} g
+													</ETASimpleText> */}
+												</ItemInfo>
+											</ItemInfoContainer>
+										:	<SummaryRow style={{ justifyContent: 'space-between' }}>
+												<ETASimpleText
+													size={13}
+													weight={
+														Platform.OS === 'ios'
 														? '500'
-														: '300'
-												}
-												color={
-													themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
-												}
-												align='left'>
-												{selectedItem.calories}{' '}
-												calories
-											</ETASimpleText>
-										</ItemInfoCalories>
-										<ItemInfoWeight
-											onPress={() => _onShowModal(3, 'Weight info')}
-										>
-											<ETASimpleText
-												size={8.5}
-												weight={
-													Platform.OS ===
-													'ios'
-														? '500'
-														: '300'
-												}
-												color={
-													themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
-												}
-												align='left'>
-												{selectedItem.weight} g
-											</ETASimpleText>
-										</ItemInfoWeight>
+														: '500'
+													}
+													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+													align='center'
+													>
+													Flavors chosen: {' '}
+												</ETASimpleText>
+												<SumamryRowFlavor style={{ backgroundColor: '#93D932' }}/>
+												<SumamryRowFlavor style={{ backgroundColor: '#EE569E' }}/>
+												<SumamryRowFlavor style={{ backgroundColor: '#694B0C' }}/>
+											</SummaryRow>
+										}
 										<ETABottomModal
-											title={modalTitle}
-											isVisible={isModalVisible}
-											onSwipeComplete={() => setisModalVisible(false)}
+											title={bottommodalTitle}
+											isVisible={isBottomModalVisible}
+											onSwipeComplete={() => setisBottomModalVisible(false)}
+											closeModal={() => setisBottomModalVisible(false)}
+											// headerRight={<AntDesign
+											// 				name='plus'
+											// 				size={16}
+											// 				color={
+											// 					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+											// 				}
+											// 			/>
+											// }
 										>
 											{
 												_contentModal(contentModal)
 											}
 										</ETABottomModal>
-										{/* <ETABottomModal
-											ref={bottomModalRef}
-											onTouchOutSide={_onCloseModal}
-										>
+										<NoteProduct 
+											title={selectedItem.name}
+											isVisible={isFancyModalVisible}
+											onSwipeComplete={() => setisFancyModalVisible(false)}
+											closeModal={() => setisFancyModalVisible(false)}
+										/>
+								</CardTop>
+								<CardBottom>
+									<ItemDetailsContainer>
+										<DetailsTextContainer>
 											<ETASimpleText
 												size={13}
 												weight={
-													Platform.OS === 'ios'
+													Platform.OS ===
+													'ios'
 													? '500'
-													: '500'
+														: '500'
 												}
-												color={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
-												align='center'
-												>
-												Flavors chosen: {' '}
+												color={
+													themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+												}
+												align='center'>
+												Details
 											</ETASimpleText>
-										</ETABottomModal> */}
-									</ItemInfoContainer>
-								:	<SummaryRow style={{ justifyContent: 'space-between' }}>
+										</DetailsTextContainer>
 										<ETASimpleText
-											size={13}
+											size={11}
 											weight={
-												Platform.OS === 'ios'
-												? '500'
-												: '500'
+												Platform.OS ===
+												'ios'
+													? '400'
+													: '300'
 											}
-											color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-											align='center'
-											>
-											Flavors chosen: {' '}
+											color={
+												themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+											}
+											align='left'>
+											{selectedItem.details}
 										</ETASimpleText>
-										<SumamryRowFlavor style={{ backgroundColor: '#93D932' }}/>
-										<SumamryRowFlavor style={{ backgroundColor: '#EE569E' }}/>
-										<SumamryRowFlavor style={{ backgroundColor: '#694B0C' }}/>
-									</SummaryRow>							}
-						</CardTop>
-						<CardBottom>
-							<ItemDetailsContainer>
-								<ETASimpleText
-									size={13}
-									weight={
-										Platform.OS ===
-										'ios'
-											? '500'
-											: '500'
-									}
-									color={
-										themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-									}
-									align='center'>
-									Details
-								</ETASimpleText>
-								<ETASimpleText
-									size={11}
-									weight={
-										Platform.OS ===
-										'ios'
-											? '400'
-											: '300'
-									}
-									color={
-										themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
-									}
-									align='left'>
-									{selectedItem.details}
-								</ETASimpleText>
-							</ItemDetailsContainer>
-							<FavoriteContainer>
-								<Touchable
-									onPress={() => _isFavorite()}
-								>
-									{/* <Ionicons
-										name={
-											isFavorite
-												? 'md-heart'
-												: 'md-heart-outline'
-										}
-										size={20}
-										color={
-											isFavorite
-												? themeContext.PRIMARY_COLOR
-												: themeContext.PRIMARY_TEXT_COLOR_LIGHT
-										}
-									/> */}
-								
-									<LottieView
-										ref={heart}
-										source={require('@assets/heart2.json')}
-										style={{ height: 35, backgroundColor: 'transparent' }}
-										colorFilters={[
-											{
-												keypath: 'button',
-												color: themeContext.PRIMARY_COLOR
-											},
-											{
-												keypath: 'Sending Loader',
-												color: '#FFF000'
-											}
-										]}
-										progress={isFavorite ? 1 : 0}
-										autoSize={true}
-									/>
-									{/* <ETASimpleText
-										size={11}
-										weight={
-											Platform.OS ===
-											'ios'
-												? '400'
-												: '300'
-										}
-										color={
-											themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
-										}
-										align='left'>
-									{JSON.stringify(isFavorite)}
-								</ETASimpleText> */}
-								</Touchable>
-								
-							</FavoriteContainer>
-						</CardBottom>
-					</Animated.View>
-				</ItemBottomContainer>
-			</ItemContainer>
+									</ItemDetailsContainer>
+									<ToolsContainer>
+										<Touchable
+											onPress={() => setisFancyModalVisible(true)}
+											disabled={addedCounter > 0 ? false : true}
+										>
+											<FontAwesome
+												name='sticky-note-o'
+												size={17}
+												color={
+													addedCounter > 0
+														? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+														: themeContext.SECONDARY_TEXT_COLOR_LIGHT
+												}
+											/>
+										</Touchable>
+										<Touchable
+											onPress={() => _isFavorite()}
+										>
+											{/* <Ionicons
+												name={
+													isFavorite
+														? 'md-heart'
+														: 'md-heart-outline'
+												}
+												size={20}
+												color={
+													isFavorite
+														? themeContext.PRIMARY_COLOR
+														: themeContext.PRIMARY_TEXT_COLOR_LIGHT
+												}
+											/> */}
+
+											<LottieView
+												ref={heart}
+												source={require('@assets/heart2.json')}
+												style={{ height: 35, backgroundColor: 'transparent', marginHorizontal: 5, top: 0.9 }}
+												colorFilters={[
+													{
+														keypath: 'button',
+														color: themeContext.PRIMARY_COLOR
+													},
+													{
+														keypath: 'Sending Loader',
+														color: '#FFF000'
+													}
+												]}
+												progress={isFavorite ? 1 : 0}
+												autoSize={true}
+											/>
+											{/* <ETASimpleText
+												size={11}
+												weight={
+													Platform.OS ===
+													'ios'
+														? '400'
+														: '300'
+												}
+												color={
+													themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+												}
+												align='left'>
+											{JSON.stringify(isFavorite)}
+										</ETASimpleText> */}
+										</Touchable>										
+									</ToolsContainer>
+								</CardBottom>
+							</Animated.View>
+						</ItemBottomContainer>
+					</ItemContainer>
 				:	null
 			}
 			<SuggestionsContainer>

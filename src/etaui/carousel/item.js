@@ -1,9 +1,9 @@
 import React from 'react'
-import {Dimensions} from 'react-native'
 import styled from 'styled-components'
-import {ETASimpleText} from '@etaui'
+import { Dimensions } from 'react-native'
+import { ETASimpleText } from '@etaui'
 
-const {width, height} = Dimensions.get('window')
+const { width, height } = Dimensions.get('window')
 
 const Root = styled.View`
 	min-height: ${props => props.sizeHeight}px;
@@ -36,7 +36,8 @@ const ETACarouselItem = ({item, sizeHeight}) => (
 	<Root
 		sizeHeight={sizeHeight}>
 		<ItemImage source={{uri: item.image}} 
-			sizeHeight={sizeHeight}/>
+			sizeHeight={sizeHeight}
+		/>
 		<ContentContainer>
 			<ETASimpleText
 				size={18}

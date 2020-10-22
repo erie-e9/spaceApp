@@ -287,7 +287,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 			],
 				"isFavorite": false,
 				"link": "",
-			"name": "Custom ice-cream",
+			"name": "Ice-cream",
 			"price": 103,
 				"rating": 5,
 				"status": "custom",

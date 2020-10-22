@@ -1,0 +1,104 @@
+{
+    "data": [
+        {
+            "_id": 11732,
+            "username": "Savannah_Langworth20",
+            "active": true,
+            "firstname": "Cali",
+            "lastname": "Kuhic",
+            "cellphone": 1234567899,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/elenadissi/128.jpg",
+            "createdAt": "23, 1, 2020"
+        },
+        {
+            "_id": 1689,
+            "username": "Howell_Runte54",
+            "active": false,
+            "firstname": "Mariano",
+            "lastname": "Ledner",
+            "cellphone": 1234567890,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/giancarlon/128.jpg",
+            "createdAt": "5, 3, 2020"
+        },
+        {
+            "_id": 2481,
+            "username": "Yvette.Feil",
+            "active": false,
+            "firstname": "Jamir",
+            "lastname": "Kemmer",
+            "cellphone": 1234567890,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/herbigt/128.jpg",
+            "createdAt": "10, 5, 2020"
+        },
+        {
+            "_id": 97707,
+            "username": "Efrain.Schinner93",
+            "active": false,
+            "firstname": "Alena",
+            "lastname": "Torphy",
+            "cellphone": 1234567890,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josemarques/128.jpg",
+            "createdAt": "13, 1, 2020"
+        },
+        {
+            "_id": 46856,
+            "username": "Eliseo.Wisoky96",
+            "active": true,
+            "firstname": "Kody",
+            "lastname": "Russel",
+            "cellphone": 1234567890,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/thibaut_re/128.jpg",
+            "createdAt": "15, 6, 2020"
+        },
+        {
+            "_id": 71554,
+            "username": "Itzel.Schiller",
+            "active": true,
+            "firstname": "Floy",
+            "lastname": "Herzog",
+            "cellphone": 1234567890,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/chris_frees/128.jpg",
+            "createdAt": "9, 2, 2020"
+        },
+        {
+            "_id": 36133,
+            "username": "Alejandrin.Lang",
+            "active": false,
+            "firstname": "Freida",
+            "lastname": "Kemmer",
+            "cellphone": 1234567890,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/akmur/128.jpg",
+            "createdAt": "29, 5, 2020"
+        },
+        {
+            "_id": 49423,
+            "username": "Cristopher.Williamson",
+            "active": false,
+            "firstname": "Reva",
+            "lastname": "Lehner",
+            "cellphone": 1234567890,
+            "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/badlittleduck/128.jpg",
+            "createdAt": "12, 6, 2020"
+        },
+        {
+            "_id": 62779,
+            "username": "Verda55",
+            "active": false,
+            "firstname": "Mack",
+            "lastname": "Douglas",
+            "cellphone": 1234567890,
+            "avatar": "hhttps://s3.amazonaws.com/uifaces/faces/twitter/rodnylobos/128.jpg",
+            "createdAt": "8, 5, 2020"
+        },
+        {
+            "_id": 6441,
+            "username": "Travis.Shanahan",
+            "active": true,
+            "firstname": "Lucy",
+            "lastname": "Gislason",
+            "cellphone": 1234567890,
+            "avatar": "hhttps://s3.amazonaws.com/uifaces/faces/twitter/herbigt/128.jpg",
+            "createdAt": "18, 1, 2020"
+        }
+    ]
+}

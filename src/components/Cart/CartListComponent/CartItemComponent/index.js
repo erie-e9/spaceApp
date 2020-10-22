@@ -11,8 +11,9 @@ import {
 	REMOVE_ITEM_FROM_CART,
 } from '@redux/cart/actions'
 import { currencySeparator } from '@functions'
+import NoteProduct from '@commons/NoteProduct'
 
-const {width} = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 const Root = styled.View`
 	flex-direction: column;
@@ -52,7 +53,7 @@ const CartItemHeadContainer = styled.View`
 	justify-content: center;
 	align-items: center;
 	flex-direction: row;
-	padding: 5px 5px 0px 5px;
+	padding: 0px 5px 0px 0px;
 	background-color: transparent;
 `
 const CartTitleContainer = styled.View`
@@ -64,18 +65,20 @@ const CardItemFunctions = styled.View`
 	flex: 0.1;
 	align-items: flex-end;
 	justify-content: center;
-	margin: 0px 10px 10px 0px;
+	margin: 0px 10px 0px 0px;
 	padding-horizontal: 2px;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	min-height: 25px;
 	min-width: 25px;
+	justify-content: center;
+	align-items: center;
 `
 const CartItemContainer = styled.View`
-	flex: 0.8;
+	flex: 1;
 	flex-direction: row;
 `
 const CartItemLeftContainer = styled.View`
@@ -86,10 +89,9 @@ const CartItemLeftContainer = styled.View`
 	background-color: transparent;
 `
 const PriceContainer = styled.View`
-	flex-direction: column;
-	justify-content: flex-start;
+	flex-direction: row;
+	justify-content: center;
 	align-items: center;
-	margin-bottom: 4px;
 	background-color: transparent;
 `
 const UnitPriceContainer = styled.View`
@@ -182,8 +184,8 @@ const RemoveCart = styled.TouchableOpacity.attrs({
 	height: 25px;
 	width: 25px;
 	right: 1px;
-	background-color: transparent;
 	z-index: 1000;
+	background-color: transparent;
 `
 const mapDispatchProps = (dispatch, props) => ({
 	addToCart: (paramItem) => {
@@ -224,6 +226,7 @@ const CartItemComponent = ({
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [addedCounter, setaddedCounter] = useState()
+	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
 
 	useEffect(() => {
 		setaddedCounter(howMany)
@@ -314,7 +317,7 @@ const CartItemComponent = ({
 										}
 										align='center'
 										style={{
-											zIndex: 100,
+											zIndex: 100
 										}}>
 										$
 										{currencySeparator(
@@ -327,6 +330,28 @@ const CartItemComponent = ({
 											).toFixed(2),
 										)}
 									</ETASimpleText>
+
+									<Touchable
+										onPress={() => setisFancyModalVisible(true)}
+										disabled={addedCounter > 0 ? false : true}
+										style={{ marginHorizontal: 5 }}
+									>
+										<FontAwesome
+											name='sticky-note'
+											size={14}
+											color={
+												addedCounter > 0
+													? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+													: themeContext.PRIMARY_TEXT_COLOR_LIGHT
+											}
+										/>
+									</Touchable>
+									<NoteProduct 
+										title={item.name}
+										isVisible={isFancyModalVisible}
+										onSwipeComplete={() => setisFancyModalVisible(false)}
+										closeModal={() => setisFancyModalVisible(false)}
+									/>
 								</PriceContainer>
 								<UnitPriceContainer>
 									<ETASimpleText
@@ -394,7 +419,7 @@ const CartItemComponent = ({
 												{/* <CounterContainer> */}
 												<ETASimpleText
 													size={
-														22
+														20
 													}
 													weight={
 														Platform.OS ===
@@ -437,7 +462,7 @@ const CartItemComponent = ({
 												{/* <CounterContainer> */}
 												<ETASimpleText
 													size={
-														22
+														20
 													}
 													weight={
 														Platform.OS ===

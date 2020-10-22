@@ -3,7 +3,7 @@ import styled, {ThemeContext } from 'styled-components/native'
 import { Platform, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import {  createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
-import { Ionicons } from '@icons'
+import { Ionicons, FontAwesome } from '@icons'
 import { fakeavatar, variables } from '@utils/constants'
 import DynamicTabButton from './DynamicTabButton'
 // import { eq, multiply, greaterThan, cond } from 'react-native-reanimated';
@@ -162,28 +162,11 @@ const ShopTabNavigator = ({ userToken }) => {
 						)
 					} else if (route.name === 'Auth') {
 						return (
-							<AvatarContainer
-								style={{
-									height: size + 3,
-									width: size + 3,
-									borderRadius: (size + 3) / 2,
-									borderWidth: 2,
-									padding: 2,
-									borderColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-									backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-								}}>
-								<Avatar
-									style={{
-										height: size - 3,
-										width: size - 3,
-										borderRadius: (size - 3) / 2,
-									}}
-									source={{
-										uri: 
-											variables.AVATAR_USER_DEFAULT,
-									}}
-								/>
-							</AvatarContainer>
+							<FontAwesome	
+								name='user-circle-o'
+								size={size - 3}
+								color={color}
+							/>
 						)
 					}
 
@@ -208,30 +191,19 @@ const ShopTabNavigator = ({ userToken }) => {
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
 						
 				},
-				// style: () => {
-				// 	if (route.name === 'Chats') {
-				// 		return {
-				// 			backgroundColor: 'red',
-				// 			// width: 'auto'
-				// 		}
-				// 	}
-				// }
 			}}>
 			{/* <ShopTab.Screen name='Analytics' component={AnalyticsScreen} /> */}
 			<ShopTab.Screen name='Menu' component={MenuNavigator} />
 			{/* <ShopTab.Screen name='Orders' component={OrdersScreen} /> */}
 			<ShopTab.Screen name='Chats' component={ChatNavigator} 
-			// tabBarOptions={{ style: { backgroundColor: 'red' } }}
 			/>
 			<ShopTab.Screen name='ItemGenerator' component={NullComponent} />
 			<ShopTab.Screen name='Cart' component={CartNavigator} />
-			{/* <ShopTab.Screen name='Favs' component={FavsScreen} /> */}
 			{userToken !== undefined && userToken !== null ? (
-				<ShopTab.Screen name='Profile' component={ProfileNavigator} />
-			) : (
 				<ShopTab.Screen name='Auth' component={WelcomeNavigator} />
+			) : (
+				<ShopTab.Screen name='Profile' component={ProfileNavigator} />
 			)}
-			{/* <ShopTab.Screen name='Profile' component={ProfileNavigator} /> */}
 		</ShopTab.Navigator>
 	)
 }

@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/cart/actions'
 
 const Root = styled.View`
-	flex: 0.6;
+	flex: 0.8;
 	justify-content: flex-start;
 	align-items: center;
 	background-color: transparent;

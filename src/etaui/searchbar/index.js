@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import {FontAwesome} from '@icons'
-import {ETASimpleText} from '@etaui'
-import {variables} from '@utils/constants'
-import { Dimensions, StyleSheet, TextInput } from 'react-native'
 import Animated, { Easing } from 'react-native-reanimated'
+import { FontAwesome } from '@icons'
+import { ETASimpleText } from '@etaui'
+import { variables } from '@utils/constants'
+import { Dimensions, StyleSheet, TextInput } from 'react-native'
 
 const { Value, timing } = Animated
 const { height, width } = Dimensions.get('window')
@@ -73,6 +73,7 @@ const EmptySearchContainer = styled.View`
 	justify-content: center;
 	align-items: center;
 	margin-top: -50%;
+	background-color: transparent
 `
 const EmptySearchImage = styled.Image`
 	width: 50px;
@@ -198,7 +199,7 @@ class ETASearchBar extends React.Component {
 							style={{width: 152, height: 30}}
 							/> */}
 							<ETASimpleText
-								size={22}
+								size={20}
 								weight={
 									Platform.OS === 'ios'
 										? 'bold'
@@ -221,61 +222,61 @@ class ETASearchBar extends React.Component {
 								color='#000'
 							/>
 						</IconButton>
-					<Animated.View
-						style={{
-							height: 50,
-							flexDirection: 'row',
-							alignItems: 'center',
-							position: 'absolute',
-							top:0,
-							left:0,
-							backgroundColor: 'white',
-							width: width - 32,
-							transform: [
-								{
-									translateX: this._input_box_translate_x
-								},
-							]
-						}}
-					>
-						<Animated.View style={{opacity: this._back_button_opacity}}>
-							<IconButtonClose
-								activeOpacity={1}
-								underlayColor={"#ccd0d5"}
-								onPress={this._onBlur}
-								style={styles.back_icon_box}
-							>
-							<FontAwesome
-								name='chevron-left'
-								size={18}
-								color='#000'
-								style={{
-									zIndex: 2000,
-								}}
-							/>
-						</IconButtonClose>
+						<Animated.View
+							style={{
+								height: 50,
+								flexDirection: 'row',
+								alignItems: 'center',
+								position: 'absolute',
+								top:0,
+								left:0,
+								backgroundColor: this.props.backgroundColorInput,
+								width: width - 32,
+								transform: [
+									{
+										translateX: this._input_box_translate_x
+									},
+								]
+							}}
+						>
+							<Animated.View style={{opacity: this._back_button_opacity}}>
+								<IconButtonClose
+									activeOpacity={1}
+									underlayColor={'#ccd0d5'}
+									onPress={this._onBlur}
+									style={styles.back_icon_box}
+								>
+								<FontAwesome
+									name='chevron-left'
+									size={16}
+									color={this.props.leftContentColor}
+									style={{
+										zIndex: 2000,
+									}}
+								/>
+							</IconButtonClose>
+							</Animated.View>
+								<TextInput
+									ref='input'
+									placeholder={this.props.placeholderText}
+									placeholderTextColor='#333'
+									clearButtonMode='always'
+									// value={keyword}
+									onChangeText={(value) => this.setState({keyword: value}) }
+									underlineColorAndroid='transparent'
+									style={{
+										flex: 1,
+										height: 40,
+										backgroundColor:
+											'#e4e6eb',
+										borderRadius: 18,
+										paddingHorizontal: 16,
+										fontSize: 15,
+										marginRight: 15,
+										color: '#333',
+									}}
+								/>
 						</Animated.View>
-							<TextInput
-								ref="input"
-								placeholder={this.props.placeholderText}
-								placeholderTextColor='#333'
-								clearButtonMode='always'
-								// value={keyword}
-								onChangeText={(value) => this.setState({keyword: value}) }
-								underlineColorAndroid='transparent'
-								style={{
-									flex: 1,
-									height: 40,
-									backgroundColor:
-										'#e4e6eb',
-									borderRadius: 18,
-									paddingHorizontal: 16,
-									fontSize: 15,
-									marginRight: 15,
-									color: '#333',
-								}}
-							/>
-					</Animated.View>
 					</HeaderInner>
 				</Header>
 			</HeaderSafeArea>
@@ -315,7 +316,7 @@ class ETASearchBar extends React.Component {
 					</EmptySearchContainer>
 					:
 					<Scroll>
-						<SearchItem style={styles.search_item}>
+						<SearchItem>
 							<FontAwesome
 								name='search'
 								size={16}

@@ -16,8 +16,6 @@ const Touchable = styled.TouchableOpacity.attrs({
 })`
 	z-index: 100;
 `
-
-// width: ${PixelRatio.getPixelSizeForLayoutSize(size)}
 const Card = styled.View`
 	height: 210px;
 	width: ${width / 2.8}px;
@@ -32,15 +30,15 @@ const Card = styled.View`
 `
 const CardTop = styled.View`
 	flex: 1.25;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	border-top-left-radius: 13px;
+	border-top-right-radius: 13px;
 	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `
 const ItemImage = styled.Image`
 	height: 100%;
 	width: 100%;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+	border-top-left-radius: 13px;
+	border-top-right-radius: 13px;
 `
 const StatusContainer = styled.View`
 	justify-content: center;
@@ -59,8 +57,8 @@ const CardBottom = styled.View`
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 13px;
+	border-bottom-right-radius: 13px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
@@ -71,6 +69,7 @@ const ShopContainer = styled.View`
 	align-items: flex-start;
 	padding-horizontal: 10px;
 	margin-bottom: 6px;
+	background-color: transparent;
 `
 const NameContainer = styled.View`
 	flex: 0.5;
@@ -83,7 +82,7 @@ const PriceContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
 	justify-content: flex-end;
-	align-items: flex-start;
+	align-items: center;
 	padding-vertical: 1.5px;
 	background-color: transparent;
 `
@@ -129,7 +128,21 @@ const PointsContainer = styled.View`
 	border-radius: 4px;
 	border-width: 0.5px;
 	border-color: white;
-	background-color: transparent;
+	background-color: rgba(255, 255, 255, 0.85);
+`
+const PointsContainer2 = styled.View`
+	justify-content: flex-end;
+	position: absolute;
+	min-height: 13px;
+	min-width: 30px;
+	bottom: 1px;
+	right: 8px;
+	z-index: 100;
+	padding-horizontal: 4px;
+	border-radius: 4px;
+	border-width: 0.75px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 
 const mapStateToProps = (state, props) => {
@@ -204,30 +217,6 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 		<Touchable key={item._id} onPress={() => _onPressItem(item)}>
 			<Card>
 				<CardTop>
-					{
-						item.points > 0
-						?	<PointsContainer>
-								<ETASimpleText
-									size={9}
-									weight={Platform.OS === 'ios' ? '400' : '400'}
-									color='white'
-									align='center'
-									style={{
-										elevation: 4,
-										textShadowColor: 'rgba(0, 0, 0, 0.7)',
-										textShadowOffset: {
-											width: 0.1,
-											height: 0.2,
-										},
-										textShadowRadius: 1.5,
-									}}
-								>
-									{item.points}° pts
-								</ETASimpleText>
-							</PointsContainer>
-						:	null
-					}
-
 					{item.status !== '' ? (
 						<StatusContainer>
 							<ETASimpleText
@@ -363,6 +352,29 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 								</>
 							) : null}
 						</DiscountContainer>
+						{
+							item.points > 0
+							?	<PointsContainer2>
+									<ETASimpleText
+										size={9}
+										weight={Platform.OS === 'ios' ? '400' : '400'}
+										color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+										align='center'
+										// style={{
+										// 	elevation: 4,
+										// 	textShadowColor: 'rgba(0, 0, 0, 0.7)',
+										// 	textShadowOffset: {
+										// 		width: 0.1,
+										// 		height: 0.2,
+										// 	},
+										// 	textShadowRadius: 1.5,
+										// }}
+									>
+										{item.points}° pts
+									</ETASimpleText>
+								</PointsContainer2>
+							:	null
+						}
 						{/* <FavoriteContainer>
 							<Touchable
 								onPress={() => _isFavorite()}
