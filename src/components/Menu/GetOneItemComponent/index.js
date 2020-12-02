@@ -8,7 +8,7 @@ import SuggestionsComponent from './SuggestionsComponent'
 import { connect } from 'react-redux'
 import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
 import { GET_DATA_REQUEST } from '@redux/menu/similarto/actions'
-import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } from '@redux/profile/favorites/actions'
 import { currencySeparator } from '@functions'
 import LinearGradient from 'react-native-linear-gradient'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -93,7 +93,7 @@ const CounterContainer = styled.View`
 `
 const AddCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -114,7 +114,7 @@ const AddRemoveButtonContainer = styled.View`
 `
 const RemoveCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -152,20 +152,8 @@ const StatusContainer = styled.View`
 	border-radius: 4px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
-const PointsContainer = styled.View`
-	justify-content: flex-end;
-	position: absolute;
-	min-height: 13px;
-	min-width: 30px;
-	right: 25px;
-	padding-horizontal: 4px;
-	border-radius: 4px;
-	border-width: 0.75px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-`
 const CardTopHead = styled.View`
-	min-height: 30px;
+	min-height: 55px;
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
@@ -189,11 +177,23 @@ const ShopContainer = styled.View`
 	background-color: transparent;
 `
 const PriceContainer = styled.View`
-	flex: 0.6;
-	flex-direction: row;
+	flex: 1.2;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 2px;
 	background-color: transparent;
+`
+const PointsContainer = styled.View`
+	justify-content: flex-end;
+	min-height: 13px;
+	min-width: 30px;
+	padding-horizontal: 4px;
+	border-radius: 4px;
+	border-width: 0.75px;
+	margin-vertical: 1px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const DiscountContainer = styled.View`
 	flex: 0.3;
@@ -205,19 +205,14 @@ const DiscountContainer = styled.View`
 	background-color: transparent;
 `
 const PercentContainer = styled.View`
-	justify-content: center;
-	align-items: center;
-	z-index: 100;
-	border-width: 0px;
-	padding-horizontal: 3px;
-	padding-vertical: 0px;
-	border-color: white;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+	justify-content: flex-end;
+	min-height: 13px;
+	min-width: 30px;
+	padding-horizontal: 4px;
+	border-radius: 4px;
+	margin-vertical: 1px;
 	margin-left: 5px;
+	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `
 const ItemInfoContainer = styled.View`
 	min-height: 10px;
@@ -349,9 +344,9 @@ const mapDispatchProps = (dispatch, props) => ({
 		})
 	},
 
-	toogleFavorite: (paramItem) => {
+	toggleFavorite: (paramItem) => {
 		dispatch({
-			type: TOOGLE_FAVORITE,
+			type: TOGGLE_FAVORITE,
 			payload: {
 				paramItem,
 			}
@@ -359,7 +354,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getDataRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toogleFavorite }) => {
+const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getDataRequest, similartodata, similarto_id, getAllFavoriteItemsRequest, favoritesdata, toggleFavorite }) => {
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
 	const colorScheme = useColorScheme()
@@ -369,10 +364,11 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const [ selectedItem, setselectedItem ] = useState(item)
 	const [ similarid, setsimilarid ] = useState(0)
+	const [ bottommodalTitle, setbottommodalTitle ] = useState('')
 	const [ isBottomModalVisible, setisBottomModalVisible ] = useState(false)
 	const [ contentModal, setcontentModal ] = useState()
-	const [ bottommodalTitle, setbottommodalTitle ] = useState('')
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
+    const [ tooglenote, settooglenote ] = useState(false)
 	const delayValue = 1500
 	const heart = useRef(false)
 	const bottomModalRef = useRef()
@@ -382,12 +378,12 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 		let newArray = [item, ...similartodata]
 		let se = newArray[similarid || 0]
 		setselectedItem(se)
+		
 	}, [similartodata, similarto_id])
 
 	useEffect(() => {
 		setsimilarid(similarto_id)
 	}, [similarto_id, item])
-
 
 	useEffect(() => {
 		if (cartdata.length > 0) {
@@ -412,16 +408,13 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 			// console.log('favoriteItem: ', favoriteItem);
 			
 			if (favoriteItem !== undefined) {
-				console.log('Favorito es');
 				setisFavorite(true)
 				// heart.current?.play(25, 169)
 			}
 			else {
-				console.log('Es no favorito');
 				setisFavorite(!true)
 				heart.current?.reset()
 			}
-			
 		}
 	}, [item, selectedItem])
 
@@ -432,6 +425,26 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 			useNativeDriver: true,
 		}).start()
 	}, [])
+
+	useEffect(() => {
+		if (cartdata !== []) {
+			settooglenote(false)
+			
+            const itemFound = cartdata.find(
+                (element) => element._id === selectedItem._id
+            )
+            if (itemFound !== undefined) {
+                if (itemFound.note !== '') {
+					settooglenote(true)
+				} else {
+					settooglenote(false)
+				}            
+            } else {
+				settooglenote(false) // undefined
+			}
+
+        }
+	}, [cartdata, selectedItem])
 
 	const translateY = animatedValueTransform.interpolate({
 		inputRange: [0, 1],
@@ -463,7 +476,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 			setisFavorite(false)
 		}
 		
-		toogleFavorite(selectedItem)
+		toggleFavorite(selectedItem)
 	}
 
 	const _onShowModal = (id, title) => {
@@ -723,26 +736,6 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 											</StatusContainer>
 										) : null
 										}
-										
-										{
-											selectedItem.points > 0
-											?	<PointsContainer>
-													<ETASimpleText
-														size={9.5}
-														weight={
-															Platform.OS ===
-															'ios'
-																? '400'
-																: '300'
-														}
-														color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-														align='center'
-													>
-														{selectedItem.points}° pts
-													</ETASimpleText>
-												</PointsContainer>
-											:	null
-										}
 									</CardHeaderContainer>
 									<CardTopHead>
 										<NameContainer>
@@ -763,6 +756,25 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 										</NameContainer>
 										<ShopContainer>
 											<PriceContainer>
+												{
+													selectedItem.points > 0
+													?	<PointsContainer>
+															<ETASimpleText
+																size={9.5}
+																weight={
+																	Platform.OS ===
+																	'ios'
+																		? '400'
+																		: '300'
+																}
+																color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+																align='center'
+															>
+																{selectedItem.points}° pts
+															</ETASimpleText>
+														</PointsContainer>
+													:	null
+												}
 												<ETASimpleText
 													size={13}
 													weight={
@@ -786,6 +798,36 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 														100
 													).toFixed(2))}
 												</ETASimpleText>
+											</PriceContainer>
+											<DiscountContainer>
+												{selectedItem.discount >
+												0 ? (
+													<>
+														<ETASimpleText
+															size={11}
+															weight={
+																Platform.OS ===
+																'ios'
+																	? '400'
+																	: '400'
+															}
+															color={
+																themeContext.PRIMARY_TEXT_COLOR_LIGHT
+															}
+															align='center'
+															style={{
+																textDecorationLine:
+																	'line-through',
+																textDecorationStyle:
+																	'solid',
+															}}>
+															$
+															{currencySeparator(selectedItem.price.toFixed(
+																2,
+															))}
+														</ETASimpleText>
+													</>
+												) : null}
 												{
 													selectedItem.discount > 0
 													?	<PercentContainer>
@@ -816,38 +858,6 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 														</PercentContainer>
 													:	null
 												}
-											</PriceContainer>
-											<DiscountContainer>
-												{selectedItem.discount >
-												0 ? (
-													<>
-														<ETASimpleText
-															size={
-																11
-															}
-															weight={
-																Platform.OS ===
-																'ios'
-																	? '400'
-																	: '400'
-															}
-															color={
-																themeContext.PRIMARY_TEXT_COLOR_LIGHT
-															}
-															align='center'
-															style={{
-																textDecorationLine:
-																	'line-through',
-																textDecorationStyle:
-																	'solid',
-															}}>
-															$
-															{currencySeparator(selectedItem.price.toFixed(
-																2,
-															))}
-														</ETASimpleText>
-													</>
-												) : null}
 											</DiscountContainer>
 										</ShopContainer>
 									</CardTopHead>
@@ -948,6 +958,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 											}
 										</ETABottomModal>
 										<NoteProduct 
+											_id={selectedItem._id}
 											title={selectedItem.name}
 											isVisible={isFancyModalVisible}
 											onSwipeComplete={() => setisFancyModalVisible(false)}
@@ -993,7 +1004,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 											disabled={addedCounter > 0 ? false : true}
 										>
 											<FontAwesome
-												name='sticky-note-o'
+												name={tooglenote ? 'sticky-note' : 'sticky-note-o'}
 												size={17}
 												color={
 													addedCounter > 0

@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETASimpleText, ETASwitch} from '@etaui'
-import {connect} from 'react-redux'
-import {TOOGLE_NOTIFICATION} from '@redux/profile/notifications/actions'
+import React, { useState, useEffect, useContext } from 'react'
+import { Platform } from 'react-native'
+import styled, { ThemeContext } from 'styled-components/native'
+import { ETASimpleText, ETASwitch } from '@etaui'
+import { connect } from 'react-redux'
+import { TOGGLE_NOTIFICATION } from '@redux/profile/notifications/actions'
 
 const Card = styled.View`
 	flex-direction: row;
@@ -36,11 +36,11 @@ const MessageContainer = styled.View`
 `
 
 const mapDispatchProps = (dispatch, props) => ({
-	toogleNotification: (paramItem) => {
-		console.log('[NotificationCardComponent] mapDispatchProps toogleNotification paramItem: ', paramItem);
+	toggleNotification: (paramItem) => {
+		console.log('[NotificationCardComponent] mapDispatchProps toggleNotification paramItem: ', paramItem);
 		
 		dispatch({
-			type: TOOGLE_NOTIFICATION,
+			type: TOGGLE_NOTIFICATION,
 			payload: {
 				paramItem
 			}
@@ -49,20 +49,20 @@ const mapDispatchProps = (dispatch, props) => ({
 
 })
 
-const NotificationCardComponent = ({ headTitle, headTitleID, message, active, toogleNotification }) => {
+const NotificationCardComponent = ({ headTitle, headTitleID, message, active, toggleNotification }) => {
 	const themeContext = useContext(ThemeContext)
-	const [switchItem, setswitchItem] = useState(active)
-	const [_switchItem, _setswitchItem] = useState()
+	const [ switchItem, setswitchItem ] = useState(active)
+	const [ _switchItem, _setswitchItem ] = useState()
 
 	const _switch = async (item) => {
 		await setswitchItem(!switchItem)
 		await _setswitchItem(item)
-		// toogleNotification(id)
+		// toggleNotification(id)
 	}
 
 	// useEffect(() => {
 	// 	setswitchItem(!switchItem)
-	// 	toogleNotification(_switchItem)
+	// 	toggleNotification(_switchItem)
 	// },[_switchItem])
 
 	return (

@@ -158,7 +158,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 									'SettingsNavigator',
 									{
 										screen:
-											'HelpScreen',
+											'ChatsSettingsScreen',
 									},
 								)
 							}>
@@ -212,7 +212,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 					</Metadata>
 				</Card>
 
-				<Card>
+				{/* <Card>
 					<Metadata>
 						<Touchable
 							onPress={() =>
@@ -251,12 +251,12 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Languages
+											Theme, Languages and Currency
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
 											// message='Change settings about email, sms or push notifications.'
-											message='Set notification, language, theme and chat settings.'
+											message='Set a default theme, language and currency settings.'
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -272,7 +272,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 							</SettingContainer>
 						</Touchable>
 					</Metadata>
-				</Card>
+				</Card> */}
 
 				<Card>
 					<Metadata>
@@ -282,7 +282,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 									'SettingsNavigator',
 									{
 										screen:
-											'HelpScreen',
+											'AppPreferencesSettingsScreen',
 									},
 								)
 							}>
@@ -314,11 +314,11 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Theme
+											App preferences
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Change theme light or dark preferences.'
+											message='Set a default theme, language and currency preferences.'
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText, ETAButtonOutline, ETAButtonFilled } from '@etaui'
 import { connect } from 'react-redux'
 import { currencySeparator } from '@functions'
+import DiscountCodeModal from '@commons/DiscountCodeModal'
 
 const {width} = Dimensions.get('window')
 
@@ -37,7 +38,7 @@ const SummaryContainer = styled.View`
 	margin-top: 3px;
 	background-color: transparent;
 `
-const DirectionContainer = styled.View`
+const DiscountCodeContainer = styled.View`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
@@ -91,6 +92,7 @@ const CartDetailsComponent = ({ data }) => {
 	const [ subtotal, setsubtotal ] = useState(0)
 	const [ shipping ] = useState(35)
 	const [ isSubmitting ] = useState(false)
+	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
 	let subtotalValue = 0
 	let sum = 0
 
@@ -242,30 +244,10 @@ const CartDetailsComponent = ({ data }) => {
 						</ETASimpleText>
 					</SummaryTotalContainer>
 				</TotalContainer>
-				<DirectionContainer>
+				<DiscountCodeContainer>
 					<ETAButtonOutline
-						title='Send to Home'
-						onPress={() =>
-							navigation.navigate(
-								'SettingsNavigator',
-								{
-									screen:
-										'MapAddressesScreen',
-									params: {
-										data: {
-											_id: 1,
-											headTitle:
-												'Home',
-											details:
-												'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
-											latitude: 24.02574090527505,
-											isDefault: true,
-											longitude: -104.67300467638253,
-										},
-									},
-								},
-							)
-						}
+						title='Discount code'
+						onPress={() => setisFancyModalVisible(true)}
 						// disabled={data.length === 0 ? true : false}
 						colorButton={
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -275,7 +257,12 @@ const CartDetailsComponent = ({ data }) => {
 						borderRadius={3}
 						borderWidth={0.3}
 					/>
-				</DirectionContainer>
+				</DiscountCodeContainer>
+				<DiscountCodeModal
+					isVisible={isFancyModalVisible}
+					onSwipeComplete={() => setisFancyModalVisible(false)}
+					closeModal={() => setisFancyModalVisible(false)}
+				/>
 				<ButtonPayContainer>
 					<ETAButtonFilled
 						title='Check out'

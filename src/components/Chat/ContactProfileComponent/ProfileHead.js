@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, Dimensions } from 'react-native'
 import { ETASimpleText, ETAProgressiveImage } from '@etaui'
+import { SharedElement } from 'react-navigation-shared-element'
 
 const {width} = Dimensions.get('window')
 const avatarSize = 90
@@ -35,12 +36,14 @@ const ProfileHeadComponent = ({ username, firstname, lastname, createdAt, avatar
 	return (
 		<Root>
             <AvatarContainer>
-                <ETAProgressiveImage
-                    thumbnailSource={{ uri: `${avatar}?w=50&buster=${Math.random()}` }}
-                    source={{ uri: `${avatar}?w=${width * 2}&buster=${Math.random()}` }}
-                    style={{ height: avatarSize, width: avatarSize, borderRadius: avatarSize / 2 }}
-                    resizeMode='cover'
-                />
+                <SharedElement id={`chat.1.avatar`}>
+                    <ETAProgressiveImage
+                        thumbnailSource={{ uri: `${avatar}?w=50&buster=${Math.random()}` }}
+                        source={{ uri: `${avatar}?w=${width * 2}&buster=${Math.random()}` }}
+                        style={{ height: avatarSize, width: avatarSize, borderRadius: avatarSize / 2 }}
+                        resizeMode='cover'
+                    />
+                </SharedElement>
             </AvatarContainer>
             <DataContainer> 
                 <ETASimpleText

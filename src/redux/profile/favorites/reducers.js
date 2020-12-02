@@ -1,6 +1,6 @@
 import {
   GET_DATA_REQUEST_SUCCESS,
-  TOOGLE_FAVORITE_SUCCESS,
+  TOGGLE_FAVORITE_SUCCESS,
 } from './actions'
 
 const initialState = {
@@ -12,12 +12,13 @@ const reducer = (state = initialState, action) => {
     case GET_DATA_REQUEST_SUCCESS:
       return { data: state.data }
 
-    case TOOGLE_FAVORITE_SUCCESS:
+    case TOGGLE_FAVORITE_SUCCESS:
+
       if (state.data.length >= 0) {
         const itemFound = state.data.find(
           (element) => element._id === action.payload.paramItem._id,
         )
-
+        console.log('reducer state: ', state);
         if (itemFound === undefined) {
           state.data.unshift({
             ...action.payload.paramItem,

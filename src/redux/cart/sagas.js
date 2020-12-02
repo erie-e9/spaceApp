@@ -8,6 +8,8 @@ import {
   REMOVE_FROM_CART_SUCCESS,
   REMOVE_ITEM_FROM_CART,
   REMOVE_ITEM_FROM_CART_SUCCESS,
+  UPDATE_NOTE,
+  UPDATE_NOTE_SUCCESS
 } from './actions'
 
 function* handler() {
@@ -15,6 +17,7 @@ function* handler() {
   yield takeEvery(ADD_TO_CART, addToCart)
   yield takeEvery(REMOVE_FROM_CART, removeFromCart)
   yield takeEvery(REMOVE_ITEM_FROM_CART, removeItemFromCart)
+  yield takeEvery(UPDATE_NOTE, updateNote)
 }
 
 function* getDataRequest(action) {
@@ -72,6 +75,20 @@ function* removeItemFromCart(action) {
     })
   } catch (error) {
     console.log('[Cart Saga] removeItemFromCart error: ', error)
+  }
+}
+
+function* updateNote(action) {
+  const { paramItem } = action.payload
+  try {
+    yield put({
+      type: UPDATE_NOTE_SUCCESS,
+      payload: {
+        paramItem,
+      },
+    })
+  } catch (error) {
+    console.log('[Cart Saga] updateNote error: ', error)
   }
 }
 

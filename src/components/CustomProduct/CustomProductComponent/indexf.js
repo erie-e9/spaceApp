@@ -146,7 +146,7 @@ const ButtonAddToCartContainer = styled.View`
 `
 const AddCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
     height: 40px;
     width: 250px;
@@ -272,7 +272,6 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
             itemlastcolor
         }
 
-        console.log(vars)
     }
 
     return (

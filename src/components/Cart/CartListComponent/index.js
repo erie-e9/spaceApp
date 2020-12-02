@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Platform } from 'react-native'
 import { ETASimpleText, ETAButtonFilled, ETALoader } from '@etaui'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useIsFocused } from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/cart/actions'
@@ -24,8 +24,8 @@ const EmptyListContainer = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const {data} = state.cart
-	return {data}
+	const { data } = state.cart
+	return { data }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
@@ -40,16 +40,18 @@ const mapDispatchProps = (dispatch, props) => ({
 const CartListComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [items, setitems] = useState(null)
+	const isFocused = useIsFocused()
+	const [ items, setitems ] = useState(null)
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setTimeout(() => {
 			setitems(data)
 		}, 1000);
-		
+
 		return () => {
-			getDataRequest()
+			isUnMounted = true
 		}
 	}, [data])
 
@@ -109,6 +111,7 @@ const CartListComponent = ({ getDataRequest, data }) => {
 									<CartItemComponent
 										item={item}
 										howMany={item.howMany}
+										note={item.note}
 									/>
 								)
 							}

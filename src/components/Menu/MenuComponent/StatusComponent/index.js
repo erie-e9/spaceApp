@@ -1,32 +1,37 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { Dimensions, Platform, Animated } from 'react-native'
+import { Dimensions, Animated } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { ETASimpleText } from '@etaui'
+import StatusItem from './item'
 import { connect } from 'react-redux'
-import { GET_DATA_REQUEST } from '@redux/menu/carousel/actions'
+import { GET_DATA_REQUEST } from '@redux/menu/status/actions'
+
+const {width} = Dimensions.get('window')
 
 const Root = styled.View`
-    flex: 1;
-    min-height: 60px;
+	min-height: 60px;
+	width: ${width}px;
+	flex-direction: column;
 	justify-content: center;
-    align-items: center;
-    margin: 3px 0px 4px 0px;
+	align-items: center;
+	padding-vertical: 4px;
+	margin: 3px 0px 4px 0px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const ItemsList = styled.FlatList``
-const Touchable = styled.TouchableWithoutFeedback.attrs({
+const ItemsList = styled.FlatList`
+	width: ${width}px;
+`
+const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
-	min-height: 20px;
 	justify-content: center;
 	align-items: center;
 `
 
 const mapStateToProps = (state) => {
-	const {data} = state.categories
-	return {data}
+	const { data } = state.status
+	return { data }
 }
 
 const mapDispatchProps = (dispatch) => ({
@@ -38,16 +43,18 @@ const mapDispatchProps = (dispatch) => ({
 	},
 })
 
-const StatusComponent = ({ getDataRequest, data }) => {
-    const themeContext = useContext(ThemeContext)
+const Status = ({ getDataRequest, data }) => {
+	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ items, setitems ] = useState([])
-	const [ animatedValueTransform] = useState(new Animated.Value(0))
-    let delayValue = 1000
-    
+	const [ animatedValueTransform ] = useState(new Animated.Value(0))
+	let delayValue = 1000
+
 	useEffect(() => {
 		getDataRequest()
 		setitems(data)
+		// setitems(data.slice(0, 11), [])
+		// setsubitems(data.slice(3, 11), [])
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -55,18 +62,18 @@ const StatusComponent = ({ getDataRequest, data }) => {
 		}).start()
 	}, [data])
 
-	const _onPress = (item) => {
+	const _onPressItem = (item) => {
 		navigation.navigate('SubMenuNavigator', {
 			screen: 'ItemsScreen',
 			params: {
-				name: item.name,
+				name: item.title
 			},
 		})
-    }
-    
-    return (
-        <Root>
-            {true ? (
+	}
+
+	return (
+		<Root>
+			{items && items.length > 0 ? (
 				<>
 					<ItemsList
 						data={items}
@@ -92,7 +99,7 @@ const StatusComponent = ({ getDataRequest, data }) => {
 								<Touchable
 									key={item._id}
 									onPress={() =>
-										_onPress(item)
+										_onPressItem(item)
 									}>
 									<Animated.View
 										style={{
@@ -102,9 +109,9 @@ const StatusComponent = ({ getDataRequest, data }) => {
 												},
 											],
 										}}>
-										{/* <HeadItem
-											itemcat={item}
-										/> */}
+										<StatusItem
+											item={item}
+										/>
 									</Animated.View>
 								</Touchable>
 							)
@@ -112,13 +119,12 @@ const StatusComponent = ({ getDataRequest, data }) => {
 					/>
 				</>
 			) : null}
-        </Root>
-    )
+		</Root>
+	)
 }
 
-const StatusComponentConnect = connect(
-	mapStateToProps,
-	mapDispatchProps,
-)(StatusComponent)
+const StatusConnect = connect(
+mapStateToProps,
+mapDispatchProps)(Status)
 
-export default React.memo(StatusComponentConnect)
+export default StatusConnect

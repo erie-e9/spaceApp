@@ -7,6 +7,11 @@ import { ETASimpleText } from '@etaui'
 
 const { height, width } = Dimensions.get('window')
 
+const Container = styled.View`
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+`
 const CardContainer = styled.View`
     min-height: 200px;
     width: ${width - 20}px;
@@ -42,7 +47,7 @@ const NameContainer = styled.View`
 `
 const HeaderRight = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	height: 25px;
 	width: 25px;
@@ -82,7 +87,6 @@ const ETABottomModal = memo(({ children, onTouchOutSide, onSwipeComplete, isVisi
             testID={'modal'}
             isVisible={isVisible}
             onSwipeComplete={onSwipeComplete}
-            // animationInTiming={300}
             swipeDirection='down'
             backdropColor={colorSchema === 'dark' ? 'rgba(0, 0, 0, 0.55)' : 'rgba(0, 0, 0, 0.3)'}
             backdropOpacity={0.7}
@@ -100,41 +104,43 @@ const ETABottomModal = memo(({ children, onTouchOutSide, onSwipeComplete, isVisi
             {
                 renderOutsideTouchable()
             }
-            <CardContainer>
-                <DragView />
-                <Header>
-                    <NameContainer>
-                        <ETASimpleText
-                            size={16}
-                            weight={
-                                Platform.OS ===
-                                'ios'
-                                    ? '400'
-                                    : '400'
-                            }
-                            color={
-                                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-                            }
-                            align='left'>
-                            {title}
-                        </ETASimpleText>
-                    </NameContainer>
-                    <HeaderRight
-                        onPress={closeModal}
-                    >
-                        <Ionicons
-                            name='md-close'
-                            size={18}
-                            color={
-                                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-                            }
-                        />
-                    </HeaderRight>
-                </Header>
-                <ChildrenContainer>
-                    {children}
-                </ChildrenContainer>
-            </CardContainer>
+            <Container>
+                <CardContainer>
+                    <DragView />
+                    <Header>
+                        <NameContainer>
+                            <ETASimpleText
+                                size={16}
+                                weight={
+                                    Platform.OS ===
+                                    'ios'
+                                        ? '400'
+                                        : '400'
+                                }
+                                color={
+                                    themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                                }
+                                align='left'>
+                                {title}
+                            </ETASimpleText>
+                        </NameContainer>
+                        <HeaderRight
+                            onPress={closeModal}
+                        >
+                            <Ionicons
+                                name='md-close'
+                                size={18}
+                                color={
+                                    themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                                }
+                            />
+                        </HeaderRight>
+                    </Header>
+                    <ChildrenContainer>
+                        {children}
+                    </ChildrenContainer>
+                </CardContainer>
+            </Container>
         </Modal>
     )
 })

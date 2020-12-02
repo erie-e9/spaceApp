@@ -16,7 +16,7 @@ const HeadLeftContainer = styled.View`
 `
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	// hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	// hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -42,7 +42,7 @@ const NameContainer = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })``
 const AvatarContainer = styled.View`
 	height: 37px;
@@ -61,7 +61,7 @@ const ChatItemScreen = ({navigation, route}) => {
 	const { paramData, user } = route.params
 	const themeContext = useContext(ThemeContext)
 	const fullname = `${user.firstname} ${user.lastname}`
-	console.log('ChatItemScreen: ', {paramData})
+	// console.log('ChatItemScreen: ', {paramData})
 
 	const _navigationContactProfile = () => {
 		navigation.navigate('ChatItemNavigator', { 

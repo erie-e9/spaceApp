@@ -9,13 +9,13 @@ import { AntDesign } from '@icons'
 const {width} = Dimensions.get('window')
 
 const Root = styled.View`
-  width: ${width - 30}px;
-  justify-content: center;
-  align-self: center;
-  border-radius: 15px
-  padding-vertical: 5px;
-  margin-bottom: 7px;
-  background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	width: ${width - 20}px;
+	justify-content: center;
+	align-self: center;
+	border-radius: 15px
+	padding-vertical: 5px;
+	margin-bottom: 7px;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const HeadContainer = styled.View`
 	flex: 1;
@@ -34,7 +34,7 @@ const ListContainer = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -45,7 +45,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 const MenuList = ({ data, title }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const items = React.useMemo(() => data.slice(0, 2), []) // slice: only first 4 items
+	const items = React.useMemo(() => data.slice(0, 2), []) // slice: only first 2 items
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
@@ -64,12 +64,21 @@ const MenuList = ({ data, title }) => {
 		}).start()
 	}, [])
 
+	// const _onPressAllItems = (item) => {
+	// 	navigation.navigate('SubMenuNavigator', {
+	// 		screen: 'AllItemsScreen',
+	// 		params: {
+	// 			name: item,
+	// 			allitems: data,
+	// 		},
+	// 	})
+	// }
+
 	const _onPressAllItems = (item) => {
 		navigation.navigate('SubMenuNavigator', {
-			screen: 'AllItemsScreen',
+			screen: 'ItemsScreen',
 			params: {
-				name: item,
-				allitems: data,
+				name: item
 			},
 		})
 	}

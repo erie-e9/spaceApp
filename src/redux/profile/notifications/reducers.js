@@ -1,4 +1,4 @@
-import { GET_DATA_REQUEST_SUCCESS, TOOGLE_NOTIFICATION_SUCCESS } from './actions'
+import { GET_DATA_REQUEST_SUCCESS, TOGGLE_NOTIFICATION_SUCCESS } from './actions'
 
 const initialState = {
   data: [],
@@ -10,8 +10,8 @@ const reducer = (state = initialState, action) => {
       const { data } = action.payload
       return { data }
       // return { data: state.data }
-    case TOOGLE_NOTIFICATION_SUCCESS:
-      console.log('[reducer] TOOGLE_NOTIFICATION_SUCCESS paramItem: ', paramItem);
+    case TOGGLE_NOTIFICATION_SUCCESS:
+      console.log('[reducer] TOGGLE_NOTIFICATION_SUCCESS paramItem: ', paramItem);
       if (state.data.length >= 0) {
         const itemFound = state.data.find(
           (element) => element._id === action.payload.paramItem._id,

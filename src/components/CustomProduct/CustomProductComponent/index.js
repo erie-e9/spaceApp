@@ -229,7 +229,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
 		// await _setswitchItem(item)
-		// toogleNotification(id)
+		// toggleNotification(id)
 	}
 
     const SwitchIconComponent = ({ size, itemfirstcolor, itemsecondcolor, itemlastcolor, firststrokeColor, secondstrokeColor, laststrokeColor }) => {

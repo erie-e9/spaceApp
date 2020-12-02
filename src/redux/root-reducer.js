@@ -5,8 +5,12 @@ import { reducer as similartoReducer } from './menu/similarto/reducers'
 import { reducer as categoriesReducer } from './menu/categories/reducers'
 import { reducer as itemsbycategoryReducer } from './menu/categories/itemsbycategory/reducers'
 import { reducer as carouselReducer } from './menu/carousel/reducers'
+import { reducer as statusReducer } from './menu/status/reducers'
+import { reducer as itemsbystatusReducer } from './menu/status/itemsbystatus/reducers'
 import { reducer as promotionsReducer } from './menu/promotions/reducers'
 import { reducer as sectionsReducer } from './menu/sections/reducers'
+import { reducer as filtersReducer } from './menu/filters/reducers'
+import { reducer as getoneItemReducer } from './menu/getoneItem/reducers'
 import { reducer as cartReducer } from './cart/reducers'
 import { reducer as clientsmessagesReducer } from './chats/clients/messages/reducers'
 import { reducer as clientscontactlistReducer } from './chats/clients/contactlist/reducers'
@@ -16,6 +20,7 @@ import { reducer as addressesReducer } from './profile/addresses/reducers'
 import { reducer as favoritesReducer } from './profile/favorites/reducers'
 import { reducer as notificationsReducer } from './profile/notifications/reducers'
 import { reducer as branchofficesReducer } from './profile/branchoffices/reducers'
+import { reducer as processingordersReducer } from './profile/processingorders/reducers'
 import { reducer as previousordersReducer } from './profile/previousorders/reducers'
 import { reducer as paymentmethodsReducer } from './profile/paymentmethods/reducers'
 import { reducer as faqsReducer } from './profile/help/faqs/reducers'
@@ -29,8 +34,12 @@ const reducer = combineReducers({
   categories: categoriesReducer,
   itemsbycategory: itemsbycategoryReducer,
   carousel: carouselReducer,
+  status: statusReducer,
+  itemsbystatus: itemsbystatusReducer,
   promotions: promotionsReducer,
   sections: sectionsReducer,
+  filters: filtersReducer,
+  getoneItem: getoneItemReducer,
   cart: cartReducer,
   clientsmessages: clientsmessagesReducer,
   clientscontactlist: clientscontactlistReducer,
@@ -40,6 +49,7 @@ const reducer = combineReducers({
   favorites: favoritesReducer,
   notifications: notificationsReducer,
   branchoffices: branchofficesReducer,
+  processingorders: processingordersReducer,
   previousorders: previousordersReducer,
   paymentmethods: paymentmethodsReducer,
   faqs: faqsReducer,

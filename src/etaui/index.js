@@ -24,8 +24,10 @@ import ETALoader from '@etaui/loader'
 import ETARadio from '@etaui/radio'
 import ETAProgressiveImage from '@etaui/progressiveimage'
 import ETABottomModal from '@etaui/modals/bottom'
+import ETATopModal from '@etaui/modals/top'
 import ETAFancyModal from '@etaui/modals/fancy'
 import ETAAuthSocialmedia from '@etaui/authsocialmedia'
+import ETAThemePicker from '@etaui/themepicker'
 
 export {
   ETAButtonOutline,
@@ -54,6 +56,8 @@ export {
   ETARadio,
   ETAProgressiveImage,
   ETABottomModal,
+  ETATopModal,
   ETAFancyModal,
-  ETAAuthSocialmedia
+  ETAAuthSocialmedia,
+  ETAThemePicker
 }

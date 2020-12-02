@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
 import { Ionicons } from '@icons'
 import { connect } from 'react-redux'
-import { TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { TOGGLE_FAVORITE } from '@redux/profile/favorites/actions'
 import { currencySeparator, truncateString } from '@functions'
 import LottieView from 'lottie-react-native'
 
@@ -66,7 +66,7 @@ const CardItemFunctions = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	min-height: 25px;
 	min-width: 25px;
@@ -120,7 +120,7 @@ const AddFavoriteContainer = styled.View`
 `
 const AddFavorite = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	height: 30px;
@@ -133,9 +133,9 @@ const AddFavorite = styled.TouchableOpacity.attrs({
 `
 
 const mapDispatchProps = (dispatch, props) => ({
-	toogleFavorite: (paramItem) => {
+	toggleFavorite: (paramItem) => {
 		dispatch({
-			type: TOOGLE_FAVORITE,
+			type: TOGGLE_FAVORITE,
 			payload: {
 				paramItem,
 			}
@@ -143,7 +143,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const FavoriteItemComponent = ({ toogleFavorite, item, howMany }) => {
+const FavoriteItemComponent = ({ toggleFavorite, item, howMany }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ addedCounter, setaddedCounter ] = useState()
@@ -154,7 +154,7 @@ const FavoriteItemComponent = ({ toogleFavorite, item, howMany }) => {
 	}, [howMany])
 
 	const _removeFromFavorite = async (paramItem) => {
-		toogleFavorite(paramItem)
+		toggleFavorite(paramItem)
 	}
 
 	const _onPressItem = (propitem) => {

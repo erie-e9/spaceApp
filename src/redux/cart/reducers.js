@@ -3,6 +3,7 @@ import {
   ADD_TO_CART_SUCCESS,
   REMOVE_FROM_CART_SUCCESS,
   REMOVE_ITEM_FROM_CART_SUCCESS,
+  UPDATE_NOTE_SUCCESS
 } from './actions'
 
 const initialState = {
@@ -12,7 +13,6 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_DATA_REQUEST_SUCCESS:
-      // console.log('state.data:', state.data);
       return { data: state.data }
 
     case ADD_TO_CART_SUCCESS:
@@ -26,11 +26,12 @@ const reducer = (state = initialState, action) => {
         } else {
           state.data.unshift({
             ...action.payload.paramItem,
+            note: '',
             howMany: 1,
           })
         }
       }
-
+      
       return { data: [...state.data] }
 
     case REMOVE_FROM_CART_SUCCESS:
@@ -79,6 +80,18 @@ const reducer = (state = initialState, action) => {
 
       return { data: [...state.data] }
 
+    case UPDATE_NOTE_SUCCESS:
+      if (state.data.length >= 0) {
+        const itemFound = state.data.find(
+          (element) => element._id === action.payload.paramItem._id,
+        )
+
+        if (itemFound !== undefined) {
+          itemFound.note = action.payload.paramItem.note
+        }
+      }
+
+      return { data: [...state.data] }
     default:
       return state
   }

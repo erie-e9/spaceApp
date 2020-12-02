@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { useColorScheme } from 'react-native'
-import TextInputMask from 'react-native-text-input-mask'
 
 const TextInputContainer = styled.View`
 	height: ${(props) => (props.height ? props.height : 0.3)}px;
@@ -19,7 +18,7 @@ const TextInputContainer = styled.View`
 	border-radius: 3px;
 	background-color: transparent;
 `
-const TextInput = styled(TextInputMask).attrs({})`
+const TextInput = styled.TextInput`
 	height: ${(props) => (props.height ? props.height : 40)}px;
 	width: ${(props) => (props.width ? props.width : 300)}px;
 	font-size: ${(props) => (props.textsize ? props.textsize : 14)}px;
@@ -72,7 +71,7 @@ const ETATextInputOutLine = ({
 }) => {
 	const themeContext = useContext(ThemeContext)
 	const colorSchema = useColorScheme()
-
+	
 	return (
 		<>
 			<TextInputContainer

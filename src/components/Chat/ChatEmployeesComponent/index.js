@@ -20,7 +20,7 @@ const Root = styled.View`
 const ChatsFlatList = styled.FlatList``
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })``
 const SubHeadContainer = styled.View`
 	width: ${width}px;
@@ -59,8 +59,15 @@ const ChatComponent = ({ getDataRequest, data }) => {
 	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
-		setitems(data)
+		setTimeout(() => {
+			setitems(data)
+		}, 1000);
+
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 	
 	const headerHeight = scrollYAnimatedValue.interpolate({
@@ -103,7 +110,7 @@ const ChatComponent = ({ getDataRequest, data }) => {
 	return (
 		<Root>
 			{
-				items
+				items !== null
 				?	<>
 						<ChatsFlatList
 							contentContainerStyle={{
@@ -151,7 +158,7 @@ const ChatComponent = ({ getDataRequest, data }) => {
 								</ButtonContainer>
 
 								<ButtonContainer 
-									onPress={() => console.log('test')}
+									onPress={() => navigation.navigate('SettingsNavigator', {screen: 'ChatsSettingsScreen'})}
 								>
 									<MaterialIcons name='settings' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
 								</ButtonContainer>

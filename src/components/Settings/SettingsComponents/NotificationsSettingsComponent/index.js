@@ -18,7 +18,7 @@ const NotificationSettingContainer = styled.View`
 	padding: 0px 15px;
 	background-color: transparent;
 `
-const View = styled.View``
+const ItemContainer = styled.View``
 
 const mapStateToProps = (state, props) => {
 	const { data } = state.notifications
@@ -51,7 +51,7 @@ const NotificationsSettingsComponent = ({ getDataRequest, data }) => {
 							data.map((element, i) => {
 								// console.log('element: ', element);
 								return (
-									<View key={i}>
+									<ItemContainer key={i}>
 										<ETASimpleText
 											size={15}
 											weight={Platform.OS === 'ios' ? '400' : '800'}
@@ -73,7 +73,7 @@ const NotificationsSettingsComponent = ({ getDataRequest, data }) => {
 												)
 											})
 										}
-									</View >
+									</ItemContainer>
 								)
 							})
 						}

@@ -12,7 +12,7 @@ export const variables = {
   COMPANYINSTAGRAM: `https://www.instagram.com/${SLUG}`,
   COMPANYPHONE1: '5620222699',
   COMPANYPHONE2: '6181092045',
-  COMPANYWHATSAPP: '6181092045',
+  COMPANYWHATSAPP: '526181092045',
   COMPANYMAIL: `help@${SLUG}.com`,
   AVATAR_USER_DEFAULT:
 		'https://www.researchgate.net/profile/Maria_Monreal2/publication/315108532/figure/fig1/AS:472492935520261@1489662502634/Figura-2-Avatar-que-aparece-por-defecto-en-Facebook.png',

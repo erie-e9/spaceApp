@@ -1,0 +1,103 @@
+{
+	"data": [
+		{
+			"_id": 1,
+			"title": "Artesanals",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://minimalistbaker.com/wp-content/uploads/2016/05/THE-BEST-Vegan-Chocolate-Ice-Cream-SO-creamy-rich-and-easy-to-make-vegan-glutenfree-icecream-dessert-chocolate-recipe-summer.jpg"
+		},
+		{
+			"_id": 2,
+			"title": "Alcohol",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://minimalistbaker.com/wp-content/uploads/2015/09/AMAZING-5-Ingredient-Vanilla-Coconut-Ice-Cream-Incredibly-simple-perfectly-sweet-INSANELY-creamy-vegan-glutenfree-icecream-dessert-recipe-vanilla-coconuticecream-coconut.jpg"
+		},
+		{
+			"_id": 3,
+			"title": "No sugar",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://i.pinimg.com/originals/b8/3d/cb/b83dcb5493c562e190d1d8f2c4257e1c.jpg"
+		},
+		{
+			"_id": 4,
+			"title": "Exotics",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://i.pinimg.com/736x/a0/60/8d/a0608d4d8be12e5d3bc928337f2f8b34.jpg"
+		},
+		{
+			"_id": 5,
+			"title": "Limited edition",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://minimalistbaker.com/wp-content/uploads/2015/02/Sea-Salt-Caramel-Coconut-Ice-Cream-SQUARE.jpg"
+		},
+		{
+			"_id": 6,
+			"title": "New name",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://www.sweetestmenu.com/wp-content/uploads/2019/07/rockyroad8a.jpg"
+		},
+		{
+			"_id": 7,
+			"title": "Diabetics",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://bitzngiggles.com/wp-content/uploads/2020/02/Rainbow-Ice-Cream-14-copy.jpg"
+		},
+		{
+			"_id": 8,
+			"title": "Free gluten",
+			"titleColor": "#BB914B",
+			"description": "Description",
+			"descriptionColor": "#BB914B",
+			"active": true,
+			"image": "https://minimalistbaker.com/wp-content/uploads/2015/07/AMAZING-Creamy-Mango-Raspberry-COCONUT-Sorbet-vegan-glutenfree-recipe-summer-sorbet-minimalistbaker.jpg"
+		},
+		{
+			"_id": 9,
+			"title": "Animals insp.",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-190611-coconut-ice-cream-009-portrait-pf-1561393438.png"
+		},
+		{
+			"_id": 10,
+			"title": "Mixed",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://bitzngiggles.com/wp-content/uploads/2020/02/Rainbow-Ice-Cream-14-copy.jpg"
+		},
+		{
+			"_id": 11,
+			"title": "Vegans",
+			"titleColor": "#FFFFFF",
+			"description": "Description",
+			"descriptionColor": "#FFFFFF",
+			"active": true,
+			"image": "https://www.tasteandtellblog.com/wp-content/uploads/2015/06/Salted-Caramel-Ice-Cream-Fudge-Toasted-Coconut-tasteandtellblog.com-2.jpg"
+		}
+	]
+}

@@ -6,7 +6,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_chocolateSeaSaltCaramel_thumb.png",
 			"link": "",
 			"isNew": true,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 2,
@@ -14,7 +14,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_coldBrewExpressoChip_thumb.png",
 			"link": "",
 			"isNew": false,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 3,
@@ -22,7 +22,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_peanutButterChip_thumb.png",
 			"link": "",
 			"isNew": true,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 4,
@@ -30,7 +30,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_strawberryWaffleCone_thumb.png",
 			"link": "",
 			"isNew": false,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 5,
@@ -38,7 +38,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD_WebPintCurl_HnySaltCarmAlmond_553x562.jpg",
 			"link": "",
 			"isNew": false,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 6,
@@ -46,7 +46,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD_WebPintCurl_TrioLemonRaspWhtChoc_553x562_0.jpg",
 			"link": "",
 			"isNew": true,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 7,
@@ -54,7 +54,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/fl_IceCream_GreenTea.jpg",
 			"link": "",
 			"isNew": true,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 8,
@@ -62,7 +62,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/HD-heaven_peanutButterChip_thumb.jpg",
 			"link": "",
 			"isNew": false,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 9,
@@ -70,7 +70,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/fl_IceCream_Strawberry.jpg",
 			"link": "",
 			"isNew": false,
-			"status": true
+			"active": true
 		},
 		{
 			"_id": 10,
@@ -78,7 +78,7 @@
 			"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/thumbnail-image/Thumb-Sept-2019-Sprts_IrshCrm.png",
 			"link": "",
 			"isNew": true,
-			"status": true
+			"active": true
 		}
 	]
 }

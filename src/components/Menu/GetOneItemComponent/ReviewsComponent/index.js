@@ -2,13 +2,14 @@ import React, { useState, useEffect, useContext, memo, useRef, createRef } from 
 import styled, { ThemeContext } from 'styled-components'
 import { ETASimpleText, ETAStarRating, ETALoader } from '@etaui'
 import { connect } from 'react-redux'
-import { GET_DATA_REQUEST } from '@redux/cart/actions'
+import { GET_DATA_REQUEST_REVIEWS } from '@redux/menu/getoneItem/actions'
 
 const Root = styled.View`
 	flex: 1;
     width: 100%;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
+	align-items: flex-start;
 	background-color: transparent;
 `
 const ListItems = styled.FlatList``
@@ -20,17 +21,20 @@ const EmptyListContainer = styled.View`
 	margin-top: 20px;
 	background-color: transparent;
 `
-const ReviewComponent = styled.View``
+const ReviewComponent = styled.View`
+	justify-content: flex-start;
+	align-items: flex-start;
+`
 
 const mapStateToProps = (state, props) => {
-	const {data} = state.cart
-	return {data}
+	const { data } = state.getoneItem
+	return { data }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
 	getDataRequest: () => {
 		dispatch({
-			type: GET_DATA_REQUEST,
+			type: GET_DATA_REQUEST_REVIEWS,
 			payload: {},
 		})
 	},
@@ -42,8 +46,7 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
     
     useEffect(() => {
 		getDataRequest()
-        // setitems(data)
-		
+		setitems(data)
 		return () => {
 			getDataRequest()
 		}
@@ -51,15 +54,6 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
 
     return (
         <Root>
-            {
-                totalRaitings !== 0
-                ?   <ETAStarRating
-                        ratings={
-                            totalRaitings
-                        }
-                    />
-                :   null
-            }
             {
 				items !== null
 				?	<ListItems
@@ -92,10 +86,26 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
 						)}
 						renderItem={({item, i}) => {
                             return (
-                                <ReviewComponent
-                                    // item={item}
-                                    // howMany={item.howMany}
-                                />
+								<ReviewComponent>
+									<ETAStarRating
+										ratings={
+											item.rating
+										}
+									/>
+									<ETASimpleText
+										size={14}
+										weight={
+											Platform.OS === 'ios'
+												? '400'
+												: '300'
+										}
+										color={
+											themeContext.PRIMARY_TEXT_COLOR_LIGHT
+										}
+										align='left'>
+										{item.review}
+									</ETASimpleText>
+								</ReviewComponent>
                             )
 						}}
 					/>

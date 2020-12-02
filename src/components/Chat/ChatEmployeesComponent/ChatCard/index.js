@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 import {ETAAvatar} from '@etaui'
 import CardHeader from './cardHeader'
 import CardBody from './cardBody'
+import { variables } from '@utils/constants'
 
 const Root = styled.View`
 	flex-direction: row;
@@ -32,7 +33,8 @@ const AvatarContainer = styled.View`
 const ChatCard = ({ text, employee, createdAt, active }) => (
 	<Root>
 		<AvatarContainer active={active}>
-			<ETAAvatar image={employee.avatar} size='middle' />
+			{/* <ETAAvatar image={employee.avatar ? employee.avatar : variables.AVATAR_USER_DEFAULT} size='middle' /> */}
+			<ETAAvatar image={variables.AVATAR_USER_DEFAULT} size='middle' />
 		</AvatarContainer>
 		<ContactContainer>
 			<CardHeader {...employee} createdAt={createdAt} />

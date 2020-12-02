@@ -4,10 +4,10 @@ import { ThemeProvider } from 'styled-components'
 import { NavigationContainer } from '@react-navigation/native'
 import Navigation from '@components/commons/Navigation'
 import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants'
-import {enableScreens} from 'react-native-screens'
+import { enableScreens } from 'react-native-screens'
 import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './src/store'
-import OneSignal from 'react-native-onesignal';
+import OneSignal from 'react-native-onesignal'
 
 enableScreens()
 

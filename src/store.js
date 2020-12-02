@@ -8,8 +8,12 @@ import { handler as similartoSaga } from '@redux/menu/similarto/sagas'
 import { handler as categoriesSaga } from '@redux/menu/categories/sagas'
 import { handler as itemsbycategorySaga } from '@redux/menu/categories/itemsbycategory/sagas'
 import { handler as carouselSaga } from '@redux/menu/carousel/sagas'
+import { handler as statusSaga } from '@redux/menu/status/sagas'
+import { handler as filtersSaga } from '@redux/menu/filters/sagas'
+import { handler as itemsbystatusSaga } from '@redux/menu/status/itemsbystatus/sagas'
 import { handler as promotionsSaga } from '@redux/menu/promotions/sagas'
 import { handler as sectionsSaga } from '@redux/menu/sections/sagas'
+import { handler as getoneItemSaga } from '@redux/menu/getoneItem/sagas'
 import { handler as cartSaga } from '@redux/cart/sagas'
 import { handler as clientsmessagesSaga } from '@redux/chats/clients/messages/sagas'
 import { handler as clientscontactlistSaga } from '@redux/chats/clients/contactlist/sagas'
@@ -19,6 +23,7 @@ import { handler as addressesSaga } from '@redux/profile/addresses/sagas'
 import { handler as favoritesSaga } from '@redux/profile/favorites/sagas'
 import { handler as notificationsSaga } from '@redux/profile/notifications/sagas'
 import { handler as branchofficesSaga } from '@redux/profile/branchoffices/sagas'
+import { handler as processingordersSaga } from '@redux/profile/processingorders/sagas'
 import { handler as previousordersSaga } from '@redux/profile/previousorders/sagas'
 import { handler as paymentmethodsSaga } from '@redux/profile/paymentmethods/sagas'
 import { handler as faqsSaga } from '@redux/profile/help/faqs/sagas'
@@ -35,7 +40,11 @@ sagaMiddleware.run(categoriesSaga)
 sagaMiddleware.run(itemsbycategorySaga)
 sagaMiddleware.run(promotionsSaga)
 sagaMiddleware.run(sectionsSaga)
+sagaMiddleware.run(getoneItemSaga)
 sagaMiddleware.run(carouselSaga)
+sagaMiddleware.run(statusSaga)
+sagaMiddleware.run(filtersSaga)
+sagaMiddleware.run(itemsbystatusSaga)
 sagaMiddleware.run(cartSaga)
 sagaMiddleware.run(clientsmessagesSaga)
 sagaMiddleware.run(clientscontactlistSaga)
@@ -45,6 +54,7 @@ sagaMiddleware.run(addressesSaga)
 sagaMiddleware.run(favoritesSaga)
 sagaMiddleware.run(notificationsSaga)
 sagaMiddleware.run(branchofficesSaga)
+sagaMiddleware.run(processingordersSaga)
 sagaMiddleware.run(previousordersSaga)
 sagaMiddleware.run(paymentmethodsSaga)
 sagaMiddleware.run(faqsSaga)

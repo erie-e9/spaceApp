@@ -3,13 +3,13 @@ import data from '@utils/notifications.json'
 import {
   GET_DATA_REQUEST,
   GET_DATA_REQUEST_SUCCESS,
-  TOOGLE_NOTIFICATION,
-  TOOGLE_NOTIFICATION_SUCCESS,
+  TOGGLE_NOTIFICATION,
+  TOGGLE_NOTIFICATION_SUCCESS,
 } from './actions'
 
 function* handler() {
   yield takeEvery(GET_DATA_REQUEST, getDataRequest)
-  yield takeEvery(TOOGLE_NOTIFICATION, toogleNotification)
+  yield takeEvery(TOGGLE_NOTIFICATION, toggleNotification)
 }
 
 function* getDataRequest(action) {
@@ -25,18 +25,18 @@ function* getDataRequest(action) {
   }
 }
 
-function* toogleNotification(action) {
+function* toggleNotification(action) {
   const { paramItem } = action.payload
   try {
     yield put({
-      type: TOOGLE_NOTIFICATION_SUCCESS,
+      type: TOGGLE_NOTIFICATION_SUCCESS,
       payload: {
         data: [],
         paramItem,
       },
     })
   } catch (error) {
-    console.log('[Notifications Saga] toogleNotification error: ', error)
+    console.log('[Notifications Saga] toggleNotification error: ', error)
   }
 }
 

@@ -36,6 +36,19 @@ const SummaryRow = styled.View`
     margin-vertical: 1px;
     background-color: transparent;
 `
+const DirectionContainer = styled.View`
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 40px;
+	margin: 20px 0px 0px 0px;
+	padding-vertical: 5px;
+	padding-horizontal: 10px;
+	border-width: 0px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: transparent;
+`
 
 const PaymentComponent = () => {
     const themeContext = useContext(ThemeContext)
@@ -102,6 +115,40 @@ const PaymentComponent = () => {
                         align='left'>
                         2 Delivery information
                     </ETASimpleText>
+                    <DirectionContainer>
+                        <ETAButtonOutline
+                            title='Send to Home'
+                            onPress={() =>
+                                navigation.navigate(
+                                    'SettingsNavigator',
+                                    {
+                                        screen:
+                                            'MapAddressesScreen',
+                                        params: {
+                                            data: {
+                                                _id: 1,
+                                                headTitle:
+                                                    'Home',
+                                                details:
+                                                    'Josue Junction, Ohio, 12661 42616-7741, Liechtenstein.',
+                                                latitude: 24.02574090527505,
+                                                isDefault: true,
+                                                longitude: -104.67300467638253,
+                                            },
+                                        },
+                                    },
+                                )
+                            }
+                            // disabled={data.length === 0 ? true : false}
+                            colorButton={
+                                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                            }
+                            padding={10}
+                            width={240}
+                            borderRadius={3}
+                            borderWidth={0.3}
+                        />
+                    </DirectionContainer>
                 </SummaryCard>
 
                 <SummaryCard>

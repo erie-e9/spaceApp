@@ -1,36 +1,45 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {TouchableWithoutFeedback} from 'react-native'
-import {ETASimpleText} from '@etaui'
+import React, { useState, useEffect, useContext, useRef, memo } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Animated, Easing, TouchableWithoutFeedback } from 'react-native'
+import { ETASimpleText } from '@etaui'
 
 const Root = styled.View`
-	flex: 1;
+	min-height: 20px;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	margin-vertical: 5px;
+	margin-vertical: 0px;
+	background-color: transparent;
 `
 const CheckBox = styled.View`
 	height: 20px;
 	width: 20px;
-	border-width: 2px;
-	margin: 10px;
+	border-width: 1.5px;
+	margin: 0px 3px;
 	border-radius: 3px;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent;
+`
+const CheckBoxIndicator = styled.View`
+	height: 14px;
+	width: 14px;
+	border-radius: 2px;
+	background-color: transparent;
 `
 const TitleContainer = styled.View`
-	margin-vertical: 10px;
 	justify-content: center;
 	align-items: center;
 `
-const Touchable = styled.TouchableOpacity.attrs({
-	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
-})`
-	height: 40px;
-	padding: 10px;
+const Touchable = styled.TouchableOpacity`
+	min-height: 30px;
+	padding: 0px 10px;
+	justify-content: center;
+	align-items: center;
+	background-color: transparent
 `
 
-const ETACheckBox = ({
+const ETACheckBox = memo(({
 	title,
 	checkedTitle,
 	color,
@@ -39,7 +48,28 @@ const ETACheckBox = ({
 	onPressTitle,
 }) => {
 	const themeContext = useContext(ThemeContext)
+	const animation = useRef(new Animated.Value(checked ? 1 : 0)).current
 
+	useEffect(() => {
+        if (checked) {
+            // console.log('checked');
+            Animated.timing(animation, {
+				duration: 100,
+				toValue: 1,
+				easing: Easing.materialUIStandard,
+				useNativeDriver: true,
+			}).start()
+		} else {
+            // console.log('!checked');
+			Animated.timing(animation, {
+				duration: 100,
+				toValue: 0,
+				easing: Easing.materialUIStandard,
+				useNativeDriver: true,
+			}).start()
+		}
+	}, [checked])
+	
 	return (
 		<Root>
 			<TouchableWithoutFeedback
@@ -47,21 +77,50 @@ const ETACheckBox = ({
 				style={{flex: 1}}>
 				<CheckBox
 					style={{
-						backgroundColor: checked
-							? color
-							: 'transparent',
-						borderColor: checked ? color : 'gray',
+						borderColor: checked ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.SECONDARY_BACKGROUND_COLOR
 					}}
-				/>
+				>
+					<Animated.View
+						style={[
+							{
+								height: 14,
+								width: 14,
+								borderRadius: 2,
+								backgroundColor:
+									checked ? color : 'transparent',
+								justifyContent: 'center',
+								alignSelf: 'center',
+								transform: [
+									{
+										scaleX: animation.interpolate(
+											{
+												inputRange: [0,1],
+												outputRange: [0, 1],
+											},
+										),
+									},
+									{
+										scaleY: animation.interpolate(
+											{
+												inputRange: [0,1],
+												outputRange: [0, 1],
+											},
+										),
+									},
+								],
+							},
+						]}
+					/>
+				</CheckBox>
 			</TouchableWithoutFeedback>
 
 			<Touchable onPress={onPressTitle}>
 				<TitleContainer>
 					<ETASimpleText
 						size={14}
-						weight='700'
+						weight='400'
 						color={
-							themeContext.PRIMARY_TEXT_COLOR_LIGHT
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
 						{checked ? checkedTitle : title}
@@ -70,6 +129,6 @@ const ETACheckBox = ({
 			</Touchable>
 		</Root>
 	)
-}
+})
 
-export default React.memo(ETACheckBox)
+export default ETACheckBox

@@ -4,8 +4,8 @@ import { Dimensions, Platform, PixelRatio, useColorScheme } from 'react-native'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
 import { ETASimpleText, ETAProgressiveImage } from '@etaui'
 import { truncateString, currencySeparator } from '@functions'
-import { connect} from 'react-redux'
-import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOOGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } from '@redux/profile/favorites/actions'
 
 const {width} = Dimensions.get('window')
 const size = 75
@@ -18,8 +18,8 @@ const Touchable = styled.TouchableOpacity.attrs({
 `
 const Card = styled.View`
 	height: 210px;
-	width: ${width / 2.8}px;
-	margin-horizontal: ${width / 30}px;
+	width: 140px;
+	margin-horizontal: ${width / 20}px;
 	margin-vertical: 10px;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	border-radius: 15px;
@@ -53,7 +53,7 @@ const StatusContainer = styled.View`
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
 const CardBottom = styled.View`
-	flex: 0.75;
+	flex: 0.85;
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
@@ -62,38 +62,37 @@ const CardBottom = styled.View`
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const ShopContainer = styled.View`
-	flex: 0.6;
-	flex-direction: column;
-	justify-content: flex-end;
-	align-items: flex-start;
-	padding-horizontal: 10px;
-	margin-bottom: 6px;
-	background-color: transparent;
-`
 const NameContainer = styled.View`
-	flex: 0.5;
+	flex: 0.6;
 	flex-direction: column;
 	justify-content: flex-start;
 	padding-horizontal: 10px;
 	padding-top: 5px;
+	background-color: transparent;
+`
+const ShopContainer = styled.View`
+	flex: 0.8;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	padding-horizontal: 10px;
+	background-color: transparent;
 `
 const PriceContainer = styled.View`
-	flex: 1;
+	flex: 0.4;
 	flex-direction: row;
 	justify-content: flex-end;
-	align-items: center;
-	padding-vertical: 1.5px;
+	align-items: flex-start;
 	background-color: transparent;
 `
 const DiscountContainer = styled.View`
-	flex: 0.5;
+	flex: 0.3;
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-end;
-	margin-top: 2px;
 	z-index: 100;
-	margin-bottom: 3px;
+	margin-top: 3px;
+	background-color: transparent;
 `
 const PercentContainer = styled.View`
 	justify-content: center;
@@ -131,16 +130,16 @@ const PointsContainer = styled.View`
 	background-color: rgba(255, 255, 255, 0.85);
 `
 const PointsContainer2 = styled.View`
-	justify-content: flex-end;
-	position: absolute;
-	min-height: 13px;
-	min-width: 30px;
-	bottom: 1px;
-	right: 8px;
+	justify-content: center;
+	align-items: center;
 	z-index: 100;
-	padding-horizontal: 4px;
+	border-width: 0px;
+	padding-horizontal: 5px;
+	padding-vertical: 1px;
+	border-color: white;
 	border-radius: 4px;
 	border-width: 0.75px;
+	margin-left: 5px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
@@ -159,9 +158,9 @@ const mapDispatchProps = (dispatch, props) => ({
 		})
 	},
 
-	toogleFavorite: (paramItem) => {
+	toggleFavorite: (paramItem) => {
 		dispatch({
-			type: TOOGLE_FAVORITE,
+			type: TOGGLE_FAVORITE,
 			payload: {
 				paramItem,
 			}
@@ -169,7 +168,7 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, toogleFavorite, item }) => {
+const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, toggleFavorite, item }) => {
 	const themeContext = useContext(ThemeContext)
 	const colorSchema = useColorScheme()
 	const navigation = useNavigation()
@@ -190,10 +189,8 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 
 			if (favoriteItem !== undefined) {
 				setisFavorite(true)
-				// console.log('Es favorito');
 			}
 			else {
-				// console.log('No es favorito');
 				setisFavorite(!true)
 			}
 		}
@@ -201,7 +198,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 	
 	const _isFavorite = () => {
 		setisFavorite(!isFavorite)		
-		toogleFavorite(item)
+		toggleFavorite(item)
 	}
 
 	const _onPressItem = (propitem) => {
@@ -296,31 +293,29 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 									100
 								).toFixed(2))}
 							</ETASimpleText>
-								{item.discount > 0 ? (
-									<PercentContainer>
+							{
+								item.points > 0
+								?	<PointsContainer2>
 										<ETASimpleText
 											size={9}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '500'
-													: '900'
-											}
-											color={
-												themeContext.PRIMARY_TEXT_COLOR_LIGHT
-											}
-											align='left'
-											style={{
-												zIndex: 100,
-											}}>
-											-
-											{
-												item.discount
-											}
-											%
+											weight={Platform.OS === 'ios' ? '500' : '900'}
+											color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+											align='center'
+											// style={{
+											// 	elevation: 4,
+											// 	textShadowColor: 'rgba(0, 0, 0, 0.7)',
+											// 	textShadowOffset: {
+											// 		width: 0.1,
+											// 		height: 0.2,
+											// 	},
+											// 	textShadowRadius: 1.5,
+											// }}
+										>
+											{item.points}° pts
 										</ETASimpleText>
-									</PercentContainer>
-								) : null}
+									</PointsContainer2>
+								:	null
+							}
 						</PriceContainer>
 						
 						<DiscountContainer>
@@ -351,30 +346,32 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 									</ETASimpleText>
 								</>
 							) : null}
-						</DiscountContainer>
-						{
-							item.points > 0
-							?	<PointsContainer2>
+							{item.discount > 0 ? (
+								<PercentContainer>
 									<ETASimpleText
 										size={9}
-										weight={Platform.OS === 'ios' ? '400' : '400'}
-										color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-										align='center'
-										// style={{
-										// 	elevation: 4,
-										// 	textShadowColor: 'rgba(0, 0, 0, 0.7)',
-										// 	textShadowOffset: {
-										// 		width: 0.1,
-										// 		height: 0.2,
-										// 	},
-										// 	textShadowRadius: 1.5,
-										// }}
-									>
-										{item.points}° pts
+										weight={
+											Platform.OS ===
+											'ios'
+												? '500'
+												: '900'
+										}
+										color={
+											themeContext.PRIMARY_TEXT_COLOR_LIGHT
+										}
+										align='left'
+										style={{
+											zIndex: 100,
+										}}>
+										-
+										{
+											item.discount
+										}
+										%
 									</ETASimpleText>
-								</PointsContainer2>
-							:	null
-						}
+								</PercentContainer>
+							) : null}
+						</DiscountContainer>
 						{/* <FavoriteContainer>
 							<Touchable
 								onPress={() => _isFavorite()}

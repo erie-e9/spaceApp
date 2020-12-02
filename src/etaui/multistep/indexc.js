@@ -18,7 +18,7 @@ const ButtonContainer = styled.View`
 `
 const ActionButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
     min-height: 20px;
     min-width: 100%;

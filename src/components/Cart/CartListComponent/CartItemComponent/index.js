@@ -161,7 +161,7 @@ const AddRemoveButtonContainer = styled.View`
 `
 const AddCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -175,7 +175,7 @@ const AddCart = styled.TouchableOpacity.attrs({
 `
 const RemoveCart = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -187,6 +187,7 @@ const RemoveCart = styled.TouchableOpacity.attrs({
 	z-index: 1000;
 	background-color: transparent;
 `
+
 const mapDispatchProps = (dispatch, props) => ({
 	addToCart: (paramItem) => {
 		dispatch({
@@ -221,7 +222,8 @@ const CartItemComponent = ({
 	removeFromCart,
 	removeItemFromCart,
 	item,
-	howMany
+	howMany,
+	note
 }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
@@ -331,22 +333,27 @@ const CartItemComponent = ({
 										)}
 									</ETASimpleText>
 
-									<Touchable
-										onPress={() => setisFancyModalVisible(true)}
-										disabled={addedCounter > 0 ? false : true}
-										style={{ marginHorizontal: 5 }}
-									>
-										<FontAwesome
-											name='sticky-note'
-											size={14}
-											color={
-												addedCounter > 0
-													? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-													: themeContext.PRIMARY_TEXT_COLOR_LIGHT
-											}
-										/>
-									</Touchable>
+									{
+										note !== ''
+										?	<Touchable
+												onPress={() => setisFancyModalVisible(true)}
+												disabled={addedCounter > 0 ? false : true}
+												style={{ marginHorizontal: 5 }}
+											>
+												<FontAwesome
+													name='sticky-note'
+													size={14}
+													color={
+														addedCounter > 0
+															? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+															: themeContext.PRIMARY_TEXT_COLOR_LIGHT
+													}
+												/>
+											</Touchable>
+									:	null
+									}
 									<NoteProduct 
+										_id={item._id}
 										title={item.name}
 										isVisible={isFancyModalVisible}
 										onSwipeComplete={() => setisFancyModalVisible(false)}

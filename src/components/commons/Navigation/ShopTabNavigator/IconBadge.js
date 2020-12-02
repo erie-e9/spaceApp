@@ -1,15 +1,36 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {View, Text} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Ionicons} from '@icons'
-import {connect} from 'react-redux'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Ionicons } from '@icons'
+import { connect } from 'react-redux'
+import { ETASimpleText } from '@etaui'
+
+const Root = styled.View`
+	z-index: 100;
+	background-color: transparent;
+`
+const BadgeContainer = styled.View`
+	position: absolute;
+	right: -6px;
+	top: -6px;
+	min-height: 16px;
+	min-width: 16px;
+	padding-horizontal: 2px;
+	padding-vertical: 1px;
+	justify-content: center;
+	align-items: center;
+	border-width: 0.7px;
+	border-radius: 8px;
+	z-index: 100;
+	border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	background-color: ${(props) => props.theme.REDBADGE};
+`
 
 const mapStateToProps = (state) => {
-	const {data} = state.cart
-	return {data}
+	const { data } = state.cart
+	return { data }
 }
 
-const IconWithBadge = ({name, badgeCount, color, size, data}) => {
+const IconWithBadge = ({children, name, badgeCount, color, size, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const [totalItems, settotalItems] = useState(data.length)
 	let sum = 0
@@ -30,40 +51,27 @@ const IconWithBadge = ({name, badgeCount, color, size, data}) => {
 	}
 
 	return (
-		<View style={{width: 24, height: 24, margin: 5}}>
-			<Ionicons name={name} size={size} color={color} />
-			{data.length !== 0 && totalItems > 0 ? (
-				<View
-					style={{
-						position: 'absolute',
-						right: -6,
-						top: -3,
-						backgroundColor: themeContext.REDBADGE,
-						minHeight: 16,
-						minWidth: 16,
-						paddingHorizontal: 2,
-						paddingVertical: 1,
-						justifyContent: 'center',
-						alignItems: 'center',
-						borderWidth: 0.7,
-						borderRadius: 8,
-						borderColor:
-							themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
-					}}>
-					<Text
-						style={{
-							color: 'white',
-							fontSize: 8.5,
-							fontWeight: '600',
-						}}>
+		<Root>
+			{/* <Ionicons name={name} size={size} color={color} /> */}
+				{data.length !== 0 && totalItems > 0 ? (
+				<BadgeContainer>
+					<ETASimpleText
+						size={8.5}
+						weight={
+							Platform.OS === 'ios'
+								? '600'
+								: '600'
+						}
+						color='white'
+						align='left'>
 						{totalItems}
-					</Text>
-				</View>
+					</ETASimpleText>
+				</BadgeContainer>
 			) : null}
-		</View>
+			{children}
+		</Root>
 	)
 }
 
 const IconWithBadgeConnect = connect(mapStateToProps, null)(IconWithBadge)
-
 export default IconWithBadgeConnect

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Platform, Animated, ScrollView, Dimensions } from 'react-native'
-import styled, {ThemeContext } from 'styled-components'
-import { ETASimpleText } from '@etaui'
+import styled, { ThemeContext } from 'styled-components'
+import { ETASimpleText, ETALoader } from '@etaui'
 import { useRoute } from '@react-navigation/native'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { connect } from 'react-redux'
@@ -59,16 +59,14 @@ const mapDispatchProps = (dispatch, props) => ({
 
 const PromoComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
-	const [ items, setitems ] = useState([])
+	const [ items, setitems ] = useState(null)
 	const route = useRoute()
-	const { selectedItem } = route?.params
-	// const { item } = props.route.params
+	const { selectedItem } = route?.params;
 	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
-	let endAncestor;
-	let endNode
+	console.log(`PromoComponent promotion.${selectedItem._id}.image`);
 
 	const headerHeight = scrollYAnimatedValue.interpolate({
 		inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
@@ -105,36 +103,6 @@ const PromoComponent = ({ getDataRequest, data }) => {
 		}).start()
 	}, [])
 
-	// const _onPressItem = (item) => {
-	//   navigation.navigate('GetOneItemScreen', {
-	//     screen: 'MenuScreen',
-	//     params: {
-	//       _id: item._id,
-	//       item: item,
-	//     },
-	//   });
-	// };
-
-	const position = new Animated.Value(0);
-	const _sharedElement = () => (
-		<View style={StyleSheet.absoluteFill}>
-			<SharedElementTransition
-				start={{
-				node: startNode,
-				ancestor: startAncestor
-				}}
-				end={{
-				node: endNode,
-				ancestor: endAncestor
-				}}
-				position={position}
-				animation='move'
-				resize='auto'
-				align='auto'
-				/>
-		</View>
-	)
-
 	return (
 		<Root>
 			<ScrollView
@@ -158,58 +126,62 @@ const PromoComponent = ({ getDataRequest, data }) => {
 						useNativeDriver: !true,
 					},
 				)}>
-				<PromotionItemsList
-					contentContainerStyle={{
-						flexDirection: 'column',
-					}}
-					data={items}
-					keyExtractor={(item) => item._id.toString()}
-					horizontal={!true}
-					numColumns={2}
-					initialNumToRender={2}
-					showsHorizontalScrollIndicator={false}
-					showsVerticalScrollIndicator={false}
-					ListEmptyComponent={() => (
-						<ETASimpleText
-							size={14}
-							weight={
-								Platform.OS === 'ios'
-									? '400'
-									: '300'
-							}
-							color={
-								themeContext.PRIMARY_TEXT_COLOR_LIGHT
-							}
-							align='left'>
-							Empty list
-						</ETASimpleText>
-					)}
-					renderItem={({item}) => {
-						delayValue += 700
-						const translateY = animatedValueTransform.interpolate(
-							{
-								inputRange: [0, 1],
-								outputRange: [delayValue, 1],
-								extrapolate: 'clamp',
-							},
-						)
-						return (
-							<Animated.View
-								style={{
-									opacity,
-									transform: [
-										{
-											translateY,
-										},
-									],
-								}}>
-								<GeneralItemComponent
-									item={item}
-								/>
-							</Animated.View>
-						)
-					}}
-				/>
+				{
+					items !== null
+					?	<PromotionItemsList
+							contentContainerStyle={{
+								flexDirection: 'column',
+							}}
+							data={items}
+							keyExtractor={(item) => item._id.toString()}
+							horizontal={!true}
+							numColumns={2}
+							initialNumToRender={2}
+							showsHorizontalScrollIndicator={false}
+							showsVerticalScrollIndicator={false}
+							ListEmptyComponent={() => (
+								<ETASimpleText
+									size={14}
+									weight={
+										Platform.OS === 'ios'
+											? '400'
+											: '300'
+									}
+									color={
+										themeContext.PRIMARY_TEXT_COLOR_LIGHT
+									}
+									align='left'>
+									Empty list
+								</ETASimpleText>
+							)}
+							renderItem={({item}) => {
+								delayValue += 700
+								const translateY = animatedValueTransform.interpolate(
+									{
+										inputRange: [0, 1],
+										outputRange: [delayValue, 1],
+										extrapolate: 'clamp',
+									},
+								)
+								return (
+									<Animated.View
+										style={{
+											opacity,
+											transform: [
+												{
+													translateY,
+												},
+											],
+										}}>
+										<GeneralItemComponent
+											item={item}
+										/>
+									</Animated.View>
+								)
+							}}
+						/>
+					:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+				}
 			</ScrollView>
 
 			<Animated.View
@@ -225,36 +197,41 @@ const PromoComponent = ({ getDataRequest, data }) => {
 					backgroundColor: headerbackgroundColor,
 				}}>
 				<PromoHeadContainer>
-					{/* <SharedElement id={`item.${item.id}.photo`}> */}
+					<SharedElement 
+						id={`promotion.${selectedItem._id}.image`}
+						style={{ width: '100%' }}>
 						<PromoHeadImage
-							// source={item.photoUrl}
 							source={{
 								uri: selectedItem.image,
 							}}
 						>
 							<PromoHeadTitle>
-								<ETASimpleText
-									size={18}
-									weight={
-										Platform.OS === 'ios'
-											? '600'
-											: '600'
-									}
-									// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-									color={selectedItem.titleColor}
-									align='center'
-									style={{
-										elevation: 4,
-										textShadowColor:
-											'rgba(0, 0, 0, 0.7)',
-										textShadowOffset: {
-											width: 0.5,
-											height: 0.7,
-										},
-										textShadowRadius: 3,
-									}}>
-									{selectedItem.title}
-								</ETASimpleText>
+								<SharedElement 
+									id={`promotion.${selectedItem._id}.title`}
+								>
+									<ETASimpleText
+										size={18}
+										weight={
+											Platform.OS === 'ios'
+												? '600'
+												: '600'
+										}
+										// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+										color={selectedItem.titleColor}
+										align='center'
+										style={{
+											elevation: 4,
+											textShadowColor:
+												'rgba(0, 0, 0, 0.7)',
+											textShadowOffset: {
+												width: 0.5,
+												height: 0.7,
+											},
+											textShadowRadius: 3,
+										}}>
+										{selectedItem.title}
+									</ETASimpleText>
+								</SharedElement>
 								<ETASimpleText
 									size={14}
 									weight='400'
@@ -277,7 +254,7 @@ const PromoComponent = ({ getDataRequest, data }) => {
 								</ETASimpleText>
 							</PromoHeadTitle>
 						</PromoHeadImage>
-					{/* </SharedElement> */}
+					</SharedElement>
 				</PromoHeadContainer>
 			</Animated.View>
 		</Root>

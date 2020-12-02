@@ -14,7 +14,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-BSDDazzler_Olo_0.png"
@@ -40,7 +41,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-cookies-n-cream.png"
@@ -66,7 +68,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-dulce-de-leche.png"
@@ -92,7 +95,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-midnight-cookies-n-cream.png"
@@ -118,7 +122,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-mint-chip%20%281%29.png"
@@ -144,7 +149,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-dazzler-rocky-road_0.png"
@@ -172,7 +178,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-peppermintbarkbar.jpg"
@@ -198,7 +205,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "limited edition",
-			"glutten": true,
+			"active": true,
+			"gluten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/HD_rubyBar_PDP.png"
@@ -224,7 +232,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "new name",
-			"glutten": true,
+			"active": true,
+			"gluten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-vanilla-caramel-pizzelle-bar.jpg"
@@ -250,7 +259,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "",
-			"glutten": true,
+			"active": true,
+			"gluten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-chocolatedarkchocolatebar.jpg"
@@ -276,7 +286,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-IrishCreamCookieSquare.png"
@@ -302,7 +313,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-vanillamilkchocolatealmondbar.jpg"
@@ -330,7 +342,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "new name",
-			"glutten": true,
+			"active": true,
+			"gluten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-belgian-chocolate.png"
@@ -356,7 +369,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-cookiesncream.png"
@@ -382,7 +396,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "new name",
-			"glutten": true,
+			"active": true,
+			"gluten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-hd-shake-dulcedeleche.png"
@@ -410,7 +425,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Coffee-Frapee-.png"
@@ -436,7 +452,8 @@
 			"weight": 143,
 			"isFavorite": true,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Smoothies.png"
@@ -464,7 +481,8 @@
 			"weight": 143,
 			"isFavorite": false,
 			"status": "new name",
-			"glutten": true,
+			"active": true,
+			"gluten": true,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/shop-specialities/sept-2019-Brownie-Cookie-Ice-Cream-Sandwich.png"
@@ -490,7 +508,8 @@
 			"weight": 193,
 			"isFavorite": false,
 			"status": "new",
-			"glutten": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{
 					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-IrishCreamCookieSquare.png"

@@ -113,7 +113,7 @@ const SubHeadAboutUsComponent = () => {
 				/>
 				<TitleContainer>
 					<ETALink
-						url='https://wa.me/6181092045'
+						url={`https://wa.me/${variables.COMPANYWHATSAPP}`}
 						size={13}
 						weight={
 							Platform.OS === 'ios' ? '300' : '200'

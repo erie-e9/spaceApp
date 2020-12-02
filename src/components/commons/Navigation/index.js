@@ -1,6 +1,5 @@
 import React, { useEffect, useContext } from 'react'
 import { StatusBar, useColorScheme } from 'react-native'
-// import AsyncStorage from '@react-native-community/async-storage';
 import { ETANetInfo } from '@etaui'
 import SplashScreen from '@components/commons/SplashScreen'
 import { lightTheme, darkTheme } from '@utils/constants'

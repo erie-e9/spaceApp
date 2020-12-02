@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import styled, {ThemeContext } from 'styled-components/native'
-import { Platform, View } from 'react-native'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import {  createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
 import { Ionicons, FontAwesome } from '@icons'
 import { fakeavatar, variables } from '@utils/constants'
 import DynamicTabButton from './DynamicTabButton'
@@ -11,7 +12,7 @@ import DynamicTabButton from './DynamicTabButton'
 import { MenuNavigator, SubMenuNavigator, GetOneItemNavigator, CustomProductNavigator } from './MenuNavigator'
 import { ChatNavigator, ChatItemNavigator, NewChatNavigator } from './ChatNavigator'
 import { CartNavigator, CheckoutNavigator } from './CartNavigator'
-import { ProfileNavigator, SettingsNavigator } from './ProfileNavigator'
+import { ProfileNavigator, SettingsNavigator } from './SettingsNavigator'
 import { WelcomeNavigator, AuthNavigator } from './AuthNavigator'
 import IconWithBadge from './IconBadge'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
@@ -34,7 +35,7 @@ const NullComponent = () => (null)
 const ShopTab = createBottomTabNavigator()
 const ShopTabNavigator = ({ userToken }) => {
 	const themeContext = useContext(ThemeContext)
-	console.log('ewe', userToken);
+	console.log('ShopTab userToken', userToken);
 
 	return (
 		<ShopTab.Navigator
@@ -113,14 +114,18 @@ const ShopTabNavigator = ({ userToken }) => {
 						return (
 							<IconWithBadge
 								badgeCount={1}
-								name={
-									focused
-										? 'ios-cart'
-										: 'ios-cart'
-								}
 								size={size + 1}
 								color={color}
-							/>
+							>
+								<Ionicons 
+									name={
+										focused
+											? 'ios-cart'
+											: 'ios-cart'
+									} 
+									size={size + 1} 
+									color={color} />
+							</IconWithBadge>
 						)
 					} else if (route.name === 'Favs') {
 						return (
@@ -141,7 +146,7 @@ const ShopTabNavigator = ({ userToken }) => {
 									height: size + 3,
 									width: size + 3,
 									borderRadius: (size + 3) / 2,
-									borderWidth: 2,
+									borderWidth: 1.5,
 									padding: 2,
 									borderColor: themeContext.ACTIVE,
 									backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,

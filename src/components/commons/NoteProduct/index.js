@@ -1,23 +1,67 @@
 import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETATextInputOutline, ETAButtonFilled } from '@etaui'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST, UPDATE_NOTE } from '@redux/cart/actions'
 
 const Root = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
 `
-const AddNoteButtonContainer = styled.View`
+const ButtonContainer = styled.View`
 	height: 50px;
 	width: 100%;
 	align-items: center;
 	background-color: transparent;
 `
 
-const NoteProduct = memo(({ title, isVisible, onSwipeComplete, closeModal }) => {
-    const themeContext = useContext(ThemeContext)
-	const [ fancymodalTitle, setfancymodalTitle ] = useState('')
+const mapStateToProps = (state, props) => {
+    const { data } = state.cart
+	return { data }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+    getDataRequest: () => {
+		dispatch({
+			type: GET_DATA_REQUEST,
+			payload: {},
+		})
+    },
     
+    updateNote: (paramItem) => {
+        dispatch({
+            type: UPDATE_NOTE,
+            payload: {
+                paramItem
+            }
+        })
+    },
+})
+
+const NoteProduct = memo(({ _id, title, isVisible, onSwipeComplete, closeModal, getDataRequest, data, updateNote }) => {
+    const themeContext = useContext(ThemeContext)
+    const [ note, setnote ] = useState('')
+    
+    useEffect(() => {
+        getDataRequest()
+        if (data !== []) {
+            const itemFound = data.find(
+                (element) => element._id === _id
+            )
+            if (itemFound) {
+                setnote(itemFound.note)                
+            } else {
+                setnote('')
+            }
+        }
+    }, [_id, data])
+    
+    const _onPressItem = () => {
+        updateNote({_id, note})
+        closeModal()
+    }
+
     return(
         <Root>
             <ETAFancyModal
@@ -29,14 +73,13 @@ const NoteProduct = memo(({ title, isVisible, onSwipeComplete, closeModal }) => 
                 <>
                     <ETATextInputOutline
                         // ref={textinputRef}
-                        value=''
+                        value={note}
                         placeholder='Type a note...'
                         placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                         keyboardType='default'
-                        autoCapitalize='words'
+                        autoCapitalize='sentences'
                         allowFontScaling
                         autoCorrect
-                        autoFocus
                         blurOnSubmit={false}
                         caretHidden={false}
                         clearButtonMode='while-editing'
@@ -54,17 +97,18 @@ const NoteProduct = memo(({ title, isVisible, onSwipeComplete, closeModal }) => 
                         textContentType='none'
                         returnKeyType='next'
                         textsize={14}
+                        autofocus={true}
                         height={40}
                         width={270}
                         borderWidth={0.3}
-                        // onChangeText={text => {onChangeValue([item.name], text); setdisabledState(values?.[item.name] !== '' ? false : true)}}
+                        onChangeText={text => setnote(text)}
                         // onBlur={handleBlur('cellphone')}
                         selectionColor={themeContext.PRIMARY_COLOR}
                     />
-                    <AddNoteButtonContainer>
+                    <ButtonContainer>
                         <ETAButtonFilled
                             title='Save note'
-                            // onPress={() => _onPressItem()}
+                            onPress={() => _onPressItem()}
                             // disabled={data.length === 0 ? true : false}
                             colorButton={
                                 themeContext.SECONDARY_BACKGROUND_COLOR
@@ -73,11 +117,16 @@ const NoteProduct = memo(({ title, isVisible, onSwipeComplete, closeModal }) => 
                             width={250}
                             borderRadius={3}
                         />
-                    </AddNoteButtonContainer>
+                    </ButtonContainer>
                 </>
             </ETAFancyModal>
         </Root>
     )
 })
 
-export default NoteProduct
+const NoteProductConnect = connect(
+	mapStateToProps,
+	mapDispatchProps,
+)(NoteProduct)
+
+export default NoteProductConnect

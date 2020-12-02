@@ -29,7 +29,7 @@ const HeaderContainer = styled.View``
 // const Img = styled.Image``;
 const IconButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;
@@ -38,12 +38,12 @@ const IconButton = styled.TouchableOpacity.attrs({
 	height: 32px;
 	border-radius: 32px;
 	margin-horizontal: 5px;
-	margin-right: 15px;
+	margin-right: 5px;
 	background-color: #e4e6eb;
 `
 const IconButtonClose = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	flex-direction: row;
 	justify-content: center;

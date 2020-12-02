@@ -1,8 +1,8 @@
-import React, {useContext} from 'react'
-import {Platform, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText} from '@etaui'
+import React, { useContext } from 'react'
+import { Platform, Dimensions } from 'react-native'
+import styled, { ThemeContext } from 'styled-components'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText } from '@etaui'
 
 const {width} = Dimensions.get('window')
 const Root = styled.View`
@@ -15,7 +15,7 @@ const Root = styled.View`
 const Item = styled.View`
 	flex-direction: row;
 	width: ${width - 25}px;
-	height: 30px;
+	height: 32px;
 	border-radius: 1px;
 	border-width: ${Platform.OS === 'ios' ? 0.5 : 0.75}px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
@@ -46,25 +46,33 @@ const SectionsComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 
-	const _onPress = (name) => {
+	const _onPress = (item) => {
 		navigation.navigate('SubMenuNavigator', {
-			screen: 'SectionScreen',
+			screen: 'ItemsScreen',
 			params: {
-				name: name,
+				name: item
 			},
 		})
+
+		// navigation.navigate('SubMenuNavigator', {
+		// 	screen: 'ItemsScreen',
+		// 	params: {
+		// 		name: item,
+		// 		items: data,
+		// 	},
+		// })
 	}
 
 	return (
 		<Root>
 			<Item>
 				<Touchable 
-					onPress={() => _onPress('Offers of the week')}
+					onPress={() => _onPress('New products')}
 					style={{ backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR }}
 					>
 					<BannerLeft>
 						<ETASimpleText
-							size={9}
+							size={11}
 							weight={
 								Platform.OS === 'ios' ? '600' : 'bold'
 							}
@@ -72,10 +80,10 @@ const SectionsComponent = () => {
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}
 							align='center'>
-							Offers
+							New
 						</ETASimpleText>
 						<ETASimpleText
-							size={8.5}
+							size={9}
 							weight={
 								Platform.OS === 'ios' ? '400' : '400'
 							}
@@ -84,17 +92,17 @@ const SectionsComponent = () => {
 							}
 							align='center'
 							time={2000}>
-							of the week
+							products
 						</ETASimpleText>
 					</BannerLeft>
 				</Touchable>
 
 				<Touchable 
-					onPress={() => _onPress('Products with alcohol')}
+					onPress={() => _onPress('Hot this week')}
 					style={{ backgroundColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR }}>
 					<BannerRight>
 						<ETASimpleText
-							size={9}
+							size={11}
 							weight={
 								Platform.OS === 'ios' ? '600' : 'bold'
 							}
@@ -102,10 +110,10 @@ const SectionsComponent = () => {
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR
 							}
 							align='center'>
-							Products with
+							Hot
 						</ETASimpleText>
 						<ETASimpleText
-							size={8.5}
+							size={9}
 							weight={
 								Platform.OS === 'ios' ? '400' : '400'
 							}
@@ -113,18 +121,18 @@ const SectionsComponent = () => {
 								themeContext.PRIMARY_TEXT_BACKGROUND_COLOR
 							}
 							align='center'>
-							alcohol
+							this week
 						</ETASimpleText>
 					</BannerRight>
 				</Touchable>
 
 				<Touchable 
-					onPress={() => _onPress('Free gluten products')}
+					onPress={() => _onPress('Flash offers')}
 					style={{ backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR }}
 					>
 					<BannerLeft>
 						<ETASimpleText
-							size={9}
+							size={11}
 							weight={
 								Platform.OS === 'ios' ? '600' : 'bold'
 							}
@@ -132,10 +140,10 @@ const SectionsComponent = () => {
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}
 							align='center'>
-							Free gluten
+							Flash 
 						</ETASimpleText>
 						<ETASimpleText
-							size={8.5}
+							size={9}
 							weight={
 								Platform.OS === 'ios' ? '400' : '400'
 							}
@@ -143,7 +151,7 @@ const SectionsComponent = () => {
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}
 							align='center'>
-							products
+							offers
 						</ETASimpleText>
 					</BannerLeft>
 				</Touchable>

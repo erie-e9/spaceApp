@@ -82,81 +82,83 @@ const MenuComponent = ({getDataRequest, data}) => {
 	return (
 		<>
 			<Root>
-				{data.length !== 0 ? (
-					<>
-						<ScrollView
-							contentContainerStyle={{
-								paddingTop: HEADER_MAX_HEIGHT,
-							}}
-							scrollEventThrottle={16}
-							showsHorizontalScrollIndicator={false}
-							showsVerticalScrollIndicator={false}
-							onScroll={Animated.event(
-								[
-									{
-										nativeEvent: {
-											contentOffset: {
-												y: scrollYAnimatedValue,
-											},
-										},
+				<ScrollView
+					contentContainerStyle={{
+						paddingTop: HEADER_MAX_HEIGHT,
+					}}
+					scrollEventThrottle={16}
+					showsHorizontalScrollIndicator={false}
+					showsVerticalScrollIndicator={false}
+					onScroll={Animated.event(
+						[
+							{
+								nativeEvent: {
+									contentOffset: {
+										y: scrollYAnimatedValue,
 									},
-								],
-								{
-									useNativeDriver: !true,
 								},
-							)}>
-							<Animated.View
-								style={{
-									transform: [{translateY}],
-									opacity,
-								}}>
-								<CarouselComponent
-									items={data.menu1}
+							},
+						],
+						{
+							useNativeDriver: !true,
+						},
+					)}>
+					<Animated.View
+						style={{
+							transform: [{translateY}],
+							opacity,
+						}}>
+						<CarouselComponent
+							items={data.menu1}
+						/>
+						<SectionsComponent />
+						<StatusComponent />
+					</Animated.View>
+					{
+						data.length !== 0
+						?	<>
+								<MenuList
+									data={data.menu1}
+									title='Dazzler sundaes'
 								/>
-								<SectionsComponent />
-								<StatusComponent />
-							</Animated.View>
-							<MenuList
-								data={data.menu1}
-								title='Dazzler sundaes'
-							/>
-							<MenuList
-								data={data.menu2}
-								title='Bars'
-							/>
-							<MenuList
-								data={data.menu3}
-								title='Milkshakes'
-							/>
-							<MenuList
-								data={data.menu4}
-								title='Smoothies and frappes'
-							/>
-							<MenuList
-								data={data.menu5}
-								title='Cookie sandwiches'
-							/>
-						</ScrollView>
+								<MenuList
+									data={data.menu2}
+									title='Bars'
+								/>
+								<MenuList
+									data={data.menu3}
+									title='Milkshakes'
+								/>
+								<MenuList
+									data={data.menu4}
+									title='Smoothies and frappes'
+								/>
+								<MenuList
+									data={data.menu5}
+									title='Cookie sandwiches'
+								/>
+							</>
+						:	null
+					}
+				</ScrollView>
 
-						<Animated.View
-							style={{
-								position: 'absolute',
-								top:
-									Platform.OS === 'ios'
-										? 0
-										: 0,
-								left: 0,
-								right: 0,
-								justifyContent: 'center',
-								alignItems: 'center',
-								height: headerHeight,
-								width,
-								backgroundColor: headerbackgroundColor,
-							}}>
-							<HeadCategoryList />
-						</Animated.View>
-					</>
-				) : null}
+				<Animated.View
+					style={{
+						position: 'absolute',
+						top:
+							Platform.OS === 'ios'
+								? 0
+								: 0,
+						left: 0,
+						right: 0,
+						justifyContent: 'center',
+						alignItems: 'center',
+						height: headerHeight,
+						width,
+						backgroundColor: headerbackgroundColor,
+					}}>
+					<HeadCategoryList />
+				</Animated.View>
 			</Root>
 		</>
 	)

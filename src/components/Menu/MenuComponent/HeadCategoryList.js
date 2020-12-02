@@ -36,7 +36,7 @@ const Item = styled.View`
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	justify-content: center;
 	align-items: center;
@@ -75,11 +75,17 @@ const Categories = ({ getDataRequest, data }) => {
 
 	const _onPressCategory = (item) => {
 		navigation.navigate('SubMenuNavigator', {
-			screen: 'CategoryItemsScreen',
+			screen: 'ItemsScreen',
 			params: {
-				name: item.name,
+				name: item.name
 			},
 		})
+		// navigation.navigate('SubMenuNavigator', {
+		// 	screen: 'CategoryItemsScreen',
+		// 	params: {
+		// 		name: item.name,
+		// 	},
+		// })
 	}
 
 	const _onPressCategoryList = () => {

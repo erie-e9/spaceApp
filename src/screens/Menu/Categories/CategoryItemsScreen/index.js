@@ -10,7 +10,6 @@ const CategoryItemsScreen = ({navigation, route}) => {
 	const { name } = route?.params
 
 	useLayoutEffect(() => {
-		console.log('CategoryItemsScreen params',  route)
 		navigation.setOptions({headerTitle: name})
 	}, [navigation, route])
 

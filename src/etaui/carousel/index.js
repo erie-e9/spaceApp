@@ -1,8 +1,8 @@
-import React, {useState, useEffect, useRef} from 'react'
-import {Animated, Dimensions} from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
+import { Animated, Dimensions } from 'react-native'
 import styled from 'styled-components'
 import carouselData from '@utils/carousel.json'
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import ETACarouselItem from './item'
 
 const {width} = Dimensions.get('window')

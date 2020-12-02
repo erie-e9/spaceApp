@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Dimensions } from 'react-native'
 import { ETASimpleText } from '@etaui'
+import { SharedElement } from 'react-navigation-shared-element'
 
 const { width, height } = Dimensions.get('window')
 
@@ -32,48 +33,56 @@ const ContentContainer = styled.View`
 	left: 5px;
 `
 
-const ETACarouselItem = ({item, sizeHeight}) => (
-	<Root
-		sizeHeight={sizeHeight}>
-		<ItemImage source={{uri: item.image}} 
-			sizeHeight={sizeHeight}
-		/>
-		<ContentContainer>
-			<ETASimpleText
-				size={18}
-				weight='600'
-				color={item.titleColor}
-				align='center'
-				style={{
-					elevation: 4,
-					textShadowColor: 'rgba(0, 0, 0, 0.7)',
-					textShadowOffset: {
-						width: 0.5,
-						height: 0.7,
-					},
-					textShadowRadius: 3,
-				}}>
-				{item.title}
-			</ETASimpleText>
-			<ETASimpleText
-				size={14}
-				weight='400'
-				color={item.descriptionColor}
-				align='center'
-				style={{
-					marginBottom: 5,
-					elevation: 4,
-					textShadowColor: 'rgba(0, 0, 0, 0.7)',
-					textShadowOffset: {
-						width: 0.5,
-						height: 0.7,
-					},
-					textShadowRadius: 3,
-				}}>
-				{item.description}
-			</ETASimpleText>
-		</ContentContainer>
-	</Root>
-)
+const ETACarouselItem = ({item, sizeHeight}) => {
+	// console.log('ETACarouselItem: ', `promotion.${item._id}.image`);
+	
+	return(
+		<Root
+			sizeHeight={sizeHeight}>
+			<SharedElement id={`promotion.${item._id}.image`}>
+				<ItemImage source={{uri: item.image}} 
+					sizeHeight={sizeHeight}
+				/>
+			</SharedElement>
+			<ContentContainer>
+				<SharedElement id={`promotion.${item._id}.title`}>
+					<ETASimpleText
+						size={18}
+						weight='600'
+						color={item.titleColor}
+						align='center'
+						style={{
+							elevation: 4,
+							textShadowColor: 'rgba(0, 0, 0, 0.7)',
+							textShadowOffset: {
+								width: 0.5,
+								height: 0.7,
+							},
+							textShadowRadius: 3,
+						}}>
+						{item.title}
+					</ETASimpleText>
+				</SharedElement>
+				<ETASimpleText
+					size={14}
+					weight='400'
+					color={item.descriptionColor}
+					align='center'
+					style={{
+						marginBottom: 5,
+						elevation: 4,
+						textShadowColor: 'rgba(0, 0, 0, 0.7)',
+						textShadowOffset: {
+							width: 0.5,
+							height: 0.7,
+						},
+						textShadowRadius: 3,
+					}}>
+					{item.description}
+				</ETASimpleText>
+			</ContentContainer>
+		</Root>
+	)
+}
 
 export default React.memo(ETACarouselItem)

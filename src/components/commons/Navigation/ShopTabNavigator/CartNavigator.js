@@ -9,23 +9,26 @@ import { Platform } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import CartScreen from '@screens/Cart/CartScreen'
 import PaymentScreen from '@screens/Cart/PaymentScreen'
+import IconWithBadge from './IconBadge'
 
 const Header = styled.View`
 	margin-left: 15px;
 `
-const IconsRightContainer = styled.View`
+const IconRightContainer = styled.View`
 	flex-direction: row;
 	align-items: center;
 	margin-right: 15px;
-`
-const LastOrderButtonContainer = styled.View`
 	background-color: transparent;
+`
+const OrdersContainer = styled.View`
 	border-width: 0.9px;
 	border-radius: 5px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	padding: 3px 5px;
+	margin-left: 5px;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
+	background-color: transparent;
 `
-const LastOrderButton = styled.TouchableHighlight.attrs({
+const Orders = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 5, bottom: 0, right: 0, left: 0}
 })`
@@ -34,7 +37,7 @@ const LastOrderButton = styled.TouchableHighlight.attrs({
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	z-index: 100;
 	margin: 0px 5px 0px 15px;
@@ -92,7 +95,7 @@ const CartNavigator = () => {
 					),
 					headerRight: () => {
 					    return (
-					        <IconsRightContainer>
+					        <IconRightContainer>
 								<Touchable
 									onPress={() => navigation.navigate('SettingsNavigator', {
 										screen: 'FavoritesScreen'
@@ -103,11 +106,19 @@ const CartNavigator = () => {
 										color='#FF0000'
 									/>
 								</Touchable>
-								<LastOrderButton
+								<Orders
 									onPress={() => navigation.navigate('SettingsNavigator', {
-										screen: 'PreviousOrdersScreen'
+										screen: 'TopNavigatorOrders'
 									})}>
-									<LastOrderButtonContainer>
+									<>
+									<IconWithBadge
+										badgeCount={1}
+										name='ios-cart'
+										size={17 + 1}
+										color={'white'}
+									>
+
+									<OrdersContainer>
 										<ETASimpleText
 											size={11}
 											weight='400'
@@ -115,11 +126,13 @@ const CartNavigator = () => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Previous orders
+											Orders
 										</ETASimpleText>
-									</LastOrderButtonContainer>
-								</LastOrderButton>
-					        </IconsRightContainer>
+									</OrdersContainer>
+									</IconWithBadge>
+									</>
+								</Orders>
+					        </IconRightContainer>
 					    )
 					},
 					headerTintColor:
@@ -131,7 +144,6 @@ const CartNavigator = () => {
 		</CartStack.Navigator>
 	)
 }
-
 
 const CheckoutStack = createStackNavigator()
 const CheckoutNavigator = () => {

@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext, useRef, memo} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Animated, Easing} from 'react-native'
-import {ETASimpleText} from '@etaui'
+import React, { useState, useEffect, useContext, useRef, memo } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Animated, Easing } from 'react-native'
+import { ETASimpleText } from '@etaui'
 
 const Root = styled.View`
     flex-direction: row;
@@ -26,7 +26,7 @@ const Radio = styled.View`
 `
 const Touchable = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
     flex-direction: row;
     justify-content: center;
@@ -37,7 +37,7 @@ const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeT
     
     useEffect(() => {
         if (activated) {
-            console.log('actived');
+            console.log('activated');
             Animated.timing(animation, {
 				duration: 200,
 				toValue: 1,
@@ -45,7 +45,7 @@ const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeT
 				useNativeDriver: true,
 			}).start()
 		} else {
-            console.log('!actived');
+            console.log('!activated');
 			Animated.timing(animation, {
 				duration: 200,
 				toValue: 0,

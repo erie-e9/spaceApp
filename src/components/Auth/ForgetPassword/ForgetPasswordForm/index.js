@@ -80,13 +80,9 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
 		// await _setswitchItem(item)
-		// toogleNotification(id)
+		// toggleNotification(id)
 	}
-
-	useEffect(() => {
-		console.log('actual disabledState', disabledState);
-	}, [disabledState])
-
+	
 	const form = [
 		{
 			title: `Don't remember your password?`,

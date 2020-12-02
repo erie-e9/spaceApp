@@ -277,7 +277,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 									'SettingsNavigator',
 									{
 										screen:
-											'PreviousOrdersScreen',
+											'TopNavigatorOrders',
 									},
 								)
 							}>
@@ -308,7 +308,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Previous orders
+											Orders
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '

@@ -1,21 +1,24 @@
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
 import {
 	createStackNavigator,
 	CardStyleInterpolators,
 } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { Feather, FontAwesome } from '@icons'
+import { Ionicons, Feather, FontAwesome } from '@icons'
 import ChatClientsScreen from '@screens/Chat/ChatClientsScreen'
 import ChatEmployeesScreen from '@screens/Chat/ChatEmployeesScreen'
 import ChatItemScreen from '@screens/Chat/ChatItemScreen'
 import NewChatScreen from '@screens/Chat/NewChatScreen'
 import ContactProfileScreen from '@screens/Chat/ContactProfileScreen'
-import { ETASearchBar } from '@etaui'
+import { ETASearchBar, ETASimpleText } from '@etaui'
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
+import IconWithBadge from './IconBadge'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	z-index: 100;
 	width: 10px;
@@ -24,14 +27,14 @@ const HeaderLeft = styled.TouchableOpacity.attrs({
 
 const HeaderRight = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	z-index: 100;
 	margin-right: 15px;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	z-index: 100;
 	width: 10px;
@@ -42,7 +45,7 @@ const Header = styled.View`
 `
 const IconButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 	})`
 	height: 35px;
 	width: 35px;
@@ -65,13 +68,21 @@ const TopNavigatorChat = () => {
 			initialRouteName='ChatClientsNavigator'
 			tabBarOptions={{
 				allowFontScaling: true,
-				labelStyle: { fontSize: 12, textTransform: 'none' },
-				// tabStyle: { width: 100 },
+				labelStyle: { fontSize: 11, textTransform: 'none' },
 				activeTintColor: themeContext.PRIMARY_COLOR,
-				inactiveTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT, 
-				tabStyle: {
-					borderWidth: 0
+				showIcon: true,
+				showLabel: false,
+				iconStyle: {
+					width: 'auto',
+					height: 20,
 				},
+				tabStyle: {
+					// backgroundColor: '#a8a4b4',
+					borderRadius: 2,
+					borderWidth: 0,
+					height: 40,
+				  },
+				inactiveTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT,
 				style: { backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR },
 				indicatorStyle: {
 					borderBottomWidth: 2,
@@ -80,20 +91,59 @@ const TopNavigatorChat = () => {
 			}}
 		>
 			<Tab.Screen 
-				name="ChatClientsNavigator" 
+				name='ChatClientsNavigator' 
 				component={ChatClientsScreen}
 				options={{
-					tabBarLabel: 'Clients'
+					tabBarLabel: 'Clients',
+					tabBarIcon: ({ focused }) => (
+							<IconWithBadge
+								badgeCount={1}
+								size={21}
+								color='red'
+								>
+									<ETASimpleText
+										size={12}
+										weight={
+											Platform.OS === 'ios' ? '400' : '300'
+										}
+										color={ focused
+											? themeContext.PRIMARY_COLOR
+											: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
+										}
+										align='left'>
+										Clients {'  '}
+									</ETASimpleText>
+								</IconWithBadge>
+						)
 				}}
 			/>
 			<Tab.Screen 
-				name="ChatEmployeesNavigator" 
+				name='ChatEmployeesNavigator' 
 				component={ChatEmployeesScreen}
 				options={{
-					tabBarLabel: 'Employees'
+					tabBarLabel: 'Employees',
+					tabBarIcon: ({ focused }) => (
+							<IconWithBadge
+								badgeCount={1}
+								size={21}
+								color={'white'}
+								>
+									<ETASimpleText
+										size={12}
+										weight={
+											Platform.OS === 'ios' ? '400' : '300'
+										}
+										color={ focused
+											? themeContext.PRIMARY_COLOR
+											: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
+										}
+										align='left'>
+										Employees {'  '}
+									</ETASimpleText>
+								</IconWithBadge>
+						)
 				}}
 			/>
-			
 		</Tab.Navigator>
 	)
 }
@@ -256,9 +306,15 @@ const NewChatNavigator = () => {
 				headerStyle: {
 					backgroundColor:
 						themeContext.PRIMARY_TEXT_BACKGROUND_COLOR,
+					shadowColor: 'black',
+					shadowOpacity: 0,
+					shadowOffset: {height: 0},
+					shadowRadius: 5,
+					elevation: 0,
 				},
 				headerTitleStyle: {
-					fontWeight: 'bold',
+					fontWeight: '400',
+					fontSize: 12,
 				},
 			}}>
 			<NewChatStack.Screen

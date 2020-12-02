@@ -3,6 +3,8 @@ import styled from 'styled-components/native'
 import { ETAAvatar } from '@etaui'
 import CardHeader from './cardHeader'
 import CardBody from './cardBody'
+import { SharedElement } from 'react-navigation-shared-element'
+import { variables } from '@utils/constants'
 
 const Root = styled.View`
 	flex-direction: row;
@@ -24,15 +26,18 @@ const ContactContainer = styled.View`
 const AvatarContainer = styled.View`
 	padding: 1.75px;
 	border-radius: 50px;
-	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
 	border-width: 2px;
+	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
 	background-color: transparent;
 `
 
 const ChatCard = ({ text, client, createdAt, active }) => (
 	<Root>
 		<AvatarContainer active={active}>
-			<ETAAvatar image={client.avatar} size='middle' />
+			<SharedElement id={`chat.1.avatar`}>
+				{/* <ETAAvatar image={client.avatar ? client.avatar : variables.AVATAR_USER_DEFAULT} size='middle' /> */}
+				<ETAAvatar image={variables.AVATAR_USER_DEFAULT} size='middle' />
+			</SharedElement>
 		</AvatarContainer>
 		<ContactContainer>
 			<CardHeader {...client} createdAt={createdAt} />

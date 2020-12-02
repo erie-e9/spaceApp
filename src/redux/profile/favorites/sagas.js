@@ -2,13 +2,13 @@ import { takeEvery, put } from 'redux-saga/effects'
 import {
   GET_DATA_REQUEST,
   GET_DATA_REQUEST_SUCCESS,
-  TOOGLE_FAVORITE,
-  TOOGLE_FAVORITE_SUCCESS,
+  TOGGLE_FAVORITE,
+  TOGGLE_FAVORITE_SUCCESS,
 } from './actions'
 
 function* handler() {
   yield takeEvery(GET_DATA_REQUEST, getDataRequest)
-  yield takeEvery(TOOGLE_FAVORITE, toogleFavorite)
+  yield takeEvery(TOGGLE_FAVORITE, toggleFavorite)
 }
 
 function* getDataRequest(action) {
@@ -24,18 +24,19 @@ function* getDataRequest(action) {
   }
 }
 
-function* toogleFavorite(action) {
+function* toggleFavorite(action) {
   const { paramItem } = action.payload
+
   try {
     yield put({
-      type: TOOGLE_FAVORITE_SUCCESS,
+      type: TOGGLE_FAVORITE_SUCCESS,
       payload: {
         data: [],
         paramItem,
       },
     })
   } catch (error) {
-    console.log('[Favorites Saga] toogleFavorite error: ', error)
+    console.log('[Favorites Saga] toggleFavorite error: ', error)
   }
 }
 

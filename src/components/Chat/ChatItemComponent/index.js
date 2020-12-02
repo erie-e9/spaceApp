@@ -5,7 +5,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import messages from '@utils/messages.json'
 import MessageBubbleComponent from './MessageBubbleComponent'
 import ChatInputComponent from './ChatInputComponent'
-import { Octicons, Entypo, FontAwesome } from '@icons'
+import { Entypo, FontAwesome } from '@icons'
 
 const HEADER_MIN_HEIGHT = 40
 const HEADER_MAX_HEIGHT = 40
@@ -49,6 +49,7 @@ const ChatItemComponent = () => {
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 2000
+	
 
 	useEffect(() => {
 		Animated.spring(animatedValueTransform, {

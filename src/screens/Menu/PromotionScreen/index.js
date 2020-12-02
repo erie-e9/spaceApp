@@ -11,7 +11,6 @@ const PromotionScreen = ({navigation, route}) => {
 
 	useLayoutEffect(() => {
 		navigation.setOptions({headerTitle: name})
-		console.log('PromotionScreen params',  route)
 	}, [navigation, route])
 
 	return (

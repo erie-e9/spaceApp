@@ -88,6 +88,8 @@ target 'iceCream' do
   pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition.podspec"
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit.podspec"
   # Pods for iceCream
+  pod 'react-native-text-input-mask', :path => '../node_modules/react-native-text-input-mask'
+  pod 'RNInputMask', :path => '../node_modules/react-native-text-input-mask/ios/InputMask'
   # pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   # pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   # pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"

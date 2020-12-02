@@ -21,7 +21,7 @@ const ItemGeneratorContainer = styled.View`
 `
 const ItemGeneratorButton = styled.TouchableHighlight.attrs({
 	underlayColor: 'transparent',
-	// hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	// hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	z-index: 2000;
 `
@@ -121,7 +121,7 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 	}
 
 	const _handlePressButton1 = () => {
-		console.log('_handlePressButton1 pressed')
+		// console.log('_handlePressButton1 pressed')
 		navigation.navigate('CustomProductNavigator', {
 			screen: 'CustomProductScreen',
 			params: {
@@ -131,7 +131,7 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 	}
 
 	const _handlePressButton2 = () => {
-		console.log('_handlePressButton2 pressed')
+		// console.log('_handlePressButton2 pressed')
 		navigation.navigate('CustomProductNavigator', {
 			screen: 'CustomProductScreen',
 			params: {
@@ -141,7 +141,7 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 	}
 
 	const _handlePressButton3 = () => {
-		console.log('_handlePressButton3 pressed')
+		// console.log('_handlePressButton3 pressed')
 		navigation.navigate('CustomProductNavigator', {
 			screen: 'CustomProductScreen',
 			params: {

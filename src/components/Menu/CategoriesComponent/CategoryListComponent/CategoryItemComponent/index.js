@@ -34,7 +34,7 @@ const NewContainer = styled.View`
 	z-index: 100;
 	height: 15px;
 	width: 30px;
-	top: 10px;
+	bottom: 20px;
 	left: 8px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	border-radius: 5px;

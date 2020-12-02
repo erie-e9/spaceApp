@@ -6,7 +6,7 @@ import {
 	// TransitionPresets,
 	CardStyleInterpolators,
 } from '@react-navigation/stack'
-import {FontAwesome} from '@icons'
+import { FontAwesome } from '@icons'
 import AuthScreen from '@screens/Auth/AuthScreen'
 import ForgetPasswordScreen from '@screens/Auth/ForgetPasswordScreen'
 import SignupScreen from '@screens/Auth/SignupScreen'
@@ -34,7 +34,7 @@ const configClose = {
 
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 25, bottom: 25, right: 25, left: 25}
+	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
 	margin-left: ${Platform.OS === 'ios' ? 25 : 15}px;
 `
