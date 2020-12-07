@@ -194,11 +194,16 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 	let delayValue = 1000
     
     useEffect(() => {
-		getDataRequest()
-		// console.log('[CustomProductComponent] data: ', data);
+        let isUnMounted = false
+        getDataRequest()
+        
+		return () => {
+			isUnMounted = true
+		}
     }, [data])
     
     useEffect(() => {
+        let isUnMounted = false
         setitems(paramData.variations)
         Animated.spring(animatedValueTransform, {
 			toValue: 1,
@@ -210,21 +215,26 @@ const CustomProductComponent = ({ getDataRequest, data }) => {
 			toValue: 1,
 			duration: 700,
 			useNativeDriver: true,
-		}).start()
+        }).start()
+        
+		return () => {
+			isUnMounted = true
+		}
     }, [])
 
     useEffect(() => {
+        let isUnMounted = false
 		Animated.spring(rotate, {
 			// toValue: -0.2,
 			toValue: 0,
 			tension: 5,
 			useNativeDriver: true,
-		}).start()
-    })
-
-    useEffect(() => {
-        console.log('itemsize: ', itemsize);
-    }, [itemsize])
+        }).start()
+        
+		return () => {
+			isUnMounted = true
+		}
+    }, [])
     
     // const rotate = interpolate(rotate,{
     //     inputRange: [0, 2],

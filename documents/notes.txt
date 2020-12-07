@@ -5,3 +5,5 @@ Toggle custom: https://blog.bitsrc.io/creating-a-toggle-animation-in-react-nativ
 Desintalar una app que ha sido instalada y mal desintalda desde consola: adb -s 45C0219430002265 uninstall com.exitusmovil.debug
 Android Screenshots: https://www.appstorescreenshot.com/
 Android Banner: https://www.norio.be/android-feature-graphic-generator/
+
+Repo Country flags: https://github.com/hjnilsson/country-flags/blob/master/svg/fr.svg

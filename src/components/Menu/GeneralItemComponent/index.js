@@ -19,7 +19,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 const Card = styled.View`
 	height: 210px;
 	width: 140px;
-	margin-horizontal: ${width / 20}px;
+	margin-horizontal: ${width / 30}px;
 	margin-vertical: 10px;
 	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	border-radius: 15px;
@@ -176,12 +176,18 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 	const isFocused = useIsFocused()
 
 	useEffect(() => {
+		let isUnMounted = false
 		if (isFocused) {
 			getAllFavoriteItemsRequest()
+		}
+		
+		return () => {
+			isUnMounted = true
 		}
 	}, [isFocused])
 
 	useEffect(() => {
+		let isUnMounted = false
 		if (favoritesdata.length > 0) {
 			const favoriteItem = favoritesdata.find(
 				(element) => element._id === item._id,
@@ -194,7 +200,11 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 				setisFavorite(!true)
 			}
 		}
-}, [isFocused, item])
+		
+		return () => {
+			isUnMounted = true
+		}
+	}, [isFocused, item])
 	
 	const _isFavorite = () => {
 		setisFavorite(!isFavorite)		

@@ -7,24 +7,30 @@ import { ETASimpleText } from '@etaui'
 
 const { height, width } = Dimensions.get('window')
 
+const Root = styled.TouchableWithoutFeedback`
+    height: 10px;
+    background-color: transparent;
+`
 const Container = styled.View`
     flex: 1;
     justify-content: flex-start;
     align-items: center;
+    background-color: transparent;
 `
 const CardContainer = styled.View`
     min-height: 60px;
     width: ${width}px;
+    top: 0px;
     justify-content: flex-start;
     align-items: center;
-    padding: 15px 15px;
+    padding: 10px 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     border-color: rgba(0, 0, 0, 0.1);
     background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const Header = styled.View`
-    min-height: 60px;
+    min-height: 40px;
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
@@ -33,7 +39,6 @@ const Header = styled.View`
     background-color: transparent
 `
 const NameContainer = styled.View`
-	flex: 0.9;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -42,10 +47,10 @@ const NameContainer = styled.View`
 `
 const HeaderRight = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
+	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
 })`
-	height: 25px;
-	width: 25px;
+	height: 22px;
+	width: 22px;
 	z-index: 100;
 	justify-content: center;
 	align-items: center;
@@ -63,77 +68,70 @@ const ChildrenContainer = styled.View`
     background-color: transparent
 `
 
-const ETAFancyModal = memo(({ children, onTouchOutSide, onSwipeComplete, isVisible, title, closeModal }) => {
+const ETAFancyModal = memo(({ children, onSwipeComplete, isVisible, title, closeModal }) => {
     const themeContext = useContext(ThemeContext)
     const colorSchema = useColorScheme()
 
-    const renderOutsideTouchable = () => {
-        const view = <View style={{ flex: 1, width: '100%' }} />
-        if (!onTouchOutSide) return view
-        
-        return (
-            <TouchableWithoutFeedback onPress={onTouchOutSide} style={{ flex: 1, width: '100%' }}>
-                {view}
-            </TouchableWithoutFeedback>
-        )
-    }
-
     return (
-        <Modal
-            testID={'modal'}
-            isVisible={isVisible}
-            onSwipeComplete={onSwipeComplete}
-            swipeDirection='up'
-            backdropColor={colorSchema === 'dark' ? 'rgba(0, 0, 0, 0.55)' : 'rgba(0, 0, 0, 0.3)'}
-            backdropOpacity={0.7}
-            animationIn='slideInDown'
-            animationOut='slideOutUp'
-            animationInTiming={400}
-            animationOutTiming={650}
-            // backdropTransitionInTiming={600}
-            // backdropTransitionOutTiming={600}
-            style={{
-                justifyContent: 'flex-end',
-                alignItems: 'center',
-                margin: 0,
-            }}>
-            <Container>
-                <CardContainer>
-                    <Header>
-                        <NameContainer>
-                            <ETASimpleText
-                                size={16}
-                                weight={
-                                    Platform.OS ===
-                                    'ios'
-                                        ? '400'
-                                        : '400'
-                                }
-                                color={
-                                    themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-                                }
-                                align='left'>
-                                {title}
-                            </ETASimpleText>
-                        </NameContainer>
-                        <HeaderRight
-                            onPress={closeModal}
-                        >
-                            <Ionicons
-                                name='md-close'
-                                size={18}
-                                color={
-                                    themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-                                }
-                            />
-                        </HeaderRight>
-                    </Header>
-                    <ChildrenContainer>
-                        {children}
-                    </ChildrenContainer>
-                </CardContainer>
-            </Container>
-        </Modal>
+        <>
+            <Modal
+                testID={'modal'}
+                isVisible={isVisible ? isVisible : false}
+                onSwipeComplete={onSwipeComplete}
+                swipeDirection='up'
+                backdropColor={colorSchema === 'dark' ? 'rgba(0, 0, 0, 0.55)' : 'rgba(0, 0, 0, 0.3)'}
+                backdropOpacity={0.7}
+                animationIn='slideInDown'
+                animationOut='slideOutUp'
+                animationInTiming={400}
+                animationOutTiming={650}
+                onBackButtonPress={() => console.log('ewe')}
+                onBackdropPress={() => console.log('ewe')}
+                // backdropTransitionInTiming={600}
+                // backdropTransitionOutTiming={600}
+                style={{
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                    margin: 0,
+                }}>
+                <Container onPress={closeModal}>
+                    <CardContainer>
+                        <Header>
+                            <NameContainer>
+                                <ETASimpleText
+                                    size={16}
+                                    weight={
+                                        Platform.OS ===
+                                        'ios'
+                                            ? '400'
+                                            : '400'
+                                    }
+                                    color={
+                                        themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                                    }
+                                    align='left'>
+                                    {title}
+                                </ETASimpleText>
+                            </NameContainer>
+                            <HeaderRight
+                                onPress={closeModal}
+                            >
+                                <Ionicons
+                                    name='md-close'
+                                    size={18}
+                                    color={
+                                        themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                                    }
+                                />
+                            </HeaderRight>
+                        </Header>
+                        <ChildrenContainer>
+                            {children}
+                        </ChildrenContainer>
+                    </CardContainer>
+                </Container>
+            </Modal>
+        </>
     )
 })
 

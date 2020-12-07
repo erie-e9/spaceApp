@@ -26,8 +26,13 @@ const FilterItemComponent = ({ title, active, toggleFilter }) => {
 	const [ switchItem, setswitchItem ] = useState(active)
 	
 	useEffect(() => {
+		let isUnMounted = false
 		// console.log('FilterItemComponent item: ',{ title, active });
 		setswitchItem(active)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [active])
 
 	const _switch = async () => {

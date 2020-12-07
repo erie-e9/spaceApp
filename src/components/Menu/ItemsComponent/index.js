@@ -69,7 +69,7 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
 	const { name } = route?.params
-	const [ isTopModalVisible, setisTopModalVisible ] = useState(toggle_modal ? toggle_modal : false)
+	const [ isTopModalVisible, setisTopModalVisible ] = useState(false)
 	const [ dynamicItems, setdynamicItems ] = useState(null)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
@@ -77,7 +77,11 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 	let _data = []
 
 	useEffect(() => {
-		if (itemsbycategory.length > 0) {
+		let isUnMounted = false
+		deleteFilters()
+		getDataRequestItems()
+		if (itemsbycategory.length > 0) {		
+			setdynamicItems(itemsbycategory)
 			Animated.spring(animatedValueTransform, {
 				toValue: 1,
 				tension: 5,
@@ -95,7 +99,7 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 			})
 
 			if (_data.length !== 0) {
-                let uniques = [...new Set(_data)]
+				let uniques = [...new Set(_data)]
 				uniques.forEach(element => {
 					if (element !== '' && element !== undefined) {
 						addFilters({ title: element, active: false })
@@ -103,21 +107,26 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 				})
 			}
 		}
-	}, [])
-
-	useEffect(() => {
-		deleteFilters()
-		getDataRequestItems()
-		// console.log('getDataRequestItems itemsbycategory: ', itemsbycategory);
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [itemsbycategory])
 
 	useEffect(() => {
+		let isUnMounted = false
 		setisTopModalVisible(toggle_modal)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [toggle_modal])
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
-		if (data.length > 0) {
+		// Filters
+		if (itemsbycategory.length > 0) {
 			let actives = []
 			data.forEach(element => {
 				if (element.active === true) {
@@ -126,20 +135,25 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 			})
 
 			if (actives.length > 0) {
-				let filters
 				let arrayFilters = []
-				actives.forEach((element, i) => {
-					arrayFilters.unshift(itemsbycategory.filter((item, index) => {
-						// console.log('item.status ', item.status )
-						return item.status === element
-					}))
-				})
-				// console.log('arrayFilters[0] ', arrayFilters[0] );
 				
-				setdynamicItems(arrayFilters[0])
+				function filterItems(query) {
+					return itemsbycategory.filter(function(el, i) {
+						return el.status === query
+					})
+				}
+
+				actives.forEach((element, i) => {
+					arrayFilters.unshift(...filterItems(element))
+				})
+				setdynamicItems(arrayFilters)
 			} else {
 				setdynamicItems(itemsbycategory)
 			}
+		}
+		
+		return () => {
+			isUnMounted = true
 		}
 	}, [data])
 
@@ -202,7 +216,7 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 								)
 							}}
 						/>
-						:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
+					:	<ETALoader color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} size={9}/>
 				}
 			</Root>
 		</>

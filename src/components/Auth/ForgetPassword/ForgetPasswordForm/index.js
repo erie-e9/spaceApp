@@ -69,7 +69,6 @@ const mapDispatchProps = (dispatch, props) => ({
 const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
     const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [ mysecureTextEntry ] = useState(true)
 	const [ radioItem, setradioItem ] = useState(true)
 	const [ disabledState, setdisabledState ] = useState(true)
 	const cellphoneRef = useRef()

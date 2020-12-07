@@ -38,8 +38,13 @@ const NotificationsSettingsComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		console.log('[NotificationsSettingsComponent] data: ', data);
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	return (

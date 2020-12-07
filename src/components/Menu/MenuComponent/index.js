@@ -40,7 +40,12 @@ const MenuComponent = ({getDataRequest, data}) => {
 	const delayValue = 700
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	const headerHeight = scrollYAnimatedValue.interpolate({
@@ -60,6 +65,7 @@ const MenuComponent = ({getDataRequest, data}) => {
 	})
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -71,6 +77,10 @@ const MenuComponent = ({getDataRequest, data}) => {
 			duration: 500,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	const translateY = animatedValueTransform.interpolate({

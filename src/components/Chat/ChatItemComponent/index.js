@@ -52,6 +52,7 @@ const ChatItemComponent = () => {
 	
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 0,
@@ -63,6 +64,10 @@ const ChatItemComponent = () => {
 			duration: 500,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	const headerHeight = scrollYAnimatedValue.interpolate({

@@ -36,6 +36,7 @@ const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeT
 	const animation = useRef(new Animated.Value(activated ? 1 : 0)).current
     
     useEffect(() => {
+        let isUnMounted = false
         if (activated) {
             console.log('activated');
             Animated.timing(animation, {
@@ -52,6 +53,10 @@ const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeT
 				easing: Easing.materialUIStandard,
 				useNativeDriver: true,
 			}).start()
+        }
+        
+		return () => {
+			isUnMounted = true
 		}
     }, [activated])
 

@@ -13,6 +13,7 @@ const ETAAutoScroll = ({children, time}) => {
 	let layoutHeight
 
 	useEffect(() => {
+		let isUnMounted = false
 		setTimeout(() => {
 			// scrollView.current.scrollToEnd({duration: time, animated: true})
 			scrollView.current.scrollTo({
@@ -21,6 +22,10 @@ const ETAAutoScroll = ({children, time}) => {
 				duration: time,
 			})
 		}, 1000)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	return (

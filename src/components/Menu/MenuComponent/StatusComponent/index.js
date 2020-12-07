@@ -51,6 +51,7 @@ const Status = ({ getDataRequest, data }) => {
 	let delayValue = 1000
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
 		// setitems(data.slice(0, 11), [])
@@ -60,6 +61,10 @@ const Status = ({ getDataRequest, data }) => {
 			tension: 5,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	const _onPressItem = (item) => {

@@ -64,6 +64,7 @@ const Categories = ({ getDataRequest, data }) => {
 	let delayValue = 1000
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setcategoryitems(data)
 		Animated.spring(animatedValueTransform, {
@@ -71,6 +72,10 @@ const Categories = ({ getDataRequest, data }) => {
 			tension: 5,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	const _onPressCategory = (item) => {

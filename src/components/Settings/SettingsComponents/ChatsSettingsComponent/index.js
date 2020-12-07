@@ -68,8 +68,13 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
 	const [ isCurrencyModalVisible, setisCurrencyModalVisible ] = useState(false)
     
 	useEffect(() => {
+        let isUnMounted = false
 		// getDataRequest()
-		// console.log('[ChatsSettingsComponent] data: ', data);
+        // console.log('[ChatsSettingsComponent] data: ', data);
+        
+		return () => {
+			isUnMounted = true
+		}
     }, [data])
     
 	const _switch = async (item) => {

@@ -37,6 +37,7 @@ const UbicationDetailsComponent = ({data}) => {
 	const mapAnimation = new Animated.Value(0)
 
 	useEffect(() => {
+		let isUnMounted = false
 		if (Array.isArray(data)) {
 			setitems(data)
 		} else {
@@ -63,6 +64,10 @@ const UbicationDetailsComponent = ({data}) => {
 			//   }
 			// }, 10);
 		})
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	return (

@@ -14,26 +14,63 @@ const Root = styled.View`
 	align-items: center;
 	background-color: transparent;
 `
+const ThemePreviewContainer = styled.View`
+	flex: 0.8;
+	min-height: 100px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+	margin: 0px 0px;
+	padding: 10px 0px;
+    background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
+`
+const ThemePreview = styled.TouchableHighlight`
+    min-height: ${(props) => props.chosen ? heightPreviewTheme : heightPreviewTheme - 20}px;
+    min-width: ${width / 4}px;
+    justify-content: center;
+	align-items: center;
+	margin: 0px 12px;
+    border-radius: 5px;
+    elevation: 4;
+    shadow-offset: 0px 1px;
+    shadow-radius: 5px;
+    shadow-opacity: ${(props) => props.chosen ? 0.3 : 0};
+	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+	elevation: ${(props) => props.chosen ? 0.3 : 0};
+	border-width: 0.3px;
+	border-radius: 12px;
+	padding: 3px;
+	border-color: ${(props) => props.chosen ? props.theme.SECONDARY_TEXT_BACKGROUND_COLOR : 'transparent'};
+`
+const ThemePreviewImage = styled.Image`
+	width: 100%;
+	height: 100%;
+	border-radius: 30px;
+`;
 const ButtonsContainer = styled.View`
+	flex: 0.2;
 	height: 35px;
-	width: ${width}px;
+	width: ${width - 25}px;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	border-width: 0.2px;
 	border-radius: 3px;
-	margin: 5px 0px 0px 0px;
+	margin: 5px 0px;
 	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	background-color: transparent;
 `
-const Switch = styled.View`
+const Switch = styled.TouchableOpacity`
 	flex: 1;
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	height: 35px;
+	height: 100%;
 	z-index: 1000;
 	border-width: ${(props) => props.chosen ? 0 : 0}px;
+	border-radius: ${(props) => props.chosen ? 7 : 0}px;
 	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
 	background-color: ${(props) => props.chosen ? props.theme.FOURTH_BACKGROUND_COLOR_LIGHT : 'transparent'};
 `
@@ -43,47 +80,16 @@ const IndicatorContainer = styled.View`
     align-items: center;
     padding-horizontal: 5px;
     z-index: 10;
+	height: 100%;
     background-color: transparent;
 `
-const ThemePreviewContainer = styled.View`
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-	margin: 0px 0px;
-	padding: 10px 0px;
-    width: 100%;
-    background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
-`
-const ThemePreview = styled.TouchableOpacity`
-    min-height: ${(props) => props.chosen ? heightPreviewTheme : heightPreviewTheme - 10}px;
-    min-width: ${width / 3.5}px;
-    justify-content: center;
-	align-items: center;
-	margin: 0px 9px;
-    border-radius: 5px;
-    elevation: 4;
-    shadow-offset: 0px 1px;
-    shadow-radius: 5px;
-    shadow-opacity: ${(props) => props.chosen ? 0.3 : 0};
-	shadow-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-	elevation: ${(props) => props.chosen ? 0.3 : 0};
-	border-width: 0px;
-	border-color: ${(props) => props.chosen ? props.theme.SECONDARY_TEXT_BACKGROUND_COLOR : 'transparent'};
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
-`
-const ThemePreviewImage = styled.Image`
-	width: 100%;
-	height: 100%;
-	border-radius: 5px;
-`;
 
 const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, option3Text }) => {
 	const themeContext = useContext(ThemeContext)
 	const colorSchema = useColorScheme()
 	const animation = useRef(new Animated.Value(activated ? 1 : 0)).current
 	const [ toggled, setToggled ] = useState(!!activated)
-	const [ themeChosen, setthemeChosen ] = useState(chosen)
+	const [ themeChosen, setthemeChosen ] = useState(chosen ? chosen : 0)
 
 	const _switchAnimated = (t) => {
 		setthemeChosen(t)
@@ -113,15 +119,16 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 					onPress={() => _switchAnimated(0)}
 					chosen={themeChosen === 0 ? true : false}
 				>
-					
 					<ThemePreviewImage source={colorSchema === 'dark' ? require('@assets/screenshots/dark-theme.png') : require('@assets/screenshots/light-theme.png')} resizeMode={'stretch'}/>
 				</ThemePreview>
+
 				<ThemePreview
 					onPress={() => _switchAnimated(1)}
 					chosen={themeChosen === 1 ? true : false}
 				>
 					<ThemePreviewImage source={require('@assets/screenshots/light-theme.png')} resizeMode={'stretch'}/>
 				</ThemePreview>
+
 				<ThemePreview
 					onPress={() => _switchAnimated(2)}
 					chosen={themeChosen === 2 ? true : false}
@@ -135,7 +142,11 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 						_switchAnimated(0)
 					}}
 					style={{flex: 1}}>
-					<Switch chosen={themeChosen === 0 ? true : false}>
+					<Switch
+						onPress={() => {
+							_switchAnimated(0)
+						}}
+						chosen={themeChosen === 0 ? true : false}>
 						{/* <Animated.View
 							style={[
 								{
@@ -170,7 +181,7 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 							<MaterialCommunityIcons
 								name='theme-light-dark'
 								size={18}
-								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								color={themeChosen === 0 ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								style={{
 									alignSelf:
 										'center',
@@ -180,7 +191,7 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 							<ETASimpleText
 								size={11}
 								weight={Platform.OS === 'ios' ? '300' : '800'}
-								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								color={themeChosen === 0 ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								align='left'>
 								{option1Text}
 							</ETASimpleText>
@@ -192,7 +203,11 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 						_switchAnimated(1)
 					}}
 					style={{flex: 1}}>
-					<Switch chosen={themeChosen === 1 ? true : false}>
+					<Switch
+						onPress={() => {
+							_switchAnimated(1)
+						}}
+						chosen={themeChosen === 1 ? true : false}>
 						{/* <Animated.View
 							style={[
 								{
@@ -227,7 +242,7 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 							<Feather
 								name='sun'
 								size={18}
-								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								color={themeChosen === 1 ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								style={{
 									alignSelf:
 										'center',
@@ -237,7 +252,7 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 							<ETASimpleText
 								size={11}
 								weight={Platform.OS === 'ios' ? '300' : '800'}
-								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								color={themeChosen === 1 ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								align='left'>
 								{option2Text}
 							</ETASimpleText>
@@ -249,7 +264,11 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 						_switchAnimated(2)
 					}}
 					style={{flex: 1}}>
-					<Switch chosen={themeChosen === 2 ? true : false}>
+					<Switch
+						onPress={() => {
+							_switchAnimated(2)
+						}}
+						chosen={themeChosen === 2 ? true : false}>
 						{/* <Animated.View
 							style={[
 								{
@@ -284,7 +303,7 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 							<Feather
 								name='moon'
 								size={17}
-								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								color={themeChosen === 2 ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								style={{
 									alignSelf:
 										'center',
@@ -294,7 +313,7 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 							<ETASimpleText
 								size={11}
 								weight='300'
-								color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+								color={themeChosen === 2 ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 								align='left'>
 								{option3Text}
 							</ETASimpleText>

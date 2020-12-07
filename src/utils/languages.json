@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "_id": 1,
+            "language": "English",
+            "value": "en"
+        },
+        {
+            "_id": 2,
+            "language": "Español",
+            "value": "es"
+        },
+        {
+            "_id": 3,
+            "language": "Francés",
+            "value": "fr"
+        }
+    ]
+}

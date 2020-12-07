@@ -97,7 +97,12 @@ const CartDetailsComponent = ({ data }) => {
 	let sum = 0
 
 	useEffect(() => {
+		let isUnMounted = false
 		_getsumatory()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	const _getsumatory = async () => {

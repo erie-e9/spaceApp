@@ -10,14 +10,14 @@ const { Value, timing } = Animated
 const { height, width } = Dimensions.get('window')
 
 const HeaderSafeArea = styled.SafeAreaView`
-	z-index: 1000;
+	z-index: 2000;
+	background-color: blue;
 `
 const Header = styled.View`
 	height: 50px;
-	padding-horizontal: 10px;
 	background-color: ${props => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
-const HeaderInner = styled.View`
+	const HeaderInner = styled.View`
 	flex: 1;
 	flex-direction: row;
 	overflow: hidden;
@@ -25,7 +25,9 @@ const HeaderInner = styled.View`
 	align-items: center;
 	position: relative;
 `
-const HeaderContainer = styled.View``
+const HeaderContainer = styled.View`
+	padding-horizontal: 15px;
+`
 // const Img = styled.Image``;
 const IconButton = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -55,7 +57,7 @@ const IconButtonClose = styled.TouchableOpacity.attrs({
 `
 const ContentSafeArea = styled.SafeAreaView`
 	flex: 1;
-	z-index: 1000;
+	z-index: 2000;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const ContentInner = styled.View`
@@ -145,7 +147,6 @@ class ETASearchBar extends React.Component {
 
     // force focus
     this.refs.input.focus()
-
   }
 
   _onBlur = () => {
@@ -228,10 +229,9 @@ class ETASearchBar extends React.Component {
 								flexDirection: 'row',
 								alignItems: 'center',
 								position: 'absolute',
-								top:0,
-								left:0,
+								top: 0,
 								backgroundColor: this.props.backgroundColorInput,
-								width: width - 32,
+								width: width,
 								transform: [
 									{
 										translateX: this._input_box_translate_x
@@ -246,35 +246,35 @@ class ETASearchBar extends React.Component {
 									onPress={this._onBlur}
 									style={styles.back_icon_box}
 								>
-								<FontAwesome
-									name='chevron-left'
-									size={16}
-									color={this.props.leftContentColor}
-									style={{
-										zIndex: 2000,
-									}}
-								/>
-							</IconButtonClose>
-							</Animated.View>
-								<TextInput
-									ref='input'
-									placeholder={this.props.placeholderText}
-									placeholderTextColor='#333'
-									clearButtonMode='always'
-									// value={keyword}
-									onChangeText={(value) => this.setState({keyword: value}) }
-									underlineColorAndroid='transparent'
-									style={{
-										flex: 1,
-										height: 40,
-										backgroundColor:
-											'#e4e6eb',
-										borderRadius: 18,
-										paddingHorizontal: 16,
-										fontSize: 15,
-										marginRight: 15,
-										color: '#333',
-									}}
+									<FontAwesome
+										name='chevron-left'
+										size={16}
+										color={this.props.leftContentColor}
+										style={{
+											zIndex: 999,
+										}}
+									/>
+								</IconButtonClose>
+								</Animated.View>
+									<TextInput
+										ref='input'
+										placeholder={this.props.placeholderText}
+										placeholderTextColor='#333'
+										clearButtonMode='always'
+										// value={keyword}
+										onChangeText={(value) => this.setState({keyword: value}) }
+										underlineColorAndroid='transparent'
+										style={{
+											flex: 1,
+											height: 40,
+											backgroundColor:
+												'#e4e6eb',
+											borderRadius: 18,
+											paddingHorizontal: 16,
+											fontSize: 15,
+											marginRight: 25,
+											color: '#333',
+										}}
 								/>
 						</Animated.View>
 					</HeaderInner>
@@ -282,69 +282,69 @@ class ETASearchBar extends React.Component {
 			</HeaderSafeArea>
 
 			<Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
-			<ContentSafeArea>
-				<ContentInner>
-				<Separator />
-				{
-					this.state.keyword === ''
-					?
-					<EmptySearchContainer>
-							<EmptySearchImage
-								source={require('@assets/search.png')}
-							/>
-							<ETASimpleText
-								size={14}
-								weight={
-									Platform.OS ===
-									'ios'
-										? '500'
-										: '300'
-								}
-								color='#333'
-								// color={
-								// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								// }
-								align='center'>
-								Enter a few
-								words
-								{'\n'}
-								to search on{' '}
-								{
-									variables.COMPANYNAME
-								}
-							</ETASimpleText>
-					</EmptySearchContainer>
-					:
-					<Scroll>
-						<SearchItem>
-							<FontAwesome
-								name='search'
-								size={16}
-								color='#ccc'
-								style={{
-									marginRight: 15,
-								}}
-							/>
-							<ETASimpleText
-								size={14}
-								weight={
-									Platform.OS ===
-									'ios'
-										? '700'
-										: '600'
-								}
-								// color={
-								// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								// }
-								color='#333'
-								align='left'>
-								Fake result 1
-							</ETASimpleText>
-						</SearchItem>
-					</Scroll>
-				}
-				</ContentInner>
-			</ContentSafeArea>
+				<ContentSafeArea>
+					<ContentInner>
+						<Separator />
+						{
+							this.state.keyword === ''
+							?
+							<EmptySearchContainer>
+									<EmptySearchImage
+										source={require('@assets/search.png')}
+									/>
+									<ETASimpleText
+										size={14}
+										weight={
+											Platform.OS ===
+											'ios'
+												? '500'
+												: '300'
+										}
+										color='#333'
+										// color={
+										// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+										// }
+										align='center'>
+										Enter a few
+										words
+										{'\n'}
+										to search on{' '}
+										{
+											variables.COMPANYNAME
+										}
+									</ETASimpleText>
+							</EmptySearchContainer>
+							:
+							<Scroll>
+								<SearchItem>
+									<FontAwesome
+										name='search'
+										size={16}
+										color='#ccc'
+										style={{
+											marginRight: 15,
+										}}
+									/>
+									<ETASimpleText
+										size={14}
+										weight={
+											Platform.OS ===
+											'ios'
+												? '700'
+												: '600'
+										}
+										// color={
+										// 	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+										// }
+										color='#333'
+										align='left'>
+										Fake result 1
+									</ETASimpleText>
+								</SearchItem>
+							</Scroll>
+						}
+					</ContentInner>
+				</ContentSafeArea>
 			</Animated.View>
 		</>
     )
@@ -361,15 +361,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 5
   },
   content: {
+	height: height,
     width: width,
-    // height: height,
     position: 'absolute',
     left: 0,
     bottom: 0,
-    zIndex: 999
+	zIndex: 1999,
   },
   image_placeholder_container: {
     flex: 1,

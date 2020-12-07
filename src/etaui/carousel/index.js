@@ -36,11 +36,16 @@ const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 	let timerID
 
 	useEffect(() => {
+		let isUnMounted = false
 		setdataList(carouselData.data)
 		if (postsLenght) {
 			infiniteScroll(dataList)
 		} else {
 			stopAutoPlay()
+		}
+		
+		return () => {
+			isUnMounted = true
 		}
 	}, [posts])
 

@@ -64,8 +64,12 @@ const DynamicTabButton = memo(({ focused, size, onPress, getDataRequest, data })
 	const mode = new Animated.Value(0)
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
-		// console.log('[DynamicTabButton] data: ', data);
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	const _handlePress = () => {

@@ -59,10 +59,15 @@ const ChatComponent = ({ getDataRequest, data }) => {
 	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setTimeout(() => {
 			setitems(data)
 		}, 1000);
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 	
 	const headerHeight = scrollYAnimatedValue.interpolate({

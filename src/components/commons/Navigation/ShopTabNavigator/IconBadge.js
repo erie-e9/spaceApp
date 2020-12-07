@@ -36,10 +36,11 @@ const IconWithBadge = ({children, name, badgeCount, color, size, data}) => {
 	let sum = 0
 
 	useEffect(() => {
+		let isUnMounted = false
 		_getsumatory()
 
 		return () => {
-			_getsumatory()
+			isUnMounted = true
 		}
 	}, [data])
 

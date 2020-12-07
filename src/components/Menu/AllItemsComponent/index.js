@@ -22,6 +22,7 @@ const AllItemsComponent = () => {
 	let delayValue = 700
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -33,6 +34,10 @@ const AllItemsComponent = () => {
 			duration: 800,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	return (

@@ -38,11 +38,17 @@ const SectionComponent = ({ getDataRequest, data }) => {
 	let delayValue = 700
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -54,6 +60,10 @@ const SectionComponent = ({ getDataRequest, data }) => {
 			duration: 800,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	return (

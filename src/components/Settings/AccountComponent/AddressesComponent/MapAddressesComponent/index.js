@@ -23,14 +23,17 @@ const MapAddressesComponent = () => {
 	const map = useRef(null)
 
 	useEffect(() => {
-		let isSubscribed = true
+		let isUnMounted = false
 		if (data !== null) {
 			setgetLatitude(data.latitude)
 			setgetLongitude(data.longitude)
 		} else {
 			_findCoordinates()
 		}
-		return () => (isSubscribed = false)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	const _findCoordinates = async () => {

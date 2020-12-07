@@ -40,10 +40,10 @@ const NameContainer = styled.View`
 `
 const HeaderRight = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
+	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
 })`
-	height: 25px;
-	width: 25px;
+	height: 22px;
+	width: 22px;
 	z-index: 100;
 	justify-content: center;
 	align-items: center;

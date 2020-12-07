@@ -374,6 +374,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 	const bottomModalRef = useRef()
 	
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		let newArray = [item, ...similartodata]
 		let se = newArray[similarid || 0]
@@ -382,10 +383,16 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 	}, [similartodata, similarto_id])
 
 	useEffect(() => {
+		let isUnMounted = false
 		setsimilarid(similarto_id)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [similarto_id, item])
 
 	useEffect(() => {
+		let isUnMounted = false
 		if (cartdata.length > 0) {
 			const itemFound = cartdata.find(
 				(element) => element._id === selectedItem._id,
@@ -416,17 +423,27 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 				heart.current?.reset()
 			}
 		}
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [item, selectedItem])
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	useEffect(() => {
+		let isUnMounted = false
 		if (cartdata !== []) {
 			settooglenote(false)
 			
@@ -442,8 +459,11 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
             } else {
 				settooglenote(false) // undefined
 			}
-
-        }
+		}
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [cartdata, selectedItem])
 
 	const translateY = animatedValueTransform.interpolate({
@@ -944,14 +964,6 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 											isVisible={isBottomModalVisible}
 											onSwipeComplete={() => setisBottomModalVisible(false)}
 											closeModal={() => setisBottomModalVisible(false)}
-											// headerRight={<AntDesign
-											// 				name='plus'
-											// 				size={16}
-											// 				color={
-											// 					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-											// 				}
-											// 			/>
-											// }
 										>
 											{
 												_contentModal(contentModal)

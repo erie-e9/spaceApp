@@ -51,6 +51,7 @@ const ETACheckBox = memo(({
 	const animation = useRef(new Animated.Value(checked ? 1 : 0)).current
 
 	useEffect(() => {
+		let isUnMounted = false
         if (checked) {
             // console.log('checked');
             Animated.timing(animation, {
@@ -67,6 +68,10 @@ const ETACheckBox = memo(({
 				easing: Easing.materialUIStandard,
 				useNativeDriver: true,
 			}).start()
+		}
+		
+		return () => {
+			isUnMounted = true
 		}
 	}, [checked])
 	

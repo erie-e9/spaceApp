@@ -150,7 +150,12 @@ const FavoriteItemComponent = ({ toggleFavorite, item, howMany }) => {
 	const heart = useRef(false)
 
 	useEffect(() => {
+		let isUnMounted = false
 		setaddedCounter(howMany)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [howMany])
 
 	const _removeFromFavorite = async (paramItem) => {

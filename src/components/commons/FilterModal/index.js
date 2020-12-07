@@ -54,10 +54,11 @@ const mapDispatchProps = (dispatch, props) => ({
 
 const FilterModal = memo(({ isVisible, onSwipeComplete, closeModal, getDataRequest, data, cleanFilter, deleteFilters }) => {
     const themeContext = useContext(ThemeContext)
-    const [ checked, setchecked ] = useState(!false)
+    const [ checked, setchecked ] = useState(true)
     const [ items, setitems ] = useState([])
 
     useEffect(() => {
+        let isUnMounted = false
         getDataRequest()
         const getData = async () => {
             if (data) {
@@ -67,9 +68,14 @@ const FilterModal = memo(({ isVisible, onSwipeComplete, closeModal, getDataReque
             }
         }
         getData()
+        
+		return () => {
+			isUnMounted = true
+		}
     },[data])
     
     useEffect(() => {
+        let isUnMounted = false
         if (items.length > 0) {
             // order array, and reorder from true to false active items  
             items.sort((x, y) => {
@@ -80,14 +86,13 @@ const FilterModal = memo(({ isVisible, onSwipeComplete, closeModal, getDataReque
                 setchecked(false)
             } else if (!items[0].active){
                 setchecked(true)
-            } 
-            
+            }
         }
-    },[data])
-
-    const _applyFilters = () => {
-        closeModal()
-    }
+        
+		return () => {
+			isUnMounted = true
+		}
+    },[items])
 
     const _cleanFilters = () => {
         if (items.length > 0) {

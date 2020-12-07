@@ -5,14 +5,17 @@ import { connect } from 'react-redux'
 import { GET_DATA_REQUEST_REVIEWS } from '@redux/menu/getoneItem/actions'
 
 const Root = styled.View`
-	flex: 1;
+	height: 350px;
     width: 100%;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
 	background-color: transparent;
 `
-const ListItems = styled.FlatList``
+const ListItems = styled.FlatList`
+	height: 350px;
+	background-color: transparent;
+`
 const EmptyListContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
@@ -22,8 +25,30 @@ const EmptyListContainer = styled.View`
 	background-color: transparent;
 `
 const ReviewComponent = styled.View`
+	min-height: 10px;
 	justify-content: flex-start;
 	align-items: flex-start;
+	background-color: transparent;
+`
+const HeaderReviewContainer = styled.View`
+	min-height: 10px;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: stretch;
+	margin: 10px 0px 0px 0px;
+	background-color: transparent;
+`
+const LeftContainer = styled.View`
+	flex: 1;
+	flex-direction: row;
+`
+const ContentReviewContainer = styled.View`
+	width: 100%;
+	flex-direction: column;
+	justify-content: center;
+	padding-bottom: 5px;
+	padding-horizontal: 1px;
+	background-color: transparent;
 `
 
 const mapStateToProps = (state, props) => {
@@ -45,10 +70,12 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
     const [ items, setitems ] = useState([])
     
     useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
+		
 		return () => {
-			getDataRequest()
+			isUnMounted = true
 		}
 	}, [data])
 
@@ -60,6 +87,7 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
 						contentContainerStyle={{
 							flexDirection: 'column',
 							justifyContent: 'flex-start',
+							minHeight: 350
 						}}
 						data={items}
 						keyExtractor={(item) => item._id.toString()}
@@ -87,24 +115,43 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
 						renderItem={({item, i}) => {
                             return (
 								<ReviewComponent>
-									<ETAStarRating
-										ratings={
-											item.rating
-										}
-									/>
-									<ETASimpleText
-										size={14}
-										weight={
-											Platform.OS === 'ios'
-												? '400'
-												: '300'
-										}
-										color={
-											themeContext.PRIMARY_TEXT_COLOR_LIGHT
-										}
-										align='left'>
-										{item.review}
-									</ETASimpleText>
+									<HeaderReviewContainer>
+										<LeftContainer>
+											<ETASimpleText
+												size={12}
+												weight={
+													Platform.OS === 'ios'
+														? '400'
+														: '300'
+												}
+												color={
+													themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+												}
+												align='left'>
+												{item.date}
+											</ETASimpleText>
+										</LeftContainer>
+										<ETAStarRating
+											ratings={
+												item.rating
+											}
+										/>
+									</HeaderReviewContainer>
+									<ContentReviewContainer>
+										<ETASimpleText
+											size={12}
+											weight={
+												Platform.OS === 'ios'
+													? '400'
+													: '300'
+											}
+											color={
+												themeContext.PRIMARY_TEXT_COLOR_LIGHT
+											}
+											align='justify'>
+											{item.review}
+										</ETASimpleText>
+									</ContentReviewContainer>
 								</ReviewComponent>
                             )
 						}}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, memo } from 'react'
+import React, { useState, useEffect, useContext, memo, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETATextInputOutline, ETAButtonFilled } from '@etaui'
 import { connect } from 'react-redux'
@@ -42,8 +42,14 @@ const mapDispatchProps = (dispatch, props) => ({
 const NoteProduct = memo(({ _id, title, isVisible, onSwipeComplete, closeModal, getDataRequest, data, updateNote }) => {
     const themeContext = useContext(ThemeContext)
     const [ note, setnote ] = useState('')
+    const input = useRef()
+
+    useEffect(() => {
+        input.current?.focus()
+    }, [isVisible])
     
     useEffect(() => {
+        let isUnMounted = false
         getDataRequest()
         if (data !== []) {
             const itemFound = data.find(
@@ -55,6 +61,10 @@ const NoteProduct = memo(({ _id, title, isVisible, onSwipeComplete, closeModal, 
                 setnote('')
             }
         }
+        
+		return () => {
+			isUnMounted = true
+		}
     }, [_id, data])
     
     const _onPressItem = () => {
@@ -72,7 +82,7 @@ const NoteProduct = memo(({ _id, title, isVisible, onSwipeComplete, closeModal, 
             >
                 <>
                     <ETATextInputOutline
-                        // ref={textinputRef}
+                        refs={input}
                         value={note}
                         placeholder='Type a note...'
                         placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}

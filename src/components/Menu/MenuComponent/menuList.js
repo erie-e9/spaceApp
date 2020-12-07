@@ -51,6 +51,7 @@ const MenuList = ({ data, title }) => {
 	let delayValue = 700
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 10,
@@ -62,6 +63,10 @@ const MenuList = ({ data, title }) => {
 			duration: 1500,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	// const _onPressAllItems = (item) => {

@@ -59,12 +59,7 @@ const NotificationCardComponent = ({ headTitle, headTitleID, message, active, to
 		await _setswitchItem(item)
 		// toggleNotification(id)
 	}
-
-	// useEffect(() => {
-	// 	setswitchItem(!switchItem)
-	// 	toggleNotification(_switchItem)
-	// },[_switchItem])
-
+	
 	return (
 		<>
 			<Card>

@@ -199,11 +199,17 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 	const [ flavorsData, setflavorsData ] = useState() 
   
     useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setflavorsData(data)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 	
     useEffect(() => {
+		let isUnMounted = false
         Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -215,16 +221,25 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 			duration: 700,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
     }, [])
 
     useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(rotate, {
 			// toValue: -0.2,
 			toValue: 0,
 			tension: 5,
 			useNativeDriver: true,
 		}).start()
-    })
+		
+		return () => {
+			isUnMounted = true
+		}
+    }, [])
 
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)

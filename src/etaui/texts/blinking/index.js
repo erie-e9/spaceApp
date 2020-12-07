@@ -19,11 +19,15 @@ const ETABlinkingText = ({
 	const [textBlink, settextBlink] = useState(true)
 
 	useEffect(() => {
+		let isUnMounted = false
 		let isSubscribed = true
 		setInterval(() => {
 			settextBlink(!textBlink)
 		}, 1000)
-		return () => (isSubscribed = false)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [textBlink])
 
 	return (

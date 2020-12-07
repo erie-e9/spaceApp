@@ -89,16 +89,26 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 	let delayValue = 1000
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	const translateY = animatedValueTransform.interpolate({

@@ -43,11 +43,12 @@ const FavoritesListComponent = ({ getDataRequest, data }) => {
 	const [items, setitems] = useState([])
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
 		
 		return () => {
-			getDataRequest()
+			isUnMounted = true
 		}
 	}, [data])
 

@@ -28,7 +28,12 @@ const mapDispatchProps = (dispatch, props) => ({
 const CarouselComponent = ({ getDataRequest, data, items }) => {
 	
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	return (

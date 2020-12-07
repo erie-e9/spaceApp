@@ -40,9 +40,14 @@ const AddressesListComponent = ({getDataRequest, data}) => {
 	const [refresher, setrefresher] = useState(!true)
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
 		_getData()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	const _onPress = (item) => {

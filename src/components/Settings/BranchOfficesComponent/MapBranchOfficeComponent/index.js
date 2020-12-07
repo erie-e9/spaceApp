@@ -23,9 +23,13 @@ const MapBranchOfficeComponent = () => {
 	const map = useRef(null)
 
 	useEffect(() => {
+		let isUnMounted = false
 		let isSubscribed = true
 		_findCoordinates()
-		return () => (isSubscribed = false)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	const _findCoordinates = () => {

@@ -5,6 +5,7 @@ const config = () => {
   // Remove this method to stop OneSignal Debugging
   // OneSignal.setLogLevel(6, 0);
   useEffect(() => {
+    let isUnMounted = false
     OneSignal.init('7df7e613-b790-43dd-9fda-f9d97f93b190', {
       kOSSettingsKeyAutoPrompt: false,
       kOSSettingsKeyInAppLaunchURL: false,
@@ -19,6 +20,10 @@ const config = () => {
       OneSignal.removeEventListener('opened', onOpened);
       OneSignal.removeEventListener('ids', onIds);
     }
+    
+		return () => {
+			isUnMounted = true
+		}
   }, [])
   //   onReceived = (notification) => {
   //   console.log('Notification received: ', notification);

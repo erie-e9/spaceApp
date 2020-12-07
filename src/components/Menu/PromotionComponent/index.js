@@ -85,11 +85,17 @@ const PromoComponent = ({ getDataRequest, data }) => {
 	})
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -101,6 +107,10 @@ const PromoComponent = ({ getDataRequest, data }) => {
 			duration: 700,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	return (

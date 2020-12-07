@@ -39,7 +39,12 @@ const SubHeadBranchOfficesComponent = ({getDataRequest, data}) => {
 	const navigation = useNavigation()
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data])
 
 	return (

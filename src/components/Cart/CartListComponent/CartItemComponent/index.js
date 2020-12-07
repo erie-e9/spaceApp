@@ -68,9 +68,22 @@ const CardItemFunctions = styled.View`
 	margin: 0px 10px 0px 0px;
 	padding-horizontal: 2px;
 `
+const TouchableClose = styled.TouchableOpacity.attrs({
+	underlayColor: 'transparent',
+	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
+})`
+	height: 22px;
+	width: 22px;
+	z-index: 100;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+`
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
+	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
 })`
 	min-height: 25px;
 	min-width: 25px;
@@ -231,7 +244,12 @@ const CartItemComponent = ({
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
 
 	useEffect(() => {
+		let isUnMounted = false
 		setaddedCounter(howMany)
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [howMany])
 
 	const _addCart = (paramItem) => {
@@ -283,7 +301,7 @@ const CartItemComponent = ({
 								</ETASimpleText>
 							</CartTitleContainer>
 							<CardItemFunctions>
-								<Touchable
+								<TouchableClose
 									onPress={() =>
 										_removeItemFromCart(
 											item._id,
@@ -300,7 +318,7 @@ const CartItemComponent = ({
 												'center',
 										}}
 									/>
-								</Touchable>
+								</TouchableClose>
 							</CardItemFunctions>
 						</CartItemHeadContainer>
 						<CartItemContainer>

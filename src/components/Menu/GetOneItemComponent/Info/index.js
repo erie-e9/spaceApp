@@ -43,11 +43,12 @@ const InfoTopTabsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
     const [ items, setitems ] = useState([])
     
     useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
         // setitems(data)
-		
+	
 		return () => {
-			getDataRequest()
+			isUnMounted = true
 		}
 	}, [data])
 

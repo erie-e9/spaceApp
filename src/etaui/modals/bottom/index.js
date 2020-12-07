@@ -1,6 +1,6 @@
 import React, { memo, useState, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
-import { Dimensions, View, useColorScheme } from 'react-native'
+import { Dimensions, View, useColorScheme, ScrollView } from 'react-native'
 import { Ionicons } from '@icons'
 import Modal from 'react-native-modal'
 import { ETASimpleText } from '@etaui'
@@ -11,11 +11,12 @@ const Container = styled.View`
     flex: 1;
     justify-content: flex-end;
     align-items: center;
+    background-color: transparent;
 `
 const CardContainer = styled.View`
-    min-height: 200px;
+    min-height: 10px;
     width: ${width - 20}px;
-    padding: 16px 22px;
+    padding: 30px 25px 15px 25px;
     justify-content: flex-start;
     align-items: center;
     border-top-left-radius: 15px;
@@ -30,15 +31,16 @@ const DragView = styled.View`
     background-color: ${(props) => props.theme.GRAYFACEBOOK};
 `
 const Header = styled.View`
-    flex: 0.3;
-    width: 100%;
+    min-height: 20px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    margin: 0px 0px 10px 0px;
     background-color: transparent
 `
 const NameContainer = styled.View`
-	flex: 0.9;
+	flex: 1;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -47,10 +49,10 @@ const NameContainer = styled.View`
 `
 const HeaderRight = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
+	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
 })`
-	height: 25px;
-	width: 25px;
+	height: 22px;
+	width: 22px;
 	z-index: 100;
 	justify-content: center;
 	align-items: center;
@@ -61,7 +63,7 @@ const HeaderRight = styled.TouchableOpacity.attrs({
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const ChildrenContainer = styled.View`
-    flex: 1;
+    min-height: 100px;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -70,6 +72,8 @@ const ChildrenContainer = styled.View`
 const ETABottomModal = memo(({ children, onTouchOutSide, onSwipeComplete, isVisible, title, headerRight, closeModal }) => {
     const themeContext = useContext(ThemeContext)
     const colorSchema = useColorScheme()
+    const [ scrollOffset, setscrollOffset ] = useState(null)
+    let scrollViewRef = React.createRef();
 
     const renderOutsideTouchable = () => {
         const view = <View style={{ flex: 1, width: '100%' }} />
@@ -82,18 +86,31 @@ const ETABottomModal = memo(({ children, onTouchOutSide, onSwipeComplete, isVisi
         )
     }
 
+    const handleOnScroll = event => {
+        setscrollOffset(event.nativeEvent.contentOffset.y)
+    };
+    
+    const handleScrollTo = p => {
+        if (scrollViewRef.current) {
+          scrollViewRef.current.scrollTo(p);
+        }
+    };
+
     return (
         <Modal
             testID={'modal'}
             isVisible={isVisible}
             onSwipeComplete={onSwipeComplete}
-            swipeDirection='down'
+            // swipeDirection='down'
             backdropColor={colorSchema === 'dark' ? 'rgba(0, 0, 0, 0.55)' : 'rgba(0, 0, 0, 0.3)'}
             backdropOpacity={0.7}
-            animationIn='fadeInUp'
-            animationOut='fadeOutDown'
-            animationInTiming={200}
-            animationOutTiming={200}
+            animationIn='slideInUp'
+            animationOut='slideOutDown'
+            animationInTiming={400}
+            animationOutTiming={650}
+            scrollTo={handleScrollTo}
+            scrollOffset={scrollOffset}
+            scrollOffsetMax={400 - 300}
             // backdropTransitionInTiming={600}
             // backdropTransitionOutTiming={600}
             style={{
@@ -106,39 +123,45 @@ const ETABottomModal = memo(({ children, onTouchOutSide, onSwipeComplete, isVisi
             }
             <Container>
                 <CardContainer>
-                    <DragView />
-                    <Header>
-                        <NameContainer>
-                            <ETASimpleText
-                                size={16}
-                                weight={
-                                    Platform.OS ===
-                                    'ios'
-                                        ? '400'
-                                        : '400'
-                                }
-                                color={
-                                    themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-                                }
-                                align='left'>
-                                {title}
-                            </ETASimpleText>
-                        </NameContainer>
-                        <HeaderRight
-                            onPress={closeModal}
-                        >
-                            <Ionicons
-                                name='md-close'
-                                size={18}
-                                color={
-                                    themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-                                }
-                            />
-                        </HeaderRight>
-                    </Header>
-                    <ChildrenContainer>
-                        {children}
-                    </ChildrenContainer>
+                    {/* <DragView /> */}
+                        <Header>
+                            <NameContainer>
+                                <ETASimpleText
+                                    size={16}
+                                    weight={
+                                        Platform.OS ===
+                                        'ios'
+                                            ? '400'
+                                            : '400'
+                                    }
+                                    color={
+                                        themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                                    }
+                                    align='left'>
+                                    {title}
+                                </ETASimpleText>
+                            </NameContainer>
+                            <HeaderRight
+                                onPress={closeModal}
+                            >
+                                <Ionicons
+                                    name='md-close'
+                                    size={18}
+                                    color={
+                                        themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                                    }
+                                />
+                            </HeaderRight>
+                        </Header>
+                        {/* <ScrollView
+                            ref={scrollViewRef}
+                            onScroll={handleOnScroll}
+                            scrollEventThrottle={16}
+                            style={{ maxHeight: 250, width: '100%' }}> */}
+                            <ChildrenContainer>
+                                {children}
+                            </ChildrenContainer>
+                        {/* </ScrollView> */}
                 </CardContainer>
             </Container>
         </Modal>

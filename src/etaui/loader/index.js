@@ -31,7 +31,12 @@ const ETALoader = memo(({color, size}) => {
 	}
 
 	useEffect(() => {
+		let isUnMounted = false
 		onStartAnimation()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	const onAnimated = (animation, nextAnimation) => {

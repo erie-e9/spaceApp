@@ -56,6 +56,7 @@ const ItemsByCategoryComponent = ({ getDataRequest, data, toggleModal, toggle_mo
 	let uniquefilters = []
 
 	useEffect(() => {
+		let isUnMounted = false
 		getDataRequest()
 		setitems(data)
 		setisTopModalVisible(toggle_modal)
@@ -80,9 +81,14 @@ const ItemsByCategoryComponent = ({ getDataRequest, data, toggleModal, toggle_mo
 			}
 			setfilters(uniquefilters)
 		}
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [data, toggle_modal])
 
 	useEffect(() => {
+		let isUnMounted = false
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
@@ -94,6 +100,10 @@ const ItemsByCategoryComponent = ({ getDataRequest, data, toggleModal, toggle_mo
 			duration: 700,
 			useNativeDriver: true,
 		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
 	}, [])
 
 	const _onPressItem = (item) => {

@@ -58,8 +58,13 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
 	const [ isCurrencyModalVisible, setisCurrencyModalVisible ] = useState(false)
     
 	useEffect(() => {
+        let isUnMounted = false
 		// getDataRequest()
-		// console.log('[AppPreferencesSettingsComponent] data: ', data);
+        // console.log('[AppPreferencesSettingsComponent] data: ', data);
+        
+		return () => {
+			isUnMounted = true
+		}
     }, [data])
     
 	const _switch = async (item) => {
@@ -83,7 +88,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
                         <ETASimpleText
                             size={11}
                             weight='300'
-                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
                             English is language by default, but if you want you could change this option.
                         </ETASimpleText>
@@ -122,7 +127,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
                         <ETASimpleText
                             size={11}
                             weight='300'
-                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
                             Currency that appears by default is dolar, but if you want you could change this option.
                         </ETASimpleText>
@@ -161,7 +166,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
                         <ETASimpleText
                             size={11}
                             weight='300'
-                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
                             Change the look of the app or let your smartphone theme choose for you.
                         </ETASimpleText>

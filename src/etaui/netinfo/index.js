@@ -18,6 +18,7 @@ const ETANetInfo = () => {
 	const themeContext = useContext(ThemeContext)
 
 	useEffect(() => {
+let isUnMounted = false
 		const unsubscribe = NetInfo.addEventListener((state) => {
 			setisInternetReachable(state.isInternetReachable)
 			// console.log(
@@ -27,7 +28,7 @@ const ETANetInfo = () => {
 		})
 
 		return () => {
-			unsubscribe()
+			isUnMounted = true
 		}
 	}, [])
 
