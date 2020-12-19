@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, memo } from 'react'
 import { Animated, Platform } from 'react-native'
-import { useRoute } from '@react-navigation/native'
 import styled, { ThemeContext } from 'styled-components'
 import { ETASimpleText, ETALoader } from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
@@ -18,16 +17,19 @@ const CategoryItemsList = styled.FlatList``
 
 const mapStateToProps = (state, props) => {
 	const itemsbycategory = state.itemsbycategory.data
-	const { data, toggle_modal } = state.filters
-	return { data, toggle_modal, itemsbycategory }
+	const { data, toggle_modal, increment, discountToggle } = state.filters
+	return { itemsbycategory, data, toggle_modal, increment, discountToggle }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
-	addFilters: ({ title, active }) => {
+	addFilters: ({ title, active }, { discounts }) => {
+		// console.log({ title, active }, { discounts });
 		dispatch({
 			type: ADD_FILTERS,
 			payload: {
-				paramItem: { title, active }
+				paramItem: { title, active },
+				discounts,
+				discountToggle: false
 			}
 		})
 	},
@@ -41,6 +43,7 @@ const mapDispatchProps = (dispatch, props) => ({
 		})
 	},
 
+	// All filters
 	getDataRequest: () => {
 		dispatch({
 			type: GET_DATA_REQUEST,
@@ -62,26 +65,66 @@ const mapDispatchProps = (dispatch, props) => ({
 			type: DELETE_FILTERS,
 			payload: {}
 		})
-	}
+	},
 })
 
-const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest, data, deleteFilters, getDataRequestItems, itemsbycategory }) => {
+const ItemsComponent = memo(({ toggleModal, toggle_modal, addFilters, getDataRequest, data, deleteFilters, getDataRequestItems, itemsbycategory, increment, discountToggle }) => {
 	const themeContext = useContext(ThemeContext)
-	const route = useRoute()
-	const { name } = route?.params
 	const [ isTopModalVisible, setisTopModalVisible ] = useState(false)
 	const [ dynamicItems, setdynamicItems ] = useState(null)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
 	let _data = []
+	let _discounts = []
+	let sorted = []
+	
+    useEffect(() => {
+        // setincrementchecked(increment)
+        console.log('[i] increment: value', {increment, discountToggle});
+	}, [increment, discountToggle])	
+
+	useEffect(() => {
+		let isUnMounted = false
+		setisTopModalVisible(toggle_modal)
+		
+		return () => {
+			isUnMounted = true
+		}
+	}, [toggle_modal])
+
+	useEffect(() => {
+		let isUnMounted = false
+		if (increment !== undefined && increment === true && dynamicItems !== null) {
+			if(Array.isArray(dynamicItems)) {
+				// increment
+				sorted = dynamicItems.sort((a, b) => parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price) - parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price))
+				setdynamicItems(sorted)
+				// console.log('*************[ItemsComponent] if: ',{ increment,  dynamicItems: dynamicItems.length} )
+			}
+		} else if (increment !== undefined && increment === false && dynamicItems !== null) {
+			if(Array.isArray(dynamicItems)) {
+				// decremental
+				sorted = dynamicItems.sort((a, b) => parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price) - parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price))
+				setdynamicItems(sorted)
+				// console.log('*************[ItemsComponent] else: ',{ increment,  dynamicItems: dynamicItems.length} )
+			}
+		} else {
+			console.log('ninguno');
+			// setdynamicItems(itemsbycategory)
+		}
+
+		return () => {
+			isUnMounted = true
+		}
+	}, [itemsbycategory, dynamicItems, increment])
 
 	useEffect(() => {
 		let isUnMounted = false
 		deleteFilters()
 		getDataRequestItems()
-		if (itemsbycategory.length > 0) {		
-			setdynamicItems(itemsbycategory)
+		if (itemsbycategory.length > 0) {
+			// setdynamicItems(itemsbycategory)
 			Animated.spring(animatedValueTransform, {
 				toValue: 1,
 				tension: 5,
@@ -96,13 +139,18 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 
 			itemsbycategory.forEach(element => {
 				_data.unshift(element.status)
+				if (element.discount !== '' && element.discount !== undefined) {
+					_discounts.unshift(element.discount)
+				}
 			})
 
 			if (_data.length !== 0) {
 				let uniques = [...new Set(_data)]
 				uniques.forEach(element => {
-					if (element !== '' && element !== undefined) {
-						addFilters({ title: element, active: false })
+					if (element !== '' && element !== undefined && _discounts.length > 0) {
+						addFilters({ title: element, active: false }, { discounts: true })
+					} else if (element !== '' && element !== undefined && _discounts.length === 0) {
+						addFilters({ title: element, active: false }, { discounts: false })
 					}
 				})
 			}
@@ -115,16 +163,8 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 
 	useEffect(() => {
 		let isUnMounted = false
-		setisTopModalVisible(toggle_modal)
-		
-		return () => {
-			isUnMounted = true
-		}
-	}, [toggle_modal])
-
-	useEffect(() => {
-		let isUnMounted = false
 		getDataRequest()
+		// console.log('[ItemsComponent] discountToggle: ', discountToggle);
 		// Filters
 		if (itemsbycategory.length > 0) {
 			let actives = []
@@ -134,11 +174,12 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 				}
 			})
 
+			let arrayFilters = []
 			if (actives.length > 0) {
-				let arrayFilters = []
-				
+
 				function filterItems(query) {
-					return itemsbycategory.filter(function(el, i) {
+					// console.log('functionfilterItems > 0');
+					return itemsbycategory.filter((el, i) => {
 						return el.status === query
 					})
 				}
@@ -146,8 +187,29 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 				actives.forEach((element, i) => {
 					arrayFilters.unshift(...filterItems(element))
 				})
-				setdynamicItems(arrayFilters)
-			} else {
+
+				if (increment !== undefined && increment === true) {
+					let sorted = arrayFilters.sort((a, b) => parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price) - parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price))
+					setdynamicItems(sorted)
+				} else if (increment !== undefined && increment === false) {
+					let sorted = arrayFilters.sort((a, b) => parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price) - parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price))
+					setdynamicItems(sorted)
+				} else {
+					console.log('else :(', increment);
+					// setdynamicItems(itemsbycategory)
+					setdynamicItems(arrayFilters)
+				}
+
+			} else if (discountToggle) {
+				console.log('++++++++ functionfilterItems discountToggle true');
+				function filterItems(query) {
+					return dynamicItems.filter((el, i) => {
+						return el.discount !== query
+					})
+				}
+				setdynamicItems(filterItems(0))
+			} 
+			else {
 				setdynamicItems(itemsbycategory)
 			}
 		}
@@ -155,7 +217,7 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 		return () => {
 			isUnMounted = true
 		}
-	}, [data])
+	}, [data, increment, discountToggle])
 
 	return (
 		<>
@@ -193,6 +255,7 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 								</ETASimpleText>
 							)}
 							renderItem={({item}) => {
+								// console.log('item.price: ', item.price);
 								delayValue += 700
 								const translateY = animatedValueTransform.interpolate(
 									{
@@ -221,7 +284,7 @@ const ItemsComponent = ({ toggleModal, toggle_modal, addFilters, getDataRequest,
 			</Root>
 		</>
 	)
-}
+})
 
 const ItemsComponentConnect = connect(
 	mapStateToProps,

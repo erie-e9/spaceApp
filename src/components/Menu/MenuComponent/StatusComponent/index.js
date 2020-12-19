@@ -52,16 +52,23 @@ const Status = ({ getDataRequest, data }) => {
 
 	useEffect(() => {
 		let isUnMounted = false
-		getDataRequest()
-		setitems(data)
-		// setitems(data.slice(0, 11), [])
-		// setsubitems(data.slice(3, 11), [])
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
 			useNativeDriver: true,
 		}).start()
 		
+		return () => {
+			isUnMounted = true
+		}
+	}, [])
+
+	useEffect(() => {
+		let isUnMounted = false
+		getDataRequest()
+		setitems(data)
+		// setitems(data.slice(0, 11), [])
+		// setsubitems(data.slice(3, 11), [])
 		return () => {
 			isUnMounted = true
 		}

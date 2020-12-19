@@ -35,8 +35,8 @@ const ChatCard = ({ text, client, createdAt, active }) => (
 	<Root>
 		<AvatarContainer active={active}>
 			<SharedElement id={`chat.1.avatar`}>
-				{/* <ETAAvatar image={client.avatar ? client.avatar : variables.AVATAR_USER_DEFAULT} size='middle' /> */}
-				<ETAAvatar image={variables.AVATAR_USER_DEFAULT} size='middle' />
+				<ETAAvatar image={client.avatar ? client.avatar : variables.AVATAR_USER_DEFAULT} size='middle' />
+				{/* <ETAAvatar image={variables.AVATAR_USER_DEFAULT} size='middle' /> */}
 			</SharedElement>
 		</AvatarContainer>
 		<ContactContainer>

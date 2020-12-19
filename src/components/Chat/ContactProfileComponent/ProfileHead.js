@@ -8,9 +8,10 @@ const {width} = Dimensions.get('window')
 const avatarSize = 90
 
 const Root = styled.View`
-    flex: 1;
+    flex: 0.5;
 	justify-content: flex-end;
 	align-items: center;
+    padding: 15px 0px 5px 0px;
 	background-color: transparent;
 `
 const AvatarContainer = styled.View`

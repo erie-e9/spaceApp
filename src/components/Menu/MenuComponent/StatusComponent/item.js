@@ -7,15 +7,15 @@ const _height = 45
 const _width = 45
 
 const ItemContainer = styled.View`
+	justify-content: center;
+	align-items: center;
 	padding: 1.75px;
 	border-radius: 50px;
 	height: ${_height + 8}px;
 	width: ${_width + 8}px;
-	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	border-width: 2px;
 	margin: 4px 6px;
-	justify-content: center;
-	align-items: center;
+	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: transparent;
 `
 const Item = styled.View`

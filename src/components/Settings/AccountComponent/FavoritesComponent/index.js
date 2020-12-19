@@ -5,7 +5,7 @@ import {ETASimpleText, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import FavoriteItemComponent from './FavoriteItemComponent'
 import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/profile/favorites/actions'
+import {GET_DATA_REQUEST} from '@redux/settings/favorites/actions'
 
 const Root = styled.View`
 	flex: 1;

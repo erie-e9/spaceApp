@@ -27,7 +27,7 @@ const ETASimpleText = ({
 			fontSize: size || PixelRatio.getFontScale(),
 			...style,
 		}}>
-		{children || 'Text'}
+		{children !== '' ? children : children ? 'Text': null}
 	</Text>
 )
 

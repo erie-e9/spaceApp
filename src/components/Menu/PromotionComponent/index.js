@@ -19,17 +19,17 @@ const Root = styled.View`
 `
 const PromotionItemsList = styled.FlatList``
 const PromoHeadContainer = styled.View`
+	height: 100%;
+	width: ${width}px;
 	flex-direction: row;
 	justify-content: center;
 	align-items: flex-start;
-	width: ${width}px;
-	height: 100%;
 	padding: -10px 0px 5px 0px;
 `
 const PromoHeadTitle = styled.View`
 	flex: 1;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-end;
 	align-items: center;
 	background-color: transparent;
 `
@@ -39,6 +39,19 @@ const PromoHeadImage = styled.ImageBackground`
 	width: 100%;
 	height: 100%;
 	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
+`
+const PromoInfo = styled.View`
+	min-height: 50px;
+	width: ${width - 100}px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: -10px 0px 5px 0px;
+	margin: 5px 0px 5px 0px;
+	border-radius: 6px;
+	background-color: white;
+	position: relative;
+	top: 20px;
 `
 
 const mapStateToProps = (state, props) => {
@@ -242,26 +255,27 @@ const PromoComponent = ({ getDataRequest, data }) => {
 										{selectedItem.title}
 									</ETASimpleText>
 								</SharedElement>
-								<ETASimpleText
-									size={14}
-									weight='400'
-									color={
-										selectedItem.descriptionColor
-									}
-									align='center'
-									style={{
-										marginBottom: 5,
-										elevation: 4,
-										textShadowColor:
-											'rgba(0, 0, 0, 0.7)',
-										textShadowOffset: {
-											width: 0.5,
-											height: 0.7,
-										},
-										textShadowRadius: 3,
-									}}>
-									{selectedItem.description}
-								</ETASimpleText>
+								<PromoInfo>
+									<ETASimpleText
+										size={14}
+										weight='400'
+										color='black'
+										align='center'
+										// style={{
+										// 	marginBottom: 5,
+										// 	elevation: 4,
+										// 	textShadowColor:
+										// 		'rgba(0, 0, 0, 0.7)',
+										// 	textShadowOffset: {
+										// 		width: 0.5,
+										// 		height: 0.7,
+										// 	},
+										// 	textShadowRadius: 3,
+										// }}>
+										>
+										{selectedItem.description}
+									</ETASimpleText>
+								</PromoInfo>
 							</PromoHeadTitle>
 						</PromoHeadImage>
 					</SharedElement>

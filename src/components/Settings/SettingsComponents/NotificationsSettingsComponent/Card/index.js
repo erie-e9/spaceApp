@@ -3,7 +3,7 @@ import { Platform } from 'react-native'
 import styled, { ThemeContext } from 'styled-components/native'
 import { ETASimpleText, ETASwitch } from '@etaui'
 import { connect } from 'react-redux'
-import { TOGGLE_NOTIFICATION } from '@redux/profile/notifications/actions'
+import { TOGGLE_NOTIFICATION } from '@redux/settings/notifications/actions'
 
 const Card = styled.View`
 	flex-direction: row;
@@ -24,14 +24,14 @@ const MetadaInfoHead = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0px 10px 2px 0px;
+	padding: 0px 10px 0px 0px;
 	background-color: transparent;
 `
 const MessageContainer = styled.View`
 	flex-direction: row;
 	min-height: 20px;
 	align-items: center;
-	padding-left: 10px;
+	padding-left: 5px;
 	background-color: transparent;
 `
 

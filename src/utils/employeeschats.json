@@ -10,7 +10,7 @@
 				"firstname": "Alanna",
 				"lastname": "Stanton",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/solid_color/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/city",
 				"createdAt": "23, 1, 2020"
 			}
 		},
@@ -24,7 +24,7 @@
 				"firstname": "Jesse",
 				"lastname": "Cruickshank",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/martinansty/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/business",
 				"createdAt": "5, 3, 2020"
 			}
 		},
@@ -38,7 +38,7 @@
 				"firstname": "Regan",
 				"lastname": "Jenkins",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/oskamaya/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/transport",
 				"createdAt": "10, 5, 2020"
 			}
 		},
@@ -52,7 +52,7 @@
 				"firstname": "Margarete",
 				"lastname": "Kertzmann",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/imcoding/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/business",
 				"createdAt": "13, 1, 2020"
 			}
 		},
@@ -66,7 +66,7 @@
 				"firstname": "Freddy",
 				"lastname": "Kunde",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ludwiczakpawel/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/business",
 				"createdAt": "15, 6, 2020"
 			}
 		},
@@ -80,7 +80,7 @@
 				"firstname": "Kenneth",
 				"lastname": "Green",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/rdbannon/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/sports",
 				"createdAt": "9, 2, 2020"
 			}
 		},
@@ -94,7 +94,7 @@
 				"firstname": "Shaun",
 				"lastname": "Friesen",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nicklacke/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/food",
 				"createdAt": "29, 5, 2020"
 			}
 		},
@@ -108,7 +108,7 @@
 				"firstname": "Ally",
 				"lastname": "Heathcote",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/n_tassone/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/sports",
 				"createdAt": "12, 6, 2020"
 			}
 		},
@@ -122,7 +122,7 @@
 				"firstname": "Merlin",
 				"lastname": "Herzog",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/saschamt/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/sports",
 				"createdAt": "8, 5, 2020"
 			}
 		},
@@ -136,7 +136,7 @@
 				"firstname": "Sheldon",
 				"lastname": "Purdy",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/s4f1/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/nature",
 				"createdAt": "18, 1, 2020"
 			}
 		}

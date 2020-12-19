@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETALoader} from '@etaui'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { ETALoader } from '@etaui'
 import Card from './Card'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/profile/help/faqs/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/settings/help/faqs/actions'
 
 const Root = styled.View`
 	flex: 1;

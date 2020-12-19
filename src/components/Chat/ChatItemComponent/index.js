@@ -49,7 +49,6 @@ const ChatItemComponent = () => {
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 2000
-	
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -95,6 +94,7 @@ const ChatItemComponent = () => {
 				lastname: user?.lastname,
 				createdAt: paramData?.createdAt,
 				avatar: user?.avatar,
+				cellphone: user?.cellphone,
 			}
 		})
 	}
@@ -159,7 +159,7 @@ const ChatItemComponent = () => {
 					}}>
 					<SubHeadContainer>
 						<ButtonContainer 
-							onPress={() => Linking.openURL(`tel:${paramData.employee.cellphone}`).catch((err) => console.error('An error occurred opening link on contact card: ', err))}
+							onPress={() => Linking.openURL(`tel:${user.cellphone}`).catch((err) => console.error('An error occurred opening link on contact card: ', err))}
 						>
 							<Entypo name='phone' size={18} color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} />
 						</ButtonContainer>

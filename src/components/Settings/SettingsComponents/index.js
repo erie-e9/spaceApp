@@ -3,12 +3,8 @@ import { Platform } from 'react-native'
 import styled, { ThemeContext } from 'styled-components/native'
 import {
 	Ionicons,
-	EvilIcons,
 	FontAwesome,
-	AntDesign,
-	SimpleLineIcons,
 	Feather,
-	Octicons,
 	MaterialCommunityIcons
 } from '@icons'
 import { useNavigation } from '@react-navigation/native'

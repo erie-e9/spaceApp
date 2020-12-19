@@ -1,70 +1,121 @@
 import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import { ETAFancyModal, ETATextInputOutline, ETAButtonFilled } from '@etaui'
+import { ETAFancyModal, ETASimpleText, ETAButtonFilled, ETARadio } from '@etaui'
 
 const Root = styled.View`
-	flex: 1;
+	min-height: 10px;
+    width: 100%;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background-color: transparent;
+`
+const ListItems = styled.FlatList`
+    min-height: 10px;
+    background-color: transparent;
+`
+const ItemContainer = styled.View`
+    min-height: 10px;
+    flex-direction: row;
+    min-width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1px 15px;
+    margin-vertical: 3px;
+    background-color: transparent;
 `
 const ButtonContainer = styled.View`
-	height: 50px;
+    height: 50px;
 	width: 100%;
 	align-items: center;
 	background-color: transparent;
 `
+const EmptyListContainer = styled.View`
+    min-height: 10px;
+	flex-direction: column;
+	justify-content: center;
+    align-items: center;
+    padding-vertical: 20px;
+	background-color: transparent;
+`
 
-const CurrencyModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
+const CurrencyModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) => {
     const themeContext = useContext(ThemeContext)
+	const [ items, setitems ] = useState(null)
+	const [ selected, setselected ] = useState(true)
     
+    useEffect(() => {
+        setitems(data)
+    }, [data])
+
+    const _onPressItem = () => {
+        closeModal()
+    }
+
     return(
         <Root>
             <ETAFancyModal
-                title={`Default currency`}
+                title={`Choose currency`}
                 isVisible={isVisible}
                 onSwipeComplete={onSwipeComplete}
                 closeModal={closeModal}
             >
                 <>
-                    <ETATextInputOutline
-                        // ref={textinputRef}
-                        value=''
-                        placeholder='Do you have a discount Code?'
-                        placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-                        keyboardType='default'
-                        autoCapitalize='words'
-                        allowFontScaling
-                        autoCorrect
-                        autoFocus
-                        blurOnSubmit={false}
-                        caretHidden={false}
-                        clearButtonMode='while-editing'
-                        contextMenuHidden={false}
-                        editable
-                        enablesReturnKeyAutomatically={false}
-                        underlineColorAndroid='transparent'
-                        keyboardAppearance='dark'
-                        maxLength={250}
-                        multiline={true}
-                        numberOfLines={1} // android
-                        returnKeyLabel='next' // android
-                        secureTextEntry={false} // password
-                        spellCheck
-                        textContentType='none'
-                        returnKeyType='next'
-                        textsize={14}
-                        height={40}
-                        width={270}
-                        borderWidth={0.3}
-                        // onChangeText={text => {onChangeValue([item.name], text); setdisabledState(values?.[item.name] !== '' ? false : true)}}
-                        // onBlur={handleBlur('cellphone')}
-                        selectionColor={themeContext.PRIMARY_COLOR}
-                    />
+                    {
+                        data.length > 0
+                        ?   <ListItems
+                                contentContainerStyle={{
+                                    flexDirection: 'column',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    minHeight: 10
+                                }}
+                                data={items}
+                                keyExtractor={(item) => item._id.toString()}
+                                horizontal={!true}
+                                initialNumToRender={5}
+                                showsVerticalScrollIndicator={false}
+                                updateCellsBatchingPeriod={3000}
+                                ListEmptyComponent={() => (
+                                    <EmptyListContainer>
+                                        <ETASimpleText
+                                            size={14}
+                                            weight={
+                                                Platform.OS === 'ios'
+                                                    ? '400'
+                                                    : '300'
+                                            }
+                                            color={
+                                                themeContext.PRIMARY_TEXT_COLOR_LIGHT
+                                            }
+                                            align='left'>
+                                            There're no languages availables.
+                                        </ETASimpleText>
+                                    </EmptyListContainer>
+                                )}
+                                renderItem={({item, i}) => {
+                                    return (
+                                        <ItemContainer>
+                                            <ETARadio 
+                                                text={item.title}
+                                                sizeText={14}
+                                                colorText={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                                onChange={() => setselected(!item.default)}
+                                                activated={selected}
+                                                sizeRadio={15}
+                                                colorRadio={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                                            />
+                                            {/* {dynamicFlag(item.title)} */}
+                                        </ItemContainer>
+                                    )
+                                }}
+                            />
+                        :   null
+                    }
                     <ButtonContainer>
                         <ETAButtonFilled
                             title='Apply'
-                            // onPress={() => _onPressItem()}
-                            // disabled={data.length === 0 ? true : false}
+                            onPress={() => _onPressItem()}
                             colorButton={
                                 themeContext.SECONDARY_BACKGROUND_COLOR
                             }

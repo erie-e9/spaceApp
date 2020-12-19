@@ -13,8 +13,8 @@ const Container = styled.View`
     justify-content: center;
 `
 const CardContainer = styled.View`
-    min-height: 220px;
-    width: ${width - 20}px;
+    min-height: 10px;
+    width: ${width - 30}px;
     justify-content: flex-start;
     align-items: center;
     padding: 15px 15px;
@@ -23,7 +23,7 @@ const CardContainer = styled.View`
     background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const Header = styled.View`
-    flex: 0.25;
+    min-height: 20px;
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
@@ -31,7 +31,7 @@ const Header = styled.View`
     background-color: transparent
 `
 const NameContainer = styled.View`
-	flex: 0.9;
+	flex: 1;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -54,11 +54,12 @@ const HeaderRight = styled.TouchableOpacity.attrs({
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const ChildrenContainer = styled.View`
-    flex: 0.7;
+    min-height: 20px;
     width: 100%;
     justify-content: center;
     align-items: center;
-    background-color: transparent
+	padding-vertical: 10px;
+    background-color: transparent;
 `
 
 const ETAFancyModal = memo(({ children, onTouchOutSide, onSwipeComplete, isVisible, title, closeModal }) => {

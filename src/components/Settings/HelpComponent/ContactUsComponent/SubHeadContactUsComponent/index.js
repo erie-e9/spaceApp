@@ -9,8 +9,8 @@ import {
 	SimpleLineIcons,
 	Octicons,
 } from '@icons'
-import {ETASimpleText, ETALink} from '@etaui'
-import {variables} from '@utils/constants'
+import { ETASimpleText, ETALink } from '@etaui'
+import { variables } from '@utils/constants'
 
 const {width} = Dimensions.get('window')
 const iconSize = 23
@@ -74,7 +74,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						text='Main branch office'
+						children='Main branch office'
 					/>
 				</TitleContainer>
 			</InfoContainer>
@@ -98,7 +98,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						text='Customer client center'
+						children='Customer client center'
 					/>
 				</TitleContainer>
 			</InfoContainer>
@@ -122,7 +122,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						text='Add us on WhatsApp'
+						children='Add us on WhatsApp'
 					/>
 				</TitleContainer>
 			</InfoContainer>
@@ -146,7 +146,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						text='Like us on facebook'
+						children='Like us on facebook'
 					/>
 				</TitleContainer>
 			</InfoContainer>
@@ -170,7 +170,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						text='Follow us on twitter'
+						children='Follow us on twitter'
 					/>
 				</TitleContainer>
 			</InfoContainer>
@@ -194,7 +194,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						text='Give us love on instagram'
+						children='Give us love on instagram'
 					/>
 				</TitleContainer>
 			</InfoContainer>

@@ -1,22 +1,19 @@
-import React, {useContext} from 'react'
-import {Platform, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETASimpleText} from '@etaui'
-import {EvilIcons} from '@icons'
+import React, { useContext } from 'react'
+import { Platform, Dimensions } from 'react-native'
+import styled, { ThemeContext } from 'styled-components/native'
+import { ETASimpleText } from '@etaui'
+import { EvilIcons } from '@icons'
 
-const {width} = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 const iconSize = 23
 
 const Card = styled.View`
-    flex-direction: row;
-    width: ${width}px;
-    min-height: 40px;
-    justify-content: space-between;
-    align-self: center;
-    align-items: center;
-    border-radius: 5px
-    margin-bottom: 1px;
-    background-color: transparent;
+	width: ${width}px;
+	flex-direction: row;
+	margin-bottom: 1px;
+	min-height: 20px;
+	align-items: center;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const MetadataInfo = styled.View`
 	flex: 1;
@@ -48,8 +45,8 @@ const MetadaAnswerContainer = styled.View`
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	padding-left: 40px;
-	padding-vertical: 5px;
+	padding-left: 45px;
+	padding-vertical: 2px;
 	background-color: transparent;
 `
 

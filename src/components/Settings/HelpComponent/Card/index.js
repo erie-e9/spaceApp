@@ -8,9 +8,9 @@ const Card = styled.View`
 	margin-bottom: 1px;
 	min-height: 20px;
 	align-items: center;
-	padding-horizontal: 10px;
+	padding-left: 5px;
 	margin-top: 5px;
-	background-color: transparent;
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const MetadataInfo = styled.View`
 	width: 100%;

@@ -20,6 +20,9 @@ import IcecreamIcon4 from './icecream4'
 import MasterCardIcon from './mastercard'
 import VisaIcon from './visa'
 import BroadcastIcon from './broadcast'
+import MXIcon from './mx.js'
+import USIcon from './us.js'
+import FRIcon from './fr.js'
 
 import CustomProductIcon1 from './products/customproducticon1'
 import CustomProductIcon2 from './products/customproducticon2'
@@ -47,5 +50,8 @@ export {
   VisaIcon,
   CustomProductIcon1,
   CustomProductIcon2,
-  BroadcastIcon
+  BroadcastIcon,
+  MXIcon,
+  USIcon,
+  FRIcon,
 }

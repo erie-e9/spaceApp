@@ -11,7 +11,7 @@ function* getDataRequest(action) {
     yield put({
       type: GET_DATA_REQUEST_SUCCESS,
       payload: {
-        data: data.menu3,
+        data: data.menu2,
       },
     })
   } catch (error) {

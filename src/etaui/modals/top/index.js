@@ -84,17 +84,19 @@ const ETAFancyModal = memo(({ children, onSwipeComplete, isVisible, title, close
                 animationIn='slideInDown'
                 animationOut='slideOutUp'
                 animationInTiming={400}
-                animationOutTiming={650}
-                onBackButtonPress={() => console.log('ewe')}
-                onBackdropPress={() => console.log('ewe')}
+                animationOutTiming={500}
+                onBackButtonPress={() => closeModal()}
+                onBackdropPress={() => closeModal()}
                 // backdropTransitionInTiming={600}
                 // backdropTransitionOutTiming={600}
                 style={{
+                    backgroundColor: 'transparent',
                     justifyContent: 'flex-end',
                     alignItems: 'center',
                     margin: 0,
-                }}>
-                <Container onPress={closeModal}>
+                }}
+                >
+                <Container onPress={() => closeModal()}>
                     <CardContainer>
                         <Header>
                             <NameContainer>
@@ -114,7 +116,7 @@ const ETAFancyModal = memo(({ children, onSwipeComplete, isVisible, title, close
                                 </ETASimpleText>
                             </NameContainer>
                             <HeaderRight
-                                onPress={closeModal}
+                                onPress={() => closeModal()}
                             >
                                 <Ionicons
                                     name='md-close'

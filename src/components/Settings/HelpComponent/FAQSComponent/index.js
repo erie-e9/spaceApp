@@ -6,7 +6,6 @@ const Root = styled.View`
 	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	padding-top: 5px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 

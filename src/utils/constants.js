@@ -80,7 +80,7 @@ export const darkTheme = {
   THIRD_BACKGROUND_COLOR_LIGHT: '#333333',
 
   FOURTH_BACKGROUND_COLOR: '#EFEFF4',
-  FOURTH_BACKGROUND_COLOR_LIGHT: '#181818', // background navigation
+  FOURTH_BACKGROUND_COLOR_LIGHT: '#18191a', // background navigation
 
   REDGRAY: 'rgba(237, 41, 57, 1)',
   REDBADGE: 'rgba(230, 0, 0, 1)',
@@ -94,14 +94,14 @@ export const darkTheme = {
   BACKGROUND_COLOR: '#333333',
 
   PRIMARY_TEXT_COLOR: '#FFFFFF',
-  PRIMARY_TEXT_COLOR_LIGHT: '#ABABAB',
+  PRIMARY_TEXT_COLOR_LIGHT: '#b0b3b8',
   SECONDARY_TEXT_COLOR: '#3D3D3D',
   SECONDARY_TEXT_COLOR_LIGHT: 'rgba(90, 90, 90, 1)',
   THIRD_TEXT_COLOR: '#FFFFFF',
   THIRD_TEXT_COLOR_LIGHT: 'rgba(169, 169, 169, 1)',
 
-  PRIMARY_TEXT_BACKGROUND_COLOR: '#292929',
-  SECONDARY_TEXT_BACKGROUND_COLOR: '#F7F7F7',
+  PRIMARY_TEXT_BACKGROUND_COLOR: '#242526',
+  SECONDARY_TEXT_BACKGROUND_COLOR: '#e4e6eb',
   SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT: 'rgba(255, 255, 255, 0.5)',
   MAPSTYLE: [
     {
@@ -579,7 +579,7 @@ export const navDarkMode = {
   dark: false,
   colors: {
     primary: 'rgb(255, 45, 85)',
-    background: '#181818',
+    background: '#18191a',
     card: 'rgb(255, 255, 255)',
     text: 'rgb(242, 242, 242)',
     border: 'rgb(199, 199, 204)',

@@ -3,7 +3,9 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText, ETAThemePicker, ETAButtonFilled } from '@etaui'
 import { connect } from 'react-redux'
-import { GET_DATA_REQUEST } from '@redux/profile/notifications/actions'
+import { GET_DATA_REQUEST } from '@redux/settings/notifications/actions'
+import { GET_DATA_REQUEST as GET_DATA_REQUEST_LANGUAGES } from '@redux/settings/appsettings/languages/actions'
+import { GET_DATA_REQUEST as GET_DATA_REQUEST_CURRENCIES } from '@redux/settings/appsettings/currencies/actions'
 import LanguageModal from '@commons/LanguageModal'
 import CurrencyModal from '@commons/CurrencyModal'
 
@@ -21,25 +23,28 @@ const SettingContainer = styled.View`
 	background-color: transparent;
 `
 const ItemContainer = styled.View`
-    margin: 0px 0px 10px 0px;
 	padding: 0px 15px;
+	background-color: transparent;
 `
 const SubtitleText = styled.View`
-    margin: 10px 0px 0px 0px;
+	padding: 5px 0px 5px 5px;
+	background-color: transparent;
 `
 const ButtonModalContainer = styled.View`
 	height: 50px;
 	width: 100%;
-    margin: 10px 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
 	align-items: center;
 	align-self: center;
 	background-color: transparent;
 `
 
 const mapStateToProps = (state, props) => {
-	const { data } = state.notifications
+	const datanotifications = state.notifications.data
+	const datalanguages = state.languages.data
+	const datacurrencies = state.currencies.data
 
-	return { data }
+	return { datanotifications, datalanguages, datacurrencies }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
@@ -47,10 +52,22 @@ const mapDispatchProps = (dispatch, props) => ({
 		dispatch({
 			type: GET_DATA_REQUEST,
 		})
+    },
+    
+	getDataRequestLanguages: () => {
+		dispatch({
+			type: GET_DATA_REQUEST_LANGUAGES,
+		})
+    },
+    
+	getDataRequestCurrencies: () => {
+		dispatch({
+			type: GET_DATA_REQUEST_CURRENCIES,
+		})
 	},
 })
 
-const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
+const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, getDataRequestLanguages, datalanguages, getDataRequestCurrencies, datacurrencies }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ switchItem, setswitchItem ] = useState(true)
     const [ _switchItem, _setswitchItem ] = useState()
@@ -59,25 +76,24 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
     
 	useEffect(() => {
         let isUnMounted = false
-		// getDataRequest()
-        // console.log('[AppPreferencesSettingsComponent] data: ', data);
+        getDataRequest()
+        getDataRequestLanguages()
+        getDataRequestCurrencies()
+        console.log('[AppPreferencesSettingsComponent] datanotifications: ', datanotifications);
+        console.log('[AppPreferencesSettingsComponent] datalanguages: ', datalanguages);
+        console.log('[AppPreferencesSettingsComponent] datacurrencies: ', datacurrencies);
         
 		return () => {
 			isUnMounted = true
 		}
-    }, [data])
-    
-	const _switch = async (item) => {
-		await setswitchItem(!switchItem)
-		await _setswitchItem(item)
-    }
+    }, [datanotifications])
     
 	return (
 		<Root>
             <SettingContainer>
                 <ItemContainer>
                     <ETASimpleText
-                        size={15}
+                        size={13}
                         weight={Platform.OS === 'ios' ? '400' : '800'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
@@ -108,6 +124,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
                     </ButtonModalContainer>
                     <LanguageModal
                         isVisible={isLanguageModalVisible}
+                        data={datalanguages}
                         onSwipeComplete={() => setisLanguageModalVisible(false)}
                         closeModal={() => setisLanguageModalVisible(false)}
                     />
@@ -116,7 +133,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
             <SettingContainer>
                 <ItemContainer>
                     <ETASimpleText
-                        size={15}
+                        size={13}
                         weight={Platform.OS === 'ios' ? '400' : '800'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
@@ -147,6 +164,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
                     </ButtonModalContainer>
                     <CurrencyModal
                         isVisible={isCurrencyModalVisible}
+                        data={datacurrencies}
                         onSwipeComplete={() => setisCurrencyModalVisible(false)}
                         closeModal={() => setisCurrencyModalVisible(false)}
                     />
@@ -155,7 +173,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, data }) => {
             <SettingContainer>
                 <ItemContainer>
                     <ETASimpleText
-                        size={15}
+                        size={13}
                         weight={Platform.OS === 'ios' ? '400' : '800'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'

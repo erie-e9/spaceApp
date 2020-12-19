@@ -6,7 +6,7 @@ import {ETASimpleText, ETALoader} from '@etaui'
 import {FontAwesome} from '@icons'
 import PaymentCardComponent from './Card'
 import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/profile/paymentmethods/actions'
+import {GET_DATA_REQUEST} from '@redux/settings/paymentmethods/actions'
 
 const {width} = Dimensions.get('window')
 const iconSize = 26

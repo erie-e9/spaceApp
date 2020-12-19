@@ -3,17 +3,20 @@
         {
             "_id": 1,
             "language": "English",
-            "value": "en"
+            "value": "en",
+            "default": true
         },
         {
             "_id": 2,
             "language": "Español",
-            "value": "es"
+            "value": "es",
+            "default": false
         },
         {
             "_id": 3,
-            "language": "Francés",
-            "value": "fr"
+            "language": "Français",
+            "value": "fr",
+            "default": false
         }
     ]
 }

@@ -5,7 +5,7 @@ import { useNavigation, useIsFocused } from '@react-navigation/native'
 import { ETASimpleText, ETAProgressiveImage } from '@etaui'
 import { truncateString, currencySeparator } from '@functions'
 import { connect } from 'react-redux'
-import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } from '@redux/settings/favorites/actions'
 
 const {width} = Dimensions.get('window')
 const size = 75

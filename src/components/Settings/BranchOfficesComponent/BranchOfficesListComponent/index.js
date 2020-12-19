@@ -4,7 +4,7 @@ import {useNavigation} from '@react-navigation/native'
 import Card from './Card'
 import {ETALoader} from '@etaui'
 import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/profile/branchoffices/actions'
+import {GET_DATA_REQUEST} from '@redux/settings/branchoffices/actions'
 
 const Root = styled.View`
 	flex: 1;

@@ -16,16 +16,18 @@ import { reducer as clientsmessagesReducer } from './chats/clients/messages/redu
 import { reducer as clientscontactlistReducer } from './chats/clients/contactlist/reducers'
 import { reducer as employeesmessagesReducer } from './chats/employees/messages/reducers'
 import { reducer as employeescontactlistReducer } from './chats/employees/contactlist/reducers'
-import { reducer as addressesReducer } from './profile/addresses/reducers'
-import { reducer as favoritesReducer } from './profile/favorites/reducers'
-import { reducer as notificationsReducer } from './profile/notifications/reducers'
-import { reducer as branchofficesReducer } from './profile/branchoffices/reducers'
-import { reducer as processingordersReducer } from './profile/processingorders/reducers'
-import { reducer as previousordersReducer } from './profile/previousorders/reducers'
-import { reducer as paymentmethodsReducer } from './profile/paymentmethods/reducers'
-import { reducer as faqsReducer } from './profile/help/faqs/reducers'
+import { reducer as addressesReducer } from './settings/addresses/reducers'
+import { reducer as favoritesReducer } from './settings/favorites/reducers'
+import { reducer as notificationsReducer } from './settings/notifications/reducers'
+import { reducer as branchofficesReducer } from './settings/branchoffices/reducers'
+import { reducer as processingordersReducer } from './settings/processingorders/reducers'
+import { reducer as previousordersReducer } from './settings/previousorders/reducers'
+import { reducer as paymentmethodsReducer } from './settings/paymentmethods/reducers'
+import { reducer as faqsReducer } from './settings/help/faqs/reducers'
 import { reducer as customproductReducer } from './customproduct/reducers'
 import { reducer as flavorsReducer } from './customproduct/flavors/reducers'
+import { reducer as languagesReducer } from './settings/appsettings/languages/reducers'
+import { reducer as currenciesReducer } from './settings/appsettings/currencies/reducers'
 
 const reducer = combineReducers({
   user: userReducer,
@@ -55,6 +57,8 @@ const reducer = combineReducers({
   faqs: faqsReducer,
   customproduct: customproductReducer,
   flavors: flavorsReducer,
+  languages: languagesReducer,
+  currencies: currenciesReducer,
 })
 
 export { reducer }

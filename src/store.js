@@ -19,16 +19,18 @@ import { handler as clientsmessagesSaga } from '@redux/chats/clients/messages/sa
 import { handler as clientscontactlistSaga } from '@redux/chats/clients/contactlist/sagas'
 import { handler as employeesmessagesSaga } from '@redux/chats/employees/messages/sagas'
 import { handler as employeescontactlistSaga } from '@redux/chats/employees/contactlist/sagas'
-import { handler as addressesSaga } from '@redux/profile/addresses/sagas'
-import { handler as favoritesSaga } from '@redux/profile/favorites/sagas'
-import { handler as notificationsSaga } from '@redux/profile/notifications/sagas'
-import { handler as branchofficesSaga } from '@redux/profile/branchoffices/sagas'
-import { handler as processingordersSaga } from '@redux/profile/processingorders/sagas'
-import { handler as previousordersSaga } from '@redux/profile/previousorders/sagas'
-import { handler as paymentmethodsSaga } from '@redux/profile/paymentmethods/sagas'
-import { handler as faqsSaga } from '@redux/profile/help/faqs/sagas'
+import { handler as addressesSaga } from '@redux/settings/addresses/sagas'
+import { handler as favoritesSaga } from '@redux/settings/favorites/sagas'
+import { handler as notificationsSaga } from '@redux/settings/notifications/sagas'
+import { handler as branchofficesSaga } from '@redux/settings/branchoffices/sagas'
+import { handler as processingordersSaga } from '@redux/settings/processingorders/sagas'
+import { handler as previousordersSaga } from '@redux/settings/previousorders/sagas'
+import { handler as paymentmethodsSaga } from '@redux/settings/paymentmethods/sagas'
+import { handler as faqsSaga } from '@redux/settings/help/faqs/sagas'
 import { handler as customproductSaga } from '@redux/customproduct/sagas'
 import { handler as flavorsSaga } from '@redux/customproduct/flavors/sagas'
+import { handler as languagesSaga } from '@redux/settings/appsettings/languages/sagas'
+import { handler as currenciesSaga } from '@redux/settings/appsettings/currencies/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(sagaMiddleware)))
@@ -60,5 +62,7 @@ sagaMiddleware.run(paymentmethodsSaga)
 sagaMiddleware.run(faqsSaga)
 sagaMiddleware.run(customproductSaga)
 sagaMiddleware.run(flavorsSaga)
+sagaMiddleware.run(languagesSaga)
+sagaMiddleware.run(currenciesSaga)
 
 export { store }

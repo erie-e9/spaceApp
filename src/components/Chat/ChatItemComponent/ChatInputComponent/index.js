@@ -34,11 +34,11 @@ const ChatInputComponent = () => {
     const themeContext = useContext(ThemeContext)
     
     const _sendMessage = () => {
-        console.log('ewe');
+        console.log('_sendMessage');
     }
 
     const _fileUoloader = () => {
-        console.log('ewe');
+        console.log('_fileUoloader');
     }
     
     return (

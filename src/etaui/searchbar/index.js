@@ -40,7 +40,7 @@ const IconButton = styled.TouchableOpacity.attrs({
 	height: 32px;
 	border-radius: 32px;
 	margin-horizontal: 5px;
-	margin-right: 5px;
+	margin-right: 15px;
 	background-color: #e4e6eb;
 `
 const IconButtonClose = styled.TouchableOpacity.attrs({

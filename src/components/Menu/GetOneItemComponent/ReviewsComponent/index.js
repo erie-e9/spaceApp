@@ -16,14 +16,6 @@ const ListItems = styled.FlatList`
 	height: 350px;
 	background-color: transparent;
 `
-const EmptyListContainer = styled.View`
-	flex: 1;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
-	background-color: transparent;
-`
 const ReviewComponent = styled.View`
 	min-height: 10px;
 	justify-content: flex-start;
@@ -48,6 +40,14 @@ const ContentReviewContainer = styled.View`
 	justify-content: center;
 	padding-bottom: 5px;
 	padding-horizontal: 1px;
+	background-color: transparent;
+`
+const EmptyListContainer = styled.View`
+	flex: 1;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
 	background-color: transparent;
 `
 
@@ -117,7 +117,13 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
 								<ReviewComponent>
 									<HeaderReviewContainer>
 										<LeftContainer>
-											<ETASimpleText
+											<ETAStarRating
+												ratings={
+													item.rating
+												}
+											/>
+										</LeftContainer>
+										<ETASimpleText
 												size={12}
 												weight={
 													Platform.OS === 'ios'
@@ -130,12 +136,6 @@ const ReviewsComponent = memo(({ getDataRequest, data, totalRaitings }) => {
 												align='left'>
 												{item.date}
 											</ETASimpleText>
-										</LeftContainer>
-										<ETAStarRating
-											ratings={
-												item.rating
-											}
-										/>
 									</HeaderReviewContainer>
 									<ContentReviewContainer>
 										<ETASimpleText

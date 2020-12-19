@@ -1,30 +1,30 @@
-import React, {useState, useEffect, useContext} from 'react'
-import {ActivityIndicator} from 'react-native'
+import React, { useState, useEffect, useContext } from 'react'
+import { ActivityIndicator } from 'react-native'
 import NetInfo from '@react-native-community/netinfo'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETASimpleText} from '@etaui'
+import styled, { ThemeContext } from 'styled-components/native'
+import { ETASimpleText } from '@etaui'
 
 const Root = styled.SafeAreaView`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	padding-vertical: 10px;
 	background-color: ${(props) =>
 		props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-	padding-vertical: 10px;
 `
 
 const ETANetInfo = () => {
-	const [isInternetReachable, setisInternetReachable] = useState(true)
+	const [ isInternetReachable, setisInternetReachable ] = useState(true)
 	const themeContext = useContext(ThemeContext)
 
 	useEffect(() => {
-let isUnMounted = false
+		let isUnMounted = false
 		const unsubscribe = NetInfo.addEventListener((state) => {
 			setisInternetReachable(state.isInternetReachable)
-			// console.log(
-			// 	'isInternetReachable: ',
-			// 	state.isInternetReachable,
-			// )
+			console.log(
+				'isInternetReachable: ',
+				state.isInternetReachable,
+			)
 		})
 
 		return () => {

@@ -12,11 +12,6 @@ import { FontAwesome } from '@icons'
 import MenuSettingsScreen from '@screens/Settings/MenuSettingsScreen'
 import ProfileScreen from '@screens/Settings/MenuSettingsScreen/ProfileScreen'
 
-import SettingsScreen from '@screens/Settings/SettingsScreen'
-import NotificationsScreen from '@screens/Settings/SettingsScreen/NotificationsScreen'
-import ChatsSettingsScreen from '@screens/Settings/SettingsScreen/ChatsSettingsScreen'
-import AppPreferencesSettingsScreen from '@screens/Settings/SettingsScreen/AppPreferencesSettingsScreen'
-
 import AccountScreen from '@screens/Settings/AccountScreen'
 import AddressesScreen from '@screens/Settings/AccountScreen/AddressesScreen'
 import MapAddressesScreen from '@screens/Settings/AccountScreen/AddressesScreen/MapAddressesScreen'
@@ -28,16 +23,26 @@ import PreviousOrdersScreen from '@screens/Settings/AccountScreen/OrdersScreen/P
 import GetOnePreviousOrderScreen from '@screens/Settings/AccountScreen/OrdersScreen/PreviousOrdersScreen/GetOnePreviousOrderScreen'
 import ProcessingOrdersScreen from '@screens/Settings/AccountScreen/OrdersScreen/ProcessingOrdersScreen'
 import GetOneProcessingOrderScreen from '@screens/Settings/AccountScreen/OrdersScreen/ProcessingOrdersScreen/GetOneProcessingOrderScreen'
-
 import BranchOfficesScreen from '@screens/Settings/BranchOfficesScreen'
 import MapBranchOfficesScreen from '@screens/Settings/BranchOfficesScreen/MapBranchOfficesScreen'
+
+import AdminToolsScreen from '@screens/Settings/AdminTools'
+import AnalyticsScreen from '@screens/Settings/AdminTools/AnalyticsScreen'
+import ManageAccountsScreen from '@screens/Settings/AdminTools/ManageAccountsScreen'
+import ManageProductsScreen from '@screens/Settings/AdminTools/ManageProductsScreen'
+import ReportsScreen from '@screens/Settings/AdminTools/ReportsScreen'
+
+import SettingsScreen from '@screens/Settings/SettingsScreen'
+import NotificationsScreen from '@screens/Settings/SettingsScreen/NotificationsScreen'
+import ChatsSettingsScreen from '@screens/Settings/SettingsScreen/ChatsSettingsScreen'
+import AppPreferencesSettingsScreen from '@screens/Settings/SettingsScreen/AppPreferencesSettingsScreen'
 
 import HelpScreen from '@screens/Settings/HelpScreen'
 import AboutUsScreen from '@screens/Settings/HelpScreen/AboutUsScreen'
 import ContactUsScreen from '@screens/Settings/HelpScreen/ContactUsScreen'
+import HowToUseScreen from '@screens/Settings/HelpScreen/HowToUseScreen'
 import FAQSScreen from '@screens/Settings/HelpScreen/FAQSScreen'
 import TermsOfServiceScreen from '@screens/Settings/HelpScreen/TermsOfServiceScreen'
-import HowToUseScreen from '@screens/Settings/HelpScreen/HowToUseScreen'
 import NoticeOfPrivacyScreen from '@screens/Settings/HelpScreen/NoticeOfPrivacyScreen'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
@@ -182,11 +187,45 @@ const SettingsNavigator = () => {
 				},
 			}}
 		>
+			
 			<SettingsStack.Screen
-				name='SettingsScreen'
-				component={SettingsScreen}
+				name='ProfileScreen'
+				component={ProfileScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Settings',
+					headerTitle: 'Account',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<SettingsStack.Screen
+				name='AdminToolsScreen'
+				component={AdminToolsScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Admin Tools',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -216,10 +255,142 @@ const SettingsNavigator = () => {
 			/>
 			
 			<SettingsStack.Screen
-				name='ProfileScreen'
-				component={ProfileScreen}
+				name='AnalyticsScreen'
+				component={AnalyticsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Account',
+					headerTitle: 'Analytics',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<SettingsStack.Screen
+				name='ManageAccountsScreen'
+				component={ManageAccountsScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Manage Accounts',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<SettingsStack.Screen
+				name='ManageProductsScreen'
+				component={ManageProductsScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Manage Products',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+			
+			<SettingsStack.Screen
+				name='ReportsScreen'
+				component={ReportsScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Reports',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<SettingsStack.Screen
+				name='SettingsScreen'
+				component={SettingsScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Settings',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -285,7 +456,7 @@ const SettingsNavigator = () => {
 				name='ChatsSettingsScreen'
 				component={ChatsSettingsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Notifications',
+					headerTitle: 'Chat settings',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -379,7 +550,40 @@ const SettingsNavigator = () => {
 						CardStyleInterpolators.forHorizontalIOS,
 				})}
 			/>
-			
+
+			<SettingsStack.Screen
+				name='MapAddressesScreen'
+				component={MapAddressesScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'Map',
+					headerShown: !true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
 			<SettingsStack.Screen
 				name='AddressesScreen'
 				component={AddressesScreen}
@@ -414,11 +618,77 @@ const SettingsNavigator = () => {
 			/>
 
 			<SettingsStack.Screen
-				name='MapAddressesScreen'
-				component={MapAddressesScreen}
+				name='PaymentMethodsScreen'
+				component={PaymentMethodsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Map',
-					headerShown: !true,
+					headerTitle: 'Payment methods',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<SettingsStack.Screen
+				name='NewPaymentMethodScreen'
+				component={NewPaymentMethodScreen}
+				options={({navigation, route}) => ({
+					headerTitle: 'New payment method',
+					headerShown: true,
+					headerTransparent: !true,
+					headerTitleAlign: 'center',
+					headerTitleStyle: {
+						fontWeight: '400',
+						color:
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
+						fontSize: 18,
+					},
+					headerLeft: () => (
+						<HeaderLeft
+							onPress={() => navigation.goBack()}>
+							<FontAwesome
+								name='angle-left'
+								size={25}
+								color={
+									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+								}
+							/>
+						</HeaderLeft>
+					),
+					headerTintColor:
+						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
+					cardStyleInterpolator:
+						CardStyleInterpolators.forHorizontalIOS,
+				})}
+			/>
+
+			<SettingsStack.Screen
+				name='GetOnePaymentMethodScreen'
+				component={GetOnePaymentMethodScreen}
+				options={({navigation, route}) => ({
+					headerTitle: ' ',
+					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
 					headerTitleStyle: {
@@ -577,12 +847,12 @@ const SettingsNavigator = () => {
 						CardStyleInterpolators.forHorizontalIOS,
 				})}
 			/>
-
+			
 			<SettingsStack.Screen
-				name='PaymentMethodsScreen'
-				component={PaymentMethodsScreen}
+				name='BranchOfficesScreen'
+				component={BranchOfficesScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Payment methods',
+					headerTitle: 'Branch offices',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -612,44 +882,11 @@ const SettingsNavigator = () => {
 			/>
 
 			<SettingsStack.Screen
-				name='NewPaymentMethodScreen'
-				component={NewPaymentMethodScreen}
+				name='MapBranchOfficesScreen'
+				component={MapBranchOfficesScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'New payment method',
-					headerShown: true,
-					headerTransparent: !true,
-					headerTitleAlign: 'center',
-					headerTitleStyle: {
-						fontWeight: '400',
-						color:
-							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-						fontSize: 18,
-					},
-					headerLeft: () => (
-						<HeaderLeft
-							onPress={() => navigation.goBack()}>
-							<FontAwesome
-								name='angle-left'
-								size={25}
-								color={
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								}
-							/>
-						</HeaderLeft>
-					),
-					headerTintColor:
-						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
-					cardStyleInterpolator:
-						CardStyleInterpolators.forHorizontalIOS,
-				})}
-			/>
-
-			<SettingsStack.Screen
-				name='GetOnePaymentMethodScreen'
-				component={GetOnePaymentMethodScreen}
-				options={({navigation, route}) => ({
-					headerTitle: ' ',
-					headerShown: true,
+					headerTitle: 'Branch offices',
+					headerShown: !true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
 					headerTitleStyle: {
@@ -744,10 +981,10 @@ const SettingsNavigator = () => {
 			/>
 
 			<SettingsStack.Screen
-				name='BranchOfficesScreen'
-				component={BranchOfficesScreen}
+				name='ContactUsScreen'
+				component={ContactUsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Branch offices',
+					headerTitle: 'Contact us',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -777,43 +1014,10 @@ const SettingsNavigator = () => {
 			/>
 
 			<SettingsStack.Screen
-				name='MapBranchOfficesScreen'
-				component={MapBranchOfficesScreen}
+				name='HowToUseScreen'
+				component={HowToUseScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Branch offices',
-					headerShown: !true,
-					headerTransparent: !true,
-					headerTitleAlign: 'center',
-					headerTitleStyle: {
-						fontWeight: '400',
-						color:
-							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-						fontSize: 18,
-					},
-					headerLeft: () => (
-						<HeaderLeft
-							onPress={() => navigation.goBack()}>
-							<FontAwesome
-								name='angle-left'
-								size={25}
-								color={
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								}
-							/>
-						</HeaderLeft>
-					),
-					headerTintColor:
-						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
-					cardStyleInterpolator:
-						CardStyleInterpolators.forHorizontalIOS,
-				})}
-			/>
-
-			<SettingsStack.Screen
-				name='ContactUsScreen'
-				component={ContactUsScreen}
-				options={({navigation, route}) => ({
-					headerTitle: 'Contact us',
+					headerTitle: 'How to use',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -880,39 +1084,6 @@ const SettingsNavigator = () => {
 				component={TermsOfServiceScreen}
 				options={({navigation, route}) => ({
 					headerTitle: 'Terms of service',
-					headerShown: true,
-					headerTransparent: !true,
-					headerTitleAlign: 'center',
-					headerTitleStyle: {
-						fontWeight: '400',
-						color:
-							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR,
-						fontSize: 18,
-					},
-					headerLeft: () => (
-						<HeaderLeft
-							onPress={() => navigation.goBack()}>
-							<FontAwesome
-								name='angle-left'
-								size={25}
-								color={
-									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-								}
-							/>
-						</HeaderLeft>
-					),
-					headerTintColor:
-						themeContext.PRIMARY_TEXT_COLOR_LIGHT,
-					cardStyleInterpolator:
-						CardStyleInterpolators.forHorizontalIOS,
-				})}
-			/>
-
-			<SettingsStack.Screen
-				name='HowToUseScreen'
-				component={HowToUseScreen}
-				options={({navigation, route}) => ({
-					headerTitle: 'How to use',
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',

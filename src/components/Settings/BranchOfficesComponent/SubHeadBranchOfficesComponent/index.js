@@ -3,7 +3,7 @@ import styled, {ThemeContext} from 'styled-components/native'
 import {useNavigation} from '@react-navigation/native'
 import {ETAButtonFilled} from '@etaui'
 import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/profile/branchoffices/actions'
+import {GET_DATA_REQUEST} from '@redux/settings/branchoffices/actions'
 
 const Root = styled.View`
 	min-height: 10px;

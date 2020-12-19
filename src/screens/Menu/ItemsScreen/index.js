@@ -11,7 +11,6 @@ const ItemsScreen = ({ navigation, route }) => {
 
 	useLayoutEffect(() => {
 		navigation.setOptions({headerTitle: name})
-		// console.log('ItemsScreen params',  route)
 	}, [navigation, route])
 
 	return (

@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
 import { Ionicons } from '@icons'
 import { connect } from 'react-redux'
-import { TOGGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { TOGGLE_FAVORITE } from '@redux/settings/favorites/actions'
 import { currencySeparator, truncateString } from '@functions'
 import LottieView from 'lottie-react-native'
 

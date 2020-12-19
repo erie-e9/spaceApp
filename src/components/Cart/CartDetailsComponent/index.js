@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Platform, Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { ETASimpleText, ETAButtonOutline, ETAButtonFilled } from '@etaui'
+import { ETASimpleText, ETAButtonOutline, ETAButtonFilled, ETAToast } from '@etaui'
 import { connect } from 'react-redux'
 import { currencySeparator } from '@functions'
 import DiscountCodeModal from '@commons/DiscountCodeModal'
+import { useToast } from '@etaui/toast/useToast';
 
 const {width} = Dimensions.get('window')
 
@@ -14,7 +15,7 @@ const Root = styled.View`
 `
 const CartDetailsContainer = styled.View`
 	flex-direction: column;
-	width: ${width - 20}px;
+	width: ${width - 30}px;
 	min-height: 200px
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
@@ -93,6 +94,7 @@ const CartDetailsComponent = ({ data }) => {
 	const [ shipping ] = useState(35)
 	const [ isSubmitting ] = useState(false)
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
+	const { showToast } = useToast()
 	let subtotalValue = 0
 	let sum = 0
 
@@ -113,9 +115,6 @@ const CartDetailsComponent = ({ data }) => {
 				subtotalValue +
 				(((100 - element.discount) * element.price) / 100) *
 					element.howMany
-			// console.log('element.howMany', element.howMany)
-			// console.log('element.howMany', ((100 - element.discount) * element.price / 100) )
-			// console.log('______________subtotalValue:', subtotalValue)
 		})
 
 		setsubtotal(subtotalValue)
@@ -133,6 +132,10 @@ const CartDetailsComponent = ({ data }) => {
 				totalItems
 			},
 		})
+	}
+
+	const _onPressToast = () => {
+		showToast('Info', 'Error toast')
 	}
 
 	return (
@@ -281,6 +284,21 @@ const CartDetailsComponent = ({ data }) => {
 						borderRadius={3}
 					/>
 				</ButtonPayContainer>
+				
+				{/* <ButtonPayContainer>
+					<ETAButtonFilled
+						title='Toast'
+						onPress={() => _onPressToast()}
+						disabled={false}
+						colorButton={
+							themeContext.SECONDARY_BACKGROUND_COLOR
+						}
+						padding={10}
+						width={240}
+						borderRadius={3}
+					/>
+				</ButtonPayContainer>
+				<ETAToast /> */}
 			</CartDetailsContainer>
 		</Root>
 	)

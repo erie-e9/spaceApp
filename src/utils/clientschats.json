@@ -10,7 +10,7 @@
 				"firstname": "Adolph",
 				"lastname": "Jerde",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/harry_sistalam/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/business",
 				"createdAt": "23, 1, 2020"
 			}
 		},
@@ -24,7 +24,7 @@
 				"firstname": "Margaret",
 				"lastname": "Gottlieb",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/maximseshuk/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/city",
 				"createdAt": "5, 3, 2020"
 			}
 		},
@@ -38,7 +38,7 @@
 				"firstname": "Neha",
 				"lastname": "Heller",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/vikasvinfotech/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/food",
 				"createdAt": "10, 5, 2020"
 			}
 		},
@@ -52,7 +52,7 @@
 				"firstname": "Xzavier",
 				"lastname": "Armstrong",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/llun/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/city",
 				"createdAt": "13, 1, 2020"
 			}
 		},
@@ -66,7 +66,7 @@
 				"firstname": "Toy",
 				"lastname": "Labadie",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/victorDubugras/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/transport",
 				"createdAt": "15, 6, 2020"
 			}
 		},
@@ -80,7 +80,7 @@
 				"firstname": "Rebeca",
 				"lastname": "Fritsch",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/bungiwan/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/technics",
 				"createdAt": "9, 2, 2020"
 			}
 		},
@@ -94,7 +94,7 @@
 				"firstname": "Muriel",
 				"lastname": "Ortiz",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/derekebradley/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/city",
 				"createdAt": "29, 5, 2020"
 			}
 		},
@@ -108,7 +108,7 @@
 				"firstname": "Naomi",
 				"lastname": "Yundt",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nehfy/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/fashion",
 				"createdAt": "12, 6, 2020"
 			}
 		},
@@ -122,7 +122,7 @@
 				"firstname": "Mohamed",
 				"lastname": "Mann",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/karalek/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/nightlife",
 				"createdAt": "8, 5, 2020"
 			}
 		},
@@ -136,7 +136,7 @@
 				"firstname": "Pansy",
 				"lastname": "McGlynn",
 				"cellphone": 1234567890,
-				"avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/maxlinderman/128.jpg",
+				"avatar": "http://lorempixel.com/640/480/people",
 				"createdAt": "18, 1, 2020"
 			}
 		}

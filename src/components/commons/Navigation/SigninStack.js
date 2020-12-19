@@ -56,7 +56,7 @@ const AuthNavigator = () => {
 				headerShown: true,
 				headerTransparent: true,
 				// headerRight: () => {
-				//   return <Text>Ewe</Text>
+				//   return <Text>headerRight</Text>
 				// },
 				// transition way 1
 				// cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,

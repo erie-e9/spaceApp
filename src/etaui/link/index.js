@@ -2,7 +2,7 @@ import React from 'react'
 import { Linking } from 'react-native'
 import { ETASimpleText } from '@etaui'
 
-const ETALink = ({url, text, size, weight, color, align}) => {
+const ETALink = ({url, children, size, weight, color, align}) => {
 	const openLink = () => {
 		Linking.openURL(url).catch((err) =>
 			console.error('An error occurred opening link', err),
@@ -17,7 +17,7 @@ const ETALink = ({url, text, size, weight, color, align}) => {
 				weight={weight}
 				color={color}
 				align={align}>
-				{text}
+				{children !== null ? children : null}
 			</ETASimpleText>
 		</>
 	)

@@ -9,11 +9,15 @@ import {
   GET_FILTERS_REQUEST,
   GET_FILTERS_REQUEST_SUCCESS,
   TOGGLE_FILTER,
+  TOGGLE_DISCOUNT,
+  TOGGLE_DISCOUNT_SUCCESS,
   TOGGLE_FILTER_SUCCESS,
   CLEAN_FILTER,
   CLEAN_FILTER_SUCCESS,
   DELETE_FILTERS,
-  DELETE_FILTERS_SUCCESS
+  DELETE_FILTERS_SUCCESS,
+  TOOGLE_SORT_INCREMENT,
+  TOOGLE_SORT_INCREMENT_SUCCESS,
 } from './actions'
 
 function* handler() {
@@ -22,18 +26,21 @@ function* handler() {
   yield takeEvery(TOGGLE_MODAL, toggleModal)
   yield takeEvery(GET_FILTERS_REQUEST, getFiltersRequest)
   yield takeEvery(TOGGLE_FILTER, toggleFilter)
+  yield takeEvery(TOGGLE_DISCOUNT, toggleDiscounts)
   yield takeEvery(CLEAN_FILTER, cleanFilter)
   yield takeEvery(DELETE_FILTERS, deleteFilters)
+  yield takeEvery(TOOGLE_SORT_INCREMENT, toogleSortArrayIncrement)
 }
 
 function* addFilters(action) {
-  const { paramItem } = action.payload
+  const { paramItem, discounts, discountToggle } = action.payload
   try {
     yield put({
       type: ADD_FILTERS_SUCCESS,
       payload: {
-        data: [],
-        paramItem
+        paramItem,
+        discounts,
+        discountToggle
       },
     })
   } catch (error) {
@@ -42,11 +49,14 @@ function* addFilters(action) {
 }
 
 function* getDataRequest(action) {
+  const { paramItem, discounts, discountToggle } = action.payload
   try {
     yield put({
       type: GET_DATA_REQUEST_SUCCESS,
       payload: {
         data: [],
+        discounts,
+        discountToggle
       },
     })
   } catch (error) {
@@ -66,7 +76,7 @@ function* toggleModal(action) {
       },
     })
   } catch (error) {
-    console.log('[Filters Saga] toggleFavorite error: ', error)
+    console.log('[Filters Saga] toggleModal error: ', error)
   }
 }
 
@@ -99,6 +109,21 @@ function* toggleFilter(action) {
   }
 }
 
+function* toggleDiscounts(action) {
+  const { paramItem } = action.payload
+  console.log('[Filters Saga] toggleDiscounts paramItem: ', paramItem);
+  try {
+    yield put({
+      type: TOGGLE_DISCOUNT_SUCCESS,
+      payload: {
+        paramItem,
+      },
+    })
+  } catch (error) {
+    console.log('[Filters Saga] toggleDiscounts error: ', error)
+  }
+}
+
 function* cleanFilter(action) {
   try {
     yield put({
@@ -122,6 +147,25 @@ function* deleteFilters(action) {
     })
   } catch (error) {
     console.log('[Filters Saga] deleteFilters error: ', error)
+  }
+}
+
+function* toogleSortArrayIncrement(action) {
+  let increment = action.payload.paramItem?.increment
+  console.log('[Sagas] paramItem.increment: ', increment);
+  try {
+    yield put({
+      type: TOOGLE_SORT_INCREMENT_SUCCESS,
+      payload: {
+        data: [],
+        paramItem: {
+          increment: increment
+        },
+        discountToggle: false
+      }
+    })
+  } catch (error) {
+    console.log('[Filter Saga] toogleSortArrayIncrement error: ', error)
   }
 }
 

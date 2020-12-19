@@ -17,6 +17,10 @@ const ButtonContainer = styled.View`
 const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
     const themeContext = useContext(ThemeContext)
     
+    const _onPressItem = () => {
+        closeModal()
+    }
+    
     return(
         <Root>
             <ETAFancyModal
@@ -63,7 +67,7 @@ const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
                     <ButtonContainer>
                         <ETAButtonFilled
                             title='Apply'
-                            // onPress={() => _onPressItem()}
+                            onPress={() => _onPressItem()}
                             // disabled={data.length === 0 ? true : false}
                             colorButton={
                                 themeContext.SECONDARY_BACKGROUND_COLOR

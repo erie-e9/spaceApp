@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
-import {Dimensions } from 'react-native'
-import { useRoute } from '@react-navigation/native'
+import { Dimensions } from 'react-native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { ETASimpleText, ETAButtonOutline, ETAButtonFilled } from '@etaui'
 import { currencySeparator } from '@functions'
 
@@ -53,6 +53,7 @@ const DirectionContainer = styled.View`
 const PaymentComponent = () => {
     const themeContext = useContext(ThemeContext)
 	const route = useRoute()
+	const navigation = useNavigation()
     const { data, total, subtotal, totalItems } = route?.params
 
     return (

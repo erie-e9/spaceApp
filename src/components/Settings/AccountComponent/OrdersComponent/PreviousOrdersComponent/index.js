@@ -5,7 +5,7 @@ import {ETASimpleText, ETAButtonFilled} from '@etaui'
 import {useNavigation} from '@react-navigation/native'
 import PreviousOrdersItemComponent from './PreviousOrdersItemComponent'
 import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/profile/previousorders/actions'
+import {GET_DATA_REQUEST} from '@redux/settings/previousorders/actions'
 
 const Root = styled.View`
 	flex: 0.6;

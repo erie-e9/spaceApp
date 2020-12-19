@@ -4,12 +4,9 @@ import styled, { ThemeContext } from 'styled-components/native'
 import {
 	Ionicons,
 	EvilIcons,
-	FontAwesome,
 	AntDesign,
-	SimpleLineIcons,
 	Feather,
-	Octicons,
-	MaterialCommunityIcons
+	MaterialIcons
 } from '@icons'
 import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
@@ -90,7 +87,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 	return (
 		<Scroll>
 			<Root>
-			<Card>
+				<Card>
 					<Metadata>
 						<Touchable
 							onPress={() =>
@@ -135,6 +132,68 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 											headTitle=' '
 											// message='Change settings about email, sms or push notifications.'
 											message='Set addresses and payment methods. See your last orders and items favorites.'
+										/>
+									</OptionTitleContainer>
+								</LeftContainer>
+								<IconContainer>
+									<Feather
+										name='chevron-right'
+										size={13}
+										color={
+											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+										}
+									/>
+								</IconContainer>
+							</SettingContainer>
+						</Touchable>
+					</Metadata>
+				</Card>
+
+				<Card>
+					<Metadata>
+						<Touchable
+							onPress={() =>
+								navigation.navigate(
+									'SettingsNavigator',
+									{
+										screen:
+											'AdminToolsScreen',
+									},
+								)
+							}>
+							<SettingContainer>
+								<LeftContainer>
+									<IconContainer>
+										<MaterialIcons
+											name='admin-panel-settings'
+											size={
+												iconSize -
+												1
+											}
+											color={
+												themeContext.PRIMARY_COLOR
+											}
+										/>
+									</IconContainer>
+									<OptionTitleContainer>
+										<ETASimpleText
+											size={13}
+											weight={
+												Platform.OS ===
+												'ios'
+													? '400'
+													: '800'
+											}
+											color={
+												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+											}
+											align='left'>
+											Admin tools
+										</ETASimpleText>
+										<SubCard
+											headTitle=' '
+											// message='Change settings about email, sms or push notifications.'
+											message='Create reports, see analytics, manage accounts and products etc.'
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>

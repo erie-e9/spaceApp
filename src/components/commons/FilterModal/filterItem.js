@@ -2,13 +2,20 @@ import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { ETACheckBox } from '@etaui'
 import { connect } from 'react-redux'
-import { TOGGLE_FILTER } from '@redux/menu/filters/actions'
+import { TOGGLE_FILTER, TOGGLE_DISCOUNT } from '@redux/menu/filters/actions'
+import { truncateString } from '@functions'
 
 const Root = styled.View`
 	flex-direction: row;
-	margin-bottom: 1px;
+	margin-bottom: 0px;
+	min-width: 135px;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
+
+const mapStateToProps = (state, props) => {
+	const { discountToggle } = state.filters
+	return { discountToggle }
+}
 
 const mapDispatchProps = (dispatch, props) => ({
 	toggleFilter: ({ title, active }) => {
@@ -18,12 +25,23 @@ const mapDispatchProps = (dispatch, props) => ({
 				paramItem: { title, active }
 			}
 		})
-	}
+	},
+	
+    toggleDiscounts: ({ discountToggle }) => {
+        // console.log('[FilterItemComponent] toggleDiscount discountToggle: ', discountToggle);
+        dispatch({
+            type: TOGGLE_DISCOUNT,
+			payload: {
+				paramItem: { discountToggle }
+			}
+		
+        })
+    },
 })
 
-const FilterItemComponent = ({ title, active, toggleFilter }) => {
+const FilterItemComponent = ({ title, active, toggleFilter, toggleDiscounts, discountToggle }) => {
 	const themeContext = useContext(ThemeContext)
-	const [ switchItem, setswitchItem ] = useState(active)
+	const [ switchItem, setswitchItem ] = useState(active)	
 	
 	useEffect(() => {
 		let isUnMounted = false
@@ -35,18 +53,22 @@ const FilterItemComponent = ({ title, active, toggleFilter }) => {
 		}
 	}, [active])
 
-	const _switch = async () => {
+	const _switch = async (_title) => {
 		await setswitchItem(!switchItem)
-		toggleFilter({ title, active: !switchItem })		
+		if (_title === 'Discounts') {
+			toggleDiscounts({ discountToggle: !switchItem })
+		} else {
+			toggleFilter({ title, active: !switchItem })
+		}
 	}
 
 	return (
         <Root>
             <ETACheckBox 
-                title={title}
-                checkedTitle={title}
+                title={truncateString(title, 12)}
+                checkedTitle={truncateString(title, 12)}
                 onChange={() => _switch(title)}
-                onPressTitle={() => _switch({ active: !switchItem })}
+                onPressTitle={() => _switch(title)}
                 checked={active}
                 color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} 
             />
@@ -55,7 +77,7 @@ const FilterItemComponent = ({ title, active, toggleFilter }) => {
 }
 
 const FilterItemComponentConnect = connect(
-	null,
+	mapStateToProps,
 	mapDispatchProps,
 )(FilterItemComponent)
 

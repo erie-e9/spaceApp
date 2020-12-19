@@ -3,9 +3,11 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText, ETASwitch, ETAButtonFilled } from '@etaui'
 import { connect } from 'react-redux'
-import { GET_DATA_REQUEST } from '@redux/profile/notifications/actions'
-import LanguageModal from '@commons/LanguageModal'
-import CurrencyModal from '@commons/CurrencyModal'
+import { GET_DATA_REQUEST } from '@redux/settings/notifications/actions'
+import { MaterialCommunityIcons, Feather } from '@icons'
+import SubCard from './Card'
+
+const iconSize = 23
 
 const Root = styled.ScrollView`
 	flex: 1;
@@ -14,11 +16,12 @@ const Root = styled.ScrollView`
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 const SettingContainer = styled.View`
-    flex: 0.3;
-    width: 100%;
-    justify-content: center;
-    align-items: flex-start;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	min-height: 50px;
+	padding: 2.5px 5px;
+	margin-vertical: 0px;
 	background-color: transparent;
 `
 const ItemContainer = styled.View`
@@ -28,7 +31,8 @@ const ItemContainer = styled.View`
 	background-color: transparent;
 `
 const SubtitleText = styled.View`
-    margin: 10px 0px 0px 0px;
+    margin: 0px 0px 0px 5px;
+	background-color: transparent;
 `
 const ButtonModalContainer = styled.View`
 	height: 50px;
@@ -43,6 +47,23 @@ const MetadaInfoHead = styled.View`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0px 10px 2px 10px;
+	background-color: transparent;
+`
+const LeftContainer = styled.View`
+	flex: 1;
+	flex-direction: row;
+`
+const OptionTitleContainer = styled.View`
+	flex: 1;
+	flex-direction: column;
+	padding: 0px 0px 0px 2px;
+	background-color: transparent;
+`
+const IconContainer = styled.View`
+	flex: 0.11;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0px 0px 0px 0px;
 	background-color: transparent;
 `
 
@@ -84,16 +105,26 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
     
 	return (
 		<Root>
+            
             <SettingContainer>
                 <ItemContainer>
                     <ETASimpleText
-                        size={15}
+                        size={13}
                         weight={Platform.OS === 'ios' ? '400' : '800'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        Status
+                        Satus
                     </ETASimpleText>
+                    <SubtitleText>
+                        <ETASimpleText
+                            size={11}
+                            weight='300'
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+                            align='left'>
+                            Your friends and contacts will see if you're active or your last connection time, at least you deactivate active status. You cannot see status of your friends if you deactivate it.
+                        </ETASimpleText>
+                    </SubtitleText>
                     <MetadaInfoHead>
                         <ETASimpleText
                             size={13}
@@ -117,21 +148,13 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                             }
                         />
                     </MetadaInfoHead>
-                    <SubtitleText>
-                        <ETASimpleText
-                            size={11}
-                            weight='300'
-                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                            align='left'>
-                            Your friends and contacts will see if you're active or your last connection time, at least you deactivate active status. You cannot see status of your friends if you deactivate it.
-                        </ETASimpleText>
-                    </SubtitleText>
                 </ItemContainer>
             </SettingContainer>
+
             <SettingContainer>
                 <ItemContainer>
                     <ETASimpleText
-                        size={15}
+                        size={13}
                         weight={Platform.OS === 'ios' ? '400' : '800'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
@@ -142,7 +165,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                         <ETASimpleText
                             size={11}
                             weight='300'
-                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
                             English is language by default, but if you want you could change this option.
                         </ETASimpleText>
@@ -160,56 +183,59 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                             borderRadius={3}
                         />
                     </ButtonModalContainer>
-                    <LanguageModal
-                        isVisible={isLanguageModalVisible}
-                        onSwipeComplete={() => setisLanguageModalVisible(false)}
-                        closeModal={() => setisLanguageModalVisible(false)}
-                    />
                 </ItemContainer>
             </SettingContainer>
+
             <SettingContainer>
-                <ItemContainer>
-                    <ETASimpleText
-                        size={15}
-                        weight={Platform.OS === 'ios' ? '400' : '800'}
-                        color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                        align='left'
-                        style={{ marginTop: 10, marginBottom: 1 }}>
-                        Black list
-                    </ETASimpleText>
-                    <SubtitleText>
-                        <ETASimpleText
-                            size={11}
-                            weight='300'
-                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                            align='left'>
-                            Currency that appears by default is dolar, but if you want you could change this option.
-                        </ETASimpleText>
-                    </SubtitleText>
-                    <ButtonModalContainer>
-                        <ETAButtonFilled
-                            title='Black list'
-                            onPress={() => setisCurrencyModalVisible(true)}
-                            disabled={1 === 0 ? true : false}
-                            colorButton={
-                                themeContext.SECONDARY_BACKGROUND_COLOR
+                <LeftContainer>
+                    <IconContainer>
+                        <MaterialCommunityIcons
+                            name='account-cancel'
+                            size={
+                                iconSize -
+                                3
                             }
-                            padding={10}
-                            width={240}
-                            borderRadius={3}
+                            color={
+                                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                            }
                         />
-                    </ButtonModalContainer>
-                    <CurrencyModal
-                        isVisible={isCurrencyModalVisible}
-                        onSwipeComplete={() => setisCurrencyModalVisible(false)}
-                        closeModal={() => setisCurrencyModalVisible(false)}
+                    </IconContainer>
+                    <OptionTitleContainer>
+                        <ETASimpleText
+                            size={13}
+                            weight={
+                                Platform.OS ===
+                                'ios'
+                                    ? '400'
+                                    : '800'
+                            }
+                            color={
+                                themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                            }
+                            align='left'>
+                            Black list
+                        </ETASimpleText>
+                        <SubCard
+                            headTitle=' '
+                            message='If you have contact bloked you can see here.'
+                            />
+                    </OptionTitleContainer>
+                </LeftContainer>
+                <IconContainer>
+                    <Feather
+                        name='chevron-right'
+                        size={13}
+                        color={
+                            themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                        }
                     />
-                </ItemContainer>
+                </IconContainer>
             </SettingContainer>
+
             <SettingContainer>
                 <ItemContainer>
                     <ETASimpleText
-                        size={15}
+                        size={13}
                         weight={Platform.OS === 'ios' ? '400' : '800'}
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
@@ -220,7 +246,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                         <ETASimpleText
                             size={11}
                             weight='300'
-                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
                             If deactivate this option files doesn't download without your permission.
                         </ETASimpleText>

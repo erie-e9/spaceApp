@@ -15,7 +15,7 @@ const Container = styled.View`
 `
 const CardContainer = styled.View`
     min-height: 10px;
-    width: ${width - 20}px;
+    width: ${width - 30}px;
     padding: 30px 25px 15px 25px;
     justify-content: flex-start;
     align-items: center;
@@ -32,10 +32,10 @@ const DragView = styled.View`
 `
 const Header = styled.View`
     min-height: 20px;
+    width: 100%;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     margin: 0px 0px 10px 0px;
     background-color: transparent
 `

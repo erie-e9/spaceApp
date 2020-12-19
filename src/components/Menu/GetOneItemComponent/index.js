@@ -3,12 +3,12 @@ import styled, { ThemeContext } from 'styled-components'
 import { Dimensions, Platform, Animated, useColorScheme } from 'react-native'
 import { useRoute } from '@react-navigation/native'
 import { ETASimpleText, ETAStarRating, ETABottomModal } from '@etaui'
-import { Ionicons, FontAwesome, MaterialCommunityIcons } from '@icons'
+import { FontAwesome, MaterialCommunityIcons } from '@icons'
 import SuggestionsComponent from './SuggestionsComponent'
 import { connect } from 'react-redux'
 import { ADD_TO_CART, REMOVE_FROM_CART } from '@redux/cart/actions'
 import { GET_DATA_REQUEST } from '@redux/menu/similarto/actions'
-import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } from '@redux/profile/favorites/actions'
+import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } from '@redux/settings/favorites/actions'
 import { currencySeparator } from '@functions'
 import LinearGradient from 'react-native-linear-gradient'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -28,8 +28,8 @@ const ItemContainer = styled.View`
 `
 const BackgroundPresentationContainer = styled.View`
 	flex: 0.85;
-	background-color: transparent;
 	z-index: 9;
+	background-color: transparent;
 `
 const SuggestionsContainer = styled.View`
 	flex: 0.14;
@@ -43,7 +43,7 @@ const ItemImage = styled.Image`
 	justify-content: center;
 `
 const GradientContainer = styled.View`
-	height: 20px;
+	height: 30px;
 `
 const ItemBottomContainer = styled.View`
 	flex: 1;
@@ -66,13 +66,13 @@ const AddCartContainer = styled.View`
 	shadow-radius: 2px;
 	shadow-opacity: 0.2;
 	elevation: 0.3;
-	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	margin-horizontal: 7px;
 	padding-horizontal: 10px;
 	justify-content: center;
 	align-items: center;
 	align-self: center;
 	z-index: 1000;
+	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
 const AddRemoveContainer = styled.View`
 	width: 100%;

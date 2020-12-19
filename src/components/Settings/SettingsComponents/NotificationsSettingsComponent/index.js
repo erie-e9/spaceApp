@@ -5,7 +5,7 @@ import { ETASimpleText } from '@etaui'
 import _ from 'lodash'
 import Card from './Card'
 import { connect } from 'react-redux'
-import { GET_DATA_REQUEST } from '@redux/profile/notifications/actions'
+import { GET_DATA_REQUEST } from '@redux/settings/notifications/actions'
 
 const Root = styled.ScrollView`
 	flex: 1;

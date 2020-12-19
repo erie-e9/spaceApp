@@ -8,6 +8,7 @@ import { enableScreens } from 'react-native-screens'
 import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './src/store'
 import OneSignal from 'react-native-onesignal'
+import { ToastProvider } from '@etaui/toast/ToastProvider'
 
 enableScreens()
 
@@ -77,7 +78,9 @@ const App = () => {
           <ReduxProvider store={store}>
             <NavigationContainer
               theme={colorSchema === 'dark' ? navDarkMode : navLightMode}>
-              <Navigation />
+              <ToastProvider>
+                <Navigation />
+              </ToastProvider>
             </NavigationContainer>
           </ReduxProvider>
         </ThemeProvider>

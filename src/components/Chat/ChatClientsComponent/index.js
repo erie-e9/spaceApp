@@ -96,7 +96,8 @@ const ChatComponent = ({ getDataRequest, data }) => {
 					username: item.client.username,
 					firstname: item.client.firstname,
 					lastname: item.client.lastname,
-					avatar: item.client.avatar
+					avatar: item.client.avatar,
+					cellphone: item.client.cellphone
 				}
 			},
 		})
