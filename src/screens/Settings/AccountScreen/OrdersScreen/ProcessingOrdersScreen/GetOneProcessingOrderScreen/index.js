@@ -7,6 +7,7 @@ const Root = styled.View`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const GetOneProcessingOrderScreen = ({navigation, route}) => {

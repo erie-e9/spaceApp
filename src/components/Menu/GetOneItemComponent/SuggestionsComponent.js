@@ -54,6 +54,7 @@ const SuggestionItemImage = styled.Image`
 	height: 50px;
 	border-radius: 10px;
 `
+
 const mapStateToProps = (state, props) => {
 	const {data, _id} = state.similarto
 	return {data, _id}
@@ -70,7 +71,6 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 	
 	setItemValue: (_id) => {
-		// console.log('+++++++++ setItemValue _id:', _id);
 		dispatch({
 			type: SET_ITEM_VALUE,
 			payload: {
@@ -78,21 +78,43 @@ const mapDispatchProps = (dispatch, props) => ({
 			}
 		})
 	},
-
-
 })
 
 const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue, _id }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState([])
+	const [ spliced, setspliced ] = useState([])
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	let delayValue = 1000
 
 	useEffect(() => {
 		let isUnMounted = false
 		getDataRequest()
-		setitems(data)
+
+		console.log('data; ', data.length);
+		const itemFound = data.find(
+			(element) => element._id === selectedItem._id
+		)
+
+		const index = data.findIndex(indexItem => indexItem === selectedItem)
 		
+		if (itemFound && index !== -1) {
+			for (let i = data.length; i--;) {
+				if (data[i]._id === itemFound._id) {
+					console.log('encontrado y su index es: ', index)
+					let sp = data.splice(index, 1)
+					console.log('sp', sp);
+					setitems(data)
+				} else {
+					console.log('1 no encontrado', {dataID: data[i]._id, itemFoundID: itemFound._id})
+					setitems(data)
+				}
+			}
+		} else {
+			console.log('2 no encontrado');
+			setitems(data)
+		}
+			
 		return () => {
 			isUnMounted = true
 		}

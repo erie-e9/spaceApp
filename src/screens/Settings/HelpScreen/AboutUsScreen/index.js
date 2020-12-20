@@ -4,6 +4,7 @@ import AboutUsComponent from '@components/Settings/HelpComponent/AboutUsComponen
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const AboutUsScreen = () => (

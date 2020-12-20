@@ -4,6 +4,7 @@ import SectionComponent from '@components/Menu/MenuComponent/SectionsComponent/S
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const SectionScreen = ({navigation, route}) => {

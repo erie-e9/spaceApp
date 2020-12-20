@@ -12,7 +12,7 @@ const HeadLeftContainer = styled.View`
 	justify-content: center;
 	align-items: center;
 	z-index: 100;
-	background-color: transparent;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',

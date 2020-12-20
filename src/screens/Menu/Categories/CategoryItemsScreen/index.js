@@ -4,6 +4,7 @@ import ItemsByCategoryComponent from '@components/Menu/CategoriesComponent/Items
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const CategoryItemsScreen = ({navigation, route}) => {

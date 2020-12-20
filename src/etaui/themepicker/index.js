@@ -3,6 +3,8 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { TouchableWithoutFeedback, useColorScheme, Animated, Easing, Platform, Dimensions } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import { Feather, MaterialCommunityIcons } from '@icons'
+import { connect } from 'react-redux'
+import { SWITCH_THEME } from '@redux/settings/appsettings/themepicker/actions'
 
 const { width } = Dimensions.get('window')
 const heightPreviewTheme = 185
@@ -84,17 +86,30 @@ const IndicatorContainer = styled.View`
     background-color: transparent;
 `
 
-const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, option3Text }) => {
+const mapDispatchProps = (dispatch, props) => ({
+	switchTheme: (theme) => {
+		console.log('switchTheme theme: ', theme)
+		dispatch({
+			type: SWITCH_THEME,
+			payload: {
+				theme
+			}
+		})
+	}
+})
+
+const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, option3Text, switchTheme }) => {
 	const themeContext = useContext(ThemeContext)
 	const colorSchema = useColorScheme()
 	const animation = useRef(new Animated.Value(activated ? 1 : 0)).current
 	const [ toggled, setToggled ] = useState(!!activated)
 	const [ themeChosen, setthemeChosen ] = useState(chosen ? chosen : 0)
 
-	const _switchAnimated = (t) => {
-		setthemeChosen(t)
-		console.log('[ETAThemePicker] activated:', t);
-		setToggled(!toggled)
+	const _switchAnimated = async (themeOption) => {
+		await setthemeChosen(themeOption)
+		await switchTheme(themeOption)
+		// console.log('[ETAThemePicker] activated:', themeOption);
+		await setToggled(!toggled)
 		if (!toggled) {
 			Animated.timing(animation, {
 				duration: 100,
@@ -325,4 +340,9 @@ const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, opti
 	)
 })
 
-export default ETAThemePicker
+const ETAThemePickerConnect = connect(
+    null,
+    mapDispatchProps,
+)(ETAThemePicker)
+
+export default React.memo(ETAThemePickerConnect)

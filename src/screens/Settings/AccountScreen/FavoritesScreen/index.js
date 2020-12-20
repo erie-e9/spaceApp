@@ -4,6 +4,7 @@ import FavoritesComponent from '@components/Settings/AccountComponent/FavoritesC
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const FavoritesScreen = () => (

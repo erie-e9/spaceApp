@@ -7,6 +7,7 @@ const Root = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const FavsScreen = () => (

@@ -4,6 +4,7 @@ import ContactUsComponent from '@components/Settings/HelpComponent/ContactUsComp
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const ContactUsScreen = () => (

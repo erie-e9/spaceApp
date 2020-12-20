@@ -31,6 +31,7 @@ import { handler as customproductSaga } from '@redux/customproduct/sagas'
 import { handler as flavorsSaga } from '@redux/customproduct/flavors/sagas'
 import { handler as languagesSaga } from '@redux/settings/appsettings/languages/sagas'
 import { handler as currenciesSaga } from '@redux/settings/appsettings/currencies/sagas'
+import { handler as themepickerSaga } from '@redux/settings/appsettings/themepicker/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(sagaMiddleware)))
@@ -64,5 +65,6 @@ sagaMiddleware.run(customproductSaga)
 sagaMiddleware.run(flavorsSaga)
 sagaMiddleware.run(languagesSaga)
 sagaMiddleware.run(currenciesSaga)
+sagaMiddleware.run(themepickerSaga)
 
 export { store }

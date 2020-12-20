@@ -28,6 +28,7 @@ import { reducer as customproductReducer } from './customproduct/reducers'
 import { reducer as flavorsReducer } from './customproduct/flavors/reducers'
 import { reducer as languagesReducer } from './settings/appsettings/languages/reducers'
 import { reducer as currenciesReducer } from './settings/appsettings/currencies/reducers'
+import { reducer as themepickerReducer } from './settings/appsettings/themepicker/reducers'
 
 const reducer = combineReducers({
   user: userReducer,
@@ -59,6 +60,7 @@ const reducer = combineReducers({
   flavors: flavorsReducer,
   languages: languagesReducer,
   currencies: currenciesReducer,
+  themepicker: themepickerReducer,
 })
 
 export { reducer }

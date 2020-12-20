@@ -4,6 +4,7 @@ import GetOnePaymentMethodComponent from '@components/Settings/AccountComponent/
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const GetOnePaymentMethodScreen = ({navigation, route}) => {

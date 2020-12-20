@@ -4,6 +4,7 @@ import MapAddressesComponent from '@components/Settings/AccountComponent/Address
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const MapAddresses = () => (

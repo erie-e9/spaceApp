@@ -4,6 +4,7 @@ import ItemsComponent from '@components/Menu/ItemsComponent'
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const ItemsScreen = ({ navigation, route }) => {

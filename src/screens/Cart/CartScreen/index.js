@@ -5,7 +5,7 @@ import CartDetailsComponent from '@components/Cart/CartDetailsComponent'
 
 const Root = styled.View`
 	flex: 1;
-	background-color: transparent;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const CartScreen = () => (

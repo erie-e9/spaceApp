@@ -4,7 +4,7 @@ import MenuSettingsComponent from '@components/Settings/MenuSettingsComponent'
 
 const Root = styled.View`
 	flex: 1;
-	background-color: transparent;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const MenuSettingsScreen = () => (

@@ -4,6 +4,7 @@ import PromotionComponent from '@components/Menu/PromotionComponent'
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const PromotionScreen = ({navigation, route}) => {

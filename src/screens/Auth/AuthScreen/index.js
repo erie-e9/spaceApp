@@ -10,7 +10,7 @@ const KeyboardMisser = styled.TouchableWithoutFeedback``
 const Root = styled.View`
 	flex: 1;
 	justify-content: center;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 // const BackImage = styled.ImageBackground`
 //   flex: 1;

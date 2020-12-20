@@ -3,13 +3,9 @@ import { Platform } from 'react-native'
 import styled, { ThemeContext } from 'styled-components/native'
 import {
 	Ionicons,
-	EvilIcons,
-	FontAwesome,
 	AntDesign,
 	SimpleLineIcons,
 	Feather,
-	Octicons,
-	MaterialCommunityIcons,
 } from '@icons'
 import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
@@ -19,7 +15,9 @@ import SubCard from './Card'
 
 const iconSize = 23
 
-const Scroll = styled.ScrollView``
+const Scroll = styled.ScrollView`
+	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+`
 const Root = styled.View`
 	flex: 1;
 	flex-direction: column;

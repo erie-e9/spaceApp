@@ -4,6 +4,7 @@ import MapBranchOfficeComponent from '@components/Settings/BranchOfficesComponen
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const BranchOfficesScreen = () => (

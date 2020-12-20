@@ -4,6 +4,7 @@ import OrdersProcessingComponent from '@components/Settings/AccountComponent/Ord
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const ProcessingOrdersScreen = () => (

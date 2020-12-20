@@ -43,10 +43,15 @@ const ETAButtonFilled = ({
 					<ETASimpleText
 						size={13}
 						weight='400'
+						// color={
+						// 	colorButton === 'white'
+						// 		? 'gray'
+						// 		: 'white'
+						// }
 						color={
-							colorButton === 'white'
-								? 'gray'
-								: 'white'
+							disabled
+							?	themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
+							:	colorButton === 'white' ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : 'white'
 						}
 						align={align}>
 						{title || 'Text'}

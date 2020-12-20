@@ -3,7 +3,9 @@ import styled from 'styled-components/native'
 import MenuComponent from '@components/Menu/MenuComponent'
 import { PERMISSIONS, request, requestNotifications } from 'react-native-permissions'
 
-const Root = styled.View``
+const Root = styled.View`
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
+`
 
 const MenuScreen = () => {
 	request(

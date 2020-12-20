@@ -4,6 +4,7 @@ import FAQSComponent from '@components/Settings/HelpComponent/FAQSComponent'
 
 const Root = styled.View`
 	flex: 1;
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const FAQSScreen = () => (

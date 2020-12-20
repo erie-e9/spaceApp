@@ -91,7 +91,7 @@ export const darkTheme = {
   GRAYFACEBOOK: '#777777',
   STAR: '#FFBF00',
 
-  BACKGROUND_COLOR: '#333333',
+  BACKGROUND_COLOR: '#18191a',
 
   PRIMARY_TEXT_COLOR: '#FFFFFF',
   PRIMARY_TEXT_COLOR_LIGHT: '#b0b3b8',
@@ -101,6 +101,7 @@ export const darkTheme = {
   THIRD_TEXT_COLOR_LIGHT: 'rgba(169, 169, 169, 1)',
 
   PRIMARY_TEXT_BACKGROUND_COLOR: '#242526',
+  PRIMARY_TEXT_BACKGROUND_COLOR_LIGHT: '#2b2d2e',
   SECONDARY_TEXT_BACKGROUND_COLOR: '#e4e6eb',
   SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT: 'rgba(255, 255, 255, 0.5)',
   MAPSTYLE: [
@@ -316,7 +317,7 @@ export const lightTheme = {
   GRAYFACEBOOK: '#E4E6EB',
   STAR: '#FFBF00',
 
-  BACKGROUND_COLOR: 'rgba(248, 248, 248, 0.82)',
+  BACKGROUND_COLOR: '#F1F1F1',
 
   PRIMARY_TEXT_COLOR: '#000000',
   PRIMARY_TEXT_COLOR_LIGHT: '#595959',
@@ -326,6 +327,7 @@ export const lightTheme = {
   THIRD_TEXT_COLOR_LIGHT: 'rgba(169, 169, 169, 1)',
 
   PRIMARY_TEXT_BACKGROUND_COLOR: '#FFFFFF',
+  PRIMARY_TEXT_BACKGROUND_COLOR_LIGHT: '#f0f0f0',
   SECONDARY_TEXT_BACKGROUND_COLOR: '#313131',
   SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT: 'rgba(0, 0, 0, 0.5)',
   MAPSTYLE: [
@@ -576,7 +578,7 @@ export const navLightMode = {
 }
 
 export const navDarkMode = {
-  dark: false,
+  dark: true,
   colors: {
     primary: 'rgb(255, 45, 85)',
     background: '#18191a',

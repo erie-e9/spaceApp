@@ -6,7 +6,7 @@ const Root = styled.View`
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
 `
 
 const CustomProductScreen = () => (
