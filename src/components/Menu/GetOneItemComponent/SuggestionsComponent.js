@@ -4,6 +4,8 @@ import { Dimensions, Animated, Platform } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST, SET_ITEM_VALUE } from '@redux/menu/similarto/actions'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 
@@ -56,8 +58,8 @@ const SuggestionItemImage = styled.Image`
 `
 
 const mapStateToProps = (state, props) => {
-	const {data, _id} = state.similarto
-	return {data, _id}
+	const { data, _id } = state.similarto
+	return { data, _id }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
@@ -80,38 +82,41 @@ const mapDispatchProps = (dispatch, props) => ({
 	},
 })
 
-const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue, _id }) => {
+const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue }) => {
 	const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState([])
-	const [ spliced, setspliced ] = useState([])
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	let delayValue = 1000
+	const { similarto } = useTranslation()
+	let languageCode = RNLocalize.getLocales()
 
 	useEffect(() => {
 		let isUnMounted = false
 		getDataRequest()
-
-		console.log('data; ', data.length);
 		const itemFound = data.find(
 			(element) => element._id === selectedItem._id
 		)
-
-		const index = data.findIndex(indexItem => indexItem === selectedItem)
+		// console.log('data.length: ', data.length);
+		const index = data.findIndex(indexItem => indexItem._id === selectedItem._id)
 		
+		// console.log('index, itemfound: ', { itemFound, index });
 		if (itemFound && index !== -1) {
+			// console.log('item match', {selectedItem: selectedItem._id, itemFound: itemFound._id});
 			for (let i = data.length; i--;) {
 				if (data[i]._id === itemFound._id) {
-					console.log('encontrado y su index es: ', index)
-					let sp = data.splice(index, 1)
-					console.log('sp', sp);
+					// console.log('encontrado y su index es: ', index)
+					// let sp = data.splice(index, 1)
+					itemFound.active = false
+					// console.log('data ', data);
 					setitems(data)
 				} else {
-					console.log('1 no encontrado', {dataID: data[i]._id, itemFoundID: itemFound._id})
+					data[i].active = true
+					// console.log('1 no encontrado', {dataID: data[i]._id, itemFoundID: itemFound._id})
 					setitems(data)
 				}
 			}
 		} else {
-			console.log('2 no encontrado');
+			// console.log('2 no encontrado');
 			setitems(data)
 		}
 			
@@ -168,7 +173,11 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
 								align='center'>
-								Similar to {selectedItem.name}
+								{similarto.charAt(0).toUpperCase() + similarto.slice(1)} {
+												languageCode === 'en'
+													?	selectedItem.en.name
+													:	selectedItem.es.name
+											}
 							</ETASimpleText>
 						</Animated.View>
 						<ListItemsContainer>
@@ -221,31 +230,37 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 									)
 
 									return (
-										<Touchable
-											key={item._id}
-											onPress={() =>
-												_setItem(index)
-											}>
-											<Animated.View
-												style={{
-													transform: [
-														{
-															translateX,
-														},
-													],
-												}}>
-												<SuggestionItem>
-													<SuggestionItemImage
-														source={{
-															uri:
-																item
-																	.images[0]
-																	.image,
-														}}
-													/>
-												</SuggestionItem>
-											</Animated.View>
-										</Touchable>
+										<>
+										{
+											item.active === true
+											?	<Touchable
+													key={item._id}
+													onPress={() =>
+														_setItem(index)
+													}>
+													<Animated.View
+														style={{
+															transform: [
+																{
+																	translateX,
+																},
+															],
+														}}>
+														<SuggestionItem>
+															<SuggestionItemImage
+																source={{
+																	uri:
+																		item
+																			.images[0]
+																			.image,
+																}}
+															/>
+														</SuggestionItem>
+													</Animated.View>
+												</Touchable>
+											:	null
+										}
+										</>
 									)
 								}}
 							/>

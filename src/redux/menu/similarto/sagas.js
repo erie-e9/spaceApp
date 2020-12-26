@@ -1,5 +1,5 @@
 import { takeEvery, put } from 'redux-saga/effects'
-import data from '@utils/menu'
+import data from '@utils/similarto'
 import {
   GET_DATA_REQUEST,
   GET_DATA_REQUEST_SUCCESS,
@@ -17,7 +17,7 @@ function* getDataRequest(action) {
     yield put({
       type: GET_DATA_REQUEST_SUCCESS,
       payload: {
-        data: data.menu2,
+        data: data.data
       },
     })
   } catch (error) {

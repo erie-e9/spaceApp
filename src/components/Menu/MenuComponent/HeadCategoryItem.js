@@ -1,7 +1,9 @@
-import React, {useContext} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText} from '@etaui'
+import React, { useContext } from 'react'
+import { Platform } from 'react-native'
+import styled, { ThemeContext } from 'styled-components'
+import { ETASimpleText } from '@etaui'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const _height = 55
 const _width = 37
@@ -23,12 +25,13 @@ const ItemImage = styled.Image`
 	border-radius: ${_width / 2}px;
 `
 const NewContainer = styled.View`
+	height: 12px;
+	min-width: 23px;
 	justify-content: flex-end;
 	position: absolute;
-	height: 12px;
-	width: 23px;
 	bottom: 12px;
 	right: 8px;
+	padding-horizontal: 2px;
 	border-radius: 4px;
 	border-width: 1.3px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -37,6 +40,8 @@ const NewContainer = styled.View`
 
 const CategoryItem = ({itemcat}) => {
 	const themeContext = useContext(ThemeContext)
+	const { isnew } = useTranslation()
+	let languageCode = RNLocalize.getLocales()
 
 	return (
 		<>
@@ -48,7 +53,10 @@ const CategoryItem = ({itemcat}) => {
 				weight={Platform.OS === 'ios' ? '400' : '200'}
 				color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 				align='center'>
-				{itemcat.name}
+				{languageCode === 'en' 
+					?	itemcat.name
+					:	itemcat.nombre
+				}
 			</ETASimpleText>
 			{itemcat.isNew ? (
 				<NewContainer>
@@ -60,7 +68,7 @@ const CategoryItem = ({itemcat}) => {
 						// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 						color='white'
 						align='center'>
-						new
+						{isnew}
 					</ETASimpleText>
 				</NewContainer>
 			) : null}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETASimpleText, ETAButtonFilled, ETARadio } from '@etaui'
+import Item from './item'
 
 const Root = styled.View`
 	min-height: 10px;
@@ -12,16 +13,6 @@ const Root = styled.View`
 `
 const ListItems = styled.FlatList`
     min-height: 10px;
-    background-color: transparent;
-`
-const ItemContainer = styled.View`
-    min-height: 10px;
-    flex-direction: row;
-    min-width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 1px 15px;
-    margin-vertical: 3px;
     background-color: transparent;
 `
 const ButtonContainer = styled.View`
@@ -93,22 +84,7 @@ const CurrencyModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
                                         </ETASimpleText>
                                     </EmptyListContainer>
                                 )}
-                                renderItem={({item, i}) => {
-                                    return (
-                                        <ItemContainer>
-                                            <ETARadio 
-                                                text={item.title}
-                                                sizeText={14}
-                                                colorText={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                onChange={() => setselected(!item.default)}
-                                                activated={selected}
-                                                sizeRadio={15}
-                                                colorRadio={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                            />
-                                            {/* {dynamicFlag(item.title)} */}
-                                        </ItemContainer>
-                                    )
-                                }}
+                                renderItem={({item, i}) => <Item {...item}/>}
                             />
                         :   null
                     }

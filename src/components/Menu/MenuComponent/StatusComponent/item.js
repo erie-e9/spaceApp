@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import { Platform } from 'react-native'
 import styled, { ThemeContext } from 'styled-components'
 import { ETASimpleText } from '@etaui'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const _height = 45
 const _width = 45
@@ -32,20 +34,23 @@ const ItemImage = styled.Image`
 	border-radius: ${_width / 2}px;
 `
 const NewContainer = styled.View`
+	height: 12px;
+	min-width: 23px;
 	justify-content: flex-end;
 	position: absolute;
-	height: 12px;
-	width: 23px;
 	bottom: 12px;
 	right: 8px;
+	padding-horizontal: 2px;
 	border-radius: 4px;
 	border-width: 1.3px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 	border-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
 
-const StatusItem = ({item}) => {
+const StatusItem = ({ item }) => {
 	const themeContext = useContext(ThemeContext)
+	let languageCode = RNLocalize.getLocales()
+	const { isnew } = useTranslation()
 
 	return (
 		<>
@@ -55,11 +60,14 @@ const StatusItem = ({item}) => {
 				</Item>
 			</ItemContainer>
 			<ETASimpleText
-				size={9}
+				size={8.5}
 				weight={Platform.OS === 'ios' ? '400' : '200'}
 				color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 				align='center'>
-				{item.title}
+				{	languageCode === 'en'
+					?	`${item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)}`
+					:	`${item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)}`
+				}
 			</ETASimpleText>
 			{item.isNew ? (
 				<NewContainer>
@@ -71,7 +79,7 @@ const StatusItem = ({item}) => {
 						// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 						color='white'
 						align='center'>
-						new
+						{isnew}
 					</ETASimpleText>
 				</NewContainer>
 			) : null}

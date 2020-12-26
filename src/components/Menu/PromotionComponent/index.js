@@ -7,6 +7,7 @@ import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/promotions/actions'
 import { SharedElement } from 'react-navigation-shared-element'
+import * as RNLocalize from 'react-native-localize'
 
 const HEADER_MIN_HEIGHT = 50
 const HEADER_MAX_HEIGHT = 130
@@ -79,6 +80,7 @@ const PromoComponent = ({ getDataRequest, data }) => {
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
+	let languageCode = RNLocalize.getLocales()
 	console.log(`PromoComponent promotion.${selectedItem._id}.image`);
 
 	const headerHeight = scrollYAnimatedValue.interpolate({
@@ -252,7 +254,11 @@ const PromoComponent = ({ getDataRequest, data }) => {
 											},
 											textShadowRadius: 3,
 										}}>
-										{selectedItem.title}
+										{
+											languageCode === 'en'
+												?	selectedItem.en.title
+												:	selectedItem.es.title
+										}
 									</ETASimpleText>
 								</SharedElement>
 								<PromoInfo>
@@ -273,7 +279,11 @@ const PromoComponent = ({ getDataRequest, data }) => {
 										// 	textShadowRadius: 3,
 										// }}>
 										>
-										{selectedItem.description}
+										{
+											languageCode === 'en'
+												?	selectedItem.en.description
+												:	selectedItem.es.description
+										}
 									</ETASimpleText>
 								</PromoInfo>
 							</PromoHeadTitle>

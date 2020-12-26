@@ -144,7 +144,7 @@ const FilterModal = memo(({ isVisible, onSwipeComplete, closeModal, getDataReque
                 setchecked(false)
                 // console.log('[[items[0].active]]', items[0].active);
                 // setincrementchecked(increment)
-            } else if (discountToggle) {
+            } else if (!discountToggle) {
                 setchecked(false)
                 // console.log('[[discountToggle]]', items[0].active);
             } else if (!items[0].active){

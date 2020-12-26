@@ -2,8 +2,6 @@
 	"menu1": [
 		{
 			"_id": 23041,
-			"name": "Banana Split Dazzler",
-			"details": "Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge  ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -13,7 +11,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -25,12 +22,20 @@
 				{
 					"imageWeb": "item1.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Banana Split Dazzler",
+				"details": "Vanilla ice cream layered with bananas, pineapple, strawberry and hot fudge ice cream layered with bananas, pineapple, strawberry and hot fudge topped with whipped cream and a cherry. Served with toppings.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Banana Split Dazzler",
+				"details": "Helado de vainilla con capas de plátanos, piña, fresa y helado de chocolate caliente con capas de plátanos, piña, fresa y chocolate caliente cubierto con crema batida y una cereza. Servido con aderezos.",
+				"status": "nuevo"
+			}
 		},
 		{
 			"_id": 21587,
-			"name": "Cookies & Cream Dazzler",
-			"details": "Cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and cookie crunch. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -40,7 +45,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -52,12 +56,20 @@
 				{
 					"imageWeb": "item2.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Cookies & Cream Dazzler",
+				"details": "Cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and cookie crunch. Served with toppings.",
+				"status": ""
+			},
+			"es": {
+				"name": "Cookies & Cream Dazzler",
+				"details": "Cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and cookie crunch. Served with toppings.",
+				"status": ""
+			}
 		},
 		{
 			"_id": 41362,
-			"name": "Dulce de Leche Dazzler",
-			"details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -67,7 +79,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -79,12 +90,20 @@
 				{
 					"imageWeb": "item3.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Dulce de Leche Dazzler",
+				"details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Dulce de Leche Dazzler",
+				"details": "Dulce de leche ice cream layered cream layered with bananas and warm caramel topped with whipped cream caramel. Served with toppings.",
+				"status": "nuevo"
+			}
 		},
 		{
 			"_id": 26896,
-			"name": "Midnight Cookies & Cream Dazzler",
-			"details": "Midnight cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and hot fudge. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -94,7 +113,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -106,12 +124,20 @@
 				{
 					"imageWeb": "item4.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Midnight Cookies & Cream Dazzler",
+				"details": "Midnight cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and hot fudge. Served with toppings.",
+				"status": ""
+			},
+			"es": {
+				"name": "Midnight Cookies & Cream Dazzler",
+				"details": "Midnight cookies and cream ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and hot fudge. Served with toppings.",
+				"status": ""
+			}
 		},
 		{
 			"_id": 2449,
-			"name": "Mint Chip Dazzler",
-			"details": "Mint chip ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate sprinkles. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -121,7 +147,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -133,12 +158,20 @@
 				{
 					"imageWeb": "item4.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Mint Chip Dazzler",
+				"details": "Mint chip ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate sprinkles. Served with toppings.",
+				"status": ""
+			},
+			"es": {
+				"name": "Mint Chip Dazzler",
+				"details": "Mint chip ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate sprinkles. Served with toppings.",
+				"status": ""
+			}
 		},
 		{
 			"_id": 5800,
-			"name": "Rocky Road Dazzler",
-			"details": "Rocky road ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate cookie crunch. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -148,7 +181,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -160,14 +192,22 @@
 				{
 					"imageWeb": "item6.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Rocky Road Dazzler",
+				"details": "Rocky road ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate cookie crunch. Served with toppings.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Rocky Road Dazzler",
+				"details": "Rocky road ice cream layered with hot fudge and chocolate cookie pieces topped with whipped cream and chocolate cookie crunch. Served with toppings.",
+				"status": "nuevo"
+			}
 		}
 	],
 	"menu2": [
 		{
 			"_id": 1455,
-			"name": "Peppermint Bark Ice Cream Bar",
-			"details": "Our peppermint bark ice cream bars start with decadent white chocolate ice cream, dipped in thick, dark chocolate, then speckled with cool peppermint candy pieces.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -177,7 +217,6 @@
 			"calories": 280,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -189,12 +228,20 @@
 				{
 					"imageWeb": "item1.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Peppermint Bark Ice Cream Bar",
+				"details": "Our peppermint bark ice cream bars start with decadent white chocolate ice cream, dipped in thick, dark chocolate, then speckled with cool peppermint candy pieces.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Peppermint Bark Ice Cream Bar",
+				"details": "Our peppermint bark ice cream bars start with decadent white chocolate ice cream, dipped in thick, dark chocolate, then speckled with cool peppermint candy pieces.",
+				"status": "nuevo"
+			}
 		},
 		{
 			"_id": 27361,
-			"name": "Ruby Cacao Ice Cream Bar",
-			"details": "Indulge in the decadent crunch of a ruby cacao shell and our creamy sweet cream ice cream, for a sensorial experience of luscious smoothness with berry fruity notes.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -204,7 +251,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "limited edition",
 			"active": true,
 			"gluten": true,
 			"images": [
@@ -216,12 +262,20 @@
 				{
 					"imageWeb": "item6.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Ruby Cacao Ice Cream Bar",
+				"details": "Indulge in the decadent crunch of a ruby cacao shell and our creamy sweet cream ice cream, for a sensorial experience of luscious smoothness with berry fruity notes.",
+				"status": "limited edition"
+			},
+			"es": {
+				"name": "Ruby Cacao Ice Cream Bar",
+				"details": "Indulge in the decadent crunch of a ruby cacao shell and our creamy sweet cream ice cream, for a sensorial experience of luscious smoothness with berry fruity notes.",
+				"status": "edición limitada"
+			}
 		},
 		{
 			"_id": 99793,
-			"name": "Caramel Cone Ice Cream Bar",
-			"details": "Your favorite Caramel Pizzelle Bar, renamed. Golden ribbons of caramel in creamy vanilla gelato, enrobed in rich milk chocolate and crunchy italian style cone pieces.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -231,7 +285,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "new name",
 			"active": true,
 			"gluten": true,
 			"images": [
@@ -243,12 +296,20 @@
 				{
 					"imageWeb": "item2.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Caramel Cone Ice Cream Bar",
+				"details": "Your favorite Caramel Pizzelle Bar, renamed. Golden ribbons of caramel in creamy vanilla gelato, enrobed in rich milk chocolate and crunchy italian style cone pieces.",
+				"status": "new name"
+			},
+			"es": {
+				"name": "Caramel Cone Ice Cream Bar",
+				"details": "Your favorite Caramel Pizzelle Bar, renamed. Golden ribbons of caramel in creamy vanilla gelato, enrobed in rich milk chocolate and crunchy italian style cone pieces.",
+				"status": "nuevo nombre"
+			}
 		},
 		{
 			"_id": 57082,
-			"name": "Chocolate Dark Chocolate Ice Cream Bar",
-			"details": "Between the classic rich and creamy chocolate ice cream inside, and the thick and crunchy dark chocolate coating finely drizzled on the outside, this is a chocolate connoisseur's delight.",
 			"rating": 3,
 			"link": "",
 			"icon": "",
@@ -258,7 +319,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "",
 			"active": true,
 			"gluten": true,
 			"images": [
@@ -270,12 +330,20 @@
 				{
 					"imageWeb": "item3.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Chocolate Dark Chocolate Ice Cream Bar",
+				"details": "Between the classic rich and creamy chocolate ice cream inside, and the thick and crunchy dark chocolate coating finely drizzled on the outside, this is a chocolate connoisseur's delight.",
+				"status": ""
+			},
+			"es": {
+				"name": "Chocolate Dark Chocolate Ice Cream Bar",
+				"details": "Between the classic rich and creamy chocolate ice cream inside, and the thick and crunchy dark chocolate coating finely drizzled on the outside, this is a chocolate connoisseur's delight.",
+				"status": ""
+			}
 		},
 		{
 			"_id": 92739,
-			"name": "Irish Cream Cookie Squares",
-			"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate. *Contains Less Than 0.5% Alcohol by Volume.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -285,7 +353,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -297,12 +364,20 @@
 				{
 					"imageWeb": "item4.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Irish Cream Cookie Squares",
+				"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate. *Contains Less Than 0.5% Alcohol by Volume.",
+				"status": ""
+			},
+			"es": {
+				"name": "Irish Cream Cookie Squares",
+				"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate. *Contains Less Than 0.5% Alcohol by Volume.",
+				"status": ""
+			}
 		},
 		{
 			"_id": 65402,
-			"name": "Vanilla Milk Chocolate Almond Ice Cream Bar",
-			"details": "We start with pure, sweet vanilla and blend it with sweet, fresh cream to make our incredibly smooth vanilla ice cream. Then we dip it in a crunchy roasted almond and milk chocolate coating.",
 			"rating": 3,
 			"link": "",
 			"icon": "",
@@ -312,7 +387,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -324,14 +398,22 @@
 				{
 					"imageWeb": "item4.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Vanilla Milk Chocolate Almond Ice Cream Bar",
+				"details": "We start with pure, sweet vanilla and blend it with sweet, fresh cream to make our incredibly smooth vanilla ice cream. Then we dip it in a crunchy roasted almond and milk chocolate coating.",
+				"status": ""
+			},
+			"es": {
+				"name": "Vanilla Milk Chocolate Almond Ice Cream Bar",
+				"details": "We start with pure, sweet vanilla and blend it with sweet, fresh cream to make our incredibly smooth vanilla ice cream. Then we dip it in a crunchy roasted almond and milk chocolate coating.",
+				"status": ""
+			}
 		}
 	],
 	"menu3": [
 		{
 			"_id": 7141,
-			"name": "Belgian Chocolate Shake",
-			"details": "Belgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.",
 			"rating": 3,
 			"link": "",
 			"icon": "",
@@ -341,7 +423,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "new name",
 			"active": true,
 			"gluten": true,
 			"images": [
@@ -353,12 +434,20 @@
 				{
 					"imageWeb": "item7.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Belgian Chocolate Shake",
+				"details": "Belgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.",
+				"status": "new name"
+			},
+			"es": {
+				"name": "Belgian Chocolate Shake",
+				"details": "Belgian chocolate ice cream surrounded by ribbons of hot fudge topped with whipped cream and chocolate sprinkles. Served with toppings.",
+				"status": "nuevo nombre"
+			}
 		},
 		{
 			"_id": 97449,
-			"name": "Cookies and Cream Shake",
-			"details": "Pieces of crunchy chocolate cookies in vanilla ice cream blended and topped with whipped cream and cookie crunch. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -368,7 +457,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -380,12 +468,20 @@
 				{
 					"imageWeb": "item8.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Cookies and Cream Shake",
+				"details": "Pieces of crunchy chocolate cookies in vanilla ice cream blended and topped with whipped cream and cookie crunch. Served with toppings.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Cookies and Cream Shake",
+				"details": "Pieces of crunchy chocolate cookies in vanilla ice cream blended and topped with whipped cream and cookie crunch. Served with toppings.",
+				"status": "nuevo"
+			}
 		},
 		{
 			"_id": 37519,
-			"name": "Dulce de Leche Shake",
-			"details": "Sweet caramel ice cream blended and topped with whipped cream and warm caramel. Served with toppings.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -395,7 +491,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "new name",
 			"active": true,
 			"gluten": true,
 			"images": [
@@ -407,14 +502,22 @@
 				{
 					"imageWeb": "item9.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Dulce de Leche Shake",
+				"details": "Sweet caramel ice cream blended and topped with whipped cream and warm caramel. Served with toppings.",
+				"status": "new name"
+			},
+			"es": {
+				"name": "Dulce de Leche Shake",
+				"details": "Sweet caramel ice cream blended and topped with whipped cream and warm caramel. Served with toppings.",
+				"status": "nuevo nombre"
+			}
 		}
 	],
 	"menu4": [
 		{
 			"_id": 81480,
-			"name": "Coffee Frappes",
-			"details": "Chilled beverage blending coffee ice cream with ice, milk, espresso and syrup. Finished with a chocolate or caramel drizzle. Available in Coffee, Dulce and Mocha.",
 			"rating": 3,
 			"link": "",
 			"icon": "",
@@ -424,7 +527,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -436,12 +538,20 @@
 				{
 					"imageWeb": "item11.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Coffee Frappes",
+				"details": "Chilled beverage blending coffee ice cream with ice, milk, espresso and syrup. Finished with a chocolate or caramel drizzle. Available in Coffee, Dulce and Mocha.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Coffee Frappes",
+				"details": "Chilled beverage blending coffee ice cream with ice, milk, espresso and syrup. Finished with a chocolate or caramel drizzle. Available in Coffee, Dulce and Mocha.",
+				"status": "nuevo"
+			}
 		},
 		{
 			"_id": 24875,
-			"name": "Aloha Mango",
-			"details": "Peaches and banana with mango sorbet and pineapple juice and vanilla yogurt.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -451,7 +561,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": true,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -463,14 +572,22 @@
 				{
 					"imageWeb": "item10.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Aloha Mango",
+				"details": "Peaches and banana with mango sorbet and pineapple juice and vanilla yogurt.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Aloha Mango",
+				"details": "Peaches and banana with mango sorbet and pineapple juice and vanilla yogurt.",
+				"status": "nuevo"
+			}
 		}
 	],
 	"menu5": [
 		{
 			"_id": 87633,
-			"name": "Brownie Cookie Sandwiches",
-			"details": "Brownie Cookies perfectly paired with the ice cream and topping of your choosing.",
 			"rating": 3,
 			"link": "",
 			"icon": "",
@@ -480,7 +597,6 @@
 			"calories": 143,
 			"weight": 143,
 			"isFavorite": false,
-			"status": "new name",
 			"active": true,
 			"gluten": true,
 			"images": [
@@ -492,12 +608,20 @@
 				{
 					"imageWeb": "item12.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Brownie Cookie Sandwiches",
+				"details": "Brownie Cookies perfectly paired with the ice cream and topping of your choosing.",
+				"status": "new name"
+			},
+			"es": {
+				"name": "Brownie Cookie Sandwiches",
+				"details": "Brownie Cookies perfectly paired with the ice cream and topping of your choosing.",
+				"status": "nuevo nombre"
+			}
 		},
 		{
 			"_id": 53209,
-			"name": "Irish Cream Cookie Squares",
-			"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate.",
 			"rating": 5,
 			"link": "",
 			"icon": "",
@@ -507,7 +631,6 @@
 			"calories": 143,
 			"weight": 193,
 			"isFavorite": false,
-			"status": "new",
 			"active": true,
 			"gluten": false,
 			"images": [
@@ -519,7 +642,17 @@
 				{
 					"imageWeb": "item13.webp"
 				}
-			]
+			],
+			"en": {
+				"name": "Irish Cream Cookie Squares",
+				"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate.",
+				"status": "new"
+			},
+			"es": {
+				"name": "Irish Cream Cookie Squares",
+				"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate.",
+				"status": "nuevo"
+			}
 		}
 	]
 }

@@ -6,7 +6,8 @@ import { ETASimpleText, ETAButtonOutline, ETAButtonFilled, ETAToast } from '@eta
 import { connect } from 'react-redux'
 import { currencySeparator } from '@functions'
 import DiscountCodeModal from '@commons/DiscountCodeModal'
-import { useToast } from '@etaui/toast/useToast';
+import { useToast } from '@etaui/toast/useToast'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 
@@ -89,14 +90,15 @@ const CartDetailsComponent = ({ data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ totalItems, settotalItems ] = useState(data.length)
-	const [ total, settotal ] = useState(0)
-	const [ subtotal, setsubtotal ] = useState(0)
-	const [ shipping ] = useState(35)
+	const [ totalState, settotalState ] = useState(0)
+	const [ subtotalState, setsubtotalState ] = useState(0)
+	const [ shippingState ] = useState(35)
 	const [ isSubmitting ] = useState(false)
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
 	const { showToast } = useToast()
 	let subtotalValue = 0
 	let sum = 0
+	const { summary, item, items, subtotal, shipping, total, discount_code,  check_out} = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -117,8 +119,8 @@ const CartDetailsComponent = ({ data }) => {
 					element.howMany
 		})
 
-		setsubtotal(subtotalValue)
-		settotal(subtotalValue + shipping)
+		setsubtotalState(subtotalValue)
+		settotalState(subtotalValue + shippingState)
 		// settotalItems(sum)
 	}
 
@@ -127,8 +129,8 @@ const CartDetailsComponent = ({ data }) => {
 			screen: 'PaymentScreen',
 			params: {
 				data: data,
-				total: total,
-				subtotal: subtotal,
+				total: totalState,
+				subtotal: subtotalState,
 				totalItems
 			},
 		})
@@ -148,12 +150,13 @@ const CartDetailsComponent = ({ data }) => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Summary ({data.length === 0 ? '0' : totalItems}{' '}
+					{summary.charAt(0).toUpperCase() + summary.slice(1)} ({data.length === 0 ? '0' : totalItems}{' '}
 					{data.length === 0
-						? 'items'
+						? `${items}`
 						: totalItems === 1
-						? 'item'
-						: 'items'}
+						? `${item}`
+						: `${items}`
+					}
 					)
 				</ETASimpleText>
 				<SummaryContainer>
@@ -166,7 +169,7 @@ const CartDetailsComponent = ({ data }) => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						Subtotal
+						{subtotal.charAt(0).toUpperCase() + subtotal.slice(1)}
 					</ETASimpleText>
 
 					<ETASimpleText
@@ -182,7 +185,7 @@ const CartDetailsComponent = ({ data }) => {
 						{data.length === 0
 							? data.length.toFixed(2)
 							: currencySeparator(
-									subtotal.toFixed(2),
+								subtotalState.toFixed(2),
 							  )}
 					</ETASimpleText>
 				</SummaryContainer>
@@ -196,7 +199,7 @@ const CartDetailsComponent = ({ data }) => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						Shipping
+						{shipping.charAt(0).toUpperCase() + shipping.slice(1)}
 					</ETASimpleText>
 
 					<ETASimpleText
@@ -212,7 +215,7 @@ const CartDetailsComponent = ({ data }) => {
 						{data.length === 0
 							? data.length.toFixed(2)
 							: currencySeparator(
-									shipping.toFixed(2),
+								shippingState.toFixed(2),
 							  )}
 					</ETASimpleText>
 				</SummaryContainer>
@@ -229,7 +232,7 @@ const CartDetailsComponent = ({ data }) => {
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}
 							align='left'>
-							Total
+							{total.charAt(0).toUpperCase() + total.slice(1)}
 						</ETASimpleText>
 
 						<ETASimpleText
@@ -247,14 +250,14 @@ const CartDetailsComponent = ({ data }) => {
 							{data.length === 0
 								? data.length.toFixed(2)
 								: currencySeparator(
-										total.toFixed(2),
+									totalState.toFixed(2),
 								  )}
 						</ETASimpleText>
 					</SummaryTotalContainer>
 				</TotalContainer>
 				<DiscountCodeContainer>
 					<ETAButtonOutline
-						title='Discount code'
+						title={discount_code.charAt(0).toUpperCase() + discount_code.slice(1)}
 						onPress={() => setisFancyModalVisible(true)}
 						// disabled={data.length === 0 ? true : false}
 						colorButton={
@@ -273,7 +276,7 @@ const CartDetailsComponent = ({ data }) => {
 				/>
 				<ButtonPayContainer>
 					<ETAButtonFilled
-						title='Check out'
+						title={`${check_out.charAt(0).toUpperCase() + check_out.slice(1)}`}
 						onPress={() => _onPressItem()}
 						disabled={data.length === 0 ? true : false}
 						colorButton={

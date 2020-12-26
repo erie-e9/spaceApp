@@ -1,11 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Platform} from 'react-native'
-import {ETASimpleText, ETAButtonFilled} from '@etaui'
-import {useNavigation} from '@react-navigation/native'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Platform } from 'react-native'
+import { ETASimpleText, ETAButtonFilled } from '@etaui'
+import { useNavigation } from '@react-navigation/native'
 import OrdersProcessingItemComponent from './OrdersProcessingItemComponent'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/settings/processingorders/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/settings/processingorders/actions'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 0.6;
@@ -45,6 +46,7 @@ const OrdersProcessingComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
+	const { no_processing_orders, see_menu } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -97,10 +99,10 @@ const OrdersProcessingComponent = ({ getDataRequest, data }) => {
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							align='left'>
-							Don't have processing orders yet. 
+							{no_processing_orders.charAt(0).toUpperCase() + no_processing_orders.slice(1)} 
 						</ETASimpleText>
 						<ETAButtonFilled
-							title='See menu'
+							title={see_menu.charAt(0).toUpperCase() + see_menu.slice(1)}
 							onPress={() =>
 								navigation.navigate(
 									'ShopTabNavigator',

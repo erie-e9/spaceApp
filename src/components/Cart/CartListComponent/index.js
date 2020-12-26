@@ -6,6 +6,7 @@ import { useNavigation, useIsFocused } from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/cart/actions'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 0.8;
@@ -42,6 +43,7 @@ const CartListComponent = ({ getDataRequest, data }) => {
 	const navigation = useNavigation()
 	const isFocused = useIsFocused()
 	const [ items, setitems ] = useState(null)
+	const { cart_empty, see_menu } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -83,10 +85,10 @@ const CartListComponent = ({ getDataRequest, data }) => {
 										themeContext.PRIMARY_TEXT_COLOR_LIGHT
 									}
 									align='left'>
-									Your cart has no products yet.
+									{cart_empty.charAt(0).toUpperCase() + cart_empty.slice(1)}
 								</ETASimpleText>
 								<ETAButtonFilled
-									title='See menu'
+									title={see_menu.charAt(0).toUpperCase() + see_menu.slice(1)}
 									onPress={() =>
 										navigation.navigate(
 											'ShopTabNavigator',

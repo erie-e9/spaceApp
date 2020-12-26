@@ -12,6 +12,7 @@ import {
 } from '@redux/cart/actions'
 import { currencySeparator } from '@functions'
 import NoteProduct from '@commons/NoteProduct'
+import * as RNLocalize from 'react-native-localize'
 
 const { width } = Dimensions.get('window')
 
@@ -242,6 +243,7 @@ const CartItemComponent = ({
 	const navigation = useNavigation()
 	const [addedCounter, setaddedCounter] = useState()
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
+	let languageCode = RNLocalize.getLocales()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -297,7 +299,11 @@ const CartItemComponent = ({
 										themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 									}
 									align='left'>
-									{item.name}
+									{
+										languageCode === 'en'
+										?	item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)
+										:	item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)
+									}
 								</ETASimpleText>
 							</CartTitleContainer>
 							<CardItemFunctions>
@@ -372,7 +378,11 @@ const CartItemComponent = ({
 									}
 									<NoteProduct 
 										_id={item._id}
-										title={item.name}
+										title={
+											languageCode === 'en'
+											?	item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)
+											:	item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)
+										}
 										isVisible={isFancyModalVisible}
 										onSwipeComplete={() => setisFancyModalVisible(false)}
 										closeModal={() => setisFancyModalVisible(false)}

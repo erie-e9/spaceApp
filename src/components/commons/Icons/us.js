@@ -7,7 +7,7 @@ function USIconComponent(props) {
       xmlns='http://www.w3.org/2000/svg'
       xmlnsXlink='http://www.w3.org/1999/xlink'
       viewBox='0 0 3910 4000'
-      width={30} height={13}
+      width={25} height={12}
     >
       <Path fill='#b22234' d='M0 0h7410v3900H0z' />
       <Path

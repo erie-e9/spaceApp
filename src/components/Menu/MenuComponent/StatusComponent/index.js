@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 import StatusItem from './item'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/status/actions'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 
@@ -49,6 +50,7 @@ const Status = ({ getDataRequest, data }) => {
 	const [ items, setitems ] = useState([])
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	let delayValue = 1000
+	let languageCode = RNLocalize.getLocales()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -78,7 +80,9 @@ const Status = ({ getDataRequest, data }) => {
 		navigation.navigate('SubMenuNavigator', {
 			screen: 'ItemsScreen',
 			params: {
-				name: item.title
+				name: languageCode === 'en'
+				?	`${item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)}`
+				:	`${item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)}`
 			},
 		})
 	}

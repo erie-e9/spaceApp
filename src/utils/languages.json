@@ -4,19 +4,19 @@
             "_id": 1,
             "language": "English",
             "value": "en",
-            "default": true
+            "isdefault": true
         },
         {
             "_id": 2,
             "language": "Español",
             "value": "es",
-            "default": false
+            "isdefault": false
         },
         {
             "_id": 3,
             "language": "Français",
             "value": "fr",
-            "default": false
+            "isdefault": false
         }
     ]
 }

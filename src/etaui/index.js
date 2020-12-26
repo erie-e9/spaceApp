@@ -29,6 +29,7 @@ import ETAFancyModal from '@etaui/modals/fancy'
 import ETAAuthSocialmedia from '@etaui/authsocialmedia'
 import ETAThemePicker from '@etaui/themepicker'
 import ETAToast from '@etaui/toast'
+import {LanguageContextProvider} from '@etaui/translate'
 
 export {
   ETAButtonOutline,
@@ -61,5 +62,6 @@ export {
   ETAFancyModal,
   ETAAuthSocialmedia,
   ETAThemePicker,
-  ETAToast
+  ETAToast,
+  LanguageContextProvider
 }

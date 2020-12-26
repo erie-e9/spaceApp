@@ -44,6 +44,7 @@ import HowToUseScreen from '@screens/Settings/HelpScreen/HowToUseScreen'
 import FAQSScreen from '@screens/Settings/HelpScreen/FAQSScreen'
 import TermsOfServiceScreen from '@screens/Settings/HelpScreen/TermsOfServiceScreen'
 import NoticeOfPrivacyScreen from '@screens/Settings/HelpScreen/NoticeOfPrivacyScreen'
+import { useTranslation } from '@etaui/translate'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -60,6 +61,7 @@ const Header = styled.View`
 const ProfileStack = createStackNavigator()
 const ProfileNavigator = () => {
 	const themeContext = useContext(ThemeContext)
+	const { cart, orders } = useTranslation()
 
 	return (
 		<ProfileStack.Navigator
@@ -124,6 +126,7 @@ const ProfileNavigator = () => {
 const Tab = createMaterialTopTabNavigator()
 const TopNavigatorOrders = () => {
 	const themeContext = useContext(ThemeContext)
+	const { processing_orders, previous_orders } = useTranslation()
 	
 	return (
 		<Tab.Navigator
@@ -148,14 +151,14 @@ const TopNavigatorOrders = () => {
 				name="ProcessingOrdersScreen" 
 				component={ProcessingOrdersScreen}
 				options={{
-					tabBarLabel: 'Processing orders'
+					tabBarLabel: processing_orders.charAt(0).toUpperCase() + processing_orders.slice(1)
 				}}
 			/>
 			<Tab.Screen 
 				name="PreviousOrdersScreen" 
 				component={PreviousOrdersScreen}
 				options={{
-					tabBarLabel: 'Previous orders'
+					tabBarLabel: previous_orders.charAt(0).toUpperCase() + previous_orders.slice(1)
 				}}
 			/>
 		</Tab.Navigator>
@@ -165,6 +168,7 @@ const TopNavigatorOrders = () => {
 const SettingsStack = createStackNavigator()
 const SettingsNavigator = () => {
 	const themeContext = useContext(ThemeContext)
+	const { orders } = useTranslation()
 
 	return (
 		<SettingsStack.Navigator
@@ -753,7 +757,7 @@ const SettingsNavigator = () => {
 				name='TopNavigatorOrders'
 				component={TopNavigatorOrders}
 				options={({navigation, route}) => ({
-					headerTitle: 'Orders',
+					headerTitle: `${orders.charAt(0).toUpperCase() + orders.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',

@@ -15,6 +15,7 @@ import ItemsScreen from '@screens/Menu/ItemsScreen'
 import GetOneItemScreen from '@screens/Menu/GetOneItemScreen'
 import CustomProductNavigator from './CustomProductNavigator'
 import FilterButtonComponent from './FilterButtonComponent'
+import { useTranslation } from '@etaui/translate'
 
 const Header = styled.View`
 	margin-left: 15px;
@@ -45,6 +46,8 @@ const HeaderLeftCard = styled.TouchableOpacity.attrs({
 const MenuStack = createStackNavigator()
 const MenuNavigator = () => {
 	const themeContext = useContext(ThemeContext)
+	const { search_on } = useTranslation()
+
 	return (
 		<MenuStack.Navigator
 			screenOptions={{
@@ -91,7 +94,7 @@ const MenuNavigator = () => {
 					header: () =>  <ETASearchBar 
 										leftContent={variables.COMPANYNAME} 
 										leftContentColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} 
-										placeholderText={`Search on ${variables.COMPANYNAME}`}
+										placeholderText={`${search_on.charAt(0).toUpperCase() + search_on.slice(1)} ${variables.COMPANYNAME}`}
 										backgroundColorInput={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
 									/>,
 				

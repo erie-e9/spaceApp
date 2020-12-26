@@ -84,7 +84,7 @@ const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 		navigation.navigate('SubMenuNavigator', {
 			screen: 'PromotionScreen',
 			params: {
-				name: selecteditem.title,
+				name: ' ',
 				selectedItem: selecteditem,
 			},
 		})

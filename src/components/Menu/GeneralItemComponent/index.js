@@ -6,6 +6,7 @@ import { ETASimpleText, ETAProgressiveImage } from '@etaui'
 import { truncateString, currencySeparator } from '@functions'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } from '@redux/settings/favorites/actions'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 const size = 75
@@ -174,6 +175,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 	const navigation = useNavigation()
 	const [ isFavorite, setisFavorite ] = useState(false)
 	const isFocused = useIsFocused()
+	let languageCode = RNLocalize.getLocales()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -224,10 +226,10 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 		<Touchable key={item._id} onPress={() => _onPressItem(item)}>
 			<Card>
 				<CardTop>
-					{item.status !== '' ? (
+					{item.en.status || item.es.status !== '' ? (
 						<StatusContainer>
 							<ETASimpleText
-								size={10}
+								size={9}
 								weight={
 									Platform.OS === 'ios'
 										? '400'
@@ -235,7 +237,10 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 								}
 								color='white'
 								align='center'>
-								{item.status}
+								{	languageCode === 'en'
+									?	`${item.en.status.charAt(0).toUpperCase() + item.en.status.slice(1)}`
+									:	`${item.es.status.charAt(0).toUpperCase() + item.es.status.slice(1)}`
+								}
 							</ETASimpleText>
 						</StatusContainer>
 					) : null}
@@ -277,7 +282,10 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 							}
 							align='left'
 							style={{zIndex: 100}}>
-							{truncateString(item.name, 26)}
+							{	languageCode === 'en'
+								?	`${truncateString(item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1), 26)}`
+								:	`${truncateString(item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1), 26)}`
+							}
 						</ETASimpleText>
 					</NameContainer>
 					<ShopContainer>

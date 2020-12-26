@@ -5,10 +5,10 @@ import { ETASimpleText } from '@etaui'
 
 const Root = styled.View`
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 20px;
-    min-width: 40px;
+    min-width: 90px;
 	background-color: transparent;
 `
 const Radio = styled.View`
@@ -29,7 +29,8 @@ const Touchable = styled.TouchableHighlight.attrs({
 	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })`
     flex-direction: row;
-    justify-content: center;
+	align-items: center;
+    justify-content: flex-start;
 `
 
 const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeText, colorText }) => {
@@ -38,7 +39,7 @@ const ETARadio = memo(({ sizeRadio, colorRadio, onChange, activated, text, sizeT
     useEffect(() => {
         let isUnMounted = false
         if (activated) {
-            console.log('activated');
+            // console.log('activated');
             Animated.timing(animation, {
 				duration: 200,
 				toValue: 1,

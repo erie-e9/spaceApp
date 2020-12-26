@@ -16,6 +16,8 @@ import LottieView from 'lottie-react-native'
 import InfoTopTabsComponent from './Info'
 import ReviewsComponent from './ReviewsComponent'
 import NoteProduct from '@commons/NoteProduct'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 
@@ -363,6 +365,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 	const [ isFavorite, setisFavorite ] = useState(false)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const [ selectedItem, setselectedItem ] = useState(item)
+	console.log('selectedItem: ', selectedItem);
 	const [ similarid, setsimilarid ] = useState(0)
 	const [ bottommodalTitle, setbottommodalTitle ] = useState('')
 	const [ isBottomModalVisible, setisBottomModalVisible ] = useState(false)
@@ -371,7 +374,8 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
     const [ tooglenote, settooglenote ] = useState(false)
 	const delayValue = 1500
 	const heart = useRef(false)
-	const bottomModalRef = useRef()
+	const { details } = useTranslation()
+	let languageCode = RNLocalize.getLocales()
 	
 	useEffect(() => {
 		let isUnMounted = false
@@ -739,7 +743,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 								)}
 								<CardTop>
 									<CardHeaderContainer>
-										{selectedItem.status !== '' ?  (
+										{selectedItem.en.status !== '' ?  (
 											<StatusContainer>
 												<ETASimpleText
 													size={11}
@@ -751,7 +755,11 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 													}
 													color='white'
 													align='center'>
-													{selectedItem.status}
+													{
+														languageCode === 'en'
+															?	selectedItem.en.status
+															:	selectedItem.es.status
+													}
 												</ETASimpleText>
 											</StatusContainer>
 										) : null
@@ -771,7 +779,11 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 													themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 												}
 												align='left'>
-												{selectedItem.name}
+												{
+													languageCode === 'en'
+													?	selectedItem.en.name.charAt(0).toUpperCase() + selectedItem.en.name.slice(1)
+													:	selectedItem.es.name.charAt(0).toUpperCase() + selectedItem.es.name.slice(1)
+												}
 											</ETASimpleText>
 										</NameContainer>
 										<ShopContainer>
@@ -882,7 +894,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 										</ShopContainer>
 									</CardTopHead>
 									{
-										selectedItem.status !== 'custom'
+										selectedItem.en.status !== 'custom'
 										?	<ItemInfoContainer>
 												<ItemInfo
 													onPress={() => _onShowModal(1, 'Reviews')}
@@ -971,7 +983,11 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 										</ETABottomModal>
 										<NoteProduct 
 											_id={selectedItem._id}
-											title={selectedItem.name}
+											title={
+												languageCode === 'en'
+													?	selectedItem.en.name.charAt(0).toUpperCase() + selectedItem.en.name.slice(1)
+													:	selectedItem.es.name.charAt(0).toUpperCase() + selectedItem.es.name.slice(1)
+											}
 											isVisible={isFancyModalVisible}
 											onSwipeComplete={() => setisFancyModalVisible(false)}
 											closeModal={() => setisFancyModalVisible(false)}
@@ -992,7 +1008,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 													themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 												}
 												align='center'>
-												Details
+												{details.charAt(0).toUpperCase() + details.slice(1)}
 											</ETASimpleText>
 										</DetailsTextContainer>
 										<ETASimpleText
@@ -1007,7 +1023,11 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 												themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
 											}
 											align='left'>
-											{selectedItem.details}
+											{
+												languageCode === 'en'
+													?	selectedItem.en.details
+													:	selectedItem.es.details
+											}
 										</ETASimpleText>
 									</ItemDetailsContainer>
 									<ToolsContainer>

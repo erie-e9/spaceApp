@@ -10,6 +10,7 @@ import { ETASimpleText } from '@etaui'
 import CartScreen from '@screens/Cart/CartScreen'
 import PaymentScreen from '@screens/Cart/PaymentScreen'
 import IconWithBadge from './IconBadge'
+import { useTranslation } from '@etaui/translate'
 
 const Header = styled.View`
 	margin-left: 15px;
@@ -46,6 +47,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 const CartStack = createStackNavigator()
 const CartNavigator = () => {
 	const themeContext = useContext(ThemeContext)
+	const { cart, orders } = useTranslation()
 
 	return (
 		<CartStack.Navigator
@@ -89,7 +91,7 @@ const CartNavigator = () => {
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
 								align='left'>
-								Cart
+								{cart.charAt(0).toUpperCase() + cart.slice(1)}
 							</ETASimpleText>
 						</Header>
 					),
@@ -126,7 +128,7 @@ const CartNavigator = () => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Orders
+											{orders.charAt(0).toUpperCase() + orders.slice(1)}
 										</ETASimpleText>
 									</OrdersContainer>
 									</IconWithBadge>

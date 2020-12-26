@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Dimensions } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import { SharedElement } from 'react-navigation-shared-element'
+import * as RNLocalize from 'react-native-localize'
 
 const { width, height } = Dimensions.get('window')
 
@@ -34,8 +35,8 @@ const ContentContainer = styled.View`
 `
 
 const ETACarouselItem = ({item, sizeHeight}) => {
-	// console.log('ETACarouselItem: ', `promotion.${item._id}.image`);
-	
+	let languageCode = RNLocalize.getLocales()
+
 	return(
 		<Root
 			sizeHeight={sizeHeight}>
@@ -60,7 +61,11 @@ const ETACarouselItem = ({item, sizeHeight}) => {
 							},
 							textShadowRadius: 3,
 						}}>
-						{item.title}
+						{
+							languageCode === 'en'
+								?	item.en.title
+								:	item.es.title
+						}
 					</ETASimpleText>
 				</SharedElement>
 				<ETASimpleText
@@ -78,7 +83,11 @@ const ETACarouselItem = ({item, sizeHeight}) => {
 						},
 						textShadowRadius: 3,
 					}}>
-					{item.description}
+					{
+						languageCode === 'en'
+							?	item.en.description
+							:	item.es.description
+					}
 				</ETASimpleText>
 			</ContentContainer>
 		</Root>

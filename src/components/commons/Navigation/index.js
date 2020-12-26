@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import { StatusBar, SafeAreaView, useColorScheme } from 'react-native'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants'
-import { ETANetInfo } from '@etaui'
+import { ETANetInfo, ETATranslate as TranslateProvider} from '@etaui'
+import { LanguageContextProvider } from '@etaui/translate'
 import SplashScreen from '@components/commons/SplashScreen'
 import SigninStackScreen from './SigninStack'
 import ShopTabNavigator from './ShopTabNavigator'
@@ -83,33 +84,36 @@ const Navigation = ({ getDataRequest, theme }) => {
 						flex: 1,
 						backgroundColor: backgroundTheme
 					}}>
-			{
-				theme !== undefined 
-				?	<ThemeProvider 
-						// theme={themepicked === 1 ? lightTheme : themepicked === 2 ? darkTheme : colorSchema === 'dark' ? darkTheme : lightTheme}
-						theme={themepicked ? themepicked : lightTheme}
-						>
-						{/* <StatusBar
-							backgroundColor={backgroundTheme ? backgroundTheme : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR}
-							barStyle={barStyleTheme ? barStyleTheme : 'light-content'}
-							hidden={false}
-						/> */}
+						
+					<LanguageContextProvider>
+					{
+						theme !== undefined 
+						?	<ThemeProvider 
+								// theme={themepicked === 1 ? lightTheme : themepicked === 2 ? darkTheme : colorSchema === 'dark' ? darkTheme : lightTheme}
+								theme={themepicked ? themepicked : colorSchema === 'dark' ? darkTheme: lightTheme}
+								>
+								{/* <StatusBar
+									backgroundColor={backgroundTheme ? backgroundTheme : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR}
+									barStyle={barStyleTheme ? barStyleTheme : 'light-content'}
+									hidden={false}
+								/> */}
 
-						<StatusBar
-							backgroundColor={backgroundTheme}
-							barStyle={barStyleTheme ? barStyleTheme : 'light-content'}
-							hidden={false}
-						/>
-						<ETANetInfo />
-						<ShopTabNavigator />
-						{/* {userToken !== null ? (
-							<ShopTabNavigator />
-						) : (
-							<SigninStackScreen />
-						)} */}
-					</ThemeProvider>
-				:	null
-			}
+								<StatusBar
+									backgroundColor={backgroundTheme}
+									barStyle={barStyleTheme ? barStyleTheme : 'light-content'}
+									hidden={false}
+								/>
+								<ETANetInfo />
+									<ShopTabNavigator />
+								{/* {userToken !== null ? (
+									<ShopTabNavigator />
+									) : (
+										<SigninStackScreen />
+									)} */}
+							</ThemeProvider>
+						:	null
+					}
+					</LanguageContextProvider>
 			</SafeAreaView>
 		</>
 	)

@@ -1,8 +1,9 @@
-import React, {useContext} from 'react'
-import {Platform, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components'
-import {ETASimpleText} from '@etaui'
-import {Ionicons, Feather} from '@icons'
+import React, { useContext } from 'react'
+import { Platform, Dimensions } from 'react-native'
+import styled, { ThemeContext } from 'styled-components'
+import { ETASimpleText } from '@etaui'
+import { Ionicons, Feather } from '@icons'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 
@@ -54,6 +55,8 @@ const IconContainer = styled.View`
 
 const PreviousOrdersItemComponent = ({ item }) => {
     const themeContext = useContext(ThemeContext)
+    const { delivered_order, canceled_order, items } = useTranslation()
+
 
     return (
         <Root>
@@ -82,8 +85,8 @@ const PreviousOrdersItemComponent = ({ item }) => {
                             }}>
                             {
                                 item.status === 1
-                                ? 'Delivered order'
-                                : 'Canceled order'
+                                ? `${delivered_order.charAt(0).toUpperCase() + delivered_order.slice(1)}`
+                                : `${canceled_order.charAt(0).toUpperCase() + canceled_order.slice(1)}`
                             }
                         </ETASimpleText>
                         <ETASimpleText
@@ -128,7 +131,7 @@ const PreviousOrdersItemComponent = ({ item }) => {
                             themeContext.PRIMARY_TEXT_COLOR_LIGHT
                         }
                         align='left'>
-                        {item.items.length} Items
+                        {item.items.length} {items}
                     </ETASimpleText>
                     <IconContainer>
                         <Feather

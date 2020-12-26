@@ -7,11 +7,11 @@ import { truncateString } from '@functions'
 import { fakeavatar } from '@utils/constants'
 import PointsHeadComponent from './PointsHeadComponent'
 import MenuSettingsContentComponent from './MenuSettingsContentComponent'
+import { useTranslation } from '@etaui/translate'
 
 const firstname = 'Scarlett'
 const lastname = 'Johansson'
 const username = 'BWidow'
-const info = 'Member from 5 jun 2017'
 
 const Root = styled.View`
 	flex: 1;
@@ -56,6 +56,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 const SettingsComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { member_from } = useTranslation()
 
 	return (
 		<Root>
@@ -115,7 +116,7 @@ const SettingsComponent = () => {
 										themeContext.PRIMARY_TEXT_COLOR_LIGHT
 									}
 									align='left'>
-									{info}
+									{member_from} 2012
 								</ETASimpleText>
 							</MetadataInfo>
 						</MetadataHeader>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETASimpleText, ETAButtonFilled, ETARadio } from '@etaui'
-import { MXIcon, USIcon, FRIcon } from '@icons'
+import Item from './item'
 
 const Root = styled.View`
 	min-height: 10px;
@@ -13,16 +13,6 @@ const Root = styled.View`
 `
 const ListItems = styled.FlatList`
     min-height: 10px;
-    background-color: transparent;
-`
-const ItemContainer = styled.View`
-    min-height: 10px;
-    flex-direction: row;
-    min-width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 1px 15px;
-    margin-vertical: 3px;
     background-color: transparent;
 `
 const ButtonContainer = styled.View`
@@ -43,25 +33,10 @@ const EmptyListContainer = styled.View`
 const LanguageModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) => {
     const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState(null)
-	const [ selected, setselected ] = useState(true)
     
     useEffect(() => {
         setitems(data)
     }, [data])
-
-    const dynamicFlag = (language) => {
-        switch (language) {
-            case 'es':
-                return <MXIcon />
-            case 'en':
-                return <USIcon />
-            case 'fr':
-                return <FRIcon />
-        
-            default:
-                return <MXIcon />
-        }
-    }
     
     const _onPressItem = () => {
         closeModal()
@@ -108,22 +83,7 @@ const LanguageModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
                                         </ETASimpleText>
                                     </EmptyListContainer>
                                 )}
-                                renderItem={({item, i}) => {
-                                    return (
-                                        <ItemContainer>
-                                            <ETARadio 
-                                                text={item.language}
-                                                sizeText={14}
-                                                colorText={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                                onChange={() => setselected(!item.default)}
-                                                activated={selected}
-                                                sizeRadio={15}
-                                                colorRadio={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                                            />
-                                            {dynamicFlag(item.value)}
-                                        </ItemContainer>
-                                    )
-                                }}
+                                renderItem={({item, i}) => <Item key={i} {...item}/>}
                             />
                         :   null
                     }

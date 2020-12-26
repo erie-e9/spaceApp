@@ -29,7 +29,7 @@ const mapDispatchProps = (dispatch, props) => ({
 			payload: {
 				paramItem: { title, active },
 				discounts,
-				discountToggle: false
+				discountToggle: true
 			}
 		})
 	},
@@ -117,7 +117,7 @@ const ItemsComponent = memo(({ toggleModal, toggle_modal, addFilters, getDataReq
 		return () => {
 			isUnMounted = true
 		}
-	}, [itemsbycategory, dynamicItems, increment])
+	}, [data, itemsbycategory, dynamicItems, increment])
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -168,47 +168,64 @@ const ItemsComponent = memo(({ toggleModal, toggle_modal, addFilters, getDataReq
 		// Filters
 		if (itemsbycategory.length > 0) {
 			let actives = []
-			data.forEach(element => {
-				if (element.active === true) {
-					actives.unshift(element.title)
-				}
-			})
+			if (data.length > 0) {
+				data.forEach(element => {
+					if (element.active === true) {
+						actives.unshift(element.title)
+					}
+				})
+			}
 
 			let arrayFilters = []
-			if (actives.length > 0) {
-
-				function filterItems(query) {
-					// console.log('functionfilterItems > 0');
-					return itemsbycategory.filter((el, i) => {
-						return el.status === query
-					})
-				}
-
+			if (actives.length > 0 && discountToggle) {
+				console.log('actives.length > 0 && discountToggle');
 				actives.forEach((element, i) => {
-					arrayFilters.unshift(...filterItems(element))
+					arrayFilters.unshift(...filterFindItems(element))
 				})
 
 				if (increment !== undefined && increment === true) {
-					let sorted = arrayFilters.sort((a, b) => parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price) - parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price))
+					// increment
+					console.log('[increment ewe]');
+					sorted = arrayFilters.sort((a, b) => parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price) - parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price))
 					setdynamicItems(sorted)
 				} else if (increment !== undefined && increment === false) {
-					let sorted = arrayFilters.sort((a, b) => parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price) - parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price))
+					// decremental
+					console.log('[decrementa ewe]');
+					sorted = arrayFilters.sort((a, b) => parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price) - parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price))
 					setdynamicItems(sorted)
 				} else {
-					console.log('else :(', increment);
+					console.log('[actives.length > 0 && discountToggle] else :(', increment);
+					// setdynamicItems(arrayFilters)
+					setdynamicItems({...arrayFilters, ...filterFindItemsReverse(itemsbycategory, 0)})
+				}
+
+			} else if (actives.length > 0 && !discountToggle) {
+				console.log('actives.length > 0 && !discountToggle');
+			////
+				actives.forEach((element, i) => {
+					arrayFilters.unshift(...filterFindItems(element))
+				})
+
+				if (increment !== undefined && increment === true) {
+					// increment
+					console.log('[increment ewe]');
+					sorted = arrayFilters.sort((a, b) => parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price) - parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price))
+					setdynamicItems(sorted)
+				} else if (increment !== undefined && increment === false) {
+					// decremental
+					console.log('[decrementa ewe]');
+					sorted = arrayFilters.sort((a, b) => parseFloat(b.discount !== 0 ? ((100 - b.discount) * b.price) / 100 : b.price) - parseFloat(a.discount !== 0 ? ((100 - a.discount) * a.price) / 100 : a.price))
+					setdynamicItems(sorted)
+				} else {
+					console.log('[actives.length > 0 && !discountToggle] else :(', increment);
 					// setdynamicItems(itemsbycategory)
 					setdynamicItems(arrayFilters)
 				}
-
-			} else if (discountToggle) {
-				console.log('++++++++ functionfilterItems discountToggle true');
-				function filterItems(query) {
-					return dynamicItems.filter((el, i) => {
-						return el.discount !== query
-					})
-				}
-				setdynamicItems(filterItems(0))
-			} 
+			////
+			} else if (actives.length === 0 && !discountToggle) {
+				console.log('actives.length === 0 && !discountToggle');
+				setdynamicItems(filterFindItemsReverse(dynamicItems , 0))
+			}
 			else {
 				setdynamicItems(itemsbycategory)
 			}
@@ -218,6 +235,20 @@ const ItemsComponent = memo(({ toggleModal, toggle_modal, addFilters, getDataReq
 			isUnMounted = true
 		}
 	}, [data, increment, discountToggle])
+
+	const filterFindItems = (query) => {
+		console.log('[filterFindItems] query: ', query);
+		return itemsbycategory.filter((el, i) => {
+			return el.status === query
+		})
+	}
+
+	const filterFindItemsReverse = (array, query) => {
+		console.log('[filterFindItemsReverse] query: ', {query, arrayLength: array.length});
+		return array.filter((el, i) => {
+			return el.discount === query
+		})
+	}
 
 	return (
 		<>

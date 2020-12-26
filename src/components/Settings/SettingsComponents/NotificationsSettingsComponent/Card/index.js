@@ -57,7 +57,7 @@ const NotificationCardComponent = ({ headTitle, headTitleID, message, active, to
 	const _switch = async (item) => {
 		await setswitchItem(!switchItem)
 		await _setswitchItem(item)
-		// toggleNotification(id)
+		console.log('[_switch] itemm', item);
 	}
 	
 	return (

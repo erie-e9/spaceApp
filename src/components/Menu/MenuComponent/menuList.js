@@ -5,6 +5,8 @@ import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText, ETAHeaderText } from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { AntDesign } from '@icons'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 
@@ -26,12 +28,6 @@ const HeadContainer = styled.View`
 	padding-horizontal: 10px;
 	background-color: transparent
 `
-const ListContainer = styled.View`
-	flex: 1;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-`
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
@@ -40,11 +36,19 @@ const Touchable = styled.TouchableOpacity.attrs({
 	justify-content: center;
 	align-items: center;
 	z-index: 100;
+	min-width: 10px
+`
+const ListContainer = styled.View`
+	flex: 1;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 `
 
 const MenuList = ({ data, title }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { see_all } = useTranslation()
 	const items = React.useMemo(() => data.slice(0, 2), []) // slice: only first 2 items
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
@@ -118,7 +122,7 @@ const MenuList = ({ data, title }) => {
 									themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
 								align='left'>
-								See all
+								{see_all.charAt(0).toUpperCase() + see_all.slice(1)}
 							</ETASimpleText>
 						</Touchable>
 					</HeadContainer>

@@ -15,7 +15,7 @@ const initialState = {
   toggle_modal: false,
   increment: undefined,
   discounts: false,
-  discountToggle: false
+  discountToggle: true
 }
 
 const reducer = (state=initialState, action) => {

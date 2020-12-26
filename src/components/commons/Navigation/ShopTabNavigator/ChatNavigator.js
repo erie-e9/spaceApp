@@ -6,7 +6,7 @@ import {
 	CardStyleInterpolators,
 } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import { Ionicons, Feather, FontAwesome } from '@icons'
+import { Feather, FontAwesome } from '@icons'
 import ChatClientsScreen from '@screens/Chat/ChatClientsScreen'
 import ChatEmployeesScreen from '@screens/Chat/ChatEmployeesScreen'
 import ChatItemScreen from '@screens/Chat/ChatItemScreen'
@@ -15,6 +15,7 @@ import ContactProfileScreen from '@screens/Chat/ContactProfileScreen'
 import { ETASearchBar, ETASimpleText } from '@etaui'
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
 import IconWithBadge from './IconBadge'
+import { useTranslation } from '@etaui/translate'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -62,6 +63,7 @@ const IconButton = styled.TouchableOpacity.attrs({
 const Tab = createMaterialTopTabNavigator()
 const TopNavigatorChat = () => {
 	const themeContext = useContext(ThemeContext)
+	const { clients, employees } = useTranslation()
 	
 	return (
 		<Tab.Navigator
@@ -111,7 +113,7 @@ const TopNavigatorChat = () => {
 											: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
 										}
 										align='left'>
-										Clients {'  '}
+										{clients.charAt(0).toUpperCase() + clients.slice(1)} {'  '}
 									</ETASimpleText>
 								</IconWithBadge>
 						)
@@ -138,7 +140,7 @@ const TopNavigatorChat = () => {
 											: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
 										}
 										align='left'>
-										Employees {'  '}
+										{employees.charAt(0).toUpperCase() + employees.slice(1)} {'  '}
 									</ETASimpleText>
 								</IconWithBadge>
 						)
@@ -151,6 +153,7 @@ const TopNavigatorChat = () => {
 const ChatStack = createStackNavigator()
 const ChatNavigator = () => {
 	const themeContext = useContext(ThemeContext)
+	const { chat_room, search_chat_room } = useTranslation()
 
 	return (
 		<ChatStack.Navigator
@@ -174,9 +177,9 @@ const ChatNavigator = () => {
 					headerShown: true,
 					headerTransparent: !true,
 					header: () =>  <ETASearchBar 
-										leftContent='Chat room' 
+										leftContent={`${chat_room.charAt(0).toUpperCase() + chat_room.slice(1)}`} 
 										leftContentColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} 
-										placeholderText={`Search...`}
+										placeholderText={`${search_chat_room.charAt(0).toUpperCase() + search_chat_room.slice(1)}`}
 										backgroundColorInput={themeContext.PRIMARY_TEXT_BACKGROUND_COLOR}
 									/>,
 					headerTintColor:

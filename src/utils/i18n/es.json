@@ -1,0 +1,48 @@
+{
+    "menu": "menú",
+    "search_on": "buscar en",
+    "isnew": "nuevo",
+    "arenew": "nuevos",
+    "products": "productos",
+    "hot": "top",
+    "weekly": "semanal",
+    "flash": "flash",
+    "offers": "ofertas",
+    "see_all": "ver todo",
+    "new_name": "nuevo nombre",
+    "limited_edition": "edición limitada",
+    "reviews": "reseñas",
+    "information": "información",
+    "details": "detalles",
+    "similarto": "similar a",
+
+    "chat_room": "mensajes",
+    "search_chat_room": "Buscar por mensaje o contacto...",
+    "clients": "clientes",
+    "employees": "empleados",
+
+    "cart": "carrito",
+    "cart_empty": "tu carrito está vacío",
+    "see_menu": "ir al menú",
+    "summary": "resumen",
+    "item": "producto",
+    "items": "productos",
+    "subtotal": "subtotal",
+    "shipping": "envío",
+    "total": "total",
+    "discount_code": "código de descuento",
+    "check_out": "pagar ahora",
+
+    "no_favorites": "Aún no tienes favoritos",
+    
+    "orders": "ordenes",
+    "processing_orders": "ordenes procesandose",
+    "previous_orders": "ordenes anteriores",
+    "preparing_order": "preparando orden",
+    "delivered_order": "orden entregada",
+    "canceled_order": "orden cancelada",
+    "no_previous_orders": "aún no tienes ordenes",
+    "no_processing_orders": "sin ordenes en este momento",
+
+    "member_from": "miembro desde"
+}

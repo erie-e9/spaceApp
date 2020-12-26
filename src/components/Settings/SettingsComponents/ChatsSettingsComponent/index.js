@@ -18,20 +18,20 @@ const Root = styled.ScrollView`
 const SettingContainer = styled.View`
 	flex-direction: row;
 	justify-content: flex-start;
-	align-items: center;
-	min-height: 50px;
-	padding: 2.5px 5px;
-	margin-vertical: 0px;
+	align-items: flex-start;
+	min-height: 10px;
+	padding: 0px 5px;
 	background-color: transparent;
 `
 const ItemContainer = styled.View`
     width: 100%;
-    margin: 0px 0px 10px 0px;
-	padding: 0px 15px;
+	justify-content: flex-start;
+	padding: 0px 20px;
 	background-color: transparent;
 `
 const SubtitleText = styled.View`
-    margin: 0px 0px 0px 5px;
+    margin: 5px 0px 0px 5px;
+    padding-left: 5px;
 	background-color: transparent;
 `
 const ButtonModalContainer = styled.View`
@@ -46,7 +46,7 @@ const MetadaInfoHead = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0px 10px 2px 10px;
+	padding: 2.5px 10px 2.5px 10px;
 	background-color: transparent;
 `
 const LeftContainer = styled.View`
@@ -114,7 +114,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        Satus
+                        Status
                     </ETASimpleText>
                     <SubtitleText>
                         <ETASimpleText
