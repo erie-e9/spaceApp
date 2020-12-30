@@ -62,7 +62,7 @@ const ETACarouselItem = ({item, sizeHeight}) => {
 							textShadowRadius: 3,
 						}}>
 						{
-							languageCode === 'en'
+							languageCode[0].languageCode === 'en'
 								?	item.en.title
 								:	item.es.title
 						}
@@ -84,7 +84,7 @@ const ETACarouselItem = ({item, sizeHeight}) => {
 						textShadowRadius: 3,
 					}}>
 					{
-						languageCode === 'en'
+						languageCode[0].languageCode === 'en'
 							?	item.en.description
 							:	item.es.description
 					}

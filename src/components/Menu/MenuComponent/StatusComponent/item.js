@@ -14,9 +14,9 @@ const ItemContainer = styled.View`
 	padding: 1.75px;
 	border-radius: 50px;
 	height: ${_height + 8}px;
-	width: ${_width + 8}px;
+	min-width: ${_width + 8}px;
 	border-width: 2px;
-	margin: 4px 6px;
+	margin: 4px 3px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: transparent;
 `
@@ -64,7 +64,7 @@ const StatusItem = ({ item }) => {
 				weight={Platform.OS === 'ios' ? '400' : '200'}
 				color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 				align='center'>
-				{	languageCode === 'en'
+				{	languageCode[0].languageCode === 'en'
 					?	`${item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)}`
 					:	`${item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)}`
 				}

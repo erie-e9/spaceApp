@@ -6,8 +6,9 @@ import { ETASimpleText } from '@etaui'
 import { Ionicons } from '@icons'
 import { connect } from 'react-redux'
 import { TOGGLE_FAVORITE } from '@redux/settings/favorites/actions'
-import { currencySeparator, truncateString } from '@functions'
+import { truncateString } from '@functions'
 import LottieView from 'lottie-react-native'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 
@@ -87,7 +88,7 @@ const FavoriteItemLeftContainer = styled.View`
 const DescriptionContainer = styled.View`
 	width: 100%;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	z-index: 100;
 	border-width: 0px;
 	padding-horizontal: 5px;
@@ -148,6 +149,7 @@ const FavoriteItemComponent = ({ toggleFavorite, item, howMany }) => {
 	const navigation = useNavigation()
 	const [ addedCounter, setaddedCounter ] = useState()
 	const heart = useRef(false)
+	let languageCode = RNLocalize.getLocales()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -192,7 +194,10 @@ const FavoriteItemComponent = ({ toggleFavorite, item, howMany }) => {
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
 								align='left'>
-								{item.name}
+								{	languageCode[0].languageCode === 'en'
+									?	`${truncateString(item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1), 26)}`
+									:	`${truncateString(item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1), 26)}`
+								}
 							</ETASimpleText>
 						</FavoriteTitleContainer>
 						{/* <CardItemFunctions>
@@ -243,8 +248,10 @@ const FavoriteItemComponent = ({ toggleFavorite, item, howMany }) => {
 									align='left'
 									style={{
 										zIndex: 100,
-									}}>
-									{truncateString(item.details, 70)}
+									}}>{	languageCode[0].languageCode === 'en'
+										?	`${truncateString(item.en.details.charAt(0).toUpperCase() + item.en.details.slice(1), 70)}`
+										:	`${truncateString(item.es.details.charAt(0).toUpperCase() + item.es.details.slice(1), 70)}`
+									}
 								</ETASimpleText>
 							</DescriptionContainer>
 						</FavoriteItemLeftContainer>

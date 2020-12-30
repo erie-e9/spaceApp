@@ -61,7 +61,7 @@ const Header = styled.View`
 const ProfileStack = createStackNavigator()
 const ProfileNavigator = () => {
 	const themeContext = useContext(ThemeContext)
-	const { cart, orders } = useTranslation()
+	const { branch_text_text } = useTranslation()
 
 	return (
 		<ProfileStack.Navigator
@@ -109,7 +109,7 @@ const ProfileNavigator = () => {
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
 								align='left'>
-								Profile
+								Settings
 							</ETASimpleText>
 						</Header>
 					),
@@ -168,7 +168,11 @@ const TopNavigatorOrders = () => {
 const SettingsStack = createStackNavigator()
 const SettingsNavigator = () => {
 	const themeContext = useContext(ThemeContext)
-	const { orders } = useTranslation()
+	const { admin_tools, analytics, manage_accounts, manage_products, reports,
+			settings, notifications, chat_settings, app_preferences, account, 
+			map, addresses, payment_methods, new_payment_method, favorites, orders,
+			previous_orders, branch_offices, help, about_us, contact_us, how_to_use,
+			faq, terms_of_service, notice_of_privacy } = useTranslation()
 
 	return (
 		<SettingsStack.Navigator
@@ -196,7 +200,7 @@ const SettingsNavigator = () => {
 				name='ProfileScreen'
 				component={ProfileScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Account',
+					headerTitle: `${account.charAt(0).toUpperCase() + account.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -229,7 +233,7 @@ const SettingsNavigator = () => {
 				name='AdminToolsScreen'
 				component={AdminToolsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Admin Tools',
+					headerTitle: `${admin_tools.charAt(0).toUpperCase() + admin_tools.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -262,7 +266,7 @@ const SettingsNavigator = () => {
 				name='AnalyticsScreen'
 				component={AnalyticsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Analytics',
+					headerTitle: `${analytics.charAt(0).toUpperCase() + analytics.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -295,7 +299,7 @@ const SettingsNavigator = () => {
 				name='ManageAccountsScreen'
 				component={ManageAccountsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Manage Accounts',
+					headerTitle: `${manage_accounts.charAt(0).toUpperCase() + manage_accounts.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -328,7 +332,7 @@ const SettingsNavigator = () => {
 				name='ManageProductsScreen'
 				component={ManageProductsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Manage Products',
+					headerTitle: `${manage_products.charAt(0).toUpperCase() + manage_products.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -361,7 +365,7 @@ const SettingsNavigator = () => {
 				name='ReportsScreen'
 				component={ReportsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Reports',
+					headerTitle: `${reports.charAt(0).toUpperCase() + reports.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -394,7 +398,7 @@ const SettingsNavigator = () => {
 				name='SettingsScreen'
 				component={SettingsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Settings',
+					headerTitle: `${settings.charAt(0).toUpperCase() + settings.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -427,7 +431,7 @@ const SettingsNavigator = () => {
 				name='NotificationsScreen'
 				component={NotificationsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Notifications',
+					headerTitle: `${notifications.charAt(0).toUpperCase() + notifications.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -460,7 +464,7 @@ const SettingsNavigator = () => {
 				name='ChatsSettingsScreen'
 				component={ChatsSettingsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Chat settings',
+					headerTitle: `${chat_settings.charAt(0).toUpperCase() + chat_settings.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -493,7 +497,7 @@ const SettingsNavigator = () => {
 				name='AppPreferencesSettingsScreen'
 				component={AppPreferencesSettingsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'App preferences',
+					headerTitle: `${app_preferences.charAt(0).toUpperCase() + app_preferences.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -526,7 +530,7 @@ const SettingsNavigator = () => {
 				name='AccountScreen'
 				component={AccountScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Account',
+					headerTitle: `${account.charAt(0).toUpperCase() + account.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -559,7 +563,7 @@ const SettingsNavigator = () => {
 				name='MapAddressesScreen'
 				component={MapAddressesScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Map',
+					headerTitle: `${map.charAt(0).toUpperCase() + map.slice(1)}`,
 					headerShown: !true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -592,7 +596,7 @@ const SettingsNavigator = () => {
 				name='AddressesScreen'
 				component={AddressesScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Addresses',
+					headerTitle: `${addresses.charAt(0).toUpperCase() + addresses.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -625,7 +629,7 @@ const SettingsNavigator = () => {
 				name='PaymentMethodsScreen'
 				component={PaymentMethodsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Payment methods',
+					headerTitle: `${payment_methods.charAt(0).toUpperCase() + payment_methods.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -658,7 +662,7 @@ const SettingsNavigator = () => {
 				name='NewPaymentMethodScreen'
 				component={NewPaymentMethodScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'New payment method',
+					headerTitle: `${new_payment_method.charAt(0).toUpperCase() + new_payment_method.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -724,7 +728,7 @@ const SettingsNavigator = () => {
 				name='FavoritesScreen'
 				component={FavoritesScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Favorites',
+					headerTitle: `${favorites.charAt(0).toUpperCase() + favorites.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -790,7 +794,7 @@ const SettingsNavigator = () => {
 				name='GetOneProcessingOrderScreen'
 				component={GetOneProcessingOrderScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Order',
+					headerTitle: `${orders.charAt(0).toUpperCase() + orders.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -823,7 +827,7 @@ const SettingsNavigator = () => {
 				name='GetOnePreviousOrderScreen'
 				component={GetOnePreviousOrderScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Previous order',
+					headerTitle: `${previous_orders.charAt(0).toUpperCase() + previous_orders.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -856,7 +860,7 @@ const SettingsNavigator = () => {
 				name='BranchOfficesScreen'
 				component={BranchOfficesScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Branch offices',
+					headerTitle: `${branch_offices.charAt(0).toUpperCase() + branch_offices.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -889,7 +893,7 @@ const SettingsNavigator = () => {
 				name='MapBranchOfficesScreen'
 				component={MapBranchOfficesScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Branch offices',
+					headerTitle: `${branch_offices.charAt(0).toUpperCase() + branch_offices.slice(1)}`,
 					headerShown: !true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -922,7 +926,7 @@ const SettingsNavigator = () => {
 				name='HelpScreen'
 				component={HelpScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Help',
+					headerTitle: `${help.charAt(0).toUpperCase() + help.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -955,7 +959,7 @@ const SettingsNavigator = () => {
 				name='AboutUsScreen'
 				component={AboutUsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'About us',
+					headerTitle: `${about_us.charAt(0).toUpperCase() + about_us.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -988,7 +992,7 @@ const SettingsNavigator = () => {
 				name='ContactUsScreen'
 				component={ContactUsScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Contact us',
+					headerTitle: `${contact_us.charAt(0).toUpperCase() + contact_us.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -1021,7 +1025,7 @@ const SettingsNavigator = () => {
 				name='HowToUseScreen'
 				component={HowToUseScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'How to use',
+					headerTitle: `${how_to_use.charAt(0).toUpperCase() + how_to_use.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -1054,7 +1058,7 @@ const SettingsNavigator = () => {
 				name='FAQSScreen'
 				component={FAQSScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'FAQ',
+					headerTitle: `${faq.charAt(0).toUpperCase() + faq.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -1087,7 +1091,7 @@ const SettingsNavigator = () => {
 				name='TermsOfServiceScreen'
 				component={TermsOfServiceScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Terms of service',
+					headerTitle: `${terms_of_service.charAt(0).toUpperCase() + terms_of_service.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',
@@ -1120,7 +1124,7 @@ const SettingsNavigator = () => {
 				name='NoticeOfPrivacyScreen'
 				component={NoticeOfPrivacyScreen}
 				options={({navigation, route}) => ({
-					headerTitle: 'Notice of privacy',
+					headerTitle: `${notice_of_privacy.charAt(0).toUpperCase() + notice_of_privacy.slice(1)}`,
 					headerShown: true,
 					headerTransparent: !true,
 					headerTitleAlign: 'center',

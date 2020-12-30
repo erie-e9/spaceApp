@@ -289,24 +289,36 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 		navigation.goBack()
 		addToCart({
 			"_id": 230415,
-				"calories": 143,
-				"details": "Custom ice-cream prepared with our flavors and your imagination.",
-			"discount": 10,
-				"glutten": false,
-			"howMany": 6,
-				"icon": "",
-				"imageWebps": [{"imageWeb": "item1.webp"}], 
+			"rating": 5,
+			"link": "",
+			"icon": "",
+			"price": 123,
+			"discount": 60,
+			"points": 33,
+			"calories": 143,
+			"weight": 143,
+			"isFavorite": false,
+			"active": true,
+			"gluten": false,
 			"images": [
 				{"image": "https://i.pinimg.com/originals/cc/44/2c/cc442cec88ee51a34fe73dea4aaa78f0.png"},
 				{"image": "https://partycity6.scene7.com/is/image/PartyCity/_pdp_sq_?$_1000x1000_$&$product=PartyCity/843432"}
 			],
-				"isFavorite": false,
-				"link": "",
-			"name": "Ice-cream",
-			"price": 103,
-				"rating": 5,
-				"status": "custom",
-				"weight": 143
+			"imageWebps": [
+				{
+					"imageWeb": "item1.webp"
+				}
+			],
+			"en": {
+				"name": "Ice-cream",
+				"details": "Custom ice-cream prepared with our flavors and your imagination.",
+				"status": "custom"
+			},
+			"es": {
+				"name": "Helado",
+				"details": "Custom ice-cream prepared with our flavors and your imagination.",
+				"status": "personalizado"
+			}
 		})
 
 		console.log('_finishFunction', 

@@ -80,7 +80,7 @@ const Status = ({ getDataRequest, data }) => {
 		navigation.navigate('SubMenuNavigator', {
 			screen: 'ItemsScreen',
 			params: {
-				name: languageCode === 'en'
+				name: languageCode[0].languageCode === 'en'
 				?	`${item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)}`
 				:	`${item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)}`
 			},

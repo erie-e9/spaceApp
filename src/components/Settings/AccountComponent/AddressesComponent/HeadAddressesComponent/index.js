@@ -61,8 +61,7 @@ const HeadDirectionComponent = React.memo(() => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Find your addresses saved and create new to
-					deliver products
+					Find your addresses saved and create new to deliver products
 				</ETASimpleText>
 			</ContentContainer>
 		</Root>

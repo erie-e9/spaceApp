@@ -16,6 +16,7 @@ import { ETASimpleText } from '@etaui'
 import { connect } from 'react-redux'
 import { LOGOUT } from '@redux/user/actions'
 import SubCard from './Card'
+import { useTranslation } from '@etaui/translate'
 
 const iconSize = 23
 
@@ -83,6 +84,7 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { addresses, payment_methods, favorites, orders, branch_offices } = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -130,7 +132,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Addresses
+											{addresses.charAt(0).toUpperCase() + addresses.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -191,7 +193,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Payment methods
+											{payment_methods.charAt(0).toUpperCase() + payment_methods.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -249,7 +251,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Favorites
+											{favorites.charAt(0).toUpperCase() + favorites.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -310,7 +312,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Orders
+											{orders.charAt(0).toUpperCase() + orders.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -371,7 +373,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Branch offices
+											{branch_offices.charAt(0).toUpperCase() + branch_offices.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '

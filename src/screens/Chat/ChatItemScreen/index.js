@@ -6,13 +6,12 @@ import { FontAwesome } from '@icons'
 import {ETASimpleText, ETAAvatar} from '@etaui'
 import {truncateString} from '@functions'
 
-
 const HeadLeftContainer = styled.View`
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	z-index: 100;
-	background-color: ${(props) => props.theme.BACKGROUND_COLOR};
+	background-color: transparent;
 `
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',

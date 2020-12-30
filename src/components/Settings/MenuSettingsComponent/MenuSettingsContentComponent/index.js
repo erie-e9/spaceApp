@@ -13,6 +13,7 @@ import { ETASimpleText } from '@etaui'
 import { connect } from 'react-redux'
 import { LOGOUT } from '@redux/user/actions'
 import SubCard from './Card'
+import { useTranslation } from '@etaui/translate'
 
 const iconSize = 23
 
@@ -79,6 +80,7 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { account, account_text, admin_tools, admin_tools_text, settings, settings_text, help, help_text, log_out } = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -126,12 +128,12 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Account
+											{account.charAt(0).toUpperCase() + account.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
 											// message='Change settings about email, sms or push notifications.'
-											message='Set addresses and payment methods. See your last orders and items favorites.'
+											message={account_text.charAt(0).toUpperCase() + account_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -188,12 +190,12 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Admin tools
+											{admin_tools.charAt(0).toUpperCase() + admin_tools.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
 											// message='Change settings about email, sms or push notifications.'
-											message='Create reports, see analytics, manage accounts and products etc.'
+											message={admin_tools_text.charAt(0).toUpperCase() + admin_tools_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -250,12 +252,12 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Settings
+											{settings.charAt(0).toUpperCase() + settings.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
 											// message='Change settings about email, sms or push notifications.'
-											message='Set notifications, language, theme and chat settings.'
+											message={settings_text.charAt(0).toUpperCase() + settings_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -313,11 +315,11 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Help
+											{help.charAt(0).toUpperCase() + help.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Need support or help? This is the place.'
+											message={help_text.charAt(0).toUpperCase() + help_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -365,7 +367,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Log out
+											{log_out.charAt(0).toUpperCase() + log_out.slice(1)}
 										</ETASimpleText>
 									</OptionTitleContainer>
 								</LeftContainer>

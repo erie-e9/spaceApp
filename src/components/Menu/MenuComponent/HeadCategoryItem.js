@@ -53,7 +53,7 @@ const CategoryItem = ({itemcat}) => {
 				weight={Platform.OS === 'ios' ? '400' : '200'}
 				color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 				align='center'>
-				{languageCode === 'en' 
+				{languageCode[0].languageCode === 'en' 
 					?	itemcat.name
 					:	itemcat.nombre
 				}

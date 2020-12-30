@@ -300,7 +300,7 @@ const CartItemComponent = ({
 									}
 									align='left'>
 									{
-										languageCode === 'en'
+										languageCode[0].languageCode === 'en'
 										?	item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)
 										:	item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)
 									}
@@ -379,7 +379,7 @@ const CartItemComponent = ({
 									<NoteProduct 
 										_id={item._id}
 										title={
-											languageCode === 'en'
+											languageCode[0].languageCode === 'en'
 											?	item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1)
 											:	item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1)
 										}

@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useContext, memo } from 'react'
+import React, { useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETATextInputOutline, ETAButtonFilled } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 1;
@@ -16,6 +17,7 @@ const ButtonContainer = styled.View`
 
 const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
     const themeContext = useContext(ThemeContext)
+	const { discount_code, no_code_text, apply } = useTranslation()
     
     const _onPressItem = () => {
         closeModal()
@@ -24,7 +26,7 @@ const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
     return(
         <Root>
             <ETAFancyModal
-                title={`Discount Code`}
+                title={discount_code.charAt(0).toUpperCase() + discount_code.slice(1)}
                 isVisible={isVisible}
                 onSwipeComplete={onSwipeComplete}
                 closeModal={closeModal}
@@ -33,7 +35,7 @@ const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
                     <ETATextInputOutline
                         // ref={textinputRef}
                         value=''
-                        placeholder='Do you have a discount code?'
+                        placeholder={no_code_text.charAt(0).toUpperCase() + no_code_text.slice(1)}
                         placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                         keyboardType='default'
                         autoCapitalize='words'
@@ -66,7 +68,7 @@ const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
                     />
                     <ButtonContainer>
                         <ETAButtonFilled
-                            title='Apply'
+                            title={apply.charAt(0).toUpperCase() + apply.slice(1)}
                             onPress={() => _onPressItem()}
                             // disabled={data.length === 0 ? true : false}
                             colorButton={

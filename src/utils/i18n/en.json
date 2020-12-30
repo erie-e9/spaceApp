@@ -15,6 +15,7 @@
     "information": "information",
     "details": "details",
     "similarto": "similar to",
+    "all_categories": "all categories",
 
     "chat_room": "chat room",
     "search_chat_room": "Search a chat or contact...",
@@ -32,8 +33,14 @@
     "total": "total",
     "discount_code": "discount code",
     "check_out": "check out",
+    "discount": "discount",
+    "no_code_text": "do you have a discount code?",
+    "apply": "apply",
+    "note_for": "note for",
+    "type_note": "type note",
+    "save_note": "save note",
+    "calories": "calories",
 
-    "no_favorites": "Don't have favorites yet",
     
     "orders": "orders",
     "processing_orders": "processing orders",
@@ -41,8 +48,61 @@
     "preparing_order": "preparing order",
     "delivered_order": "delivered order",
     "canceled_order": "canceled order",
-    "no_previous_orders": "Don't have previous orders yet",
-    "no_processing_orders": "Don't have processing orders yet",
+    "no_previous_orders": "don't have previous orders yet",
+    "no_processing_orders": "don't have processing orders yet",
+    "order_date": "order date",
+    "delivery_date": "delivery date",
+    "contact_phone": "contact phone",
+    "delivery_address": "delivery address",
+    "payment_method": "payment method",
 
-    "member_from": "member from"
+    "member_from": "member from",
+    "admin_tools": "admin tools",
+    "settings": "settings",
+    "help": "help",
+    "log_out": "log out",
+    "admin_tools_text": "create reports, see analytics, manage accounts and products etc.",
+    "settings_text": "set notifications, language, theme and chat settings.",
+    "help_text": "need support or help? This is the place.",
+
+    "account": "account",
+    "account_text": "set addresses and payment methods. See your last orders and items favorites.",
+    "address": "address",
+    
+    "new_address": "new address",
+    "new_address_text": "Find your addresses saved and create new to deliver products",
+    
+    "payment_methods": "payment methods",
+    "new_payment_method": "new payment method",
+    "new_payment_method_text": "here you can find your payment methods to products",
+    "debit_card": "debit card",
+    "credit_card": "credit card",
+    "cash": "cash",
+    "cash_text": "you can pay in the delivery too",
+
+    "no_favorites": "don't have favoriteitems yet",
+    "favorites": "favorites",
+    "branch_offices": "branch offices",
+    "branch_offices_text": "find a branch office near of you.",
+
+
+
+    "payment_text": "here you can find your payment methods",
+    "analytics": "analytics",
+    "manage_accounts": "manage accounts",
+    "manage_products": "manage products",
+    "reports": "reportes",
+    "notifications": "notifications",
+    "chat_settings": "chat settings",
+    "app_preferences": "app preferences",
+    "map": "map",
+    "addresses": "addresses",
+    "about_us": "about us",
+    "contact_us": "contact us",
+    "how_to_use": "how to",
+    "faq": "faq",
+    "terms_of_service": "terms of service",
+    "notice_of_privacy": "notice of privacy",
+    "search": "search",
+    "search_branch_office" : "search branch office"
 }

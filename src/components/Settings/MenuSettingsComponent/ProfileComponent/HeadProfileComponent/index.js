@@ -3,6 +3,7 @@ import styled,  { ThemeContext } from 'styled-components/native'
 import  { Platform } from 'react-native'
 import  { ETASimpleText } from '@etaui'
 import  { fakeavatar } from '@utils/constants'
+import { useTranslation } from '@etaui/translate'
 
 const logoSize = 90
 const avatarRadius = logoSize / 2
@@ -43,6 +44,7 @@ const Logo = styled.Image`
 
 const HeadProfileComponent = () => {
 	const themeContext = useContext(ThemeContext)
+	const { member_from } = useTranslation()
 
 	return (
 		<Root>
@@ -55,7 +57,7 @@ const HeadProfileComponent = () => {
 					weight={Platform.OS === 'ios' ? '300' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
-					Member from 5 jun 2017
+					{member_from.charAt(0).toUpperCase() + member_from.slice(1)} 15 jun 2017
 				</ETASimpleText>
 			</ContentContainer>
 		</Root>

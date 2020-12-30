@@ -12,6 +12,7 @@ import { ETASimpleText } from '@etaui'
 import { connect } from 'react-redux'
 import { LOGOUT } from '@redux/user/actions'
 import SubCard from './Card'
+import { useTranslation } from '@etaui/translate'
 
 const iconSize = 23
 
@@ -79,6 +80,7 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { analytics, manage_accounts, manage_products, reports } = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -126,7 +128,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Analytics
+											{analytics.charAt(0).toUpperCase() + analytics.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -187,7 +189,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Manage accounts
+											{manage_accounts.charAt(0).toUpperCase() + manage_accounts.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -249,7 +251,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Manage products
+											{manage_products.charAt(0).toUpperCase() + manage_products.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -311,7 +313,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Reports
+											{reports.charAt(0).toUpperCase() + reports.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '

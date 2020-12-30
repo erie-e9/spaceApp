@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components/native'
 import {Platform} from 'react-native'
 import {ETASimpleText} from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const logoSize = 70
 const avatarRadius = logoSize / 2
@@ -42,6 +43,7 @@ const Logo = styled.Image`
 
 const HeadBranchOfficesComponent = () => {
 	const themeContext = useContext(ThemeContext)
+	const { branch_offices_text } = useTranslation()
 
 	return (
 		<Root>
@@ -61,7 +63,7 @@ const HeadBranchOfficesComponent = () => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Find a branch office near of you.
+					{branch_offices_text.charAt(0).toUpperCase() + branch_offices_text.slice(1)}
 				</ETASimpleText>
 			</ContentContainer>
 		</Root>

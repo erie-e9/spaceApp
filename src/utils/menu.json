@@ -343,40 +343,6 @@
 			}
 		},
 		{
-			"_id": 92739,
-			"rating": 5,
-			"link": "",
-			"icon": "",
-			"price": 193,
-			"discount": 15,
-			"points": 25,
-			"calories": 143,
-			"weight": 143,
-			"isFavorite": true,
-			"active": true,
-			"gluten": false,
-			"images": [
-				{
-					"image": "https://www.haagendazs.us/sites/site.prod1.haagendazs.us/files/product/product-image/hero-sept-2019-IrishCreamCookieSquare.png"
-				}
-			],
-			"imageWebps": [
-				{
-					"imageWeb": "item4.webp"
-				}
-			],
-			"en": {
-				"name": "Irish Cream Cookie Squares",
-				"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate. *Contains Less Than 0.5% Alcohol by Volume.",
-				"status": ""
-			},
-			"es": {
-				"name": "Irish Cream Cookie Squares",
-				"details": "A rich chocolate cookie topped with ice cream that’s infused with Irish Cream before the entire square is dipped in decadent dark chocolate. *Contains Less Than 0.5% Alcohol by Volume.",
-				"status": ""
-			}
-		},
-		{
 			"_id": 65402,
 			"rating": 3,
 			"link": "",
@@ -621,7 +587,7 @@
 			}
 		},
 		{
-			"_id": 53209,
+			"_id": 92739,
 			"rating": 5,
 			"link": "",
 			"icon": "",

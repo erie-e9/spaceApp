@@ -4,6 +4,7 @@ import {Platform} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {ETATextInputOutline} from '@etaui'
 import {FontAwesome} from '@icons'
+import { useTranslation } from '@etaui/translate'
 
 const SearchBox = styled.View`
 	position: absolute;
@@ -36,6 +37,7 @@ const HeaderRight = styled.TouchableOpacity.attrs({
 const SearchBoxComponent = ({currentPosition}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { search_branch_office } = useTranslation()
 
 	return (
 		<SearchBox
@@ -57,7 +59,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 			</HeaderLeft>
 			<ETATextInputOutline
 				value=''
-				placeholder='Search branch office'
+				placeholder={search_branch_office.charAt(0).toUpperCase() + search_branch_office.slice(1)}
 				placeholderTextColor={
 					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 				}

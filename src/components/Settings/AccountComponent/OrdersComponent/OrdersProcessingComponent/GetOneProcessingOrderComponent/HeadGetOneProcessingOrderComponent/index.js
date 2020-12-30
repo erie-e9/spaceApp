@@ -3,7 +3,8 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import { truncateString, currencySeparator, creditnumberSeparator, phoneSeparator } from '@functions'
-import { Ionicons, EvilIcons } from '@icons'
+import { EvilIcons } from '@icons'
+import { useTranslation } from '@etaui/translate'
 
 const logoSize = 90
 const avatarRadius = logoSize / 2
@@ -79,6 +80,7 @@ const DetailContainer = styled.View`
 
 const HeadGetOneProcessingOrderComponent = (item) => {
 	const themeContext = useContext(ThemeContext)
+	const { preparing_order, total, order_date, delivery_date , contact_phone , delivery_address, payment_method } = useTranslation()
 
 	return (
 		<Root>
@@ -126,11 +128,7 @@ const HeadGetOneProcessingOrderComponent = (item) => {
                         style={{
                             marginHorizontal: 5
                         }}>
-                        {
-                            item.status === 1
-                            ? 'Preparing order'
-                            : 'Canceled order'
-                        }
+                        {preparing_order.charAt(0).toUpperCase() + preparing_order.slice(1)}
                     </ETASimpleText>
                 </ContentContainer>
             </TopContainer>
@@ -151,7 +149,7 @@ const HeadGetOneProcessingOrderComponent = (item) => {
                         style={{
                             marginHorizontal: 5
                         }}>
-                        Total 
+                        {total.charAt(0).toUpperCase() + total.slice(1)} 
                     </ETASimpleText>
                     <ETASimpleText
                         size={13}
@@ -190,7 +188,7 @@ const HeadGetOneProcessingOrderComponent = (item) => {
                         style={{
                             marginHorizontal: 5
                         }}>
-                        Order date 
+                        {order_date.charAt(0).toUpperCase() + order_date.slice(1)} 
                     </ETASimpleText>
                     <ETASimpleText
                         size={13}
@@ -228,7 +226,7 @@ const HeadGetOneProcessingOrderComponent = (item) => {
                                 style={{
                                     marginHorizontal: 5
                                 }}>
-                                Delivery date 
+                                {delivery_date.charAt(0).toUpperCase() + delivery_date.slice(1)} 
                             </ETASimpleText>
                             <ETASimpleText
                                 size={13}
@@ -266,7 +264,7 @@ const HeadGetOneProcessingOrderComponent = (item) => {
                         style={{
                             marginHorizontal: 5
                         }}>
-                        Contact phone 
+                        {contact_phone.charAt(0).toUpperCase() + contact_phone.slice(1)} 
                     </ETASimpleText>
                     <ETASimpleText
                         size={13}
@@ -302,7 +300,7 @@ const HeadGetOneProcessingOrderComponent = (item) => {
                         style={{
                             marginHorizontal: 5
                         }}>
-                        Delivery address
+                        {delivery_address.charAt(0).toUpperCase() + delivery_address.slice(1)}
                     </ETASimpleText>
                     <ETASimpleText
                         size={13}
@@ -338,7 +336,7 @@ const HeadGetOneProcessingOrderComponent = (item) => {
                         style={{
                             marginHorizontal: 5
                         }}>
-                        Payment method 
+                        {payment_method.charAt(0).toUpperCase() + payment_method.slice(1)}
                     </ETASimpleText>
                     <ETASimpleText
                         size={13}

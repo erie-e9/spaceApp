@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
-import { Dimensions } from 'react-native'
+import { Dimensions, Pressable } from 'react-native'
 import { ETATextInputFilled } from '@etaui'
-import { Feather, MaterialIcons } from '@icons'
+import { Feather, MaterialIcons, FontAwesome5, Entypo, MaterialCommunityIcons } from '@icons'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 import { moderateScale } from 'react-native-size-matters'
 
@@ -12,10 +12,10 @@ const Root = styled.View`
 	flex-direction: row;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	align-items: flex-end;
 	margin-right: 1px;
-    margin-bottom: 0px;
-    padding: 1px 12.6px 2px 2px;
+    margin-bottom: 6px;
+    padding: 1px 12.6px 0px 2px;
     background-color: transparent;
 `
 const InputIcon = styled.TouchableOpacity.attrs({
@@ -29,12 +29,45 @@ const InputIcon = styled.TouchableOpacity.attrs({
     align-items: center;
     background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
+const LeftContainer = styled.View`
+    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+	align-items: flex-end;
+    padding: 0px 10px;
+	margin-left: 3px;
+    border-radius: 25px;
+    background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
+`
+const InputMessage = styled.TextInput.attrs(props => ({
+    multiline: true,
+    placeholder: 'Type a message',
+    autoCapitalize: 'none',
+    // autoFocus: true,
+    color: props.theme.SECONDARY_TEXT_BACKGROUND_COLOR,
+    placeholderTextColor: props.theme.SECONDARY_TEXT_BACKGROUND_COLOR
+}))`
+    flex: 1;
+    margin-horizontal: 3px;
+    max.height: 100px;
+    background-color: transparent;
+`
 
 const ChatInputComponent = () => {
     const themeContext = useContext(ThemeContext)
-    
-    const _sendMessage = () => {
-        console.log('_sendMessage');
+    const [ message, setmessage ] = useState('')
+
+    const _onMicrophonePress = () => {
+        console.warn('_onMicrophonePress')
+    }
+
+    const _onSendMessagePress = () => {
+        console.warn('_onSendMessagePress', message)
+        setmessage('')
+    }
+
+    const _onEmoticonsPress = () => {
+     
     }
 
     const _fileUoloader = () => {
@@ -44,93 +77,180 @@ const ChatInputComponent = () => {
     return (
         <>
             <Root>
-                <ETATextInputFilled
-                    // value={values.cellphone}
-                    placeholder='Type message...'
-                    placeholderTextColor={
-                        themeContext.PRIMARY_TEXT_COLOR_LIGHT
-                    }
-                    keyboardType='default'
-                    autoCapitalize='none'
-                    allowFontScaling
-                    autoCorrect
-                    autoFocus
-                    blurOnSubmit={false}
-                    caretHidden={false}
-                    clearButtonMode='while-editing'
-                    contextMenuHidden={false}
-                    editable
-                    enablesReturnKeyAutomatically={false}
-                    underlineColorAndroid='transparent'
-                    keyboardAppearance='dark'
-                    maxLength={200}
-                    multiline={true}
-                    numberOfLines={1} // android
-                    returnKeyLabel='next' // android
-                    secureTextEntry={false} // password
-                    spellCheck
-                    textContentType='none'
-                    returnKeyType='next'
-                    textsize={16}
-                    height={moderateScale(45, 2)}
-                    width={width - 105}
-                    borderWidth={0.5}
-                    // onChangeText={handleChange(
-                    //     'cellphone',
-                    // )}
-                    // onBlur={handleBlur('cellphone')}
-                    selectionColor={
-                        themeContext.PRIMARY_COLOR
-                    }
-                    textColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                    paddingHorizontal={15}
-                />
-                <TouchableWithoutFeedback
-                    underlayColor='transparent'
-                    onPress={() => _fileUoloader()}
-                    style={{
-                        height: 40,
-                        width: 40,
-                        borderRadius: 20,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginHorizontal: 2,
-                        backgroundColor: themeContext.PRIMARY_COLOR,
-                    }}
-                >
-                    <MaterialIcons
-                        name='attach-file'
-                        size={18}
-                        color='white'
+                <LeftContainer>
+                    <TouchableWithoutFeedback
+                        underlayColor='transparent'
+                        onPress={() => _onEmoticonsPress()}
                         style={{
-                            alignSelf:
-                                'center',
+                            height: 34,
+                            width: 34,
+                            borderRadius: 17,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            // marginHorizontal: 1,
+                            paddingHorizontal: 2,
+                            paddingVertical: 25
+                            // backgroundColor: themeContext.PRIMARY_COLOR,
                         }}
+                    >
+                        <FontAwesome5
+                            name='laugh'
+                            size={18}
+                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            style={{
+                                alignSelf:
+                                    'center',
+                            }}
+                        />
+                    </TouchableWithoutFeedback>
+                    <InputMessage
+                        value={message} 
+                        onChangeText={setmessage}
                     />
-                </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback
-                    underlayColor='transparent'
-                    onPress={() => _sendMessage()}
-                    style={{
-                        height: 40,
-                        width: 40,
-                        borderRadius: 20,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginHorizontal: 2,
-                        backgroundColor: themeContext.PRIMARY_COLOR,
-                    }}
-                >
-                    <Feather
-                        name='send'
-                        size={18}
-                        color='white'
+                    {/*                     
+                    <ETATextInputFilled
+                        // value={values.cellphone}
+                        placeholder='Type message...'
+                        placeholderTextColor={
+                            themeContext.PRIMARY_TEXT_COLOR_LIGHT
+                        }
+                        keyboardType='default'
+                        autoCapitalize='none'
+                        allowFontScaling
+                        autoCorrect
+                        autoFocus
+                        blurOnSubmit={false}
+                        caretHidden={false}
+                        clearButtonMode='while-editing'
+                        contextMenuHidden={false}
+                        editable
+                        enablesReturnKeyAutomatically={false}
+                        underlineColorAndroid='transparent'
+                        keyboardAppearance='dark'
+                        maxLength={200}
+                        multiline={true}
+                        numberOfLines={1} // android
+                        returnKeyLabel='next' // android
+                        secureTextEntry={false} // password
+                        spellCheck
+                        textContentType='none'
+                        returnKeyType='next'
+                        textsize={16}
+                        height={moderateScale(42, 2)}
+                        width={width - 150}
+                        borderWidth={0.5}
+                        // onChangeText={handleChange(
+                        //     'cellphone',
+                        // )}
+                        // onBlur={handleBlur('cellphone')}
+                        selectionColor={
+                            themeContext.PRIMARY_COLOR
+                        }
+                        textColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                        paddingHorizontal={15}
+                    /> */}
+                    <TouchableWithoutFeedback
+                        underlayColor='transparent'
+                        onPress={() => _fileUoloader()}
                         style={{
-                            alignSelf:
-                                'center',
+                            height: 34,
+                            width: 34,
+                            borderRadius: 17,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            // marginHorizontal: 1,
+                            paddingHorizontal: 2,
+                            paddingVertical: 25
+                            // backgroundColor: themeContext.PRIMARY_COLOR,
                         }}
-                    />
-                </TouchableWithoutFeedback>
+                    >
+                        <MaterialIcons
+                            name='attach-file'
+                            size={18}
+                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            style={{
+                                alignSelf:
+                                    'center',
+                            }}
+                        />
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback
+                        underlayColor='transparent'
+                        onPress={() => _fileUoloader()}
+                        style={{
+                            height: 34,
+                            width: 34,
+                            borderRadius: 17,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            // marginHorizontal: 1,
+                            paddingHorizontal: 2,
+                            paddingVertical: 25
+                            // backgroundColor: themeContext.PRIMARY_COLOR,
+                        }}
+                    >
+                        <Entypo
+                            name='camera'
+                            size={18}
+                            color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
+                            style={{
+                                alignSelf:
+                                    'center',
+                            }}
+                        />
+                    </TouchableWithoutFeedback>
+                </LeftContainer>
+                {
+                    message === ''
+                ?   <Pressable
+                        underlayColor='transparent'
+                        onPress={() => _onMicrophonePress()}
+                        style={{
+                            height: 38,
+                            width: 38,
+                            borderRadius: 19,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginLeft: 3,
+                            marginVertical: 5,
+                            backgroundColor: themeContext.PRIMARY_COLOR,
+                        }}
+                    >
+                        <MaterialCommunityIcons
+                            name='microphone'
+                            size={20}
+                            color='white'
+                            style={{
+                                alignSelf:
+                                    'center',
+                            }}
+                        />
+                    </Pressable>
+                :   <TouchableWithoutFeedback
+                        underlayColor='transparent'
+                        onPress={() => _onSendMessagePress()}
+                        style={{
+                            height: 38,
+                            width: 38,
+                            borderRadius: 19,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            marginLeft: 3,
+                            marginVertical: 5,
+                            backgroundColor: themeContext.PRIMARY_COLOR,
+                        }}
+                    >
+                        <Feather
+                            name='send'
+                            size={20}
+                            color='white'
+                            style={{
+                                alignSelf:
+                                    'center',
+                            }}
+                        />
+                    </TouchableWithoutFeedback>
+                }
             </Root>
         </>
     )

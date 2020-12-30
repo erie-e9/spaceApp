@@ -9,7 +9,6 @@ import { GET_DATA_REQUEST as GET_ALL_FAVORITE_ITEMS_REQUEST, TOGGLE_FAVORITE } f
 import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
-const size = 75
 
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'red',
@@ -177,16 +176,15 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 	const isFocused = useIsFocused()
 	let languageCode = RNLocalize.getLocales()
 
-	useEffect(() => {
-		let isUnMounted = false
-		if (isFocused) {
-			getAllFavoriteItemsRequest()
-		}
+	// useEffect(() => {
+	// 	let isUnMounted = false
+	// 	if (isFocused) {
+	// 		getAllFavoriteItemsRequest()}
 		
-		return () => {
-			isUnMounted = true
-		}
-	}, [isFocused])
+	// 	return () => {
+	// 		isUnMounted = true
+	// 	}
+	// }, [isFocused])
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -208,10 +206,10 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 		}
 	}, [isFocused, item])
 	
-	const _isFavorite = () => {
-		setisFavorite(!isFavorite)		
-		toggleFavorite(item)
-	}
+	// const _isFavorite = () => {
+	// 	setisFavorite(!isFavorite)		
+	// 	toggleFavorite(item)
+	// }
 
 	const _onPressItem = (propitem) => {
 		navigation.navigate('GetOneItemNavigator', {
@@ -237,7 +235,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 								}
 								color='white'
 								align='center'>
-								{	languageCode === 'en'
+								{	languageCode[0].languageCode === 'en'
 									?	`${item.en.status.charAt(0).toUpperCase() + item.en.status.slice(1)}`
 									:	`${item.es.status.charAt(0).toUpperCase() + item.es.status.slice(1)}`
 								}
@@ -282,7 +280,7 @@ const GeneralItemComponent = memo(({ getAllFavoriteItemsRequest, favoritesdata, 
 							}
 							align='left'
 							style={{zIndex: 100}}>
-							{	languageCode === 'en'
+							{	languageCode[0].languageCode === 'en'
 								?	`${truncateString(item.en.name.charAt(0).toUpperCase() + item.en.name.slice(1), 26)}`
 								:	`${truncateString(item.es.name.charAt(0).toUpperCase() + item.es.name.slice(1), 26)}`
 							}

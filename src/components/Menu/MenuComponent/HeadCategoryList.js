@@ -6,6 +6,7 @@ import { ETASimpleText } from '@etaui'
 import HeadCategoryItem from './HeadCategoryItem'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/categories/actions'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 const _height = 55
@@ -62,6 +63,7 @@ const Categories = ({ getDataRequest, data }) => {
 	const [ categoryitems, setcategoryitems ] = useState([])
 	const [ animatedValueTransform] = useState(new Animated.Value(0))
 	let delayValue = 1000
+	const { all_categories } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -97,7 +99,7 @@ const Categories = ({ getDataRequest, data }) => {
 		navigation.navigate('SubMenuNavigator', {
 			screen: 'CategoryListScreen',
 			params: {
-				name: 'All categories',
+				name: all_categories.charAt(0).toUpperCase() + all_categories.slice(1),
 			},
 		})
 	}
@@ -181,7 +183,7 @@ const Categories = ({ getDataRequest, data }) => {
 										themeContext.PRIMARY_TEXT_COLOR_LIGHT
 									}
 									align='center'>
-									All categories
+									{all_categories.charAt(0).toUpperCase() + all_categories.slice(1)}
 								</ETASimpleText>
 							</Touchable>
 						)}

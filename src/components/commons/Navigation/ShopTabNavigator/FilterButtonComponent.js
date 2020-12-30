@@ -35,7 +35,7 @@ const mapDispatchProps = (dispatch, props) => ({
 const FilterButtonComponent = ({ toggleModal, toggle_modal }) => {
 	const themeContext = useContext(ThemeContext)
 
-    _onPress = () => {
+    const _onPress = () => {
 		toggleModal(!toggle_modal)
     }
 

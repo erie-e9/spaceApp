@@ -101,7 +101,7 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 		
 		// console.log('index, itemfound: ', { itemFound, index });
 		if (itemFound && index !== -1) {
-			// console.log('item match', {selectedItem: selectedItem._id, itemFound: itemFound._id});
+			console.log('item match', {selectedItem: selectedItem._id, itemFound: itemFound._id});
 			for (let i = data.length; i--;) {
 				if (data[i]._id === itemFound._id) {
 					// console.log('encontrado y su index es: ', index)
@@ -174,7 +174,7 @@ const SuggestionsComponent = ({ selectedItem, getDataRequest, data, setItemValue
 								}
 								align='center'>
 								{similarto.charAt(0).toUpperCase() + similarto.slice(1)} {
-												languageCode === 'en'
+												languageCode[0].languageCode === 'en'
 													?	selectedItem.en.name
 													:	selectedItem.es.name
 											}

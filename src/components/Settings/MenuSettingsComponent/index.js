@@ -116,7 +116,7 @@ const SettingsComponent = () => {
 										themeContext.PRIMARY_TEXT_COLOR_LIGHT
 									}
 									align='left'>
-									{member_from} 2012
+									{member_from.charAt(0).toUpperCase() + member_from.slice(1)} 15 jun 2017
 								</ETASimpleText>
 							</MetadataInfo>
 						</MetadataHeader>

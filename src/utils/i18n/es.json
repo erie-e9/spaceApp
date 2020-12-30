@@ -15,6 +15,7 @@
     "information": "información",
     "details": "detalles",
     "similarto": "similar a",
+    "all_categories": "todas las cats.",
 
     "chat_room": "mensajes",
     "search_chat_room": "Buscar por mensaje o contacto...",
@@ -32,8 +33,13 @@
     "total": "total",
     "discount_code": "código de descuento",
     "check_out": "pagar ahora",
-
-    "no_favorites": "Aún no tienes favoritos",
+    "discount": "descuento",
+    "no_code_text": "¿tienes un código de descuento?",
+    "apply": "aplicar",
+    "note_for": "nota para",
+    "type_note": "type note",
+    "save_note": "guardar nota",
+    "calories": "calorias",
     
     "orders": "ordenes",
     "processing_orders": "ordenes procesandose",
@@ -44,5 +50,59 @@
     "no_previous_orders": "aún no tienes ordenes",
     "no_processing_orders": "sin ordenes en este momento",
 
-    "member_from": "miembro desde"
+    "order_date": "fecha de orden",
+    "delivery_date": "fecha de entrega",
+    "contact_phone": "teléfono de contacto",
+    "delivery_address": "dirección de envío",
+    "payment_method": "método de pago",
+
+    "member_from": "miembro desde",
+    "admin_tools": "herramientas de administador",
+    "settings": "configuración",
+    "help": "ayuda",
+    "log_out": "cerrar sesión",
+    "admin_tools_text": "crea reportes, visualiza gráficas, gestiona cuentas y productos etc.",
+    "settings_text": "configura ajustes de notificationes, idiomas, temas y chat.",
+    "help_text": "necesitas ayuda, mira las preguntas más frecuentes o contactanos",
+
+    
+    "account": "mi cuenta",
+    "account_text": "establece direcciones de entrega, métodos de pago, mira tus pedidos realizados y tus productos favoritos",
+    "address": "dirección",
+
+    "new_address": "nueva dirección",
+    "new_address_text": "aquí podrás gestionar tus direcciones a las que desees que entregemos nuestros productos",
+    
+    "payment_methods": "métodos de pago",
+    "new_payment_method": "new método de pago",
+    "new_payment_method_text": "aquí podrás encontrar tus métodos de pago.",
+    "debit_card": "débito",
+    "credit_card": "crédito",
+    "cash": "efectivo",
+    "cash_text": "puedes pagar al repartidor en efectivo también",
+    
+    "no_favorites": "aún no tienes favoritos",
+    "favorites": "favoritos",
+    "branch_offices": "sucursales",
+    "branch_offices_text": "encuentra una oficina cerca de ti.",
+    
+
+    "payment_text": "encuentra aquí tus métodos de pago",
+    "analytics": "analitica",
+    "manage_accounts": "administración de cuentas",
+    "manage_products": "administración de productos",
+    "reports": "reportes",
+    "notifications": "notificationes",
+    "chat_settings": "ajustes de chat",
+    "app_preferences": "preferencias de app",
+    "map": "mapa",
+    "addresses": "direcciones",
+    "about_us": "acerca de",
+    "contact_us": "contactanos",
+    "how_to_use": "como usar",
+    "faq": "preguntas frecuentes",
+    "terms_of_service": "términos de servicio",
+    "notice_of_privacy": "aviso de privacidad",
+    "search": "buscar",
+    "search_branch_office" : "buscar una sucursal"
 }

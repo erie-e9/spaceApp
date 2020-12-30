@@ -255,7 +255,7 @@ const PromoComponent = ({ getDataRequest, data }) => {
 											textShadowRadius: 3,
 										}}>
 										{
-											languageCode === 'en'
+											languageCode[0].languageCode === 'en'
 												?	selectedItem.en.title
 												:	selectedItem.es.title
 										}
@@ -280,7 +280,7 @@ const PromoComponent = ({ getDataRequest, data }) => {
 										// }}>
 										>
 										{
-											languageCode === 'en'
+											languageCode[0].languageCode === 'en'
 												?	selectedItem.en.description
 												:	selectedItem.es.description
 										}

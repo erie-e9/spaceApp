@@ -12,6 +12,7 @@ import { ETASimpleText } from '@etaui'
 import { connect } from 'react-redux'
 import { LOGOUT } from '@redux/user/actions'
 import SubCard from './Card'
+import { useTranslation } from '@etaui/translate'
 
 const iconSize = 23
 
@@ -79,6 +80,7 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { notifications, chat_settings, app_preferences } = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -126,7 +128,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Notifications
+											{notifications.charAt(0).toUpperCase() + notifications.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -188,7 +190,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Chat
+											{chat_settings.charAt(0).toUpperCase() + chat_settings.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
@@ -312,7 +314,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											App preferences
+											{app_preferences.charAt(0).toUpperCase() + app_preferences.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '

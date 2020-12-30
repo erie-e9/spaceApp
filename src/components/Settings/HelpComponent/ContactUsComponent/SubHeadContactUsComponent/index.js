@@ -11,6 +11,7 @@ import {
 } from '@icons'
 import { ETASimpleText, ETALink } from '@etaui'
 import { variables } from '@utils/constants'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 const iconSize = 23
@@ -52,6 +53,7 @@ const TouchableContainer = styled.View`
 const SubHeadAboutUsComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { branch_text_text } = useTranslation()
 
 	return (
 		<Root>

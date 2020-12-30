@@ -365,7 +365,6 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 	const [ isFavorite, setisFavorite ] = useState(false)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0.9))
 	const [ selectedItem, setselectedItem ] = useState(item)
-	console.log('selectedItem: ', selectedItem);
 	const [ similarid, setsimilarid ] = useState(0)
 	const [ bottommodalTitle, setbottommodalTitle ] = useState('')
 	const [ isBottomModalVisible, setisBottomModalVisible ] = useState(false)
@@ -756,7 +755,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 													color='white'
 													align='center'>
 													{
-														languageCode === 'en'
+														languageCode[0].languageCode === 'en'
 															?	selectedItem.en.status
 															:	selectedItem.es.status
 													}
@@ -780,7 +779,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 												}
 												align='left'>
 												{
-													languageCode === 'en'
+													languageCode[0].languageCode === 'en'
 													?	selectedItem.en.name.charAt(0).toUpperCase() + selectedItem.en.name.slice(1)
 													:	selectedItem.es.name.charAt(0).toUpperCase() + selectedItem.es.name.slice(1)
 												}
@@ -984,7 +983,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 										<NoteProduct 
 											_id={selectedItem._id}
 											title={
-												languageCode === 'en'
+												languageCode[0].languageCode === 'en'
 													?	selectedItem.en.name.charAt(0).toUpperCase() + selectedItem.en.name.slice(1)
 													:	selectedItem.es.name.charAt(0).toUpperCase() + selectedItem.es.name.slice(1)
 											}
@@ -1024,7 +1023,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 											}
 											align='left'>
 											{
-												languageCode === 'en'
+												languageCode[0].languageCode === 'en'
 													?	selectedItem.en.details
 													:	selectedItem.es.details
 											}
