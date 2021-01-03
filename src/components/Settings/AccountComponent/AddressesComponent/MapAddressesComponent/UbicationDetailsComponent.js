@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, Dimensions } from 'react-native'
 import { ETASimpleText, ETAButtonOutline, ETAButtonFilled } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 
@@ -34,6 +35,7 @@ const InfoContainer = styled.View`
 
 const UbicationDetailsComponent = ({headTitle, details}) => {
 	const themeContext = useContext(ThemeContext)
+	const { set_default, save } = useTranslation()
 
 	return (
 		<Root
@@ -58,12 +60,15 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
 					size={11}
 					weight={Platform.OS === 'ios' ? '300' : '200'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					align='left'>
+					align='left'
+					style={{
+						marginTop: 5
+					}}>
 					{details}
 				</ETASimpleText>
 			</InfoContainer>
 			<ETAButtonOutline
-				title='Set default'
+				title={set_default.charAt(0).toUpperCase() + set_default.slice(1)}
 				// onPress={handleSubmit}
 				// disabled={isSubmitting ? true : false}
 				colorButton={
@@ -75,7 +80,7 @@ const UbicationDetailsComponent = ({headTitle, details}) => {
 				borderWidth={0.3}
 			/>
 			<ETAButtonFilled
-				title='Save'
+				title={save.charAt(0).toUpperCase() + save.slice(1)}
 				// onPress={handleSubmit}
 				// disabled={isSubmitting ? true : false}
 				colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}

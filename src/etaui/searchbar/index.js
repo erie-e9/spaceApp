@@ -11,7 +11,7 @@ const { height, width } = Dimensions.get('window')
 
 const HeaderSafeArea = styled.SafeAreaView`
 	z-index: 2000;
-	background-color: blue;
+	background-color: transparent;
 `
 const Header = styled.View`
 	height: 50px;

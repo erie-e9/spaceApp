@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react'
-import {Animated} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { Animated } from 'react-native'
 import styled from 'styled-components'
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from '@react-navigation/native'
 import CategoryItemComponent from './CategoryItemComponent'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/menu/categories/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/menu/categories/actions'
+import * as RNLocalize from 'react-native-localize'
 
 const Root = styled.View`
 	flex: 1;
@@ -39,6 +40,7 @@ const CategoryListComponent = ({getDataRequest, data}) => {
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
+	let languageCode = RNLocalize.getLocales()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -69,11 +71,11 @@ const CategoryListComponent = ({getDataRequest, data}) => {
 		}
 	}, [])
 
-	const _onPressCategory = (item) => {
+	const _onPressCategory = (name) => {
 		navigation.navigate('CategoryItemsScreen', {
 			screen: 'MenuScreen',
 			params: {
-				category: item.name
+				name: name
 			},
 		})
 	}
@@ -103,7 +105,9 @@ const CategoryListComponent = ({getDataRequest, data}) => {
 						<Touchable
 							key={item._id}
 							onPress={() =>
-								_onPressCategory(item)
+								_onPressCategory(languageCode[0].languageCode === 'en' 
+								? item.name.charAt(0).toUpperCase() + item.name.slice(1) 
+								: item.nombre.charAt(0).toUpperCase() + item.nombre.slice(1))
 							}>
 							<Animated.View
 								style={{

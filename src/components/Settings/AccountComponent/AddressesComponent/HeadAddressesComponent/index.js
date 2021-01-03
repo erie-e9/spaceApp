@@ -1,7 +1,8 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
-import {ETASimpleText} from '@etaui'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const logoSize = 70
 const avatarRadius = logoSize / 2
@@ -42,6 +43,7 @@ const Logo = styled.Image`
 
 const HeadDirectionComponent = React.memo(() => {
 	const themeContext = useContext(ThemeContext)
+	const { address_description  } = useTranslation()
 
 	return (
 		<Root>
@@ -61,7 +63,7 @@ const HeadDirectionComponent = React.memo(() => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Find your addresses saved and create new to deliver products
+					{address_description.charAt(0).toUpperCase() + address_description.slice(1)}
 				</ETASimpleText>
 			</ContentContainer>
 		</Root>

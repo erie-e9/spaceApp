@@ -3,9 +3,10 @@ import styled, {ThemeContext} from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
-// import eoLocale from 'date-fns/locale/es';
+import eoLocale from 'date-fns/locale/es';
 import { truncateString } from '@functions'
 import { useNavigation } from '@react-navigation/native'
+import * as RNLocalize from 'react-native-localize'
 
 const Root = styled.View`
 	flex: 1;
@@ -14,14 +15,12 @@ const Root = styled.View`
 	align-items: center;
 	align-content: center;
 	padding-horizontal: 10px;
-	padding-right: 20px;
 `
 const MetaContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	padding-horizontal: 10px;
 `
 const UserDataContainer = styled.View`
 	flex: 1;
@@ -34,7 +33,7 @@ const TimeContainer = styled.View`
 	flex-direction: column;
 	justify-content: flex-end;
 	align-items: center;
-	right: 5px;
+	padding-right: 15px;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -45,6 +44,7 @@ const CardHeader = ({ username, firstname, lastname, createdAt, avatar }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const fullname = `${firstname} ${lastname}`
+	let languageCode = RNLocalize.getLocales()
 
 	const _navigationContactProfile = () => {
 		navigation.navigate('ChatItemNavigator', { 
@@ -103,7 +103,7 @@ const CardHeader = ({ username, firstname, lastname, createdAt, avatar }) => {
 						align='left'>
 						{formatDistanceToNow(new Date(), {
 							addSuffix: true,
-							// locale: eoLocale // Esp
+							locale: languageCode[0].languageCode === 'en' ? null : eoLocale // Esp
 						})}
 					</ETASimpleText>
 				</TimeContainer>

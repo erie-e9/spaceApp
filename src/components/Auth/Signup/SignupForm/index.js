@@ -2,9 +2,10 @@ import React, { useState, useContext, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETAMultiStep, ETARadio } from '@etaui'
+import { ETATextInputOutline, ETASimpleText, ETAMultiStep, ETARadio } from '@etaui'
 import { connect } from 'react-redux'
 import { SIGNUP } from '@redux/user/actions'
+import { useTranslation } from '@etaui/translate'
 
 const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
@@ -73,7 +74,6 @@ const mapDispatchProps = (dispatch, props) => ({
 const SignupForm = ({getAllUserInfoUser}) => {
     const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const [ mysecureTextEntry ] = useState(true)
 	const [ radioItem, setradioItem ] = useState(true)
 	const cellphoneRef = useRef()
 	const codeRef = useRef()
@@ -83,6 +83,28 @@ const SignupForm = ({getAllUserInfoUser}) => {
 	const usernameRef = useRef()
 	const passwordRef = useRef()
 	const confirmPasswordRef = useRef()
+	const { sign_up_title, 
+			sign_up_text,
+			ask_cellphone,
+			insert_code, 
+			insert_code_text, 
+			password_placeholder,
+			confirm_password,
+			previous,
+			next,
+			send,
+			man,
+			woman,
+			code,
+			personal_data,
+			personal_data_text,
+			ask_name,
+			ask_lastname,
+			ask_genre,
+			account_data_title,
+			account_data_text,
+			ask_username
+	 } = useTranslation()
 
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
@@ -92,11 +114,11 @@ const SignupForm = ({getAllUserInfoUser}) => {
 
 	const form = [
 		{
-			title: 'Welcome to create a new account',
-			description: `Please use a real cellphone. We'll send a confirmation code.`,
+			title: sign_up_title.charAt(0).toUpperCase() + sign_up_title.slice(1),
+			description: sign_up_text.charAt(0).toUpperCase() + sign_up_text.slice(1),
 			items: [
 				{
-					placeholder: 'First, What is your cellphone?',
+					placeholder: ask_cellphone.charAt(0).toUpperCase() + ask_cellphone.slice(1),
 					name: 'cellphone',
 					ref: cellphoneRef,
 					mask: '([000]) [000]-[00]-[00]',
@@ -110,11 +132,11 @@ const SignupForm = ({getAllUserInfoUser}) => {
 			]
 		},
 		{
-			title: `Please insert code`,
-			description: `We need to confirm that you are who you say you are.`,
+			title: insert_code.charAt(0).toUpperCase() + insert_code.slice(1),
+			description: insert_code_text.charAt(0).toUpperCase() + insert_code_text.slice(1),
 			items: [
 				{
-					placeholder: 'Code',
+					placeholder: code.charAt(0).toUpperCase() + code.slice(1),
 					name: 'code',
 					ref: codeRef,
 					mask: '',
@@ -128,11 +150,11 @@ const SignupForm = ({getAllUserInfoUser}) => {
 			]
 		},
 		{
-			title: 'Personal Data',
-			description: 'Your personal data is confidential. We need it for identification use.',
+			title: personal_data.charAt(0).toUpperCase() + personal_data.slice(1),
+			description: personal_data_text.charAt(0).toUpperCase() + personal_data_text.slice(1),
 			items: [
 				{
-					placeholder: 'What is your name?',
+					placeholder: ask_name.charAt(0).toUpperCase() + ask_name.slice(1),
 					name: 'name',
 					ref: nameRef,
 					mask: '',
@@ -144,7 +166,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					}
 				},
 				{
-					placeholder: 'Now your lastname',
+					placeholder: ask_lastname.charAt(0).toUpperCase() + ask_lastname.slice(1),
 					name: 'lastname',
 					ref: lastnameRef,
 					mask: '',
@@ -156,7 +178,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					}
 				},
 				{
-					placeholder: 'Your genre:',
+					placeholder: ask_genre.charAt(0).toUpperCase() + ask_genre.slice(1),
 					name: 'genre',
 					ref: genreRef,
 					mask: '',
@@ -164,10 +186,10 @@ const SignupForm = ({getAllUserInfoUser}) => {
 						type: 'radioinput',
 						values: [
 							{
-								value: 'men'
+								value: man.charAt(0).toUpperCase() + man.slice(1)
 							},
 							{
-								value: 'women'
+								value: woman.charAt(0).toUpperCase() + woman.slice(1)
 							}
 						]
 					}
@@ -175,11 +197,11 @@ const SignupForm = ({getAllUserInfoUser}) => {
 			]
 		},
 		{
-			title: 'Account Data',
-			description: 'The data will be usefull for use our app, please fill fields to finish your sign in.',
+			title: account_data_title.charAt(0).toUpperCase() + account_data_title.slice(1),
+			description: account_data_text.charAt(0).toUpperCase() + account_data_text.slice(1),
 			items: [
 				{
-					placeholder: 'Choose a unique username',
+					placeholder: ask_username.charAt(0).toUpperCase() + ask_username.slice(1),
 					name: 'username',
 					ref: usernameRef,
 					mask: '',
@@ -191,7 +213,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					}
 				},
 				{
-					placeholder: 'Password',
+					placeholder: password_placeholder.charAt(0).toUpperCase() + password_placeholder.slice(1),
 					name: 'password',
 					ref: passwordRef,
 					mask: '',
@@ -203,7 +225,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					}
 				},
 				{
-					placeholder: 'Confirm password',
+					placeholder: confirm_password.charAt(0).toUpperCase() + confirm_password.slice(1),
 					name: 'confirmPassword',
 					ref: confirmPasswordRef,
 					mask: '',
@@ -226,15 +248,15 @@ const SignupForm = ({getAllUserInfoUser}) => {
 	return (
 		<Root>
             <ETAMultiStep
-				prevText='Previous'
-				nextText='Next'
-				finishText='Send'
+				prevText={previous.charAt(0).toUpperCase() + previous.slice(1)}
+				nextText={next.charAt(0).toUpperCase() + next.slice(1)}
+				finishText={send.charAt(0).toUpperCase() + send.slice(1)}
 				finishFunction={() => _finishFunction()}
 				initialValues={{
 					cellphone: '',
 					name: '',
 					lastname: '',
-					genre: 'men',
+					genre: 'man',
 					username: '',
 					password: '',
 					confirmPassword: ''

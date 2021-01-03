@@ -66,7 +66,11 @@ const FilterItemComponent = ({ title, active, toggleFilter, toggleDiscounts, dis
         <Root>
             <ETACheckBox 
                 title={truncateString(title, 12)}
-                checkedTitle={truncateString(title, 12)}
+				checkedTitle={truncateString(title, 12)}
+				
+				// title={truncateString(title.charAt(0).toUpperCase() + title.slice(1), 12)}
+                // checkedTitle={truncateString(title.charAt(0).toUpperCase() + title.slice(1), 12)}
+                
                 onChange={() => _switch(title)}
                 onPressTitle={() => _switch(title)}
                 checked={active}

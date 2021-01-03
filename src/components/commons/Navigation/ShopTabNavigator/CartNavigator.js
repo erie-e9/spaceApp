@@ -9,7 +9,7 @@ import { Platform } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import CartScreen from '@screens/Cart/CartScreen'
 import PaymentScreen from '@screens/Cart/PaymentScreen'
-import IconWithBadge from './IconBadge'
+import BadgeOrders from '../../badgeCounters/badgeOrders'
 import { useTranslation } from '@etaui/translate'
 
 const Header = styled.View`
@@ -113,13 +113,11 @@ const CartNavigator = () => {
 										screen: 'TopNavigatorOrders'
 									})}>
 									<>
-									<IconWithBadge
+									<BadgeOrders
 										badgeCount={1}
-										name='ios-cart'
 										size={17 + 1}
-										color={'white'}
+										color='white'
 									>
-
 									<OrdersContainer>
 										<ETASimpleText
 											size={11}
@@ -131,7 +129,7 @@ const CartNavigator = () => {
 											{orders.charAt(0).toUpperCase() + orders.slice(1)}
 										</ETASimpleText>
 									</OrdersContainer>
-									</IconWithBadge>
+									</BadgeOrders>
 									</>
 								</Orders>
 					        </IconRightContainer>

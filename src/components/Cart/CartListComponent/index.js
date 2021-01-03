@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Platform } from 'react-native'
 import { ETASimpleText, ETAButtonFilled, ETALoader } from '@etaui'
-import { useNavigation, useIsFocused } from '@react-navigation/native'
+import { useNavigation, useIsFocused, useScrollToTop } from '@react-navigation/native'
 import CartItemComponent from './CartItemComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/cart/actions'
@@ -41,9 +41,10 @@ const mapDispatchProps = (dispatch, props) => ({
 const CartListComponent = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const isFocused = useIsFocused()
 	const [ items, setitems ] = useState(null)
 	const { cart_empty, see_menu } = useTranslation()
+	const ref = React.useRef(null)
+  	useScrollToTop(ref)
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -62,6 +63,7 @@ const CartListComponent = ({ getDataRequest, data }) => {
 			{
 				items !== null
 				?	<CategorytItemsList
+						ref={ref}
 						contentContainerStyle={{
 							flexDirection: 'column',
 							justifyContent: 'flex-start',

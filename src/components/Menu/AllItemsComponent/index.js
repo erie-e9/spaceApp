@@ -20,6 +20,7 @@ const AllItemsComponent = () => {
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
+	const { list_empty } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -63,7 +64,7 @@ const AllItemsComponent = () => {
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
 						}
 						align='left'>
-						Empty list
+						{list_empty.charAt(0).toUpperCase() + list_empty.slice(1)}
 					</ETASimpleText>
 				)}
 				// ListFooterComponent={() => {

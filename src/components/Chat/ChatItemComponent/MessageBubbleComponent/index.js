@@ -47,7 +47,7 @@ const MessageBubbleComponent = ({ item }) => {
 		<Root
 			style={{
 				alignSelf: item.mine ? 'flex-end' : 'flex-start',
-				marginLeft: item.mine ? 0 : 12,
+				marginLeft: item.mine ? 0 : 10,
 				marginRight: item.mine ? 10 : 0,
 				marginVertical: item.mine ? 2 : moderateScale(8, 2),
 			}}>

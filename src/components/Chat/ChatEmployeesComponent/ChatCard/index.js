@@ -30,7 +30,7 @@ const AvatarContainer = styled.View`
 	background-color: transparent;
 `
 
-const ChatCard = ({ text, employee, createdAt, active }) => (
+const ChatCard = ({ text, unreaded_massages, employee, createdAt, active }) => (
 	<Root>
 		<AvatarContainer active={active}>
 			<ETAAvatar image={employee.avatar ? employee.avatar : variables.AVATAR_USER_DEFAULT} size='middle' />
@@ -38,7 +38,7 @@ const ChatCard = ({ text, employee, createdAt, active }) => (
 		</AvatarContainer>
 		<ContactContainer>
 			<CardHeader {...employee} createdAt={createdAt} />
-			<CardBody text={text} />
+			<CardBody text={text} unreaded_massages={unreaded_massages}/>
 		</ContactContainer>
 	</Root>
 )

@@ -2,7 +2,12 @@
 	"data": [
 		{
 			"_id": 1,
-			"title": "Office 1",
+			"en": {
+				"title": "branch office 1"
+			},
+			"es": {
+				"title": "sucursal 1"
+			},
 			"active": true,
 			"details": "Buckinghamshire, South Traceyport, Brandi Ford, 00543, Minnesota.",
 			"latitude": 24.02574090527505,
@@ -11,7 +16,12 @@
 		},
 		{
 			"_id": 2,
-			"title": "Office 2",
+			"en": {
+				"title": "branch office 2"
+			},
+			"es": {
+				"title": "sucursal 2"
+			},
 			"active": true,
 			"details": "Cambridgeshire Amiraland, Dennis, 56745, Indiana  Gardens.",
 			"latitude": 24.02780775285771,
@@ -20,7 +30,12 @@
 		},
 		{
 			"_id": 3,
-			"title": "Office 3",
+			"en": {
+				"title": "branch office 3"
+			},
+			"es": {
+				"title": "sucursal 3"
+			},
 			"active": true,
 			"details": "Avon, Lake Aylin, Norval Junctions, 62170, West Virginia.",
 			"latitude": 24.055258816581457,
@@ -29,7 +44,12 @@
 		},
 		{
 			"_id": 4,
-			"title": "Office 4",
+			"en": {
+				"title": "branch office 4"
+			},
+			"es": {
+				"title": "sucursal 4"
+			},
 			"active": true,
 			"details": "Avon, West Herminiaport, Crist Courts, 74629, Virginia.",
 			"latitude": 23.995409497383967,

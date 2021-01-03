@@ -16,7 +16,7 @@ const Root = styled.View`
 `
 const CartDetailsContainer = styled.View`
 	flex-direction: column;
-	width: ${width - 30}px;
+	width: ${width - 20}px;
 	min-height: 200px
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
@@ -93,12 +93,11 @@ const CartDetailsComponent = ({ data }) => {
 	const [ totalState, settotalState ] = useState(0)
 	const [ subtotalState, setsubtotalState ] = useState(0)
 	const [ shippingState ] = useState(35)
-	const [ isSubmitting ] = useState(false)
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
 	const { showToast } = useToast()
 	let subtotalValue = 0
 	let sum = 0
-	const { summary, item, items, subtotal, shipping, total, discount_code,  check_out} = useTranslation()
+	const { summary, item, items, subtotal, shipping, total, discount_code,  check_out } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -129,7 +128,7 @@ const CartDetailsComponent = ({ data }) => {
 			screen: 'PaymentScreen',
 			params: {
 				data: data,
-				total: totalState,
+				totalvalue: totalState,
 				subtotal: subtotalState,
 				totalItems
 			},

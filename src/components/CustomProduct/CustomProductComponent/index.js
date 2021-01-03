@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/customproduct/flavors/actions'
 import { ADD_TO_CART } from '@redux/cart/actions'
 import ProductComponent from './ProductComponent'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 
@@ -106,7 +107,7 @@ const CustomProductContainer = styled.View`
 	align-items: center;
 	border-radius: 40px;
 `
-const SumamryContainer = styled.View`
+const SummaryContainer = styled.View`
     min-height: 200px;
     min-width: ${width - 30}px;
     margin: 1px 10px;
@@ -131,7 +132,7 @@ const SummaryRow = styled.View`
     margin-vertical: 1px;
     background-color: transparent;
 `
-const SumamryRowFlavor = styled.View`
+const SummaryRowFlavor = styled.View`
     height: 25px;
     width: 25px;
     border-radius: 12.5px;
@@ -148,7 +149,7 @@ const SizePriceContainer = styled.View`
 	border-width: 0.75px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: ${(props) => props.backgroundcolor};
-	`
+`
 	const PriceContainer = styled.View`
 	justify-content: flex-end;
 	position: absolute;
@@ -197,6 +198,26 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 	const [ rotate ] = useState(new Animated.Value(0))
 	let delayValue = 1000
 	const [ flavorsData, setflavorsData ] = useState() 
+	const { 
+		next,
+		previous,
+		total,
+		custom_item_title,
+		custom_item_text,
+		ask_size,
+		ask_first_option_title,
+		ask_first_option_text,
+		ask_an_option,
+		ask_second_option_title,
+		ask_second_option_text,
+		ask_last_option_title,
+		ask_last_option_text,
+		options_chosen,
+		size_text,
+		purchase_summary,
+		purchase_summary_text,
+		add_to_cart
+	} = useTranslation()
   
     useEffect(() => {
 		let isUnMounted = false
@@ -333,11 +354,11 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 
 	const form = [
 		{
-			title: `Create your own ${paramData.name}`,
-			description: `Here you can choose that flavors and colors you want to taste.`,
+			title: `${custom_item_title.charAt(0).toUpperCase() + custom_item_title.slice(1)} ${paramData.name}`,
+			description: custom_item_text.charAt(0).toUpperCase() + custom_item_text.slice(1),
 			items: [
 				{
-					placeholder: 'Choose a size',
+					placeholder: ask_size.charAt(0).toUpperCase() + ask_size.slice(1),
 					name: 'itemsize',
 					controller: {
 						type: 'radioinput1',
@@ -347,11 +368,11 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 			]
 		},
 		{
-			title: `Choose your first flavor`,
-			description: `We have fruit, cream, milk and alcohol flavors.`,
+			title: ask_first_option_title.charAt(0).toUpperCase() + ask_first_option_title.slice(1),
+			description: ask_first_option_text.charAt(0).toUpperCase() + ask_first_option_text.slice(1),
 			items: [
 				{
-					placeholder: 'Choose a flavor',
+					placeholder: ask_an_option.charAt(0).toUpperCase() + ask_an_option.slice(1),
 					name: 'itemfirstcolor',
 					controller: {
 						type: 'radioinput2',
@@ -361,11 +382,11 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 			]
 		},
 		{
-			title: `Choose your second flavor`,
-			description: `We have fruit, cream, milk and alcohol flavors.`,
+			title: ask_second_option_title.charAt(0).toUpperCase() + ask_second_option_title.slice(1),
+			description: ask_second_option_text.charAt(0).toUpperCase() + ask_second_option_text.slice(1),
 			items: [
 				{
-					placeholder: 'Choose a flavor',
+					placeholder: ask_an_option.charAt(0).toUpperCase() + ask_an_option.slice(1),
 					name: 'itemsecondcolor',
 					controller: {
 						type: 'radioinput2',
@@ -375,11 +396,11 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 			]
 		},
 		{
-			title: `Delicious!, choose your last flavor`,
-			description: `We have fruit, cream, milk and alcohol flavors.`,
+			title: ask_last_option_title.charAt(0).toUpperCase() + ask_last_option_title.slice(1),
+			description: ask_last_option_text.charAt(0).toUpperCase() + ask_last_option_text.slice(1),
 			items: [
 				{
-					placeholder: 'Choose a flavor',
+					placeholder: ask_an_option.charAt(0).toUpperCase() + ask_an_option.slice(1),
 					name: 'itemlastcolor',
 					controller: {
 						type: 'radioinput2',
@@ -389,11 +410,11 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 			]
 		},
 		{
-			title: `Purschase summary`,
-			description: `You've choose your custom ${paramData.name} with next flavors...`,
+			title: purchase_summary.charAt(0).toUpperCase() + purchase_summary.slice(1),
+			description: purchase_summary_text.charAt(0).toUpperCase() + purchase_summary_text.slice(1),
 			items: [
 				{
-					placeholder: 'Choose a flavor',
+					placeholder: ask_an_option.charAt(0).toUpperCase() + ask_an_option.slice(1),
 					name: 'summary',
 					controller: {
 						type: 'summary',
@@ -407,9 +428,9 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 	return (
 		<Root>
             <ETAMultiStep
-				prevText='Previous'
-				nextText='Next'
-				finishText='Add to cart'
+				prevText={previous.charAt(0).toUpperCase() + previous.slice(1)}
+				nextText={next.charAt(0).toUpperCase() + next.slice(1)}
+				finishText={add_to_cart.charAt(0).toUpperCase() + add_to_cart.slice(1)}
 				finishFunction={() => _finishFunction()}
 				initialValues={{
 					itemsize: '',
@@ -517,7 +538,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 																				marginBottom: 20
 																			}}
                                                                             >
-                                                                            Choose a size
+                                                                           {ask_size.charAt(0).toUpperCase() + ask_size.slice(1)}
                                                                         </ETASimpleText>
                                                                         {
                                                                             subelement.controller.values.length !== 0
@@ -724,7 +745,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 																)
 															case 'summary': 
 																return (
-																	<SumamryContainer key={i}>
+																	<SummaryContainer key={i}>
 																		{
 																			true
 																			?   <>
@@ -739,7 +760,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 																							align='center'
 																							>
-																							Size: {' '}
+																							{size_text.charAt(0).toUpperCase() + size_text.slice(1)} {' '}
 																						</ETASimpleText>
 																						<ETASimpleText
 																							size={14}
@@ -751,7 +772,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 																							align='center'
 																							>
-																							{values?.itemsize.size.charAt(0).toUpperCase() + values?.itemsize.size.slice(1)}
+																							{values?.itemsize.size}
 																						</ETASimpleText>
 																					</SummaryRow>
 
@@ -766,11 +787,11 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 																							align='center'
 																							>
-																							Flavors chosen: {' '}
+																							{options_chosen.charAt(0).toUpperCase() + options_chosen.slice(1)} {' '}
 																						</ETASimpleText>
-																						<SumamryRowFlavor style={{ backgroundColor: values?.itemfirstcolor.color }}/>
-																						<SumamryRowFlavor style={{ backgroundColor: values?.itemsecondcolor.color }}/>
-																						<SumamryRowFlavor style={{ backgroundColor: values?.itemlastcolor.color }}/>
+																						<SummaryRowFlavor style={{ backgroundColor: values?.itemfirstcolor.color }}/>
+																						<SummaryRowFlavor style={{ backgroundColor: values?.itemsecondcolor.color }}/>
+																						<SummaryRowFlavor style={{ backgroundColor: values?.itemlastcolor.color }}/>
 																					</SummaryRow>
 
 																					<SummaryRow>
@@ -784,7 +805,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 																							color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 																							align='center'
 																							>
-																							Total: {' '}
+																							{total.charAt(0).toUpperCase() + total.slice(1)} {' '}
 																						</ETASimpleText>
 																						<ETASimpleText
 																							size={14}
@@ -802,7 +823,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 																				</>
 																			:   null
 																		}
-																		</SumamryContainer>
+																		</SummaryContainer>
 																)
 															default:
 																return;

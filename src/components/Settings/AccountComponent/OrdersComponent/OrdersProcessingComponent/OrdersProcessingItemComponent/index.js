@@ -53,9 +53,9 @@ const IconContainer = styled.View`
 	background-color: transparent;
 `
 
-const OrdersProcessingItemComponent = ({ item }) => {
+const OrdersProcessingItemComponent = ({ order }) => {
     const themeContext = useContext(ThemeContext)
-	const { preparing_order, items } = useTranslation()
+	const { preparing_order, items, item } = useTranslation()
 
     return (
         <Root>
@@ -63,9 +63,9 @@ const OrdersProcessingItemComponent = ({ item }) => {
                 <ItemHeadContainer>
                     <StatusContainer>
                         <EvilIcons
-                            name={item.status === 1 ? 'clock' : 'clock'}
+                            name={order.status === 1 ? 'clock' : 'clock'}
                             size={18}
-                            color={item.status === 1 ? themeContext.STAR : themeContext.FAIL_COLOR}
+                            color={order.status === 1 ? themeContext.STAR : themeContext.FAIL_COLOR}
                         />
                         <ETASimpleText
                             size={13}
@@ -83,7 +83,7 @@ const OrdersProcessingItemComponent = ({ item }) => {
                                 marginHorizontal: 5
                             }}>
                             {
-                                item.status === 1
+                                order.status === 1
                                 ? `${preparing_order.charAt(0).toUpperCase() + preparing_order.slice(1)}`
                                 : `${preparing_order.charAt(0).toUpperCase() + preparing_order.slice(1)}`
                             }
@@ -100,7 +100,7 @@ const OrdersProcessingItemComponent = ({ item }) => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            {item._id}
+                            {order._id}
                         </ETASimpleText>
                     </StatusContainer>
                     <ETASimpleText
@@ -114,7 +114,7 @@ const OrdersProcessingItemComponent = ({ item }) => {
                             themeContext.PRIMARY_TEXT_COLOR_LIGHT
                         }
                         align='left'>
-                        {item.orderdate}
+                        {order.orderdate}
                     </ETASimpleText>
                 </ItemHeadContainer>
                 <ItemBodyContainer>
@@ -130,7 +130,13 @@ const OrdersProcessingItemComponent = ({ item }) => {
                             themeContext.PRIMARY_TEXT_COLOR_LIGHT
                         }
                         align='left'>
-                        {item.items.length} {items}
+                        {order.items.length} {' '}
+                        {order.items.length === 0
+                            ? `${items}`
+                            : order.items.length === 1
+                            ? `${item}`
+                            : `${items}`
+                        }
                     </ETASimpleText>
                     <IconContainer>
                         <Feather

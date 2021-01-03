@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {ETATextInputOutline} from '@etaui'
-import {FontAwesome} from '@icons'
+import React, { useState, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { ETATextInputOutline } from '@etaui'
+import { FontAwesome } from '@icons'
 import { useTranslation } from '@etaui/translate'
 
 const SearchBox = styled.View`
@@ -12,12 +12,12 @@ const SearchBox = styled.View`
 	flex-direction: row;
 	width: 90%;
 	border-radius: 5px;
-	justify-content: center;
+	justify-content: space-between;
 	align-self: center;
 	align-items: flex-start;
 	align-content: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 	elevation: 1;
+	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -38,6 +38,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const { search_branch_office } = useTranslation()
+	const [ search, setsearch ] = useState('')
 
 	return (
 		<SearchBox
@@ -58,7 +59,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 				/>
 			</HeaderLeft>
 			<ETATextInputOutline
-				value=''
+				value={search}
 				placeholder={search_branch_office.charAt(0).toUpperCase() + search_branch_office.slice(1)}
 				placeholderTextColor={
 					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
@@ -88,7 +89,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 				height={40}
 				width={240}
 				borderWidth={0}
-				// onChangeText={handleChange('search')}
+				onChangeText={text => setsearch(text)}
 				// onBlur={handleBlur('search')}
 				selectionColor={themeContext.PRIMARY_COLOR}
 				paddingHorizontal={15}

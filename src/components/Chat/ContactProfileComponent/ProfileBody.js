@@ -3,6 +3,7 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import { AntDesign } from '@icons'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 1;
@@ -42,6 +43,7 @@ const EmptyListContainer = styled.View`
 const ProfileBodyComponent = () => {
     const themeContext = useContext(ThemeContext)
     const [ items, setitems ] = useState(null)
+	const { last_moves, no_last_moves } = useTranslation()
     
     useEffect(() => {
         setitems([])
@@ -56,7 +58,7 @@ const ProfileBodyComponent = () => {
                     weight={Platform.OS === 'ios' ? '400' : '300'}
                     color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                     align='center'>
-                    Last moves
+                    {last_moves.charAt(0).toUpperCase() + last_moves.slice(1)}
                 </ETASimpleText>
             </HeadContainer>
             {
@@ -87,7 +89,7 @@ const ProfileBodyComponent = () => {
                                         themeContext.PRIMARY_TEXT_COLOR_LIGHT
                                     }
                                     align='left'>
-                                    There're no moves yet.
+                                    {no_last_moves.charAt(0).toUpperCase() + no_last_moves.slice(1)}
                                 </ETASimpleText>
                             </EmptyListContainer>
                         )}

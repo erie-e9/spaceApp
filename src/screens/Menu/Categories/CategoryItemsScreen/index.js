@@ -8,7 +8,7 @@ const Root = styled.View`
 `
 
 const CategoryItemsScreen = ({navigation, route}) => {
-	const { name } = route?.params
+	const { name } = route?.params.params
 
 	useLayoutEffect(() => {
 		navigation.setOptions({headerTitle: name})

@@ -7,6 +7,8 @@ import FilterModal from '@commons/FilterModal'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST as GET_ITEMS_BY_CATEGORY_REQUEST } from '@redux/menu/categories/itemsbycategory/actions'
 import { ADD_FILTERS, TOGGLE_MODAL, GET_DATA_REQUEST, DELETE_FILTERS } from '@redux/menu/filters/actions'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const Root = styled.View`
 	flex: 1;
@@ -74,6 +76,8 @@ const ItemsComponent = memo(({ toggleModal, toggle_modal, addFilters, getDataReq
 	const [ dynamicItems, setdynamicItems ] = useState(null)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
+	let languageCode = RNLocalize.getLocales()
+	const { list_empty } = useTranslation()
 	let delayValue = 700
 	let _data = []
 	let _discounts = []
@@ -138,7 +142,14 @@ const ItemsComponent = memo(({ toggleModal, toggle_modal, addFilters, getDataReq
 			}).start()
 
 			itemsbycategory.forEach(element => {
-				_data.unshift(element.status)
+				if (languageCode[0].languageCode === 'en') {
+					_data.unshift(element.en.status)
+				} else if (languageCode[0].languageCode === 'es' ) {
+					_data.unshift(element.es.status)
+				} else {
+					_data.unshift(element.en.status)
+				}
+				
 				if (element.discount !== '' && element.discount !== undefined) {
 					_discounts.unshift(element.discount)
 				}
@@ -282,7 +293,7 @@ const ItemsComponent = memo(({ toggleModal, toggle_modal, addFilters, getDataReq
 										themeContext.PRIMARY_TEXT_COLOR_LIGHT
 									}
 									align='left'>
-									Empty list
+									{list_empty.charAt(0).toUpperCase() + list_empty.slice(1)}
 								</ETASimpleText>
 							)}
 							renderItem={({item}) => {

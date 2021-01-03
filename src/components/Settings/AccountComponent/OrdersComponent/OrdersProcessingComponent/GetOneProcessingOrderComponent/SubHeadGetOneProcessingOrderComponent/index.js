@@ -8,7 +8,7 @@ const Root = styled.View`
 
 const SubHeadGetOneProcessingOrderComponent = ({ items }) => (
 	<Root>
-		<ListItemsGetOneProcessingOrderComponent items={items}/>
+		<ListItemsGetOneProcessingOrderComponent orders={items}/>
 	</Root>
 )
 

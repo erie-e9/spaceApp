@@ -3,13 +3,12 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { Formik } from 'formik'
 import * as yup from 'yup'
 import { ETATextInputOutline, ETAButtonFilled, ETAErrorMessage } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 // import { graphql, compose } from 'react-apollo';
 // import { connect } from 'react-redux';
 // import signupMutation from '../graphql/mutations/signup'
 // import Loading from '../Loading';
 // import { login } from '../actions/client'
-
-const signup = 'Save'
 
 const Root = styled.View`
 	flex: 1;
@@ -79,6 +78,12 @@ const SubHeadProfileComponent = () => {
 	const cellphoneRef = useRef()
 	const passwordRef = useRef()
 	const emailRef = useRef()
+	const { fullname_placeholder,
+			username_placeholder,
+			cellphone_placeholder,
+			password_placeholder,
+			email_placeholder,
+			save } = useTranslation()
 
 	return (
 		<Root>
@@ -109,7 +114,7 @@ const SubHeadProfileComponent = () => {
 						<ETATextInputOutline
 							ref={fullnameRef}
 							value={values.fullname}
-							placeholder='Fullname'
+							placeholder={fullname_placeholder.charAt(0).toUpperCase() + fullname_placeholder.slice(1)}
 							placeholderTextColor={
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
@@ -154,7 +159,7 @@ const SubHeadProfileComponent = () => {
 						<ETATextInputOutline
 							ref={usernameRef}
 							value={values.username}
-							placeholder='Username'
+							placeholder={username_placeholder.charAt(0).toUpperCase() + username_placeholder.slice(1)}
 							placeholderTextColor={
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
@@ -200,7 +205,7 @@ const SubHeadProfileComponent = () => {
 							ref={cellphoneRef}
 							mask={'([000]) [000]-[00]-[00]'}
 							value={values.cellphone}
-							placeholder='Cellphone'
+							placeholder={cellphone_placeholder.charAt(0).toUpperCase() + cellphone_placeholder.slice(1)}
 							placeholderTextColor={
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
@@ -245,7 +250,7 @@ const SubHeadProfileComponent = () => {
 						<ETATextInputOutline
 							ref={passwordRef}
 							value={values.password}
-							placeholder='Password'
+							placeholder={password_placeholder.charAt(0).toUpperCase() + password_placeholder.slice(1)}
 							placeholderTextColor={
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
@@ -291,7 +296,7 @@ const SubHeadProfileComponent = () => {
 						<ETATextInputOutline
 							ref={emailRef}
 							value={values.email}
-							placeholder='Email'
+							placeholder={email_placeholder.charAt(0).toUpperCase() + email_placeholder.slice(1)}
 							placeholderTextColor={
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
@@ -333,7 +338,7 @@ const SubHeadProfileComponent = () => {
 						) : null}
 						<ButtonContainer>
 							<ETAButtonFilled
-								title={signup}
+								title={save.charAt(0).toUpperCase() + save.slice(1)}
 								onPress={handleSubmit}
 								disabled={!!isSubmitting}
 								colorButton={

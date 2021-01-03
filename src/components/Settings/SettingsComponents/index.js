@@ -80,7 +80,14 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const { notifications, chat_settings, app_preferences } = useTranslation()
+	const { notifications, 
+		chat_settings, 
+		app_preferences,
+		notifications_text,
+		chat_settings_text,
+		app_preferences_text
+	} = useTranslation()
+	const {  } = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -132,7 +139,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Change settings about email, sms or push notifications.'
+											message={notifications_text.charAt(0).toUpperCase() + notifications_text.slice(1)}
 											/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -194,7 +201,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Set chat preferences.'
+											message={chat_settings_text.charAt(0).toUpperCase() + chat_settings_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -318,7 +325,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Set a default theme, language and currency preferences.'
+											message={app_preferences_text.charAt(0).toUpperCase() + app_preferences_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>

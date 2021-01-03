@@ -3,6 +3,7 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, Dimensions } from 'react-native'
 import { ETASimpleText, ETAProgressiveImage } from '@etaui'
 import { SharedElement } from 'react-navigation-shared-element'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 const avatarSize = 90
@@ -33,6 +34,7 @@ const DataContainer = styled.View`
 
 const ProfileHeadComponent = ({ username, firstname, lastname, createdAt, avatar }) => {
 	const themeContext = useContext(ThemeContext)
+	const { member_from } = useTranslation()
 
 	return (
 		<Root>
@@ -66,7 +68,7 @@ const ProfileHeadComponent = ({ username, firstname, lastname, createdAt, avatar
 					weight={Platform.OS === 'ios' ? '300' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                     align='center'>
-                    Member from {createdAt}
+                    {member_from.charAt(0).toUpperCase() + member_from.slice(1)} {createdAt}
                 </ETASimpleText>
             </DataContainer>
 		</Root>

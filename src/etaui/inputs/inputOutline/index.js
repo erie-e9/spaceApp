@@ -67,7 +67,9 @@ const ETATextInputOutLine = ({
 	borderWidth,
 	onChangeText,
 	paddingHorizontal,
-	mask
+	mask,
+	onFocus,
+	onBlur
 }) => {
 	const themeContext = useContext(ThemeContext)
 	const colorSchema = useColorScheme()
@@ -113,11 +115,11 @@ const ETATextInputOutLine = ({
 					height={height}
 					width={width}
 					// selection='1, 4'//? no sé we xd
-					// onBlur={text => this._onBlur(text)}
 					onChangeText={onChangeText}
 					mask={mask ? mask : ''}
 					// onEndEditing={text => this._onEndEditing(text)}
-					// onFocus={text => this._onFocus(text)}
+					onFocus={onFocus}
+					onBlur={onBlur}
 					// ref={(input) => {this.emailInput = input }}
 					// onKeyPress={}
 					// onScroll={}

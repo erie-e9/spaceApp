@@ -1,12 +1,13 @@
-import React, {useState, useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform, Dimensions} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText, ETALoader} from '@etaui'
-import {FontAwesome} from '@icons'
+import React, { useState, useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform, Dimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText, ETALoader } from '@etaui'
+import { FontAwesome } from '@icons'
 import PaymentCardComponent from './Card'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/settings/paymentmethods/actions'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/settings/paymentmethods/actions'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 const iconSize = 26
@@ -68,6 +69,7 @@ const PaymentMethodsListComponent = ({getDataRequest, data}) => {
 	const navigation = useNavigation()
 	const [items, setitems] = useState([])
 	const [refresher, setrefresher] = useState(!true)
+	const { cash, cash_text } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -132,7 +134,7 @@ const PaymentMethodsListComponent = ({getDataRequest, data}) => {
 													themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 												}
 												align='left'>
-												Cash
+												{cash.charAt(0).toUpperCase() + cash.slice(1)}
 											</ETASimpleText>
 											<CompanyIconContainer>
 												<FontAwesome
@@ -159,7 +161,7 @@ const PaymentMethodsListComponent = ({getDataRequest, data}) => {
 												themeContext.PRIMARY_TEXT_COLOR_LIGHT
 											}
 											align='left'>
-											You can pay with cash too
+											{cash_text.charAt(0).toUpperCase() + cash_text.slice(1)}
 										</ETASimpleText>
 									</MetadataInfo>
 								</Card>

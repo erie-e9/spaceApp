@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETASimpleText, ETAButtonFilled, ETARadio } from '@etaui'
 import Item from './item'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	min-height: 10px;
@@ -33,6 +34,7 @@ const EmptyListContainer = styled.View`
 const LanguageModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) => {
     const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState(null)
+	const { choose_language, no_languages, apply} = useTranslation()
     
     useEffect(() => {
         setitems(data)
@@ -45,7 +47,7 @@ const LanguageModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
     return(
         <Root>
             <ETAFancyModal
-                title={`Choose language`}
+                title={choose_language.charAt(0).toUpperCase() + choose_language.slice(1)}
                 isVisible={isVisible}
                 onSwipeComplete={onSwipeComplete}
                 closeModal={closeModal}
@@ -79,7 +81,7 @@ const LanguageModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
                                                 themeContext.PRIMARY_TEXT_COLOR_LIGHT
                                             }
                                             align='left'>
-                                            There're no languages availables.
+                                            {no_languages.charAt(0).toUpperCase() + no_languages.slice(1)}
                                         </ETASimpleText>
                                     </EmptyListContainer>
                                 )}
@@ -89,7 +91,7 @@ const LanguageModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
                     }
                     <ButtonContainer>
                         <ETAButtonFilled
-                            title='Apply'
+                            title={apply.charAt(0).toUpperCase() + apply.slice(1)}
                             onPress={() => _onPressItem()}
                             // disabled={data.length === 0 ? true : false}
                             colorButton={

@@ -48,8 +48,6 @@ const ButtonContainer = styled.TouchableOpacity`
 	border-radius: 15px;
 	background-color: ${props => props.theme.GRAYFACEBOOK};
 `
-const TitleContainer = styled.View`
-`
 
 const ProfileSubHeadComponent = () => {
     const themeContext = useContext(ThemeContext)
@@ -198,6 +196,15 @@ const ProfileSubHeadComponent = () => {
                             }
                         />
                     </ETALink>
+                </ButtonContainer>
+                <ButtonContainer>
+                    <FontAwesome
+                        name='location-arrow'
+                        size={20}
+                        color={
+                            themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+                        }
+                    />
                 </ButtonContainer>
             </AccountsContainer>
         </Root>

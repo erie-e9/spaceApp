@@ -31,7 +31,7 @@ const AvatarContainer = styled.View`
 	background-color: transparent;
 `
 
-const ChatCard = ({ text, client, createdAt, active }) => (
+const ChatCard = ({ text, unreaded_massages, client, createdAt, active }) => (
 	<Root>
 		<AvatarContainer active={active}>
 			<SharedElement id={`chat.1.avatar`}>
@@ -41,7 +41,7 @@ const ChatCard = ({ text, client, createdAt, active }) => (
 		</AvatarContainer>
 		<ContactContainer>
 			<CardHeader {...client} createdAt={createdAt} />
-			<CardBody text={text} />
+			<CardBody text={text} unreaded_massages={unreaded_massages}/>
 		</ContactContainer>
 	</Root>
 )

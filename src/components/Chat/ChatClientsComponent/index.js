@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Dimensions, Animated } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useScrollToTop } from '@react-navigation/native'
 import ChatCard from './ChatCard'
 import { ETALoader } from '@etaui'
 import { connect } from 'react-redux'
@@ -57,6 +57,8 @@ const ChatComponent = ({ getDataRequest, data }) => {
 	const navigation = useNavigation()
 	const [ items, setitems ] = useState(null)
 	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
+	const ref = React.useRef(null)
+	useScrollToTop(ref)
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -115,6 +117,7 @@ const ChatComponent = ({ getDataRequest, data }) => {
 				items !== null
 				?	<>
 						<ChatsFlatList
+							ref={ref}
 							contentContainerStyle={{
 								alignSelf: 'stretch',
 								paddingTop: HEADER_MAX_HEIGHT,

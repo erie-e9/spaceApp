@@ -25,6 +25,7 @@ import ProcessingOrdersScreen from '@screens/Settings/AccountScreen/OrdersScreen
 import GetOneProcessingOrderScreen from '@screens/Settings/AccountScreen/OrdersScreen/ProcessingOrdersScreen/GetOneProcessingOrderScreen'
 import BranchOfficesScreen from '@screens/Settings/BranchOfficesScreen'
 import MapBranchOfficesScreen from '@screens/Settings/BranchOfficesScreen/MapBranchOfficesScreen'
+import BadgeOrders from '../../badgeCounters/badgeOrders'
 
 import AdminToolsScreen from '@screens/Settings/AdminTools'
 import AnalyticsScreen from '@screens/Settings/AdminTools/AnalyticsScreen'
@@ -133,13 +134,21 @@ const TopNavigatorOrders = () => {
 			initialRouteName='ProcessingOrdersScreen'
 			tabBarOptions={{
 				allowFontScaling: true,
-				labelStyle: { fontSize: 12, textTransform: 'none' },
-				// tabStyle: { width: 100 },
-				activeTintColor: themeContext.PRIMARY_COLOR,
-				inactiveTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT, 
-				tabStyle: {
-					borderWidth: 0
+				labelStyle: { fontSize: 11, textTransform: 'none' },
+				showIcon: true,
+				showLabel: false,
+				iconStyle: {
+					width: 'auto',
+					height: 20,
 				},
+				tabStyle: {
+					// backgroundColor: '#a8a4b4',
+					borderRadius: 2,
+					borderWidth: 0,
+					height: 40,
+				},
+				activeTintColor: themeContext.PRIMARY_COLOR,
+				inactiveTintColor: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT,
 				style: { backgroundColor: themeContext.PRIMARY_TEXT_BACKGROUND_COLOR },
 				indicatorStyle: {
 					borderBottomWidth: 2,
@@ -151,14 +160,52 @@ const TopNavigatorOrders = () => {
 				name="ProcessingOrdersScreen" 
 				component={ProcessingOrdersScreen}
 				options={{
-					tabBarLabel: processing_orders.charAt(0).toUpperCase() + processing_orders.slice(1)
+					tabBarLabel: 'Processing orders',
+					tabBarIcon: ({ focused }) => (
+						<>
+							<BadgeOrders
+								badgeCount={1}
+								size={17 + 1}
+								color='white'
+							>
+								<ETASimpleText
+									size={12}
+									weight={
+										Platform.OS === 'ios' ? '400' : '300'
+									}
+									color={ focused
+										? themeContext.PRIMARY_COLOR
+										: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
+									}
+									align='left'>
+									{processing_orders.charAt(0).toUpperCase() + processing_orders.slice(1)} {'  '}
+								</ETASimpleText>
+							</BadgeOrders>
+						</>
+					)
 				}}
 			/>
 			<Tab.Screen 
 				name="PreviousOrdersScreen" 
 				component={PreviousOrdersScreen}
 				options={{
-					tabBarLabel: previous_orders.charAt(0).toUpperCase() + previous_orders.slice(1)
+					tabBarLabel: 'Previous orders',
+					tabBarIcon: ({ focused }) => (
+						<>
+							<ETASimpleText
+								size={12}
+								weight={
+									Platform.OS === 'ios' ? '400' : '300'
+								}
+								color={ focused
+									? themeContext.PRIMARY_COLOR
+									: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
+								}
+								align='left'>
+								{previous_orders.charAt(0).toUpperCase() + previous_orders.slice(1)} {'  '}
+							</ETASimpleText>
+						</>
+					)
 				}}
 			/>
 		</Tab.Navigator>

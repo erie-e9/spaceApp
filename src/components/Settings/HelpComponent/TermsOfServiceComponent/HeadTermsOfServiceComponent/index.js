@@ -63,7 +63,10 @@ const HeadTermsOfServiceComponent = () => {
 					size={11}
 					weight={Platform.OS === 'ios' ? '400' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					align='left'>
+					align='left'
+					style={{
+						marginTop: 7
+					}}>
 					{variables.COMPANYSLOGAN}
 				</ETASimpleText>
 			</ContentContainer>

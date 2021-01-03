@@ -83,7 +83,7 @@ const OrdersProcessingComponent = ({ getDataRequest, data }) => {
 					<Touchable
 						key={item._id}
 						onPress={() => _onPress(item)}>
-						<OrdersProcessingItemComponent item={item} />
+						<OrdersProcessingItemComponent order={item} />
 					</Touchable>
 				)}
 				ListEmptyComponent={() => (

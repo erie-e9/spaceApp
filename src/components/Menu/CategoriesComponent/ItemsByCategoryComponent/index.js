@@ -8,6 +8,8 @@ import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/categories/itemsbycategory/actions'
 import { TOGGLE_MODAL } from '@redux/menu/filters/actions'
 import FilterModal from '@commons/FilterModal'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const Root = styled.View`
 	flex: 1;
@@ -51,6 +53,8 @@ const ItemsByCategoryComponent = ({ getDataRequest, data, toggleModal, toggle_mo
 	const [ isTopModalVisible, setisTopModalVisible ] = useState(toggle_modal)
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
+	let languageCode = RNLocalize.getLocales()
+	const { list_empty } = useTranslation()
 	let delayValue = 700
 	let _data = []
 	let uniquefilters = []
@@ -147,7 +151,7 @@ const ItemsByCategoryComponent = ({ getDataRequest, data, toggleModal, toggle_mo
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							align='left'>
-							Empty list
+							{list_empty.charAt(0).toUpperCase() + list_empty.slice(1)}
 						</ETASimpleText>
 					)}
 					// ListFooterComponent={() => {

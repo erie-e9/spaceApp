@@ -1,9 +1,10 @@
-import React, {useState, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components'
-import {Platform, Dimensions} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {ETASimpleText} from '@etaui'
-import {currencySeparator} from '@functions'
+import React, { useState, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components'
+import { Platform , Dimensions } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { ETASimpleText } from '@etaui'
+import { currencySeparator } from '@functions'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 
@@ -106,13 +107,12 @@ const CartItemRightContainer = styled.View`
 	background-color: transparent;
 `
 const AddCartContainer = styled.View`
+	min-height: 25px;
+	min-width: 25px;
 	justify-content: center;
 	align-items: center;
 	align-self: center;
-	position: absolute;
 	flex-direction: row;
-	min-height: 25px;
-	min-width: 20px;
 	border-radius: 12.5px;
 	shadow-offset: 0px 1px;
 	shadow-radius: 2px;
@@ -121,24 +121,20 @@ const AddCartContainer = styled.View`
 	z-index: 1000;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
 `
-const AddRemoveContainer = styled.View`
-	width: 100%;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-`
 const CounterContainer = styled.View`
-	height: 20px;
-	width: 20px;
+	min-height: 25px;
+	min-width: 25px;
 	border-radius: 12px;
 	align-items: center;
 	justify-content: center;
+	padding-horizontal: 4px;
 `
 
 const ItemGetOneProcessingOrderComponent = ({ item }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ addedCounter, setaddedCounter ] = useState(1)
+	const { unit_price } = useTranslation()
 
 	const _onPressItem = (propitem) => {
 		navigation.navigate('GetOneItemNavigator', {
@@ -229,32 +225,30 @@ const ItemGetOneProcessingOrderComponent = ({ item }) => {
 											100
 										).toFixed(2),
 									)}{' '}
-									unit price
+									{unit_price}
 								</ETASimpleText>
 							</UnitPriceContainer>
 						</CartItemLeftContainer>
 						<CartItemRightContainer>
 							<AddCartContainer>
-								<AddRemoveContainer>
-									<CounterContainer>
-										<ETASimpleText
-											size={
-												11
-											}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '600'
-													: '300'
-											}
-											color='white'
-											align='center'>
-											{
-												addedCounter
-											}
-										</ETASimpleText>
-									</CounterContainer>
-								</AddRemoveContainer>
+								<CounterContainer>
+									<ETASimpleText
+										size={
+											11
+										}
+										weight={
+											Platform.OS ===
+											'ios'
+												? '600'
+												: '300'
+										}
+										color='white'
+										align='center'>
+										{
+											addedCounter
+										}
+									</ETASimpleText>
+								</CounterContainer>
 							</AddCartContainer>
 						</CartItemRightContainer>
 					</CartItemContainer>

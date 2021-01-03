@@ -11,6 +11,7 @@ import { useNavigation } from '@react-navigation/native'
 import { ETATextInputOutline, ETASimpleText, ETAButtonFilled } from '@etaui'
 import { creditnumberSeparator, expirationDateSeparator } from '@functions'
 import TextInputMask from 'react-native-text-input-mask'
+import { useTranslation } from '@etaui/translate'
 
 const {width, height} = Dimensions.get('window')
 
@@ -103,12 +104,11 @@ const TextInput = styled.TextInput.attrs({})`
 const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { owner_name, expiry_placeholder, save } = useTranslation()
 	const [ creditCard, setcreditCard ] = useState('1234 5678 9012 3456')
-	const [ expiry, setexpiry ] = useState(lang === 'es' ? 'MM/AA' : 'MM/YY')
+	const [ expiry, setexpiry ] = useState(expiry_placeholder)
 	const [ cvc, setcvc ] = useState('123')
-	const [ onwerName, setonwerName ] = useState(
-		lang === 'es' ? 'NOMBRE DE PROPIETARIO' : 'ONWER NAME',
-	)
+	const [ onwerName, setonwerName ] = useState(owner_name)
 	const animatedValue = new Animated.Value(0)
 	const numberCardRef = useRef()
 	const mmyy = useRef()
@@ -216,11 +216,8 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 										color={expiry === '' ? themeContext.PRIMARY_TEXT_COLOR_LIGHT :  '#333'}
 										align='center'>
 										{expiry === ''
-											? lang ===
-											  'es'
-												? 'MM/AA'
-												: 'MM/YY'
-											: expirationDateSeparator(expiry)}
+											? expiry_placeholder.toUpperCase()
+											: expirationDateSeparator(expiry.toUpperCase())}
 									</ETASimpleText>
 									<ETASimpleText
 										size={13}
@@ -233,10 +230,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 										color={onwerName === '' ? themeContext.PRIMARY_TEXT_COLOR_LIGHT :  '#333'}
 										align='center'>
 										{onwerName === ''
-											? lang ===
-											  'es'
-												? 'NOMBRE DE PROPIETARIO'
-												: 'ONWER NAME'
+											? owner_name.toUpperCase()
 											: onwerName.toUpperCase()}
 									</ETASimpleText>
 								</CardItemsContainer>
@@ -311,7 +305,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								enablesReturnKeyAutomatically={false}
 								underlineColorAndroid='transparent'
 								keyboardAppearance='dark'
-								maxLength={19}
+								maxLength={16}
 								multiline={false}
 								numberOfLines={1} // android
 								returnKeyLabel='next' // android
@@ -344,11 +338,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								// refInput={numberCardRef}
 								// value={values?.[item.name]}
 								mask={'[00]{/}[00]'}
-								placeholder={
-									lang === 'es'
-										? 'MM/AA'
-										: 'MM/YY'
-								}
+								placeholder={expiry_placeholder.toUpperCase()}
 								placeholderTextColor={
 									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
@@ -365,7 +355,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								enablesReturnKeyAutomatically={false}
 								underlineColorAndroid='transparent'
 								keyboardAppearance='dark'
-								maxLength={5}
+								maxLength={4}
 								multiline={false}
 								numberOfLines={1} // android
 								returnKeyLabel='next' // android
@@ -378,7 +368,12 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								width={width / 2}
 								borderWidth={0.3}
 								onChangeText={(formatted, extracted) => {
-									console.log(formatted)
+									setexpiry(
+										formatted.replace(
+											/[^0-9]/g,
+											'',
+										),
+									)
 									console.log(extracted)
 								}}
 								// onBlur={handleBlur('cellphone')}
@@ -386,7 +381,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 							/>
 						</TextInputContainer>
 						<TextInputContainer>
-						<ETATextInputOutline
+							<ETATextInputOutline
 								// refInput={numberCardRef}
 								// value={values?.[item.name]}
 								mask={'[000]'}
@@ -411,7 +406,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								enablesReturnKeyAutomatically={false}
 								underlineColorAndroid='transparent'
 								keyboardAppearance='dark'
-								maxLength={5}
+								maxLength={3}
 								multiline={false}
 								numberOfLines={1} // android
 								returnKeyLabel='next' // android
@@ -424,10 +419,16 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 								width={width / 2}
 								borderWidth={0.3}
 								onChangeText={(formatted, extracted) => {
-									console.log(formatted)
+									setcvc(
+										formatted.replace(
+											/[^0-9]/g,
+											'',
+										),
+									)
 									console.log(extracted)
 								}}
-								// onBlur={handleBlur('cellphone')}
+								onFocus={() => flipCard(180)}
+								onBlur={() => flipCard(0)}
 								selectionColor={themeContext.PRIMARY_COLOR}
 							/>
 							{/* <TextInput
@@ -480,11 +481,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 							<TextInput
 								// value={}
 								defaultValue=''
-								placeholder={
-									lang === 'es'
-										? 'NOMBRE DE PROPIETARIO'
-										: 'ONWER NAME'
-								}
+								placeholder={owner_name.toUpperCase()}
 								placeholderTextColor={
 									placeholderTextColor || themeContext.PRIMARY_TEXT_COLOR_LIGHT
 								}
@@ -521,7 +518,7 @@ const ETACreditCard = memo(({lang, placeholderTextColor}) => {
 					</TextInputsContainer>
 
 					<ETAButtonFilled
-						title='Save'
+						title={save.charAt(0).toUpperCase() + save.slice(1)}
 						onPress={() =>
 							navigation.navigate(
 								'SettingsNavigator',

@@ -1,7 +1,8 @@
 //  https://xlog.x-hub.io/advanced-react-patterns-compound-components-with-hooks/
 import React, { useContext, memo } from 'react'
 import styled, { ThemeContext} from 'styled-components/native'
-import {ETASimpleText} from '@etaui'
+import { ETASimpleText } from '@etaui'
+import Points from './points'
 
 const Root = styled.View`
     flex: 1;
@@ -16,7 +17,7 @@ const ButtonContainer = styled.View`
     flex: 1;
     flex-direction: column;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 `
 const ActionButton = styled.TouchableOpacity.attrs({
     underlayColor: 'transparent',
@@ -27,8 +28,11 @@ const ActionButton = styled.TouchableOpacity.attrs({
     padding: 10px;
 `
 const PointsContainer = styled.View`
+    margin: 60px 0px 0px 0px;
+    padding-horizontal: 20px;
+    min-width: 100%;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: transparent;
 `
@@ -53,36 +57,44 @@ const Step = memo((props) => {
 
     return (
         <Root>
+            <PointsContainer>
+                {
+                    props.itemsLength > 1
+                    ?   [...Array(props.itemsLength)].map((element, index) => (
+                            <Points key={index} position={index +1} activated={index < props.currentIndex ? true : index == props.currentIndex ? true : false} color={index < props.currentIndex ? themeContext.ACTIVE : index == props.currentIndex ? '#fff' : 'transparent'} /> //themeContext.SECONDARY_BACKGROUND_COLOR_LIGHT
+                        ))
+                    :   null
+                }
+            </PointsContainer>
+
             {props.children({
                 onChangeValue: props.onChangeValue,
                 values: props.values
             })}
+            <ButtonsContainer>
+                {
+                    props.itemsLength > 1
+                    ?   <ButtonContainer>
+                            <ActionButton
+                                onPress={props.prevStep}
+                                disabled={props.currentIndex === 0}
+                                style={{ backgroundColor: props.currentIndex === 0 ? 'transparent' : '#333333' }}>
+                                <ETASimpleText
+                                    size={14}
+                                    weight={
+                                        Platform.OS === 'ios'
+                                            ? '400'
+                                            : '300'
+                                    }
+                                    color={props.currentIndex === 0 ? '#444' : 'white'}
+                                    align='center'>
+                                    {props.prevText ? props.prevText : 'Previous'}
+                                </ETASimpleText>
+                            </ActionButton>
+                        </ButtonContainer>
+                    :   null
+                }
             
-            <PointsContainer>
-                {/* {
-                    Points(props.itemsLength)
-                } */}
-            </PointsContainer>
-            <ButtonsContainer>                    
-                <ButtonContainer>
-                    <ActionButton
-                        onPress={props.prevStep}
-                        disabled={props.currentIndex === 0}
-                        style={{ backgroundColor: props.currentIndex === 0 ? 'transparent' : '#333333' }}>
-                        <ETASimpleText
-                            size={14}
-                            weight={
-                                Platform.OS === 'ios'
-                                    ? '400'
-                                    : '300'
-                            }
-                            color={props.currentIndex === 0 ? '#444' : 'white'}
-                            align='center'>
-                            {props.prevText ? props.prevText : 'Previous'}
-                        </ETASimpleText>
-                    </ActionButton>
-                </ButtonContainer>
-                
                 <ButtonContainer>
                     {
                         props.isLast

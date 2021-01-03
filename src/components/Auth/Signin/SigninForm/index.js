@@ -2,15 +2,17 @@ import React, { useState, useContext, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETAMultiStep, ETARadio } from '@etaui'
+import { ETATextInputOutline, ETASimpleText, ETAMultiStep, ETARadio } from '@etaui'
+import SigninBody from '@components/Auth/Signin/SigninBody'
 import { connect } from 'react-redux'
 import { SIGNUP } from '@redux/user/actions'
+import { useTranslation } from '@etaui/translate'
 
 const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
 	width: 100%;
 `
-const Root = styled.TouchableWithoutFeedback`
+const Root = styled.View`
 	flex: 1;
 `
 const StepContainer = styled.View`
@@ -83,6 +85,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 	const usernameRef = useRef()
 	const passwordRef = useRef()
 	const confirmPasswordRef = useRef()
+	const { log_in, log_in_text, cellphone_placeholder, password_placeholder, previous, next } = useTranslation()
 
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
@@ -92,11 +95,11 @@ const SigninForm = ({getAllUserInfoUser}) => {
 
 	const form = [
 		{
-			title: 'Sign in',
-			description: `Please use your login information to be able to send you our products and you can enjoy them.`,
+			title: log_in.charAt(0).toUpperCase() + log_in.slice(1),
+			description: log_in_text.charAt(0).toUpperCase() + log_in_text.slice(1),
 			items: [
 				{
-					placeholder: 'Cellphone',
+					placeholder: cellphone_placeholder.charAt(0).toUpperCase() + cellphone_placeholder.slice(1),
 					name: 'cellphone',
 					ref: cellphoneRef,
 					mask: '([000]) [000]-[00]-[00]',
@@ -108,7 +111,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 					}
 				},
 				{
-					placeholder: 'Password',
+					placeholder: password_placeholder.charAt(0).toUpperCase() + password_placeholder.slice(1),
 					name: 'password',
 					ref: passwordRef,
 					mask: '',
@@ -131,9 +134,9 @@ const SigninForm = ({getAllUserInfoUser}) => {
 	return (
 		<Root>
             <ETAMultiStep
-				prevText='Previous'
-				nextText='Next'
-				finishText='Sign in'
+				prevText={previous.charAt(0).toUpperCase() + previous.slice(1)}
+				nextText={next.charAt(0).toUpperCase() + next.slice(1)}
+				finishText={log_in.charAt(0).toUpperCase() + log_in.slice(1)}
 				finishFunction={() => _finishFunction()}
 				initialValues={{
 					cellphone: '',
@@ -267,13 +270,14 @@ const SigninForm = ({getAllUserInfoUser}) => {
 															)
 														default:
 															return;
-													}
-												})
-											}
-										</FormContainer>
-									</ContentContainer>
-								</KeyboardMisser>
-							</KeyboardAvoidingView>
+														}
+													})
+												}
+												<SigninBody />
+											</FormContainer>
+										</ContentContainer>
+									</KeyboardMisser>
+								</KeyboardAvoidingView>
 							</StepContainer>
 						)}
 					</ETAMultiStep.Step>

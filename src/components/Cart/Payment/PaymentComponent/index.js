@@ -2,8 +2,9 @@ import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Dimensions } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { ETASimpleText, ETAButtonOutline, ETAButtonFilled } from '@etaui'
+import { ETASimpleText, ETAButtonOutline } from '@etaui'
 import { currencySeparator } from '@functions'
+import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
 
@@ -54,7 +55,8 @@ const PaymentComponent = () => {
     const themeContext = useContext(ThemeContext)
 	const route = useRoute()
 	const navigation = useNavigation()
-    const { data, total, subtotal, totalItems } = route?.params
+    const { data, totalvalue, subtotal, totalItems } = route?.params
+	const { purchase_summary, total, items, item, delivery_info, payment_info, send_to } = useTranslation()
 
     return (
         <Root>
@@ -67,7 +69,7 @@ const PaymentComponent = () => {
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                         }
                         align='left'>
-                        1 Summary
+                        1 {purchase_summary.charAt(0).toUpperCase() + purchase_summary.slice(1)}
                     </ETASimpleText>
 
                     <SummaryRow>
@@ -78,7 +80,7 @@ const PaymentComponent = () => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            Total
+                            {total.charAt(0).toUpperCase() + total.slice(1)}
                         </ETASimpleText>
                         <ETASimpleText
                             size={15}
@@ -88,7 +90,7 @@ const PaymentComponent = () => {
                             }
                             align='left'>
                             ${currencySeparator(
-                                total.toFixed(2),
+                                totalvalue.toFixed(2),
                             )}
                         </ETASimpleText>
                     </SummaryRow>
@@ -101,7 +103,13 @@ const PaymentComponent = () => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            {totalItems} Products
+                            {totalItems} {' '}
+                            {totalItems === 0
+                                ? `${items}`
+                                : totalItems === 1
+                                ? `${item}`
+                                : `${items}`
+                            }
                         </ETASimpleText>
                     </SummaryRow>
                 </SummaryCard>
@@ -114,11 +122,11 @@ const PaymentComponent = () => {
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                         }
                         align='left'>
-                        2 Delivery information
+                        2 {delivery_info.charAt(0).toUpperCase() + delivery_info.slice(1)}
                     </ETASimpleText>
                     <DirectionContainer>
                         <ETAButtonOutline
-                            title='Send to Home'
+                            title={`${send_to.charAt(0).toUpperCase() + send_to.slice(1)} home`}
                             onPress={() =>
                                 navigation.navigate(
                                     'SettingsNavigator',
@@ -160,7 +168,7 @@ const PaymentComponent = () => {
                             themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                         }
                         align='left'>
-                        3 Payment information
+                        3 {payment_info.charAt(0).toUpperCase() + payment_info.slice(1)}
                     </ETASimpleText>
                 </SummaryCard>
             </SummaryContainer>

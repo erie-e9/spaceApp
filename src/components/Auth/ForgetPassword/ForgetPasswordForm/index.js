@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { ETATextInputOutline, ETASimpleText, ETAErrorMessage, ETAMultiStep, ETARadio } from '@etaui'
+import { ETATextInputOutline, ETASimpleText, ETAMultiStep, ETARadio } from '@etaui'
 import { connect } from 'react-redux'
 import { RECOVERY_PASS } from '@redux/user/actions'
+import { useTranslation } from '@etaui/translate'
 
 const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
@@ -75,6 +76,20 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 	const codeRef = useRef()
 	const passwordRef = useRef()
 	const confirmPasswordRef = useRef()
+	const { forget_pass,
+		forget_pass_text,
+		ask_cellphone,
+		insert_code,
+		insert_code_text,
+		code,
+		choose_pass,
+		choose_pass_text,
+		new_password,
+		repeat_password,
+		previous,
+		next,
+		send,
+	} = useTranslation()
 
 	const _radioChange = async (item) => {
 		await setradioItem(radioItem ? !radioItem : true)
@@ -84,11 +99,11 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 	
 	const form = [
 		{
-			title: `Don't remember your password?`,
-			description: `Don't worry, we will send you a SMS with instructions for get a new password.`,
+			title: forget_pass.charAt(0).toUpperCase() + forget_pass.slice(1),
+			description: forget_pass_text.charAt(0).toUpperCase() + forget_pass_text.slice(1),
 			items: [
 				{
-					placeholder: 'What is your cellphone?',
+					placeholder: ask_cellphone.charAt(0).toUpperCase() + ask_cellphone.slice(1),
 					name: 'cellphone',
 					ref: cellphoneRef,
 					mask: '([000]) [000]-[00]-[00]',
@@ -102,11 +117,11 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 			]
 		},
 		{
-			title: `Please insert code`,
-			description: `We need to confirm that you are who you say you are.`,
+			title: insert_code.charAt(0).toUpperCase() + insert_code.slice(1),
+			description: insert_code_text.charAt(0).toUpperCase() + insert_code_text.slice(1),
 			items: [
 				{
-					placeholder: 'Code',
+					placeholder: code.charAt(0).toUpperCase() + code.slice(1),
 					name: 'code',
 					ref: codeRef,
 					mask: '',
@@ -120,11 +135,11 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 			]
 		},
 		{
-			title: `Great!, now you can choose a new password`,
-			description: `Choose your new password.`,
+			title: choose_pass.charAt(0).toUpperCase() + choose_pass.slice(1),
+			description: choose_pass_text.charAt(0).toUpperCase() + choose_pass_text.slice(1),
 			items: [
 				{
-					placeholder: 'New password',
+					placeholder: new_password.charAt(0).toUpperCase() + new_password.slice(1),
 					name: 'password',
 					ref: passwordRef,
 					mask: '',
@@ -136,7 +151,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 					}
 				},
 				{
-					placeholder: 'Repeat password',
+					placeholder: repeat_password.charAt(0).toUpperCase() + repeat_password.slice(1),
 					name: 'confirmPassword',
 					ref: confirmPasswordRef,
 					mask: '',
@@ -167,9 +182,9 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 	return (
 		<Root>
             <ETAMultiStep
-				prevText='Previous'
-				nextText='Next'
-				finishText='Send'
+				prevText={previous.charAt(0).toUpperCase() + previous.slice(1)}
+				nextText={next.charAt(0).toUpperCase() + next.slice(1)}
+				finishText={send.charAt(0).toUpperCase() + send.slice(1)}
 				finishFunction={() => _finishFunction()}
 				initialValues={{
 					cellphone: '',

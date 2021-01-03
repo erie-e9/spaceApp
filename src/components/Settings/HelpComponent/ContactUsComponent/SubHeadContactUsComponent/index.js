@@ -1,7 +1,7 @@
-import React, {useContext} from 'react'
-import {Platform, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {useNavigation} from '@react-navigation/native'
+import React, { useContext } from 'react'
+import { Platform } from 'react-native'
+import styled, { ThemeContext } from 'styled-components/native'
+import { useNavigation } from '@react-navigation/native'
 import {
 	Fontisto,
 	AntDesign,
@@ -13,12 +13,9 @@ import { ETASimpleText, ETALink } from '@etaui'
 import { variables } from '@utils/constants'
 import { useTranslation } from '@etaui/translate'
 
-const {width} = Dimensions.get('window')
 const iconSize = 23
 
 const Root = styled.View`
-	flex: 1;
-	width: ${width}px;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
@@ -26,10 +23,10 @@ const Root = styled.View`
 `
 const InfoContainer = styled.View`
 	flex-direction: row;
-	width: 100%;
-	justify-content: center;
+	min-width: 240px;
+	justify-content: flex-start;
 	align-items: center;
-	padding-vertical: 10px;
+	padding-vertical: 2px;
 	background-color: transparent;
 `
 const TitleContainer = styled.View`
@@ -49,22 +46,41 @@ const TouchableContainer = styled.View`
 	margin-top: 10px;
 	background-color: transparent;
 `
+const ButtonContainer = styled.TouchableOpacity`
+	height: 30px;
+	width: 30px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	background-color: ${props => props.theme.GRAYFACEBOOK};
+`
 
 const SubHeadAboutUsComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const { branch_text_text } = useTranslation()
+	const { main_branch_offices_text,
+		customer_client_center,
+		add_whatsapp,
+		like_facebook,
+		follow_twitter,
+		follow_instagram,
+		link_text_web,
+		need_help,
+		faq_text_link
+	} = useTranslation()
 
 	return (
 		<Root>
 			<InfoContainer>
-				<AntDesign
-					name='phone'
-					size={iconSize - 6}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<AntDesign
+						name='phone'
+						size={iconSize - 6}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETALink
 						url={`tel:${variables.COMPANYPHONE1}`}
@@ -76,19 +92,21 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						children='Main branch office'
+						children={main_branch_offices_text.charAt(0).toUpperCase() + main_branch_offices_text.slice(1)}
 					/>
 				</TitleContainer>
 			</InfoContainer>
 
 			<InfoContainer>
-				<AntDesign
-					name='phone'
-					size={iconSize - 6}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<AntDesign
+						name='phone'
+						size={iconSize - 6}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETALink
 						url={`tel:${variables.COMPANYPHONE2}`}
@@ -100,19 +118,21 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						children='Customer client center'
+						children={customer_client_center.charAt(0).toUpperCase() + customer_client_center.slice(1)}
 					/>
 				</TitleContainer>
 			</InfoContainer>
 
 			<InfoContainer>
-				<FontAwesome
-					name='whatsapp'
-					size={iconSize - 6}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<FontAwesome
+						name='whatsapp'
+						size={iconSize - 6}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETALink
 						url={`https://wa.me/${variables.COMPANYWHATSAPP}`}
@@ -124,19 +144,21 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						children='Add us on WhatsApp'
+						children={add_whatsapp.charAt(0).toUpperCase() + add_whatsapp.slice(1)}
 					/>
 				</TitleContainer>
 			</InfoContainer>
 
 			<InfoContainer>
-				<SimpleLineIcons
-					name='social-facebook'
-					size={iconSize - 6}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<SimpleLineIcons
+						name='social-facebook'
+						size={iconSize - 6}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETALink
 						url={variables.COMPANYFACEBOOK}
@@ -148,19 +170,21 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						children='Like us on facebook'
+						children={like_facebook.charAt(0).toUpperCase() + like_facebook.slice(1)}
 					/>
 				</TitleContainer>
 			</InfoContainer>
 
 			<InfoContainer>
-				<SimpleLineIcons
-					name='social-twitter'
-					size={iconSize - 6}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<SimpleLineIcons
+						name='social-twitter'
+						size={iconSize - 6}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETALink
 						url={variables.COMPANYTWITTER}
@@ -172,19 +196,21 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						children='Follow us on twitter'
+						children={follow_twitter.charAt(0).toUpperCase() + follow_twitter.slice(1)}
 					/>
 				</TitleContainer>
 			</InfoContainer>
 
 			<InfoContainer>
-				<SimpleLineIcons
-					name='social-instagram'
-					size={iconSize - 8}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<SimpleLineIcons
+						name='social-instagram'
+						size={iconSize - 8}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETALink
 						url={variables.COMPANYINSTAGRAM}
@@ -196,19 +222,21 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='justify'
-						children='Give us love on instagram'
+						children={follow_instagram.charAt(0).toUpperCase() + follow_instagram.slice(1)}
 					/>
 				</TitleContainer>
 			</InfoContainer>
 
 			<InfoContainer>
-				<Fontisto
-					name='world-o'
-					size={iconSize - 8}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<Fontisto
+						name='world-o'
+						size={iconSize - 8}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETASimpleText
 						size={13}
@@ -219,7 +247,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='center'>
-						Visit our store online
+						{link_text_web.charAt(0).toUpperCase() + link_text_web.slice(1)}
 					</ETASimpleText>
 				</TitleContainer>
 			</InfoContainer>
@@ -235,13 +263,15 @@ const SubHeadAboutUsComponent = () => {
 			</LinkContainer>
 
 			<InfoContainer>
-				<Octicons
-					name='mail'
-					size={iconSize - 6}
-					color={
-						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					}
-				/>
+				<ButtonContainer>
+					<Octicons
+						name='mail'
+						size={iconSize - 6}
+						color={
+							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+						}
+					/>
+				</ButtonContainer>
 				<TitleContainer>
 					<ETASimpleText
 						size={13}
@@ -252,7 +282,7 @@ const SubHeadAboutUsComponent = () => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='center'>
-						Need help?
+						{need_help.charAt(0).toUpperCase() + need_help.slice(1)}
 					</ETASimpleText>
 				</TitleContainer>
 			</InfoContainer>
@@ -288,8 +318,7 @@ const SubHeadAboutUsComponent = () => {
 								themeContext.PRIMARY_TEXT_COLOR_LIGHT
 							}
 							align='center'>
-							Have you seen our frecuently
-							question asked section?
+							{faq_text_link.charAt(0).toUpperCase() + faq_text_link.slice(1)}
 						</ETASimpleText>
 					</TouchableContainer>
 				</Touchable>

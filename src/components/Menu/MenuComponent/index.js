@@ -8,6 +8,7 @@ import StatusComponent from './StatusComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/actions'
 import CarouselComponent from './CarouselComponent'
+import { useScrollToTop } from '@react-navigation/native'
 
 const HEADER_MIN_HEIGHT = 85
 const HEADER_MAX_HEIGHT = 85
@@ -38,6 +39,8 @@ const MenuComponent = ({getDataRequest, data}) => {
 	const [animatedValueTransform] = useState(new Animated.Value(0.96))
 	const [opacity] = useState(new Animated.Value(0))
 	const delayValue = 700
+	const ref = React.useRef(null)
+  	useScrollToTop(ref)
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -93,6 +96,7 @@ const MenuComponent = ({getDataRequest, data}) => {
 		<>
 			<Root>
 				<ScrollView
+					ref={ref}
 					contentContainerStyle={{
 						paddingTop: HEADER_MAX_HEIGHT,
 					}}

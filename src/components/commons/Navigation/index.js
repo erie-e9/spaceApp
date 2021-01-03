@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { StatusBar, SafeAreaView, useColorScheme } from 'react-native'
 import { ThemeProvider } from 'styled-components'
+import { NavigationContainer } from '@react-navigation/native'
 import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants'
 import { ETANetInfo, ETATranslate as TranslateProvider} from '@etaui'
 import { LanguageContextProvider } from '@etaui/translate'
@@ -30,6 +31,7 @@ const Navigation = ({ getDataRequest, theme }) => {
 	const [ themepicked, setthemepicked ] = useState()
 	const [ barStyleTheme, setbarStyleTheme ] = useState('dark-content')
 	const [ backgroundTheme, setbackgroundTheme ] = useState(darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+	const [ navMode, setnavMode ] = useState()
 	
 	useEffect(() => {
 		// console.log('[Navigation] colorSchema: ', colorSchema);
@@ -50,29 +52,35 @@ const Navigation = ({ getDataRequest, theme }) => {
 		console.log('[Navigation] theme: ', theme)
 		console.log('[Navigation] colorSchema: ', colorSchema);
 
-		if (theme === 0) {
+		if (theme === 0) { // theme system
 			if (colorSchema === 'dark') {
 				await setthemepicked(darkTheme)
 				await setbarStyleTheme('light-content')
 				await setbackgroundTheme(darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+				await setnavMode(navDarkMode)
 			} else {
 				await setthemepicked(lightTheme)
 				await setbarStyleTheme('dark-content')
 				await setbackgroundTheme(lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+				await setnavMode(navLightMode)
 			}
-		} else if (theme === 1) {
+		} else if (theme === 1) { // light theme
 			await setthemepicked(lightTheme)
 			await setbarStyleTheme('dark-content')
 			await setbackgroundTheme(lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
-		} else if (theme === 2) {
+			await setnavMode(navLightMode)
+		} else if (theme === 2) { // dark theme
 			await setthemepicked(darkTheme)
 			await setbarStyleTheme('light-content')
 			await setbackgroundTheme(darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+			await setnavMode(navDarkMode)
 		}
 	}
 
 	return (
-		<>
+        <NavigationContainer
+          theme={navMode}
+        >
 			<SafeAreaView
 				style={{
 					flex: 0,
@@ -89,22 +97,15 @@ const Navigation = ({ getDataRequest, theme }) => {
 					{
 						theme !== undefined 
 						?	<ThemeProvider 
-								// theme={themepicked === 1 ? lightTheme : themepicked === 2 ? darkTheme : colorSchema === 'dark' ? darkTheme : lightTheme}
 								theme={themepicked ? themepicked : colorSchema === 'dark' ? darkTheme: lightTheme}
 								>
-								{/* <StatusBar
-									backgroundColor={backgroundTheme ? backgroundTheme : lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR}
-									barStyle={barStyleTheme ? barStyleTheme : 'light-content'}
-									hidden={false}
-								/> */}
-
 								<StatusBar
 									backgroundColor={backgroundTheme}
 									barStyle={barStyleTheme ? barStyleTheme : 'light-content'}
 									hidden={false}
 								/>
 								<ETANetInfo />
-									<ShopTabNavigator />
+								<ShopTabNavigator />
 								{/* {userToken !== null ? (
 									<ShopTabNavigator />
 									) : (
@@ -113,9 +114,9 @@ const Navigation = ({ getDataRequest, theme }) => {
 							</ThemeProvider>
 						:	null
 					}
-					</LanguageContextProvider>
+				</LanguageContextProvider>
 			</SafeAreaView>
-		</>
+		</NavigationContainer>
 	)
 }
 

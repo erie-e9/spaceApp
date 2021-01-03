@@ -8,7 +8,7 @@ const Root = styled.View`
 
 const SubHeadGetOnePreviousOrderComponent = ({ items }) => (
 	<Root>
-		<ListItemsGetOnePreviousOrderComponent items={items}/>
+		<ListItemsGetOnePreviousOrderComponent orders={items}/>
 	</Root>
 )
 

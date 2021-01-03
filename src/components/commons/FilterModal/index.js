@@ -5,6 +5,7 @@ import { ETATopModal, ETACheckBox, ETASimpleText } from '@etaui'
 import FilterItem from './filterItem'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST, CLEAN_FILTER, DELETE_FILTERS, TOOGLE_SORT_INCREMENT } from '@redux/menu/filters/actions'
+import { useTranslation } from '@etaui/translate'
 
 const { height, width } = Dimensions.get('window')
 const Root = styled.View`
@@ -106,6 +107,7 @@ const FilterModal = memo(({ isVisible, onSwipeComplete, closeModal, getDataReque
     const [ incrementchecked, setincrementchecked ] = useState(undefined)
     const [ items, setitems ] = useState([])
     const [ extra, setextra ] = useState([])
+	const { filters, discounts_title } = useTranslation()
 
     useEffect(() => {
         fillExtras(discountToggle)
@@ -190,7 +192,7 @@ const FilterModal = memo(({ isVisible, onSwipeComplete, closeModal, getDataReque
         if (discounts !== undefined && discountToggle !== undefined) {
             setextra([
                 {
-                    title: 'Discounts',
+                    title: discounts_title.charAt(0).toUpperCase() + discounts_title.slice(1),
                     active: _discountToggle,
                 }
             ])
@@ -202,7 +204,7 @@ const FilterModal = memo(({ isVisible, onSwipeComplete, closeModal, getDataReque
     return(
         <>
             <ETATopModal
-                title={`Filters`}
+                title={filters.charAt(0).toUpperCase() + filters.slice(1)}
                 isVisible={isVisible}
                 onSwipeComplete={onSwipeComplete}
                 closeModal={closeModal}

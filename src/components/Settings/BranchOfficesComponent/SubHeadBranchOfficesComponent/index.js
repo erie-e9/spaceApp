@@ -1,9 +1,10 @@
-import React, {useEffect, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {useNavigation} from '@react-navigation/native'
-import {ETAButtonFilled} from '@etaui'
-import {connect} from 'react-redux'
-import {GET_DATA_REQUEST} from '@redux/settings/branchoffices/actions'
+import React, { useEffect, useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { useNavigation } from '@react-navigation/native'
+import { ETAButtonFilled } from '@etaui'
+import { connect } from 'react-redux'
+import { GET_DATA_REQUEST } from '@redux/settings/branchoffices/actions'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	min-height: 10px;
@@ -37,6 +38,7 @@ const mapDispatchProps = (dispatch, props) => ({
 const SubHeadBranchOfficesComponent = ({getDataRequest, data}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { all_on_map } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -51,7 +53,7 @@ const SubHeadBranchOfficesComponent = ({getDataRequest, data}) => {
 		<Root>
 			<ContentContainer>
 				<ETAButtonFilled
-					title='See all on map'
+					title={all_on_map.charAt(0).toUpperCase() + all_on_map.slice(1)}
 					onPress={() =>
 						navigation.navigate('SettingsNavigator', {
 							screen: 'MapBranchOfficesScreen',

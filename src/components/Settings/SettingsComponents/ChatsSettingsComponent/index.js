@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/settings/notifications/actions'
 import { MaterialCommunityIcons, Feather } from '@icons'
 import SubCard from './Card'
+import { useTranslation } from '@etaui/translate'
 
 const iconSize = 23
 
@@ -42,7 +43,7 @@ const ButtonModalContainer = styled.View`
 	align-self: center;
 	background-color: transparent;
 `
-const MetadaInfoHead = styled.View`
+const MetadataInfoHead = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
@@ -86,7 +87,18 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
 	const [ switchItem, setswitchItem ] = useState(true)
     const [ _switchItem, _setswitchItem ] = useState()
 	const [ isLanguageModalVisible, setisLanguageModalVisible ] = useState(false)
-	const [ isCurrencyModalVisible, setisCurrencyModalVisible ] = useState(false)
+	const { status,
+        status_text,
+        active,
+        new_message_sound,
+        new_message_sound_text,
+        black_list,
+        black_list_text,
+        download_files,
+        download_files_text,
+        automatically,
+        default_text
+    } = useTranslation()
     
 	useEffect(() => {
         let isUnMounted = false
@@ -114,7 +126,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        Status
+                        {status.charAt(0).toUpperCase() + status.slice(1)}
                     </ETASimpleText>
                     <SubtitleText>
                         <ETASimpleText
@@ -122,10 +134,10 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                             weight='300'
                             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
-                            Your friends and contacts will see if you're active or your last connection time, at least you deactivate active status. You cannot see status of your friends if you deactivate it.
+                            {status_text.charAt(0).toUpperCase() + status_text.slice(1)}
                         </ETASimpleText>
                     </SubtitleText>
-                    <MetadaInfoHead>
+                    <MetadataInfoHead>
                         <ETASimpleText
                             size={13}
                             weight={
@@ -137,7 +149,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            Active
+                            {active.charAt(0).toUpperCase() + active.slice(1)}
                         </ETASimpleText>
                         <ETASwitch
                             // onChange={() => { setswitchItem(!switchItem); _setswitchItem(headTitleID)}}
@@ -147,7 +159,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                         />
-                    </MetadaInfoHead>
+                    </MetadataInfoHead>
                 </ItemContainer>
             </SettingContainer>
 
@@ -159,7 +171,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        New message sound
+                        {new_message_sound.charAt(0).toUpperCase() + new_message_sound.slice(1)}
                     </ETASimpleText>
                     <SubtitleText>
                         <ETASimpleText
@@ -167,12 +179,12 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                             weight='300'
                             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
-                            English is language by default, but if you want you could change this option.
+                            {new_message_sound_text.charAt(0).toUpperCase() + new_message_sound_text.slice(1)}
                         </ETASimpleText>
                     </SubtitleText>
                     <ButtonModalContainer>
                         <ETAButtonFilled
-                            title='Default'
+                            title={default_text.charAt(0).toUpperCase() + default_text.slice(1)}
                             onPress={() => setisLanguageModalVisible(true)}
                             disabled={1 === 0 ? true : false}
                             colorButton={
@@ -213,11 +225,11 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            Black list
+                            {black_list.charAt(0).toUpperCase() + black_list.slice(1)}
                         </ETASimpleText>
                         <SubCard
                             headTitle=' '
-                            message='If you have contact bloked you can see here.'
+                            message={black_list_text.charAt(0).toUpperCase() + black_list_text.slice(1)}
                             />
                     </OptionTitleContainer>
                 </LeftContainer>
@@ -240,7 +252,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        Download files
+                        {download_files.charAt(0).toUpperCase() + download_files.slice(1)}
                     </ETASimpleText>
                     <SubtitleText>
                         <ETASimpleText
@@ -248,10 +260,10 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                             weight='300'
                             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
-                            If deactivate this option files doesn't download without your permission.
+                            {download_files_text.charAt(0).toUpperCase() + download_files_text.slice(1)}
                         </ETASimpleText>
                     </SubtitleText>
-                    <MetadaInfoHead>
+                    <MetadataInfoHead>
                         <ETASimpleText
                             size={13}
                             weight={
@@ -263,7 +275,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            Automatically
+                            {automatically.charAt(0).toUpperCase() + automatically.slice(1)}
                         </ETASimpleText>
                         <ETASwitch
                             // onChange={() => { setswitchItem(!switchItem); _setswitchItem(headTitleID)}}
@@ -273,7 +285,7 @@ const ChatsSettingsComponent = ({ getDataRequest, data }) => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                         />
-                    </MetadaInfoHead>
+                    </MetadataInfoHead>
                 </ItemContainer>
             </SettingContainer>
         </Root>

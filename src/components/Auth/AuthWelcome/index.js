@@ -3,6 +3,7 @@ import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText, ETAButtonFilled, ETAButtonOutline, ETAAuthSocialmedia } from '@etaui'
 import { useNavigation } from '@react-navigation/native'
+import { useTranslation } from '@etaui/translate'
 
 const logoSize = 70
 const avatarRadius = logoSize / 2
@@ -56,6 +57,7 @@ const SocialMediaContainer = styled.View`
 const AuthWelcomeComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { need_account, log_in, sign_up } = useTranslation()
 	
 	const _onShowSigninPress = () => {
 		navigation.navigate('AuthNavigator', {
@@ -80,12 +82,12 @@ const AuthWelcomeComponent = () => {
 					weight={Platform.OS === 'ios' ? '300' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR}
 					align='center'>
-					You will need an account to continue. Please sign in or sign up if you don't have one.
+					{need_account.charAt(0).toUpperCase() + need_account.slice(1)}
 				</ETASimpleText>
 			</TextContainer>
 
 			<ETAButtonFilled
-				title='Sign in'
+				title={log_in.charAt(0).toUpperCase() + log_in.slice(1)}
 				onPress={() => _onShowSigninPress()}
 				colorButton={
 					themeContext.SECONDARY_BACKGROUND_COLOR
@@ -96,7 +98,7 @@ const AuthWelcomeComponent = () => {
 			/>
 			
 			<ETAButtonOutline
-				title='Sign up'
+				title={sign_up.charAt(0).toUpperCase() + sign_up.slice(1)}
 				onPress={() => _onShowSignupPress()}
 				colorButton={
 					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR

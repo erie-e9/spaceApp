@@ -80,7 +80,15 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const { analytics, manage_accounts, manage_products, reports } = useTranslation()
+	const { analytics,
+			manage_accounts,
+			manage_products,
+			reports,
+			analytics_text,
+			manage_accounts_text,
+			manage_products_text,
+			reports_text
+		} = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -132,7 +140,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Know your enterprise with numbers and see how to improve it.'
+											message={analytics_text.charAt(0).toUpperCase() + analytics_text.slice(1)}
 											/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -193,7 +201,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Manage clients and employees accounts.'
+											message={manage_accounts_text.charAt(0).toUpperCase() + manage_accounts_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -255,7 +263,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Want to add, remove or update products? this is the place.'
+											message={manage_products_text.charAt(0).toUpperCase() + manage_products_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -317,7 +325,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Generate and download reports of your enterprise.'
+											message={reports_text.charAt(0).toUpperCase() + reports_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>

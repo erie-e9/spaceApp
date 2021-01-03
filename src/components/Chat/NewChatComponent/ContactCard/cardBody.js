@@ -2,6 +2,7 @@ import React, { useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex-direction: column;
@@ -41,6 +42,7 @@ const TimeContainer = styled.View`
 const CardBody = memo(({ username, firstname, lastname, active, avatar, cellphone, createdAt }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { member_from } = useTranslation()
 
 	return (
 		<Root>
@@ -55,7 +57,7 @@ const CardBody = memo(({ username, firstname, lastname, active, avatar, cellphon
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
 						}
 						align='left'>
-						Member from {createdAt}
+						{member_from.charAt(0).toUpperCase() + member_from.slice(1)} {createdAt}
 					</ETASimpleText>
 				</TimeContainer>
 			{/* 	<ButtonContainer 

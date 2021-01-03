@@ -2,7 +2,8 @@
 	"data": [
 		{
 			"_id": 1,
-			"headTitle": "Debit card",
+			"cardType": 1,
+			"alias": "my first card",
 			"details": "•••• •••• •••• 7212",
 			"expDate": "01/23",
 			"company": "MasterCard",
@@ -11,11 +12,12 @@
 		},
 		{
 			"_id": 2,
-			"headTitle": "Credit card",
+			"cardType": 2,
+			"alias": "my second card",
 			"details": "•••• •••• •••• 3732",
 			"expDate": "12/22",
 			"company": "Visa",
-			"owner": " Rempel Moen",
+			"owner": "Rempel Moen",
 			"isDefault": false
 		}
 	]

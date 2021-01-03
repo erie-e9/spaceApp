@@ -9,14 +9,14 @@ const _height = 45
 const _width = 45
 
 const ItemContainer = styled.View`
+	height: ${_height + 8}px;
+	max-width: ${_width + 10}px;
 	justify-content: center;
 	align-items: center;
 	padding: 1.75px;
 	border-radius: 50px;
-	height: ${_height + 8}px;
-	min-width: ${_width + 8}px;
 	border-width: 2px;
-	margin: 4px 3px;
+	margin: 2px 4px;
 	border-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: transparent;
 `
@@ -79,7 +79,7 @@ const StatusItem = ({ item }) => {
 						// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 						color='white'
 						align='center'>
-						{isnew}
+						{isnew.charAt(0).toUpperCase() + isnew.slice(1)}
 					</ETASimpleText>
 				</NewContainer>
 			) : null}

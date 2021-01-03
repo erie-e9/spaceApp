@@ -28,6 +28,7 @@ const Touchable = styled.TouchableOpacity.attrs({
 })`
 	justify-content: center;
 	align-items: center;
+	margin-horizontal: 2px;
 `
 
 const mapStateToProps = (state) => {
@@ -45,7 +46,6 @@ const mapDispatchProps = (dispatch) => ({
 })
 
 const Status = ({ getDataRequest, data }) => {
-	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ items, setitems ] = useState([])
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
@@ -54,23 +54,14 @@ const Status = ({ getDataRequest, data }) => {
 
 	useEffect(() => {
 		let isUnMounted = false
+		getDataRequest()
+		setitems(data)
 		Animated.spring(animatedValueTransform, {
 			toValue: 1,
 			tension: 5,
 			useNativeDriver: true,
 		}).start()
 		
-		return () => {
-			isUnMounted = true
-		}
-	}, [])
-
-	useEffect(() => {
-		let isUnMounted = false
-		getDataRequest()
-		setitems(data)
-		// setitems(data.slice(0, 11), [])
-		// setsubitems(data.slice(3, 11), [])
 		return () => {
 			isUnMounted = true
 		}

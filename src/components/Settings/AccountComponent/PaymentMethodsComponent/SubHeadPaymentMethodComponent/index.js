@@ -1,7 +1,8 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {useNavigation} from '@react-navigation/native'
-import {ETAButtonFilled} from '@etaui'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { useNavigation } from '@react-navigation/native'
+import { ETAButtonFilled } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	min-height: 10px;
@@ -23,12 +24,13 @@ const ContentContainer = styled.View`
 const SubHeadPaymentMethodComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { new_payment_method } = useTranslation()
 
 	return (
 		<Root>
 			<ContentContainer>
 				<ETAButtonFilled
-					title='New payment method'
+					title={new_payment_method.charAt(0).toUpperCase() + new_payment_method.slice(1)}
 					onPress={() =>
 						navigation.navigate('SettingsNavigator', {
 							screen: 'NewPaymentMethodScreen',

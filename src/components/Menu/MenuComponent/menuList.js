@@ -6,7 +6,6 @@ import { ETASimpleText, ETAHeaderText } from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { AntDesign } from '@icons'
 import { useTranslation } from '@etaui/translate'
-import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 

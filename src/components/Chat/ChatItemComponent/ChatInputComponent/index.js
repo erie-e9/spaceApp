@@ -1,21 +1,17 @@
 import React, { useState, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Dimensions, Pressable } from 'react-native'
-import { ETATextInputFilled } from '@etaui'
 import { Feather, MaterialIcons, FontAwesome5, Entypo, MaterialCommunityIcons } from '@icons'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
-import { moderateScale } from 'react-native-size-matters'
-
-const { width } = Dimensions.get('window')
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex-direction: row;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: flex-end;
-	margin-right: 1px;
     margin-bottom: 6px;
-    padding: 1px 12.6px 0px 2px;
+    margin-right: 2px;
     background-color: transparent;
 `
 const InputIcon = styled.TouchableOpacity.attrs({
@@ -35,27 +31,30 @@ const LeftContainer = styled.View`
     justify-content: center;
 	align-items: flex-end;
     padding: 0px 10px;
+    min-height: 35px;
 	margin-left: 3px;
     border-radius: 25px;
     background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR}
 `
 const InputMessage = styled.TextInput.attrs(props => ({
     multiline: true,
-    placeholder: 'Type a message',
     autoCapitalize: 'none',
-    // autoFocus: true,
     color: props.theme.SECONDARY_TEXT_BACKGROUND_COLOR,
-    placeholderTextColor: props.theme.SECONDARY_TEXT_BACKGROUND_COLOR
+    placeholderTextColor: props.theme.PRIMARY_TEXT_COLOR_LIGHT
 }))`
     flex: 1;
     margin-horizontal: 3px;
-    max.height: 100px;
+    max-height: 100px;
+    min-height: 35px;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
 `
 
 const ChatInputComponent = () => {
     const themeContext = useContext(ThemeContext)
     const [ message, setmessage ] = useState('')
+	const { type_message } = useTranslation()
 
     const _onMicrophonePress = () => {
         console.warn('_onMicrophonePress')
@@ -82,15 +81,12 @@ const ChatInputComponent = () => {
                         underlayColor='transparent'
                         onPress={() => _onEmoticonsPress()}
                         style={{
-                            height: 34,
-                            width: 34,
+                            height: 45,
+                            width: 37,
                             borderRadius: 17,
                             justifyContent: 'center',
                             alignItems: 'center',
-                            // marginHorizontal: 1,
                             paddingHorizontal: 2,
-                            paddingVertical: 25
-                            // backgroundColor: themeContext.PRIMARY_COLOR,
                         }}
                     >
                         <FontAwesome5
@@ -106,62 +102,18 @@ const ChatInputComponent = () => {
                     <InputMessage
                         value={message} 
                         onChangeText={setmessage}
+                        placeholder={type_message.charAt(0).toUpperCase() + type_message.slice(1)}
                     />
-                    {/*                     
-                    <ETATextInputFilled
-                        // value={values.cellphone}
-                        placeholder='Type message...'
-                        placeholderTextColor={
-                            themeContext.PRIMARY_TEXT_COLOR_LIGHT
-                        }
-                        keyboardType='default'
-                        autoCapitalize='none'
-                        allowFontScaling
-                        autoCorrect
-                        autoFocus
-                        blurOnSubmit={false}
-                        caretHidden={false}
-                        clearButtonMode='while-editing'
-                        contextMenuHidden={false}
-                        editable
-                        enablesReturnKeyAutomatically={false}
-                        underlineColorAndroid='transparent'
-                        keyboardAppearance='dark'
-                        maxLength={200}
-                        multiline={true}
-                        numberOfLines={1} // android
-                        returnKeyLabel='next' // android
-                        secureTextEntry={false} // password
-                        spellCheck
-                        textContentType='none'
-                        returnKeyType='next'
-                        textsize={16}
-                        height={moderateScale(42, 2)}
-                        width={width - 150}
-                        borderWidth={0.5}
-                        // onChangeText={handleChange(
-                        //     'cellphone',
-                        // )}
-                        // onBlur={handleBlur('cellphone')}
-                        selectionColor={
-                            themeContext.PRIMARY_COLOR
-                        }
-                        textColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
-                        paddingHorizontal={15}
-                    /> */}
                     <TouchableWithoutFeedback
                         underlayColor='transparent'
                         onPress={() => _fileUoloader()}
                         style={{
-                            height: 34,
-                            width: 34,
+                            height: 45,
+                            width: 37,
                             borderRadius: 17,
                             justifyContent: 'center',
                             alignItems: 'center',
-                            // marginHorizontal: 1,
                             paddingHorizontal: 2,
-                            paddingVertical: 25
-                            // backgroundColor: themeContext.PRIMARY_COLOR,
                         }}
                     >
                         <MaterialIcons
@@ -178,15 +130,13 @@ const ChatInputComponent = () => {
                         underlayColor='transparent'
                         onPress={() => _fileUoloader()}
                         style={{
-                            height: 34,
-                            width: 34,
+                            height: 45,
+                            width: 37,
                             borderRadius: 17,
                             justifyContent: 'center',
                             alignItems: 'center',
                             // marginHorizontal: 1,
                             paddingHorizontal: 2,
-                            paddingVertical: 25
-                            // backgroundColor: themeContext.PRIMARY_COLOR,
                         }}
                     >
                         <Entypo

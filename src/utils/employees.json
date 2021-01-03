@@ -8,7 +8,7 @@
             "lastname": "Kuhic",
             "cellphone": 1234567899,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/elenadissi/128.jpg",
-            "createdAt": "23, 1, 2020"
+            "createdAt": "23/1/2020"
         },
         {
             "_id": 1689,
@@ -18,7 +18,7 @@
             "lastname": "Ledner",
             "cellphone": 1234567890,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/giancarlon/128.jpg",
-            "createdAt": "5, 3, 2020"
+            "createdAt": "5/3/2020"
         },
         {
             "_id": 2481,
@@ -28,7 +28,7 @@
             "lastname": "Kemmer",
             "cellphone": 1234567890,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/herbigt/128.jpg",
-            "createdAt": "10, 5, 2020"
+            "createdAt": "10/5/2020"
         },
         {
             "_id": 97707,
@@ -38,7 +38,7 @@
             "lastname": "Torphy",
             "cellphone": 1234567890,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josemarques/128.jpg",
-            "createdAt": "13, 1, 2020"
+            "createdAt": "13/1/2020"
         },
         {
             "_id": 46856,
@@ -48,7 +48,7 @@
             "lastname": "Russel",
             "cellphone": 1234567890,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/thibaut_re/128.jpg",
-            "createdAt": "15, 6, 2020"
+            "createdAt": "15/6/2020"
         },
         {
             "_id": 71554,
@@ -58,7 +58,7 @@
             "lastname": "Herzog",
             "cellphone": 1234567890,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/chris_frees/128.jpg",
-            "createdAt": "9, 2, 2020"
+            "createdAt": "9/2/2020"
         },
         {
             "_id": 36133,
@@ -68,7 +68,7 @@
             "lastname": "Kemmer",
             "cellphone": 1234567890,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/akmur/128.jpg",
-            "createdAt": "29, 5, 2020"
+            "createdAt": "29/5/2020"
         },
         {
             "_id": 49423,
@@ -78,7 +78,7 @@
             "lastname": "Lehner",
             "cellphone": 1234567890,
             "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/badlittleduck/128.jpg",
-            "createdAt": "12, 6, 2020"
+            "createdAt": "12/6/2020"
         },
         {
             "_id": 62779,
@@ -88,7 +88,7 @@
             "lastname": "Douglas",
             "cellphone": 1234567890,
             "avatar": "hhttps://s3.amazonaws.com/uifaces/faces/twitter/rodnylobos/128.jpg",
-            "createdAt": "8, 5, 2020"
+            "createdAt": "8/5/2020"
         },
         {
             "_id": 6441,
@@ -98,7 +98,7 @@
             "lastname": "Gislason",
             "cellphone": 1234567890,
             "avatar": "hhttps://s3.amazonaws.com/uifaces/faces/twitter/herbigt/128.jpg",
-            "createdAt": "18, 1, 2020"
+            "createdAt": "18/1/2020"
         }
     ]
 }

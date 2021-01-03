@@ -62,7 +62,10 @@ const GeneralHeadComponent = ({imagePath}) => {
 					size={13}
 					weight={Platform.OS === 'ios' ? '300' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
-					align='left'>
+					align='left'
+					style={{
+						marginTop: 7
+					}}>
 					{variables.COMPANYSLOGAN}
 				</ETASimpleText>
 			</ContentContainer>

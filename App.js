@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import { UIManager, useColorScheme, LogBox } from 'react-native'
 import { ThemeProvider } from 'styled-components'
-import { NavigationContainer } from '@react-navigation/native'
 import Navigation from '@components/commons/Navigation'
 import { lightTheme, darkTheme, navLightMode, navDarkMode } from '@utils/constants'
 import { enableScreens } from 'react-native-screens'
@@ -60,16 +59,10 @@ const App = () => {
 
   return (
     <Fragment>      
-      <ReduxProvider store={store}>
-        <NavigationContainer
-          // theme={colorSchema === 'dark' ? navDarkMode : navLightMode}
-          >
-            {/* <ThemeProvider theme={colorSchema === 'dark' ? darkTheme : lightTheme}> */}
-              <ToastProvider>
-                <Navigation />
-              </ToastProvider>
-            {/* </ThemeProvider> */}
-        </NavigationContainer>
+        <ReduxProvider store={store}>
+          <ToastProvider>
+            <Navigation />
+          </ToastProvider>
       </ReduxProvider>
     </Fragment>
   )

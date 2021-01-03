@@ -1,8 +1,9 @@
-import React, {useState, useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Formik} from 'formik'
+import React, { useState , useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Formik } from 'formik'
 import * as yup from 'yup'
-import {ETATextInputOutline, ETAButtonFilled, ETAErrorMessage} from '@etaui'
+import { ETATextInputOutline, ETAButtonFilled, ETAErrorMessage } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 // import { graphql, compose } from 'react-apollo';
 // import { connect } from 'react-redux';
 // import signupMutation from '../graphql/mutations/signup'
@@ -76,6 +77,7 @@ const validationSchema = yup.object().shape({
 const SignupForm = () => {
 	const themeContext = useContext(ThemeContext)
 	const [mysecureTextEntry] = useState(true)
+	const {  } = useTranslation()
 
 	return (
 		<Root>

@@ -7,6 +7,7 @@ import {useRoute} from '@react-navigation/native'
 import {Pointer} from '@commons/MapMaprkers'
 import SearchBoxComponent from './SearchBoxComponent'
 import UbicationDetailsComponent from './UbicationDetailsComponent'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 1;
@@ -21,6 +22,7 @@ const MapAddressesComponent = () => {
 	const [getLatitudeDelta] = useState(0.015)
 	const [getLongitudeDelta] = useState(0.0121)
 	const map = useRef(null)
+	const { new_address, choose_address } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -86,11 +88,11 @@ const MapAddressesComponent = () => {
 				currentPosition={() => _findCoordinates()}
 			/>
 			<UbicationDetailsComponent
-				headTitle={data ? data.headTitle : 'New address'}
+				headTitle={data ? data.headTitle : new_address.charAt(0).toUpperCase() + new_address.slice(1)}
 				details={
 					data
 						? data.details
-						: 'Select where would like we deliver you our products'
+						: choose_address.charAt(0).toUpperCase() + choose_address.slice(1)
 				}
 			/>
 		</Root>

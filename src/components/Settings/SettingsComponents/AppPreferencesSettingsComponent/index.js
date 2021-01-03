@@ -8,6 +8,7 @@ import { GET_DATA_REQUEST as GET_DATA_REQUEST_LANGUAGES } from '@redux/settings/
 import { GET_DATA_REQUEST as GET_DATA_REQUEST_CURRENCIES } from '@redux/settings/appsettings/currencies/actions'
 import LanguageModal from '@commons/LanguageModal'
 import CurrencyModal from '@commons/CurrencyModal'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.ScrollView`
 	flex: 1;
@@ -23,7 +24,7 @@ const SettingContainer = styled.View`
 	background-color: transparent;
 `
 const ItemContainer = styled.View`
-	padding: 0px 15px;
+	padding: 0px 15px 5px 15px;
 	background-color: transparent;
 `
 const SubtitleText = styled.View`
@@ -73,6 +74,16 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, ge
     const [ _switchItem, _setswitchItem ] = useState()
 	const [ isLanguageModalVisible, setisLanguageModalVisible ] = useState(false)
 	const [ isCurrencyModalVisible, setisCurrencyModalVisible ] = useState(false)
+	const { language,
+        language_text,
+        currency,
+        currency_text,
+        theme,
+        theme_text,
+        system_default,
+        light_theme,
+        dark_theme
+    } = useTranslation()
     
 	useEffect(() => {
         let isUnMounted = false
@@ -98,7 +109,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, ge
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        Language
+                        {language.charAt(0).toUpperCase() + language.slice(1)}
                     </ETASimpleText>
                     <SubtitleText>
                         <ETASimpleText
@@ -106,7 +117,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, ge
                             weight='300'
                             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
-                            English is language by default, but if you want you could change this option.
+                            {language_text.charAt(0).toUpperCase() + language_text.slice(1)}
                         </ETASimpleText>
                     </SubtitleText>
                     <ButtonModalContainer>
@@ -138,7 +149,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, ge
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        Currency
+                        {currency.charAt(0).toUpperCase() + currency.slice(1)}
                     </ETASimpleText>
                     <SubtitleText>
                         <ETASimpleText
@@ -146,7 +157,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, ge
                             weight='300'
                             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
-                            Currency that appears by default is dolar, but if you want you could change this option.
+                            {currency_text.charAt(0).toUpperCase() + currency_text.slice(1)}
                         </ETASimpleText>
                     </SubtitleText>
                     <ButtonModalContainer>
@@ -178,7 +189,7 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, ge
                         color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
                         align='left'
                         style={{ marginTop: 10, marginBottom: 1 }}>
-                        Theme
+                        {theme.charAt(0).toUpperCase() + theme.slice(1)}
                     </ETASimpleText>
                     <SubtitleText>
                         <ETASimpleText
@@ -186,14 +197,14 @@ const AppPreferencesSettingsComponent = ({ getDataRequest, datanotifications, ge
                             weight='300'
                             color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                             align='left'>
-                            Change the look of the app or let your smartphone theme choose for you.
+                            {theme_text.charAt(0).toUpperCase() + theme_text.slice(1)}
                         </ETASimpleText>
                     </SubtitleText>
                 </ItemContainer>
                 <ETAThemePicker 
-                    option1Text='System default' 
-                    option2Text='Light theme' 
-                    option3Text='Dark theme'
+                    option1Text={system_default.charAt(0).toUpperCase() + system_default.slice(1)} 
+                    option2Text={light_theme.charAt(0).toUpperCase() + light_theme.slice(1)}
+                    option3Text={dark_theme.charAt(0).toUpperCase() + dark_theme.slice(1)}
                     chosen={0}
                     activated={switchItem}
                     color={

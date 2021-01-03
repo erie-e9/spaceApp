@@ -14,7 +14,8 @@ import { ChatNavigator, ChatItemNavigator, NewChatNavigator } from './ChatNaviga
 import { CartNavigator, CheckoutNavigator } from './CartNavigator'
 import { ProfileNavigator, SettingsNavigator } from './SettingsNavigator'
 import { WelcomeNavigator, AuthNavigator } from './AuthNavigator'
-import IconWithBadge from './IconBadge'
+import BadgeCart from '../../badgeCounters/badgeCart'
+import BadgeChat from '../../badgeCounters/badgeChat'
 // import AnalyticsScreen from '@screens/AnalyticsScreen';
 import { connect } from 'react-redux'
 
@@ -92,15 +93,19 @@ const ShopTabNavigator = ({ userToken }) => {
 						)
 					} else if (route.name === 'Chats') {
 						return (
-							<Ionicons
-								name={
-									focused
-										? 'ios-chatbubbles'
-										: 'ios-chatbubbles'
-								}
-								size={size - 2}
-								color={color}
-							/>
+							<BadgeChat
+								size={size + 1}
+							>
+								<Ionicons
+									name={
+										focused
+											? 'ios-chatbubbles'
+											: 'ios-chatbubbles'
+									}
+									size={size - 2}
+									color={color}
+								/>
+							</BadgeChat>
 						)
 					} else if (route.name === 'ItemGenerator') {
 						return (
@@ -112,10 +117,8 @@ const ShopTabNavigator = ({ userToken }) => {
 						)
 					} else if (route.name === 'Cart') {
 						return (
-							<IconWithBadge
-								badgeCount={1}
+							<BadgeCart
 								size={size + 1}
-								color={color}
 							>
 								<Ionicons 
 									name={
@@ -125,7 +128,7 @@ const ShopTabNavigator = ({ userToken }) => {
 									} 
 									size={size + 1} 
 									color={color} />
-							</IconWithBadge>
+							</BadgeCart>
 						)
 					} else if (route.name === 'Favs') {
 						return (

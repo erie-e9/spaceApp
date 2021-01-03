@@ -95,17 +95,12 @@ const DiscountContainer = styled.View`
 	background-color: transparent;
 `
 const PercentContainer = styled.View`
-	justify-content: center;
-	align-items: center;
-	z-index: 100;
-	border-width: 0px;
-	padding-horizontal: 5px;
-	padding-vertical: 1px;
-	border-color: white;
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
+	justify-content: flex-end;
+	min-height: 13px;
+	min-width: 15px;
+	padding-horizontal: 4px;
+	border-radius: 4px;
+	margin-vertical: 1px;
 	margin-left: 5px;
 	background-color: ${(props) => props.theme.FOURTH_BACKGROUND_COLOR_LIGHT};
 `

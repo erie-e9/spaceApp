@@ -209,7 +209,7 @@ const DiscountContainer = styled.View`
 const PercentContainer = styled.View`
 	justify-content: flex-end;
 	min-height: 13px;
-	min-width: 30px;
+	min-width: 15px;
 	padding-horizontal: 4px;
 	border-radius: 4px;
 	margin-vertical: 1px;
@@ -373,7 +373,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
     const [ tooglenote, settooglenote ] = useState(false)
 	const delayValue = 1500
 	const heart = useRef(false)
-	const { details } = useTranslation()
+	const { details, options_chosen, calories, reviews, nutritional_info, information } = useTranslation()
 	let languageCode = RNLocalize.getLocales()
 	
 	useEffect(() => {
@@ -756,8 +756,8 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 													align='center'>
 													{
 														languageCode[0].languageCode === 'en'
-															?	selectedItem.en.status
-															:	selectedItem.es.status
+															?	selectedItem.en.status.charAt(0).toUpperCase() + selectedItem.en.status.slice(1)
+															:	selectedItem.es.status.charAt(0).toUpperCase() + selectedItem.es.status.slice(1)
 													}
 												</ETASimpleText>
 											</StatusContainer>
@@ -896,7 +896,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 										selectedItem.en.status !== 'custom'
 										?	<ItemInfoContainer>
 												<ItemInfo
-													onPress={() => _onShowModal(1, 'Reviews')}
+													onPress={() => _onShowModal(1, reviews.charAt(0).toUpperCase() + reviews.slice(1))}
 													style={{ borderWidth: colorScheme === 'dark' ? 0.5 : 0.75}}
 												>
 													<ETAStarRating
@@ -906,7 +906,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 													/>
 												</ItemInfo>
 												<ItemInfo
-													onPress={() => _onShowModal(2, 'Nutritional info')}
+													onPress={() => _onShowModal(2, nutritional_info.charAt(0).toUpperCase() + nutritional_info.slice(1))}
 													style={{ borderWidth: colorScheme === 'dark' ? 0.5 : 0.75}}
 												>
 													<ETASimpleText
@@ -922,11 +922,11 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 														}
 														align='left'>
 														{selectedItem.calories}{' '}
-														calories
+														{calories.charAt(0).toUpperCase() + calories.slice(1)}
 													</ETASimpleText>
 												</ItemInfo>
 												<ItemInfo
-													onPress={() => _onShowModal(3, 'Information')}
+													onPress={() => _onShowModal(3, information.charAt(0).toUpperCase() + information.slice(1))}
 													style={{ borderWidth: colorScheme === 'dark' ? 0.5 : 0.75}}
 												>
 													<MaterialCommunityIcons 
@@ -963,7 +963,7 @@ const GetOneItemComponent = memo(({ addToCart, removeFromCart, cartdata, getData
 													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 													align='center'
 													>
-													Flavors chosen: {' '}
+													{options_chosen.charAt(0).toUpperCase() + options_chosen.slice(1)} {' '}
 												</ETASimpleText>
 												<SumamryRowFlavor style={{ backgroundColor: '#93D932' }}/>
 												<SumamryRowFlavor style={{ backgroundColor: '#EE569E' }}/>

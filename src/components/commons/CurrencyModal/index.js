@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETASimpleText, ETAButtonFilled, ETARadio } from '@etaui'
 import Item from './item'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	min-height: 10px;
@@ -34,6 +35,7 @@ const CurrencyModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
     const themeContext = useContext(ThemeContext)
 	const [ items, setitems ] = useState(null)
 	const [ selected, setselected ] = useState(true)
+	const { choose_currency, no_currencies, apply } = useTranslation()
     
     useEffect(() => {
         setitems(data)
@@ -46,7 +48,7 @@ const CurrencyModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
     return(
         <Root>
             <ETAFancyModal
-                title={`Choose currency`}
+                title={choose_currency.charAt(0).toUpperCase() + choose_currency.slice(1)}
                 isVisible={isVisible}
                 onSwipeComplete={onSwipeComplete}
                 closeModal={closeModal}
@@ -80,7 +82,7 @@ const CurrencyModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
                                                 themeContext.PRIMARY_TEXT_COLOR_LIGHT
                                             }
                                             align='left'>
-                                            There're no languages availables.
+                                            {no_currencies.charAt(0).toUpperCase() + no_currencies.slice(1)}
                                         </ETASimpleText>
                                     </EmptyListContainer>
                                 )}
@@ -90,7 +92,7 @@ const CurrencyModal = memo(({ isVisible, data, onSwipeComplete, closeModal }) =>
                     }
                     <ButtonContainer>
                         <ETAButtonFilled
-                            title='Apply'
+                            title={apply.charAt(0).toUpperCase() + apply.slice(1)}
                             onPress={() => _onPressItem()}
                             colorButton={
                                 themeContext.SECONDARY_BACKGROUND_COLOR

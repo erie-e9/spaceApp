@@ -13,11 +13,11 @@ const Container = styled.View`
     justify-content: center;
 `
 const CardContainer = styled.View`
-    min-height: 10px;
-    width: ${width - 30}px;
+    min-height: 160px;
+    width: ${width - 50}px;
     justify-content: flex-start;
     align-items: center;
-    padding: 15px 15px;
+    padding: 20px 15px 0px 15px;
     border-radius: 15px;
     border-color: rgba(0, 0, 0, 0.1);
     background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
@@ -58,7 +58,7 @@ const ChildrenContainer = styled.View`
     width: 100%;
     justify-content: center;
     align-items: center;
-	padding-vertical: 10px;
+	padding-vertical: 5px;
     background-color: transparent;
 `
 

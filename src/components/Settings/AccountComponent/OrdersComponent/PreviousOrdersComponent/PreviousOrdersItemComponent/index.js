@@ -53,9 +53,9 @@ const IconContainer = styled.View`
 	background-color: transparent;
 `
 
-const PreviousOrdersItemComponent = ({ item }) => {
+const PreviousOrdersItemComponent = ({ order }) => {
     const themeContext = useContext(ThemeContext)
-    const { delivered_order, canceled_order, items } = useTranslation()
+    const { delivered_order, canceled_order, items, item } = useTranslation()
 
 
     return (
@@ -64,9 +64,9 @@ const PreviousOrdersItemComponent = ({ item }) => {
                 <ItemHeadContainer>
                     <StatusContainer>
                         <Ionicons
-                            name={item.status === 1 ? 'md-checkmark-circle-outline' : 'md-close-circle-outline'}
+                            name={order.status === 1 ? 'md-checkmark-circle-outline' : 'md-close-circle-outline'}
                             size={18}
-                            color={item.status === 1 ? themeContext.SUCCESS_COLOR : themeContext.FAIL_COLOR}
+                            color={order.status === 1 ? themeContext.SUCCESS_COLOR : themeContext.FAIL_COLOR}
                         />
                         <ETASimpleText
                             size={13}
@@ -84,7 +84,7 @@ const PreviousOrdersItemComponent = ({ item }) => {
                                 marginHorizontal: 5
                             }}>
                             {
-                                item.status === 1
+                                order.status === 1
                                 ? `${delivered_order.charAt(0).toUpperCase() + delivered_order.slice(1)}`
                                 : `${canceled_order.charAt(0).toUpperCase() + canceled_order.slice(1)}`
                             }
@@ -101,7 +101,7 @@ const PreviousOrdersItemComponent = ({ item }) => {
                                 themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                             }
                             align='left'>
-                            {item._id}
+                            {order._id}
                         </ETASimpleText>
                     </StatusContainer>
                     <ETASimpleText
@@ -115,7 +115,7 @@ const PreviousOrdersItemComponent = ({ item }) => {
                             themeContext.PRIMARY_TEXT_COLOR_LIGHT
                         }
                         align='left'>
-                        {item.orderdate}
+                        {order.orderdate}
                     </ETASimpleText>
                 </ItemHeadContainer>
                 <ItemBodyContainer>
@@ -131,7 +131,13 @@ const PreviousOrdersItemComponent = ({ item }) => {
                             themeContext.PRIMARY_TEXT_COLOR_LIGHT
                         }
                         align='left'>
-                        {item.items.length} {items}
+                        {order.items.length} {' '}
+                        {order.items.length === 0
+                            ? `${items}`
+                            : order.items.length === 1
+                            ? `${item}`
+                            : `${items}`
+                        }
                     </ETASimpleText>
                     <IconContainer>
                         <Feather

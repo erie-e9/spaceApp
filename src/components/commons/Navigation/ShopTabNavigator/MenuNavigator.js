@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@icons'
+import { FontAwesome, Ionicons } from '@icons'
 import { ETASearchBar } from '@etaui'
 import { variables } from '@utils/constants'
 import MenuScreen from '@screens/Menu/MenuScreen'
@@ -73,24 +73,6 @@ const MenuNavigator = () => {
 				options={{
 					headerTitle: '',
 					headerShown: true,
-					// headerLeft: () => (
-					// 	<Header>
-					// 		<ETASimpleText
-					// 			size={22}
-					// 			weight={
-					// 				Platform.OS === 'ios'
-					// 					? 'bold'
-					// 					: 'bold'
-					// 			}
-					// 			color={
-					// 				themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-					// 			}
-					// 			align='left'>
-					// 			{variables.COMPANYNAME}
-					// 		</ETASimpleText>
-					// 	</Header>
-					// ),
-					// headerRight: () => <ETASearchBar />,
 					header: () =>  <ETASearchBar 
 										leftContent={variables.COMPANYNAME} 
 										leftContentColor={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR} 

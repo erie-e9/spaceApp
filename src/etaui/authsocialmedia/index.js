@@ -6,9 +6,9 @@ import {
 	statusCodes,
 } from '@react-native-community/google-signin'
 import { ETASimpleText } from '@etaui'
+import { useTranslation } from '@etaui/translate'
   
 const Root = styled.View`
-    flex: 1;
     width: 100%;
 	flex-direction: column;
 	align-items: center;
@@ -16,16 +16,17 @@ const Root = styled.View`
 `
 const TextContainer = styled.View`
     width: 100%;
-    padding: 20px 0px 10px 20px;
+    margin: 25px 0px 10px 0px;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: flex-start;
+	align-items: center;
 	background-color: transparent;
 `
 
   const AuthSocialmedia = memo(() => {
 	const themeContext = useContext(ThemeContext)
-    
+    const { or_use_social } = useTranslation()
+
 	GoogleSignin.configure({
 		scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
 		webClientId: '<FROM DEVELOPER CONSOLE>', // client ID of type WEB for your server (needed to verify user ID and offline access)
@@ -50,16 +51,16 @@ const TextContainer = styled.View`
             <TextContainer>
                 <ETASimpleText
                     size={15}
-                    weight={Platform.OS === 'ios' ? '700' : '800'}
+                    weight={Platform.OS === 'ios' ? '400' : '400'}
                     color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                     align='left'>
-                    Continue with
+                    {or_use_social.charAt(0).toUpperCase() + or_use_social.slice(1)}
                 </ETASimpleText>
             </TextContainer>
             <GoogleSigninButton
-                style={{ width: 255, height: 48, marginVertical: 20 }}
+                style={{ width: 255, height: 48, marginVertical: 0 }}
                 size={GoogleSigninButton.Size.Wide}
-                color={GoogleSigninButton.Color.Dark}
+                color={GoogleSigninButton.Color.Light}
                 onPress={_signIn}
                 disabled={false} 
             />

@@ -1,6 +1,6 @@
-import React, { useState, useContext, useRef, memo } from 'react'
+import React, { useState, useEffect, useContext, useRef, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
-import { TouchableWithoutFeedback, useColorScheme, Animated, Easing, Platform, Dimensions } from 'react-native'
+import { TouchableWithoutFeedback, useColorScheme, Animated, Easing, Platform, Dimensions, PanResponder } from 'react-native'
 import { ETASimpleText } from '@etaui'
 import { Feather, MaterialCommunityIcons } from '@icons'
 import { connect } from 'react-redux'
@@ -30,7 +30,7 @@ const ThemePreviewContainer = styled.View`
 `
 const ThemePreview = styled.TouchableHighlight`
     min-height: ${(props) => props.chosen ? heightPreviewTheme : heightPreviewTheme - 20}px;
-    min-width: ${width / 4}px;
+    min-width: ${width / 4.1}px;
     justify-content: center;
 	align-items: center;
 	margin: 0px 12px;
@@ -49,7 +49,7 @@ const ThemePreview = styled.TouchableHighlight`
 const ThemePreviewImage = styled.Image`
 	width: 100%;
 	height: 100%;
-	border-radius: 30px;
+	border-radius: 10px;
 `;
 const ButtonsContainer = styled.View`
 	flex: 0.2;
@@ -98,13 +98,155 @@ const mapDispatchProps = (dispatch, props) => ({
 	}
 })
 
-const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, option3Text, switchTheme }) => {
+const ETAThemePicker = memo(({ chosen, activated, option1Text, option2Text, option3Text, switchTheme, disableScroll, onStatusChanged, disableSwitch }) => {
 	const themeContext = useContext(ThemeContext)
 	const colorSchema = useColorScheme()
 	const animation = useRef(new Animated.Value(activated ? 1 : 0)).current
+	const position = useRef(new Animated.Value(0))
 	const [ toggled, setToggled ] = useState(!!activated)
 	const [ themeChosen, setthemeChosen ] = useState(chosen ? chosen : 0)
 
+	const [ currentStatus, setcurrentStatus ] = useState(0)
+	const [ posValue, setposValue ] = useState(0)
+	const [ selectedPosition, setselectedPosition ] = useState(0)
+	const [ duration ] = useState(100)
+	const [ mainWidth ] = useState(width - 30)
+	const [ switcherWidth ] = useState(width / 2.7)
+	const [ thresholdDistance ] = useState(width - 8 - width / 2.4)
+	const [ isParentScrollDisabled ] = useState(false) 
+
+	useEffect(() => {
+		let _panResponder = PanResponder.create({
+			onStartShouldSetPanResponder: () => true,
+			onStartShouldSetPanResponderCapture: () => true,
+			onMoveShouldSetPanResponder: () => true,
+			onMoveShouldSetPanResponderCapture: () => true,
+	  
+			onPanResponderGrant: () => {
+			  // disable parent scroll if slider is inside a scrollview
+			  if (!isParentScrollDisabled) {
+				disableScroll(false);
+				isParentScrollDisabled = true;
+			  }
+			},
+	  
+			onPanResponderMove: (evt, gestureState) => {
+			  if (!disableSwitch) {
+				let finalValue = gestureState.dx + posValue;
+				if (finalValue >= 0 && finalValue <= thresholdDistance)
+				  position.setValue(posValue + gestureState.dx);
+			  }
+			},
+	  
+			onPanResponderTerminationRequest: () => true,
+	  
+			onPanResponderRelease: (evt, gestureState) => {
+			  if (!disableSwitch) {
+				let finalValue = gestureState.dx + posValue;
+				isParentScrollDisabled = false;
+				disableScroll(true);
+				if (gestureState.dx > 0) {
+				  if (finalValue >= 0 && finalValue <= 30) {
+					notStartedSelected();
+				  } else if (finalValue >= 30 && finalValue <= 121) {
+					inProgressSelected();
+				  } else if (finalValue >= 121 && finalValue <= 280) {
+					if (gestureState.dx > 0) {
+					  completeSelected();
+					} else {
+					  inProgressSelected();
+					}
+				  }
+				} else {
+				  if (finalValue >= 78 && finalValue <= 175) {
+					inProgressSelected();
+				  } else if (finalValue >= -100 && finalValue <= 78) {
+					notStartedSelected();
+				  } else {
+					completeSelected();
+				  }
+				}
+			  }
+			},
+	  
+			onPanResponderTerminate: () => {},
+			onShouldBlockNativeResponder: () => {
+			  // Returns whether this component should block native components from becoming the JS
+			  // responder. Returns true by default. Is currently only supported on android.
+			  return true;
+			}
+		  });
+		  moveInitialState();
+	}, [])
+
+	const notStartedSelected = () => {
+		if (disableSwitch) return;
+		Animated.timing(position, {
+		  toValue: Platform.OS === 'ios' ? -2 : 0,
+		  duration: duration
+		}).start();
+		setTimeout(() => {
+		setposValue(Platform.OS === 'ios' ? -2 : 0)
+		setselectedPosition(0)
+		}, 100);
+		onStatusChanged('Open');
+	};
+
+	const inProgressSelected = () => {
+		if (disableSwitch) return;
+		Animated.timing(position, {
+			toValue: mainWidth / 2 - switcherWidth / 2,
+			duration: duration
+		}).start();
+		setTimeout(() => {
+			setposValue(mainWidth / 2 - switcherWidth / 2)
+			setselectedPosition(1)
+		}, 100);
+		onStatusChanged('In Progress');
+	};
+
+	const completeSelected = () => {
+		if (disableSwitch) return;
+		Animated.timing(position, {
+			toValue:
+			Platform.OS === 'ios'
+				? mainWidth - switcherWidth
+				: mainWidth - switcherWidth - 2,
+			duration: duration
+		}).start();
+		setTimeout(() => {
+			setposValue(Platform.OS === 'ios' ? mainWidth - switcherWidth : mainWidth - switcherWidth - 2,)
+			setselectedPosition(2)
+		}, 100);
+		onStatusChanged('Complete');
+	};
+
+	const getStatus = () => {
+		switch (selectedPosition) {
+			case 0:
+			return 'Open';
+			case 1:
+			return 'In Progress';
+			case 2:
+			return 'Complete';
+		}
+	};
+
+	const moveInitialState = () => {
+		switch (currentStatus) {
+			case 'Open':
+			notStartedSelected();
+			break;
+			case 'In Progress':
+			inProgressSelected();
+			break;
+			case 'Complete':
+			completeSelected();
+			break;
+		}
+	};
+	
+	//
 	const _switchAnimated = async (themeOption) => {
 		await setthemeChosen(themeOption)
 		await switchTheme(themeOption)

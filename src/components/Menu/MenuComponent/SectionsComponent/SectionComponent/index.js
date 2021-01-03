@@ -5,6 +5,7 @@ import {ETASimpleText} from '@etaui'
 import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/sections/actions'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 1;
@@ -35,6 +36,7 @@ const SectionComponent = ({ getDataRequest, data }) => {
 	const [ items, setitems ] = useState([])
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	const [ opacity ] = useState(new Animated.Value(0))
+	const { list_empty } = useTranslation()
 	let delayValue = 700
 
 	useEffect(() => {
@@ -89,7 +91,7 @@ const SectionComponent = ({ getDataRequest, data }) => {
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
 						}
 						align='left'>
-						Empty list
+						{list_empty.charAt(0).toUpperCase() + list_empty.slice(1)}
 					</ETASimpleText>
 				)}
 				// ListFooterComponent={() => {

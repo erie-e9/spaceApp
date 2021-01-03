@@ -13,6 +13,7 @@ import {
 import { currencySeparator } from '@functions'
 import NoteProduct from '@commons/NoteProduct'
 import * as RNLocalize from 'react-native-localize'
+import { useTranslation } from '@etaui/translate'
 
 const { width } = Dimensions.get('window')
 
@@ -244,6 +245,7 @@ const CartItemComponent = ({
 	const [addedCounter, setaddedCounter] = useState()
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
 	let languageCode = RNLocalize.getLocales()
+	const { unit_price } = useTranslation()
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -413,7 +415,7 @@ const CartItemComponent = ({
 												100
 											).toFixed(2),
 										)}{' '}
-										unit price
+										{unit_price}
 									</ETASimpleText>
 								</UnitPriceContainer>
 								{/* {

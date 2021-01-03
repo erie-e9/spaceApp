@@ -1,10 +1,11 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
-import {useNavigation} from '@react-navigation/native'
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete'
-import {FontAwesome} from '@icons'
-import {ETALoader} from '@etaui'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+import { FontAwesome } from '@icons'
+import { ETALoader } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const SearchBox = styled.View`
 	position: absolute;
@@ -16,8 +17,8 @@ const SearchBox = styled.View`
 	align-self: center;
 	align-items: flex-start;
 	align-content: center;
-	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 	elevation: 1;
+	background-color: ${(props) => props.theme.THIRD_BACKGROUND_COLOR_LIGHT};
 `
 const HeaderLeft = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -38,6 +39,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const GOOGLE_PLACES_API_KEY = 'AIzaSyB1UnzAe0p8Ls2feDF75SD8upijaf4_a1U'
+	const { search_address } = useTranslation()
 
 	return (
 		<SearchBox
@@ -58,10 +60,8 @@ const SearchBoxComponent = ({currentPosition}) => {
 				/>
 			</HeaderLeft>
 			<GooglePlacesAutocomplete
-				placeholder='Search address'
-				placeholderTextColor={
-					themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-				}
+				placeholder={search_address.charAt(0).toUpperCase() + search_address.slice(1)}
+				placeholderTextColor='#ff0000'
 				minLength={2} // minimum length of text to search
 				autoFocus={false}
 				fetchDetails

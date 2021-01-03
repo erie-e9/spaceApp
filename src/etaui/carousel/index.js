@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Animated, Dimensions } from 'react-native'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { Animated, Dimensions, View } from 'react-native'
 import styled from 'styled-components'
 import carouselData from '@utils/carousel.json'
 import { useNavigation } from '@react-navigation/native'
@@ -15,10 +15,11 @@ const Root = styled.View`
 `
 const CarouselList = styled.FlatList``
 const DotCarousel = styled.View`
-	flex-direction: row;
-	justify-content: center;
+	flexDirection: row;
 	position: absolute;
-	bottom: 5px;
+	bottom: 13px;
+	width: 100%;
+	justifyContent: center;
 `
 const Touchable = styled.TouchableWithoutFeedback`
 	height: 100%;
@@ -28,17 +29,22 @@ const TouchableWithoutFeedbackContainer = styled.View``
 
 const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 	const navigation = useNavigation()
-	const [dataList, setdataList] = useState([])
-	const [postsLenght] = useState(posts.length)
+	const [ dataList, setdataList ] = useState([])
+	const [ postsLength ] = useState(posts.length)
 	const scrollX = new Animated.Value(0)
 	const position = Animated.divide(scrollX, width)
 	const flatList = useRef(0)
 	let timerID
-
+	const [index, setIndex] = useState(0);
+	const indexRef = useRef(index);
+	indexRef.current = index;
+	let scrollValue = 0
+	let scrolled = 0
+  
 	useEffect(() => {
 		let isUnMounted = false
 		setdataList(carouselData.data)
-		if (postsLenght) {
+		if (postsLength) {
 			infiniteScroll(dataList)
 		} else {
 			stopAutoPlay()
@@ -50,20 +56,18 @@ const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 	}, [posts])
 
 	const infiniteScroll = () => {
-		let scrollValue = 0
-		let scrolled = 0
-
 		timerID = setInterval(
 			() => {
 				scrolled++
-				if (scrolled < postsLenght) {
+				if (scrolled < postsLength) {
 					scrollValue = scrollValue + 1
+				// console.log(scrollValue)
 				} else {
 					scrollValue = 0
 					scrolled = 0
 				}
-
-				flatList.current?.scrollToIndex({
+				
+				flatList.current.scrollToIndex({
 					animated: true,
 					index: scrollValue ? scrollValue : 0,
 				})
@@ -80,7 +84,6 @@ const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 	}
 
 	const _onPressPromo = (selecteditem) => {
-		console.log('selecteditem ', selecteditem)
 		navigation.navigate('SubMenuNavigator', {
 			screen: 'PromotionScreen',
 			params: {
@@ -90,6 +93,66 @@ const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 		})
 	}
 
+	const onScroll = useCallback((event) => {
+		const slideSize = event.nativeEvent.layoutMeasurement.width;
+		const index = event.nativeEvent.contentOffset.x / slideSize;
+		const roundIndex = Math.round(index);
+	
+		const distance = Math.abs(roundIndex - index);
+	
+		// Prevent one pixel triggering setIndex in the middle
+		// of the transition. With this we have to scroll a bit
+		// more to trigger the index change.
+		const isNoMansLand = 0.4 < distance;
+	
+		if (roundIndex !== indexRef.current && !isNoMansLand) {
+		  setIndex(roundIndex);
+		  console.log(roundIndex, ' ewe')
+		}
+	  }, []);
+
+	const flatListOptimizationProps = {
+		initialNumToRender: 0,
+		maxToRenderPerBatch: 1,
+		removeClippedSubviews: true,
+		scrollEventThrottle: 16,
+		windowSize: 2,
+		getItemLayout: useCallback(
+		  (_, index) => ({
+			index,
+			length: width,
+			offset: index * width,
+		  }),
+		  []
+		),
+	}
+
+	const Pagination = ({ index }) => {
+		return (
+		  <DotCarousel pointerEvents='none'>
+			{posts.map((_, i) => {
+			  return (
+				<View
+				  key={i}
+				  style={[
+					{
+						width: 8,
+						height: 8,
+						borderRadius: 4,
+						marginHorizontal: 2,
+						backgroundColor: '#595959'
+					},
+					index === i
+					  ? { opacity: 1 }
+					  : { opacity: 0.5 }
+				  ]}
+				/>
+			  );
+			})}
+		  </DotCarousel>
+		);
+	}
+
 	return (
 		<Root sizeHeight={sizeHeight}>
 			{dataList && dataList.length ? (
@@ -97,28 +160,16 @@ const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 					<CarouselList
 						ref={flatList}
 						data={posts}
+						onContentSizeChange={() => flatList?.current?.scrollToItem({ animated: true, item: 0})}
 						keyExtractor={(item) => item._id.toString()}
 						horizontal
 						pagingEnabled
 						snapToAlignment='center'
-						scrollEventThrottle={16}
 						decelerationRate='fast'
 						showsHorizontalScrollIndicator={false}
-						onScroll={Animated.event(
-							[
-								{
-									nativeEvent: {
-										contentOffset: {
-											x: scrollX,
-										},
-									},
-								},
-							],
-							{
-								useNativeDriver: !true,
-								// isInteraction: false
-							},
-						)}
+						bounces={false}
+						{...flatListOptimizationProps}
+						onScroll={onScroll}
 						renderItem={({item}) => (
 							<Touchable
 								onPress={() =>
@@ -134,31 +185,7 @@ const ETACarousel = ({posts, data, autoplay, time,sizeHeight}) => {
 							</Touchable>
 						)}
 					/>
-					<DotCarousel>
-						{dataList.map((_, i) => {
-							const opacity = position.interpolate({
-								inputRange: [i - 1, i, i + 1],
-								outputRange: [0.3, 1, 0.3],
-								extrapolate: 'clamp',
-							})
-
-							return (
-								<Animated.View
-									key={i}
-									style={{
-										opacity,
-										width: 7,
-										height: 7,
-										borderRadius: 3.5,
-										backgroundColor:
-											'#595959',
-										margin: 5,
-										bottom: 5,
-									}}
-								/>
-							)
-						})}
-					</DotCarousel>
+					<Pagination index={index}></Pagination>
 				</>
 			) : null}
 		</Root>

@@ -1,7 +1,7 @@
-import React, {useContext} from 'react'
-import {Platform} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETASimpleText} from '@etaui'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
+import { ETASimpleText } from '@etaui'
 
 const Card = styled.View`
 	flex-direction: row;

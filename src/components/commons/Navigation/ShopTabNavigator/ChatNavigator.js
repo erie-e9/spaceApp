@@ -14,7 +14,8 @@ import NewChatScreen from '@screens/Chat/NewChatScreen'
 import ContactProfileScreen from '@screens/Chat/ContactProfileScreen'
 import { ETASearchBar, ETASimpleText } from '@etaui'
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element'
-import IconWithBadge from './IconBadge'
+import BadgeChatClients from '../../badgeCounters/badgeChatClients'
+import BadgeChatEmployees from '../../badgeCounters/badgeChatEmployees'
 import { useTranslation } from '@etaui/translate'
 
 const HeaderLeft = styled.TouchableOpacity.attrs({
@@ -98,24 +99,26 @@ const TopNavigatorChat = () => {
 				options={{
 					tabBarLabel: 'Clients',
 					tabBarIcon: ({ focused }) => (
-							<IconWithBadge
+						<>
+							<BadgeChatClients
 								badgeCount={1}
 								size={21}
 								color='red'
 								>
-									<ETASimpleText
-										size={12}
-										weight={
-											Platform.OS === 'ios' ? '400' : '300'
-										}
-										color={ focused
-											? themeContext.PRIMARY_COLOR
-											: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
-										}
-										align='left'>
-										{clients.charAt(0).toUpperCase() + clients.slice(1)} {'  '}
-									</ETASimpleText>
-								</IconWithBadge>
+								<ETASimpleText
+									size={12}
+									weight={
+										Platform.OS === 'ios' ? '400' : '300'
+									}
+									color={ focused
+										? themeContext.PRIMARY_COLOR
+										: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
+									}
+									align='left'>
+									{clients.charAt(0).toUpperCase() + clients.slice(1)} {'  '}
+								</ETASimpleText>
+							</BadgeChatClients>
+						</>
 						)
 				}}
 			/>
@@ -125,24 +128,24 @@ const TopNavigatorChat = () => {
 				options={{
 					tabBarLabel: 'Employees',
 					tabBarIcon: ({ focused }) => (
-							<IconWithBadge
+							<BadgeChatEmployees
 								badgeCount={1}
 								size={21}
 								color={'white'}
 								>
-									<ETASimpleText
-										size={12}
-										weight={
-											Platform.OS === 'ios' ? '400' : '300'
-										}
-										color={ focused
-											? themeContext.PRIMARY_COLOR
-											: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
-										}
-										align='left'>
-										{employees.charAt(0).toUpperCase() + employees.slice(1)} {'  '}
-									</ETASimpleText>
-								</IconWithBadge>
+								<ETASimpleText
+									size={12}
+									weight={
+										Platform.OS === 'ios' ? '400' : '300'
+									}
+									color={ focused
+										? themeContext.PRIMARY_COLOR
+										: themeContext.SECONDARY_TEXT_BACKGROUND_COLOR_LIGHT
+									}
+									align='left'>
+									{employees.charAt(0).toUpperCase() + employees.slice(1)} {'  '}
+								</ETASimpleText>
+							</BadgeChatEmployees>
 						)
 				}}
 			/>

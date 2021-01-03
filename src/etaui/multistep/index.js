@@ -2,7 +2,7 @@
 import React, { useState, memo } from 'react'
 import styled from 'styled-components/native'
 import Step from './step'
-import ETAStepperPoint from './points'
+import Points from './points'
 
 const Root = styled.View`
     flex: 1;
@@ -58,6 +58,7 @@ const ETAMultiStep = memo(({ children, initialValues, prevText, nextText, finish
     return (
         // <MultiStepContext.Provider value={{ index, setindex, itemslength }}>
             <Root>
+                {/* <Points props={children.length}/> */}
                 {
                     React.Children.map(children, (element, i) => {
                         if (i === index) {
@@ -85,20 +86,21 @@ const ETAMultiStep = memo(({ children, initialValues, prevText, nextText, finish
     );
 })
 
-const Points = (itemsLength) => {
-    for (let index = 0; index < itemsLength; index++) {
-        return (
-            <ETAStepperPoint 
-                onChange={() => console.log('ewe')} 
-                activated={true} 
-                size={10}  
-                color='transparent' 
-                direction='row' 
-            />
-        )
-    }
-}
+// const Points = (itemsLength) => {
+//     for (let index = 0; index < itemsLength; index++) {
+//         return (
+//             <ETAStepperPoint 
+//                 onChange={() => console.log('ewe')} 
+//                 activated={true} 
+//                 size={10}  
+//                 color='transparent' 
+//                 direction='row' 
+//             />
+//         )
+//     }
+// }
 
+// ETAMultiStep.Points = Points
 ETAMultiStep.Step = Step
 
 export default ETAMultiStep

@@ -3,6 +3,8 @@ import { Platform, Dimensions } from 'react-native'
 import styled, { ThemeContext } from 'styled-components'
 import { ETASimpleText } from '@etaui'
 import LinearGradient from 'react-native-linear-gradient'
+import { useTranslation } from '@etaui/translate'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 
@@ -33,7 +35,8 @@ const NewContainer = styled.View`
 	position: absolute;
 	z-index: 100;
 	height: 15px;
-	width: 30px;
+	min-width: 30px;
+	padding-horizontal: 2px;
 	bottom: 20px;
 	left: 8px;
 	background-color: ${(props) => props.theme.PRIMARY_COLOR};
@@ -48,6 +51,8 @@ const GradientContainer = styled.View`
 
 const CategoryItemComponent = ({item}) => {
 	const themeContext = useContext(ThemeContext)
+	const { isnew } = useTranslation()
+	let languageCode = RNLocalize.getLocales()
 
 	return (
 		<>
@@ -75,7 +80,7 @@ const CategoryItemComponent = ({item}) => {
 							// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 							color='white'
 							align='center'>
-							new
+							{isnew.charAt(0).toUpperCase() + isnew.slice(1)}
 						</ETASimpleText>
 					</NewContainer>
 				) : null}
@@ -98,7 +103,10 @@ const CategoryItemComponent = ({item}) => {
 						},
 						textShadowRadius: 3,
 					}}>
-					{item.name}
+					{languageCode[0].languageCode === 'en' 
+						?	item.name
+						:	item.nombre
+					}
 				</ETASimpleText>
 			</Item>
 		</>

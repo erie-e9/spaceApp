@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { GET_DATA_REQUEST_REVIEWS } from '@redux/menu/getoneItem/actions'
 
 const Root = styled.View`
-	height: 350px;
+	min-height: 350px;
     width: 100%;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -38,7 +38,7 @@ const ContentReviewContainer = styled.View`
 	width: 100%;
 	flex-direction: column;
 	justify-content: center;
-	padding-bottom: 5px;
+	padding-bottom: 2px;
 	padding-horizontal: 1px;
 	background-color: transparent;
 `

@@ -4,6 +4,7 @@ import {Platform} from 'react-native'
 import {useRoute} from '@react-navigation/native'
 import {ETASimpleText, ETAButtonOutline, ETAButtonFilled} from '@etaui'
 import Card from './Card'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 1;
@@ -21,7 +22,19 @@ const DataContainer = styled.View`
 const HeadGetOnePaymentMethodComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const route = useRoute()
-	const {item} = route.params
+	const { item } = route.params
+	const { 
+		set_default,
+		remove,
+		card_number,
+		card_number_text,
+		owner,
+		owner_text,
+		expiration_date,
+		expiration_date_text,
+		alias,
+		alias_text
+	} = useTranslation()
 
 	return (
 		<Root>
@@ -33,11 +46,11 @@ const HeadGetOnePaymentMethodComponent = () => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Card number
+					{card_number.charAt(0).toUpperCase() + card_number.slice(1)}
 				</ETASimpleText>
 				<Card
 					headTitle={item.details}
-					message='16 digits of your card'
+					message={card_number_text.charAt(0).toUpperCase() + card_number_text.slice(1)}
 				/>
 			</DataContainer>
 
@@ -49,11 +62,11 @@ const HeadGetOnePaymentMethodComponent = () => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Owner
+					{owner.charAt(0).toUpperCase() + owner.slice(1)}
 				</ETASimpleText>
 				<Card
 					headTitle={item.owner}
-					message='Name owner is printed in card'
+					message={owner_text.charAt(0).toUpperCase() + owner_text.slice(1)}
 				/>
 			</DataContainer>
 
@@ -65,11 +78,11 @@ const HeadGetOnePaymentMethodComponent = () => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Expiration date
+					{expiration_date.charAt(0).toUpperCase() + expiration_date.slice(1)}
 				</ETASimpleText>
 				<Card
 					headTitle={item.expDate}
-					message='Date expirate of your card'
+					message={expiration_date_text.charAt(0).toUpperCase() + expiration_date_text.slice(1)}
 				/>
 			</DataContainer>
 
@@ -81,16 +94,16 @@ const HeadGetOnePaymentMethodComponent = () => {
 						themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 					}
 					align='left'>
-					Alias
+					{alias.charAt(0).toUpperCase() + alias.slice(1)}
 				</ETASimpleText>
 				<Card
-					headTitle='BBVA first card'
-					message='A name that you can identify faster each card'
+					headTitle={item.alias.charAt(0).toUpperCase() + item.alias.slice(1)}
+					message={alias_text.charAt(0).toUpperCase() + alias_text.slice(1)}
 				/>
 			</DataContainer>
 
 			<ETAButtonOutline
-				title='Set default'
+				title={set_default.charAt(0).toUpperCase() + set_default.slice(1)}
 				// onPress={handleSubmit}
 				// disabled={isSubmitting ? true : false}
 				colorButton={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
@@ -100,7 +113,7 @@ const HeadGetOnePaymentMethodComponent = () => {
 				borderWidth={0.3}
 			/>
 			<ETAButtonFilled
-				title='Remove'
+				title={remove.charAt(0).toUpperCase() + remove.slice(1)}
 				// onPress={handleSubmit}
 				// disabled={isSubmitting ? true : false}
 				colorButton={themeContext.SECONDARY_BACKGROUND_COLOR}

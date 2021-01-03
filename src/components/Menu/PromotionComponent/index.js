@@ -7,6 +7,7 @@ import GeneralItemComponent from '@components/Menu/GeneralItemComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/promotions/actions'
 import { SharedElement } from 'react-navigation-shared-element'
+import { useTranslation } from '@etaui/translate'
 import * as RNLocalize from 'react-native-localize'
 
 const HEADER_MIN_HEIGHT = 50
@@ -50,9 +51,11 @@ const PromoInfo = styled.View`
 	padding: -10px 0px 5px 0px;
 	margin: 5px 0px 5px 0px;
 	border-radius: 6px;
-	background-color: white;
 	position: relative;
 	top: 20px;
+	border-width: 0.5px;
+	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
+	background-color: white;
 `
 
 const mapStateToProps = (state, props) => {
@@ -81,7 +84,29 @@ const PromoComponent = ({ getDataRequest, data }) => {
 	const [ opacity ] = useState(new Animated.Value(0))
 	let delayValue = 700
 	let languageCode = RNLocalize.getLocales()
+	const { list_empty } = useTranslation()
 	console.log(`PromoComponent promotion.${selectedItem._id}.image`);
+
+	useEffect(() => {
+		let isUnMounted = false
+		getDataRequest()
+		setitems(data)
+		Animated.spring(animatedValueTransform, {
+			toValue: 1,
+			tension: 5,
+			useNativeDriver: true,
+		}).start()
+
+		Animated.timing(opacity, {
+			toValue: 1,
+			duration: 700,
+			useNativeDriver: true,
+		}).start()
+		
+		return () => {
+			isUnMounted = true
+		}
+	}, [data])
 
 	const headerHeight = scrollYAnimatedValue.interpolate({
 		inputRange: [0, HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT],
@@ -98,35 +123,6 @@ const PromoComponent = ({ getDataRequest, data }) => {
 		// outputRange: [ 'rgba(255, 255, 255, 1)', 'rgba(255, 255, 255, 0.95)' ],
 		extrapolate: 'extend',
 	})
-
-	useEffect(() => {
-		let isUnMounted = false
-		getDataRequest()
-		setitems(data)
-		
-		return () => {
-			isUnMounted = true
-		}
-	}, [data])
-
-	useEffect(() => {
-		let isUnMounted = false
-		Animated.spring(animatedValueTransform, {
-			toValue: 1,
-			tension: 5,
-			useNativeDriver: true,
-		}).start()
-
-		Animated.timing(opacity, {
-			toValue: 1,
-			duration: 700,
-			useNativeDriver: true,
-		}).start()
-		
-		return () => {
-			isUnMounted = true
-		}
-	}, [])
 
 	return (
 		<Root>
@@ -152,10 +148,11 @@ const PromoComponent = ({ getDataRequest, data }) => {
 					},
 				)}>
 				{
-					items !== null
+					items && items.length > 0
 					?	<PromotionItemsList
 							contentContainerStyle={{
 								flexDirection: 'column',
+								marginTop: 4
 							}}
 							data={items}
 							keyExtractor={(item) => item._id.toString()}
@@ -176,7 +173,7 @@ const PromoComponent = ({ getDataRequest, data }) => {
 										themeContext.PRIMARY_TEXT_COLOR_LIGHT
 									}
 									align='left'>
-									Empty list
+									{list_empty.charAt(0).toUpperCase() + list_empty.slice(1)}
 								</ETASimpleText>
 							)}
 							renderItem={({item}) => {

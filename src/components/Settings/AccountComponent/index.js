@@ -84,7 +84,12 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const { addresses, payment_methods, favorites, orders, branch_offices } = useTranslation()
+	const { addresses, address_text,
+			payment_methods, payment_methods_text,
+			favorites, favorites_text,
+			orders, orders_text,
+			branch_offices, branch_offices_text
+	} = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -136,7 +141,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Set your address where we can send you our products.'
+											message={address_text.charAt(0).toUpperCase() + address_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -197,7 +202,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Define your online payment methods.'
+											message={payment_methods_text.charAt(0).toUpperCase() + payment_methods_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -255,7 +260,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='All your favorite items.'
+											message={favorites_text.charAt(0).toUpperCase() + favorites_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -316,7 +321,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='See your previous order here.'
+											message={orders_text.charAt(0).toUpperCase() + orders_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -377,7 +382,7 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='All the plase where you can find our products.'
+											message={branch_offices_text.charAt(0).toUpperCase() + branch_offices_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>

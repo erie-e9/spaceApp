@@ -3,6 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETATextInputOutline, ETAButtonFilled } from '@etaui'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST, UPDATE_NOTE } from '@redux/cart/actions'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
 	flex: 1;
@@ -14,6 +15,26 @@ const ButtonContainer = styled.View`
 	width: 100%;
 	align-items: center;
 	background-color: transparent;
+`
+const InputText = styled.TextInput.attrs(props => ({
+    multiline: true,
+    autoCapitalize: 'none',
+    autoFocus: true,
+    color: props.theme.SECONDARY_TEXT_BACKGROUND_COLOR,
+    placeholderTextColor: props.theme.PRIMARY_TEXT_COLOR_LIGHT
+}))`
+    width: 100%;
+    max-height: 100px;
+    min-height: 30px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    border-width: 0px;
+    border-bottom-width: 0.4px;
+    margin-vertical: 10px;
+    margin-horizontal: 3px;
+	border-bottom-color: ${(props) => props.theme.GRAYFACEBOOK};
+    background-color: transparent;
 `
 
 const mapStateToProps = (state, props) => {
@@ -43,6 +64,7 @@ const NoteProduct = memo(({ _id, title, isVisible, onSwipeComplete, closeModal, 
     const themeContext = useContext(ThemeContext)
     const [ note, setnote ] = useState('')
     const input = useRef()
+	const { note_for, type_note, save_note } = useTranslation()
 
     useEffect(() => {
         input.current?.focus()
@@ -75,16 +97,25 @@ const NoteProduct = memo(({ _id, title, isVisible, onSwipeComplete, closeModal, 
     return(
         <Root>
             <ETAFancyModal
-                title={`Note for ${title}`}
+                title={`${note_for.charAt(0).toUpperCase() + note_for.slice(1)} ${title}`}
                 isVisible={isVisible}
                 onSwipeComplete={onSwipeComplete}
                 closeModal={closeModal}
             >
                 <>
-                    <ETATextInputOutline
+                
+                    <InputText
                         refs={input}
                         value={note}
-                        placeholder='Type a note...'
+                        placeholder={`${type_note.charAt(0).toUpperCase() + type_note.slice(1)}...`}
+                        placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
+                        keyboardType='default'
+                        onChangeText={text => setnote(text)}
+                    />
+                    {/* <ETATextInputOutline
+                        refs={input}
+                        value={note}
+                        placeholder={`${type_note.charAt(0).toUpperCase() + type_note.slice(1)}...`}
                         placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
                         keyboardType='default'
                         autoCapitalize='sentences'
@@ -114,10 +145,10 @@ const NoteProduct = memo(({ _id, title, isVisible, onSwipeComplete, closeModal, 
                         onChangeText={text => setnote(text)}
                         // onBlur={handleBlur('cellphone')}
                         selectionColor={themeContext.PRIMARY_COLOR}
-                    />
+                    /> */}
                     <ButtonContainer>
                         <ETAButtonFilled
-                            title='Save note'
+                            title={`${save_note.charAt(0).toUpperCase() + save_note.slice(1)}`}
                             onPress={() => _onPressItem()}
                             // disabled={data.length === 0 ? true : false}
                             colorButton={

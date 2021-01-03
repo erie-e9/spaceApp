@@ -1,6 +1,6 @@
 import React, { memo, useState, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
-import { Dimensions, View, useColorScheme, ScrollView } from 'react-native'
+import { Dimensions, View, useColorScheme } from 'react-native'
 import { Ionicons } from '@icons'
 import Modal from 'react-native-modal'
 import { ETASimpleText } from '@etaui'
@@ -15,8 +15,8 @@ const Container = styled.View`
 `
 const CardContainer = styled.View`
     min-height: 10px;
-    width: ${width - 30}px;
-    padding: 30px 25px 15px 25px;
+    width: ${width - 20}px;
+    padding: 20px 15px 15px 15px;
     justify-content: flex-start;
     align-items: center;
     border-top-left-radius: 15px;
@@ -36,11 +36,11 @@ const Header = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 0px 0px 10px 0px;
+    margin: 5px 0px 15px 0px;
     background-color: transparent
 `
 const NameContainer = styled.View`
-	flex: 1;
+	flex: 0.9;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
@@ -49,7 +49,7 @@ const NameContainer = styled.View`
 `
 const HeaderRight = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
-	hitSlop: {top: 5, bottom: 5, right: 5, left: 5}
+	hitSlop: {top: 10, bottom: 10, right: 10, left: 10}
 })`
 	height: 22px;
 	width: 22px;
@@ -60,7 +60,7 @@ const HeaderRight = styled.TouchableOpacity.attrs({
 	border-radius: 15px;
 	border-width: 0.5px;
 	border-color: ${(props) => props.theme.SECONDARY_TEXT_BACKGROUND_COLOR};
-	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
+	background-color: transparent;
 `
 const ChildrenContainer = styled.View`
     min-height: 100px;

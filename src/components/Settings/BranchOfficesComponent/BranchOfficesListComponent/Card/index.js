@@ -1,8 +1,9 @@
-import React, {useContext} from 'react'
-import {Platform, Dimensions} from 'react-native'
-import styled, {ThemeContext} from 'styled-components/native'
-import {ETASimpleText} from '@etaui'
-import {Ionicons, Feather} from '@icons'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform, Dimensions } from 'react-native'
+import { ETASimpleText } from '@etaui'
+import { Ionicons, Feather } from '@icons'
+import * as RNLocalize from 'react-native-localize'
 
 const {width} = Dimensions.get('window')
 
@@ -38,8 +39,9 @@ const IconContainer = styled.View`
 	background-color: transparent;
 `
 
-const AddressCardComponent = ({title, details, isDefault}) => {
+const AddressCardComponent = ({en, es, details, isDefault}) => {
 	const themeContext = useContext(ThemeContext)
+	let languageCode = RNLocalize.getLocales()
 
 	return (
 		<>
@@ -57,7 +59,11 @@ const AddressCardComponent = ({title, details, isDefault}) => {
 								themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 							}
 							align='left'>
-							{title}
+							{
+								languageCode[0].languageCode === 'en'
+								?	en.title.charAt(0).toUpperCase() + en.title.slice(1)
+								:	es.title.charAt(0).toUpperCase() + es.title.slice(1)
+							}
 						</ETASimpleText>
 						{isDefault ? (
 							<Ionicons

@@ -1,8 +1,9 @@
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
+import { Platform } from 'react-native'
 import Item from './Item'
-import {ETASimpleText} from '@etaui'
+import { ETASimpleText } from '@etaui'
+import { useTranslation } from '@etaui/translate'
 
 const Root = styled.View`
     flex: 1;
@@ -20,8 +21,9 @@ const HeaderContainer = styled.View`
 `
 const ItemsList = styled.FlatList``
 
-const ListItemsGetOnePreviousOrderComponent = ({ items }) => {
+const ListItemsGetOnePreviousOrderComponent = ({ orders }) => {
     const themeContext = useContext(ThemeContext)
+	const { items, item } = useTranslation()
     
     return (
         <Root>
@@ -38,7 +40,13 @@ const ListItemsGetOnePreviousOrderComponent = ({ items }) => {
                         themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
                     }
                     align='left'>
-                    {items.length} items
+                    {orders.length} {' '}
+                    {orders.length === 0
+                        ? `${items}`
+                        : orders.length === 1
+                        ? `${item}`
+                        : `${items}`
+                    }
                 </ETASimpleText>
             </HeaderContainer>
 
@@ -46,7 +54,7 @@ const ListItemsGetOnePreviousOrderComponent = ({ items }) => {
                 contentContainerStyle={{
                     flexDirection: 'column',
                 }}
-                data={items}
+                data={orders}
                 keyExtractor={(item) => item._id.toString()}
                 horizontal={!true}
                 initialNumToRender={4}

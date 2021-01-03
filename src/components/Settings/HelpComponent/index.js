@@ -12,6 +12,7 @@ import { ETASimpleText } from '@etaui'
 import { connect } from 'react-redux'
 import { LOGOUT } from '@redux/user/actions'
 import SubCard from './Card'
+import { useTranslation } from '@etaui/translate'
 
 const iconSize = 23
 
@@ -48,6 +49,7 @@ const SettingContainer = styled.View`
 const LeftContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
+	background-color: transparent;
 `
 const OptionTitleContainer = styled.View`
 	flex: 1;
@@ -79,6 +81,19 @@ const mapDispatchProps = (dispatch, props) => ({
 const HelpComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
+	const { about_us,
+		about_us_text, 
+		contact_us,
+		contact_us_text,
+		how_to_use,
+		how_to_use_text,
+		faq,
+		faq_text,
+		terms_of_service,
+		terms_of_service_text,
+		notice_of_privacy,
+		notice_of_privacy_text
+	} = useTranslation()
 
 	const logout = () => {
 		logoutUser()
@@ -126,11 +141,11 @@ const HelpComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											About us
+											{about_us.charAt(0).toUpperCase() + about_us.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='All info about us and our success factory.'
+											message={about_us_text.charAt(0).toUpperCase() + about_us_text.slice(1)}
 											/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -188,11 +203,11 @@ const HelpComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Contact us
+											{contact_us.charAt(0).toUpperCase() + contact_us.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Hey talk with us, you have doubts, recommendations or complaints? will be a pleasure to hear you.'
+											message={contact_us_text.charAt(0).toUpperCase() + contact_us_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -249,12 +264,12 @@ const HelpComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											How to use app?
+											{how_to_use.charAt(0).toUpperCase() + how_to_use.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
 											// message='Change settings about email, sms or push notifications.'
-											message='A guide to understand app funcionality.'
+											message={how_to_use_text.charAt(0).toUpperCase() + how_to_use_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -312,11 +327,11 @@ const HelpComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											FAQ
+											{faq.charAt(0).toUpperCase() + faq.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='Frequently asked questions about our company and products.'
+											message={faq_text.charAt(0).toUpperCase() + faq_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -374,11 +389,11 @@ const HelpComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Terms of service
+											{terms_of_service.charAt(0).toUpperCase() + terms_of_service.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='See and know our terms of service.'
+											message={terms_of_service_text.charAt(0).toUpperCase() + terms_of_service_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>
@@ -436,11 +451,11 @@ const HelpComponent = ({ logoutUser }) => {
 												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 											}
 											align='left'>
-											Notice of privacy
+											{notice_of_privacy.charAt(0).toUpperCase() + notice_of_privacy.slice(1)}
 										</ETASimpleText>
 										<SubCard
 											headTitle=' '
-											message='See our notice of privacy and use of this application.'
+											message={notice_of_privacy_text.charAt(0).toUpperCase() + notice_of_privacy_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>

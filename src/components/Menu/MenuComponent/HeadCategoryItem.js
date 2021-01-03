@@ -68,7 +68,7 @@ const CategoryItem = ({itemcat}) => {
 						// color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 						color='white'
 						align='center'>
-						{isnew}
+						{isnew.charAt(0).toUpperCase() + isnew.slice(1)}
 					</ETASimpleText>
 				</NewContainer>
 			) : null}
