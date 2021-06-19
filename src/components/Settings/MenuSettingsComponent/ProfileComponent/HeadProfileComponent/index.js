@@ -1,9 +1,11 @@
-import React,  { useContext } from 'react'
+import React,  { useEffect, useContext, memo } from 'react'
 import styled,  { ThemeContext } from 'styled-components/native'
 import  { Platform } from 'react-native'
 import  { ETASimpleText } from '@etaui'
 import  { fakeavatar } from '@utils/constants'
 import { useTranslation } from '@etaui/translate'
+import { connect } from 'react-redux'
+import { GET_USER_DATA } from '@redux/user/actions'
 
 const logoSize = 90
 const avatarRadius = logoSize / 2
@@ -41,15 +43,32 @@ const Logo = styled.Image`
 	width: ${Platform.OS === 'ios' ? logoSize : logoSize}px;
 	border-radius: ${avatarRadius}px;
 `
+const mapStateToProps = (state, props) => {
+	const { userToken, avatar, fullname } = state.user
+	return { userToken, avatar, fullname }
+}
 
-const HeadProfileComponent = () => {
+const mapDispatchProps = (dispatch, props) => ({
+	getUserData: () => {
+		dispatch({
+			type: GET_USER_DATA,
+			payload: {},
+		})
+	},
+})
+
+const HeadProfileComponent = memo(({ getUserData, avatar }) => {
 	const themeContext = useContext(ThemeContext)
 	const { member_from } = useTranslation()
+
+	useEffect(() => {
+		getUserData()
+	}, [avatar])
 
 	return (
 		<Root>
 			<LogoContainer>
-				<Logo source={{uri: fakeavatar}} />
+				<Logo source={{uri: avatar || fakeavatar}} />
 			</LogoContainer>
 			<ContentContainer>
 				<ETASimpleText
@@ -62,6 +81,13 @@ const HeadProfileComponent = () => {
 			</ContentContainer>
 		</Root>
 	)
-}
+})
 
-export default React.memo(HeadProfileComponent)
+// export default React.memo(HeadProfileComponent)
+const HeadProfileComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps,
+)(HeadProfileComponent)
+
+export default HeadProfileComponentConnect
+

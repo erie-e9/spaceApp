@@ -13,6 +13,7 @@ const KeyboardMisser = styled.TouchableWithoutFeedback`
 `
 const Root = styled.TouchableWithoutFeedback`
 	flex: 1;
+	background-color: red;
 `
 const StepContainer = styled.View`
 	flex: 1;
@@ -21,12 +22,13 @@ const StepContainer = styled.View`
 `
 const ContentContainer = styled.View`
 	flex: 1;
+    justify-content: flex-start;
     align-items: center;
     background-color: transparent;
 `
 const HeadContainer = styled.View`
-	flex: 0.25;
-    justify-content: flex-end;
+	min-height: 200px;
+    justify-content: center;
     align-items: flex-start;
 	width: 100%;
 	padding-horizontal: 20px;
@@ -34,15 +36,16 @@ const HeadContainer = styled.View`
     background-color: transparent;
 `
 const FormContainer = styled.View`
-	flex: 0.75;
+	min-height: 200px;
 	flex-direction: column;
-	display: flex;
 	justify-content: center;
+    align-items: stretch;
+	display: flex;
 	width: 100%;
     background-color: transparent;
 `
 const RadioContainer = styled.View`
-	flex: 0.3;
+	min-height: 60px;
 	flex-direction: column;
 	display: flex;
 	justify-content: center;
@@ -139,7 +142,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					placeholder: code.charAt(0).toUpperCase() + code.slice(1),
 					name: 'code',
 					ref: codeRef,
-					mask: '',
+					mask: '[00000]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'phone-pad',
@@ -157,7 +160,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					placeholder: ask_name.charAt(0).toUpperCase() + ask_name.slice(1),
 					name: 'name',
 					ref: nameRef,
-					mask: '',
+					mask: '[A…]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -169,7 +172,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					placeholder: ask_lastname.charAt(0).toUpperCase() + ask_lastname.slice(1),
 					name: 'lastname',
 					ref: lastnameRef,
-					mask: '',
+					mask: '[A…]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -204,7 +207,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					placeholder: ask_username.charAt(0).toUpperCase() + ask_username.slice(1),
 					name: 'username',
 					ref: usernameRef,
-					mask: '',
+					mask: '[A…]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -216,7 +219,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					placeholder: password_placeholder.charAt(0).toUpperCase() + password_placeholder.slice(1),
 					name: 'password',
 					ref: passwordRef,
-					mask: '',
+					mask: '[A…]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -228,7 +231,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					placeholder: confirm_password.charAt(0).toUpperCase() + confirm_password.slice(1),
 					name: 'confirmPassword',
 					ref: confirmPasswordRef,
-					mask: '',
+					mask: '[A…]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -268,12 +271,13 @@ const SignupForm = ({getAllUserInfoUser}) => {
 					<ETAMultiStep.Step key={index}>
 						{({ onChangeValue, values }) => (
 							<StepContainer>
-								<KeyboardAvoidingView 
-									behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-									// contentContainerStyle=''
-									style={{flex: 1}}
-								>	
 								<KeyboardMisser onPress={() => Keyboard.dismiss()}>
+									
+									<KeyboardAvoidingView 
+										behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+										// contentContainerStyle=''
+										style={{flex: 1}}
+									>	
 									<ContentContainer>
 										<HeadContainer>
 											<ETASimpleText
@@ -297,10 +301,11 @@ const SignupForm = ({getAllUserInfoUser}) => {
 												}
 												color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 												align='left'
-												style={{ marginTop: 10 }}>
+												style={{ marginTop: 0 }}>
 												{element.description}
 											</ETASimpleText>
 										</HeadContainer>
+										
 										<FormContainer>
 											{
 												element.items.map((item, i) => {
@@ -315,7 +320,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 																	placeholder={item.placeholder}
 																	placeholderTextColor={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 																	keyboardType={item.controller.keyboardtype}
-																	autoCapitalize='none'
+																	autoCapitalize='words'
 																	allowFontScaling
 																	autoCorrect
 																	autoFocus
@@ -339,9 +344,7 @@ const SignupForm = ({getAllUserInfoUser}) => {
 																	height={40}
 																	width={270}
 																	borderWidth={0.3}
-																	onChangeText={text => onChangeValue(
-																		[item.name], text
-																	)}
+																	onChangeText={(formatted, extracted) => onChangeValue([item.name], extracted)}
 																	// onBlur={handleBlur('cellphone')}
 																	selectionColor={themeContext.PRIMARY_COLOR}
 																/>
@@ -389,8 +392,8 @@ const SignupForm = ({getAllUserInfoUser}) => {
 											}
 										</FormContainer>
 									</ContentContainer>
+									</KeyboardAvoidingView>
 								</KeyboardMisser>
-							</KeyboardAvoidingView>
 							</StepContainer>
 						)}
 					</ETAMultiStep.Step>

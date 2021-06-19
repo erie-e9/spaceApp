@@ -8,7 +8,7 @@ import { variables } from '@utils/constants'
 
 const Root = styled.View`
 	flex-direction: row;
-	padding-horizontal: 15px;
+	padding-horizontal: 10px;
 	shadow-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR};
 	align-items: center;
 	width: 100%;
@@ -16,19 +16,22 @@ const Root = styled.View`
 	max-width: 100%;
 	background-color: ${(props) => props.theme.PRIMARY_TEXT_BACKGROUND_COLOR};
 `
-const ContactContainer = styled.View`
-	flex-direction: column;
-	min-height: 70px;
-	width: 100%;
-	min-width: 100%;
-	max-width: 100%;
-`
 const AvatarContainer = styled.View`
-	padding: 1.75px;
+	flex: 0.15;
+	padding: 1.5px;
 	border-radius: 50px;
+	align-items: center;
+	justify-content: center;
 	border-width: 2px;
 	border-color: ${(props) => props.active ? props.theme.ACTIVE : props.theme.GRAYFACEBOOK};
 	background-color: transparent;
+`
+const ContactContainer = styled.View`
+	flex: 1;
+	flex-direction: column;
+	min-height: 70px;
+	width: 100%;
+	margin-left: 4px;
 `
 
 const ChatCard = ({ text, unreaded_massages, client, createdAt, active }) => (
@@ -36,7 +39,6 @@ const ChatCard = ({ text, unreaded_massages, client, createdAt, active }) => (
 		<AvatarContainer active={active}>
 			<SharedElement id={`chat.1.avatar`}>
 				<ETAAvatar image={client.avatar ? client.avatar : variables.AVATAR_USER_DEFAULT} size='middle' />
-				{/* <ETAAvatar image={variables.AVATAR_USER_DEFAULT} size='middle' /> */}
 			</SharedElement>
 		</AvatarContainer>
 		<ContactContainer>

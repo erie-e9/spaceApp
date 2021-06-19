@@ -1,4 +1,4 @@
-import React, { useContext, memo } from 'react'
+import React, { useState, useContext, memo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { ETAFancyModal, ETATextInputOutline, ETAButtonFilled } from '@etaui'
 import { useTranslation } from '@etaui/translate'
@@ -18,7 +18,7 @@ const ButtonContainer = styled.View`
 const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
     const themeContext = useContext(ThemeContext)
 	const { discount_code, no_code_text, apply } = useTranslation()
-    
+    const [ code, setscode ] = useState('')
     const _onPressItem = () => {
         closeModal()
     }
@@ -63,6 +63,7 @@ const DiscountCodeModal = memo(({ isVisible, onSwipeComplete, closeModal }) => {
                         width={270}
                         borderWidth={0.3}
                         // onChangeText={text => {onChangeValue([item.name], text); setdisabledState(values?.[item.name] !== '' ? false : true)}}
+                        onChangeText={text => setscode(text)}
                         // onBlur={handleBlur('cellphone')}
                         selectionColor={themeContext.PRIMARY_COLOR}
                     />

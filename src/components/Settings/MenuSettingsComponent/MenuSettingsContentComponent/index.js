@@ -6,7 +6,8 @@ import {
 	EvilIcons,
 	AntDesign,
 	Feather,
-	MaterialIcons
+	MaterialIcons,
+	Octicons
 } from '@icons'
 import { useNavigation } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
@@ -14,6 +15,7 @@ import { connect } from 'react-redux'
 import { LOGOUT } from '@redux/user/actions'
 import SubCard from './Card'
 import { useTranslation } from '@etaui/translate'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const iconSize = 23
 
@@ -36,7 +38,7 @@ const Metadata = styled.View`
 	justify-content: center;
 	background-color: transparent;
 `
-const Touchable = styled.TouchableWithoutFeedback``
+const Touchable = styled.TouchableOpacity``
 const SettingContainer = styled.View`
 	flex-direction: row;
 	justify-content: flex-start;
@@ -64,8 +66,9 @@ const IconContainer = styled.View`
 	background-color: transparent;
 `
 
-const mapStateToProps = () => {
-	return {}
+const mapStateToProps = (state) => {
+	const {  } = state.user
+	return {  }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
@@ -80,10 +83,22 @@ const mapDispatchProps = (dispatch, props) => ({
 const MenuSettingsContentComponent = ({ logoutUser }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
-	const { account, account_text, admin_tools, admin_tools_text, settings, settings_text, help, help_text, log_out } = useTranslation()
+	const { account,
+		account_text,
+		admin_tools,
+		admin_tools_text,
+		settings,
+		settings_text,
+		help,
+		help_text,
+		log_out,
+		branch_offices,
+		branch_offices_text } = useTranslation()
 
 	const logout = () => {
 		logoutUser()
+		console.log('logged out');
+		AsyncStorage.removeItem('@storage_key')
 	}
 
 	return (
@@ -258,6 +273,67 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 											headTitle=' '
 											// message='Change settings about email, sms or push notifications.'
 											message={settings_text.charAt(0).toUpperCase() + settings_text.slice(1)}
+										/>
+									</OptionTitleContainer>
+								</LeftContainer>
+								<IconContainer>
+									<Feather
+										name='chevron-right'
+										size={13}
+										color={
+											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+										}
+									/>
+								</IconContainer>
+							</SettingContainer>
+						</Touchable>
+					</Metadata>
+				</Card>
+
+				<Card>
+					<Metadata>
+						<Touchable
+							onPress={() =>
+								navigation.navigate(
+									'SettingsNavigator',
+									{
+										screen:
+											'BranchOfficesScreen',
+									},
+								)
+							}>
+							<SettingContainer>
+								<LeftContainer>
+									<IconContainer>
+										<Octicons
+											name='location'
+											size={
+												iconSize -
+												5
+											}
+											color={
+												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+											}
+										/>
+									</IconContainer>
+									<OptionTitleContainer>
+										<ETASimpleText
+											size={13}
+											weight={
+												Platform.OS ===
+												'ios'
+													? '400'
+													: '800'
+											}
+											color={
+												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
+											}
+											align='left'>
+											{branch_offices.charAt(0).toUpperCase() + branch_offices.slice(1)}
+										</ETASimpleText>
+										<SubCard
+											headTitle=' '
+											message={branch_offices_text.charAt(0).toUpperCase() + branch_offices_text.slice(1)}
 										/>
 									</OptionTitleContainer>
 								</LeftContainer>

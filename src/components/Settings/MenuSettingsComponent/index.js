@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useContext, memo } from 'react'
 import { Platform } from 'react-native'
 import styled, { ThemeContext } from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
@@ -8,6 +8,8 @@ import { fakeavatar } from '@utils/constants'
 import PointsHeadComponent from './PointsHeadComponent'
 import MenuSettingsContentComponent from './MenuSettingsContentComponent'
 import { useTranslation } from '@etaui/translate'
+import { connect } from 'react-redux'
+import { GET_USER_DATA } from '@redux/user/actions'
 
 const firstname = 'Scarlett'
 const lastname = 'Johansson'
@@ -43,20 +45,35 @@ const MetadataHeader = styled.View`
 const MetadataInfo = styled.View`
 	flex-direction: column;
 	justify-content: center;
-	padding-horizontal: 5px;
-	margin-right: 50px;
-	margin-vertical: 5px;
-	padding-right: 40px;
+	margin-right: 40px;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
 	hitSlop: {top: 0, bottom: 0, right: 0, left: 0}
 })``
 
-const SettingsComponent = () => {
+const mapStateToProps = (state, props) => {
+	const { userToken, avatar, fullname } = state.user
+	return { userToken, avatar, fullname }
+}
+
+const mapDispatchProps = (dispatch, props) => ({
+	getUserData: () => {
+		dispatch({
+			type: GET_USER_DATA,
+			payload: {},
+		})
+	},
+})
+
+const SettingsComponent = memo(({ getUserData, avatar, fullname }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const { member_from } = useTranslation()
+	
+	useEffect (() => {
+		getUserData
+	}, [avatar, fullname])
 
 	return (
 		<Root>
@@ -70,7 +87,7 @@ const SettingsComponent = () => {
 					}>
 					<Card>
 						<ETAAvatar
-							image={fakeavatar}
+							image={avatar || fakeavatar}
 							size='middle'
 						/>
 						<MetadataHeader>
@@ -85,7 +102,12 @@ const SettingsComponent = () => {
 									themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 								}
 								align='left'>
-								{firstname} {lastname}
+								{
+									fullname !== undefined
+									?	`${fullname}`
+									:	`${firstname} ${lastname}`
+								}
+								
 							</ETASimpleText>
 							<MetadataInfo>
 								<ETASimpleText
@@ -128,6 +150,12 @@ const SettingsComponent = () => {
 			</Scroll>
 		</Root>
 	)
-}
+})
 
-export default SettingsComponent
+// export default SettingsComponent
+const SettingsComponentConnect = connect(
+	mapStateToProps,
+	mapDispatchProps,
+)(SettingsComponent)
+
+export default SettingsComponentConnect

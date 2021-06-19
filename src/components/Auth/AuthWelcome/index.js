@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText, ETAButtonFilled, ETAButtonOutline, ETAAuthSocialmedia } from '@etaui'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from '@etaui/translate'
+import { LoginManager } from 'react-native-fbsdk'
 
 const logoSize = 70
 const avatarRadius = logoSize / 2
@@ -26,10 +27,10 @@ const LogoContainer = styled.View`
 	width: ${Platform.OS === 'ios' ? logoSize + 20 : logoSize + 20}px;
 	height: ${Platform.OS === 'ios' ? logoSize + 20 : logoSize + 20}px;
 	border-radius: ${avatarRadius + 10}px;
-	background-color: #ffffff;
 	margin-vertical: 30px;
 	border-width: 0.3px;
 	border-color: ${(props) => props.theme.SECONDARY_BACKGROUND_COLOR_LIGHT};
+	background-color: #ffffff;
 `
 const Logo = styled.Image`
 	width: ${Platform.OS === 'ios' ? logoSize : logoSize}px;
@@ -45,6 +46,7 @@ const TextContainer = styled.View`
 	background-color: transparent;
 `
 const SocialMediaContainer = styled.View`
+	min-height: 200px;
 	flex-direction: column;
 	display: flex;
 	width: 100%;
@@ -58,6 +60,15 @@ const AuthWelcomeComponent = () => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const { need_account, log_in, sign_up } = useTranslation()
+
+	useEffect(() => {
+		let isUnMounted = false
+	    LoginManager.logOut()
+		console.log('logeed out');
+		return () => {
+			isUnMounted = true
+		}
+	}, [])
 	
 	const _onShowSigninPress = () => {
 		navigation.navigate('AuthNavigator', {

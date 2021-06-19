@@ -24,7 +24,7 @@ const BadgeOrders = ({ getDataRequest, children, data, color, size }) => {
 		let isUnMounted = false
 		getDataRequest()
 		settotalItems(data.length)
-		console.log('[BadgeOrders] data', data.length);
+		// console.log('[BadgeOrders] data', data.length);
 		
 		return () => {
 			isUnMounted = true

@@ -1,11 +1,8 @@
-
-import React, {useContext} from 'react'
-import styled, {ThemeContext} from 'styled-components/native'
-import {Platform} from 'react-native'
+import React, { useContext } from 'react'
+import styled, { ThemeContext } from 'styled-components/native'
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack'
-import {Ionicons} from '@icons'
+import { Ionicons } from '@icons'
 import CustomProductScreen from '@screens/CustomProduct/CustomProductScreen'
-import {ETASimpleText} from '@etaui'
 
 const HeaderLeftCard = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',

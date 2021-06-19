@@ -88,7 +88,6 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 			payment_methods, payment_methods_text,
 			favorites, favorites_text,
 			orders, orders_text,
-			branch_offices, branch_offices_text
 	} = useTranslation()
 
 	const logout = () => {
@@ -338,68 +337,6 @@ const MenuSettingsContentComponent = ({ logoutUser }) => {
 						</Touchable>
 					</Metadata>
 				</Card>
-
-				<Card>
-					<Metadata>
-						<Touchable
-							onPress={() =>
-								navigation.navigate(
-									'SettingsNavigator',
-									{
-										screen:
-											'BranchOfficesScreen',
-									},
-								)
-							}>
-							<SettingContainer>
-								<LeftContainer>
-									<IconContainer>
-										<Octicons
-											name='location'
-											size={
-												iconSize -
-												5
-											}
-											color={
-												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-											}
-										/>
-									</IconContainer>
-									<OptionTitleContainer>
-										<ETASimpleText
-											size={13}
-											weight={
-												Platform.OS ===
-												'ios'
-													? '400'
-													: '800'
-											}
-											color={
-												themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-											}
-											align='left'>
-											{branch_offices.charAt(0).toUpperCase() + branch_offices.slice(1)}
-										</ETASimpleText>
-										<SubCard
-											headTitle=' '
-											message={branch_offices_text.charAt(0).toUpperCase() + branch_offices_text.slice(1)}
-										/>
-									</OptionTitleContainer>
-								</LeftContainer>
-								<IconContainer>
-									<Feather
-										name='chevron-right'
-										size={13}
-										color={
-											themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
-										}
-									/>
-								</IconContainer>
-							</SettingContainer>
-						</Touchable>
-					</Metadata>
-				</Card>
-
 			</Root>
 		</Scroll>
 	)

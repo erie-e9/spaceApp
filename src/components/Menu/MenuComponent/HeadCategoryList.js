@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Dimensions, Platform, Animated } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useScrollToTop } from '@react-navigation/native'
 import { ETASimpleText } from '@etaui'
 import HeadCategoryItem from './HeadCategoryItem'
 import { connect } from 'react-redux'
@@ -61,9 +61,12 @@ const Categories = ({ getDataRequest, data }) => {
 	const themeContext = useContext(ThemeContext)
 	const navigation = useNavigation()
 	const [ categoryitems, setcategoryitems ] = useState([])
-	const [ animatedValueTransform] = useState(new Animated.Value(0))
+	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	let delayValue = 1000
 	const { all_categories } = useTranslation()
+	const ref = React.useRef(null)
+  	useScrollToTop(ref)
+
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -109,6 +112,7 @@ const Categories = ({ getDataRequest, data }) => {
 			{categoryitems && categoryitems.length > 0 ? (
 				<>
 					<ItemsList
+						ref={ref}
 						data={categoryitems}
 						keyExtractor={(item) => item._id.toString()}
 						horizontal
@@ -195,7 +199,8 @@ const Categories = ({ getDataRequest, data }) => {
 }
 
 const CategoriesConnect = connect(
-mapStateToProps,
-mapDispatchProps)(Categories)
+	mapStateToProps,
+	mapDispatchProps
+)(Categories)
 
 export default CategoriesConnect

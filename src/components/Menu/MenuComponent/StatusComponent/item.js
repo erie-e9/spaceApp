@@ -7,13 +7,16 @@ import * as RNLocalize from 'react-native-localize'
 
 const _height = 45
 const _width = 45
-
+const Root = styled.View`
+	justify-content: center;
+	align-items: center;
+`
 const ItemContainer = styled.View`
 	height: ${_height + 8}px;
 	max-width: ${_width + 10}px;
 	justify-content: center;
 	align-items: center;
-	padding: 1.75px;
+	padding: 1.2px;
 	border-radius: 50px;
 	border-width: 2px;
 	margin: 2px 4px;
@@ -53,7 +56,7 @@ const StatusItem = ({ item }) => {
 	const { isnew } = useTranslation()
 
 	return (
-		<>
+		<Root>
 			<ItemContainer>
 				<Item>
 					<ItemImage source={{uri: item.image}} />
@@ -83,7 +86,7 @@ const StatusItem = ({ item }) => {
 					</ETASimpleText>
 				</NewContainer>
 			) : null}
-		</>
+		</Root>
 	)
 }
 

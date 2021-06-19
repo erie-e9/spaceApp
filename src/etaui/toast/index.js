@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useCallback } from 'react'
 import { StyleSheet, Text, View, Animated } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useToast } from './useToast'
+import { AntDesign } from '@icons'
 
 const fadeDuration = 300
 const tabBarHeight = 15
@@ -50,15 +51,19 @@ const ETAToast = () => {
     const { type, message } = toastConfig
 
     let backgroundColor
+    let textColor
     switch (type) {
         case 'Info':
-            backgroundColor = '#4DD0E1'
+            backgroundColor = '#1778F2'
+            textColor = '#fff'
         break
         case 'Error':
-            backgroundColor = 'rgba(230, 0, 0, 1)'
+            backgroundColor = '#ff3333'
+            textColor = '#fff'
         break
         case 'Success':
             backgroundColor = 'rgba(0, 205, 0, 1)'
+            textColor = '#fff'
         break
     }
 
@@ -67,8 +72,18 @@ const ETAToast = () => {
             styles.container,
             { bottom: insets.bottom + tabBarHeight, opacity }
           ]}>
-            <View style={[styles.toast, { backgroundColor }]}>
-                <Text style={styles.message}>{message}</Text>
+            <View style={[styles.toast, { backgroundColor,  borderColor: backgroundColor === 'transparent' ? '#555' : 'transparent' }]}>
+                <View style={styles.iconView}>
+                {
+                    type === 'Info'
+                    ?  <AntDesign name='info' size={12} color='#333' />
+                    :   type === 'Success'
+                    ?   <AntDesign name='check' size={12} color={backgroundColor} />
+                    :   <AntDesign name='close' size={12} color={backgroundColor} />
+                    
+                }
+                </View>
+                <Text style={[styles.message, { color: textColor}]}>{message}</Text>
             </View>
         </Animated.View>
     )
@@ -82,14 +97,27 @@ const styles = StyleSheet.create({
         position: 'absolute',
         marginHorizontal: 20,
         maxWidth: 480,
+        zIndex: 1000,
     },
-      toast: {
+    toast: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderRadius: 6,
         padding: 7,
+        borderWidth: 0.5,
     },
-      message: {
-        fontSize: 13,
-        textAlign: 'center',
-        color: '#fff',
+    iconView: {
+        height: 13,
+        width: 13,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        marginHorizontal: 3,
+        backgroundColor: '#ffffff',
+    },
+    message: {
+        fontSize: 12,
+        textAlign: 'center'
     },
 })

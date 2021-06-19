@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform, KeyboardAvoidingView, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
@@ -7,6 +7,7 @@ import SigninBody from '@components/Auth/Signin/SigninBody'
 import { connect } from 'react-redux'
 import { SIGNUP } from '@redux/user/actions'
 import { useTranslation } from '@etaui/translate'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const KeyboardMisser = styled.TouchableWithoutFeedback`
 	flex: 1;
@@ -77,23 +78,35 @@ const SigninForm = ({getAllUserInfoUser}) => {
 	const navigation = useNavigation()
 	const [ mysecureTextEntry ] = useState(true)
 	const [ radioItem, setradioItem ] = useState(true)
-	const cellphoneRef = useRef()
-	const codeRef = useRef()
-	const nameRef = useRef()
-	const lastnameRef = useRef()
-	const genreRef = useRef()
-	const usernameRef = useRef()
-	const passwordRef = useRef()
-	const confirmPasswordRef = useRef()
-	const { log_in, log_in_text, cellphone_placeholder, password_placeholder, previous, next } = useTranslation()
+	const cellphoneRef = React.forwardRef()
+	const codeRef = React.forwardRef()
+	const nameRef = React.forwardRef()
+	const lastnameRef = React.forwardRef()
+	const genreRef = React.forwardRef()
+	const usernameRef = React.forwardRef()
+	const passwordRef = React.forwardRef()
+	const confirmPasswordRef = React.forwardRef()
+	const { log_in, was_log_in, log_in_text, was_log_in_text, cellphone_placeholder, password_placeholder, previous, next } = useTranslation()
+	const [ wasLoggedin, setwasLoggedin ] = useState(!false)
 
-	const _radioChange = async (item) => {
-		await setradioItem(radioItem ? !radioItem : true)
-		// await _setswitchItem(item)
-		// toggleNotification(id)
+	useEffect(() => {
+		let isUnMounted = false
+		
+		wasLoggedIn()
+		return () => {
+			isUnMounted = true
+		}
+	}, [])
+
+	const wasLoggedIn = async () => {
+		let userID = await AsyncStorage.getItem('@userID')
+		console.log('[wasLoggedIn]: ', userID)
+		if (userID !== undefined && userID !== null) {
+			setwasLoggedin(userID)
+		}
 	}
 
-	const form = [
+	const signedForm = [
 		{
 			title: log_in.charAt(0).toUpperCase() + log_in.slice(1),
 			description: log_in_text.charAt(0).toUpperCase() + log_in_text.slice(1),
@@ -114,7 +127,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 					placeholder: password_placeholder.charAt(0).toUpperCase() + password_placeholder.slice(1),
 					name: 'password',
 					ref: passwordRef,
-					mask: '',
+					mask: '[A…]',
 					controller: {
 						type: 'textinput',
 						keyboardtype: 'default',
@@ -122,7 +135,28 @@ const SigninForm = ({getAllUserInfoUser}) => {
 						maxLength: 100
 					}
 				},
-			]
+			],
+		},
+	]
+	
+	const semisignedForm = [
+		{
+			title: was_log_in.charAt(0).toUpperCase() + was_log_in.slice(1),
+			description: was_log_in_text.charAt(0).toUpperCase() + was_log_in_text.slice(1),
+			items: [
+				{
+					placeholder: password_placeholder.charAt(0).toUpperCase() + password_placeholder.slice(1),
+					name: 'password',
+					ref: passwordRef,
+					mask: '[A…]',
+					controller: {
+						type: 'textinput',
+						keyboardtype: 'default',
+						secureTextEntry: true,
+						maxLength: 100
+					}
+				},
+			],
 		},
 	]
 	
@@ -150,7 +184,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 				}}
 			>
              {
-				 form.map((element, index) => (
+				(wasLoggedin !== false ? semisignedForm : signedForm).map((element, index) => (
 					<ETAMultiStep.Step key={index}>
 						{({ onChangeValue, values }) => (
 							<StepContainer>
@@ -183,7 +217,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 												}
 												color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 												align='left'
-												style={{ marginTop: 10 }}>
+												style={{ marginTop: 0 }}>
 												{element.description}
 											</ETASimpleText>
 										</HeadContainer>
@@ -225,9 +259,7 @@ const SigninForm = ({getAllUserInfoUser}) => {
 																	height={40}
 																	width={270}
 																	borderWidth={0.3}
-																	onChangeText={text => onChangeValue(
-																		[item.name], text
-																	)}
+																	onChangeText={(formatted, extracted) => onChangeValue([item.name], extracted)}
 																	// onBlur={handleBlur('cellphone')}
 																	selectionColor={themeContext.PRIMARY_COLOR}
 																/>

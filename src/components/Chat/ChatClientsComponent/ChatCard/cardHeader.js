@@ -2,11 +2,13 @@ import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
 import { ETASimpleText } from '@etaui'
-import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+// import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 import eoLocale from 'date-fns/locale/es';
 import { truncateString } from '@functions'
 import { useNavigation } from '@react-navigation/native'
 import * as RNLocalize from 'react-native-localize'
+import moment from 'moment'
 
 const Root = styled.View`
 	flex: 1;
@@ -14,26 +16,28 @@ const Root = styled.View`
 	justify-content: center;
 	align-items: center;
 	align-content: center;
-	padding-horizontal: 10px;
+	margin-left: 4px;
 `
 const MetaContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	background-color: transparent;
 `
 const UserDataContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
+	background-color: transparent;
 `
 const TimeContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
 	justify-content: flex-end;
-	align-items: center;
-	padding-right: 15px;
+	align-items: flex-end;
+	background-color: transparent;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -72,7 +76,7 @@ const CardHeader = ({ username, firstname, lastname, createdAt, avatar }) => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						{truncateString(fullname, 40)}
+						{truncateString(fullname, 30)}
 					</ETASimpleText>
 					<Touchable
 						onPress={() => _navigationContactProfile()}
@@ -101,10 +105,18 @@ const CardHeader = ({ username, firstname, lastname, createdAt, avatar }) => {
 							themeContext.PRIMARY_TEXT_COLOR_LIGHT
 						}
 						align='left'>
-						{formatDistanceToNow(new Date(), {
+						{/* {formatDistanceToNow(new Date(2020, 12, 25), {
 							addSuffix: true,
 							locale: languageCode[0].languageCode === 'en' ? null : eoLocale // Esp
-						})}
+						})} */}
+						{/* {
+							formatDistance(subDays(new Date(), 3), new Date())
+						} */}
+						{moment(createdAt).locale('fr').fromNow()}
+						{/*
+						 
+						.fromNow().locale('es') */}
+				
 					</ETASimpleText>
 				</TimeContainer>
 			</MetaContainer>

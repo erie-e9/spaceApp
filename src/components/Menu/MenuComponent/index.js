@@ -7,8 +7,12 @@ import SectionsComponent from './SectionsComponent'
 import StatusComponent from './StatusComponent'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/actions'
+import { CHECK_TOKEN, GET_USER_DATA } from '@redux/user/actions' 
 import CarouselComponent from './CarouselComponent'
 import { useScrollToTop } from '@react-navigation/native'
+import { ETAToast } from '@etaui'
+import { useToast } from '@etaui/toast/useToast'
+import { useTranslation } from '@etaui/translate'
 
 const HEADER_MIN_HEIGHT = 85
 const HEADER_MAX_HEIGHT = 85
@@ -21,8 +25,9 @@ const Root = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const {data} = state.menu
-	return {data}
+	const { userToken, firstname } = state.user
+	const { data } = state.menu
+	return { data, userToken, firstname }
 }
 
 const mapDispatchProps = (dispatch, props) => ({
@@ -31,16 +36,49 @@ const mapDispatchProps = (dispatch, props) => ({
 			type: GET_DATA_REQUEST,
 		})
 	},
+	
+	checkToken: () => {
+		dispatch({
+			type: CHECK_TOKEN,
+			payload: {},
+		})
+	},
+
+	getUserData: () => {
+		dispatch({
+			type: GET_USER_DATA,
+			payload: {},
+		})
+	},
 })
 
-const MenuComponent = ({getDataRequest, data}) => {
+const MenuComponent = ({ getDataRequest, data, checkToken, userToken, getUserData, firstname }) => {
 	const themeContext = useContext(ThemeContext)
-	const [scrollYAnimatedValue] = useState(new Animated.Value(0))
-	const [animatedValueTransform] = useState(new Animated.Value(0.96))
-	const [opacity] = useState(new Animated.Value(0))
+	const [ scrollYAnimatedValue ] = useState(new Animated.Value(0))
+	const [ animatedValueTransform ] = useState(new Animated.Value(0.96))
+	const [ opacity ] = useState(new Animated.Value(0))
 	const delayValue = 700
 	const ref = React.useRef(null)
-  	useScrollToTop(ref)
+	const { showToast } = useToast()
+	const { login_success, user_log_out } = useTranslation()
+	useScrollToTop(ref)
+	
+	useEffect(() => {
+		let isUnMounted = false
+		checkToken()
+		if (userToken) {
+			getUserData()
+			if (firstname) {
+				showToast('Success', login_success.charAt(0).toUpperCase() +  login_success.slice(1) + ' ' + firstname)
+			}
+		} else if (userToken !== undefined) {
+			showToast('Info', user_log_out.charAt(0).toUpperCase() + user_log_out.slice(1))
+		}
+
+		return () => {
+			isUnMounted = true
+		}
+	},  [firstname, userToken])
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -155,7 +193,6 @@ const MenuComponent = ({getDataRequest, data}) => {
 						:	null
 					}
 				</ScrollView>
-
 				<Animated.View
 					style={{
 						position: 'absolute',
@@ -173,6 +210,7 @@ const MenuComponent = ({getDataRequest, data}) => {
 					}}>
 					<HeadCategoryList />
 				</Animated.View>
+				<ETAToast />
 			</Root>
 		</>
 	)

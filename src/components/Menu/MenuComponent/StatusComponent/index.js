@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Dimensions, Animated } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useScrollToTop } from '@react-navigation/native'
 import StatusItem from './item'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/menu/status/actions'
@@ -28,7 +28,9 @@ const Touchable = styled.TouchableOpacity.attrs({
 })`
 	justify-content: center;
 	align-items: center;
-	margin-horizontal: 2px;
+	margin-horizontal: 1px;
+	min-width: 62px
+	background-color: transparent
 `
 
 const mapStateToProps = (state) => {
@@ -51,6 +53,8 @@ const Status = ({ getDataRequest, data }) => {
 	const [ animatedValueTransform ] = useState(new Animated.Value(0))
 	let delayValue = 1000
 	let languageCode = RNLocalize.getLocales()
+	const ref = React.useRef(null)
+  	useScrollToTop(ref)
 
 	useEffect(() => {
 		let isUnMounted = false
@@ -83,6 +87,7 @@ const Status = ({ getDataRequest, data }) => {
 			{items && items.length > 0 ? (
 				<>
 					<ItemsList
+						ref={ref}
 						data={items}
 						keyExtractor={(item) => item._id.toString()}
 						horizontal
@@ -109,13 +114,14 @@ const Status = ({ getDataRequest, data }) => {
 										_onPressItem(item)
 									}>
 									<Animated.View
-										style={{
-											transform: [
-												{
-													translateX,
-												},
-											],
-										}}>
+										// style={{
+										// 	transform: [
+										// 		{
+										// 			translateX,
+										// 		},
+										// 	],
+										// }}
+										>
 										<StatusItem
 											item={item}
 										/>

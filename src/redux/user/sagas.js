@@ -8,25 +8,35 @@ import {
   SIGNUP_SUCCESS,
   RECOVERY_PASS,
   RECOVERY_PASS_SUCCESS,
+  AUTHSOCIALMEDIA,
+  AUTHSOCIALMEDIA_SUCCESS,
+  CHECK_TOKEN,
+  CHECK_TOKEN_SUCCESS,
+  GET_USER_DATA,
+  GET_USER_DATA_SUCCESS
 } from './actions'
+import { LoginManager } from 'react-native-fbsdk'
 
 function* handler() {
   yield takeEvery(SIGNIN, singinUser)
   yield takeEvery(LOGOUT, logoutUser)
   yield takeEvery(SIGNUP, signupUser)
   yield takeEvery(RECOVERY_PASS, recoveryPassUser)
+  yield takeEvery(AUTHSOCIALMEDIA, authSocialMedia)
+  yield takeEvery(CHECK_TOKEN, checkToken)
+  yield takeEvery(GET_USER_DATA, getUserData)
 }
 
 function* singinUser(action) {
+  const { avatar, fullname, firstname, lastname } = action.payload
   try {
-    const userToken = 'token'
-
     yield put({
       type: SIGNIN_SUCCESS,
       payload: {
-        cellphone: 'r1d24',
-        password: 'rosalia11',
-        userToken,
+        avatar,
+        fullname,
+        firstname,
+        lastname
       },
     })
   } catch (error) {
@@ -42,6 +52,7 @@ function* logoutUser(action) {
         userToken: null,
       },
     })
+    LoginManager.logOut()
   } catch (error) {
     console.log('[User Saga] logoutUser error: ', error)
   }
@@ -72,6 +83,45 @@ function* recoveryPassUser(action) {
     })
   } catch (error) {
     console.log('[User Saga] recoveryPassUser error: ', error)
+  }
+}
+
+function* authSocialMedia(action) {
+  try {
+    let { userToken } = action.payload
+    // console.log('[authSocialMedia] userToken:', userToken)
+    yield put({
+      type: AUTHSOCIALMEDIA_SUCCESS,
+      payload: {
+        cellphone: '',
+        password: '',
+        userToken,
+      },
+    })
+  } catch (error) {
+    console.log('[User Saga] authSocialMedia error: ', error)
+  }
+}
+
+function* checkToken(action) {
+  try {
+    yield put({
+      type: CHECK_TOKEN_SUCCESS,
+      payload: {},
+    })
+  } catch (error) {
+    console.log('[User Saga] checkToken error: ', error)
+  }
+}
+
+function* getUserData(action) {
+  try {
+    yield put({
+      type: GET_USER_DATA_SUCCESS,
+      payload: {},
+    })
+  } catch (error) {
+    console.log('[User Saga] getUserData error: ', error)
   }
 }
 

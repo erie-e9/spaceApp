@@ -7,26 +7,26 @@ import { truncateString } from '@functions'
 const Root = styled.View`
 	flex: 1;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: flex-start;
-	padding-left: 10px;
+	margin: 0px 0px 2px 4px;
 	border-bottom-width: 0px;
 	border-bottom-color: ${(props) => props.theme.GRAYFACEBOOK};
 	background-color: transparent;
 `
 const ChatContentContainer = styled.View`
-	flex: 0.85;
-	min-width: 40px;
+	flex: 1;
+	min-width: 120px;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: flex-start;
 	background-color: transparent;
 `
 const CounterContainer = styled.View`
-	flex: 0.15;
+	flex: 0.12;
 	justify-content: center;
 	align-items: center;
-	margin-right: 40px;
+	padding-horizontal: 5px;
 	background-color: transparent
 `
 const BadgeContainer = styled.View`
@@ -50,11 +50,11 @@ const CardBody = memo(({text, unreaded_massages}) => {
 		<Root>
 			<ChatContentContainer>
 				<ETASimpleText
-					size={14}
+					size={13}
 					weight={unreaded_massages > 0 ? 'bold' : '300'}
 					color={unreaded_massages > 0 ? themeContext.SECONDARY_TEXT_BACKGROUND_COLOR : themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
-					{truncateString(text, 40)}
+					{truncateString(text, 35)}
 				</ETASimpleText>
 			</ChatContentContainer>
 			<CounterContainer>

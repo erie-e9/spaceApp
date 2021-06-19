@@ -54,26 +54,26 @@ const Navigation = ({ getDataRequest, theme }) => {
 
 		if (theme === 0) { // theme system
 			if (colorSchema === 'dark') {
-				await setthemepicked(darkTheme)
-				await setbarStyleTheme('light-content')
-				await setbackgroundTheme(darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
-				await setnavMode(navDarkMode)
+				setthemepicked(darkTheme)
+				setbarStyleTheme('light-content')
+				setbackgroundTheme(darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+				setnavMode(navDarkMode)
 			} else {
-				await setthemepicked(lightTheme)
-				await setbarStyleTheme('dark-content')
-				await setbackgroundTheme(lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
-				await setnavMode(navLightMode)
+				setthemepicked(lightTheme)
+				setbarStyleTheme('dark-content')
+				setbackgroundTheme(lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+				setnavMode(navLightMode)
 			}
 		} else if (theme === 1) { // light theme
-			await setthemepicked(lightTheme)
-			await setbarStyleTheme('dark-content')
-			await setbackgroundTheme(lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
-			await setnavMode(navLightMode)
+			setthemepicked(lightTheme)
+			setbarStyleTheme('dark-content')
+			setbackgroundTheme(lightTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+			setnavMode(navLightMode)
 		} else if (theme === 2) { // dark theme
-			await setthemepicked(darkTheme)
-			await setbarStyleTheme('light-content')
-			await setbackgroundTheme(darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
-			await setnavMode(navDarkMode)
+			setthemepicked(darkTheme)
+			setbarStyleTheme('light-content')
+			setbackgroundTheme(darkTheme.PRIMARY_TEXT_BACKGROUND_COLOR)
+			setnavMode(navDarkMode)
 		}
 	}
 

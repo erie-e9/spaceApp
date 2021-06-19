@@ -4,7 +4,7 @@ import { Platform, KeyboardAvoidingView, Keyboard, Animated, Dimensions } from '
 import { useRoute, useNavigation } from '@react-navigation/native'
 import { ETATextInputOutline, ETASimpleText, ETALoader, ETAMultiStep } from '@etaui'
 import { currencySeparator } from '@functions'
-import { CustomProductIcon1, CustomProductIcon2 } from '@icons'
+import { CustomProductIcon1, CustomProductIcon2, FontAwesome } from '@icons'
 import { connect } from 'react-redux'
 import { GET_DATA_REQUEST } from '@redux/customproduct/flavors/actions'
 import { ADD_TO_CART } from '@redux/cart/actions'
@@ -430,7 +430,15 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
             <ETAMultiStep
 				prevText={previous.charAt(0).toUpperCase() + previous.slice(1)}
 				nextText={next.charAt(0).toUpperCase() + next.slice(1)}
-				finishText={add_to_cart.charAt(0).toUpperCase() + add_to_cart.slice(1)}
+				finishIcon={<FontAwesome
+								name='shopping-cart'
+								size={16}
+								color='white'
+								style={{
+									alignSelf: 'center',
+								}}
+							/>}
+				finishText=' +'
 				finishFunction={() => _finishFunction()}
 				initialValues={{
 					itemsize: '',
@@ -474,7 +482,7 @@ const CustomProductComponent = ({ addToCart, getDataRequest, data }) => {
 													}
 													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 													align='left'
-													style={{ marginTop: 10 }}>
+													style={{ marginTop: 0 }}>
 													{element.description}
 												</ETASimpleText>
 											</HeadContainer>

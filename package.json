@@ -14,7 +14,7 @@
     "debugger": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-async-storage/async-storage": "^1.13.2",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/google-signin": "^5.0.0",
     "@react-native-community/masked-view": "^0.1.10",
@@ -36,6 +36,7 @@
     "react": "^17.0.1",
     "react-native": "^0.63.4",
     "react-native-fbsdk": "^3.0.0",
+    "react-native-fingerprint-scanner": "^6.0.0",
     "react-native-gesture-handler": "^1.9.0",
     "react-native-google-places-autocomplete": "^2.1.2",
     "react-native-linear-gradient": "^2.5.6",

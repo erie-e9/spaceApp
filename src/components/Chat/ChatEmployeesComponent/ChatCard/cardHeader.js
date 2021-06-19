@@ -14,26 +14,28 @@ const Root = styled.View`
 	justify-content: center;
 	align-items: center;
 	align-content: center;
-	padding-horizontal: 10px;
+	margin-left: 4px;
 `
 const MetaContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	background-color: transparent;
 `
 const UserDataContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: center;
+	background-color: transparent;
 `
 const TimeContainer = styled.View`
 	flex: 1;
 	flex-direction: column;
 	justify-content: flex-end;
-	align-items: center;
-	padding-right: 15px;
+	align-items: flex-end;
+	background-color: transparent;
 `
 const Touchable = styled.TouchableOpacity.attrs({
 	underlayColor: 'transparent',
@@ -72,7 +74,7 @@ const CardHeader = ({ username, firstname, lastname, createdAt, avatar }) => {
 							themeContext.SECONDARY_TEXT_BACKGROUND_COLOR
 						}
 						align='left'>
-						{truncateString(fullname, 40)}
+						{truncateString(fullname, 30)}
 					</ETASimpleText>
 					<Touchable
 						onPress={() => _navigationContactProfile()}

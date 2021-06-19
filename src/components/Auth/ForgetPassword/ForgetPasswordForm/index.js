@@ -190,7 +190,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 					cellphone: '',
 					name: '',
 					lastname: '',
-					genre: 'men',
+					genre: 'man',
 					username: '',
 					password: '',
 					confirmPassword: ''
@@ -233,7 +233,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 													}
 													color={themeContext.SECONDARY_TEXT_BACKGROUND_COLOR}
 													align='left'
-													style={{ marginTop: 10 }}>
+													style={{ marginTop: 0 }}>
 													{element.description}
 												</ETASimpleText>
 											</HeadContainer>
@@ -276,7 +276,7 @@ const ForgetPasswordComponent = ({recoveryPassUser, cellphone}) => {
 																		height={40}
 																		width={270}
 																		borderWidth={0.3}
-																		onChangeText={text => {onChangeValue([item.name], text); setdisabledState(values?.[item.name] !== '' ? false : true)}}
+																		onChangeText={(formatted, extracted) => {onChangeValue([item.name], extracted); setdisabledState(values?.[item.name] !== '' ? false : true)}}
 																		// onBlur={handleBlur('cellphone')}
 																		selectionColor={themeContext.PRIMARY_COLOR}
 																	/>

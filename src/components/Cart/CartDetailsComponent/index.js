@@ -2,11 +2,10 @@ import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import { Platform, Dimensions } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { ETASimpleText, ETAButtonOutline, ETAButtonFilled, ETAToast } from '@etaui'
+import { ETASimpleText, ETAButtonOutline, ETAButtonFilled } from '@etaui'
 import { connect } from 'react-redux'
 import { currencySeparator } from '@functions'
 import DiscountCodeModal from '@commons/DiscountCodeModal'
-import { useToast } from '@etaui/toast/useToast'
 import { useTranslation } from '@etaui/translate'
 
 const {width} = Dimensions.get('window')
@@ -82,8 +81,8 @@ const ButtonPayContainer = styled.View`
 `
 
 const mapStateToProps = (state, props) => {
-	const {data} = state.cart
-	return {data}
+	const { data } = state.cart
+	return { data }
 }
 
 const CartDetailsComponent = ({ data }) => {
@@ -94,7 +93,6 @@ const CartDetailsComponent = ({ data }) => {
 	const [ subtotalState, setsubtotalState ] = useState(0)
 	const [ shippingState ] = useState(35)
 	const [ isFancyModalVisible, setisFancyModalVisible ] = useState(false)
-	const { showToast } = useToast()
 	let subtotalValue = 0
 	let sum = 0
 	const { summary, item, items, subtotal, shipping, total, discount_code,  check_out } = useTranslation()
@@ -133,10 +131,6 @@ const CartDetailsComponent = ({ data }) => {
 				totalItems
 			},
 		})
-	}
-
-	const _onPressToast = () => {
-		showToast('Info', 'Error toast')
 	}
 
 	return (
@@ -286,21 +280,6 @@ const CartDetailsComponent = ({ data }) => {
 						borderRadius={3}
 					/>
 				</ButtonPayContainer>
-				
-				{/* <ButtonPayContainer>
-					<ETAButtonFilled
-						title='Toast'
-						onPress={() => _onPressToast()}
-						disabled={false}
-						colorButton={
-							themeContext.SECONDARY_BACKGROUND_COLOR
-						}
-						padding={10}
-						width={240}
-						borderRadius={3}
-					/>
-				</ButtonPayContainer>
-				<ETAToast /> */}
 			</CartDetailsContainer>
 		</Root>
 	)

@@ -39,7 +39,7 @@ const SearchBoxComponent = ({currentPosition}) => {
 	const navigation = useNavigation()
 	const { search_branch_office } = useTranslation()
 	const [ search, setsearch ] = useState('')
-
+	
 	return (
 		<SearchBox
 			style={{

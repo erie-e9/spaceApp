@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components/native'
 import { Platform } from 'react-native'
-import { ETASimpleText } from '@etaui'
+import { ETASimpleText, ETAAuthFingerprintScanner } from '@etaui'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from '@etaui/translate'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Root = styled.View`
 	flex: 0.5
@@ -22,21 +23,51 @@ const ButtonForgetPassword = styled.TouchableOpacity.attrs({
 
 const SignInBody = () => {
 	const themeContext = useContext(ThemeContext)
-	const { forgotten_pass, no_account } = useTranslation()
+	const { forgotten_pass, log_in_company, login_fingerprint_text, fingerprint_message_subtitle, fingerprint_message_description, use_password, login_success, login_failed } = useTranslation()
 	const navigation = useNavigation()
+	const [ wasLoggedin, setwasLoggedin ] = useState(!false)
+	
+	useEffect(() => {
+		let isUnMounted = false
+		
+		wasLoggedIn()
+		return () => {
+			isUnMounted = true
+		}
+	}, [])
+
+	const wasLoggedIn = async () => {
+		let userID = await AsyncStorage.getItem('@userID')
+		console.log('[wasLoggedIn]: ', userID)
+		if (userID !== undefined && userID !== null) {
+			setwasLoggedin(userID)
+		}
+	}
 	
 	const _onShowForgetPasswordPress = () => {
 		navigation.navigate('AuthNavigator', {
 			screen: 'ForgetPasswordScreen'
 		})
 	}
-	
+
 	return (
 		<Root>
+			{wasLoggedin !== false
+				?	<ETAAuthFingerprintScanner 
+						logInCompany={log_in_company}
+						loginFingerprintText={login_fingerprint_text}
+						fingerprintMessageSubtitle={fingerprint_message_subtitle}
+						fingerprintMessageDescription={fingerprint_message_description}
+						fingerprintCancel={use_password}
+						loginSuccess={login_success}
+						loginFailed={login_failed}
+					/>
+				:	null
+			}
 			<ButtonForgetPassword
 				onPress={() => _onShowForgetPasswordPress()}>
 				<ETASimpleText
-					size={14}
+					size={13}
 					weight={Platform.OS === 'ios' ? '500' : '300'}
 					color={themeContext.PRIMARY_TEXT_COLOR_LIGHT}
 					align='left'>
