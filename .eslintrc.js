@@ -1,25 +1,21 @@
 module.exports = {
-  root: true,
-  // extends: '@react-native-community',
   env: {
-    es6: true,
-    node: true,
+    'jest/globals': true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: false,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-  plugins: ['react'],
+  root: true,
+  extends: '@react-native',
   rules: {
-    'no-inline-comments': 'off',
-    semi: 0,
+    'react-hooks/exhaustive-deps': 'off',
+    quotes: ['error', 'single'],
+    'object-curly-spacing': ['error', 'always'],
+    'array-bracket-spacing': ['error', 'never'],
+    'react/require-default-props': ['error'],
+    'react/default-props-match-prop-types': ['error'],
+    'react/sort-prop-types': ['error'],
+  },
+  settings: {
+    'import/resolver': {
+      'babel-module': {},
+    },
   },
 };
