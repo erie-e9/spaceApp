@@ -1,15 +1,35 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react-native",
     "types": ["react-native", "jest", "node"],
-    "typeRoots": [
-      "@types",
-      "./node_modules/@types"
-    ],
+    "typeRoots": ["@types", "./node_modules/@types"],
     "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"],
-      "types/*": ["./@types/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@hooks": ["./src/hooks/index.ts"],
+      "@components/*": ["./src/components/*"],
+      "@components": ["./src/components/index.ts"],
+      "@redux/*": ["./src/redux/*"],
+      "@redux": ["./src/redux/index.ts"],
+      "@store/*": ["./src/redux/store/*"],
+      "@store": ["./src/redux/store/index.ts"],
+      "@slices/*": ["./src/redux/store/slices/*"],
+      "@slices": ["./src/redux/store/slices/index.ts"],
+      "@assets/*": ["./src/assets/*"],
+      "@assets": ["./src/assets"],
+      "@services/*": ["./src/services/*"],
+      "@services": ["./src/services"],
+      "@env": [".env"],
+      "@libs/*": ["./src/utils/libs/*"],
+      "@libs": ["./src/utils/libs/index.ts"],
+      "@utils/*": ["./src/utils/*"],
+      "@utils": ["./src/utils/index.ts"],
+      "@theme/*": ["./src/theme/*"],
+      "@theme": ["./src/theme/index.ts"],
+      "types/*": ["./src/utils/@types/*"]
     }
   }
 }

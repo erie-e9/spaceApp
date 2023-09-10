@@ -10,9 +10,9 @@ import {
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Brand } from '../../components';
-import { useTheme } from '../../hooks';
-import { useLazyFetchOneQuery } from '../../services/modules/users';
+import { Brand } from '@components';
+import { useTheme } from '@hooks';
+import { useLazyFetchOneQuery } from '@services/modules/users';
 import { changeTheme, ThemeState } from '../../store/theme';
 import i18next from 'i18next';
 

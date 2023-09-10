@@ -1,0 +1,10 @@
+# Ignore mocks for unit test
+__mocks__/*
+
+# Ignore metro config
+metro.config.js
+
+# Ingnore legacy code
+src/services/api/ssl-pinning/
+src/utils/svg/
+src/services/performance

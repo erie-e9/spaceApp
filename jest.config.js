@@ -1,4 +1,5 @@
 module.exports = {
+  testTimeout: 6000,
   preset: 'react-native',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   setupFilesAfterEnv: [

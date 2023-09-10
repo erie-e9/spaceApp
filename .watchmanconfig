@@ -1,1 +1,4 @@
-{}
+{
+  "fsevents_latency": 0.001,
+  "suppress_recrawl_warnings": true
+}
