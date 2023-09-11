@@ -14,8 +14,14 @@ import {
 import { MMKV } from 'react-native-mmkv';
 import { api } from '@services/api';
 import { reducers } from '@store/reducers';
+import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
+import { setupDefaultFlipperReporter } from 'react-native-performance-flipper-reporter';
 
 const storage = new MMKV();
+if (__DEV__) {
+  initializeMMKVFlipper({ default: storage });
+  setupDefaultFlipperReporter();
+}
 
 export const reduxStorage: Storage = {
   setItem: (key, value) => {

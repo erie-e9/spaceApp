@@ -12,7 +12,7 @@ import MainNavigator from './Main';
 import { darkTheme, lightTheme } from '@theme/themesi';
 import { useFlipper } from '@react-navigation/devtools';
 import { StyledSafeAreaView } from '@components/atoms';
-import { ApplicationStackParamList } from '../../@types/navigation';
+import { ApplicationStackParamList } from 'types/navigation';
 import { WarningScreen } from '@components/pages/Shared/WarningScreen';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();

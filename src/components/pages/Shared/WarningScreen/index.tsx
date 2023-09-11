@@ -12,7 +12,7 @@ export const WarningScreen = () => {
   const isMounted = useRef(true);
 
   const handlePrimaryButton = async (): Promise<void> => {
-    console.log('hola desde handlePrimaryButton');
+    console.log('handlePrimaryButton');
   };
 
   const handlebodyButton = async (): Promise<void> => {
@@ -37,7 +37,7 @@ export const WarningScreen = () => {
           <LottieView
             ref={animationRef}
             source={Animations.warning}
-            renderMode="SOFTWARE"
+            renderMode="AUTOMATIC"
             style={{
               width: 100,
               height: 100,

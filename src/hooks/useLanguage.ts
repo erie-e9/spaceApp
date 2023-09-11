@@ -1,9 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeLanguage } from '@slices/shared/appPreferences';
-import {
-  AppPreferencesState,
-  Language,
-} from '@redux/store/slices/types/appPreferences';
+import { AppPreferencesState, Language } from '@slices/types/appPreferences';
 import { changeLanguage as changeLanguageApp } from '@services/copyLibrary';
 
 export const useLanguage = (): {
