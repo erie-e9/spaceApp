@@ -1,4 +1,4 @@
-import { ThemeNavigationColors } from '../../../../@types/theme';
+import { ThemeNavigationColors } from 'types/theme';
 
 export const Colors = {
   primary: '#7454a5',

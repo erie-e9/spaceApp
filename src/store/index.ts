@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   persistReducer,
@@ -12,16 +12,17 @@ import {
   Storage,
 } from 'redux-persist';
 import { MMKV } from 'react-native-mmkv';
-
-import { api } from '../services/api';
-import theme from './theme';
-
-const reducers = combineReducers({
-  theme,
-  [api.reducerPath]: api.reducer,
-});
+import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
+import { setupDefaultFlipperReporter } from 'react-native-performance-flipper-reporter';
+import { api } from '@services/api';
+import { reducers } from '@store/reducers';
 
 const storage = new MMKV();
+if (__DEV__) {
+  initializeMMKVFlipper({ default: storage });
+  setupDefaultFlipperReporter();
+}
+
 export const reduxStorage: Storage = {
   setItem: (key, value) => {
     storage.set(key, value);
@@ -40,7 +41,7 @@ export const reduxStorage: Storage = {
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['theme', 'auth'],
+  whitelist: ['appPreferences', 'auth', 'responseHandler'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

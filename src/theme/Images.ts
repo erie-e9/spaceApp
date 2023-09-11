@@ -1,21 +1,21 @@
-import { ThemeVariables } from '../../@types/theme';
+import { ThemeVariables } from 'types/theme';
 
 export default function ({}: ThemeVariables) {
   return {
-    logo: require('./assets/images/tom_light.png'),
+    logo: require('@assets/light/images/tom_light.webp'),
     sparkles: {
-      topLeft: require('./assets/images/sparkles-top-left.png'),
-      top: require('./assets/images/sparkles-top.png'),
-      topRight: require('./assets/images/sparkles-top-right.png'),
-      right: require('./assets/images/sparkles-right.png'),
-      bottomRight: require('./assets/images/sparkles-bottom-right.png'),
-      bottom: require('./assets/images/sparkles-bottom.png'),
-      bottomLeft: require('./assets/images/sparkles-bottom-left.png'),
+      topLeft: require('@assets/shared/images/sparkles-top-left.webp'),
+      top: require('@assets/shared/images/sparkles-top.webp'),
+      topRight: require('@assets/shared/images/sparkles-top-right.webp'),
+      right: require('@assets/shared/images/sparkles-right.webp'),
+      bottomRight: require('@assets/shared/images/sparkles-bottom-right.webp'),
+      bottom: require('@assets/shared/images/sparkles-bottom.webp'),
+      bottomLeft: require('@assets/shared/images/sparkles-bottom-left.webp'),
     },
     icons: {
-      colors: require('./assets/images/colorswatch.png'),
-      send: require('./assets/images/send.png'),
-      translate: require('./assets/images/translate.png'),
+      colors: require('@assets/shared/images/colorswatch.webp'),
+      send: require('@assets/shared/images/send.webp'),
+      translate: require('@assets/shared/images/translate.webp'),
     },
   };
 }

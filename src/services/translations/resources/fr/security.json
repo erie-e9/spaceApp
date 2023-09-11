@@ -1,0 +1,11 @@
+{
+    "WarningScreen": {
+        "title": "Nous prenons au sérieux la sécurité de vos données",
+        "description": "Il semble que vous utilisez un appareil susceptible de compromettre la sécurité de vos informations privées. L'application {{appName}} n'est pas prise en charge par ce type d'appareils.",
+        "sub-description": "Nous vous recommandons d'installer notre application sur un autre appareil de confiance.",
+        "actions": {
+            "primaryButton": "Visitez notre site Web FAQ's",
+            "secondaryButton": "Contactez-nous"
+        }
+    }
+}

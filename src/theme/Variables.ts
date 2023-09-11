@@ -5,7 +5,7 @@
  * That allows to change them more easily later on.
  */
 
-import { ThemeNavigationColors } from '../../@types/theme';
+import { ThemeNavigationColors } from 'types/theme';
 
 /**
  * Colors
@@ -13,7 +13,7 @@ import { ThemeNavigationColors } from '../../@types/theme';
 export const Colors = {
   transparent: 'rgba(0,0,0,0)',
   inputBackground: '#FFFFFF',
-  white: '#ffffff',
+  white: '#FFFFFF',
   //Typography
   textGray800: '#000000',
   textGray400: '#4D4D4D',
@@ -28,8 +28,8 @@ export const Colors = {
 
 export const NavigationColors: Partial<ThemeNavigationColors> = {
   primary: Colors.primary,
-  background: '#EFEFEF',
-  card: '#EFEFEF',
+  background: '#FFF',
+  card: '#FFF',
 };
 
 /**
