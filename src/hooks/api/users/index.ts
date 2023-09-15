@@ -1,4 +1,4 @@
-import { api } from '../../api';
+import { api } from '@hooks/api';
 
 export type User = {
   id: number;
@@ -7,11 +7,11 @@ export type User = {
 
 export const userApi = api.injectEndpoints({
   endpoints: build => ({
-    fetchOne: build.query<User, string>({
+    fetchUser: build.query<User, string>({
       query: id => `/users/${id}`,
     }),
   }),
   overrideExisting: false,
 });
 
-export const { useLazyFetchOneQuery } = userApi;
+export const { useLazyFetchUserQuery } = userApi;

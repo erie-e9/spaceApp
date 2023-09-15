@@ -12,7 +12,7 @@ import {
   Storage,
 } from 'redux-persist';
 import { MMKV } from 'react-native-mmkv';
-import { api } from '@services/api';
+import { api } from '@hooks/api';
 import { reducers } from '@store/reducers';
 import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
 import { setupDefaultFlipperReporter } from 'react-native-performance-flipper-reporter';
@@ -41,7 +41,7 @@ export const reduxStorage: Storage = {
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['appPreferences', 'auth'],
+  whitelist: ['appPreferences', 'auth', 'languages'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

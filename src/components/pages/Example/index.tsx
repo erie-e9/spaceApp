@@ -1,16 +1,8 @@
-import React, { useEffect } from 'react';
-import {
-  View,
-  ActivityIndicator,
-  Text,
-  TouchableOpacity,
-  Image,
-  Alert,
-} from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Brand } from '@components';
 import { useTheme, useSVG, useLanguage } from '@hooks';
-import { useLazyFetchOneQuery } from '@services/modules/users';
 import { changeTheme } from '@slices/shared/appPreferences';
 import { AppPreferencesState, Language } from '@slices/types/appPreferences';
 import { useCopy, i18next } from '@services/copyLibrary';
@@ -24,9 +16,6 @@ interface Props {
 const Example: React.FC<Props> = ({ navigation }) => {
   const { getCopyValue } = useCopy();
   const SVGIconExample = useSVG('QRCodeNavigator');
-  const text = getCopyValue('example:helloUser' as string, {
-    name: process.env.APP_NAME,
-  });
   const {
     Common,
     Fonts,
@@ -38,14 +27,13 @@ const Example: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
   const { switchLanguage } = useLanguage();
 
-  const [fetchOne, { data, isSuccess, isLoading, isFetching }] =
-    useLazyFetchOneQuery();
-
-  useEffect(() => {
-    if (isSuccess) {
-      Alert.alert(text);
-    }
-  }, [isSuccess, data]);
+  const appPresentation = (): void => {
+    Alert.alert(
+      getCopyValue('example:helloUser' as string, {
+        name: process.env.APP_NAME,
+      }),
+    );
+  };
 
   const onChangeTheme = ({
     theme,
@@ -54,8 +42,8 @@ const Example: React.FC<Props> = ({ navigation }) => {
     dispatch(changeTheme({ theme, darkMode }));
   };
 
-  const onChangeLanguage = (language: Language): void => {
-    switchLanguage(language);
+  const onChangeLanguage = (languageParam: Language): void => {
+    switchLanguage(languageParam);
   };
 
   return (
@@ -212,16 +200,12 @@ const Example: React.FC<Props> = ({ navigation }) => {
         >
           <TouchableOpacity
             style={[Common.button.circle, Gutters.regularBMargin]}
-            onPress={() => fetchOne(`${Math.ceil(Math.random() * 10 + 1)}`)}
+            onPress={() => appPresentation()}
           >
-            {isFetching || isLoading ? (
-              <ActivityIndicator />
-            ) : (
-              <Image
-                source={Images.icons.send}
-                style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
-              />
-            )}
+            <Image
+              source={Images.icons.send}
+              style={{ tintColor: isDark ? '#A6A4F0' : '#44427D' }}
+            />
           </TouchableOpacity>
 
           <TouchableOpacity
