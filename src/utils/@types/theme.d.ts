@@ -1,12 +1,5 @@
 import Variables from '@theme/Variables';
-import {
-  DefaultVariables,
-  Fonts,
-  Gutters,
-  Images,
-  Animations,
-  Layout,
-} from '@theme';
+import { DefaultVariables, Images, Animations } from '@theme';
 import { Theme as ReactNavigationTheme } from '@react-navigation/native/src/types';
 
 export type ThemeVariables = {
@@ -16,12 +9,9 @@ export type ThemeVariables = {
   MetricsSizes: typeof Variables.MetricsSizes;
 };
 
-export type Theme<F, G, I, A, L, C> = ThemeVariables & {
-  Fonts: F;
-  Gutters: G;
+export type Theme<I, A, C> = ThemeVariables & {
   Images: I;
   Animations: A;
-  Layout: L;
   Common: C;
   Variables?: Partial<ThemeVariables>;
 };
@@ -34,24 +24,11 @@ export type ThemeNavigationTheme = {
   colors: ThemeNavigationColors;
 };
 
-const fonts = Fonts(DefaultVariables);
-const gutters = Gutters(DefaultVariables);
 const images = Images(DefaultVariables);
 const animations = Animations(DefaultVariables);
-const layout = Layout(DefaultVariables);
 
 export type CommonParams<C> = ThemeVariables &
-  Pick<
-    Theme<
-      typeof fonts,
-      typeof gutters,
-      typeof images,
-      typeof animations,
-      typeof layout,
-      C
-    >,
-    'Layout' | 'Gutters' | 'Fonts' | 'Images' | 'Amimations'
-  >;
+  Pick<Theme<typeof images, typeof animations, C>, 'Images' | 'Animations'>;
 
 type Margins =
   | 'Margin'
@@ -72,9 +49,3 @@ type Paddings =
 
 type MarginKeys = `${keyof ThemeVariables['MetricsSizes']}${Margins}`;
 type PaddingKeys = `${keyof ThemeVariables['MetricsSizes']}${Paddings}`;
-
-type Gutters = {
-  [key in MarginKeys | PaddingKeys]: {
-    [k in string]: number;
-  };
-};

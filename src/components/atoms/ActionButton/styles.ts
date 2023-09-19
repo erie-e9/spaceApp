@@ -2,13 +2,14 @@ import { PixelRatio } from 'react-native';
 import type * as CSS from 'csstype';
 import { toInteger } from 'lodash';
 import styled, { DefaultTheme } from 'styled-components/native';
-import { Text } from '@components/atoms';
+import { Typography } from '@components/atoms';
 import Tappable from '@components/atoms/Tappable';
 
 export interface StyledButtonProps {
   readonly backgroundColor?: string;
   readonly disabledColor?: keyof DefaultTheme['colors'];
   grouped?: boolean;
+  loading?: boolean;
   disabled?: boolean;
   hasBorder?: boolean;
   colorScheme: string;
@@ -23,6 +24,7 @@ export interface StyleButtonTextProps {
   readonly disabledColor?: keyof DefaultTheme['colors'];
   disabled?: boolean;
   buttonType?: string;
+  type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
   testID?: string;
 }
 
@@ -40,11 +42,14 @@ export const StyledButton = styled(Tappable)<StyledButtonProps>`
   justify-content: center;
   align-items: center;
   height: ${PixelRatio.roundToNearestPixel(50)}px;
-  min-width: 100%;
-  padding: 0px 20px;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  border-radius: ${PixelRatio.roundToNearestPixel(10)}px;
+  min-width: ${({ loading, type }) =>
+    loading || type === 'Icon' ? '50px' : '100%'};
+  padding: 0px
+    ${({ loading }) => PixelRatio.roundToNearestPixel(loading ? 10 : 20)}px;
+  border-radius: ${({ loading, type }) =>
+    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 30 : 15)}px;
   elevation: 0;
+  background-color: ${({ backgroundColor }) => backgroundColor};
   ${({ hasBorder, theme, colorScheme }) =>
     hasBorder &&
     `
@@ -56,7 +61,7 @@ export const StyledButton = styled(Tappable)<StyledButtonProps>`
   };
   `}
 `;
-export const StyledText = styled(Text)<StyleButtonTextProps>`
+export const StyledText = styled(Typography)<StyleButtonTextProps>`
   text-align: center;
   justify-content: center;
   font-weight: ${({ fontWeight }) => fontWeight || '500'};
@@ -69,4 +74,11 @@ export const StyledText = styled(Text)<StyleButtonTextProps>`
     `
   color: ${theme.tokens.colors.darkBlueD5};
   `}
+`;
+
+export const IconContainer = styled.View`
+  flex: 1;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
 `;

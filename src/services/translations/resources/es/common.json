@@ -1,6 +1,9 @@
 {
   "appName": {
-    "full": "React Native iShop",
+    "full": "iShop de React Native",
     "initials": "RNB"
+  },
+  "messages": {
+    "noConnection": "Sin conexión a internet. Intentando de nuevo."
   }
 }

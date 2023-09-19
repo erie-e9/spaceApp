@@ -3,6 +3,7 @@ import { ThemeVariables } from 'types/theme';
 export default function ({}: ThemeVariables) {
   return {
     logo: require('@assets/light/images/tom_light.webp'),
+    space: require('@assets/light/images/AestheticSpace.webp'),
     sparkles: {
       topLeft: require('@assets/shared/images/sparkles-top-left.webp'),
       top: require('@assets/shared/images/sparkles-top.webp'),

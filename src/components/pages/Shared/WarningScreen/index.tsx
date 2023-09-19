@@ -1,12 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import CallToActionTemplate from '@components/templates/CallToAction';
 import { useCopy } from '@services/copyLibrary';
-import { BodyContainer, TitleText } from './styles';
-import LottieView from 'lottie-react-native';
+import { Lottie } from '@components/atoms';
+import type { LottieViewProps } from '@components/atoms';
 import { useTheme } from '@hooks';
+import {
+  BodyContainer,
+  TitleText,
+  DescriptionContainer,
+  SubdescriptionContainer,
+} from './styles';
 
 export const WarningScreen = () => {
-  const animationRef = useRef<LottieView>(null);
+  const animationRef = useRef<LottieViewProps>(null);
   const { getCopyValue } = useCopy();
   const { Animations } = useTheme();
   const isMounted = useRef(true);
@@ -32,36 +38,40 @@ export const WarningScreen = () => {
   return (
     <CallToActionTemplate
       title={getCopyValue('security:WarningScreen.title')}
+      numberOfLinesTitle={3}
       body={
         <BodyContainer>
-          <LottieView
+          <Lottie
             ref={animationRef}
             source={Animations.warning}
-            renderMode="AUTOMATIC"
-            style={{
-              width: 100,
-              height: 100,
-            }}
+            renderMode="SOFTWARE"
+            resizeMode="contain"
+            width={100}
+            height={100}
           />
-          <TitleText
-            type="Subtitle1"
-            font="secondary"
-            color="darkBlueD3"
-            textAlign="justify"
-          >
-            {getCopyValue('security:WarningScreen.description', {
-              appName: process.env.APP_NAME,
-            })}
-          </TitleText>
-          <TitleText
-            type="Subtitle1"
-            font="secondary"
-            color="darkBlueD3"
-            textAlign="center"
-            weight="bold"
-          >
-            {getCopyValue('security:WarningScreen.sub-description')}
-          </TitleText>
+          <DescriptionContainer>
+            <TitleText
+              type="Subtitle1"
+              font="secondary"
+              color="darkBlueD3"
+              textAlign="justify"
+            >
+              {getCopyValue('security:WarningScreen.description', {
+                appName: process.env.APP_NAME,
+              })}
+            </TitleText>
+          </DescriptionContainer>
+          <SubdescriptionContainer>
+            <TitleText
+              type="Subtitle1"
+              font="secondary"
+              color="darkBlueD3"
+              textAlign="center"
+              weight="bold"
+            >
+              {getCopyValue('security:WarningScreen.sub-description')}
+            </TitleText>
+          </SubdescriptionContainer>
         </BodyContainer>
       }
       primaryButton={{

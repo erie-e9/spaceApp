@@ -2,7 +2,7 @@
   "WarningScreen": {
     "title": "We're serious about keeping your data secure",
     "description": "It seems you are using a device that could compromise the security of your private information. {{appName}} app isn't supported by these kinds of devices.",
-    "sub-description": "We recommend installing our application on another trusted device.",
+    "sub-description": "We recommend installing our application on a more trusted device.",
     "actions": {
       "primaryButton": "Visit our FAQ's website",
       "secondaryButton": "Contact us"

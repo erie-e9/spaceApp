@@ -1,16 +1,7 @@
 import { useColorScheme } from 'react-native';
 import { useSelector } from 'react-redux';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
-import {
-  Common,
-  Fonts,
-  Gutters,
-  Images,
-  Animations,
-  Layout,
-  themes,
-  DefaultVariables,
-} from '@theme';
+import { Common, Images, Animations, themes, DefaultVariables } from '@theme';
 import { AppPreferencesState } from '@slices/types/appPreferences';
 import {
   ThemeVariables,
@@ -61,34 +52,18 @@ export default function () {
 
   const themeVariables = mergeVariables(variables, darkVariables);
 
-  const fonts = Fonts(themeVariables);
-  const gutters = Gutters(themeVariables);
   const images = Images(themeVariables);
   const animations = Animations();
-  const layout = Layout(themeVariables);
   const common = Common({
-    ...themeVariables,
-    Layout: Layout(themeVariables),
-    Gutters: Gutters(themeVariables),
-    Fonts: Fonts(themeVariables),
     Images: Images(themeVariables),
     Animations: Animations(),
+    ...themeVariables,
   });
 
   // Build the default theme
-  const baseTheme: Theme<
-    typeof fonts,
-    typeof gutters,
-    typeof images,
-    typeof animations,
-    typeof layout,
-    typeof common
-  > = {
-    Fonts: fonts,
-    Gutters: gutters,
+  const baseTheme: Theme<typeof images, typeof animations, typeof common> = {
     Images: images,
     Animations: animations,
-    Layout: layout,
     Common: common,
     ...themeVariables,
   };
@@ -105,9 +80,9 @@ export default function () {
 /**
  * Generate Theme with theme variables
  */
-const formatTheme = <F, G, I, A, L, C>(
+const formatTheme = <I, A, C>(
   variables: ThemeVariables,
-  theme: Partial<Theme<F, G, I, A, L, C>>,
+  theme: Partial<Theme<I, A, C>>,
 ) => {
   return Object.entries(theme).reduce((acc, [name, generate]) => {
     return {
@@ -147,11 +122,11 @@ const mergeVariables = (
 /**
  * Provide all the theme exposed with useTheme()
  */
-const buildTheme = <F, G, I, A, L, C>(
+const buildTheme = <I, A, C>(
   darkMode: boolean,
-  baseTheme: Theme<F, G, I, A, L, C>,
-  themeConfig: Partial<Theme<F, G, I, A, L, C>>,
-  darkThemeConfig: Partial<Theme<F, G, I, A, L, C>>,
+  baseTheme: Theme<I, A, C>,
+  themeConfig: Partial<Theme<I, A, C>>,
+  darkThemeConfig: Partial<Theme<I, A, C>>,
 ) => {
   return {
     ...mergeTheme(baseTheme, themeConfig, darkThemeConfig),
@@ -166,10 +141,10 @@ const buildTheme = <F, G, I, A, L, C>(
 /**
  * Merge theme from baseTheme <- currentTheme <- currentDarkTheme
  */
-const mergeTheme = <F, G, I, A, L, C>(
-  baseTheme: Theme<F, G, I, A, L, C>,
-  theme: Partial<Theme<F, G, I, A, L, C>>,
-  darkTheme: Partial<Theme<F, G, I, A, L, C>>,
+const mergeTheme = <I, A, C>(
+  baseTheme: Theme<I, A, C>,
+  theme: Partial<Theme<I, A, C>>,
+  darkTheme: Partial<Theme<I, A, C>>,
 ) =>
   Object.entries(baseTheme).reduce(
     (acc, [key, value]) => ({

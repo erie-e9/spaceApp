@@ -1,18 +1,24 @@
-import type * as CSS from 'csstype';
 import React, { useState, useEffect } from 'react';
+import type * as CSS from 'csstype';
 import { DefaultTheme, useTheme } from 'styled-components/native';
 import Loader from '@components/atoms/LoaderThreeDots';
-import { LoadingContainer, StyledButton, StyledText } from './styles';
+import {
+  LoadingContainer,
+  StyledButton,
+  StyledText,
+  IconContainer,
+} from './styles';
 
 export interface ActionButtonProps {
   title?: string;
   loading?: boolean;
   textColor?: string;
+  numberOfLines?: number;
   backgroundColor?: string;
   onPress?: () => void;
   onPressAsync?: () => Promise<void>;
   buttonTheme?: 'Primary' | 'Secondary' | 'Dark';
-  type?: 'Button' | 'Fab' | 'Link' | 'Text';
+  type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
   readonly disabledColor?: keyof DefaultTheme['colors'];
   disabled?: boolean;
   grouped?: boolean;
@@ -20,7 +26,7 @@ export interface ActionButtonProps {
   fontSize?: CSS.StandardProperties['fontSize'];
   lineHeight?: CSS.StandardProperties['lineHeight'];
   fullWidth?: boolean;
-  Icon?: React.ComponentType<{ theme: DefaultTheme }>;
+  Icon?: JSX.Element;
   testID?: string;
   buttonType?: string;
   textTransform?: CSS.StandardProperties['textTransform'] | undefined;
@@ -31,6 +37,7 @@ export interface ActionButtonProps {
 const ActionButton: React.FC<ActionButtonProps> = ({
   title,
   textColor,
+  numberOfLines,
   backgroundColor,
   onPress,
   loading,
@@ -43,7 +50,6 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   fontSize,
   disabledColor,
   Icon,
-  lineHeight,
   fullWidth = true,
   buttonType,
   buttonTheme,
@@ -77,7 +83,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
     const bgColorLightScondary =
       buttonTheme === 'Secondary'
-        ? theme.tokens.colors.none
+        ? theme.tokens.colors.transparent
         : theme.tokens.colors.darkBlueD1;
 
     const bgColorLight =
@@ -96,7 +102,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
     const bgColorDark =
       disabled || asyncDisabled
-        ? theme.tokens.colors.darkBlueL4
+        ? theme.tokens.colors.primaryD4
         : bgColorDarkSecondary;
 
     switch (typeButton) {
@@ -116,6 +122,28 @@ const ActionButton: React.FC<ActionButtonProps> = ({
               ? theme.tokens.colors.darkBlueD1
               : theme.tokens.colors.primaryD1;
           bgColor = 'transparent';
+        } else if (buttonTheme === 'Dark') {
+          txtColor =
+            buttonTheme === 'Dark'
+              ? theme.tokens.colors.lightBlueL5
+              : theme.tokens.colors.primaryD1;
+          bgColor = 'transparent';
+        } else {
+          txtColor =
+            buttonTheme === 'Primary'
+              ? theme.tokens.colors.darkBlueD1
+              : theme.tokens.colors.primaryD1;
+          bgColor = theme.tokens.colors.none;
+        }
+        break;
+      case 'Icon':
+        hasBorder = true;
+        if (buttonTheme === 'Secondary') {
+          txtColor =
+            buttonTheme === 'Secondary'
+              ? theme.tokens.colors.darkBlueD1
+              : theme.tokens.colors.primaryD1;
+          bgColor = colorScheme === 'light' ? bgColorLight : bgColorDark;
         } else if (buttonTheme === 'Dark') {
           txtColor =
             buttonTheme === 'Dark'
@@ -178,27 +206,29 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       onPress={handlePress}
       hasBorder={disabled ? false : btnTheme.hasBorder}
       style={style}
+      type={type}
       grouped={grouped}
       colorScheme={colorScheme ?? 'light'}
+      loading={loading}
       {...rest}
     >
-      {Icon && <Icon theme={theme} />}
       {(loading || asyncDisabled) && (
         <LoadingContainer>
           <Loader />
         </LoadingContainer>
       )}
+      {!loading && Icon && <IconContainer>{Icon}</IconContainer>}
       {!loading && !asyncDisabled && (
         <StyledText
           fontWeight={fontWeight}
           color={textColor || btnTheme.txtColor}
           fontSize={fontSize}
           fullWidth={fullWidth}
-          lineHeight={lineHeight}
           disabled={disabled || asyncDisabled}
           disabledColor={disabledColor}
           buttonType={buttonType}
           textTransform={textTransform}
+          numberOfLines={numberOfLines}
         >
           {title}
         </StyledText>
@@ -212,6 +242,7 @@ ActionButton.defaultProps = {
   title: '',
   loading: false,
   textColor: '',
+  numberOfLines: 1,
   textTransform: undefined,
   onPress: undefined,
   onPressAsync: undefined,

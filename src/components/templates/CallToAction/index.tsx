@@ -1,7 +1,7 @@
 import React from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import { SvgProps } from 'react-native-svg';
 import type * as CSS from 'csstype';
-import { StyleProp, ViewStyle } from 'react-native';
 import { useTheme } from '@hooks';
 import {
   ButtonContainer,
@@ -30,6 +30,8 @@ interface ButtonProps {
 interface Props {
   icon?: React.FC<SvgProps>;
   title?: string;
+  adjustsFontTitle?: boolean;
+  numberOfLinesTitle?: number;
   body: JSX.Element;
   bodyTestID?: string;
   primaryButton?: ButtonProps;
@@ -42,6 +44,8 @@ interface Props {
 const CallToActionLayout: React.FC<Props> = ({
   icon: Icon,
   title,
+  adjustsFontTitle,
+  numberOfLinesTitle,
   body,
   bodyTestID,
   primaryButton,
@@ -50,7 +54,7 @@ const CallToActionLayout: React.FC<Props> = ({
   footer,
   iconSpacing,
 }) => {
-  const { darkMode: isDarkMode } = useTheme();
+  const { darkMode } = useTheme();
 
   return (
     <StyledContainer>
@@ -64,8 +68,10 @@ const CallToActionLayout: React.FC<Props> = ({
         {title && (
           <TitleContainer>
             <TitleTypography
-              type="Headline4"
-              color={isDarkMode ? 'opposing' : 'darkBlueD1'}
+              type="Headline5"
+              adjustsFontSizeToFit={adjustsFontTitle}
+              numberOfLines={numberOfLinesTitle}
+              color={darkMode ? 'opposing' : 'darkBlueD1'}
             >
               {title}
             </TitleTypography>
@@ -113,7 +119,7 @@ const CallToActionLayout: React.FC<Props> = ({
             testID={tertiaryButton.testID || undefined}
             textTransform={tertiaryButton.textTransform || undefined}
             style={tertiaryButton.style || undefined}
-            buttonTheme={isDarkMode ? 'Dark' : 'Secondary'}
+            buttonTheme={darkMode ? 'Dark' : 'Secondary'}
             type={'Text'}
             loading={tertiaryButton.loading || undefined}
             disabled={tertiaryButton.disabled || undefined}
@@ -132,6 +138,8 @@ export default CallToActionLayout;
 CallToActionLayout.defaultProps = {
   icon: undefined,
   title: undefined,
+  adjustsFontTitle: false,
+  numberOfLinesTitle: 1,
   bodyTestID: undefined,
   primaryButton: undefined,
   secondaryButton: undefined,

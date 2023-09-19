@@ -4,10 +4,11 @@ interface Props {
   isOpacity?: boolean;
   background?: string;
 }
+
 const StyledSafeAreaView = styled.SafeAreaView<Props>`
   flex: 1;
-  background: ${({ background, isOpacity, theme }) =>
-    background || (isOpacity ? 'transparent' : theme.tokens.colors.none)};
+  background: ${({ background, isOpacity }) =>
+    background || (isOpacity ? 'transparent' : 'transparent')};
 `;
 
-export default StyledSafeAreaView;
+export { StyledSafeAreaView };

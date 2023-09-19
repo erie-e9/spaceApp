@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, View } from 'react-native';
-import { useTheme, useDeviceSecurity, useLanguage, useCheckNet } from '@hooks';
-import { Brand } from '@components';
+import { ActivityIndicator } from 'react-native';
+import { useDeviceSecurity, useLanguage, useCheckNet, useTheme } from '@hooks';
 import { setDefaultTheme } from '@slices/shared/appPreferences';
 import { ApplicationScreenProps } from 'types/navigation';
+import { Language } from '@slices/types/appPreferences';
 import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
+import { Container, Brand } from './styles';
 
 const Startup = ({ navigation }: ApplicationScreenProps) => {
-  const { Layout, Gutters } = useTheme();
   const { checkPhoneIntegrity } = useDeviceSecurity();
   const { appConnected } = useCheckNet();
   const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
-  const { saveLanguages } = useLanguage();
+  const { switchLanguage, saveLanguages, language } = useLanguage();
+  const { Images } = useTheme();
+
   const preInit = async (): Promise<void> => {
     const promises = [
       checkPhoneIntegrity({
@@ -36,8 +38,9 @@ const Startup = ({ navigation }: ApplicationScreenProps) => {
         resolve(true);
       }, 2000),
     );
-    await setDefaultTheme({ theme: 'default', darkMode: null });
     await preInit();
+    await switchLanguage(language as Language);
+    await setDefaultTheme({ theme: 'default', darkMode: null });
   };
 
   useEffect(() => {
@@ -49,10 +52,10 @@ const Startup = ({ navigation }: ApplicationScreenProps) => {
   }, [isSuccess]);
 
   return (
-    <View style={[Layout.fill, Layout.colCenter]}>
-      <Brand />
-      <ActivityIndicator size={'large'} style={[Gutters.largeVMargin]} />
-    </View>
+    <Container>
+      <Brand source={Images.logo} />
+      <ActivityIndicator size={'small'} />
+    </Container>
   );
 };
 

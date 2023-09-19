@@ -2,5 +2,8 @@
   "appName": {
     "full": "React Native iShop",
     "initials": "RNB"
+  },
+  "messages": {
+    "noConnection": "Connection is not established. Trying again."
   }
 }

@@ -1,6 +1,19 @@
 import { isFinite } from 'lodash';
-import { Text as NativeText } from 'react-native';
+import { Text as NativeText, Platform } from 'react-native';
 import styled, { css, DefaultTheme } from 'styled-components/native';
+
+const Fonts = {
+  ...Platform.select({
+    ios: {
+      RobotoBlack: 'Roboto-Black',
+      RobotoRegular: 'Roboto-Regular',
+    },
+    android: {
+      RobotoBlack: 'RobotoBlack',
+      RobotoRegular: 'RobotoRegular',
+    },
+  }),
+};
 
 export interface TextProps {
   type?:
@@ -24,7 +37,7 @@ export interface TextProps {
   weight?: number | 'bold' | 'semi-bold' | 'normal';
   paddingTop?: number;
   marginRight?: number;
-  textAlign?: string;
+  textAlign?: 'auto' | 'center' | 'justify' | 'left' | 'right';
   textTransform?: string;
   textDecorationLine?: string;
 }
@@ -34,7 +47,7 @@ export const MainFont = css`
 `;
 
 export const SecondaryFont = css`
-  font-family: 'Heebo';
+  font-family: ${Fonts.RobotoRegular};
 `;
 
 export const Headline1 = css`
@@ -65,9 +78,9 @@ export const Headline4 = css`
 
 export const Headline5 = css`
   font-weight: 400;
-  font-size: 32px;
+  font-size: 37px;
   letter-spacing: 0px;
-  line-height: 30px;
+  line-height: 35px;
 `;
 
 export const Headline6 = css`
