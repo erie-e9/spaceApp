@@ -1,9 +1,9 @@
-export { default as useTheme } from './useTheme';
-export { useLanguage } from './useLanguage';
-export { useBlockScreen } from './useBlockScreen';
-export { useSVG } from './useSVG';
-export { useDeviceSecurity } from './useDeviceSecurity';
-export { useCheckNet } from './useCheckNet';
+export { default as useTheme } from './utils/useTheme';
+export { useLanguage } from './utils/useLanguage';
+export { useBlockScreen } from './utils/useBlockScreen';
+export { useSVG } from './utils/useSVG';
+export { useDeviceSecurity } from './utils/useDeviceSecurity';
+export { useCheckNet } from './utils/useCheckNet';
 export {
   initDeviceInfo,
   getUniqueId,
@@ -12,4 +12,10 @@ export {
   isNotEmulator,
   getAppVersion,
   getDeviceInfo,
-} from './useDeviceInfo';
+  getPhoneNumber,
+  getIpAddress,
+  getOSVersion,
+  getHasNotch,
+  hasDynamicIsland,
+} from './utils/useDeviceInfo';
+export { useToast } from './utils/useToast';

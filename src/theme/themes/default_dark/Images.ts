@@ -4,6 +4,6 @@
 
 export default function () {
   return {
-    logo: require('@assets/dark/images/tom-dark.webp'),
+    logo: require('@assets/shared/images/AestheticSpace.webp'),
   };
 }

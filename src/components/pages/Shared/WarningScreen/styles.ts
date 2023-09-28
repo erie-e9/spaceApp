@@ -1,9 +1,13 @@
 import styled from 'styled-components/native';
 import { Typography } from '@components/atoms';
+import {
+  getNormalizedVerticalSize,
+  getNormalizedHorizontalSize,
+} from '@utils/functions';
 
 export const BodyContainer = styled.View`
   flex: 1;
-  padding: 0px 0px;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
   align-items: center;
 `;
 
@@ -16,8 +20,8 @@ export const TitleText = styled(Typography)<{
 `;
 
 export const DescriptionContainer = styled.View`
-  padding-vertical: 10px;
+  padding-vertical: ${getNormalizedVerticalSize(10)}px;
 `;
 export const SubdescriptionContainer = styled.View`
-  padding-top: 15px;
+  padding-top: ${getNormalizedVerticalSize(15)}px;
 `;

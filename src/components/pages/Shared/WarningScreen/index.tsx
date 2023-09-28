@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import CallToActionTemplate from '@components/templates/CallToAction';
+import React, { useEffect, useRef, useState } from 'react';
 import { useCopy } from '@services/copyLibrary';
+import { useTheme, useToast } from '@hooks';
+import CallToActionTemplate from '@components/templates/CallToActionTemplate';
 import { Lottie } from '@components/atoms';
 import type { LottieViewProps } from '@components/atoms';
-import { useTheme } from '@hooks';
 import {
   BodyContainer,
   TitleText,
@@ -16,21 +16,30 @@ export const WarningScreen = () => {
   const { getCopyValue } = useCopy();
   const { Animations } = useTheme();
   const isMounted = useRef(true);
+  const [loadingValue, setLoadingValue] = useState(false);
+  const [loadingValue2, setLoadingValue2] = useState(false);
 
   const handlePrimaryButton = async (): Promise<void> => {
-    console.log('handlePrimaryButton');
+    await setLoadingValue(!loadingValue);
   };
 
-  const handlebodyButton = async (): Promise<void> => {
-    console.clear();
+  const handleSecondaryButton = async (): Promise<void> => {
+    setLoadingValue2(!loadingValue2);
+    useToast.info({
+      message: getCopyValue(
+        'security:WarningScreen.actions.secondaryButton.message',
+      ),
+      duration: 3500,
+    });
   };
 
   useEffect(() => {
     isMounted.current = true;
-    setTimeout(() => {
+    let timeOut = setTimeout(() => {
       animationRef.current?.play();
     }, 1000);
     return () => {
+      clearTimeout(timeOut);
       isMounted.current = false;
     };
   }, []);
@@ -39,12 +48,14 @@ export const WarningScreen = () => {
     <CallToActionTemplate
       title={getCopyValue('security:WarningScreen.title')}
       numberOfLinesTitle={3}
+      backButton
       body={
         <BodyContainer>
           <Lottie
             ref={animationRef}
             source={Animations.warning}
-            renderMode="SOFTWARE"
+            autoPlay={false}
+            loop={false}
             resizeMode="contain"
             width={100}
             height={100}
@@ -53,7 +64,7 @@ export const WarningScreen = () => {
             <TitleText
               type="Subtitle1"
               font="secondary"
-              color="darkBlueD3"
+              color="surfaceL1"
               textAlign="justify"
             >
               {getCopyValue('security:WarningScreen.description', {
@@ -65,7 +76,7 @@ export const WarningScreen = () => {
             <TitleText
               type="Subtitle1"
               font="secondary"
-              color="darkBlueD3"
+              color="surfaceL1"
               textAlign="center"
               weight="bold"
             >
@@ -76,17 +87,19 @@ export const WarningScreen = () => {
       }
       primaryButton={{
         title: getCopyValue('security:WarningScreen.actions.primaryButton'),
-        onPressAsync: handlePrimaryButton,
+        onPress: handlePrimaryButton,
         testID: 'WarningScreen.primaryButton',
-        disabled: false,
-        loading: false,
+        disabled: loadingValue,
+        loading: loadingValue,
       }}
       secondaryButton={{
-        title: getCopyValue('security:WarningScreen.actions.secondaryButton'),
-        onPress: handlebodyButton,
+        title: getCopyValue(
+          'security:WarningScreen.actions.secondaryButton.title',
+        ),
+        onPress: handleSecondaryButton,
         testID: 'WarningScreen.secondaryButton',
-        disabled: false,
-        loading: false,
+        disabled: loadingValue2,
+        loading: loadingValue2,
       }}
     />
   );

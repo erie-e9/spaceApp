@@ -58,6 +58,7 @@ export const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
 
   return (
     <LottieView
+      {...props}
       ref={animationRef}
       source={props.source}
       renderMode={props.renderMode}

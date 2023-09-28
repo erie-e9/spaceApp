@@ -1,8 +1,9 @@
 import React from 'react';
 import Example from '@components/pages/Example';
 import { createStackNavigator } from '@react-navigation/stack';
+import { ApplicationStackParamList } from '@utils/@types/navigation';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<ApplicationStackParamList>();
 
 // @refresh reset
 const MainNavigator = () => {

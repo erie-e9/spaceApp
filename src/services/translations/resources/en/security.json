@@ -5,7 +5,10 @@
     "sub-description": "We recommend installing our application on a more trusted device.",
     "actions": {
       "primaryButton": "Visit our FAQ's website",
-      "secondaryButton": "Contact us"
+      "secondaryButton": {
+        "title": "Contact us",
+        "message": "Looking for an advisor"
+      }
     }
   }
 }

@@ -1,6 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Animated } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AnimatedDot, LoaderThreeDotsContainer } from './styles';
+import {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 const sizeDot = 4;
 const dots = [1, 2, 3];
@@ -32,39 +36,36 @@ const Dot = ({
   animationTranslateY = animationTranslateYValue,
   active = false,
 }: DotProps): JSX.Element => {
-  const scale = useMemo(() => new Animated.Value(1), []);
-  const translateY = useMemo(() => new Animated.Value(1), []);
+  const scale = useSharedValue(1);
+  const translateY = useSharedValue(1);
 
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ scale: scale.value }, { translateY: translateY.value }],
+    };
+  });
   const scaleDown = useCallback(() => {
-    Animated.timing(scale, {
-      toValue: 1,
+    scale.value = withTiming(1, {
       duration: animationDuration,
-      useNativeDriver: true,
-    }).start();
+    });
   }, [animationDuration, scale]);
 
   const scaleUp = useCallback(() => {
-    Animated.timing(scale, {
-      toValue: animationScale,
+    scale.value = withTiming(animationScale, {
       duration: animationDuration,
-      useNativeDriver: true,
-    }).start();
+    });
   }, [animationDuration, animationScale, scale]);
 
   const scaleYDown = useCallback(() => {
-    Animated.timing(translateY, {
-      toValue: 1,
+    translateY.value = withTiming(1, {
       duration: animationDuration,
-      useNativeDriver: true,
-    }).start();
+    });
   }, [animationDuration, translateY]);
 
   const scaleYUp = useCallback(() => {
-    Animated.timing(translateY, {
-      toValue: animationTranslateY,
+    translateY.value = withTiming(animationTranslateY, {
       duration: animationDuration,
-      useNativeDriver: true,
-    }).start();
+    });
   }, [animationDuration, animationTranslateY, translateY]);
 
   useEffect(() => {
@@ -78,12 +79,7 @@ const Dot = ({
     }
   }, [active, scaleDown, scaleUp]);
 
-  return (
-    <AnimatedDot
-      style={[{ transform: [{ scale }, { translateY }] }]}
-      size={size}
-    />
-  );
+  return <AnimatedDot style={[animatedStyles]} size={size} />;
 };
 Dot.defaultProps = defaultProps;
 

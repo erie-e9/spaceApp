@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import type * as CSS from 'csstype';
 import { DefaultTheme, useTheme } from 'styled-components/native';
-import Loader from '@components/atoms/LoaderThreeDots';
+import { useSharedValue, withSpring } from 'react-native-reanimated';
+import { SCREEN_WIDTH } from '@utils/functions';
+import { LoaderThreeDots } from '@components/atoms';
 import {
+  AnimatedActionButton,
   LoadingContainer,
   StyledButton,
   StyledText,
@@ -60,6 +63,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 }) => {
   const theme = useTheme();
   const colorScheme = theme.mode;
+  const width = useSharedValue(SCREEN_WIDTH - 50);
   const [asyncDisabled, setAsyncDisabled] = useState(false);
 
   const getButtonTheme = (): {
@@ -67,31 +71,35 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     txtColor: string;
     hasBorder: boolean;
   } => {
-    let bgColor = theme.tokens.colors.darkBlueD1;
+    let bgColor = theme.tokens.colors.surfaceL4;
     let txtColor = theme.tokens.colors.surfaceL5;
     let hasBorder = false;
     const typeButton = type ?? 'Button';
 
     const buttomThemeSecondary =
       colorScheme === 'light'
-        ? theme.tokens.colors.darkBlueD1
+        ? theme.tokens.colors.primaryD1
         : theme.colors.text.white;
+
     const notDisbleButtonTextColor =
       buttonTheme === 'Secondary'
         ? buttomThemeSecondary
-        : theme.tokens.colors.surfaceL4;
+        : theme.tokens.colors.none;
 
     const bgColorLightScondary =
       buttonTheme === 'Secondary'
         ? theme.tokens.colors.transparent
-        : theme.tokens.colors.darkBlueD1;
+        : theme.tokens.colors.primaryD1;
+
+    const bgDisabledColors =
+      buttonTheme === 'Primary'
+        ? theme.tokens.colors.primaryD1
+        : theme.tokens.colors.none;
 
     const bgColorLight =
-      disabled || asyncDisabled
-        ? theme.tokens.colors.disabledButtonColor
-        : bgColorLightScondary;
+      disabled || asyncDisabled ? bgDisabledColors : bgColorLightScondary;
 
-    const bgColorDarktSecondaryDisabled = theme.tokens.colors.darkBlueD1
+    const bgColorDarktSecondaryDisabled = theme.tokens.colors.surfaceL4
       ? theme.tokens.colors.primaryD1
       : theme.tokens.colors.none;
 
@@ -101,9 +109,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         : bgColorDarktSecondaryDisabled;
 
     const bgColorDark =
-      disabled || asyncDisabled
-        ? theme.tokens.colors.primaryD4
-        : bgColorDarkSecondary;
+      disabled || asyncDisabled ? bgDisabledColors : bgColorDarkSecondary;
 
     switch (typeButton) {
       case 'Button':
@@ -119,19 +125,19 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         if (buttonTheme === 'Secondary') {
           txtColor =
             buttonTheme === 'Secondary'
-              ? theme.tokens.colors.darkBlueD1
+              ? theme.tokens.colors.surfaceL4
               : theme.tokens.colors.primaryD1;
           bgColor = 'transparent';
         } else if (buttonTheme === 'Dark') {
           txtColor =
             buttonTheme === 'Dark'
-              ? theme.tokens.colors.lightBlueL5
+              ? theme.tokens.colors.secondaryL5
               : theme.tokens.colors.primaryD1;
           bgColor = 'transparent';
         } else {
           txtColor =
             buttonTheme === 'Primary'
-              ? theme.tokens.colors.darkBlueD1
+              ? theme.tokens.colors.surfaceL4
               : theme.tokens.colors.primaryD1;
           bgColor = theme.tokens.colors.none;
         }
@@ -141,19 +147,19 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         if (buttonTheme === 'Secondary') {
           txtColor =
             buttonTheme === 'Secondary'
-              ? theme.tokens.colors.darkBlueD1
+              ? theme.tokens.colors.surfaceL4
               : theme.tokens.colors.primaryD1;
           bgColor = colorScheme === 'light' ? bgColorLight : bgColorDark;
         } else if (buttonTheme === 'Dark') {
           txtColor =
             buttonTheme === 'Dark'
-              ? theme.tokens.colors.lightBlueL5
+              ? theme.tokens.colors.secondaryL5
               : theme.tokens.colors.primaryD1;
           bgColor = 'transparent';
         } else {
           txtColor =
             buttonTheme === 'Primary'
-              ? theme.tokens.colors.darkBlueD1
+              ? theme.tokens.colors.surfaceL4
               : theme.tokens.colors.primaryD1;
           bgColor = theme.tokens.colors.none;
         }
@@ -161,7 +167,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       default:
         txtColor =
           buttonTheme === 'Dark'
-            ? theme.tokens.colors.lightBlueL5
+            ? theme.tokens.colors.secondaryL5
             : theme.tokens.colors.primaryD1;
         bgColor = theme.tokens.colors.none;
         hasBorder = buttonTheme === 'Secondary';
@@ -177,14 +183,14 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
   const btnTheme = getButtonTheme();
 
-  const handlePress = (): void => {
+  const handlePress = useCallback((): void => {
     if (onPressAsync) {
       setAsyncDisabled(true);
     }
     if (onPress) {
       onPress();
     }
-  };
+  }, [onPress, asyncDisabled]);
 
   useEffect(() => {
     if (asyncDisabled && onPressAsync) {
@@ -194,50 +200,70 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     }
   }, [asyncDisabled]);
 
+  useEffect(() => {
+    if (loading) {
+      width.value = withSpring(50, { stiffness: 55 });
+    } else {
+      width.value = withSpring(SCREEN_WIDTH - 50, { stiffness: 55 });
+    }
+  }, [loading]);
+
   return (
-    <StyledButton
-      featureFlags={featureFlags}
-      testID={testID}
-      backgroundColor={
-        backgroundColor === '' ? btnTheme.bgColor : backgroundColor
-      }
-      disabled={featureFlags?.length === 0 ? disabled || asyncDisabled : false}
-      disabledColor={disabledColor}
-      onPress={handlePress}
-      hasBorder={disabled ? false : btnTheme.hasBorder}
-      style={style}
-      type={type}
-      grouped={grouped}
-      colorScheme={colorScheme ?? 'light'}
-      loading={loading}
-      {...rest}
+    <AnimatedActionButton
+      style={[
+        {
+          width: type === 'Icon' ? 50 : width,
+        },
+      ]}
     >
-      {(loading || asyncDisabled) && (
-        <LoadingContainer>
-          <Loader />
-        </LoadingContainer>
-      )}
-      {!loading && Icon && <IconContainer>{Icon}</IconContainer>}
-      {!loading && !asyncDisabled && (
-        <StyledText
-          fontWeight={fontWeight}
-          color={textColor || btnTheme.txtColor}
-          fontSize={fontSize}
-          fullWidth={fullWidth}
-          disabled={disabled || asyncDisabled}
-          disabledColor={disabledColor}
-          buttonType={buttonType}
-          textTransform={textTransform}
-          numberOfLines={numberOfLines}
-        >
-          {title}
-        </StyledText>
-      )}
-    </StyledButton>
+      <StyledButton
+        featureFlags={featureFlags}
+        testID={testID}
+        backgroundColor={
+          backgroundColor === '' ? btnTheme.bgColor : backgroundColor
+        }
+        disabled={
+          featureFlags?.length === 0 ? disabled || asyncDisabled : false
+        }
+        disabledColor={disabledColor}
+        onPress={handlePress}
+        hasBorder={
+          disabled && buttonTheme === 'Primary' ? false : btnTheme.hasBorder
+        }
+        style={style}
+        type={type}
+        grouped={grouped}
+        colorScheme={colorScheme ?? 'light'}
+        loading={loading}
+        {...rest}
+      >
+        {(loading || asyncDisabled) && (
+          <LoadingContainer>
+            <LoaderThreeDots />
+          </LoadingContainer>
+        )}
+        {!loading && Icon && <IconContainer>{Icon}</IconContainer>}
+        {!loading && !asyncDisabled && (
+          <StyledText
+            fontWeight={fontWeight}
+            color={textColor || btnTheme.txtColor}
+            fontSize={fontSize}
+            fullWidth={fullWidth}
+            disabled={disabled || asyncDisabled}
+            disabledColor={disabledColor}
+            buttonType={buttonType}
+            textTransform={textTransform}
+            numberOfLines={numberOfLines}
+          >
+            {title}
+          </StyledText>
+        )}
+      </StyledButton>
+    </AnimatedActionButton>
   );
 };
 
-export default ActionButton;
+export default memo(ActionButton);
 ActionButton.defaultProps = {
   title: '',
   loading: false,

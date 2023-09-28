@@ -4,8 +4,11 @@
     "description": "Parece que estás utilizando un dispositivo que podría comprometer la seguridad de tu información privada. La aplicación {{appName}} no es compatible con este tipo de dispositivos.",
     "sub-description": "Te recomendamos instalar nuestra aplicación en un dispositivo de más confianza.",
     "actions": {
-      "primaryButton": "Visita nuestra sección de ayuda",
-      "secondaryButton": "Envíanos un mensaje"
+      "primaryButton": "Ir a ayuda",
+      "secondaryButton": {
+        "title": "Envíanos un mensaje",
+        "message": "Buscando un asesor"
+      }
     }
   }
 }

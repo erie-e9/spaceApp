@@ -1,5 +1,5 @@
 {
   "title": "Bienvenido",
-  "subtitle": "A la $t(common:appName.full)",
+  "subtitle": "A la aplicación $t(common:appName.full)",
   "description": "¿Quieres descubrir algunas características? Simplemente haz clic en uno de los cuatro botones en la parte inferior de la pantalla. El primero te permite llamar a una alerta con un mensaje. El segundo te permite ir a una pantalla de advertencia. El tercero te ayudará a cambiar el color del tema. Y el cuarto te permite cambiar el idioma."
 }

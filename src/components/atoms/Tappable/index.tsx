@@ -10,15 +10,24 @@ interface TappableProps extends PressableProps {
 
 const Tappable: React.FC<TappableProps> = ({
   children,
+  style,
   onPress,
   onLongPress,
   component,
   ...props
 }) => {
   const Touchable = (component || StyledTouchable) as unknown as React.FC<any>;
-
   return (
-    <Touchable onPress={onPress} onLongPress={onLongPress} {...props}>
+    <Touchable
+      style={style[0]}
+      onPress={(event: any) => {
+        if (onPress) {
+          onPress(event);
+        }
+      }}
+      onLongPress={onLongPress}
+      {...props}
+    >
       {children}
     </Touchable>
   );

@@ -1,27 +1,26 @@
 import styled from 'styled-components/native';
-import { Typography } from '@components/atoms';
+import { Tappable, Typography } from '@components/atoms';
+import { getNormalizedVerticalSize, SCREEN_WIDTH } from '@utils/functions';
 
-export const ToastBodyContainer = styled.View`
-  bottom: 2px;
-  top: 18px;
-  padding: 10px 10px;
+export const TouchableAreaContainer = styled(Tappable)`
+  min-height: ${getNormalizedVerticalSize(45)}px;
+  width: 100%;
+  justify-content: flex-end;
 `;
 
-export const ToastTextContainer = styled.View`
+export const ToastBodyContainer = styled.View`
+  width: ${SCREEN_WIDTH}px;
   align-items: center;
-  min-height: 10px;
+  justify-content: center;
+`;
+
+export const ToastTextContainer = styled.View<{
+  hasNotch?: boolean;
+}>`
+  height: ${({ hasNotch }) => getNormalizedVerticalSize(hasNotch ? 50 : 50)}px;
+  min-height: ${getNormalizedVerticalSize(15)}px;
+  width: 100%;
+  justify-content: flex-end;
 `;
 
 export const ToastText = styled(Typography)``;
-
-export const IconContainer = styled.View`
-  height: 25px;
-  width: 25px;
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
-  justify-content: center;
-  align-content: center;
-  border-radius: 7px;
-  background-color: #333;
-`;

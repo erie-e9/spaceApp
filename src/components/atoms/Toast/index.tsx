@@ -1,12 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { DeviceEventEmitter, TouchableOpacity } from 'react-native';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { DeviceEventEmitter } from 'react-native';
+import { useTheme } from 'styled-components/native';
 import Animated, {
   withTiming,
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import { useTheme } from 'styled-components/native';
-import { ToastBodyContainer, ToastTextContainer, ToastText } from './styles';
+import { getHasNotch } from '@hooks';
+import {
+  ToastBodyContainer,
+  ToastTextContainer,
+  TouchableAreaContainer,
+  ToastText,
+} from './styles';
 
 export type ToastStatus = 'info' | 'success' | 'error' | 'warning';
 export interface ColorStatus {
@@ -22,6 +28,7 @@ interface ToastProps {
 }
 
 const Toast = () => {
+  const hasNotch = getHasNotch();
   const [{ message, type }, setToast] = useState<ToastProps>({
     message: null,
     type: 'info',
@@ -50,7 +57,7 @@ const Toast = () => {
 
   const closeToast = useCallback(async () => {
     animatedOpacity.value = await withTiming(0, {
-      duration: 350,
+      duration: 300,
     });
     setDuration(undefined);
     setTimeout(() => {
@@ -60,14 +67,6 @@ const Toast = () => {
     }, 1000);
     clearInterval(timeOutRef.current);
   }, [animatedOpacity.value]);
-
-  useEffect(() => {
-    if (message) {
-      animatedOpacity.value = withTiming(1, {
-        duration: 350,
-      });
-    }
-  }, [message, animatedOpacity.value]);
 
   useEffect(() => {
     if (message && duration !== undefined) {
@@ -86,6 +85,13 @@ const Toast = () => {
   }, [closeToast, message, duration]);
 
   useEffect(() => {
+    if (message) {
+      animatedOpacity.value = withTiming(1, {
+        duration: 300,
+      });
+    }
+  }, [message, animatedOpacity.value]);
+  useEffect(() => {
     DeviceEventEmitter.addListener('SHOW_TOAST_MESSAGE', OnNewToast);
     DeviceEventEmitter.addListener('HIDE_TOAST_MESSAGE', closeToast);
 
@@ -100,34 +106,31 @@ const Toast = () => {
         // eslint-disable-next-line react-native/no-inline-styles
         {
           position: 'absolute',
-          height: 70,
+          height: hasNotch ? 55 : 45,
           width: '100%',
-          zIndex: 1,
-          elevation: 1,
-          justifyContent: 'center',
-          alignContent: 'center',
           backgroundColor: colorStatus[type || 'info'],
         },
         animatedStyle,
       ]}
     >
-      <TouchableOpacity onPress={closeToast}>
+      <TouchableAreaContainer onPress={closeToast}>
         <ToastBodyContainer>
-          <ToastTextContainer>
+          <ToastTextContainer hasNotch={hasNotch}>
             <ToastText
+              onPress={closeToast}
               type="Subtitle2"
-              font="secondary"
-              color="textLabelNeutral"
-              textAlign="auto"
-              numberOfLines={2}
+              color="textColor"
+              textAlign="center"
+              numberOfLines={1}
             >
               {message}
             </ToastText>
           </ToastTextContainer>
         </ToastBodyContainer>
-      </TouchableOpacity>
+      </TouchableAreaContainer>
     </Animated.View>
   );
 };
 
-export default Toast;
+export default memo(Toast);
+export { Toast };

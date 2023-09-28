@@ -1,5 +1,5 @@
 {
   "title": "Welcome on",
-  "subtitle": "The $t(common:appName.full)",
+  "subtitle": "The $t(common:appName.full) app",
   "description": "Do you want to discover some features? Just click one of the four buttons at the bottom of the screen. The first allows you to call an alert with a message. The second allows you to go to a warning screen. The third one will help you change the theme color. And the fourth allows you to change the language."
 }

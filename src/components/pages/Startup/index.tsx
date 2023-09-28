@@ -7,7 +7,11 @@ import { Language } from '@slices/types/appPreferences';
 import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
 import { Container, Brand } from './styles';
 
-const Startup = ({ navigation }: ApplicationScreenProps) => {
+interface Props {
+  navigation: ApplicationScreenProps;
+}
+
+const Startup: React.FC<Props> = ({ navigation }) => {
   const { checkPhoneIntegrity } = useDeviceSecurity();
   const { appConnected } = useCheckNet();
   const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();

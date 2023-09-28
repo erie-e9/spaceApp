@@ -2,6 +2,7 @@
 import i18n, { Module, Newable, NewableModule } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as resources from './resources';
+// import { Platform, NativeModules } from 'react-native';
 
 const ns = Object.keys(Object.values(resources)[0]);
 export const defaultNS = ns[0];
@@ -31,32 +32,24 @@ export const defaultNS = ns[0];
 //   },
 // };
 
-i18n
-  .use(initReactI18next)
-  // .use(
-  //   ReactNativeLanguageDetector as
-  //     | Module
-  //     | NewableModule<Module>
-  //     | Newable<Module>,
-  // )
-  .init({
-    ns,
-    defaultNS,
-    resources: {
-      ...Object.entries(resources).reduce(
-        (acc, [key, value]) => ({
-          ...acc,
-          [key]: value,
-        }),
-        {},
-      ),
-    },
-    lng: 'en', // default language
-    fallbackLng: 'en', // back to this language if don't find word for set language.
-    interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
-    },
-    compatibilityJSON: 'v3',
-  });
+i18n.use(initReactI18next).init({
+  ns,
+  defaultNS,
+  resources: {
+    ...Object.entries(resources).reduce(
+      (acc, [key, value]) => ({
+        ...acc,
+        [key]: value,
+      }),
+      {},
+    ),
+  },
+  lng: 'en', // default language
+  fallbackLng: 'en', // back to this language if don't find word for set language.
+  interpolation: {
+    escapeValue: false, // not needed for react as it escapes by default
+  },
+  compatibilityJSON: 'v3',
+});
 
 export default i18n;

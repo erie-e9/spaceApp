@@ -54,17 +54,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoBlack.ttf</string>
-		<string>RobotoBlackItalic.ttf</string>
-		<string>RobotoBold.ttf</string>
-		<string>RobotoBoldItalic.ttf</string>
-		<string>RobotoItalic.ttf</string>
-		<string>RobotoLight.ttf</string>
-		<string>RobotoLightItalic.ttf</string>
 		<string>RobotoMedium.ttf</string>
-		<string>RobotoMediumItalic.ttf</string>
 		<string>RobotoRegular.ttf</string>
-		<string>RobotoThin.ttf</string>
-		<string>RobotoThinItalic.ttf</string>
 	</array>
 </dict>
 </plist>

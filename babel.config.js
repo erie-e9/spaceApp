@@ -2,10 +2,11 @@
 module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
+    'dynamic-import-node',
     [
       'module-resolver',
       {
-        root: ['./src'],
+        root: ['.'],
         extensions: [
           '.ios.ts',
           '.android.ts',
@@ -41,4 +42,10 @@ module.exports = {
     'inline-dotenv',
     'react-native-reanimated/plugin', // needs to be last
   ],
+  env: {
+    development: {},
+    production: {
+      plugins: ['transform-remove-console'],
+    },
+  },
 };
