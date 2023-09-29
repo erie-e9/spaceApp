@@ -239,7 +239,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       >
         {(loading || asyncDisabled) && (
           <LoadingContainer>
-            <LoaderThreeDots />
+            <LoaderThreeDots color={textColor || btnTheme.txtColor} />
           </LoadingContainer>
         )}
         {!loading && Icon && <IconContainer>{Icon}</IconContainer>}

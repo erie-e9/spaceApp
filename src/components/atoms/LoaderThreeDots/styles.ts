@@ -1,5 +1,5 @@
 import { PixelRatio } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import {
   getNormalizedVerticalSize,
@@ -13,10 +13,14 @@ export const LoaderThreeDotsContainer = styled.View`
   height: 100%;
 `;
 
-export const AnimatedDot = styled(Animated.View)<{ size: number }>`
+export const AnimatedDot = styled(Animated.View)<{
+  size: number;
+  color: keyof DefaultTheme['tokens']['colors'];
+}>`
   height: ${({ size }) => PixelRatio.roundToNearestPixel(size)}px;
   width: ${({ size }) => PixelRatio.roundToNearestPixel(size)}px;
   border-radius: ${({ size }) => PixelRatio.roundToNearestPixel(size / 2)}px;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(4)}px;
-  background-color: ${({ theme }) => theme.tokens.colors.textColor};
+  background-color: ${({ color, theme }) =>
+    color || theme.tokens.colors.textColor};
 `;

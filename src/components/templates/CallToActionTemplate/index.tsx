@@ -1,9 +1,9 @@
 import React, { useLayoutEffect } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
+import type * as CSS from 'csstype';
 import { BackButton } from '@components/atoms';
 import { useNavigation } from '@react-navigation/core';
 import { SvgProps } from 'react-native-svg';
-import type * as CSS from 'csstype';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
 import {

@@ -5,6 +5,7 @@
   "scripts": {
     "lint": "eslint --fix . --ext .js,.jsx,.ts,.tsx,",
     "start": "react-native start --reset-cache",
+    "postinstall": "patch-package",
     "test": "jest",
     "type-check": "tsc",
     "test:report": "jest --collectCoverage --coverageDirectory=\"./coverage\" --ci --reporters=default --reporters=jest-junit --coverage",
@@ -92,6 +93,7 @@
     "jest-environment-jsdom": "^29.6.4",
     "jest-styled-components": "^7.1.1",
     "metro-react-native-babel-preset": "0.76.5",
+    "patch-package": "^8.0.0",
     "prettier": "^3.0.2",
     "react-native-flipper": "^0.212.0",
     "react-native-svg-transformer": "^1.1.0",

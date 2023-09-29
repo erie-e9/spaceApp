@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useCopy } from '@services/copyLibrary';
 import { useTheme, useToast } from '@hooks';
 import CallToActionTemplate from '@components/templates/CallToActionTemplate';
-import { Lottie } from '@components/atoms';
-import type { LottieViewProps } from '@components/atoms';
+import { Lottie, LottieViewProps } from '@components/atoms';
 import {
   BodyContainer,
   TitleText,

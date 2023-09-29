@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { AnimatedDot, LoaderThreeDotsContainer } from './styles';
+import { DefaultTheme } from 'styled-components/native';
 import {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { AnimatedDot, LoaderThreeDotsContainer } from './styles';
 
 const sizeDot = 4;
 const dots = [1, 2, 3];
@@ -14,6 +15,7 @@ const animationScaleValue = 1;
 const animationTranslateYValue = -6;
 
 type DotProps = {
+  color?: keyof DefaultTheme['tokens']['colors'];
   size?: number;
   animationDuration?: number;
   animationScale?: number;
@@ -22,6 +24,7 @@ type DotProps = {
 } & typeof defaultProps;
 
 const defaultProps = {
+  color: 'primaryD1',
   size: sizeDot,
   animationDuration: animationTime,
   animationScale: animationScaleValue,
@@ -30,6 +33,7 @@ const defaultProps = {
 };
 
 const Dot = ({
+  color,
   size = sizeDot,
   animationDuration = animationTime,
   animationScale = animationScaleValue,
@@ -79,7 +83,7 @@ const Dot = ({
     }
   }, [active, scaleDown, scaleUp]);
 
-  return <AnimatedDot style={[animatedStyles]} size={size} />;
+  return <AnimatedDot style={[animatedStyles]} size={size} color={color}/>;
 };
 Dot.defaultProps = defaultProps;
 
