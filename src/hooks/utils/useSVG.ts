@@ -13,6 +13,8 @@ import DarkMode from '@assets/light/svg/dark-mode.svg';
 import LightMode from '@assets/dark/svg/light-mode.svg';
 import BackButton from '@assets/light/svg/back-button.svg';
 import BackButtonDark from '@assets/dark/svg/back-button.svg';
+import CloseButton from '@assets/light/svg/close.svg';
+import CloseButtonDark from '@assets/dark/svg/close.svg';
 
 interface SvgObject {
   [key: string]: {
@@ -46,6 +48,10 @@ const svgLibrary: SvgObject = {
   BackButton: {
     light: BackButton,
     dark: BackButtonDark,
+  },
+  CloseButton: {
+    light: CloseButton,
+    dark: CloseButtonDark,
   },
 };
 

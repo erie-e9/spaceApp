@@ -1,0 +1,9 @@
+{
+  "appName": {
+    "full": "SpaceApp",
+    "initials": "RNB"
+  },
+  "messages": {
+    "noConnection": "A conexão não foi estabelecida. Tentando novamente."
+  }
+}

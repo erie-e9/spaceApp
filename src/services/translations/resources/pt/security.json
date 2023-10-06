@@ -1,0 +1,20 @@
+{
+  "WarningScreen": {
+    "title": "Levamos a sério a manutenção dos seus dados seguros",
+    "description": "Parece que você está usando um dispositivo que pode comprometer a segurança das suas informações privadas. O aplicativo {{appName}} não é compatível com esses tipos de dispositivos.",
+    "sub-description": "Recomendamos instalar nosso aplicativo em um dispositivo mais confiável.",
+    "actions": {
+      "primaryButton": {
+        "title": "Visite a página de ajuda",
+        "modal": {
+          "title": "Por favor, aguarde...",
+          "description": "Você está sendo redirecionado para um site de perguntas frequentes."
+        }
+      },
+      "secondaryButton": {
+        "title": "Contate-nos",
+        "message": "Procurando um consultor"
+      }
+    }
+  }
+}

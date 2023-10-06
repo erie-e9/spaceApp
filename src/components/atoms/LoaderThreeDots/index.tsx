@@ -83,7 +83,7 @@ const Dot = ({
     }
   }, [active, scaleDown, scaleUp]);
 
-  return <AnimatedDot style={[animatedStyles]} size={size} color={color}/>;
+  return <AnimatedDot style={[animatedStyles]} size={size} color={color} />;
 };
 Dot.defaultProps = defaultProps;
 

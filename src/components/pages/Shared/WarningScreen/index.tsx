@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useCopy } from '@services/copyLibrary';
-import { useTheme, useToast } from '@hooks';
-import CallToActionTemplate from '@components/templates/CallToActionTemplate';
+import { useTheme, useToast, useModal } from '@hooks';
+import { changeTheme } from '@slices/shared/appPreferences';
+import { CallToActionTemplate } from '@components/templates';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import {
   BodyContainer,
@@ -13,16 +15,29 @@ import {
 export const WarningScreen = () => {
   const animationRef = useRef<LottieViewProps>(null);
   const { getCopyValue } = useCopy();
+  const { showModal } = useModal();
   const { Animations } = useTheme();
   const isMounted = useRef(true);
+  const { darkMode: isDarkMode } = useTheme();
+  const dispatch = useDispatch();
   const [loadingValue, setLoadingValue] = useState(false);
   const [loadingValue2, setLoadingValue2] = useState(false);
 
   const handlePrimaryButton = async (): Promise<void> => {
+    showModal({
+      type: 'alert',
+      title: 'security:WarningScreen.actions.primaryButton.modal.title',
+      description:
+        'security:WarningScreen.actions.primaryButton.modal.description',
+      legacyOptions: { typeError: 'error' },
+    });
+    setLoadingValue2(false);
     await setLoadingValue(!loadingValue);
+    dispatch(changeTheme({ theme: 'default', darkMode: !isDarkMode }));
   };
 
   const handleSecondaryButton = async (): Promise<void> => {
+    await setLoadingValue(false);
     setLoadingValue2(!loadingValue2);
     useToast.info({
       message: getCopyValue(
@@ -54,10 +69,11 @@ export const WarningScreen = () => {
             ref={animationRef}
             source={Animations.warning}
             autoPlay={false}
+            renderMode="SOFTWARE"
             loop={false}
             resizeMode="contain"
-            width={100}
-            height={100}
+            width={120}
+            height={120}
           />
           <DescriptionContainer>
             <TitleText
@@ -85,7 +101,9 @@ export const WarningScreen = () => {
         </BodyContainer>
       }
       primaryButton={{
-        title: getCopyValue('security:WarningScreen.actions.primaryButton'),
+        title: getCopyValue(
+          'security:WarningScreen.actions.primaryButton.title',
+        ),
         onPress: handlePrimaryButton,
         testID: 'WarningScreen.primaryButton',
         disabled: loadingValue,
@@ -103,3 +121,5 @@ export const WarningScreen = () => {
     />
   );
 };
+
+export default memo(WarningScreen);

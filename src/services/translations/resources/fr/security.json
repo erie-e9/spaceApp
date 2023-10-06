@@ -4,7 +4,13 @@
     "description": "Il semble que vous utilisez un appareil susceptible de compromettre la sécurité de vos informations privées. L'application {{appName}} n'est pas prise en charge par ce type d'appareils.",
     "sub-description": "Nous vous recommandons d'installer notre application sur un appareil plus fiable.",
     "actions": {
-      "primaryButton": "Visitez notre site Web FAQ's",
+      "primaryButton": {
+        "title": "Visitez notre site Web FAQ's",
+        "modal": {
+          "title": "S'il vous plaît, attendez...",
+          "description": "Vous êtes redirigé vers un site Web de FAQ."
+        }
+      },
       "secondaryButton": {
         "title": "Contactez-nous",
         "message": "À la recherche d'un conseiller"

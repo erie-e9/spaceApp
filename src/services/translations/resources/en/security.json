@@ -4,7 +4,13 @@
     "description": "It seems you are using a device that could compromise the security of your private information. {{appName}} app isn't supported by these kinds of devices.",
     "sub-description": "We recommend installing our application on a more trusted device.",
     "actions": {
-      "primaryButton": "Visit our FAQ's website",
+      "primaryButton": {
+        "title": "Visit our FAQ's website",
+        "modal": {
+          "title": "Please wait...",
+          "description": "You're been redirected to to FAQ's website."
+        }
+      },
       "secondaryButton": {
         "title": "Contact us",
         "message": "Looking for an advisor"

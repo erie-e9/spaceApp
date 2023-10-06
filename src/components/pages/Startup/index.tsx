@@ -6,6 +6,7 @@ import { ApplicationScreenProps } from 'types/navigation';
 import { Language } from '@slices/types/appPreferences';
 import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
 import { Container, Brand } from './styles';
+import { InterpolateColorAnimation } from '@components/animated';
 
 interface Props {
   navigation: ApplicationScreenProps;
@@ -56,10 +57,15 @@ const Startup: React.FC<Props> = ({ navigation }) => {
   }, [isSuccess]);
 
   return (
-    <Container>
-      <Brand source={Images.logo} />
-      <ActivityIndicator size={'small'} />
-    </Container>
+    <InterpolateColorAnimation
+      initialColor="backgroundColorLight"
+      finalColor="backgroundColorDark"
+    >
+      <Container>
+        <Brand source={Images.logo} />
+        <ActivityIndicator size={'small'} />
+      </Container>
+    </InterpolateColorAnimation>
   );
 };
 

@@ -19,3 +19,5 @@ export {
   hasDynamicIsland,
 } from './utils/useDeviceInfo';
 export { useToast } from './utils/useToast';
+export { useNativeActions } from './utils/useNativeActions';
+export { useModal } from './utils/useModal';

@@ -20,7 +20,7 @@ export const TitleText = styled(Typography)<{
 `;
 
 export const DescriptionContainer = styled.View`
-  padding-vertical: ${getNormalizedVerticalSize(10)}px;
+  padding-vertical: ${getNormalizedVerticalSize(7)}px;
 `;
 export const SubdescriptionContainer = styled.View`
   padding-top: ${getNormalizedVerticalSize(15)}px;
