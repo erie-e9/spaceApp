@@ -1,10 +1,10 @@
 import { Appearance } from 'react-native';
 import { DefaultTheme } from 'styled-components';
-import { darkTheme } from './dark';
-import { lightTheme } from './light';
+import { darkTheme } from '@theme/themesi/dark';
+import { lightTheme } from '@theme/themesi/light';
 
-export * from './light';
-export * from './dark';
+export * from '@theme/themesi/light';
+export * from '@theme/themesi/dark';
 
 const choseTheme = (): DefaultTheme => {
   const colorScheme = Appearance.getColorScheme();

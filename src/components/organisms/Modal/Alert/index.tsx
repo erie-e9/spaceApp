@@ -1,18 +1,18 @@
 import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTheme } from 'styled-components';
+import { ModalPayload } from '@slices/types/modal';
 import { useCopy } from '@services/copyLibrary';
 import { hideModal } from '@slices/shared/modal';
 import { TransformAnimation, OpacityAnimation } from '@components/animated';
 import { CloseButton } from '@components/atoms';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
-import { ModalPayload } from '@slices/types/modal';
-import AnimatedBackground from '../AnimatedBackground';
-import AlertModalButtons from './components/AlertModalButtons';
+import AlertButtons from '@components/organisms/Modal/Alert/components/AlertButtons';
+import AnimatedBackground from '@components/organisms/Modal/AnimatedBackground';
 import {
   StyledModal,
-  Wrapper,
   ModalBodyContainer,
+  Wrapper,
   CloseIconContainer,
 } from './styles';
 
@@ -52,9 +52,9 @@ export const Alert: React.FC = ({
   return (
     <>
       <StyledModal
+        testID={testID}
         transparent
         visible={isVisible}
-        testID={testID}
         onShow={onModalShow}
         animationType="fade"
       >
@@ -83,7 +83,7 @@ export const Alert: React.FC = ({
                   description={description || ''}
                 />
                 {children || <></>}
-                <AlertModalButtons
+                <AlertButtons
                   options={parsedOptions}
                   theme={theme}
                   primaryButtonTheme="Secondary"
@@ -100,6 +100,7 @@ export const Alert: React.FC = ({
 };
 
 Alert.defaultProps = {
+  testID: 'AlertID',
   navigation: undefined,
 };
 

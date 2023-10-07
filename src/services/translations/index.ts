@@ -1,7 +1,7 @@
 // import { NativeModules, Platform } from 'react-native';
 import i18n, { Module, Newable, NewableModule } from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import * as resources from './resources';
+import * as resources from '@services/translations/resources';
 // import { Platform, NativeModules } from 'react-native';
 
 const ns = Object.keys(Object.values(resources)[0]);

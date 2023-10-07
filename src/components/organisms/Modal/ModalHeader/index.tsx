@@ -4,11 +4,13 @@ import { useCopy } from '@services/copyLibrary';
 import { ModalHeaderContainer, TitleWrapper, StyledText } from './styles';
 
 export interface ModalHeaderProps {
+  testID?: string;
   title?: string;
   description?: string;
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
+  testID,
   title,
   description,
 }) => {
@@ -18,7 +20,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   const defaultTitleColor = isDarkMode ? 'secondaryD1' : 'primaryD1';
 
   return (
-    <ModalHeaderContainer>
+    <ModalHeaderContainer testID={testID}>
       {title && (
         <TitleWrapper>
           <StyledText type="Headline6" color={defaultTitleColor}>
@@ -36,6 +38,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
 };
 
 ModalHeader.defaultProps = {
+  testID: 'ModalHeaderID',
   title: '',
   description: '',
 };

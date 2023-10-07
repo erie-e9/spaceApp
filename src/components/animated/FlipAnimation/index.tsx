@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import {
   interpolate,
   useAnimatedStyle,
@@ -7,14 +7,15 @@ import {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
-import { Typography } from '@components/atoms';
 import {
-  AnimatedBackFace,
   AnimatedFrontFace,
+  FlipAnimationText,
   TriggerAnimationButton,
+  AnimatedBackFace,
 } from './styles';
 
 interface Props {
+  testID?: string;
   frontFace?: string | React.ReactElement | React.ReactElement[];
   backFace?: string | React.ReactElement | React.ReactElement[];
   withManualTrigger?: boolean;
@@ -22,7 +23,8 @@ interface Props {
   easing?: typeof Easing | string | unknown;
 }
 
-const FlipAnimation: React.FC<Props> = ({
+export const FlipAnimation: React.FC<Props> = ({
+  testID,
   frontFace,
   backFace,
   withManualTrigger,
@@ -31,7 +33,7 @@ const FlipAnimation: React.FC<Props> = ({
 }) => {
   const spin = useSharedValue<number>(0);
 
-  const rStyle = useAnimatedStyle(() => {
+  const animatedStyle = useAnimatedStyle(() => {
     const spinVal = interpolate(spin.value, [0, 1], [0, 180]);
     return {
       transform: [
@@ -82,41 +84,42 @@ const FlipAnimation: React.FC<Props> = ({
 
   return (
     <>
-      <AnimatedFrontFace style={[rStyle]}>
+      <AnimatedFrontFace testID={testID} style={[animatedStyle]}>
         {frontFace && typeof frontFace !== 'string' ? (
           frontFace
         ) : (
-          <Typography type="Headline5" color="secondaryD1">
+          <FlipAnimationText type="Headline5" color="secondaryD1">
             {frontFace}
-          </Typography>
+          </FlipAnimationText>
         )}
       </AnimatedFrontFace>
       <AnimatedBackFace style={[bStyle]}>
         {backFace && typeof backFace !== 'string' ? (
           backFace
         ) : (
-          <Typography type="Headline5" color="secondaryD1">
+          <FlipAnimationText type="Headline5" color="secondaryD1">
             {backFace}
-          </Typography>
+          </FlipAnimationText>
         )}
       </AnimatedBackFace>
       {withManualTrigger && (
         <TriggerAnimationButton onPress={spinTrigger}>
-          <Typography type="Headline5" color="secondaryD1">
+          <FlipAnimationText type="Headline5" color="secondaryD1">
             {flipText || 'flip'}
-          </Typography>
+          </FlipAnimationText>
         </TriggerAnimationButton>
       )}
     </>
   );
 };
 
-export default FlipAnimation;
-
 FlipAnimation.defaultProps = {
+  testID: 'FlipAnimationID',
   frontFace: undefined,
   backFace: undefined,
   withManualTrigger: undefined,
   flipText: undefined,
   easing: 'linear',
 };
+
+export default memo(FlipAnimation);

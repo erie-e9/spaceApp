@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
+import { Typography } from '@components/atoms';
+import { getNormalizedVerticalSize } from '@utils/functions';
 
 export const AnimatedFrontFace = styled(Animated.View)`
   z-index: 0;
@@ -16,6 +18,8 @@ export const AnimatedBackFace = styled(Animated.View)`
 `;
 
 export const TriggerAnimationButton = styled.Pressable`
-  margin-top: 80px;
+  margin-top: ${getNormalizedVerticalSize(80)}px;
   align-items: center;
 `;
+
+export const FlipAnimationText = styled(Typography)``;

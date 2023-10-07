@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { TextProps as NativeProps } from 'react-native';
 import { Text, TextProps } from './styles';
 
-const Typography: React.FC<TextProps & NativeProps> = props => {
+export const Typography: React.FC<TextProps & NativeProps> = props => {
   return <Text {...props} />;
 };
 
-export default Typography;
+export default memo(Typography);

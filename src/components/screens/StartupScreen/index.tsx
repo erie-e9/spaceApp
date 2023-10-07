@@ -1,22 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { useDeviceSecurity, useLanguage, useCheckNet, useTheme } from '@hooks';
-import { setDefaultTheme } from '@slices/shared/appPreferences';
+import {
+  useDeviceSecurity,
+  useLanguage,
+  useCheckNet,
+  useTheme,
+  // useInAppUpdate,
+} from '@hooks';
 import { ApplicationScreenProps } from 'types/navigation';
+import { setDefaultTheme } from '@slices/shared/appPreferences';
 import { Language } from '@slices/types/appPreferences';
 import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
-import { Container, Brand } from './styles';
 import { InterpolateColorAnimation } from '@components/animated';
+import { Container, Brand } from './styles';
 
 interface Props {
   navigation: ApplicationScreenProps;
 }
 
-const Startup: React.FC<Props> = ({ navigation }) => {
+export const StartupScreen: React.FC<Props> = ({ navigation }) => {
   const { checkPhoneIntegrity } = useDeviceSecurity();
   const { appConnected } = useCheckNet();
   const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
   const { switchLanguage, saveLanguages, language } = useLanguage();
+  // const { checkUpdateAppVersion } = useInAppUpdate();
   const { Images } = useTheme();
 
   const preInit = async (): Promise<void> => {
@@ -46,6 +53,7 @@ const Startup: React.FC<Props> = ({ navigation }) => {
     await preInit();
     await switchLanguage(language as Language);
     await setDefaultTheme({ theme: 'default', darkMode: null });
+    // await checkUpdateAppVersion();
   };
 
   useEffect(() => {
@@ -61,7 +69,7 @@ const Startup: React.FC<Props> = ({ navigation }) => {
       initialColor="backgroundColorLight"
       finalColor="backgroundColorDark"
     >
-      <Container>
+      <Container testID="StartupScreenID">
         <Brand source={Images.logo} />
         <ActivityIndicator size={'small'} />
       </Container>
@@ -69,4 +77,4 @@ const Startup: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-export { Startup };
+export default memo(StartupScreen);

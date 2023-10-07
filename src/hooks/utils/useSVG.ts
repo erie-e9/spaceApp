@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { SvgProps } from 'react-native-svg';
 import { useTheme } from 'styled-components';
 import QRCodeIcon from '@assets/light/svg/QRCodeIcon.svg';
@@ -55,10 +55,9 @@ const svgLibrary: SvgObject = {
   },
 };
 
-const useSVG = (svgName: string): React.FC<SvgProps> => {
+export const useSVG = (svgName: string): React.FC<SvgProps> => {
   const colorScheme = useTheme()?.mode || 'light';
   return svgLibrary[svgName][colorScheme];
 };
 
-export default useSVG;
-export { useSVG };
+export default memo(useSVG);

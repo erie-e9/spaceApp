@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useSelector } from 'react-redux';
 import { DefaultTheme, useTheme } from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Animated, {
+import {
   interpolateColor,
   useAnimatedStyle,
   useDerivedValue,
@@ -11,9 +11,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { AppPreferencesState } from '@redux/store/slices/types/appPreferences';
 import { useTheme as themeVariables } from '@hooks';
-import { StyledBackgroundContainer } from './styles';
+import { StyledBackgroundContainer, StyledTextContainer } from './styles';
 
 export interface InterpolateColorAnimationProps {
+  testID?: string;
   children: string | React.ReactElement | React.ReactElement[];
   initialColor: keyof DefaultTheme['tokens']['colors'];
   finalColor: keyof DefaultTheme['tokens']['colors'];
@@ -24,7 +25,10 @@ export interface InterpolateColorAnimationProps {
   props?: any;
 }
 
-const InterpolateColorAnimation: React.FC<InterpolateColorAnimationProps> = ({
+export const InterpolateColorAnimation: React.FC<
+  InterpolateColorAnimationProps
+> = ({
+  testID,
   children,
   initialColor,
   finalColor,
@@ -89,23 +93,29 @@ const InterpolateColorAnimation: React.FC<InterpolateColorAnimationProps> = ({
   const AnimatedChildren =
     animationType === 'background' ? (
       <StyledBackgroundContainer
+        testID={testID}
         style={[styleProps, reanimatedViewStyle, insetStyles]}
       >
         {children}
       </StyledBackgroundContainer>
     ) : (
-      <Animated.Text style={[reanimatedViewStyle]} {...props}>
+      <StyledTextContainer
+        testID={testID}
+        style={[reanimatedViewStyle]}
+        {...props}
+      >
         {children}
-      </Animated.Text>
+      </StyledTextContainer>
     );
   return AnimatedChildren;
 };
 
 InterpolateColorAnimation.defaultProps = {
+  testID: 'InterpolateColorAnimationID',
   trigger: false,
   duration: undefined,
   styleProps: { ...StyleSheet.absoluteFillObject },
   animationType: 'background',
 };
 
-export default InterpolateColorAnimation;
+export default memo(InterpolateColorAnimation);

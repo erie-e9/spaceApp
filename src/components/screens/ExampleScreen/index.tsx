@@ -1,25 +1,24 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Vibration } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { useTheme, useSVG, useToast } from '@hooks';
-import { changeTheme } from '@slices/shared/appPreferences';
+import { ApplicationScreenProps } from 'types/navigation';
 import { AppPreferencesState } from '@slices/types/appPreferences';
+import { changeTheme } from '@slices/shared/appPreferences';
+import { useTheme, useSVG, useToast } from '@hooks';
 import { useCopy } from '@services/copyLibrary';
 import useModal from '@hooks/utils/useModal';
-import { ApplicationScreenProps } from 'types/navigation';
+import * as resources from '@services/translations/resources';
 import {
+  InterpolateColorAnimation,
   TransformAnimation,
   RotateAnimation,
   ScaleAnimation,
 } from '@components/animated';
-import * as resources from '@services/translations/resources';
-import InterpolateColorAnimation from '@components/animated/InterpolateColorAnimation';
-import RenderWhen from '@components/atoms/RenderWhen';
+import { RenderWhen } from '@components/atoms';
 import {
   StyledScrollView,
   HeaderContainer,
   BrandCircleContainer,
-  Brand,
   BodyContainer,
   ContentContainer,
   StyledTypography,
@@ -30,6 +29,7 @@ import {
   BrandDecorItem1,
   BrandDecorItem2,
   BrandDecorItem3,
+  Brand,
   BrandDecorItem4,
   BrandDecorItem5,
   BrandDecorItem6,
@@ -42,7 +42,7 @@ interface Props {
   navigation: ApplicationScreenProps;
 }
 
-export const Example: React.FC<Props> = ({ navigation }) => {
+export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
   const QRCodeNavigatorIcon = useSVG('QRCodeNavigator');
@@ -80,7 +80,7 @@ export const Example: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <StyledScrollView>
+    <StyledScrollView testID="ExampleScreenID">
       <InterpolateColorAnimation
         initialColor="backgroundColorLight"
         finalColor="backgroundColorDark"
@@ -267,4 +267,4 @@ export const Example: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-export default Example;
+export default memo(ExampleScreen);

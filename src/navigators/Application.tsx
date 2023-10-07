@@ -11,16 +11,16 @@ import {
   useNavigationContainerRef,
 } from '@react-navigation/native';
 import { useFlipper } from '@react-navigation/devtools';
-import { useTheme, useToast, useCheckNet } from '@hooks';
+import { ApplicationStackParamList } from 'types/navigation';
 import { useCopy } from '@services/copyLibrary';
 import Logger from '@services/logger';
-import MainNavigator from './Main';
+import { useTheme, useToast, useCheckNet } from '@hooks';
 import { darkTheme, lightTheme } from '@theme/themesi';
-import { ApplicationStackParamList } from 'types/navigation';
-import { Startup } from '@components/pages/Startup';
-import { WarningScreen } from '@components/pages/Shared/WarningScreen';
-import { Toast, StyledSafeAreaView } from '@components/atoms';
-import { Modal } from '@components/organisms';
+import { StyledSafeAreaView } from '@components/atoms';
+import { Modal, Toast } from '@components/organisms';
+import MainNavigator from './Main';
+import { StartupScreen } from '@components/screens';
+import { WarningScreen } from '@components/screens/Shared/WarningScreen';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
@@ -75,7 +75,7 @@ const ApplicationNavigator = () => {
                 ...TransitionPresets.ScaleFromCenterAndroid,
               }}
             >
-              <Screen name="Startup" component={Startup} />
+              <Screen name="StartupScreen" component={StartupScreen} />
               <Screen name="Main" component={MainNavigator} />
               <Screen name="WarningScreen" component={WarningScreen} />
             </Navigator>

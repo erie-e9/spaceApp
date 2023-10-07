@@ -1,16 +1,17 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { DeviceEventEmitter } from 'react-native';
 import { useTheme } from 'styled-components/native';
-import Animated, {
+import {
   withTiming,
   useSharedValue,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import { getHasNotch } from '@hooks';
 import {
+  StyledAnimatedContainer,
+  TouchableAreaContainer,
   ToastBodyContainer,
   ToastTextContainer,
-  TouchableAreaContainer,
   ToastText,
 } from './styles';
 
@@ -27,7 +28,7 @@ interface ToastProps {
   type?: ToastStatus;
 }
 
-const Toast = () => {
+export const Toast = () => {
   const hasNotch = getHasNotch();
   const [{ message, type }, setToast] = useState<ToastProps>({
     message: null,
@@ -102,7 +103,7 @@ const Toast = () => {
   if (!message) return;
 
   return (
-    <Animated.View
+    <StyledAnimatedContainer
       style={[
         // eslint-disable-next-line react-native/no-inline-styles
         {
@@ -129,9 +130,8 @@ const Toast = () => {
           </ToastTextContainer>
         </ToastBodyContainer>
       </TouchableAreaContainer>
-    </Animated.View>
+    </StyledAnimatedContainer>
   );
 };
 
 export default memo(Toast);
-export { Toast };

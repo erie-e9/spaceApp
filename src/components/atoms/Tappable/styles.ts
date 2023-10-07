@@ -1,10 +1,12 @@
 import styled from 'styled-components/native';
+import { getNormalizedHorizontalSize } from '@utils/functions';
 
-export const StyledTouchable = styled.Pressable<{
+export interface StyledTouchableProps {
   isGreyed?: boolean;
-  width?: number | string;
-}>`
+}
+
+export const StyledTouchable = styled.Pressable<StyledTouchableProps>`
   opacity: ${({ isGreyed }) => (isGreyed ? 0.34 : 1)};
   width: 100%;
-  max-width: 370px;
+  max-width: ${getNormalizedHorizontalSize(370)}px;
 `;

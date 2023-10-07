@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useSVG } from '@hooks';
-import { Tappable } from '@components/atoms';
+import { CloseButtonContainer, CloseButtonPressable } from './styles';
 
 interface Props {
   testID?: string;
@@ -11,14 +11,16 @@ export const CloseButton: React.FC<Props> = ({ testID, onPress }) => {
   const CloseButtonIcon = useSVG('CloseButton');
 
   return (
-    <Tappable testID={testID} onPress={onPress}>
-      <CloseButtonIcon />
-    </Tappable>
+    <CloseButtonContainer>
+      <CloseButtonPressable testID={testID} onPress={onPress}>
+        <CloseButtonIcon />
+      </CloseButtonPressable>
+    </CloseButtonContainer>
   );
 };
 
 CloseButton.defaultProps = {
-  testID: 'closeModalIcon',
+  testID: 'CloseButtonID',
   onPress: undefined,
 };
 

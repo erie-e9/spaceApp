@@ -4,4 +4,4 @@ export {
   responsiveFontSize,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
-} from './responsiveness';
+} from '@utils/functions/responsiveness';

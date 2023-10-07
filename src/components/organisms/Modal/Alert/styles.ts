@@ -1,6 +1,10 @@
-import { PixelRatio, Platform, StyleSheet, ViewStyle } from 'react-native';
-import { SCREEN_WIDTH } from '@utils/functions';
+import { PixelRatio, Platform, ViewStyle } from 'react-native';
 import styled, { css } from 'styled-components/native';
+import {
+  SCREEN_WIDTH,
+  getNormalizedVerticalSize,
+  getNormalizedHorizontalSize,
+} from '@utils/functions';
 import { ActionButton, Typography } from '@components/atoms';
 
 export const MODAL_STYLE: ViewStyle = {
@@ -22,10 +26,11 @@ export const Wrapper = styled.View<{ paddingBottom?: number; width?: number }>`
   width: ${({ width }) => width || SCREEN_WIDTH - 40 + 'px'};
   height: auto;
   z-index: 100;
-  border-radius: 15px;
-  padding-top: 20px;
-  padding-horizontal: 10px;
-  padding-bottom: ${({ paddingBottom }) => paddingBottom || 10}px;
+  border-radius: ${getNormalizedHorizontalSize(15)}px;
+  padding: ${getNormalizedVerticalSize(20)}px
+    ${getNormalizedHorizontalSize(10)}px
+    ${({ paddingBottom }) => getNormalizedVerticalSize(paddingBottom || 10)}px
+    ${getNormalizedHorizontalSize(10)}px;
   shadow-color: #000;
   shadow-opacity: 0.25;
   shadow-radius: 4px;
@@ -44,12 +49,10 @@ export const Wrapper = styled.View<{ paddingBottom?: number; width?: number }>`
 
 export const CloseIconContainer = styled.View`
   position: absolute;
-  right: -65px;
-  top: 15px;
-  font-size: 20px;
-  width: 100px;
-  height: 100px;
-  font-weight: bold;
+  right: ${getNormalizedHorizontalSize(-65)}px;
+  top: ${getNormalizedVerticalSize(15)}px;
+  height: ${getNormalizedVerticalSize(100)}px;
+  width: ${getNormalizedHorizontalSize(100)}px;
   z-index: 2;
 `;
 
@@ -58,14 +61,12 @@ export const ActionsWrapper = styled.View`
   width: 60%;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  margin-top: ${getNormalizedVerticalSize(10)}px;
 `;
 
 export const StyledButton = styled(ActionButton)<{ minWidth?: number }>`
-  margin-right: 3px;
-  margin-left: 3px;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(3)}px
+    ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(3)}px;
   align-self: center;
   border: ${({ theme: { colors } }) => colors.opposing};
   color: ${({ theme }) =>
@@ -73,15 +74,15 @@ export const StyledButton = styled(ActionButton)<{ minWidth?: number }>`
   ${({ minWidth }) =>
     minWidth &&
     css`
-      min-width: ${minWidth}px;
+      min-width: ${getNormalizedHorizontalSize(minWidth)};
     `}
 `;
 
-export const TextButton = styled(Typography)<{
+export const TextButtonItem = styled(Typography)<{
   isSimpleButton?: boolean;
 }>`
-  margin-top: ${({ isSimpleButton }) => (isSimpleButton ? 20 : 0)}px;
-  font-weight: ${({ isSimpleButton }) => (isSimpleButton ? 'bold' : 'normal')};
+  margin-top: ${({ isSimpleButton }) =>
+    getNormalizedVerticalSize(isSimpleButton ? 20 : 0)}px;
   ${({ isSimpleButton, theme }) => {
     const colorByTheme =
       theme.mode === 'dark'
@@ -115,8 +116,7 @@ export const StyledActionButton = styled(ActionButton)<{
 }>`
   width: 100%;
   height: ${PixelRatio.roundToNearestPixel(48)}px;
-  margin-horizontal: 0px;
-  margin-vertical: 10px;
+  margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
   text-transform: uppercase;
   border-color: ${({ mainBtn }) => (mainBtn ? '#5b707b' : 'transparent')};
   border-width: ${({ mainBtn }) => (mainBtn ? '1px' : '0px')};

@@ -1,20 +1,23 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-import * as React from 'react';
+import React, { memo, Children, ReactNode } from 'react';
 
-type WhenProps = {
+type RenderWhenProps = {
   children: React.ReactNode;
   isTrue?: boolean;
   limit?: number;
 };
 
-const RenderWhen = ({ limit = 1, isTrue, children }: WhenProps) => {
-  const list: React.ReactNode[] = [];
+export const RenderWhen = ({
+  limit = 1,
+  isTrue,
+  children,
+}: RenderWhenProps) => {
+  const list: ReactNode[] = [];
 
   if (isTrue !== true) {
     return null;
   }
 
-  React.Children.map(children, (child: any) => {
+  Children.map(children, (child: any) => {
     if (isTrue && list.length < limit) {
       list.push(child);
     }
@@ -28,4 +31,4 @@ RenderWhen.defaultProps = {
   isTrue: true,
 };
 
-export default RenderWhen;
+export default memo(RenderWhen);

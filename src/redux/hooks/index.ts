@@ -1,1 +1,1 @@
-export { useModalSelectorHook } from './useModalSelectorHook';
+export { useModalSelectorHook } from '@redux/hooks/useModalSelectorHook';

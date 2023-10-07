@@ -1,23 +1,27 @@
 import React, { memo } from 'react';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useSVG } from '@hooks';
-import { Tappable } from '@components/atoms';
-import { BackButtonContainer } from './styles';
+import { BackButtonContainer, BackButtonPressable } from './styles';
 
 interface Props {
+  testID?: string;
   navigation: ApplicationScreenProps;
 }
 
-const BackButton: React.FC<Props> = ({ navigation }) => {
+export const BackButton: React.FC<Props> = ({ testID, navigation }) => {
   const BackButtonIcon = useSVG('BackButton');
+
   return (
     <BackButtonContainer>
-      <Tappable onPress={navigation.goBack}>
+      <BackButtonPressable testID={testID} onPress={navigation.goBack}>
         <BackButtonIcon />
-      </Tappable>
+      </BackButtonPressable>
     </BackButtonContainer>
   );
 };
 
+BackButton.defaultProps = {
+  testID: 'BackButtonID',
+};
+
 export default memo(BackButton);
-export { BackButton };

@@ -6,6 +6,11 @@ import {
   getNormalizedHorizontalSize,
 } from '@utils/functions';
 
+export interface AnimatedDotProps {
+  size: number;
+  color: keyof DefaultTheme['tokens']['colors'];
+}
+
 export const LoaderThreeDotsContainer = styled.View`
   flex-direction: row;
   justify-content: center;
@@ -13,10 +18,7 @@ export const LoaderThreeDotsContainer = styled.View`
   height: 100%;
 `;
 
-export const AnimatedDot = styled(Animated.View)<{
-  size: number;
-  color: keyof DefaultTheme['tokens']['colors'];
-}>`
+export const AnimatedDot = styled(Animated.View)<AnimatedDotProps>`
   height: ${({ size }) => PixelRatio.roundToNearestPixel(size)}px;
   width: ${({ size }) => PixelRatio.roundToNearestPixel(size)}px;
   border-radius: ${({ size }) => PixelRatio.roundToNearestPixel(size / 2)}px;

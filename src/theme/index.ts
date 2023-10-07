@@ -1,5 +1,5 @@
-export { default as themes } from './themes';
-export { default as Common } from './Common';
-export { default as Images } from './Images';
+export { default as themes } from '@theme/themes';
+export { default as Common } from '@theme/Common';
+export { default as Images } from '@theme/Images';
 export { default as Animations } from '@services/animations';
-export { default as DefaultVariables } from './Variables';
+export { default as DefaultVariables } from '@theme/Variables';

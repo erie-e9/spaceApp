@@ -1,5 +1,6 @@
-import { isFinite } from 'lodash';
+import { memo } from 'react';
 import { Text as NativeText, Platform } from 'react-native';
+import { isFinite } from 'lodash';
 import styled, { css, DefaultTheme } from 'styled-components/native';
 import {
   responsiveFontSize,
@@ -171,7 +172,7 @@ export const Normal = css`
   font-weight: normal;
 `;
 
-const Text = styled(NativeText)<TextProps>`
+export const Text = styled(NativeText)<TextProps>`
   padding-top: ${({ paddingTop }) =>
     getNormalizedVerticalSize(paddingTop || 0)}px;
   margin-right: ${({ marginRight }) =>
@@ -249,4 +250,4 @@ const Text = styled(NativeText)<TextProps>`
 
 Text.defaultProps = { color: 'primaryD1', paddingTop: 0, weight: 'normal' };
 
-export { Text };
+export default memo(Text);

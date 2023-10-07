@@ -1,13 +1,16 @@
-import React, { useCallback, useEffect, useImperativeHandle } from 'react';
-import { StyleSheet } from 'react-native';
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+} from 'react';
 import { useDispatch } from 'react-redux';
-import { useTheme } from 'styled-components';
 import {
   FlatList as Flat,
   Gesture,
   GestureDetector,
 } from 'react-native-gesture-handler';
-import Animated, {
+import {
   Extrapolate,
   interpolate,
   runOnJS,
@@ -22,8 +25,9 @@ import { hideModal } from '@slices/shared/modal';
 import { CloseButton } from '@components/atoms';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
 import ModalItem from '@components/organisms/Modal/ModalItem';
-import AnimatedBackground from '../AnimatedBackground';
+import AnimatedBackground from '@components/organisms/Modal/AnimatedBackground';
 import {
+  AnimatedBottomSheet,
   CloseIconContainer,
   PanGestureHandlerView,
   CloseBottomSheetButton,
@@ -36,13 +40,12 @@ export type BottomSheetRefProps = {
   isActive: () => boolean;
 };
 
-const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
+export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
   (
     { title, description, isVisible, testID, showCancelIcon, children, list },
     ref,
   ) => {
     const dispatch = useDispatch();
-    const theme = useTheme();
     const { switchLanguage } = useLanguage();
     const { useNativeBackButton } = useNativeActions();
     const translateY = useSharedValue(0);
@@ -135,16 +138,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       <>
         <AnimatedBackground onTouch={handleClose} isActive={!active.value} />
         <GestureDetector gesture={gesture}>
-          <Animated.View
-            testID={testID}
-            style={[
-              styles.bottomSheetContainer,
-              bottomSheetStyle,
-              {
-                backgroundColor: theme.tokens.colors.none,
-              },
-            ]}
-          >
+          <AnimatedBottomSheet testID={testID} style={[bottomSheetStyle]}>
             <CloseBottomSheetButton onPress={bottomSheetSizeHandler}>
               <PanGestureHandlerView />
             </CloseBottomSheetButton>
@@ -168,27 +162,15 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
                 keyExtractor={(item, index) => `${index}`}
               />
             )}
-          </Animated.View>
+          </AnimatedBottomSheet>
         </GestureDetector>
       </>
     );
   },
 );
 
-const styles = StyleSheet.create({
-  bottomSheetContainer: {
-    height: SCREEN_HEIGHT,
-    width: '99%',
-    alignSelf: 'center',
-    position: 'absolute',
-    top: SCREEN_HEIGHT,
-    borderRadius: 25,
-    zIndex: 100,
-  },
-});
-
 BottomSheet.defaultProps = {
-  testID: 'testID',
+  testID: 'BottomSheetID',
   title: undefined,
   description: undefined,
   children: undefined,
@@ -197,4 +179,4 @@ BottomSheet.defaultProps = {
   isVisible: false,
 };
 
-export default BottomSheet;
+export default memo(BottomSheet);

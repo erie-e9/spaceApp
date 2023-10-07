@@ -1,30 +1,30 @@
 import React, { memo, useLayoutEffect } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
+import type * as CSS from 'csstype';
 import { SvgProps } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/core';
-import type * as CSS from 'csstype';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
+import { InterpolateColorAnimation } from '@components/animated';
 import { BackButton } from '@components/atoms';
 import {
-  ButtonContainer,
-  HeaderContainer,
-  TitleContainer,
-  BodyContainer,
-  StyledActionButton,
   StyledContainer,
+  HeaderContainer,
   IconContainer,
-  LegendActionButton,
+  TitleContainer,
   TitleTypography,
+  BodyContainer,
+  ButtonContainer,
+  StyledActionButton,
+  LegendActionButton,
 } from './styles';
-import InterpolateColorAnimation from '@components/animated/InterpolateColorAnimation';
 
 interface ButtonProps {
+  testID?: string;
   title: string;
   onPress?: () => void;
   onPressAsync?: () => Promise<void>;
   textTransform?: CSS.StandardProperties['textTransform'] | undefined;
-  testID?: string;
   style?: StyleProp<ViewStyle>;
   loading?: boolean;
   disabled?: boolean;
@@ -32,6 +32,7 @@ interface ButtonProps {
   featureFlags?: string[];
 }
 interface Props {
+  testID?: string;
   icon?: React.FC<SvgProps>;
   title?: string;
   adjustsFontTitle?: boolean;
@@ -47,6 +48,7 @@ interface Props {
   backButton?: boolean;
 }
 const CallToActionTemplate: React.FC<Props> = ({
+  testID,
   icon: Icon,
   title,
   adjustsFontTitle,
@@ -85,7 +87,7 @@ const CallToActionTemplate: React.FC<Props> = ({
       initialColor="backgroundColorLight"
       finalColor="backgroundColorDark"
     >
-      <StyledContainer>
+      <StyledContainer testID={testID}>
         <HeaderContainer>
           {Icon && (
             <IconContainer iconSpacing={iconSpacing || '200px'}>
@@ -161,9 +163,8 @@ const CallToActionTemplate: React.FC<Props> = ({
   );
 };
 
-export default memo(CallToActionTemplate);
-
 CallToActionTemplate.defaultProps = {
+  testID: 'CallToActionTemplateID',
   icon: undefined,
   title: undefined,
   adjustsFontTitle: false,
@@ -177,3 +178,5 @@ CallToActionTemplate.defaultProps = {
   backButton: false,
   iconSpacing: undefined,
 };
+
+export default memo(CallToActionTemplate);

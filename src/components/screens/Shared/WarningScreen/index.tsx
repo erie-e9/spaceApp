@@ -1,15 +1,13 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useCopy } from '@services/copyLibrary';
 import { useTheme, useToast, useModal } from '@hooks';
-import { changeTheme } from '@slices/shared/appPreferences';
 import { CallToActionTemplate } from '@components/templates';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import {
   BodyContainer,
-  TitleText,
   DescriptionContainer,
-  SubdescriptionContainer,
+  SubDescriptionContainer,
+  TitleText,
 } from './styles';
 
 export const WarningScreen = () => {
@@ -18,8 +16,6 @@ export const WarningScreen = () => {
   const { showModal } = useModal();
   const { Animations } = useTheme();
   const isMounted = useRef(true);
-  const { darkMode: isDarkMode } = useTheme();
-  const dispatch = useDispatch();
   const [loadingValue, setLoadingValue] = useState(false);
   const [loadingValue2, setLoadingValue2] = useState(false);
 
@@ -33,7 +29,7 @@ export const WarningScreen = () => {
     });
     setLoadingValue2(false);
     await setLoadingValue(!loadingValue);
-    dispatch(changeTheme({ theme: 'default', darkMode: !isDarkMode }));
+    // dispatch(changeTheme({ theme: 'default', darkMode: !isDarkMode }));
   };
 
   const handleSecondaryButton = async (): Promise<void> => {
@@ -64,7 +60,7 @@ export const WarningScreen = () => {
       numberOfLinesTitle={3}
       backButton
       body={
-        <BodyContainer>
+        <BodyContainer testID="WarningScreenID">
           <Lottie
             ref={animationRef}
             source={Animations.warning}
@@ -87,7 +83,7 @@ export const WarningScreen = () => {
               })}
             </TitleText>
           </DescriptionContainer>
-          <SubdescriptionContainer>
+          <SubDescriptionContainer>
             <TitleText
               type="Subtitle1"
               font="secondary"
@@ -97,7 +93,7 @@ export const WarningScreen = () => {
             >
               {getCopyValue('security:WarningScreen.sub-description')}
             </TitleText>
-          </SubdescriptionContainer>
+          </SubDescriptionContainer>
         </BodyContainer>
       }
       primaryButton={{

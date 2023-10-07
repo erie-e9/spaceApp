@@ -1,10 +1,10 @@
-import styled from 'styled-components/native';
 import { PixelRatio } from 'react-native';
-import { ActionButton, Typography } from '@components/atoms';
+import styled from 'styled-components/native';
 import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
+import { ActionButton, Typography } from '@components/atoms';
 
 export const StyledScrollView = styled.ScrollView.attrs({
   contentContainerStyle: {
@@ -45,13 +45,6 @@ export const BrandCircleContainer = styled.View<{
   border-radius: ${PixelRatio.roundToNearestPixel(140)}px;
 `;
 
-export const Brand = styled.Image.attrs({
-  resizeMode: 'contain',
-})`
-  height: ${getNormalizedVerticalSize(220)}px;
-  width: ${getNormalizedHorizontalSize(220)}px;
-`;
-
 export const ContentContainer = styled.View``;
 
 export const TitleContainer = styled.View`
@@ -74,7 +67,7 @@ export const FeaturesContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding-bottom: 2px;
+  padding-bottom: ${getNormalizedVerticalSize(2)}px;
 `;
 
 export const FeatureButton = styled(ActionButton)``;
@@ -87,22 +80,22 @@ export const BrandDecorItem1 = styled.Image.attrs({
   resizeMode: 'contain',
 })`
   position: absolute;
-  bottom: -200px;
-  right: 100px;
-  z-index: 0;
+  bottom: ${getNormalizedVerticalSize(-200)}px;
+  right: ${getNormalizedHorizontalSize(100)}px;
   height: ${getNormalizedVerticalSize(100)}px;
   width: ${getNormalizedHorizontalSize(100)}px;
   tint-color: ${({ theme }) => theme.tokens.colors.tertiaryL5};
+  z-index: 0;
 `;
 
 export const BrandDecorItem2 = styled.Image.attrs({
   resizeMode: 'contain',
 })`
   position: absolute;
-  bottom: -200px;
-  right: 90px;
-  z-index: 0;
+  bottom: ${getNormalizedVerticalSize(-200)}px;
+  right: ${getNormalizedHorizontalSize(90)}px;
   tint-color: ${({ theme }) => theme.tokens.colors.secondaryD1};
+  z-index: 0;
 `;
 
 export const BrandDecorItem3 = styled.View`
@@ -113,14 +106,21 @@ export const BrandDecorItem3 = styled.View`
   justify-content: center;
 `;
 
+export const Brand = styled.Image.attrs({
+  resizeMode: 'contain',
+})`
+  height: ${getNormalizedVerticalSize(220)}px;
+  width: ${getNormalizedHorizontalSize(220)}px;
+`;
+
 export const BrandDecorItem4 = styled.Image.attrs({
   resizeMode: 'contain',
 })`
   height: ${getNormalizedVerticalSize(180)}px;
   width: ${getNormalizedHorizontalSize(180)}px;
   position: absolute;
-  right: 60px;
-  bottom: 0;
+  right: ${getNormalizedHorizontalSize(60)}px;
+  bottom: ${getNormalizedVerticalSize(0)}px;
   z-index: 0;
   tint-color: ${({ theme }) => theme.tokens.colors.opposing};
 `;
@@ -130,7 +130,7 @@ export const BrandDecorItem5 = styled.Image.attrs({
 })`
   position: absolute;
   bottom: -5%;
-  left: -100px;
+  left: ${getNormalizedHorizontalSize(-100)}px;
   tint-color: ${({ theme }) => theme.tokens.colors.secondaryL1};
 `;
 
@@ -148,7 +148,7 @@ export const BrandDecorItem7 = styled.Image.attrs({
 })`
   position: absolute;
   top: -10%;
-  left: 0;
+  left: ${getNormalizedHorizontalSize(0)}px;
   tint-color: ${({ theme }) => theme.tokens.colors.secondaryD1};
 `;
 
@@ -168,7 +168,7 @@ export const BrandDecorItem9 = styled.Image.attrs({
 })`
   position: absolute;
   top: 100%;
-  left: 0;
+  left: ${getNormalizedHorizontalSize(0)}px;
   tint-color: ${({ theme }) => theme.tokens.colors.secondaryL1};
   transform: rotate(30deg);
 `;

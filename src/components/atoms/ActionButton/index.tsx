@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
-import type * as CSS from 'csstype';
 import { DefaultTheme, useTheme } from 'styled-components/native';
+import type * as CSS from 'csstype';
 import {
   useAnimatedStyle,
   useSharedValue,
@@ -10,13 +10,14 @@ import { SCREEN_WIDTH } from '@utils/functions';
 import { LoaderThreeDots } from '@components/atoms';
 import {
   AnimatedActionButton,
-  LoadingContainer,
   StyledButton,
-  StyledText,
+  LoadingContainer,
   IconContainer,
+  StyledText,
 } from './styles';
 
 export interface ActionButtonProps {
+  testID?: string;
   title?: string;
   loading?: boolean;
   textColor?: string;
@@ -34,7 +35,6 @@ export interface ActionButtonProps {
   lineHeight?: CSS.StandardProperties['lineHeight'];
   fullWidth?: boolean;
   Icon?: JSX.Element;
-  testID?: string;
   buttonType?: string;
   textTransform?: CSS.StandardProperties['textTransform'] | undefined;
   featureFlags?: string[];
@@ -42,6 +42,7 @@ export interface ActionButtonProps {
 }
 
 const ActionButton: React.FC<ActionButtonProps> = ({
+  testID,
   title,
   textColor,
   numberOfLines,
@@ -61,7 +62,6 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   buttonType,
   buttonTheme,
   textTransform,
-  testID,
   featureFlags = [],
   ...rest
 }) => {
@@ -222,16 +222,9 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   }, []);
 
   return (
-    <AnimatedActionButton style={[buttonAnimation]}>
-
-
-
-
-
-
+    <AnimatedActionButton testID={testID} style={[buttonAnimation]}>
       <StyledButton
         featureFlags={featureFlags}
-        testID={testID}
         backgroundColor={
           backgroundColor === '' ? btnTheme.bgColor : backgroundColor
         }
@@ -276,8 +269,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   );
 };
 
-export default memo(ActionButton);
 ActionButton.defaultProps = {
+  testID: 'ActionButtonID',
   title: '',
   loading: false,
   textColor: '',
@@ -294,9 +287,10 @@ ActionButton.defaultProps = {
   fontWeight: 'normal',
   lineHeight: 'normal',
   fullWidth: true,
-  testID: 'action-button-id',
   buttonType: undefined,
   backgroundColor: '',
   Icon: undefined,
   featureFlags: [],
 };
+
+export default memo(ActionButton);

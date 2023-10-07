@@ -4,7 +4,7 @@ import {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
-import { BackgroundContainer } from './styles';
+import { AnimatedBackgroundContainer } from './styles';
 
 export interface AnimatedBackgroundProps {
   isActive: boolean | undefined;
@@ -32,13 +32,13 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   }, []);
 
   return (
-    <BackgroundContainer
+    <AnimatedBackgroundContainer
       onTouchStart={onTouch}
       animatedProps={backdropProps}
       style={backgroundAnimted}
     >
       {children && children}
-    </BackgroundContainer>
+    </AnimatedBackgroundContainer>
   );
 };
 

@@ -11,17 +11,17 @@ export const BodyContainer = styled.View`
   align-items: center;
 `;
 
+export const DescriptionContainer = styled.View`
+  padding-vertical: ${getNormalizedVerticalSize(7)}px;
+`;
+export const SubDescriptionContainer = styled.View`
+  padding-top: ${getNormalizedVerticalSize(15)}px;
+`;
+
 export const TitleText = styled(Typography)<{
   underline?: boolean;
   isGreyed?: boolean;
 }>`
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
   opacity: ${({ isGreyed }) => (isGreyed ? 0.34 : 1)};
-`;
-
-export const DescriptionContainer = styled.View`
-  padding-vertical: ${getNormalizedVerticalSize(7)}px;
-`;
-export const SubdescriptionContainer = styled.View`
-  padding-top: ${getNormalizedVerticalSize(15)}px;
 `;

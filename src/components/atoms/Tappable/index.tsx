@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { PressableProps } from 'react-native';
 import { StyledTouchable } from './styles';
 
 interface TappableProps extends PressableProps {
+  testID?: string;
   component?: Element;
   style?: any;
   [x: string]: unknown;
 }
 
-const Tappable: React.FC<TappableProps> = ({
+export const Tappable: React.FC<TappableProps> = ({
+  testID,
   children,
   style,
   onPress,
@@ -19,6 +21,7 @@ const Tappable: React.FC<TappableProps> = ({
   const Touchable = (component || StyledTouchable) as unknown as React.FC<any>;
   return (
     <Touchable
+      testID={testID}
       style={style[0]}
       onPress={(event: any) => {
         if (onPress) {
@@ -33,9 +36,10 @@ const Tappable: React.FC<TappableProps> = ({
   );
 };
 
-export default Tappable;
-
 Tappable.defaultProps = {
+  testID: 'TappableID',
   component: undefined,
   style: {},
 };
+
+export default memo(Tappable);

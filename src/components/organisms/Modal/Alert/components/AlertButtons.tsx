@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { DefaultTheme } from 'styled-components/native';
 import {
   StyledButton,
   TypographyStyled,
   StyledActionButton,
   ActionsWrapper,
-  TextButton,
+  TextButtonItem,
 } from '../styles';
 
-interface AlertMessageButtonsProps {
+export interface AlertButtonsProps {
+  testID?: string;
   optionsMap?: any[];
   options?: string[];
   handleClose: () => void;
@@ -22,7 +23,8 @@ interface AlertMessageButtonsProps {
   getCopyValue: (key: string, config?: any) => string;
 }
 
-const AlertMessageButtons: React.FC<AlertMessageButtonsProps> = ({
+export const AlertButtons: React.FC<AlertButtonsProps> = ({
+  testID,
   optionsMap,
   options,
   handlers,
@@ -38,6 +40,7 @@ const AlertMessageButtons: React.FC<AlertMessageButtonsProps> = ({
   const isDarkMode = theme.mode === 'dark';
   const handlersPresent = handlers && handlers[0];
   const defaultSecondButtonColor = isDarkMode ? 'surfaceL5' : 'darkBlueD1';
+
   const multipleOptionsGenerator = (
     handleCloseFn: () => void,
     btnOptions: any[],
@@ -103,7 +106,7 @@ const AlertMessageButtons: React.FC<AlertMessageButtonsProps> = ({
   };
 
   return (
-    <ActionsWrapper>
+    <ActionsWrapper testID={testID}>
       {!actions && (
         <StyledButton
           type="Button"
@@ -120,13 +123,13 @@ const AlertMessageButtons: React.FC<AlertMessageButtonsProps> = ({
           if (i < 1) {
             if (isSimpleButton) {
               return (
-                <TextButton
+                <TextButtonItem
                   isSimpleButton
                   key={`otp${0 + i}`}
                   onPress={loadedHandler}
                 >
                   {text}
-                </TextButton>
+                </TextButtonItem>
               );
             }
             return (
@@ -147,13 +150,13 @@ const AlertMessageButtons: React.FC<AlertMessageButtonsProps> = ({
             );
           }
           return (
-            <TextButton
+            <TextButtonItem
               color={secondButtonColor || defaultSecondButtonColor}
               key={`otp${0 + i}`}
               onPress={loadedHandler}
             >
               {text}
-            </TextButton>
+            </TextButtonItem>
           );
         }
         return (
@@ -171,8 +174,8 @@ const AlertMessageButtons: React.FC<AlertMessageButtonsProps> = ({
   );
 };
 
-export default AlertMessageButtons;
-AlertMessageButtons.defaultProps = {
+AlertButtons.defaultProps = {
+  testID: 'AlertButtonsID',
   optionsMap: undefined,
   options: undefined,
   handlers: undefined,
@@ -181,3 +184,5 @@ AlertMessageButtons.defaultProps = {
   isSimpleButton: false,
   secondButtonColor: undefined,
 };
+
+export default memo(AlertButtons);

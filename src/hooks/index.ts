@@ -1,9 +1,9 @@
-export { default as useTheme } from './utils/useTheme';
-export { useLanguage } from './utils/useLanguage';
-export { useBlockScreen } from './utils/useBlockScreen';
-export { useSVG } from './utils/useSVG';
-export { useDeviceSecurity } from './utils/useDeviceSecurity';
-export { useCheckNet } from './utils/useCheckNet';
+export { default as useTheme } from '@hooks/utils/useTheme';
+export { useLanguage } from '@hooks/utils/useLanguage';
+export { useBlockScreen } from '@hooks/utils/useBlockScreen';
+export { useSVG } from '@hooks/utils/useSVG';
+export { useDeviceSecurity } from '@hooks/utils/useDeviceSecurity';
+export { useCheckNet } from '@hooks/utils/useCheckNet';
 export {
   initDeviceInfo,
   getUniqueId,
@@ -17,7 +17,7 @@ export {
   getOSVersion,
   getHasNotch,
   hasDynamicIsland,
-} from './utils/useDeviceInfo';
-export { useToast } from './utils/useToast';
-export { useNativeActions } from './utils/useNativeActions';
-export { useModal } from './utils/useModal';
+} from '@hooks/utils/useDeviceInfo';
+export { useToast } from '@hooks/utils/useToast';
+export { useNativeActions } from '@hooks/utils/useNativeActions';
+export { useModal } from '@hooks/utils/useModal';

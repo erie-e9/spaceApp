@@ -4,12 +4,14 @@ import languagesList from '@assets/shared/languagesList.json';
 import { ItemButton, ItemLabelContainer, ItemLabel } from './styles';
 
 export interface ModalItemProps {
+  testID?: string;
   item: string;
   onPress: () => void;
   predefinedList?: 'languages';
 }
 
 export const ModalItem = ({
+  testID,
   item,
   onPress,
   predefinedList,
@@ -19,7 +21,7 @@ export const ModalItem = ({
   };
 
   return (
-    <ItemButton onPress={onPressHandler}>
+    <ItemButton testID={testID} onPress={onPressHandler}>
       <ItemLabelContainer>
         <ItemLabel type="Subtitle1" color="opposing">
           {predefinedList ? (languagesList[item].nativeName as Language) : item}
@@ -30,6 +32,7 @@ export const ModalItem = ({
 };
 
 ModalItem.defaultProps = {
+  testID: 'ModalItemID',
   predefinedList: null,
 };
 

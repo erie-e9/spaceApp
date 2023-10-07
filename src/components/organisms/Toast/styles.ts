@@ -1,6 +1,19 @@
 import styled from 'styled-components/native';
-import { Tappable, Typography } from '@components/atoms';
+import Animated from 'react-native-reanimated';
 import { getNormalizedVerticalSize, SCREEN_WIDTH } from '@utils/functions';
+import { Tappable, Typography } from '@components/atoms';
+
+export interface ToastTextContainer {
+  hasNotch?: boolean;
+}
+
+export const StyledAnimatedContainer = styled(
+  Animated.View,
+)<ToastTextContainer>`
+  position: absolute;
+  height: ${({ hasNotch }) => getNormalizedVerticalSize(hasNotch ? 50 : 50)}px;
+  width: 100%;
+`;
 
 export const TouchableAreaContainer = styled(Tappable)`
   min-height: ${getNormalizedVerticalSize(45)}px;
@@ -14,9 +27,7 @@ export const ToastBodyContainer = styled.View`
   justify-content: center;
 `;
 
-export const ToastTextContainer = styled.View<{
-  hasNotch?: boolean;
-}>`
+export const ToastTextContainer = styled.View<ToastTextContainer>`
   height: ${({ hasNotch }) => getNormalizedVerticalSize(hasNotch ? 50 : 50)}px;
   min-height: ${getNormalizedVerticalSize(15)}px;
   width: 100%;

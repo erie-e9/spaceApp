@@ -1,4 +1,8 @@
 import styled from 'styled-components/native';
+import {
+  getNormalizedVerticalSize,
+  getNormalizedHorizontalSize,
+} from '@utils/functions';
 
 export const Container = styled.View`
   flex: 1;
@@ -10,6 +14,6 @@ export const Container = styled.View`
 export const Brand = styled.Image.attrs({
   resizeMode: 'contain',
 })`
-  height: 200px;
-  width: 200px;
+  height: ${getNormalizedVerticalSize(200)}px;
+  width: ${getNormalizedHorizontalSize(200)}px;
 `;

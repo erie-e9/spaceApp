@@ -1,17 +1,17 @@
-import React from 'react';
-import Example from '@components/pages/Example';
+import React, { memo } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ApplicationStackParamList } from '@utils/@types/navigation';
+import { ExampleScreen } from '@components/screens';
 
 const Stack = createStackNavigator<ApplicationStackParamList>();
 
 // @refresh reset
-const MainNavigator = () => {
+export const MainNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={Example} />
+      <Stack.Screen name="Home" component={ExampleScreen} />
     </Stack.Navigator>
   );
 };
 
-export default MainNavigator;
+export default memo(MainNavigator);

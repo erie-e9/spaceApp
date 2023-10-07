@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { AppState, BackHandler } from 'react-native';
+import { BackHandler } from 'react-native';
 
 interface NativeActionsProps {
   callback?: () => void;
@@ -7,7 +7,6 @@ interface NativeActionsProps {
 
 export const useNativeActions = (): {
   useNativeBackButton: ({ callback }: NativeActionsProps) => void;
-  useAppStateChange: ({ callback }: NativeActionsProps) => void;
 } => {
   const useNativeBackButton = ({ callback }: NativeActionsProps): void => {
     useEffect(() => {
@@ -24,15 +23,7 @@ export const useNativeActions = (): {
     }, []);
   };
 
-  const useAppStateChange = ({ callback }: NativeActionsProps): any => {
-    const appStateSubscription = AppState.addEventListener(
-      'change',
-      callback ? callback() : () => null,
-    );
-    return () => appStateSubscription.remove();
-  };
-
-  return { useNativeBackButton, useAppStateChange };
+  return { useNativeBackButton };
 };
 
 export default useNativeActions;

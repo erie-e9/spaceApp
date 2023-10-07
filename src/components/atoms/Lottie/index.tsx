@@ -1,11 +1,11 @@
 import React, {
+  memo,
   Component,
   useEffect,
   useState,
   forwardRef,
   useImperativeHandle,
   useRef,
-  memo,
 } from 'react';
 import { AppState, AppStateStatus } from 'react-native';
 import LottieView from 'lottie-react-native';
@@ -15,6 +15,7 @@ type extractComponentPropsType<Type> = Type extends Component<infer X>
   : null;
 
 export type LottieProps = extractComponentPropsType<LottieView> & {
+  testID?: 'string';
   ref: any;
   height: number;
   width: number;
@@ -22,7 +23,7 @@ export type LottieProps = extractComponentPropsType<LottieView> & {
 
 export type LottieViewProps = LottieView;
 
-const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
+export const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
   const [appState, setAppState] = useState(AppState.currentState);
   const animationRef = useRef<LottieView>(null);
 
@@ -60,6 +61,7 @@ const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
   return (
     <LottieView
       {...props}
+      testID={props.testID || 'LottieID'}
       ref={animationRef}
       source={props.source}
       renderMode={props.renderMode}
@@ -72,5 +74,4 @@ const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
   );
 });
 
-export { Lottie };
 export default memo(Lottie);

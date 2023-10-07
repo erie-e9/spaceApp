@@ -6,7 +6,7 @@ export type MainParamsList = {
 };
 
 export type ApplicationStackParamList = {
-  Startup: undefined;
+  StartupScreen: undefined;
   Main: NavigatorScreenParams<MainParamsList>;
   WarningScreen: undefined;
   Home: undefined;

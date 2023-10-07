@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React, { memo, useCallback, useEffect } from 'react';
-import Animated, {
+import {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
@@ -9,8 +9,10 @@ import Animated, {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { StyledAnimatedContainer } from './styles';
 
 interface Props {
+  testID?: string;
   trigger?: boolean;
   children?: string | React.ReactElement | React.ReactElement[];
   duration?: number;
@@ -24,7 +26,8 @@ interface Props {
   easing?: typeof Easing | string | unknown;
 }
 
-const ScaleAnimation: React.FC<Props> = ({
+export const ScaleAnimation: React.FC<Props> = ({
+  testID,
   trigger = true,
   children,
   duration,
@@ -122,7 +125,23 @@ const ScaleAnimation: React.FC<Props> = ({
     };
   }, [offSetScaleValue, offSetWidthValue, offSetHeightValue, trigger]);
 
-  return <Animated.View style={[animatedStyles]}>{children}</Animated.View>;
+  return (
+    <StyledAnimatedContainer testID={testID} style={[animatedStyles]}>
+      {children}
+    </StyledAnimatedContainer>
+  );
+};
+
+ScaleAnimation.defaultProps = {
+  testID: 'ScaleAnimationID',
+  trigger: true,
+  duration: 2000,
+  initialValue: 0,
+  finalValue: 1,
+  delay: 0,
+  repeat: 1,
+  reverse: false,
+  easing: 'linear',
 };
 
 export default memo(ScaleAnimation);
