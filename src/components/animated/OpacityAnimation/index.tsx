@@ -19,6 +19,7 @@ interface Props {
   delay?: number;
   repeat?: number;
   reverse?: boolean;
+  easing?: typeof Easing | string | unknown;
 }
 
 const OpacityAnimation: React.FC<Props> = ({
@@ -30,6 +31,7 @@ const OpacityAnimation: React.FC<Props> = ({
   delay,
   repeat = 1,
   reverse = false,
+  easing,
 }) => {
   const opacity = useSharedValue(initialValue);
 
@@ -46,6 +48,7 @@ const OpacityAnimation: React.FC<Props> = ({
         withRepeat(
           withTiming(finalValue ?? 0, {
             duration: duration ?? 2000,
+            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
           }),
           repeat ?? 1,
           reverse ?? false,

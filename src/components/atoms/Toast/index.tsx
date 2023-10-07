@@ -91,6 +91,7 @@ const Toast = () => {
       });
     }
   }, [message, animatedOpacity.value]);
+
   useEffect(() => {
     DeviceEventEmitter.addListener('SHOW_TOAST_MESSAGE', OnNewToast);
     DeviceEventEmitter.addListener('HIDE_TOAST_MESSAGE', closeToast);

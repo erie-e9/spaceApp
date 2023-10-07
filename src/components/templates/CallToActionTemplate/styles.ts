@@ -11,7 +11,7 @@ export const StyledContainer = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-horizontal: ${getNormalizedHorizontalSize(20)}px;
+  padding-horizontal: ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const ButtonContainer = styled.View``;
@@ -28,9 +28,9 @@ export const BodyContainer = styled.View`
 `;
 
 export const TitleContainer = styled.View`
-  padding: ${getNormalizedVerticalSize(20)}px
-    ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(10)}px
-    ${getNormalizedHorizontalSize(Platform.OS === 'ios' ? 0 : 15)}px;
+  padding: ${getNormalizedVerticalSize(15)}px
+    ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(0)}px
+    ${getNormalizedHorizontalSize(Platform.OS === 'ios' ? 15 : 20)}px;
 `;
 
 export const StyledActionButton = styled(ActionButton)<{ isGreyed?: boolean }>`

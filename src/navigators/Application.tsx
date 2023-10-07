@@ -5,28 +5,27 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   NavigationContainer,
   useNavigationContainerRef,
 } from '@react-navigation/native';
 import { useFlipper } from '@react-navigation/devtools';
-import { useTheme, useToast } from '@hooks';
-import Logger from '@services/logger';
+import { useTheme, useToast, useCheckNet } from '@hooks';
 import { useCopy } from '@services/copyLibrary';
+import Logger from '@services/logger';
 import MainNavigator from './Main';
 import { darkTheme, lightTheme } from '@theme/themesi';
 import { ApplicationStackParamList } from 'types/navigation';
 import { Startup } from '@components/pages/Startup';
 import { WarningScreen } from '@components/pages/Shared/WarningScreen';
-import { useCheckNet } from '@hooks';
-import Toast from '@components/atoms/Toast';
-import { StyledSafeAreaView } from '@components/atoms';
+import { Toast, StyledSafeAreaView } from '@components/atoms';
 import { Modal } from '@components/organisms';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
 const ApplicationNavigator = () => {
+  const gestureHandlerRootViewStyle = { flex: 1 };
   const { darkMode, NavigationTheme } = useTheme();
   const { appConnected } = useCheckNet();
   const { getCopyValue } = useCopy();
@@ -61,7 +60,7 @@ const ApplicationNavigator = () => {
     <ThemeProvider theme={theme}>
       <StyledSafeAreaView>
         <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
+          <GestureHandlerRootView style={gestureHandlerRootViewStyle}>
             <StatusBar
               translucent
               barStyle={darkMode ? 'light-content' : 'dark-content'}

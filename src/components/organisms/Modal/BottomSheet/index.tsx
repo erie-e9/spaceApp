@@ -22,12 +22,12 @@ import { hideModal } from '@slices/shared/modal';
 import { CloseButton } from '@components/atoms';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
 import ModalItem from '@components/organisms/Modal/ModalItem';
+import AnimatedBackground from '../AnimatedBackground';
 import {
   CloseIconContainer,
   PanGestureHandlerView,
   CloseBottomSheetButton,
 } from './styles';
-import { AnimatedBackground } from '../AnimatedBackground';
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 80;
 

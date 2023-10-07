@@ -1,14 +1,14 @@
-import type * as CSS from 'csstype';
-import { toInteger } from 'lodash';
+import { PixelRatio } from 'react-native';
 import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
+import type * as CSS from 'csstype';
+import { toInteger } from 'lodash';
 import { Typography } from '@components/atoms';
 import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
 import Tappable from '@components/atoms/Tappable';
-import { PixelRatio } from 'react-native';
 
 export interface StyledButtonProps {
   readonly backgroundColor?: string;

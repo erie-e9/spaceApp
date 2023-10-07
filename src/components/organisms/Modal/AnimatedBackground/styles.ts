@@ -5,7 +5,8 @@ import styled from 'styled-components/native';
 export const BackgroundContainer = styled(Animated.View).attrs({
   ...StyleSheet.absoluteFillObject,
 })`
-  flex: 1;
+  width: '100%';
+  height: '100%';
   background-color: ${({ theme }) =>
     theme.tokens.colors.backgroundColorDark + '80'};
 `;

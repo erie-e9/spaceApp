@@ -14,24 +14,26 @@ interface Props {
   trigger?: boolean;
   children?: string | React.ReactElement | React.ReactElement[];
   duration?: number;
-  initialRotateValue?: number;
-  finalRotateValue?: number;
+  initialValue?: number;
+  finalValue?: number;
   delay?: number;
   repeat?: number;
   reverse?: boolean;
+  easing?: typeof Easing | string | unknown;
 }
 
 const RotateAnimation: React.FC<Props> = ({
   trigger = true,
   children,
   duration,
-  initialRotateValue,
-  finalRotateValue = 1,
+  initialValue,
+  finalValue = 1,
   delay,
   repeat,
   reverse = false,
+  easing,
 }) => {
-  const rotate = useSharedValue(initialRotateValue);
+  const rotate = useSharedValue(initialValue);
 
   const animatedStyles = useAnimatedStyle(() => {
     return {
@@ -40,12 +42,13 @@ const RotateAnimation: React.FC<Props> = ({
   }, [rotate.value]);
 
   const triggerAnimate = useCallback(() => {
-    if ((trigger && initialRotateValue) || initialRotateValue === 0) {
+    if ((trigger && initialValue) || initialValue === 0) {
       rotate.value = withDelay(
         delay ?? 0,
         withRepeat(
-          withTiming(finalRotateValue ?? 1, {
+          withTiming(finalValue ?? 1, {
             duration: duration ?? 2000,
+            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
           }),
           repeat ?? 1,
           reverse ?? false,
@@ -55,8 +58,8 @@ const RotateAnimation: React.FC<Props> = ({
   }, [
     trigger,
     duration,
-    initialRotateValue,
-    finalRotateValue,
+    initialValue,
+    finalValue,
     delay,
     repeat,
     reverse,
@@ -66,7 +69,7 @@ const RotateAnimation: React.FC<Props> = ({
   useEffect(() => {
     const cleanup = () => {
       cancelAnimation(rotate);
-      rotate.value = initialRotateValue || 0;
+      rotate.value = initialValue || 0;
     };
 
     if (trigger) {
