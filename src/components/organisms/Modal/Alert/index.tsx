@@ -33,7 +33,6 @@ export const Alert: React.FC = ({
   const theme = useTheme();
 
   const handleClose = (): void => {
-    console.log('ewe handleClose');
     dispatch(hideModal());
 
     if (onCloseIcon) onCloseIcon();

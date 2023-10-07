@@ -9,20 +9,20 @@ import {
   NavigationContainer,
   useNavigationContainerRef,
 } from '@react-navigation/native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFlipper } from '@react-navigation/devtools';
 import { useTheme, useToast } from '@hooks';
 import Logger from '@services/logger';
 import { useCopy } from '@services/copyLibrary';
 import MainNavigator from './Main';
 import { darkTheme, lightTheme } from '@theme/themesi';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ApplicationStackParamList } from 'types/navigation';
 import { Startup } from '@components/pages/Startup';
 import { WarningScreen } from '@components/pages/Shared/WarningScreen';
 import { useCheckNet } from '@hooks';
 import Toast from '@components/atoms/Toast';
+import { StyledSafeAreaView } from '@components/atoms';
 import { Modal } from '@components/organisms';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
@@ -30,8 +30,6 @@ const ApplicationNavigator = () => {
   const { darkMode, NavigationTheme } = useTheme();
   const { appConnected } = useCheckNet();
   const { getCopyValue } = useCopy();
-
-  const gestureHandlerRootViewStyle = { flex: 1 };
 
   const theme = (): DefaultTheme => {
     if (darkMode) {
@@ -60,10 +58,10 @@ const ApplicationNavigator = () => {
   useFlipper(navigationRef);
 
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <StyledSafeAreaView>
         <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-          <GestureHandlerRootView style={gestureHandlerRootViewStyle}>
+          <GestureHandlerRootView style={{ flex: 1 }}>
             <StatusBar
               translucent
               barStyle={darkMode ? 'light-content' : 'dark-content'}
@@ -72,6 +70,7 @@ const ApplicationNavigator = () => {
             <Navigator
               screenOptions={{
                 headerShown: false,
+                freezeOnBlur: true,
                 headerMode: 'screen',
                 // SlideFromRightIOS
                 ...TransitionPresets.ScaleFromCenterAndroid,
@@ -85,8 +84,8 @@ const ApplicationNavigator = () => {
           </GestureHandlerRootView>
           <Toast />
         </NavigationContainer>
-      </ThemeProvider>
-    </SafeAreaProvider>
+      </StyledSafeAreaView>
+    </ThemeProvider>
   );
 };
 

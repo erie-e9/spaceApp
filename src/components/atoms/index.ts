@@ -1,4 +1,5 @@
 export type { LottieViewProps } from './Lottie';
+export { default as StyledSafeAreaView } from './StyledSafeAreaView';
 export { default as Typography } from './Typography';
 export { default as LoaderThreeDots } from './LoaderThreeDots';
 export { default as Tappable } from './Tappable';

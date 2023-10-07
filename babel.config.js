@@ -3,7 +3,6 @@ module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
     'dynamic-import-node',
-    'babel-plugin-styled-components',
     [
       'module-resolver',
       {

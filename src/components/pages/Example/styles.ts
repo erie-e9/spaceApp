@@ -9,6 +9,7 @@ import {
 export const StyledScrollView = styled.ScrollView.attrs({
   contentContainerStyle: {
     flex: 1,
+    flexGrow: 1,
     flexDirection: 'column',
     height: '100%',
     width: '100%',
@@ -17,13 +18,6 @@ export const StyledScrollView = styled.ScrollView.attrs({
   },
 })``;
 
-export const BodyContainer = styled.View`
-  flex: 1;
-  justify-content: space-between;
-  width: 100%;
-  padding-horizontal: ${getNormalizedHorizontalSize(10)}px;
-`;
-
 export const HeaderContainer = styled.View`
   flex: 1;
   flex-grow: 1;
@@ -31,6 +25,14 @@ export const HeaderContainer = styled.View`
   width: 100%;
   align-items: center;
   justify-content: center;
+`;
+
+export const BodyContainer = styled.View`
+  flex: 1;
+  justify-content: space-between;
+  width: 100%;
+  padding: ${getNormalizedVerticalSize(0)}px
+    ${getNormalizedHorizontalSize(20)}px;
 `;
 
 export const BrandCircleContainer = styled.View<{
@@ -72,6 +74,7 @@ export const FeaturesContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  padding-bottom: 2px;
 `;
 
 export const FeatureButton = styled(ActionButton)``;

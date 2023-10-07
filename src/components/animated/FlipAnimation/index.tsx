@@ -19,7 +19,6 @@ interface Props {
   backFace?: string | React.ReactElement | React.ReactElement[];
   withManualTrigger?: boolean;
   flipText?: string;
-  easing?: typeof Easing | string | unknown;
 }
 
 const FlipAnimation: React.FC<Props> = ({
@@ -27,7 +26,6 @@ const FlipAnimation: React.FC<Props> = ({
   backFace,
   withManualTrigger,
   flipText,
-  easing,
 }) => {
   const spin = useSharedValue<number>(0);
 
@@ -47,10 +45,7 @@ const FlipAnimation: React.FC<Props> = ({
     return {
       transform: [
         {
-          rotateY: withTiming(`${spinVal}deg`, {
-            duration: 500,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
-          }),
+          rotateY: withTiming(`${spinVal}deg`, { duration: 500 }),
         },
       ],
     };
@@ -66,7 +61,7 @@ const FlipAnimation: React.FC<Props> = ({
       spin.value = 0;
     };
 
-    let interval: unknown;
+    let interval: number;
     if (!withManualTrigger) {
       interval = setInterval(() => {
         spinTrigger();
@@ -76,7 +71,7 @@ const FlipAnimation: React.FC<Props> = ({
     }
     return () => {
       cleanup();
-      clearInterval(interval as number);
+      clearInterval(interval);
     };
   }, [spin, withManualTrigger]);
 
@@ -118,5 +113,4 @@ FlipAnimation.defaultProps = {
   backFace: undefined,
   withManualTrigger: undefined,
   flipText: undefined,
-  easing: 'linear',
 };

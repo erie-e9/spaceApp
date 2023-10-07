@@ -1,13 +1,14 @@
-import { PixelRatio } from 'react-native';
+import type * as CSS from 'csstype';
 import { toInteger } from 'lodash';
 import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import type * as CSS from 'csstype';
+import { Typography } from '@components/atoms';
 import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { Typography, Tappable } from '@components/atoms';
+import Tappable from '@components/atoms/Tappable';
+import { PixelRatio } from 'react-native';
 
 export interface StyledButtonProps {
   readonly backgroundColor?: string;
@@ -17,6 +18,19 @@ export interface StyledButtonProps {
   disabled?: boolean;
   hasBorder?: boolean;
   colorScheme: string;
+}
+
+export interface StyleButtonTextProps {
+  readonly color?: string;
+  textTransform?: CSS.StandardProperties['textTransform'];
+  fontWeight?: CSS.StandardProperties['fontWeight'];
+  fontSize?: string | number;
+  fullWidth: boolean;
+  readonly disabledColor?: keyof DefaultTheme['colors'];
+  disabled?: boolean;
+  buttonType?: string;
+  type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
+  testID?: string;
 }
 
 export const AnimatedActionButton = styled(Animated.View)`
@@ -59,20 +73,6 @@ export const StyledButton = styled(Tappable)<StyledButtonProps>`
   };
   `}
 `;
-
-export interface StyleButtonTextProps {
-  readonly color?: string;
-  textTransform?: CSS.StandardProperties['textTransform'];
-  fontWeight?: CSS.StandardProperties['fontWeight'];
-  fontSize?: string | number;
-  fullWidth: boolean;
-  readonly disabledColor?: keyof DefaultTheme['colors'];
-  disabled?: boolean;
-  buttonType?: string;
-  type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
-  testID?: string;
-}
-
 export const StyledText = styled(Typography)<StyleButtonTextProps>`
   text-align: center;
   justify-content: center;

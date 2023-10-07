@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import type * as CSS from 'csstype';
 import { DefaultTheme, useTheme } from 'styled-components/native';
-import {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
+import { useSharedValue, withSpring } from 'react-native-reanimated';
 import { SCREEN_WIDTH } from '@utils/functions';
 import { LoaderThreeDots } from '@components/atoms';
 import {
@@ -153,7 +149,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
             buttonTheme === 'Secondary'
               ? theme.tokens.colors.surfaceL4
               : theme.tokens.colors.primaryD1;
-          bgColor = 'transparent';
+          bgColor = colorScheme === 'light' ? bgColorLight : bgColorDark;
         } else if (buttonTheme === 'Dark') {
           txtColor =
             buttonTheme === 'Dark'
@@ -165,7 +161,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
             buttonTheme === 'Primary'
               ? theme.tokens.colors.surfaceL4
               : theme.tokens.colors.primaryD1;
-          bgColor = 'transparent';
+          bgColor = theme.tokens.colors.none;
         }
         break;
       default:
@@ -206,23 +202,20 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
   useEffect(() => {
     if (loading) {
-      width.value = withSpring(50, { stiffness: 100, damping: 15 });
+      width.value = withSpring(50, { stiffness: 55 });
     } else {
-      width.value = withSpring(SCREEN_WIDTH - 50, {
-        stiffness: 100,
-        damping: 15,
-      });
+      width.value = withSpring(SCREEN_WIDTH - 50, { stiffness: 55 });
     }
   }, [loading]);
 
-  const buttonAnimation = useAnimatedStyle(() => {
-    return {
-      width: type === 'Icon' ? 50 : width.value,
-    };
-  }, []);
-
   return (
-    <AnimatedActionButton style={[buttonAnimation]}>
+    <AnimatedActionButton
+      style={[
+        {
+          width: type === 'Icon' ? 50 : width,
+        },
+      ]}
+    >
       <StyledButton
         featureFlags={featureFlags}
         testID={testID}
@@ -281,7 +274,7 @@ ActionButton.defaultProps = {
   onPressAsync: undefined,
   buttonTheme: 'Primary',
   type: 'Button',
-  disabledColor: 'primaryD5',
+  disabledColor: 'primary',
   disabled: false,
   grouped: false,
   fontSize: undefined,

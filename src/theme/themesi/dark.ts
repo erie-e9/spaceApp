@@ -41,8 +41,6 @@ export const darkTheme: DefaultTheme = {
       surfaceL4: '#153243',
       surfaceL5: '#F4F8F9',
       none: '#1B1A23',
-      backgroundColorLight: '#FFFFFF',
-      backgroundColorDark: '#1B1A23',
       default_accent: '#F6FDFE',
       success_accent: '#14DA72',
       warning_accent: '#FFF5DA',

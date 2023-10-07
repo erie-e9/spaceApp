@@ -14,30 +14,28 @@ interface Props {
   trigger?: boolean;
   children?: string | React.ReactElement | React.ReactElement[];
   duration?: number;
-  initialValue?: number;
-  finalValue?: number;
+  initialSizeValue?: number;
+  finalSizeValue?: number;
   widthValue?: number;
   heightValue?: number;
   delay?: number;
   repeat?: number;
   reverse?: boolean;
-  easing?: typeof Easing | string | unknown;
 }
 
 const ScaleAnimation: React.FC<Props> = ({
   trigger = true,
   children,
   duration,
-  initialValue,
-  finalValue,
+  initialSizeValue,
+  finalSizeValue,
   widthValue,
   heightValue,
   delay,
   repeat,
   reverse = false,
-  easing,
 }) => {
-  const offSetScaleValue = useSharedValue(initialValue || 0);
+  const offSetScaleValue = useSharedValue(initialSizeValue || 0);
   const offSetWidthValue = useSharedValue(widthValue || 0);
   const offSetHeightValue = useSharedValue(heightValue || 0);
 
@@ -45,19 +43,18 @@ const ScaleAnimation: React.FC<Props> = ({
     return {
       transform:
         widthValue && heightValue ? [] : [{ scale: offSetScaleValue.value }],
-      width: initialValue && finalValue ? 0 : offSetWidthValue.value,
-      height: initialValue && finalValue ? 0 : offSetHeightValue.value,
+      width: initialSizeValue && finalSizeValue ? 0 : offSetWidthValue.value,
+      height: initialSizeValue && finalSizeValue ? 0 : offSetHeightValue.value,
     };
   }, [offSetScaleValue.value, offSetWidthValue.value, offSetHeightValue.value]);
 
   const triggerAnimate = useCallback(() => {
-    if ((trigger && initialValue) || initialValue === 0) {
+    if ((trigger && initialSizeValue) || initialSizeValue === 0) {
       offSetScaleValue.value = withDelay(
         delay ?? 0,
         withRepeat(
-          withTiming(finalValue ?? 1, {
+          withTiming(finalSizeValue ?? 1, {
             duration: duration ?? 2000,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
           }),
           repeat ?? 1,
           reverse ?? false,
@@ -68,9 +65,8 @@ const ScaleAnimation: React.FC<Props> = ({
       offSetWidthValue.value = withDelay(
         delay ?? 0,
         withRepeat(
-          withTiming(finalValue ?? 1, {
+          withTiming(finalSizeValue ?? 1, {
             duration: duration ?? 2000,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
           }),
           repeat ?? 1,
           reverse ?? false,
@@ -81,9 +77,8 @@ const ScaleAnimation: React.FC<Props> = ({
       offSetHeightValue.value = withDelay(
         delay ?? 0,
         withRepeat(
-          withTiming(finalValue ?? 1, {
+          withTiming(finalSizeValue ?? 1, {
             duration: duration ?? 2000,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
           }),
           repeat ?? 1,
           reverse ?? false,
@@ -93,8 +88,8 @@ const ScaleAnimation: React.FC<Props> = ({
   }, [
     trigger,
     duration,
-    initialValue,
-    finalValue,
+    initialSizeValue,
+    finalSizeValue,
     delay,
     repeat,
     reverse,
@@ -108,7 +103,7 @@ const ScaleAnimation: React.FC<Props> = ({
       cancelAnimation(offSetScaleValue);
       cancelAnimation(offSetWidthValue);
       cancelAnimation(offSetHeightValue);
-      offSetScaleValue.value = initialValue || 0;
+      offSetScaleValue.value = initialSizeValue || 0;
       offSetWidthValue.value = widthValue || 0;
       offSetHeightValue.value = heightValue || 0;
     };

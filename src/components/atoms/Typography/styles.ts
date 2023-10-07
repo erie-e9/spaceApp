@@ -59,35 +59,35 @@ export const SecondaryFont = css`
 
 export const Headline1 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(60)}px;
+  font-size: ${responsiveFontSize(102)}px;
   letter-spacing: ${getNormalizedHorizontalSize(-1.5)}px;
-  line-height: ${getNormalizedVerticalSize(62.4)}px;
+  line-height: ${getNormalizedVerticalSize(122.4)}px;
 `;
 export const Headline2 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(51)}px;
+  font-size: ${responsiveFontSize(64)}px;
   letter-spacing: ${getNormalizedHorizontalSize(-0.5)}px;
-  line-height: ${getNormalizedVerticalSize(52.8)}px;
+  line-height: ${getNormalizedVerticalSize(76.8)}px;
 `;
 export const Headline3 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(42)}px;
+  font-size: ${responsiveFontSize(51)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0)}px;
-  line-height: ${getNormalizedVerticalSize(43.2)}px;
+  line-height: ${getNormalizedVerticalSize(61.2)}px;
 `;
 
 export const Headline4 = css`
   font-weight: 500;
-  font-size: ${responsiveFontSize(37)}px;
+  font-size: ${responsiveFontSize(42)}px;
   letter-spacing: ${getNormalizedHorizontalSize(-0.32)}px;
-  line-height: ${getNormalizedVerticalSize(38)}px;
+  line-height: ${getNormalizedVerticalSize(44)}px;
 `;
 
 export const Headline5 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(32)}px;
+  font-size: ${responsiveFontSize(37)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0)}px;
-  line-height: ${getNormalizedVerticalSize(33)}px;
+  line-height: ${getNormalizedVerticalSize(39)}px;
 `;
 
 export const Headline6 = css`

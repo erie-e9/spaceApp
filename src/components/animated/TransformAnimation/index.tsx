@@ -21,7 +21,6 @@ interface Props {
   delay?: number;
   repeat?: number;
   reverse?: boolean;
-  easing?: typeof Easing | string | unknown;
 }
 
 const TransformAnimation: React.FC<Props> = ({
@@ -35,7 +34,6 @@ const TransformAnimation: React.FC<Props> = ({
   delay,
   repeat,
   reverse = false,
-  easing,
 }) => {
   const offSetX = useSharedValue(initialXValue);
   const offSetY = useSharedValue(initialYValue);
@@ -69,7 +67,6 @@ const TransformAnimation: React.FC<Props> = ({
         withRepeat(
           withTiming(finalYValue ?? 1, {
             duration: duration ?? 2000,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
           }),
           repeat ?? 1,
           reverse ?? false,

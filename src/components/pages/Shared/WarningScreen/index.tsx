@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useCopy } from '@services/copyLibrary';
 import { useTheme, useToast, useModal } from '@hooks';
 import { changeTheme } from '@slices/shared/appPreferences';
-import { CallToActionTemplate } from '@components/templates';
+import CallToActionTemplate from '@components/templates/CallToActionTemplate';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import {
   BodyContainer,
