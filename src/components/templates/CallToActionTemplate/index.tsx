@@ -1,7 +1,6 @@
 import React, { memo, useLayoutEffect } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import type * as CSS from 'csstype';
-import { SvgProps } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/core';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
@@ -10,7 +9,6 @@ import { BackButton } from '@components/atoms';
 import {
   StyledContainer,
   HeaderContainer,
-  IconContainer,
   TitleContainer,
   TitleTypography,
   BodyContainer,
@@ -33,7 +31,6 @@ interface ButtonProps {
 }
 interface Props {
   testID?: string;
-  icon?: React.FC<SvgProps>;
   title?: string;
   adjustsFontTitle?: boolean;
   numberOfLinesTitle?: number;
@@ -44,12 +41,10 @@ interface Props {
   tertiaryButton?: ButtonProps;
   footer?: JSX.Element;
   color?: string;
-  iconSpacing?: string;
   backButton?: boolean;
 }
 const CallToActionTemplate: React.FC<Props> = ({
   testID,
-  icon: Icon,
   title,
   adjustsFontTitle,
   numberOfLinesTitle,
@@ -59,7 +54,6 @@ const CallToActionTemplate: React.FC<Props> = ({
   secondaryButton,
   tertiaryButton,
   footer,
-  iconSpacing,
   backButton,
 }) => {
   const { darkMode } = useTheme();
@@ -89,12 +83,6 @@ const CallToActionTemplate: React.FC<Props> = ({
     >
       <StyledContainer testID={testID}>
         <HeaderContainer>
-          {Icon && (
-            <IconContainer iconSpacing={iconSpacing || '200px'}>
-              <Icon />
-            </IconContainer>
-          )}
-
           {title && (
             <TitleContainer>
               <TitleTypography
@@ -107,8 +95,8 @@ const CallToActionTemplate: React.FC<Props> = ({
               </TitleTypography>
             </TitleContainer>
           )}
-          <BodyContainer testID={bodyTestID || undefined}>{body}</BodyContainer>
         </HeaderContainer>
+        <BodyContainer testID={bodyTestID || undefined}>{body}</BodyContainer>
         <ButtonContainer>
           {primaryButton && (
             <StyledActionButton
@@ -165,7 +153,6 @@ const CallToActionTemplate: React.FC<Props> = ({
 
 CallToActionTemplate.defaultProps = {
   testID: 'CallToActionTemplateID',
-  icon: undefined,
   title: undefined,
   adjustsFontTitle: false,
   numberOfLinesTitle: 1,
@@ -176,7 +163,6 @@ CallToActionTemplate.defaultProps = {
   footer: undefined,
   color: undefined,
   backButton: false,
-  iconSpacing: undefined,
 };
 
 export default memo(CallToActionTemplate);

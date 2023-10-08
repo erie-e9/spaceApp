@@ -8,9 +8,8 @@ import { Tappable, Typography } from '@components/atoms';
 export const ItemLabelContainer = styled.View`
   align-items: center;
   justify-content: center;
-  padding: ${getNormalizedVerticalSize(10)}px
-    ${getNormalizedHorizontalSize(20)}px ${getNormalizedVerticalSize(10)}px
-    ${getNormalizedHorizontalSize(20)}px;
+  padding: ${getNormalizedVerticalSize(7)}px ${getNormalizedHorizontalSize(0)}px
+    ${getNormalizedVerticalSize(7)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const ItemButton = styled(Tappable)``;

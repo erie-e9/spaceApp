@@ -79,28 +79,28 @@ export const Headline3 = css`
 
 export const Headline4 = css`
   font-weight: 500;
-  font-size: ${responsiveFontSize(37)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(-0.32)}px;
+  font-size: ${responsiveFontSize(34)}px;
+  letter-spacing: ${getNormalizedHorizontalSize(1)}px;
   line-height: ${getNormalizedVerticalSize(38)}px;
 `;
 
 export const Headline5 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(32)}px;
+  font-size: ${responsiveFontSize(29)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0)}px;
   line-height: ${getNormalizedVerticalSize(33)}px;
 `;
 
 export const Headline6 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(25)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0)}px;
-  line-height: ${getNormalizedVerticalSize(27.2)}px;
+  font-size: ${responsiveFontSize(22)}px;
+  letter-spacing: ${getNormalizedHorizontalSize(1)}px;
+  line-height: ${getNormalizedVerticalSize(22.2)}px;
 `;
 
 export const Subtitle1 = css`
   font-size: ${responsiveFontSize(17)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.55)}px;
+  letter-spacing: ${getNormalizedHorizontalSize(0.75)}px;
   line-height: ${getNormalizedVerticalSize(20)}px;
 `;
 

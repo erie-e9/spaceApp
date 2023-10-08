@@ -86,8 +86,6 @@ export const InterpolateColorAnimation: React.FC<
     alignItems: 'center',
     paddingTop: insets.top,
     paddingBottom: 20,
-    paddingLeft: insets.left,
-    paddingRight: insets.right,
   };
 
   const AnimatedChildren =

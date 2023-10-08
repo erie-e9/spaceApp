@@ -29,10 +29,8 @@ export const HeaderContainer = styled.View`
 
 export const BodyContainer = styled.View`
   flex: 1;
-  justify-content: space-between;
   width: 100%;
-  padding: ${getNormalizedVerticalSize(0)}px
-    ${getNormalizedHorizontalSize(20)}px;
+  justify-content: space-between;
 `;
 
 export const BrandCircleContainer = styled.View<{
@@ -49,12 +47,12 @@ export const ContentContainer = styled.View``;
 
 export const TitleContainer = styled.View`
   margin: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
+    ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const DescriptionContainer = styled.View`
-  margin: ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
+  margin: ${getNormalizedVerticalSize(12)}px ${getNormalizedHorizontalSize(0)}px
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const StyledTypography = styled(Typography)<{
@@ -66,8 +64,9 @@ export const StyledTypography = styled(Typography)<{
 export const FeaturesContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  padding-bottom: ${getNormalizedVerticalSize(2)}px;
+  padding: ${getNormalizedVerticalSize(0)}px
+    ${getNormalizedHorizontalSize(10)}px ${getNormalizedVerticalSize(0)}px
+    ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const FeatureButton = styled(ActionButton)``;

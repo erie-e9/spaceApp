@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { PixelRatio } from 'react-native';
 import styled from 'styled-components/native';
 import {
   getNormalizedVerticalSize,
@@ -10,39 +10,31 @@ export const StyledContainer = styled.View`
   flex: 1;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  padding: 0px ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const HeaderContainer = styled.View`
-  flex: 1;
+  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  padding-left: ${PixelRatio.roundToNearestPixel(40)}px;
 `;
 
-export const IconContainer = styled.View<{
-  iconSpacing: string;
-}>`
-  justify-content: center;
-  align-items: center;
-  min-height: ${({ iconSpacing }) =>
-    iconSpacing || getNormalizedVerticalSize(200) + 'px'};
-`;
-
-export const TitleContainer = styled.View`
-  padding: ${getNormalizedVerticalSize(15)}px
-    ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(0)}px
-    ${getNormalizedHorizontalSize(Platform.OS === 'ios' ? 15 : 20)}px;
-`;
+export const TitleContainer = styled.View``;
 
 export const TitleTypography = styled(Typography)``;
 
 export const BodyContainer = styled.View`
+  flex: 1;
+  width: 100%;
   justify-content: center;
   align-items: center;
 `;
 
-export const ButtonContainer = styled.View``;
+export const ButtonContainer = styled.View`
+  flex: 0.2;
+  z-index: 200;
+  justify-content: flex-end;
+`;
 
 export const StyledActionButton = styled(ActionButton)<{ isGreyed?: boolean }>`
   margin: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(10)}px

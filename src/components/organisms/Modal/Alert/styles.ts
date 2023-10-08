@@ -27,10 +27,10 @@ export const Wrapper = styled.View<{ paddingBottom?: number; width?: number }>`
   height: auto;
   z-index: 100;
   border-radius: ${getNormalizedHorizontalSize(15)}px;
-  padding: ${getNormalizedVerticalSize(20)}px
-    ${getNormalizedHorizontalSize(10)}px
+  padding: ${getNormalizedVerticalSize(15)}px
+    ${getNormalizedHorizontalSize(15)}px
     ${({ paddingBottom }) => getNormalizedVerticalSize(paddingBottom || 10)}px
-    ${getNormalizedHorizontalSize(10)}px;
+    ${getNormalizedHorizontalSize(15)}px;
   shadow-color: #000;
   shadow-opacity: 0.25;
   shadow-radius: 4px;
@@ -64,7 +64,11 @@ export const ActionsWrapper = styled.View`
   margin-top: ${getNormalizedVerticalSize(10)}px;
 `;
 
-export const StyledButton = styled(ActionButton)<{ minWidth?: number }>`
+export interface StyledButtonProps {
+  minWidth?: number;
+}
+
+export const StyledButton = styled(ActionButton)<StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(3)}px
     ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(3)}px;
   align-self: center;

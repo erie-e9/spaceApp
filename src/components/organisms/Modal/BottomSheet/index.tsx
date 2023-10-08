@@ -4,12 +4,9 @@ import React, {
   useEffect,
   useImperativeHandle,
 } from 'react';
+import { ActivityIndicator } from 'react-native';
 import { useDispatch } from 'react-redux';
-import {
-  FlatList as Flat,
-  Gesture,
-  GestureDetector,
-} from 'react-native-gesture-handler';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   Extrapolate,
   interpolate,
@@ -31,6 +28,7 @@ import {
   CloseIconContainer,
   PanGestureHandlerView,
   CloseBottomSheetButton,
+  FlatList,
 } from './styles';
 
 const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 80;
@@ -42,7 +40,16 @@ export type BottomSheetRefProps = {
 
 export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
   (
-    { title, description, isVisible, testID, showCancelIcon, children, list },
+    {
+      title,
+      description,
+      isVisible,
+      testID,
+      showCancelIcon,
+      children,
+      list,
+      loading,
+    },
     ref,
   ) => {
     const dispatch = useDispatch();
@@ -149,18 +156,22 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
             )}
             <ModalHeader title={title} description={description || ''} />
             {children}
-            {list && (
-              <Flat
-                data={list.data}
-                renderItem={({ item }) => (
-                  <ModalItem
-                    item={item}
-                    predefinedList={list.predefinedList}
-                    onPress={() => onPressHandler({ item })}
-                  />
-                )}
-                keyExtractor={(item, index) => `${index}`}
-              />
+            {loading ? (
+              <ActivityIndicator size={25} />
+            ) : (
+              list && (
+                <FlatList
+                  data={list.data}
+                  renderItem={({ item }) => (
+                    <ModalItem
+                      item={item}
+                      predefinedList={list.predefinedList}
+                      onPress={() => onPressHandler({ item })}
+                    />
+                  )}
+                  keyExtractor={(item, index) => `${index}`}
+                />
+              )
             )}
           </AnimatedBottomSheet>
         </GestureDetector>
@@ -177,6 +188,7 @@ BottomSheet.defaultProps = {
   showCancelIcon: false,
   titleColor: undefined,
   isVisible: false,
+  loading: false,
 };
 
 export default memo(BottomSheet);

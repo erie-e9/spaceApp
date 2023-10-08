@@ -10,8 +10,8 @@ interface Props {
 
 export const StyledSafeAreaView = styled(SafeAreaProvider)<Props>`
   flex: 1;
-  padding: ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 35 : 20)}px 0
-    ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 13 : 7)}px 0;
+  padding: ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 10 : 10)}px 0
+    ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 0 : 0)}px 0;
   background-color: ${({ theme }) => theme.tokens.colors.none};
 `;
 

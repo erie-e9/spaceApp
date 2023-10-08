@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useCopy } from '@services/copyLibrary';
 import { useTheme, useToast, useModal } from '@hooks';
 import { CallToActionTemplate } from '@components/templates';
@@ -19,7 +19,7 @@ export const WarningScreen = () => {
   const [loadingValue, setLoadingValue] = useState(false);
   const [loadingValue2, setLoadingValue2] = useState(false);
 
-  const handlePrimaryButton = async (): Promise<void> => {
+  const handlePrimaryButton = useCallback(async (): Promise<void> => {
     showModal({
       type: 'alert',
       title: 'security:WarningScreen.actions.primaryButton.modal.title',
@@ -30,9 +30,9 @@ export const WarningScreen = () => {
     setLoadingValue2(false);
     await setLoadingValue(!loadingValue);
     // dispatch(changeTheme({ theme: 'default', darkMode: !isDarkMode }));
-  };
+  }, []);
 
-  const handleSecondaryButton = async (): Promise<void> => {
+  const handleSecondaryButton = useCallback(async (): Promise<void> => {
     await setLoadingValue(false);
     setLoadingValue2(!loadingValue2);
     useToast.info({
@@ -41,7 +41,7 @@ export const WarningScreen = () => {
       ),
       duration: 3500,
     });
-  };
+  }, []);
 
   useEffect(() => {
     isMounted.current = true;

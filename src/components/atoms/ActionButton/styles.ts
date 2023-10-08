@@ -36,6 +36,7 @@ export const AnimatedActionButton = styled(Animated.View)`
   align-self: center;
   align-items: center;
   justify-content: center;
+  z-index: 200;
 `;
 
 export const StyledButton = styled(Tappable)<StyledButtonProps>`

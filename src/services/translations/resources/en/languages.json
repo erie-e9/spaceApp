@@ -1,6 +1,6 @@
 {
-    "switchLanguage": {
-        "title": "Choose a language",
-        "description": "Change language in whole application"
-    }
+  "switchLanguage": {
+    "title": "Choose a language",
+    "description": "Change language in whole application"
+  }
 }

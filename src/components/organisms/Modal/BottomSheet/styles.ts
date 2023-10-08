@@ -1,8 +1,9 @@
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
+import { FlatList as Flat } from 'react-native-gesture-handler';
 import {
   SCREEN_HEIGHT,
-  SCREEN_WIDTH,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
@@ -10,7 +11,7 @@ import { Tappable } from '@components/atoms';
 
 export const AnimatedBottomSheet = styled(Animated.View)`
   height: ${getNormalizedVerticalSize(SCREEN_HEIGHT)}px;
-  width: ${getNormalizedHorizontalSize(SCREEN_WIDTH - 20)}px;
+  width: 99%;
   align-self: center;
   position: absolute;
   top: ${getNormalizedVerticalSize(SCREEN_HEIGHT)}px;
@@ -19,13 +20,18 @@ export const AnimatedBottomSheet = styled(Animated.View)`
   z-index: 100;
 `;
 
+export const CloseBottomSheetButton = styled(Tappable)`
+  height: ${getNormalizedVerticalSize(30)}px;
+`;
+
 export const PanGestureHandlerView = styled.View`
   height: ${getNormalizedVerticalSize(5)}px;
   width: ${getNormalizedHorizontalSize(50)}px;
-  background-color: grey;
   align-self: center;
-  margin: ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(0)}px;
-  border-radius: ${getNormalizedHorizontalSize(2)}px;
+  margin: ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(0)}px
+    ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px;
+  border-radius: ${getNormalizedHorizontalSize(7)}px;
+  background-color: grey;
 `;
 
 export const CloseIconContainer = styled.View`
@@ -37,4 +43,12 @@ export const CloseIconContainer = styled.View`
   z-index: 2;
 `;
 
-export const CloseBottomSheetButton = styled(Tappable)``;
+export const ListFooterComponentView = styled.View`
+  height: ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 180 : 40)}px;
+`;
+
+export const FlatList = styled(Flat).attrs({
+  ListFooterComponent: ListFooterComponentView,
+})`
+  flex: 1;
+`;

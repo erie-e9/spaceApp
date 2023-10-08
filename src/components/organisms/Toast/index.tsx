@@ -105,11 +105,7 @@ export const Toast = () => {
   return (
     <StyledAnimatedContainer
       style={[
-        // eslint-disable-next-line react-native/no-inline-styles
         {
-          position: 'absolute',
-          height: hasNotch ? 55 : 45,
-          width: '100%',
           backgroundColor: colorStatus[type || 'info'],
         },
         animatedStyle,

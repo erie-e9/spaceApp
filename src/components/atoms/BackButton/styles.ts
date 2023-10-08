@@ -7,9 +7,13 @@ import {
 import { Tappable } from '@components/atoms';
 
 export const BackButtonContainer = styled.View`
-  padding: ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 35 : 26)}px
-    ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(0)}px
-    ${getNormalizedHorizontalSize(Platform.OS === 'ios' ? 5 : 10)}px;
+  height: ${getNormalizedVerticalSize(30)}px;
+  width: ${getNormalizedHorizontalSize(30)}px;
+  margin: ${getNormalizedVerticalSize(30)}px ${getNormalizedHorizontalSize(0)}px
+    ${getNormalizedVerticalSize(0)}px
+    ${getNormalizedHorizontalSize(Platform.OS === 'ios' ? 5 : 5)}px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const BackButtonPressable = styled(Tappable)``;

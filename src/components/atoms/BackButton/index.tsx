@@ -13,7 +13,11 @@ export const BackButton: React.FC<Props> = ({ testID, navigation }) => {
 
   return (
     <BackButtonContainer>
-      <BackButtonPressable testID={testID} onPress={navigation.goBack}>
+      <BackButtonPressable
+        testID={testID}
+        hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
+        onPress={navigation.goBack}
+      >
         <BackButtonIcon />
       </BackButtonPressable>
     </BackButtonContainer>
