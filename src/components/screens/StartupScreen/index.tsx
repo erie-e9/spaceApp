@@ -1,12 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
-import {
-  useDeviceSecurity,
-  useLanguage,
-  useCheckNet,
-  useTheme,
-  // useInAppUpdate,
-} from '@hooks';
+import { useDeviceSecurity, useLanguage, useCheckNet, useTheme } from '@hooks';
 import { ApplicationScreenProps } from 'types/navigation';
 import { setDefaultTheme } from '@slices/shared/appPreferences';
 import { Language } from '@slices/types/appPreferences';
@@ -23,7 +17,6 @@ export const StartupScreen: React.FC<Props> = ({ navigation }) => {
   const { appConnected } = useCheckNet();
   const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
   const { switchLanguage, saveLanguages, language } = useLanguage();
-  // const { checkUpdateAppVersion } = useInAppUpdate();
   const { Images } = useTheme();
 
   const preInit = async (): Promise<void> => {
@@ -53,7 +46,6 @@ export const StartupScreen: React.FC<Props> = ({ navigation }) => {
     await preInit();
     await switchLanguage(language as Language);
     await setDefaultTheme({ theme: 'default', darkMode: null });
-    // await checkUpdateAppVersion();
   };
 
   useEffect(() => {
