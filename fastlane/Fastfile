@@ -60,16 +60,10 @@ platform :android do
       file: "./android/app/build/outputs/bundle/release/app-release.aab",
       notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
     )
-
-    # supply(track: 'beta', aab: './andriod/app/build/outputs/apk/app-beta-release.apk')
-    # upload_to_play_store(
-    #   track: 'internal'
-    # )
   end
   
   desc 'Build the Android APKs.'
   lane :apk do
-    # increment_version_code(gradle_file_path: './android/app/build.gradle')
     store_password = prompt(text: "Signing Store Password: ", secure_text: true)
     key_password = prompt(text: "Alias Key Password: ", secure_text: true)
     releaseFilePath = File.join(Dir.pwd, "../android/app", "app_keyname.keystore")
@@ -96,9 +90,5 @@ platform :android do
         "android.injected.signing.key.password" => key_password,
       }
     )
-    # supply(track: 'beta', aab: './andriod/app/build/outputs/apk/app-beta-release.apk')
-    # upload_to_play_store(
-    #   track: 'internal'
-    # )
   end
 end
