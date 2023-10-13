@@ -23,9 +23,8 @@ platform :android do
     gradle(task: 'test', project_dir: './android')
   end
 
-  desc "Submit a new Beta Build to Play Store"
-  lane :beta do
-    # increment_version_code(gradle_file_path: './android/app/build.gradle')
+  desc "Build aab package"
+  lane :aab do
     store_password = prompt(text: "Signing Store Password: ", secure_text: true)
     key_password = prompt(text: "Alias Key Password: ", secure_text: true)
     releaseFilePath = File.join(Dir.pwd, "../android/app", "app_keyname.keystore")
@@ -52,14 +51,24 @@ platform :android do
         "android.injected.signing.key.password" => key_password,
       }
     )
+
+    appcenter_upload(
+      api_token: "7e699472a63d76216b0fc92d37df33a9e3bbeea6",
+      owner_name: "AppSoftLog",
+      owner_type: "organization", # Default is user - set to organization for appcenter organizations
+      app_name: "App-biolerplate",
+      file: "./android/app/build/outputs/bundle/release/app-release.aab",
+      notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
+    )
+
     # supply(track: 'beta', aab: './andriod/app/build/outputs/apk/app-beta-release.apk')
     # upload_to_play_store(
     #   track: 'internal'
     # )
   end
   
-  desc 'Build the Android applications.'
-  lane :build do
+  desc 'Build the Android APKs.'
+  lane :apk do
     # increment_version_code(gradle_file_path: './android/app/build.gradle')
     store_password = prompt(text: "Signing Store Password: ", secure_text: true)
     key_password = prompt(text: "Alias Key Password: ", secure_text: true)

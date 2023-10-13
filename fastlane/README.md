@@ -23,21 +23,21 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Runs all the tests
 
-### android beta
+### android aab
 
 ```sh
-[bundle exec] fastlane android beta
+[bundle exec] fastlane android aab
 ```
 
-Submit a new Beta Build to Play Store
+Build aab package
 
-### android build
+### android apk
 
 ```sh
-[bundle exec] fastlane android build
+[bundle exec] fastlane android apk
 ```
 
-Build the Android applications.
+Build the Android APKs.
 
 ----
 
