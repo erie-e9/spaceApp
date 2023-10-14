@@ -63,5 +63,8 @@ yarn-error.log
 .metro-health-check*
 
 *.lock
-
+.env
+coverage/
+cert.cer
 .vscode
+yarn.lock

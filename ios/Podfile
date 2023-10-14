@@ -23,9 +23,22 @@ linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
   use_frameworks! :linkage => linkage.to_sym
+  # use_frameworks! :linkage => :static
 end
 
 target 'App' do
+  # use_frameworks!
+  $RNFirebaseAnalyticsWithoutAdIdSupport = true
+  pod 'Firebase', :modular_headers => true
+  pod 'FirebaseCore', :modular_headers => true
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseCoreExtension', :modular_headers => true  
+  pod 'FirebaseInstallations', :modular_headers => true  
+  pod 'GoogleDataTransport', :modular_headers => true  
+  pod 'nanopb', :modular_headers => true
+
+  $RNFirebaseAsStaticFramework = true
+  $FirebaseSDKVersion = '10.15.0'
   config = use_native_modules!
 
   # Flags change depending on the env values.

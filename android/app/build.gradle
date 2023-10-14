@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 apply from: './versionCode.gradle'
+apply plugin: 'com.google.gms.google-services'
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -101,14 +102,6 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-    splits {
-        abi {
-            reset()
-            enable true
-            universalApk true
-            include "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
-        }
-    }
 }
 
 dependencies {
@@ -117,6 +110,7 @@ dependencies {
     implementation 'com.facebook.fresco:webpsupport:2.5.0'
     // To display animated WebP images
     implementation 'com.facebook.fresco:animated-webp:2.5.0'
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {

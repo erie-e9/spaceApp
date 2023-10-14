@@ -19,10 +19,12 @@
     "android": "rm -rf node_modules/ && yarn && cd android && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native start --reset-cache",
     "ios": "rm -rf node_modules/ && yarn && cd ios && rm -rf Pods/ build/ Podfile.lock && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
     "a": "yarn && cd android && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native start --reset-cache",
-    "i": "yarn && cd ios && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache"
+    "i": "yarn && cd ios && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
+    "aabi": "cd android && ./gradlew clean && ./gradlew --stop && cd .. && react-native run-android --active-arch-only"
   },
   "dependencies": {
     "@react-native-community/netinfo": "^9.4.1",
+    "@react-native-firebase/app": "^18.5.0",
     "@react-native-masked-view/masked-view": "^0.3.0",
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/stack": "^6.3.18",
