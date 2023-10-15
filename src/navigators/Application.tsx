@@ -12,8 +12,7 @@ import {
 } from '@react-navigation/native';
 import { useFlipper } from '@react-navigation/devtools';
 import { ApplicationStackParamList } from 'types/navigation';
-import { useCopy } from '@services/copyLibrary';
-import Logger from '@services/logger';
+import { useCopy, Logger } from '@services';
 import { useTheme, useToast, useCheckNet } from '@hooks';
 import { darkTheme, lightTheme } from '@theme/themesi';
 import { StyledSafeAreaView } from '@components/atoms';

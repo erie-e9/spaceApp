@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { useCopy } from '@services/copyLibrary';
+import { useCopy } from '@services';
 import { useTheme, useToast, useModal } from '@hooks';
-import { CallToActionTemplate } from '@components/templates';
 import { Lottie, LottieViewProps } from '@components/atoms';
+import { CallToActionTemplate } from '@components/templates';
 import {
   BodyContainer,
   DescriptionContainer,

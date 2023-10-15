@@ -58,7 +58,7 @@ target 'spaceApp' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'AppTests' do
+  target 'spaceAppTests' do
     inherit! :complete
     # Pods for testing
   end

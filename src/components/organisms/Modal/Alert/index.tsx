@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTheme } from 'styled-components';
 import { ModalPayload } from '@slices/types/modal';
-import { useCopy } from '@services/copyLibrary';
+import { useCopy } from '@services';
 import { hideModal } from '@slices/shared/modal';
 import { TransformAnimation, OpacityAnimation } from '@components/animated';
 import { CloseButton } from '@components/atoms';

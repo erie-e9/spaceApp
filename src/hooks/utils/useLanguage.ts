@@ -3,8 +3,7 @@ import { changeLanguage } from '@slices/shared/appPreferences';
 import { storeLanguages } from '@slices/shared/languages';
 import { AppPreferencesState, Language } from '@slices/types/appPreferences';
 import { LanguagesState } from '@slices/types/languages';
-import { changeLanguage as changeLanguageApp } from '@services/copyLibrary';
-import Logger from '@services/logger';
+import { changeLanguage as changeLanguageApp, Logger } from '@services';
 
 export const useLanguage = (): {
   language: string;

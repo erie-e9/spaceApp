@@ -5,7 +5,7 @@ import { ApplicationScreenProps } from 'types/navigation';
 import { AppPreferencesState } from '@slices/types/appPreferences';
 import { changeTheme } from '@slices/shared/appPreferences';
 import { useTheme, useSVG, useToast } from '@hooks';
-import { useCopy } from '@services/copyLibrary';
+import { useCopy } from '@services';
 import useModal from '@hooks/utils/useModal';
 import * as resources from '@services/translations/resources';
 import {

@@ -1,6 +1,6 @@
 import JailMonkey from 'jail-monkey';
 import { isNotEmulator } from '@hooks';
-import { Logger } from '@services/logger';
+import { Logger } from '@services';
 
 interface CheckPhoneIntegrityProps {
   callback?: () => void;

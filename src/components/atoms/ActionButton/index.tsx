@@ -98,7 +98,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     const bgDisabledColors =
       buttonTheme === 'Primary'
         ? theme.tokens.colors.primaryD1
-        : theme.tokens.colors.none;
+        : theme.tokens.colors.tertiaryD5;
 
     const bgColorLight =
       disabled || asyncDisabled ? bgDisabledColors : bgColorLightScondary;

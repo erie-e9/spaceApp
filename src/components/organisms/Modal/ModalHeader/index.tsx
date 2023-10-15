@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useTheme } from 'styled-components';
-import { useCopy } from '@services/copyLibrary';
+import { useCopy } from '@services';
 import { ModalHeaderContainer, TitleWrapper, StyledText } from './styles';
 
 export interface ModalHeaderProps {

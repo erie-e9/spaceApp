@@ -12,7 +12,7 @@ import {
   hasNotch as hasNotchInfo,
   hasDynamicIsland as hasDynamicIslandInfo,
 } from 'react-native-device-info';
-import Logger from '@services/logger';
+import { Logger } from '@services';
 
 export const initDeviceInfo = (): void => {
   getUniqueIdDeviceInfo().then(uniqueId => {
