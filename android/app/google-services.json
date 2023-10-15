@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "6647069538",
-    "project_id": "rnapp-24372",
-    "storage_bucket": "rnapp-24372.appspot.com"
+    "project_number": "124944014292",
+    "project_id": "spaceapp-818a0",
+    "storage_bucket": "spaceapp-818a0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:6647069538:android:8b895992554fb4a1e48a3b",
+        "mobilesdk_app_id": "1:124944014292:android:a563e38750f98e374e5441",
         "android_client_info": {
-          "package_name": "com.rn_app_boilerplate"
+          "package_name": "com.spaceApp"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBPerBiydWKwdlVuywpQ3bgLycdhrGM2jE"
+          "current_key": "AIzaSyB8SJdEhxKmTLHUzs21QGr7CnpKir_WlRE"
         }
       ],
       "services": {

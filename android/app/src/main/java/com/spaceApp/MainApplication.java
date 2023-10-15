@@ -1,4 +1,4 @@
-package com.rn_app_boilerplate;
+package com.spaceApp;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

@@ -1,5 +1,5 @@
 {
-  "name": "App",
+  "name": "spaceApp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -20,7 +20,7 @@
     "ios": "rm -rf node_modules/ && yarn && cd ios && rm -rf Pods/ build/ Podfile.lock && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
     "a": "yarn && cd android && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native start --reset-cache",
     "i": "yarn && cd ios && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
-    "aabi": "cd android && ./gradlew clean && ./gradlew --stop && cd .. && react-native run-android --active-arch-only"
+    "aabi": "cd android && adb uninstall com.spaceApp && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native run-android --active-arch-only"
   },
   "dependencies": {
     "@react-native-community/netinfo": "^9.4.1",

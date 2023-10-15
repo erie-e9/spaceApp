@@ -1,1 +1,1 @@
-Demonstrative app, includes amazing features
+spaceApp is an app to test amazing features

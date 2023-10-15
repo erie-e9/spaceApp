@@ -53,10 +53,10 @@ platform :android do
     )
 
     appcenter_upload(
-      api_token: "7e699472a63d76216b0fc92d37df33a9e3bbeea6",
+      api_token: "0a6b2f29ddce7fd3e59d8bae1e0948cd5f07b61c",
       owner_name: "AppSoftLog",
       owner_type: "organization", # Default is user - set to organization for appcenter organizations
-      app_name: "App-biolerplate",
+      app_name: "spaceApp",
       file: "./android/app/build/outputs/bundle/release/app-release.aab",
       notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
     )

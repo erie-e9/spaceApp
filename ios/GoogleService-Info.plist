@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyDWrz08USL7rP4vcb1elWl3MTlwFB3siMo</string>
+	<string>AIzaSyAJkBgB-Sl2GcrGMmisyFFcZFlQND2qmP0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>6647069538</string>
+	<string>124944014292</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.App</string>
+	<string>com.spaceApp</string>
 	<key>PROJECT_ID</key>
-	<string>rnapp-24372</string>
+	<string>spaceapp-818a0</string>
 	<key>STORAGE_BUCKET</key>
-	<string>rnapp-24372.appspot.com</string>
+	<string>spaceapp-818a0.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:6647069538:ios:d9782108202cb749e48a3b</string>
+	<string>1:124944014292:ios:3b7b823caded8d364e5441</string>
 </dict>
 </plist>

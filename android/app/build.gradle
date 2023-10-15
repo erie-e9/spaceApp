@@ -74,9 +74,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.rn_app_boilerplate"
+    namespace "com.spaceApp"
     defaultConfig {
-        applicationId "com.rn_app_boilerplate"
+        applicationId "com.spaceApp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode Integer.parseInt(VERSION_CODE)

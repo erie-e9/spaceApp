@@ -1,2 +1,2 @@
-json_key_file '/Users/erictorresandrade/Desktop/Projects/GooglePlayCredentials/rn-app-boilerplate-play-credentials.json'
-package_name("com.rn_app_boilerplate")
+json_key_file '/Users/erictorresandrade/Desktop/Projects/GooglePlayCredentials/spaceapp-play-credentials.json'
+package_name("com.spaceApp")

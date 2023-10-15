@@ -26,7 +26,7 @@ if linkage != nil
   # use_frameworks! :linkage => :static
 end
 
-target 'App' do
+target 'spaceApp' do
   # use_frameworks!
   $RNFirebaseAnalyticsWithoutAdIdSupport = true
   pod 'Firebase', :modular_headers => true
