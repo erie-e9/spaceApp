@@ -4,6 +4,12 @@
     "initials": "RNB"
   },
   "messages": {
-    "noConnection": "A conexão não foi estabelecida. Tentando novamente."
+    "noConnection": "A conexão não foi estabelecida. Tentando novamente.",
+    "features": {
+      "unavailable": {
+        "title": "Função não disponível",
+        "body": "Infelizmente, esse recurso não está acessível no momento. Por favor, tente novamente mais tarde."
+      }
+    }
   }
 }

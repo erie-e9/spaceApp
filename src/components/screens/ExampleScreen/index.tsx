@@ -5,6 +5,7 @@ import { ApplicationScreenProps } from 'types/navigation';
 import { AppPreferencesState } from '@slices/types/appPreferences';
 import { changeTheme } from '@slices/shared/appPreferences';
 import { useTheme, useSVG, useToast } from '@hooks';
+import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { useCopy } from '@services';
 import useModal from '@hooks/utils/useModal';
 import * as resources from '@services/translations/resources';
@@ -45,6 +46,7 @@ interface Props {
 export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
+  const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
   const QRCodeNavigatorIcon = useSVG('QRCodeNavigator');
   const AlertTriangleIcon = useSVG('AlertTriangle');
   const LanguageIcon = useSVG('Language');
@@ -236,30 +238,50 @@ export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
             </DescriptionContainer>
           </ContentContainer>
           <FeaturesContainer>
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => appPresentation()}
-              Icon={<QRCodeNavigatorIcon />}
-            />
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => navigation.navigate('WarningScreen')}
-              Icon={<AlertTriangleIcon />}
-            />
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => onChangeTheme({ darkMode: !isDarkMode })}
-              Icon={<SwitchThemeIcon />}
-            />
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => onChangeLanguage()}
-              Icon={<LanguageIcon />}
-            />
+            <RenderWhen
+              isTrue={remoteConfigFeatures?.triggerAlert?.status !== 'hide'}
+            >
+              <FeatureButton
+                type="Icon"
+                buttonTheme="Primary"
+                onPress={() => appPresentation()}
+                Icon={<QRCodeNavigatorIcon />}
+                featureFlags={['triggerAlert']}
+              />
+            </RenderWhen>
+            <RenderWhen
+              isTrue={remoteConfigFeatures?.warning?.status !== 'hide'}
+            >
+              <FeatureButton
+                type="Icon"
+                buttonTheme="Primary"
+                onPress={() => navigation.navigate('WarningScreen')}
+                Icon={<AlertTriangleIcon />}
+                featureFlags={['warning']}
+              />
+            </RenderWhen>
+            <RenderWhen
+              isTrue={remoteConfigFeatures?.changeTheme?.status !== 'hide'}
+            >
+              <FeatureButton
+                type="Icon"
+                buttonTheme="Primary"
+                onPress={() => onChangeTheme({ darkMode: !isDarkMode })}
+                Icon={<SwitchThemeIcon />}
+                featureFlags={['changeTheme']}
+              />
+            </RenderWhen>
+            <RenderWhen
+              isTrue={remoteConfigFeatures?.changeLanguage?.status !== 'hide'}
+            >
+              <FeatureButton
+                type="Icon"
+                buttonTheme="Primary"
+                onPress={() => onChangeLanguage()}
+                Icon={<LanguageIcon />}
+                featureFlags={['changeLanguage']}
+              />
+            </RenderWhen>
           </FeaturesContainer>
         </BodyContainer>
       </InterpolateColorAnimation>

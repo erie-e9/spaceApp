@@ -4,6 +4,12 @@
     "initials": "RNB"
   },
   "messages": {
-    "noConnection": "Connection is not established. Trying again."
+    "noConnection": "Connection is not established. Trying again.",
+    "features": {
+      "unavailable": {
+        "title": "Feature unavailable",
+        "body": "Unfortunately this feature is not accessible at the moment. Please try again later."
+      }
+    }
   }
 }

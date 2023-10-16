@@ -22,37 +22,36 @@ export const ModalBodyContainer = styled.View`
   align-items: center;
 `;
 
-export const Wrapper = styled.View<{ paddingBottom?: number; width?: number }>`
-  width: ${({ width }) => width || SCREEN_WIDTH - 40 + 'px'};
+export const Wrapper = styled.View<{ width?: number }>`
   height: auto;
+  width: ${({ width }) => width || SCREEN_WIDTH - 30 + 'px'};
   z-index: 100;
   border-radius: ${getNormalizedHorizontalSize(15)}px;
-  padding: ${getNormalizedVerticalSize(15)}px
-    ${getNormalizedHorizontalSize(15)}px
-    ${({ paddingBottom }) => getNormalizedVerticalSize(paddingBottom || 10)}px
-    ${getNormalizedHorizontalSize(15)}px;
   shadow-color: #000;
   shadow-opacity: 0.25;
-  shadow-radius: 4px;
+  shadow-radius: 10px;
   elevation: 5;
   background-color: ${({ theme: { tokens, mode } }) =>
     mode === 'dark' ? tokens.colors.none : tokens.colors.none};
-  ${() =>
-    Platform.OS === 'ios' &&
-    css`
-      shadow-offset: {
-        height: -10px;
-        width: -20px;
-      }
-    `};
+  shadow-offset: ${getNormalizedVerticalSize(1)}px
+    ${getNormalizedHorizontalSize(1)}px;
+`;
+
+export const HeaderContainer = styled.View<{ paddingBottom?: number }>`
+  flex-direction: row;
+  justify-content: space-between;
+  height: auto;
+  padding: ${getNormalizedVerticalSize(10)}px
+    ${getNormalizedHorizontalSize(30)}px ${getNormalizedVerticalSize(10)}px
+    ${getNormalizedHorizontalSize(30)}px;
 `;
 
 export const CloseIconContainer = styled.View`
-  position: absolute;
-  right: ${getNormalizedHorizontalSize(-65)}px;
-  top: ${getNormalizedVerticalSize(15)}px;
-  height: ${getNormalizedVerticalSize(100)}px;
-  width: ${getNormalizedHorizontalSize(100)}px;
+  height: ${getNormalizedVerticalSize(30)}px;
+  width: ${getNormalizedHorizontalSize(30)}px;
+  padding: ${getNormalizedVerticalSize(10)}px
+    ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(0)}px
+    ${getNormalizedHorizontalSize(0)}px;
   z-index: 2;
 `;
 

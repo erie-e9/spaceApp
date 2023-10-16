@@ -5,7 +5,6 @@ export { useSVG } from '@hooks/utils/useSVG';
 export { useDeviceSecurity } from '@hooks/utils/useDeviceSecurity';
 export { useCheckNet } from '@hooks/utils/useCheckNet';
 export {
-  initDeviceInfo,
   getUniqueId,
   getModel,
   getDeviceLabel,
@@ -23,3 +22,4 @@ export { useNativeActions } from '@hooks/utils/useNativeActions';
 export { useModal } from '@hooks/utils/useModal';
 export { useRemoteConfig } from '@hooks/utils/useRemoteConfig';
 export { getFeatureStatus } from '@hooks/utils/getFeatureStatus';
+export { useAppAlerts } from '@hooks/utils/useAppAlerts';

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   showModal as showModalSlice,
@@ -11,14 +12,14 @@ export const useModal = (): {
 } => {
   const dispatch = useDispatch();
 
-  const showModal = (params: ModalPayload): void => {
+  const showModal = useCallback((params: ModalPayload): void => {
     if (!params.ignoreHide) hideModal();
     dispatch(showModalSlice(params));
-  };
+  }, []);
 
-  const hideModal = (): void => {
+  const hideModal = useCallback((): void => {
     dispatch(hideModalSlice());
-  };
+  }, []);
 
   return {
     showModal,

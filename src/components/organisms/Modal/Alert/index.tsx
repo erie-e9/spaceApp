@@ -5,7 +5,7 @@ import { ModalPayload } from '@slices/types/modal';
 import { useCopy } from '@services';
 import { hideModal } from '@slices/shared/modal';
 import { TransformAnimation, OpacityAnimation } from '@components/animated';
-import { CloseButton } from '@components/atoms';
+import { CloseButton, RenderWhen } from '@components/atoms';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
 import AlertButtons from '@components/organisms/Modal/Alert/components/AlertButtons';
 import AnimatedBackground from '@components/organisms/Modal/AnimatedBackground';
@@ -13,9 +13,9 @@ import {
   StyledModal,
   ModalBodyContainer,
   Wrapper,
+  HeaderContainer,
   CloseIconContainer,
 } from './styles';
-
 export const Alert: React.FC = ({
   testID,
   isVisible,
@@ -73,15 +73,17 @@ export const Alert: React.FC = ({
               duration={200}
             >
               <Wrapper width={width}>
-                {showCloseModalIcon && showCancelIcon && (
-                  <CloseIconContainer>
-                    <CloseButton onPress={handleClose} />
-                  </CloseIconContainer>
-                )}
-                <ModalHeader
-                  title={title || ''}
-                  description={description || ''}
-                />
+                <HeaderContainer>
+                  <ModalHeader
+                    title={title || ''}
+                    description={description || ''}
+                  />
+                  <RenderWhen isTrue={showCloseModalIcon && showCancelIcon}>
+                    <CloseIconContainer>
+                      <CloseButton onPress={handleClose} />
+                    </CloseIconContainer>
+                  </RenderWhen>
+                </HeaderContainer>
                 {children || <></>}
                 <AlertButtons
                   options={parsedOptions}

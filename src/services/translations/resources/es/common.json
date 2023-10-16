@@ -4,6 +4,12 @@
     "initials": "RNB"
   },
   "messages": {
-    "noConnection": "Sin conexión a internet. Intentando de nuevo."
+    "noConnection": "Sin conexión a internet. Intentando de nuevo.",
+    "features": {
+      "unavailable": {
+        "title": "Función no disponible por ahora",
+        "body": "Lamentablemente, esta función no está disponible en este momento. Por favor, inténtalo de nuevo más tarde."
+      }
+    }
   }
 }
