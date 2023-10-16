@@ -1,5 +1,3 @@
-// import { setUniqueId } from '@redux/slices/deviceInfo';
-// import { store } from '@redux/store';
 import { Platform } from 'react-native';
 import {
   getUniqueId as getUniqueIdDeviceInfo,
@@ -14,16 +12,8 @@ import {
 } from 'react-native-device-info';
 import { Logger } from '@services';
 
-export const initDeviceInfo = (): void => {
-  getUniqueIdDeviceInfo().then(uniqueId => {
-    // store.dispatch(setUniqueId(uniqueId))
-    Logger.log('initDeviceInfo', { uniqueId });
-  });
-};
-
-export const getUniqueId = (): string => {
-  return 'hola';
-  // return store.getState().deviceInfo.uniqueId;
+export const getUniqueId = async (): Promise<string> => {
+  return getUniqueIdDeviceInfo();
 };
 
 export const getModel = (): string => {
@@ -35,8 +25,7 @@ export const getDeviceLabel = (): string => {
 };
 
 export const isNotEmulator = async (): Promise<boolean> => {
-  if (__DEV__) return true;
-  return !getIsEmulator();
+  return __DEV__ ? true : !getIsEmulator();
 };
 
 export const getAppVersion = async (): Promise<string> => {
@@ -48,15 +37,11 @@ export const getOSVersion = (): string => {
 };
 
 export const getPhoneNumber = async (): Promise<string | void> => {
-  return getPhoneNumberInfo().then(phoneNumber => {
-    Logger.log({ phoneNumber });
-  });
+  return getPhoneNumberInfo();
 };
 
 export const getIpAddress = async (): Promise<string | void> => {
-  return getIpAddressInfo().then(ipAddress => {
-    Logger.log({ ipAddress });
-  });
+  return getIpAddressInfo();
 };
 
 export const getHasNotch = (): boolean => {
@@ -69,7 +54,6 @@ export const hasDynamicIsland = (): boolean => {
 
 export const getDeviceInfo = (): Promise<any> => {
   const promises = [
-    initDeviceInfo(),
     getUniqueId(),
     getModel(),
     getDeviceLabel(),

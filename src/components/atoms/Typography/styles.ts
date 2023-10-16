@@ -121,21 +121,21 @@ export const Body1 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(24)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.08)}px;
-  line-height: ${getNormalizedVerticalSize(33.6)}px;
+  line-height: ${getNormalizedVerticalSize(27.6)}px;
   ${SecondaryFont}
 `;
 export const Body2 = css`
   font-weight: 300;
   font-size: ${responsiveFontSize(17)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.08)}px;
-  line-height: ${getNormalizedVerticalSize(23.8)}px;
+  line-height: ${getNormalizedVerticalSize(20)}px;
   ${SecondaryFont}
 `;
 export const Body3 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(16)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.08)}px;
-  line-height: ${getNormalizedVerticalSize(21)}px;
+  line-height: ${getNormalizedVerticalSize(19)}px;
   ${SecondaryFont}
 `;
 export const Body4 = css`

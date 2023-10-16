@@ -4,10 +4,9 @@ import { useDispatch } from 'react-redux';
 import { ApplicationScreenProps } from 'types/navigation';
 import { AppPreferencesState } from '@slices/types/appPreferences';
 import { changeTheme } from '@slices/shared/appPreferences';
-import { useTheme, useSVG, useToast } from '@hooks';
+import { useTheme, useSVG, useToast, useModal } from '@hooks';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { useCopy } from '@services';
-import useModal from '@hooks/utils/useModal';
 import * as resources from '@services/translations/resources';
 import {
   InterpolateColorAnimation,

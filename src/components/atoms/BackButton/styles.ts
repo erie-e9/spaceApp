@@ -11,12 +11,11 @@ export const BackButtonContainer = styled.View`
   width: ${getNormalizedHorizontalSize(48)}px;
   margin: ${getNormalizedVerticalSize(30)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px
-    ${getNormalizedHorizontalSize(Platform.OS === 'ios' ? 5 : 0)}px;
+    ${getNormalizedHorizontalSize(Platform.OS === 'ios' ? 0 : 0)}px;
   padding: ${getNormalizedVerticalSize(20)}px
     ${getNormalizedHorizontalSize(10)}px;
   justify-content: center;
   align-items: center;
-  align-self: center;
 `;
 
 export const BackButtonPressable = styled(Tappable)``;

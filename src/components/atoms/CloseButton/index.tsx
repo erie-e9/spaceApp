@@ -12,7 +12,11 @@ export const CloseButton: React.FC<Props> = ({ testID, onPress }) => {
 
   return (
     <CloseButtonContainer>
-      <CloseButtonPressable testID={testID} onPress={onPress}>
+      <CloseButtonPressable
+        testID={testID}
+        hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
+        onPress={onPress}
+      >
         <CloseButtonIcon />
       </CloseButtonPressable>
     </CloseButtonContainer>
