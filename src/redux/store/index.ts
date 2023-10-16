@@ -41,7 +41,7 @@ export const reduxStorage: Storage = {
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['appPreferences', 'auth', 'languages'],
+  whitelist: ['appPreferences', 'auth', 'languages', 'remoteConfigFeatures'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

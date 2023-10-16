@@ -21,3 +21,5 @@ export {
 export { useToast } from '@hooks/utils/useToast';
 export { useNativeActions } from '@hooks/utils/useNativeActions';
 export { useModal } from '@hooks/utils/useModal';
+export { useRemoteConfig } from '@hooks/utils/useRemoteConfig';
+export { getFeatureStatus } from '@hooks/utils/getFeatureStatus';
