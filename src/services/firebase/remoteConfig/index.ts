@@ -23,7 +23,9 @@ remoteConfig().setDefaults(firebaseRemoteConfig);
 
 export const remoteConfigFeatures = async (): Promise<any> => {
   return new Promise<any>((resolve, reject) => {
-    const cacheTime = parseFloat('1'.trim());
+    const cacheTime = parseFloat(
+      `${process.env.REMOTE_CONFIG_CACHE_TIME}`.trim(),
+    );
     const fetchConfigs = remoteConfig().fetch(cacheTime);
 
     fetchConfigs
