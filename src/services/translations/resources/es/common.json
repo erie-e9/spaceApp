@@ -7,7 +7,7 @@
     "noConnection": "Sin conexión a internet. Intentando de nuevo.",
     "features": {
       "unavailable": {
-        "title": "Función no disponible por ahora",
+        "title": "Función no disponible",
         "body": "Lamentablemente, esta función no está disponible en este momento. Por favor, inténtalo de nuevo más tarde."
       }
     }

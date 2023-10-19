@@ -3,14 +3,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { ApplicationStackParamList } from '@utils/@types/navigation';
 import { ExampleScreen } from '@components/screens';
 
-const Stack = createStackNavigator<ApplicationStackParamList>();
+const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
 // @refresh reset
 export const MainNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Home" component={ExampleScreen} />
-    </Stack.Navigator>
+    <Navigator screenOptions={{ headerShown: false }}>
+      <Screen name="Home" component={ExampleScreen} />
+    </Navigator>
   );
 };
 

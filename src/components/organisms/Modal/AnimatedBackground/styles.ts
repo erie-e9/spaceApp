@@ -7,6 +7,8 @@ export const AnimatedBackgroundContainer = styled(Animated.View).attrs({
 })`
   width: '100%';
   height: '100%';
+  justify-content: center;
+  align-items: center;
   background-color: ${({ theme }) =>
     theme.tokens.colors.backgroundColorDark + '80'};
 `;

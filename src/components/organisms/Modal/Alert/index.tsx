@@ -15,6 +15,7 @@ import {
   Wrapper,
   HeaderContainer,
   CloseIconContainer,
+  MODAL_STYLE,
 } from './styles';
 export const Alert: React.FC = ({
   testID,
@@ -57,9 +58,10 @@ export const Alert: React.FC = ({
         visible={isVisible}
         onShow={onModalShow}
         animationType="fade"
+        style={MODAL_STYLE}
       >
+        <AnimatedBackground isActive={isVisible} />
         <ModalBodyContainer>
-          <AnimatedBackground isActive={isVisible} />
           <TransformAnimation
             trigger={isVisible}
             initialYValue={0}

@@ -108,7 +108,7 @@ export const Tappable: React.FC<TappableProps> = ({
       isGreyed={off}
       testID={testID}
       style={style[0]}
-      onPress={onTap}
+      onPressIn={onTap}
       onLongPress={onTap}
       {...props}
     >

@@ -80,8 +80,8 @@ export const Headline3 = css`
 export const Headline4 = css`
   font-weight: 500;
   font-size: ${responsiveFontSize(34)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(1)}px;
-  line-height: ${getNormalizedVerticalSize(38)}px;
+  letter-spacing: ${getNormalizedHorizontalSize(0.3)}px;
+  line-height: ${getNormalizedVerticalSize(36)}px;
 `;
 
 export const Headline5 = css`
@@ -107,14 +107,14 @@ export const Subtitle1 = css`
 export const Subtitle2 = css`
   font-size: ${responsiveFontSize(15)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.1)}px;
-  line-height: ${getNormalizedVerticalSize(21)}px;
+  line-height: ${getNormalizedVerticalSize(18)}px;
 `;
 
 export const Subtitle3 = css`
   font-weight: 600;
-  font-size: ${responsiveFontSize(16)}px;
+  font-size: ${responsiveFontSize(14)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.1)}px;
-  line-height: ${getNormalizedVerticalSize(18)}px;
+  line-height: ${getNormalizedVerticalSize(17)}px;
 `;
 
 export const Body1 = css`

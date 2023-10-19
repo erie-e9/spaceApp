@@ -15,7 +15,6 @@ export const WarningScreen = () => {
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
   const { Animations } = useTheme();
-  const isMounted = useRef(true);
   const [loadingValue, setLoadingValue] = useState(false);
   const [loadingValue2, setLoadingValue2] = useState(false);
 
@@ -29,7 +28,6 @@ export const WarningScreen = () => {
     });
     setLoadingValue2(false);
     await setLoadingValue(!loadingValue);
-    // dispatch(changeTheme({ theme: 'default', darkMode: !isDarkMode }));
   }, []);
 
   const handleSecondaryButton = useCallback(async (): Promise<void> => {
@@ -44,13 +42,11 @@ export const WarningScreen = () => {
   }, []);
 
   useEffect(() => {
-    isMounted.current = true;
     let timeOut = setTimeout(() => {
       animationRef.current?.play();
     }, 1000);
     return () => {
       clearTimeout(timeOut);
-      isMounted.current = false;
     };
   }, []);
 
