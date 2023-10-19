@@ -11,5 +11,14 @@
         "body": "Infelizmente, esse recurso não está acessível no momento. Por favor, tente novamente mais tarde."
       }
     }
+  },
+  "errors": {
+    "boundaries": {
+      "fallbackScreen": {
+        "title": "Ops! Algo aconteceu",
+        "description": "Desculpe, ocorreu um erro",
+        "button": "Tente novamente"
+      }
+    }
   }
 }

@@ -10,6 +10,7 @@ export type ApplicationStackParamList = {
   Main: NavigatorScreenParams<MainParamsList>;
   WarningScreen: undefined;
   Home: undefined;
+  CustomFallbackScreen: undefined;
 };
 
 export type ApplicationScreenProps =

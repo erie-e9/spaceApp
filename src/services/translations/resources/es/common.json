@@ -11,5 +11,14 @@
         "body": "Lamentablemente, esta función no está disponible en este momento. Por favor, inténtalo de nuevo más tarde."
       }
     }
+  },
+  "errors": {
+    "boundaries": {
+      "fallbackScreen": {
+        "title": "¡Ups! Algo pasó",
+        "description": "Lo sentimos, ocurrió un error",
+        "button": "Intentar de nuevo"
+      }
+    }
   }
 }

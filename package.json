@@ -20,7 +20,7 @@
     "ios": "rm -rf node_modules/ && yarn && cd ios && rm -rf Pods/ build/ Podfile.lock && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
     "a": "yarn && cd android && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native start --reset-cache",
     "i": "yarn && cd ios && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
-    "aabi": "cd android && adb uninstall com.spaceApp && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native run-android --active-arch-only"
+    "aabi": "cd android && adb uninstall com.spaceApp && cd app && rm -rf .cxx && cd .. && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native run-android --active-arch-only"
   },
   "dependencies": {
     "@react-native-community/netinfo": "^9.4.1",
@@ -39,6 +39,7 @@
     "react-i18next": "^13.3.0",
     "react-native": "^0.72.6",
     "react-native-device-info": "^10.11.0",
+    "react-native-error-boundary": "^1.2.3",
     "react-native-gesture-handler": "^2.13.2",
     "react-native-mmkv": "^2.10.2",
     "react-native-mmkv-flipper-plugin": "^1.0.0",

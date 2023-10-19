@@ -11,5 +11,14 @@
         "body": "Unfortunately this feature is not accessible at the moment. Please try again later."
       }
     }
+  },
+  "errors": {
+    "boundaries": {
+      "fallbackScreen": {
+        "title": "Oops! Something happened",
+        "description": "Sorry, an error occurred",
+        "button": "Try again"
+      }
+    }
   }
 }

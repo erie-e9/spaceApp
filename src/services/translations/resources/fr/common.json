@@ -11,5 +11,14 @@
         "body": "Malheureusement, cette fonctionnalité n'est pas accessible pour le moment. Veuillez réessayer plus tard."
       }
     }
+  },
+  "errors": {
+    "boundaries": {
+      "fallbackScreen": {
+        "title": "Oops! Quelque chose est arrivé",
+        "description": "Désolé... Une erreur est survenue",
+        "button": "Essayer à nouveau"
+      }
+    }
   }
 }
