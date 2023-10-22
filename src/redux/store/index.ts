@@ -17,7 +17,12 @@ import { reducers } from '@store/reducers';
 import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
 import { setupDefaultFlipperReporter } from 'react-native-performance-flipper-reporter';
 
-const storage = new MMKV();
+const { APP_NAME } = process.env;
+const storage = new MMKV({
+  id: `${APP_NAME}-storage`,
+  encryptionKey: `${APP_NAME}`,
+});
+
 if (__DEV__) {
   initializeMMKVFlipper({ default: storage });
   setupDefaultFlipperReporter();

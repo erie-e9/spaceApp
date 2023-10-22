@@ -4,3 +4,4 @@ export { Logger } from './logger';
 export { defaultNS } from './translations';
 export { remoteConfigFeatures } from './firebase';
 export { initAppCheck, getAppCheckToken } from './appCheck';
+export { useKeyChainStore } from './keyChainStore';
