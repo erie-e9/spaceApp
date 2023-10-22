@@ -7,11 +7,11 @@ import {
 import { Platform } from 'react-native';
 
 export const StyledBackgroundContainer = styled(Animated.View)`
+  flex: 1;
   padding: ${getNormalizedVerticalSize(0)}px
     ${getNormalizedHorizontalSize(15)}px
     ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 13 : 7)}px
     ${getNormalizedHorizontalSize(15)}px;
-  background-color: ${({ theme }) => theme.tokens.colors.none};
 `;
 
 export const StyledTextContainer = styled(Animated.Text)``;

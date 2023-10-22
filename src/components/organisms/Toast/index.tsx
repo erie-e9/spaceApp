@@ -112,10 +112,9 @@ export const Toast = () => {
       ]}
     >
       <TouchableAreaContainer onPress={closeToast}>
-        <ToastBodyContainer>
+        <ToastBodyContainer onStartShouldSetResponder={closeToast}>
           <ToastTextContainer hasNotch={hasNotch}>
             <ToastText
-              onPress={closeToast}
               type="Subtitle2"
               color="textColor"
               textAlign="center"

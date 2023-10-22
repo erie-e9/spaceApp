@@ -26,7 +26,7 @@ export const Tappable: React.FC<TappableProps> = ({
   ...props
 }) => {
   const Touchable = (component || StyledTouchable) as unknown as React.FC<any>;
-  const { showFeatureUnavailableAlert } = useAppAlerts();
+  const { showFeatureUnavailableToast } = useAppAlerts();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
 
   const getFeatureStatus = (
@@ -95,7 +95,7 @@ export const Tappable: React.FC<TappableProps> = ({
 
   const checkOff = (): boolean => {
     if (off) {
-      showFeatureUnavailableAlert();
+      showFeatureUnavailableToast();
       return false;
     }
     return true;

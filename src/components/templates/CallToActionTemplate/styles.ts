@@ -17,6 +17,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   justify-content: space-between;
   padding-left: ${PixelRatio.roundToNearestPixel(40)}px;
+  padding-top: ${PixelRatio.roundToNearestPixel(10)}px;
 `;
 
 export const TitleContainer = styled.View``;

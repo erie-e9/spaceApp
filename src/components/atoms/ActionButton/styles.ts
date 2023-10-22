@@ -55,7 +55,7 @@ export const StyledButton = styled(Tappable)<StyledButtonProps>`
   padding: ${getNormalizedVerticalSize(0)}px
     ${({ loading }) => getNormalizedHorizontalSize(loading ? 15 : 20)}px;
   border-radius: ${({ loading, type }) =>
-    getNormalizedHorizontalSize(loading || type === 'Icon' ? 50 : 10)}px;
+    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 10)}px;
   elevation: 0;
   background-color: ${({ backgroundColor }) => backgroundColor};
   ${({ hasBorder, theme, colorScheme }) =>

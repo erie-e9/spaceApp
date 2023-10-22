@@ -9,11 +9,14 @@ import {
   getSystemVersion as getSystemVersionInfo,
   hasNotch as hasNotchInfo,
   hasDynamicIsland as hasDynamicIslandInfo,
+  getBundleId as getBundleIdInfo,
 } from 'react-native-device-info';
 import { Logger } from '@services';
 
 export const getUniqueId = async (): Promise<string> => {
-  return getUniqueIdDeviceInfo();
+  const deviceId = await getUniqueIdDeviceInfo();
+  Logger.log('getUniqueId: ', deviceId);
+  return deviceId;
 };
 
 export const getModel = (): string => {
@@ -25,7 +28,8 @@ export const getDeviceLabel = (): string => {
 };
 
 export const isNotEmulator = async (): Promise<boolean> => {
-  return __DEV__ ? true : !getIsEmulator();
+  const isEmulator = await getIsEmulator();
+  return __DEV__ ? true : !isEmulator;
 };
 
 export const getAppVersion = async (): Promise<string> => {
@@ -52,6 +56,11 @@ export const hasDynamicIsland = (): boolean => {
   return hasDynamicIslandInfo();
 };
 
+export const getBundleId = (): string => {
+  const bundleId = getBundleIdInfo();
+  return bundleId;
+};
+
 export const getDeviceInfo = (): Promise<any> => {
   const promises = [
     getUniqueId(),
@@ -64,6 +73,7 @@ export const getDeviceInfo = (): Promise<any> => {
     getOSVersion(),
     getHasNotch(),
     hasDynamicIsland(),
+    getBundleIdInfo(),
   ];
   return Promise.all(promises)
     .then(results => {

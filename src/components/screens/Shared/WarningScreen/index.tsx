@@ -37,7 +37,7 @@ export const WarningScreen = () => {
       message: getCopyValue(
         'security:WarningScreen.actions.secondaryButton.message',
       ),
-      duration: 3500,
+      duration: 3000,
     });
   }, []);
 

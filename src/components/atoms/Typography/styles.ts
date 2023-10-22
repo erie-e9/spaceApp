@@ -51,7 +51,7 @@ export interface TextProps {
 }
 
 export const MainFont = css`
-  font-family: 'Armin Grotesk';
+  font-family: 'Arial';
 `;
 
 export const SecondaryFont = css`
@@ -81,7 +81,7 @@ export const Headline4 = css`
   font-weight: 500;
   font-size: ${responsiveFontSize(34)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.3)}px;
-  line-height: ${getNormalizedVerticalSize(36)}px;
+  line-height: ${getNormalizedVerticalSize(41)}px;
 `;
 
 export const Headline5 = css`
@@ -93,15 +93,15 @@ export const Headline5 = css`
 
 export const Headline6 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(22)}px;
+  font-size: ${responsiveFontSize(21)}px;
   letter-spacing: ${getNormalizedHorizontalSize(1)}px;
-  line-height: ${getNormalizedVerticalSize(22.2)}px;
+  line-height: ${getNormalizedVerticalSize(25.2)}px;
 `;
 
 export const Subtitle1 = css`
   font-size: ${responsiveFontSize(17)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.75)}px;
-  line-height: ${getNormalizedVerticalSize(20)}px;
+  line-height: ${getNormalizedVerticalSize(21)}px;
 `;
 
 export const Subtitle2 = css`

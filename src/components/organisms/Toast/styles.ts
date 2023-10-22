@@ -11,7 +11,7 @@ export const StyledAnimatedContainer = styled(
   Animated.View,
 )<ToastTextContainer>`
   position: absolute;
-  height: ${({ hasNotch }) => getNormalizedVerticalSize(hasNotch ? 50 : 50)}px;
+  height: ${getNormalizedVerticalSize(45)}px;
   width: 100%;
 `;
 
@@ -28,7 +28,7 @@ export const ToastBodyContainer = styled.View`
 `;
 
 export const ToastTextContainer = styled.View<ToastTextContainer>`
-  height: ${({ hasNotch }) => getNormalizedVerticalSize(hasNotch ? 50 : 50)}px;
+  height: ${({ hasNotch }) => getNormalizedVerticalSize(hasNotch ? 45 : 45)}px;
   min-height: ${getNormalizedVerticalSize(15)}px;
   width: 100%;
   justify-content: flex-end;

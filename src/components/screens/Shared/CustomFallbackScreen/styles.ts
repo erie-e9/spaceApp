@@ -3,6 +3,7 @@ import { Typography, ActionButton } from '@components/atoms';
 import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
+  SCREEN_WIDTH,
 } from '@utils/functions';
 
 export const StyledScrollView = styled.ScrollView.attrs({
@@ -19,6 +20,7 @@ export const StyledScrollView = styled.ScrollView.attrs({
 
 export const BodyContainer = styled.View`
   flex: 1;
+  width: 100%;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
   align-items: center;
   justify-content: center;
@@ -28,7 +30,7 @@ export const HeaderContainer = styled.View<{ paddingBottom?: number }>`
   justify-content: space-between;
   align-items: center;
   height: auto;
-  padding: ${getNormalizedVerticalSize(10)}px
+  padding: ${getNormalizedVerticalSize(30)}px
     ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(10)}px
     ${getNormalizedHorizontalSize(0)}px;
 `;
@@ -43,6 +45,7 @@ export const StyledText = styled(Typography)<{
 
 export const ErrorContainer = styled.View`
   height: auto;
+  width: 100%;
   padding: ${getNormalizedVerticalSize(10)}px
     ${getNormalizedHorizontalSize(0)}px;
 `;

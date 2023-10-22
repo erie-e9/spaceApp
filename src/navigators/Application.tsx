@@ -43,11 +43,6 @@ const ApplicationNavigator = () => {
   const navigationRef = useNavigationContainerRef();
 
   useEffect(() => {
-    Logger.log('check connection', {
-      isConnected: appConnected.isConnected,
-      type: appConnected.type,
-      isInternetReachable: appConnected.isInternetReachable,
-    });
     if (!appConnected.isConnected) {
       useToast.warning({
         message: getCopyValue('common:messages.noConnection'),

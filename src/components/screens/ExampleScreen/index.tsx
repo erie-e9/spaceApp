@@ -61,10 +61,10 @@ export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
     });
   };
 
-  const onChangeTheme = ({
+  const onChangeTheme = async ({
     theme,
     darkMode,
-  }: Partial<AppPreferencesState>): any => {
+  }: Partial<AppPreferencesState>): Promise<any> => {
     dispatch(changeTheme({ theme, darkMode }));
   };
 

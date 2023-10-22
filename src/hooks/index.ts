@@ -16,6 +16,7 @@ export {
   getOSVersion,
   getHasNotch,
   hasDynamicIsland,
+  getBundleId,
 } from '@hooks/utils/useDeviceInfo';
 export { useToast } from '@hooks/utils/useToast';
 export { useNativeActions } from '@hooks/utils/useNativeActions';
