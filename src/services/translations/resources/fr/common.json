@@ -17,7 +17,8 @@
       "fallbackScreen": {
         "title": "Oops! Quelque chose est arrivé",
         "description": "Désolé... Une erreur est survenue",
-        "button": "Essayer à nouveau"
+        "button": "Essayer à nouveau",
+        "detailsLabel": "Détails de l'erreur: "
       }
     }
   }

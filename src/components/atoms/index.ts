@@ -8,3 +8,4 @@ export { default as RenderWhen } from '@components/atoms/RenderWhen';
 export { default as StyledSafeAreaView } from '@components/atoms/StyledSafeAreaView';
 export { default as Tappable } from '@components/atoms/Tappable';
 export { default as Typography } from '@components/atoms/Typography';
+export { default as FallbackAnimation } from '@components/atoms/FallbackAnimation';

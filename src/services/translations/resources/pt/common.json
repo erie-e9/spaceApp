@@ -17,7 +17,8 @@
       "fallbackScreen": {
         "title": "Ops! Algo aconteceu",
         "description": "Desculpe, ocorreu um erro",
-        "button": "Tente novamente"
+        "button": "Tente novamente",
+        "detailsLabel": "Detalhes do erro: "
       }
     }
   }
