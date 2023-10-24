@@ -3,20 +3,12 @@ import { Typography, ActionButton } from '@components/atoms';
 import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
-  SCREEN_WIDTH,
 } from '@utils/functions';
 
-export const StyledScrollView = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    flex: 1,
-    flexGrow: 1,
-    flexDirection: 'column',
-    height: '100%',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})``;
+export const StyledScrollView = styled.ScrollView`
+  flex: 0.8;
+  margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
+`;
 
 export const BodyContainer = styled.View`
   flex: 1;
@@ -47,6 +39,6 @@ export const ErrorContainer = styled.View`
   height: auto;
   width: 100%;
   padding: ${getNormalizedVerticalSize(10)}px
-    ${getNormalizedHorizontalSize(0)}px;
+    ${getNormalizedHorizontalSize(10)}px;
 `;
 export const TryAgainButton = styled(ActionButton)``;

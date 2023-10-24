@@ -4,7 +4,7 @@ import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { Tappable } from '@components/atoms';
+import { Touchable } from '@components/atoms';
 
 export const BackButtonContainer = styled.View`
   height: ${getNormalizedVerticalSize(48)}px;
@@ -18,4 +18,4 @@ export const BackButtonContainer = styled.View`
   align-items: center;
 `;
 
-export const BackButtonPressable = styled(Tappable)``;
+export const BackButtonPressable = styled(Touchable)``;

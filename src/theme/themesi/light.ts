@@ -54,7 +54,7 @@ export const lightTheme: DefaultTheme = {
       warning_surface: '#FFF5DA',
       danger_surface: '#FFE3E7',
       neutral_surface: '#BDE2F5',
-      disabledButtonTextColor: '#575757',
+      disabledButtonTextColor: '#EFF5F6',
       disabledButtonColor: '#D0D6D9',
       buttonTextColor: '#EFF5F6',
       buttonColor: '#14DA70',

@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { DeviceEventEmitter } from 'react-native';
+import { DeviceEventEmitter, Vibration } from 'react-native';
 import { useTheme } from 'styled-components/native';
 import {
   withTiming,
@@ -23,9 +23,11 @@ export interface ColorStatus {
   warning: string;
 }
 
-interface ToastProps {
-  message: string | null;
+export interface ToastProps {
+  message?: string | null;
   type?: ToastStatus;
+  duration?: number;
+  vibration?: number | boolean;
 }
 
 export const Toast = () => {
@@ -52,6 +54,12 @@ export const Toast = () => {
   const OnNewToast = (data: any) => {
     if (data.duration) {
       setDuration(data.duration);
+    }
+    if (data.vibration) {
+      Vibration.vibrate(
+        typeof data.vibration === 'boolean' ? 40 : data.vibration,
+        true,
+      );
     }
     setToast({ message: data.message, type: data.type });
   };

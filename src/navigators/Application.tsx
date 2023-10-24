@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
 import {
   TransitionPresets,
   createStackNavigator,
@@ -13,10 +12,10 @@ import {
 import { useFlipper } from '@react-navigation/devtools';
 import ErrorBoundary from 'react-native-error-boundary';
 import { ApplicationStackParamList } from 'types/navigation';
-import { useCopy, Logger } from '@services';
+import { useCopy } from '@services';
 import { useTheme, useToast, useCheckNet } from '@hooks';
 import { darkTheme, lightTheme } from '@theme/themesi';
-import { StyledSafeAreaView } from '@components/atoms';
+import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
 import { Modal, Toast } from '@components/organisms';
 import MainNavigator from './Main';
 import {
@@ -48,7 +47,7 @@ const ApplicationNavigator = () => {
         message: getCopyValue('common:messages.noConnection'),
       });
     } else {
-      useToast.close({});
+      useToast.close();
     }
   }, [appConnected.isConnected, appConnected.type]);
 
@@ -60,19 +59,15 @@ const ApplicationNavigator = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <StyledSafeAreaView>
+      <SafeAreaViewProvider>
         <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
           <ErrorBoundary
             FallbackComponent={CustomFallbackScreen}
             onError={handleJSErrorForErrorBoundary}
           >
             <GestureHandlerRootView style={gestureHandlerRootViewStyle}>
-              <StatusBar
-                translucent
-                barStyle={darkMode ? 'light-content' : 'dark-content'}
-                backgroundColor="transparent"
-              />
-
+              <StatusBar />
+              <Modal />
               <Navigator
                 screenOptions={{
                   headerShown: false,
@@ -86,12 +81,11 @@ const ApplicationNavigator = () => {
                 <Screen name="Main" component={MainNavigator} />
                 <Screen name="WarningScreen" component={WarningScreen} />
               </Navigator>
-              <Modal />
             </GestureHandlerRootView>
             <Toast />
           </ErrorBoundary>
         </NavigationContainer>
-      </StyledSafeAreaView>
+      </SafeAreaViewProvider>
     </ThemeProvider>
   );
 };

@@ -1,10 +1,9 @@
 import React, { memo } from 'react';
-import { Vibration } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { ApplicationScreenProps } from 'types/navigation';
 import { AppPreferencesState } from '@slices/types/appPreferences';
 import { changeTheme } from '@slices/shared/appPreferences';
-import { useTheme, useSVG, useToast, useModal } from '@hooks';
+import { useTheme, useSVG, useToast, useModal, useAppCheck } from '@hooks';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { useCopy } from '@services';
 import * as resources from '@services/translations/resources';
@@ -45,6 +44,7 @@ interface Props {
 export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
+  const { getAppCheckToken } = useAppCheck();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
   const QRCodeNavigatorIcon = useSVG('QRCodeNavigator');
   const AlertTriangleIcon = useSVG('AlertTriangle');
@@ -54,10 +54,10 @@ export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const appPresentation = (): void => {
-    Vibration.vibrate(100, true);
     useToast.success({
       message: getCopyValue('example:helloUser'),
       duration: 3000,
+      vibration: true,
     });
   };
 
@@ -69,6 +69,7 @@ export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   const onChangeLanguage = (): void => {
+    getAppCheckToken();
     showModal({
       type: 'bottomsheet',
       title: 'languages:switchLanguage.title',
@@ -82,10 +83,7 @@ export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <StyledScrollView testID="ExampleScreenID">
-      <InterpolateColorAnimation
-        initialColor="backgroundColorLight"
-        finalColor="backgroundColorDark"
-      >
+      <InterpolateColorAnimation>
         <HeaderContainer>
           <RenderWhen>
             <BrandCircleContainer darkMode={isDarkMode} />
@@ -219,7 +217,7 @@ export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
             </TitleContainer>
             <StyledTypography
               type="Headline6"
-              font="secondary"
+              font="primary"
               color="surfaceL1"
               textAlign="justify"
             >
@@ -228,7 +226,7 @@ export const ExampleScreen: React.FC<Props> = ({ navigation }) => {
             <DescriptionContainer>
               <StyledTypography
                 type="Subtitle1"
-                font="secondary"
+                font="primary"
                 color="surfaceL1"
                 textAlign="left"
               >

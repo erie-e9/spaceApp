@@ -9,23 +9,23 @@ interface TappableProps extends PressableProps {
   testID?: string;
   component?: Element;
   onPress?: () => void;
-  onLongPress?: () => void;
+  onPressType?: 'onPress' | 'onPressIn' | 'onLongPress' | 'onPressOut';
   style?: any;
   [x: string]: unknown;
   featureFlags?: string[] | (keyof RemoteConfigFeatures)[];
 }
 
-export const Tappable: React.FC<TappableProps> = ({
+export const Touchable: React.FC<TappableProps> = ({
   testID,
   children,
   style,
   onPress,
-  onLongPress,
+  onPressType,
   component,
   featureFlags,
   ...props
 }) => {
-  const Touchable = (component || StyledTouchable) as unknown as React.FC<any>;
+  const Tappable = (component || StyledTouchable) as unknown as React.FC<any>;
   const { showFeatureUnavailableToast } = useAppAlerts();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
 
@@ -86,10 +86,6 @@ export const Tappable: React.FC<TappableProps> = ({
       onPress();
       return false;
     }
-    if (on && onLongPress) {
-      onLongPress();
-      return false;
-    }
     return true;
   };
 
@@ -104,26 +100,28 @@ export const Tappable: React.FC<TappableProps> = ({
   if (hide) return undefined;
 
   return (
-    <Touchable
+    <Tappable
       isGreyed={off}
       testID={testID}
       style={style[0]}
-      onPressIn={onTap}
-      onLongPress={onTap}
+      onPress={onPressType === 'onPress' ? onTap : undefined}
+      onPressIn={onPressType === 'onPressIn' ? onTap : undefined}
+      onPressOut={onPressType === 'onPressOut' ? onTap : undefined}
+      onLongPress={onPressType === 'onLongPress' ? onTap : undefined}
       {...props}
     >
       {children}
-    </Touchable>
+    </Tappable>
   );
 };
 
-Tappable.defaultProps = {
-  testID: 'TappableID',
+Touchable.defaultProps = {
+  testID: 'TouchableID',
   component: undefined,
   onPress: undefined,
-  onLongPress: undefined,
+  onPressType: 'onPress',
   featureFlags: [],
   style: {},
 };
 
-export default memo(Tappable);
+export default memo(Touchable);

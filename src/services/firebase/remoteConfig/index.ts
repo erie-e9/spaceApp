@@ -50,9 +50,8 @@ export const remoteConfigFeatures = async (): Promise<any> => {
         );
         resolve({ ...resolution });
       })
-      .catch(err => {
-        Logger.log('remoteConfig error: ', err.toString());
-        reject(new Error('Error gettirng configuration'));
+      .catch(error => {
+        reject(new Error(error.toString()));
         resolve({ ...initialState });
       });
   });

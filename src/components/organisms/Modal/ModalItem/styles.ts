@@ -3,7 +3,7 @@ import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { Tappable, Typography } from '@components/atoms';
+import { Touchable, Typography } from '@components/atoms';
 
 export const ItemLabelContainer = styled.View`
   align-items: center;
@@ -12,6 +12,6 @@ export const ItemLabelContainer = styled.View`
     ${getNormalizedVerticalSize(7)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
-export const ItemButton = styled(Tappable)``;
+export const ItemButton = styled(Touchable)``;
 
 export const ItemLabel = styled(Typography)``;

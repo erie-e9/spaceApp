@@ -15,8 +15,8 @@ export const WarningScreen = () => {
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
   const { Animations } = useTheme();
-  const [loadingValue, setLoadingValue] = useState(false);
-  const [loadingValue2, setLoadingValue2] = useState(false);
+  const [primaryButtonLoading, setPrimaryButtonLoading] = useState(false);
+  const [secondaryButtonLoading, setSecondaryButtonLoading] = useState(false);
 
   const handlePrimaryButton = useCallback(async (): Promise<void> => {
     showModal({
@@ -26,13 +26,13 @@ export const WarningScreen = () => {
         'security:WarningScreen.actions.primaryButton.modal.description',
       legacyOptions: { typeError: 'error' },
     });
-    setLoadingValue2(false);
-    await setLoadingValue(!loadingValue);
+    setSecondaryButtonLoading(false);
+    await setPrimaryButtonLoading(!primaryButtonLoading);
   }, []);
 
   const handleSecondaryButton = useCallback(async (): Promise<void> => {
-    await setLoadingValue(false);
-    setLoadingValue2(!loadingValue2);
+    await setPrimaryButtonLoading(false);
+    setSecondaryButtonLoading(!secondaryButtonLoading);
     useToast.info({
       message: getCopyValue(
         'security:WarningScreen.actions.secondaryButton.message',
@@ -70,7 +70,7 @@ export const WarningScreen = () => {
           <DescriptionContainer>
             <TitleText
               type="Subtitle1"
-              font="secondary"
+              font="primary"
               color="surfaceL1"
               textAlign="justify"
             >
@@ -82,7 +82,7 @@ export const WarningScreen = () => {
           <SubDescriptionContainer>
             <TitleText
               type="Subtitle1"
-              font="secondary"
+              font="primary"
               color="surfaceL1"
               textAlign="center"
               weight="bold"
@@ -98,17 +98,17 @@ export const WarningScreen = () => {
         ),
         onPress: handlePrimaryButton,
         testID: 'WarningScreen.primaryButton',
-        disabled: loadingValue,
-        loading: loadingValue,
+        disabled: primaryButtonLoading,
+        loading: primaryButtonLoading,
       }}
       secondaryButton={{
         title: getCopyValue(
           'security:WarningScreen.actions.secondaryButton.title',
         ),
         onPress: handleSecondaryButton,
-        testID: 'WarningScreen.secondaryButton',
-        disabled: loadingValue2,
-        loading: loadingValue2,
+        testID: 'WarningScreen.secondaryButtonLoading',
+        disabled: secondaryButtonLoading,
+        loading: secondaryButtonLoading,
       }}
     />
   );

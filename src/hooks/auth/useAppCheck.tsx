@@ -1,13 +1,10 @@
-import Logger from '@services/Logger';
+import { Logger } from '@services';
 import { getAppCheckToken as getToken } from '@services';
-import { useDispatch } from 'react-redux';
 
 export interface AppCheckToken {
   token: string;
   expireAt: Date;
 }
-
-const EXPIRATION_TIME = 1;
 
 export const useAppCheck = (): {
   getAppCheckToken(): Promise<string>;

@@ -77,10 +77,7 @@ const CallToActionTemplate: React.FC<Props> = ({
   }, []);
 
   return (
-    <InterpolateColorAnimation
-      initialColor="backgroundColorLight"
-      finalColor="backgroundColorDark"
-    >
+    <InterpolateColorAnimation>
       <StyledContainer testID={testID}>
         <HeaderContainer>
           {title && (
@@ -100,10 +97,11 @@ const CallToActionTemplate: React.FC<Props> = ({
         <ButtonContainer>
           {primaryButton && (
             <StyledActionButton
+              testID={primaryButton.testID || undefined}
               title={primaryButton.title}
               onPress={primaryButton.onPress}
               onPressAsync={primaryButton.onPressAsync}
-              testID={primaryButton.testID || undefined}
+              onPressType="onPressIn"
               textTransform={primaryButton.textTransform || undefined}
               style={primaryButton.style || undefined}
               loading={primaryButton.loading || undefined}
@@ -114,10 +112,11 @@ const CallToActionTemplate: React.FC<Props> = ({
           )}
           {secondaryButton && (
             <StyledActionButton
+              testID={secondaryButton.testID || undefined}
               title={secondaryButton.title}
               onPress={secondaryButton.onPress}
               onPressAsync={secondaryButton.onPressAsync}
-              testID={secondaryButton.testID || undefined}
+              onPressType="onPressIn"
               textTransform={secondaryButton.textTransform || undefined}
               style={secondaryButton.style || undefined}
               buttonTheme={'Secondary'}
@@ -130,10 +129,11 @@ const CallToActionTemplate: React.FC<Props> = ({
           )}
           {tertiaryButton && (
             <StyledActionButton
+              testID={tertiaryButton.testID || undefined}
               title={tertiaryButton.title}
               onPress={tertiaryButton.onPress}
               onPressAsync={tertiaryButton.onPressAsync}
-              testID={tertiaryButton.testID || undefined}
+              onPressType="onPressIn"
               textTransform={tertiaryButton.textTransform || undefined}
               style={tertiaryButton.style || undefined}
               buttonTheme={darkMode ? 'Dark' : 'Secondary'}

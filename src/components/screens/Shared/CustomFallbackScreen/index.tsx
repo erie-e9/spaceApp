@@ -1,10 +1,4 @@
 import React from 'react';
-import { useCopy } from '@services';
-import {
-  InterpolateColorAnimation,
-  RotateAnimation,
-} from '@components/animated';
-import { RenderWhen, FallbackAnimation } from '@components/atoms';
 import {
   StyledScrollView,
   BodyContainer,
@@ -13,6 +7,12 @@ import {
   ErrorContainer,
   TryAgainButton,
 } from './styles';
+import { useCopy } from '@services';
+import {
+  InterpolateColorAnimation,
+  RotateAnimation,
+} from '@components/animated';
+import { RenderWhen, FallbackAnimation, StatusBar } from '@components/atoms';
 
 export type CustomFallbackScreenProps = {
   error: Error;
@@ -26,75 +26,72 @@ export const CustomFallbackScreen: React.FC<CustomFallbackScreenProps> = ({
   const { getCopyValue } = useCopy();
 
   return (
-    <StyledScrollView testID="CustomFallbackScreenID">
-      <InterpolateColorAnimation
-        initialColor="backgroundColorLight"
-        finalColor="backgroundColorDark"
-      >
-        <BodyContainer>
-          <RotateAnimation
-            duration={10000}
-            initialValue={0}
-            finalValue={360}
-            repeat={-1}
-            easing="linear"
+    <InterpolateColorAnimation>
+      <StatusBar />
+      <BodyContainer>
+        <RotateAnimation
+          duration={10000}
+          initialValue={0}
+          finalValue={360}
+          repeat={-1}
+          easing="linear"
+        >
+          <FallbackAnimation />
+        </RotateAnimation>
+        <HeaderContainer>
+          <StyledText
+            type="Headline5"
+            font="primary"
+            color="textLabelNeutral"
+            textAlign="center"
           >
-            <FallbackAnimation />
-          </RotateAnimation>
-          <HeaderContainer>
-            <StyledText
-              type="Headline5"
-              font="secondary"
-              color="textLabelNeutral"
-              textAlign="center"
-            >
-              {getCopyValue('common:errors.boundaries.fallbackScreen.title')}
-            </StyledText>
+            {getCopyValue('common:errors.boundaries.fallbackScreen.title')}
+          </StyledText>
 
-            <StyledText
-              type="Headline6"
-              font="secondary"
-              color="textLabelNeutral"
-              textAlign="center"
-            >
-              {getCopyValue(
-                'common:errors.boundaries.fallbackScreen.description',
-              )}
-            </StyledText>
-          </HeaderContainer>
-          <TryAgainButton
-            type="Button"
-            title={getCopyValue(
-              'common:errors.boundaries.fallbackScreen.button',
+          <StyledText
+            type="Subtitle1"
+            font="primary"
+            color="textLabelNeutral"
+            textAlign="center"
+          >
+            {getCopyValue(
+              'common:errors.boundaries.fallbackScreen.description',
             )}
-            buttonTheme="Primary"
-            onPress={resetError}
-          />
-          <RenderWhen isTrue={!!error}>
+          </StyledText>
+        </HeaderContainer>
+        <TryAgainButton
+          type="Button"
+          title={getCopyValue('common:errors.boundaries.fallbackScreen.button')}
+          buttonTheme="Primary"
+          onPress={resetError}
+        />
+        <RenderWhen isTrue={!!error}>
+          <StyledScrollView testID="CustomFallbackScreenID">
             <ErrorContainer>
               <StyledText
                 type="Subtitle2"
-                font="secondary"
+                font="primary"
                 color="surfaceL1"
                 textAlign="left"
+                weight="bold"
               >
+                {getCopyValue(
+                  'common:errors.boundaries.fallbackScreen.detailsLabel',
+                )}
                 <StyledText
                   type="Subtitle2"
-                  font="secondary"
+                  font="primary"
                   color="surfaceL1"
-                  textAlign="left"
+                  textAlign="justify"
                 >
-                  {getCopyValue(
-                    'common:errors.boundaries.fallbackScreen.detailsLabel',
-                  )}
+                  {String(error)}
                 </StyledText>
-                {error}
               </StyledText>
             </ErrorContainer>
-          </RenderWhen>
-        </BodyContainer>
-      </InterpolateColorAnimation>
-    </StyledScrollView>
+          </StyledScrollView>
+        </RenderWhen>
+      </BodyContainer>
+    </InterpolateColorAnimation>
   );
 };
 

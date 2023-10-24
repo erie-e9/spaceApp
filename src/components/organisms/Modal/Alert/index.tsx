@@ -51,16 +51,16 @@ export const Alert: React.FC = ({
   };
 
   return (
-    <>
-      <StyledModal
-        testID={testID}
-        transparent
-        visible={isVisible}
-        onShow={onModalShow}
-        animationType="fade"
-        style={MODAL_STYLE}
-      >
-        <AnimatedBackground isActive={isVisible} />
+    <StyledModal
+      testID={testID}
+      transparent
+      visible={isVisible}
+      onShow={onModalShow}
+      animationType="fade"
+      style={MODAL_STYLE}
+      statusBarTranslucent
+    >
+      <AnimatedBackground isActive={isVisible}>
         <ModalBodyContainer>
           <TransformAnimation
             trigger={isVisible}
@@ -98,8 +98,8 @@ export const Alert: React.FC = ({
             </OpacityAnimation>
           </TransformAnimation>
         </ModalBodyContainer>
-      </StyledModal>
-    </>
+      </AnimatedBackground>
+    </StyledModal>
   );
 };
 

@@ -57,10 +57,7 @@ export const StartupScreen: React.FC<Props> = ({ navigation }) => {
   }, [isSuccess]);
 
   return (
-    <InterpolateColorAnimation
-      initialColor="backgroundColorLight"
-      finalColor="backgroundColorDark"
-    >
+    <InterpolateColorAnimation>
       <Container testID="StartupScreenID">
         <Brand source={Images.logo} />
         <ActivityIndicator size={'small'} />

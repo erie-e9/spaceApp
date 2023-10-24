@@ -1,30 +1,41 @@
 import { DeviceEventEmitter } from 'react-native';
+import { ToastProps } from '@components/organisms/Toast';
 
 export const useToast = {
-  info: (options: any) => {
-    DeviceEventEmitter.emit('SHOW_TOAST_MESSAGE', { ...options, type: 'info' });
-  },
-  success: (options: any) => {
+  info: ({ message, duration, vibration }: ToastProps): void => {
     DeviceEventEmitter.emit('SHOW_TOAST_MESSAGE', {
-      ...options,
+      message,
+      duration,
+      vibration,
+      type: 'info',
+    });
+  },
+  success: ({ message, duration, vibration }: ToastProps): void => {
+    DeviceEventEmitter.emit('SHOW_TOAST_MESSAGE', {
+      message,
+      duration,
+      vibration,
       type: 'success',
     });
   },
-  error: (options: any) => {
+  error: ({ message, duration, vibration }: ToastProps): void => {
     DeviceEventEmitter.emit('SHOW_TOAST_MESSAGE', {
-      ...options,
+      message,
+      duration,
+      vibration,
       type: 'error',
     });
   },
-  warning: (options: any) => {
+  warning: ({ message, duration, vibration }: ToastProps) => {
     DeviceEventEmitter.emit('SHOW_TOAST_MESSAGE', {
-      ...options,
+      message,
+      duration,
+      vibration,
       type: 'warning',
     });
   },
-  close: (options: any) => {
+  close: (): void => {
     DeviceEventEmitter.emit('HIDE_TOAST_MESSAGE', {
-      ...options,
       message: null,
     });
   },

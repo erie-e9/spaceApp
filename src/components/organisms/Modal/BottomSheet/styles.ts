@@ -7,20 +7,20 @@ import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { Tappable } from '@components/atoms';
+import { Touchable } from '@components/atoms';
 
 export const AnimatedBottomSheet = styled(Animated.View)`
-  height: ${getNormalizedVerticalSize(SCREEN_HEIGHT)}px;
+  height: ${SCREEN_HEIGHT}px;
   width: 99%;
   align-self: center;
   position: absolute;
-  top: ${getNormalizedVerticalSize(SCREEN_HEIGHT)}px;
+  top: ${SCREEN_HEIGHT}px;
   border-radius: ${getNormalizedHorizontalSize(25)}px;
   background-color: ${({ theme }) => theme.tokens.colors.none};
   z-index: 100;
 `;
 
-export const CloseBottomSheetButton = styled(Tappable)`
+export const CloseBottomSheetButton = styled(Touchable)`
   height: ${getNormalizedVerticalSize(30)}px;
 `;
 

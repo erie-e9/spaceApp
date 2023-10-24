@@ -7,7 +7,7 @@ import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { Tappable, Typography } from '@components/atoms';
+import { Touchable, Typography } from '@components/atoms';
 
 export interface StyledButtonProps {
   readonly backgroundColor?: string;
@@ -39,7 +39,7 @@ export const AnimatedActionButton = styled(Animated.View)`
   z-index: 200;
 `;
 
-export const StyledButton = styled(Tappable)<StyledButtonProps>`
+export const StyledButton = styled(Touchable)<StyledButtonProps>`
   ${({ grouped }) =>
     grouped &&
     `

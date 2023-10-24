@@ -88,7 +88,7 @@ export const Headline5 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(29)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0)}px;
-  line-height: ${getNormalizedVerticalSize(33)}px;
+  line-height: ${getNormalizedVerticalSize(35)}px;
 `;
 
 export const Headline6 = css`
@@ -99,15 +99,17 @@ export const Headline6 = css`
 `;
 
 export const Subtitle1 = css`
+  font-weight: 900;
   font-size: ${responsiveFontSize(17)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.75)}px;
   line-height: ${getNormalizedVerticalSize(21)}px;
 `;
 
 export const Subtitle2 = css`
+  font-weight: 800;
   font-size: ${responsiveFontSize(15)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.1)}px;
-  line-height: ${getNormalizedVerticalSize(18)}px;
+  line-height: ${getNormalizedVerticalSize(19)}px;
 `;
 
 export const Subtitle3 = css`
@@ -187,6 +189,7 @@ export const Text = styled(NativeText)<TextProps>`
   ${({ font }) => {
     switch (font) {
       case 'primary':
+        return MainFont;
       case 'secondary':
         return SecondaryFont;
       default:

@@ -15,7 +15,7 @@
   "errors": {
     "boundaries": {
       "fallbackScreen": {
-        "title": "¡Ups! Algo pasó",
+        "title": "¡Ups! Algo salió mal",
         "description": "Lo sentimos, ocurrió un error",
         "button": "Intentar de nuevo",
         "detailsLabel": "Detalles del error: "

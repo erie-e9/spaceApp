@@ -25,6 +25,7 @@ export interface ActionButtonProps {
   backgroundColor?: string;
   onPress?: () => void;
   onPressAsync?: () => Promise<void>;
+  onPressType?: 'onPress' | 'onPressIn' | 'onLongPress' | 'onPressOut';
   buttonTheme?: 'Primary' | 'Secondary' | 'Dark';
   type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
   readonly disabledColor?: keyof DefaultTheme['colors'];
@@ -48,8 +49,9 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   numberOfLines,
   backgroundColor,
   onPress,
-  loading,
   onPressAsync,
+  onPressType,
+  loading,
   type,
   disabled,
   style,
@@ -82,10 +84,15 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
     const buttomThemeSecondary =
       colorScheme === 'light'
-        ? theme.tokens.colors.primaryD1
-        : theme.colors.text.white;
+        ? theme.tokens.colors.opposing
+        : theme.tokens.colors.opposing;
 
-    const notDisbleButtonTextColor =
+    const disableButtonTextColor =
+      buttonTheme === 'Secondary'
+        ? buttomThemeSecondary
+        : theme.tokens.colors.disabledButtonTextColor;
+
+    const notDisableButtonTextColor =
       buttonTheme === 'Secondary'
         ? buttomThemeSecondary
         : theme.tokens.colors.none;
@@ -119,8 +126,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       case 'Button':
         txtColor =
           disabled || asyncDisabled
-            ? theme.tokens.colors.disabledButtonTextColor
-            : notDisbleButtonTextColor;
+            ? disableButtonTextColor
+            : notDisableButtonTextColor;
         bgColor = colorScheme === 'light' ? bgColorLight : bgColorDark;
         hasBorder = buttonTheme === 'Secondary';
         break;
@@ -233,6 +240,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         }
         disabledColor={disabledColor}
         onPress={handlePress}
+        onPressType={onPressType}
         hasBorder={
           disabled && buttonTheme === 'Primary' ? false : btnTheme.hasBorder
         }
@@ -277,6 +285,7 @@ ActionButton.defaultProps = {
   numberOfLines: 1,
   textTransform: undefined,
   onPress: undefined,
+  onPressType: 'onPress',
   onPressAsync: undefined,
   buttonTheme: 'Primary',
   type: 'Button',

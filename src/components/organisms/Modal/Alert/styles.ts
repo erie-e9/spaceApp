@@ -1,4 +1,4 @@
-import { PixelRatio, Platform, ViewStyle } from 'react-native';
+import { PixelRatio, StyleSheet, ViewStyle } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import {
   SCREEN_WIDTH,
@@ -9,9 +9,13 @@ import { ActionButton, Typography } from '@components/atoms';
 
 export const MODAL_STYLE: ViewStyle = {
   flex: 1,
+  height: '100%',
   justifyContent: 'center',
   alignItems: 'center',
   alignContent: 'center',
+  paddingTop: 20,
+  marginTop: 120,
+  ...StyleSheet.absoluteFillObject,
 };
 
 export const StyledModal = styled.Modal``;

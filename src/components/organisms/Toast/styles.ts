@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { getNormalizedVerticalSize, SCREEN_WIDTH } from '@utils/functions';
-import { Tappable, Typography } from '@components/atoms';
+import { Touchable, Typography } from '@components/atoms';
 
 export interface ToastTextContainer {
   hasNotch?: boolean;
@@ -15,7 +15,7 @@ export const StyledAnimatedContainer = styled(
   width: 100%;
 `;
 
-export const TouchableAreaContainer = styled(Tappable)`
+export const TouchableAreaContainer = styled(Touchable)`
   min-height: ${getNormalizedVerticalSize(45)}px;
   width: 100%;
   justify-content: flex-end;
