@@ -1,6 +1,7 @@
 package com.spaceApp;
 
 import com.facebook.react.ReactActivity;
+import org.devio.rn.splashscreen.SplashScreen;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
@@ -33,6 +34,8 @@ public class MainActivity extends ReactActivity {
 
   @Override
   protected void onCreate(Bundle savedInstance) {
+    SplashScreen.show(this, R.id.lottie); // here
+    SplashScreen.setAnimationFinished(true);
     super.onCreate(savedInstance);
     setTheme(R.style.AppTheme);
   }

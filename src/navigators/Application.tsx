@@ -3,6 +3,7 @@ import {
   TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
+import SplashScreen from 'react-native-lottie-splash-screen';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
@@ -40,6 +41,15 @@ const ApplicationNavigator = () => {
   };
 
   const navigationRef = useNavigationContainerRef();
+
+  useEffect(() => {
+    let timeOut = setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000);
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, []);
 
   useEffect(() => {
     if (!appConnected.isConnected) {
