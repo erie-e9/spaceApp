@@ -39,6 +39,15 @@ export const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
     [],
   );
 
+  const handleAppStateChange = (nextAppState: AppStateStatus) => {
+    if (appState.match(/inactive|background/) && nextAppState === 'active') {
+      if (animationRef.current) {
+        animationRef.current.play();
+      }
+    }
+    setAppState(nextAppState);
+  };
+
   useEffect(() => {
     const appStateSubscription = AppState.addEventListener(
       'change',
@@ -48,15 +57,6 @@ export const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
       appStateSubscription.remove();
     };
   });
-
-  const handleAppStateChange = (nextAppState: AppStateStatus) => {
-    if (appState.match(/inactive|background/) && nextAppState === 'active') {
-      if (animationRef.current) {
-        animationRef.current.play();
-      }
-    }
-    setAppState(nextAppState);
-  };
 
   return (
     <LottieView

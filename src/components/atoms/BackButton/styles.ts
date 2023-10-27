@@ -16,6 +16,9 @@ export const BackButtonContainer = styled.View`
     ${getNormalizedHorizontalSize(10)}px;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 `;
 
-export const BackButtonPressable = styled(Touchable)``;
+export const BackButtonPressable = styled(Touchable)`
+  z-index: 999;
+`;

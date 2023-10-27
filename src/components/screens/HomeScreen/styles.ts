@@ -4,19 +4,24 @@ import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { ActionButton, Typography } from '@components/atoms';
+import { InterpolateColorAnimation } from '@components/animated';
+import { ActionButton, Touchable, Typography } from '@components/atoms';
 
-export const StyledScrollView = styled.ScrollView.attrs({
-  contentContainerStyle: {
-    flex: 1,
-    flexGrow: 1,
-    flexDirection: 'column',
-    height: '100%',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})``;
+export const StyledScrollView = styled.ScrollView`
+  flex: 1;
+  flex-direction: column;
+`;
+
+export const NavigateButtonFallbackContainer = styled.View`
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  z-index: 100;
+  top: ${getNormalizedVerticalSize(0)}px;
+  right: ${getNormalizedHorizontalSize(0)}px;
+`;
+
+export const NavigateButtonFallback = styled(Touchable)``;
 
 export const HeaderContainer = styled.View`
   flex: 1;
@@ -33,14 +38,13 @@ export const BodyContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const BrandCircleContainer = styled.View<{
-  darkMode: boolean;
-}>`
+export const BrandCircleContainer = styled(InterpolateColorAnimation)`
   position: absolute;
   height: ${PixelRatio.roundToNearestPixel(250)}px;
   width: ${PixelRatio.roundToNearestPixel(250)}px;
-  background-color: ${({ darkMode }) => (darkMode ? '#000000' : '#DFDFDF')};
   border-radius: ${PixelRatio.roundToNearestPixel(140)}px;
+  top: ${getNormalizedVerticalSize(70)}px;
+  align-self: center;
 `;
 
 export const ContentContainer = styled.View``;

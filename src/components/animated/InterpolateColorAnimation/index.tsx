@@ -19,13 +19,14 @@ import {
 
 export interface InterpolateColorAnimationProps {
   testID?: string;
-  children: string | React.ReactElement | React.ReactElement[];
-  initialColor?: keyof DefaultTheme['tokens']['colors'];
-  finalColor?: keyof DefaultTheme['tokens']['colors'];
+  children?: string | React.ReactElement | React.ReactElement[];
+  initialColor?: string | keyof DefaultTheme['tokens']['colors'];
+  finalColor?: string | keyof DefaultTheme['tokens']['colors'];
   trigger?: boolean;
   duration?: number;
-  styleProps?: any;
+  style?: any;
   animationType?: 'text' | 'background';
+  isScreen?: boolean;
   props?: any;
 }
 
@@ -37,8 +38,9 @@ export const InterpolateColorAnimation: React.FC<
   initialColor,
   finalColor,
   duration,
-  styleProps,
+  style,
   animationType,
+  isScreen,
   props,
 }) => {
   const theme = useTheme();
@@ -67,16 +69,23 @@ export const InterpolateColorAnimation: React.FC<
       progress.value,
       [0, 1],
       [
-        theme.tokens.colors?.[
-          animationType === 'background'
-            ? initialColor || 'backgroundColorLight'
-            : initialColor || 'backgroundColorLight'
-        ],
-        theme.tokens.colors?.[
-          animationType === 'background'
-            ? finalColor || 'backgroundColorDark'
-            : finalColor || 'backgroundColorDark'
-        ],
+        // initial color
+        typeof initialColor === 'string' && !initialColor.includes('#')
+          ? theme.tokens.colors?.[
+              animationType === 'background'
+                ? initialColor || 'backgroundColorLight'
+                : initialColor || 'backgroundColorLight'
+            ]
+          : initialColor,
+
+        // final color
+        typeof finalColor === 'string' && !finalColor.includes('#')
+          ? theme.tokens.colors?.[
+              animationType === 'background'
+                ? finalColor || 'backgroundColorDark'
+                : finalColor || 'backgroundColorDark'
+            ]
+          : finalColor,
       ],
     );
 
@@ -99,7 +108,7 @@ export const InterpolateColorAnimation: React.FC<
     animationType === 'background' ? (
       <StyledBackgroundContainer
         testID={testID}
-        style={[styleProps, reanimatedViewStyle, insetStyles]}
+        style={[style, reanimatedViewStyle, isScreen ? insetStyles : null]}
       >
         {children}
       </StyledBackgroundContainer>
@@ -109,7 +118,7 @@ export const InterpolateColorAnimation: React.FC<
         style={[reanimatedViewStyle]}
         {...props}
       >
-        {children}
+        {children && children}
       </StyledTextContainer>
     );
 
@@ -118,13 +127,15 @@ export const InterpolateColorAnimation: React.FC<
 
 InterpolateColorAnimation.defaultProps = {
   testID: 'InterpolateColorAnimationID',
+  children: undefined,
   initialColor: 'backgroundColorLight',
   finalColor: 'backgroundColorDark',
   trigger: false,
   duration: undefined,
-  styleProps: { ...StyleSheet.absoluteFillObject },
+  style: { ...StyleSheet.absoluteFillObject },
   animationType: 'background',
   props: undefined,
+  isScreen: false,
 };
 
 export default memo(InterpolateColorAnimation);

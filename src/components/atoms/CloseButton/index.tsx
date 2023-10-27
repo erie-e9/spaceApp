@@ -11,15 +11,15 @@ export const CloseButton: React.FC<Props> = ({ testID, onPress }) => {
   const CloseButtonIcon = useSVG('CloseButton');
 
   return (
-    <CloseButtonContainer>
-      <CloseButtonPressable
-        testID={testID}
-        hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
-        onPress={onPress}
-      >
+    <CloseButtonPressable
+      testID={testID}
+      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+      onPress={onPress}
+    >
+      <CloseButtonContainer>
         <CloseButtonIcon />
-      </CloseButtonPressable>
-    </CloseButtonContainer>
+      </CloseButtonContainer>
+    </CloseButtonPressable>
   );
 };
 

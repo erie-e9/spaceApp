@@ -105,12 +105,12 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     const bgDisabledColors =
       buttonTheme === 'Primary'
         ? theme.tokens.colors.primaryD1
-        : theme.tokens.colors.tertiaryD5;
+        : theme.tokens.colors.transparent;
 
     const bgColorLight =
       disabled || asyncDisabled ? bgDisabledColors : bgColorLightScondary;
 
-    const bgColorDarktSecondaryDisabled = theme.tokens.colors.surfaceL4
+    const bgColorDarktSecondaryDisabled = disabled
       ? theme.tokens.colors.primaryD1
       : theme.tokens.colors.none;
 
@@ -280,7 +280,6 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 ActionButton.defaultProps = {
   testID: 'ActionButtonID',
   title: '',
-  loading: false,
   textColor: '',
   numberOfLines: 1,
   textTransform: undefined,
@@ -290,6 +289,7 @@ ActionButton.defaultProps = {
   buttonTheme: 'Primary',
   type: 'Button',
   disabledColor: 'primaryD5',
+  loading: false,
   disabled: false,
   grouped: false,
   fontSize: undefined,

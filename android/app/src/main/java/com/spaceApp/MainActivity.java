@@ -34,7 +34,7 @@ public class MainActivity extends ReactActivity {
 
   @Override
   protected void onCreate(Bundle savedInstance) {
-    SplashScreen.show(this, R.id.lottie); // here
+    SplashScreen.show(this, R.style.SplashScreenTheme, R.id.lottie);
     SplashScreen.setAnimationFinished(true);
     super.onCreate(savedInstance);
     setTheme(R.style.AppTheme);

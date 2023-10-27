@@ -11,20 +11,22 @@ export const StyledAnimatedContainer = styled(
   Animated.View,
 )<ToastTextContainer>`
   position: absolute;
-  height: ${getNormalizedVerticalSize(45)}px;
+  height: ${getNormalizedVerticalSize(52)}px;
   width: 100%;
 `;
 
 export const TouchableAreaContainer = styled(Touchable)`
-  min-height: ${getNormalizedVerticalSize(45)}px;
+  min-height: ${getNormalizedVerticalSize(52)}px;
   width: 100%;
   justify-content: flex-end;
 `;
 
 export const ToastBodyContainer = styled.View`
   width: ${SCREEN_WIDTH}px;
+  height: ${getNormalizedVerticalSize(52)}px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-bottom: 1px;
 `;
 
 export const ToastTextContainer = styled.View<ToastTextContainer>`

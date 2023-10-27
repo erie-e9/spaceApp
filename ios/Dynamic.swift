@@ -24,13 +24,13 @@ import Lottie
   }
 
   @objc func play(animationView: LottieAnimationView) {
-    animationView.play(
-      fromProgress: 0.0,
-      toProgress: 1.0,
-      loopMode: LottieLoopMode.loop,
-      completion: { (success) in
-        RNSplashScreen.setAnimationFinished(true)
+        animationView.play(
+          fromProgress: 0.0,
+          toProgress: 1.0,
+          loopMode: LottieLoopMode.loop,
+          completion: { (success) in
+            RNSplashScreen.setAnimationFinished(true)
+          }
+        );
       }
-    );
-  }
 }

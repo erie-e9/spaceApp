@@ -34,10 +34,10 @@ platform :android do
       project_dir: "./android"
     )
 
-    git_commit(
-      path: "android/gradle.properties",
-      message: "Version Bump"
-    )
+    # git_commit(
+    #   path: "android/gradle.properties",
+    #   message: "Version Bump"
+    # )
 
     gradle(
       task: 'bundle',
@@ -51,15 +51,6 @@ platform :android do
         "android.injected.signing.key.password" => key_password,
       }
     )
-
-    appcenter_upload(
-      api_token: "0a6b2f29ddce7fd3e59d8bae1e0948cd5f07b61c",
-      owner_name: "AppSoftLog",
-      owner_type: "organization", # Default is user - set to organization for appcenter organizations
-      app_name: "spaceApp",
-      file: "./android/app/build/outputs/bundle/release/app-release.aab",
-      notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
-    )
   end
   
   desc 'Build the Android APKs.'
@@ -68,15 +59,6 @@ platform :android do
     key_password = prompt(text: "Alias Key Password: ", secure_text: true)
     releaseFilePath = File.join(Dir.pwd, "../android/app", "app_keyname.keystore")
     gradle(task: 'clean', project_dir: './android')
-    gradle(
-      task: "incrementVersionCode",
-      project_dir: "./android"
-    )
-
-    git_commit(
-      path: "android/gradle.properties",
-      message: "Version Bump"
-    )
 
     gradle(
       task: 'assemble',
@@ -89,6 +71,18 @@ platform :android do
         "android.injected.signing.key.alias" => "app_keyalias",
         "android.injected.signing.key.password" => key_password,
       }
+    )
+  end
+
+  desc 'Upload aab to Appcenter.'
+  lane :ua_aab do
+    appcenter_upload(
+      api_token: "0a6b2f29ddce7fd3e59d8bae1e0948cd5f07b61c",
+      owner_name: "AppSoftLog",
+      owner_type: "organization", # Default is user - set to organization for appcenter organizations
+      app_name: "spaceApp",
+      file: "./android/app/build/outputs/bundle/release/app-release.aab",
+      notify_testers: true # Set to false if you don't want to notify testers of your new release (default: `false`)
     )
   end
 end

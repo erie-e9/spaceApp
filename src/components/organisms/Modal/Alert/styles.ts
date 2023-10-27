@@ -34,7 +34,7 @@ export const Wrapper = styled.View<{ width?: number }>`
   shadow-color: #000;
   shadow-opacity: 0.25;
   shadow-radius: 10px;
-  elevation: 5;
+  elevation: 3;
   background-color: ${({ theme: { tokens, mode } }) =>
     mode === 'dark' ? tokens.colors.none : tokens.colors.none};
   shadow-offset: ${getNormalizedVerticalSize(1)}px

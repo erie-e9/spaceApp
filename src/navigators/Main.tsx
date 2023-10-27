@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ApplicationStackParamList } from '@utils/@types/navigation';
-import { ExampleScreen } from '@components/screens';
+import { HomeScreen } from '@components/screens';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
@@ -9,7 +9,7 @@ const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 export const MainNavigator = () => {
   return (
     <Navigator screenOptions={{ headerShown: false }}>
-      <Screen name="Home" component={ExampleScreen} />
+      <Screen name="HomeScreen" component={HomeScreen} />
     </Navigator>
   );
 };

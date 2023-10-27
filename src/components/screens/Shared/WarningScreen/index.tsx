@@ -44,7 +44,7 @@ export const WarningScreen = () => {
   useEffect(() => {
     let timeOut = setTimeout(() => {
       animationRef.current?.play();
-    }, 1000);
+    }, 400);
     return () => {
       clearTimeout(timeOut);
     };
@@ -61,7 +61,7 @@ export const WarningScreen = () => {
             ref={animationRef}
             source={Animations.warning}
             autoPlay={false}
-            renderMode="SOFTWARE"
+            renderMode="AUTOMATIC"
             loop={false}
             resizeMode="contain"
             width={120}

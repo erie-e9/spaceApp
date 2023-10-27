@@ -26,7 +26,7 @@ export const CustomFallbackScreen: React.FC<CustomFallbackScreenProps> = ({
   const { getCopyValue } = useCopy();
 
   return (
-    <InterpolateColorAnimation>
+    <InterpolateColorAnimation isScreen>
       <StatusBar />
       <BodyContainer>
         <RotateAnimation

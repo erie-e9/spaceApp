@@ -90,6 +90,10 @@ const ApplicationNavigator = () => {
                 <Screen name="StartupScreen" component={StartupScreen} />
                 <Screen name="Main" component={MainNavigator} />
                 <Screen name="WarningScreen" component={WarningScreen} />
+                <Screen
+                  name="CustomFallbackScreen"
+                  component={CustomFallbackScreen}
+                />
               </Navigator>
             </GestureHandlerRootView>
             <Toast />

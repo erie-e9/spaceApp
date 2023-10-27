@@ -58,13 +58,14 @@ export const StyledButton = styled(Touchable)<StyledButtonProps>`
     PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 10)}px;
   elevation: 0;
   background-color: ${({ backgroundColor }) => backgroundColor};
+  ${({ disabled }) => disabled && 'opacity: 1'};
   ${({ hasBorder, theme, colorScheme }) =>
     hasBorder &&
     `
   border-width: 1px;
   border-color: ${
     colorScheme === 'light'
-      ? theme.tokens.colors.surfaceL4
+      ? theme.tokens.colors.opposing
       : theme.tokens.colors.switchOutline
   };
   `}

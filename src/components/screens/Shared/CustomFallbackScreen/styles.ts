@@ -5,11 +5,6 @@ import {
   getNormalizedHorizontalSize,
 } from '@utils/functions';
 
-export const StyledScrollView = styled.ScrollView`
-  flex: 0.8;
-  margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
-`;
-
 export const BodyContainer = styled.View`
   flex: 1;
   width: 100%;
@@ -41,4 +36,10 @@ export const ErrorContainer = styled.View`
   padding: ${getNormalizedVerticalSize(10)}px
     ${getNormalizedHorizontalSize(10)}px;
 `;
+
+export const StyledScrollView = styled.ScrollView`
+  flex: 0.8;
+  margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
+`;
+
 export const TryAgainButton = styled(ActionButton)``;

@@ -10,6 +10,7 @@ export const AnimatedBackgroundContainer = styled(Animated.View).attrs({
   height: ${SCREEN_HEIGHT}px;
   justify-content: center;
   align-items: center;
+  z-index: 100;
   background-color: ${({ theme }) =>
-    theme.tokens.colors.backgroundColorDark + '80'};
+    theme.tokens.colors.backgroundColorDark + '60'};
 `;

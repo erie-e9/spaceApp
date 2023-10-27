@@ -29,7 +29,7 @@ const slice = createSlice({
       state,
       { payload: { theme, darkMode } }: AppPreferencesPayload,
     ) => {
-      if (!state.theme) {
+      if (state.theme) {
         if (typeof theme !== 'undefined') {
           state.theme = theme;
         }

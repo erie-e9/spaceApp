@@ -1,6 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useRef } from 'react';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
-import { useSVG } from '@hooks';
+import { useTheme } from '@hooks';
+import { Lottie, LottieViewProps } from '@components/atoms';
 import { BackButtonContainer, BackButtonPressable } from './styles';
 
 interface Props {
@@ -9,18 +10,39 @@ interface Props {
 }
 
 export const BackButton: React.FC<Props> = ({ testID, navigation }) => {
-  const BackButtonIcon = useSVG('BackButton');
+  const animationRef = useRef<LottieViewProps>(null);
+  const { Animations, darkMode } = useTheme();
+
+  const handleOnPress = () => {
+    animationRef.current?.play();
+    navigation.goBack();
+  };
 
   return (
-    <BackButtonContainer>
-      <BackButtonPressable
-        testID={testID}
-        hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
-        onPress={navigation.goBack}
-      >
-        <BackButtonIcon />
-      </BackButtonPressable>
-    </BackButtonContainer>
+    <BackButtonPressable
+      testID={testID}
+      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+      onPress={handleOnPress}
+    >
+      <BackButtonContainer>
+        <Lottie
+          ref={animationRef}
+          source={Animations.backButton}
+          autoPlay={false}
+          renderMode="SOFTWARE"
+          loop={false}
+          resizeMode="contain"
+          width={40}
+          height={40}
+          colorFilters={[
+            {
+              keypath: 'Layer 4',
+              color: darkMode ? '#FFFFFF' : '#000000',
+            },
+          ]}
+        />
+      </BackButtonContainer>
+    </BackButtonPressable>
   );
 };
 

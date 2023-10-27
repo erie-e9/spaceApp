@@ -77,7 +77,7 @@ const CallToActionTemplate: React.FC<Props> = ({
   }, []);
 
   return (
-    <InterpolateColorAnimation>
+    <InterpolateColorAnimation isScreen>
       <StyledContainer testID={testID}>
         <HeaderContainer>
           {title && (
