@@ -1,5 +1,5 @@
 {
-  "WarningScreen": {
+  "Warning": {
     "title": "Levamos a sério a manutenção dos seus dados seguros",
     "description": "Parece que você está usando um dispositivo que pode comprometer a segurança das suas informações privadas. O aplicativo {{appName}} não é compatível com esses tipos de dispositivos.",
     "sub-description": "Recomendamos instalar nosso aplicativo em um dispositivo mais confiável.",

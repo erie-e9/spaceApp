@@ -11,7 +11,7 @@ interface Props {
   navigation: ApplicationScreenProps;
 }
 
-export const StartupScreen: React.FC<Props> = ({ navigation }) => {
+export const Startup: React.FC<Props> = ({ navigation }) => {
   const { checkPhoneIntegrity } = useDeviceSecurity();
   const { appConnected } = useCheckNet();
   const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
@@ -21,7 +21,7 @@ export const StartupScreen: React.FC<Props> = ({ navigation }) => {
   const preInit = async (): Promise<void> => {
     const promises = [
       checkPhoneIntegrity({
-        fallback: () => navigation.replace('WarningScreen'),
+        fallback: () => navigation.replace('Warning'),
       }),
     ];
     const results = await Promise.all(promises);
@@ -48,7 +48,7 @@ export const StartupScreen: React.FC<Props> = ({ navigation }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      saveLanguages(data?.WarningScreen);
+      saveLanguages(data?.Warning);
     } else {
       init();
     }
@@ -56,7 +56,7 @@ export const StartupScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <InterpolateColorAnimation isScreen>
-      <Container testID="StartupScreenID">
+      <Container testID="StartupID">
         <Brand source={Images.logo} />
         <ActivityIndicator size={'small'} />
       </Container>
@@ -64,4 +64,4 @@ export const StartupScreen: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-export default memo(StartupScreen);
+export default memo(Startup);

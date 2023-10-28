@@ -2,7 +2,6 @@ import { api } from '@hooks/api';
 
 export type Language = {
   id: number;
-  WarningScreen: any;
 };
 
 export const userApi = api.injectEndpoints({

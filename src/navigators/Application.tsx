@@ -13,21 +13,17 @@ import {
 import { useFlipper } from '@react-navigation/devtools';
 import ErrorBoundary from 'react-native-error-boundary';
 import { ApplicationStackParamList } from 'types/navigation';
-import { useCopy } from '@services';
+import { useCopy, initAppCheck } from '@services';
 import { useTheme, useToast, useCheckNet } from '@hooks';
 import { darkTheme, lightTheme } from '@theme/themesi';
 import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
 import { Modal, Toast } from '@components/organisms';
 import MainNavigator from './Main';
-import {
-  StartupScreen,
-  WarningScreen,
-  CustomFallbackScreen,
-} from '@components/screens';
+import { Startup, Warning, CustomFallback } from '@components/screens';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
-const ApplicationNavigator = () => {
+const Application = () => {
   const gestureHandlerRootViewStyle = { flex: 1 };
   const { darkMode, NavigationTheme } = useTheme();
   const { appConnected } = useCheckNet();
@@ -43,6 +39,7 @@ const ApplicationNavigator = () => {
   const navigationRef = useNavigationContainerRef();
 
   useEffect(() => {
+    initAppCheck(true);
     let timeOut = setTimeout(() => {
       SplashScreen.hide();
     }, 1000);
@@ -72,7 +69,7 @@ const ApplicationNavigator = () => {
       <SafeAreaViewProvider>
         <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
           <ErrorBoundary
-            FallbackComponent={CustomFallbackScreen}
+            FallbackComponent={CustomFallback}
             onError={handleJSErrorForErrorBoundary}
           >
             <GestureHandlerRootView style={gestureHandlerRootViewStyle}>
@@ -87,12 +84,12 @@ const ApplicationNavigator = () => {
                   ...TransitionPresets.ScaleFromCenterAndroid,
                 }}
               >
-                <Screen name="StartupScreen" component={StartupScreen} />
+                <Screen name="Startup" component={Startup} />
                 <Screen name="Main" component={MainNavigator} />
-                <Screen name="WarningScreen" component={WarningScreen} />
+                <Screen name="Warning" component={Warning} />
                 <Screen
-                  name="CustomFallbackScreen"
-                  component={CustomFallbackScreen}
+                  name="CustomFallback"
+                  component={CustomFallback as any}
                 />
               </Navigator>
             </GestureHandlerRootView>
@@ -104,4 +101,4 @@ const ApplicationNavigator = () => {
   );
 };
 
-export default ApplicationNavigator;
+export default Application;

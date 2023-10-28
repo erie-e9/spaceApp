@@ -1,9 +1,9 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { ApplicationScreenProps } from 'types/navigation';
 import { AppPreferencesState } from '@slices/types/appPreferences';
 import { changeTheme, setDefaultTheme } from '@slices/shared';
-import { useTheme, useSVG, useToast, useModal, useAppCheck } from '@hooks';
+import { useTheme, useSVG, useToast, useModal } from '@hooks';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { useCopy } from '@services';
 import * as resources from '@services/translations/resources';
@@ -43,36 +43,34 @@ interface Props {
   navigation: ApplicationScreenProps;
 }
 
-export const HomeScreen: React.FC<Props> = ({ navigation }) => {
+export const Home: React.FC<Props> = ({ navigation }) => {
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
-  const { getAppCheckToken } = useAppCheck();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
-  const QRCodeNavigatorIcon = useSVG('QRCodeNavigator');
+  const QRCodeIconIcon = useSVG('QRCodeIcon');
   const AlertTriangleIcon = useSVG('AlertTriangle');
   const LanguageIcon = useSVG('Language');
   const SwitchThemeIcon = useSVG('SwitchTheme');
   const { Images, darkMode: isDarkMode } = useTheme();
   const dispatch = useDispatch();
 
-  const appPresentation = (): void => {
+  const appPresentation = useCallback((): void => {
     useToast.success({
       message: getCopyValue('home:helloUser'),
       duration: 3000,
       vibration: true,
     });
     dispatch(setDefaultTheme({ theme: 'default', darkMode: null }));
-  };
+  }, []);
 
-  const onChangeTheme = async ({
-    theme,
-    darkMode,
-  }: Partial<AppPreferencesState>): Promise<any> => {
-    dispatch(changeTheme({ theme, darkMode }));
-  };
+  const onChangeTheme = useCallback(
+    ({ theme, darkMode }: Partial<AppPreferencesState>): void => {
+      dispatch(changeTheme({ theme, darkMode }));
+    },
+    [],
+  );
 
-  const onChangeLanguage = (): void => {
-    getAppCheckToken();
+  const onChangeLanguage = useCallback((): void => {
     showModal({
       type: 'bottomsheet',
       title: 'languages:switchLanguage.title',
@@ -82,14 +80,14 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         predefinedList: 'languages',
       },
     });
-  };
+  }, []);
 
   return (
     <InterpolateColorAnimation isScreen>
       <HeaderContainer>
         <NavigateButtonFallbackContainer>
           <NavigateButtonFallback
-            onPress={() => navigation.navigate('CustomFallbackScreen')}
+            onPress={() => navigation.navigate('CustomFallback')}
           >
             <RotateAnimation
               duration={3000}
@@ -218,7 +216,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
         </ScaleAnimation>
       </HeaderContainer>
       <BodyContainer>
-        <StyledScrollView testID="HomeScreenID">
+        <StyledScrollView testID="HomeID">
           <ContentContainer>
             <TitleContainer>
               <StyledTypography
@@ -233,7 +231,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
               type="Headline6"
               font="primary"
               color="surfaceL1"
-              textAlign="justify"
+              textAlign="left"
             >
               {getCopyValue('welcome:subtitle')}
             </StyledTypography>
@@ -257,7 +255,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
               type="Icon"
               buttonTheme="Primary"
               onPress={() => appPresentation()}
-              Icon={<QRCodeNavigatorIcon />}
+              Icon={<QRCodeIconIcon />}
               featureFlags={['triggerAlert']}
             />
           </RenderWhen>
@@ -265,7 +263,7 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
             <FeatureButton
               type="Icon"
               buttonTheme="Primary"
-              onPress={() => navigation.navigate('WarningScreen')}
+              onPress={() => navigation.navigate('Warning')}
               Icon={<AlertTriangleIcon />}
               featureFlags={['warning']}
             />
@@ -298,4 +296,4 @@ export const HomeScreen: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-export default memo(HomeScreen);
+export default memo(Home);

@@ -1,10 +1,7 @@
-import React, { memo } from 'react';
 import { SvgProps } from 'react-native-svg';
 import { useTheme } from 'styled-components';
-import QRCodeIcon from '@assets/light/svg/QRCodeIcon.svg';
-import QRCodeIconDark from '@assets/dark/svg/QRCodeIcon.svg';
-import QRCodeNavigator from '@assets/light/svg/QRCodeNavigator.svg';
-import QRCodeNavigatorDark from '@assets/dark/svg/QRCodeNavigator.svg';
+import QRCodeIcon from '@assets/light/svg/qrcode-icon.svg';
+import QRCodeIconDark from '@assets/dark/svg/qrcode-icon.svg';
 import AlertTriangle from '@assets/light/svg/alert-triangle.svg';
 import AlertTriangleDark from '@assets/dark/svg/alert-triangle.svg';
 import Language from '@assets/light/svg/language.svg';
@@ -28,10 +25,6 @@ const svgLibrary: SvgObject = {
   QRCodeIcon: {
     light: QRCodeIcon,
     dark: QRCodeIconDark,
-  },
-  QRCodeNavigator: {
-    light: QRCodeNavigator,
-    dark: QRCodeNavigatorDark,
   },
   AlertTriangle: {
     light: AlertTriangle,
@@ -60,4 +53,4 @@ export const useSVG = (svgName: string): React.FC<SvgProps> => {
   return svgLibrary[svgName][colorScheme];
 };
 
-export default memo(useSVG);
+export default useSVG;

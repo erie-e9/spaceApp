@@ -1,7 +1,6 @@
 {
   "appName": {
-    "full": "spaceApp",
-    "initials": "RNB"
+    "full": "spaceApp"
   },
   "messages": {
     "noConnection": "Connection is not established. Trying again.",
@@ -18,7 +17,8 @@
         "title": "Whoops! Something went wrong",
         "description": "Sorry, an error occurred",
         "button": "Try again",
-        "detailsLabel": "Error details: "
+        "detailsLabel": "Error details: ",
+        "detailsLabelDefaultMessage": "This is not an error, this screen will allow you to detect and view errors in the app, displaying a friendly message instead of the default white screen."
       }
     }
   }

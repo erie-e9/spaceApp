@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useCopy } from '@services';
 import { useTheme, useToast, useModal } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
-import { CallToActionTemplate } from '@components/templates';
+import { CallToAction } from '@components/templates';
 import {
   BodyContainer,
   DescriptionContainer,
@@ -10,7 +10,7 @@ import {
   TitleText,
 } from './styles';
 
-export const WarningScreen = () => {
+export const Warning = () => {
   const animationRef = useRef<LottieViewProps>(null);
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
@@ -21,9 +21,8 @@ export const WarningScreen = () => {
   const handlePrimaryButton = useCallback(async (): Promise<void> => {
     showModal({
       type: 'alert',
-      title: 'security:WarningScreen.actions.primaryButton.modal.title',
-      description:
-        'security:WarningScreen.actions.primaryButton.modal.description',
+      title: 'security:Warning.actions.primaryButton.modal.title',
+      description: 'security:Warning.actions.primaryButton.modal.description',
       legacyOptions: { typeError: 'error' },
     });
     setSecondaryButtonLoading(false);
@@ -34,9 +33,7 @@ export const WarningScreen = () => {
     await setPrimaryButtonLoading(false);
     setSecondaryButtonLoading(!secondaryButtonLoading);
     useToast.info({
-      message: getCopyValue(
-        'security:WarningScreen.actions.secondaryButton.message',
-      ),
+      message: getCopyValue('security:Warning.actions.secondaryButton.message'),
       duration: 3000,
     });
   }, []);
@@ -51,12 +48,12 @@ export const WarningScreen = () => {
   }, []);
 
   return (
-    <CallToActionTemplate
-      title={getCopyValue('security:WarningScreen.title')}
+    <CallToAction
+      title={getCopyValue('security:Warning.title')}
       numberOfLinesTitle={3}
       backButton
       body={
-        <BodyContainer testID="WarningScreenID">
+        <BodyContainer testID="WarningID">
           <Lottie
             ref={animationRef}
             source={Animations.warning}
@@ -74,7 +71,7 @@ export const WarningScreen = () => {
               color="surfaceL1"
               textAlign="justify"
             >
-              {getCopyValue('security:WarningScreen.description', {
+              {getCopyValue('security:Warning.description', {
                 appName: process.env.APP_NAME,
               })}
             </TitleText>
@@ -87,26 +84,22 @@ export const WarningScreen = () => {
               textAlign="center"
               weight="bold"
             >
-              {getCopyValue('security:WarningScreen.sub-description')}
+              {getCopyValue('security:Warning.sub-description')}
             </TitleText>
           </SubDescriptionContainer>
         </BodyContainer>
       }
       primaryButton={{
-        title: getCopyValue(
-          'security:WarningScreen.actions.primaryButton.title',
-        ),
+        title: getCopyValue('security:Warning.actions.primaryButton.title'),
         onPress: handlePrimaryButton,
-        testID: 'WarningScreen.primaryButton',
+        testID: 'Warning.primaryButton',
         disabled: primaryButtonLoading,
         loading: primaryButtonLoading,
       }}
       secondaryButton={{
-        title: getCopyValue(
-          'security:WarningScreen.actions.secondaryButton.title',
-        ),
+        title: getCopyValue('security:Warning.actions.secondaryButton.title'),
         onPress: handleSecondaryButton,
-        testID: 'WarningScreen.secondaryButtonLoading',
+        testID: 'Warning.secondaryButtonLoading',
         disabled: secondaryButtonLoading,
         loading: secondaryButtonLoading,
       }}
@@ -114,4 +107,4 @@ export const WarningScreen = () => {
   );
 };
 
-export default memo(WarningScreen);
+export default memo(Warning);

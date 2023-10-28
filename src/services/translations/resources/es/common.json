@@ -1,7 +1,6 @@
 {
   "appName": {
-    "full": "spaceApp",
-    "initials": "RNB"
+    "full": "spaceApp"
   },
   "messages": {
     "noConnection": "Sin conexión a internet. Intentando de nuevo.",
@@ -18,7 +17,8 @@
         "title": "¡Ups! Algo salió mal",
         "description": "Lo sentimos, ocurrió un error",
         "button": "Intentar de nuevo",
-        "detailsLabel": "Detalles del error: "
+        "detailsLabel": "Detalles del error: ",
+        "detailsLabelDefaultMessage": "Esto no es un error, esta pantalla te permitirá detectar y visualizar errores en la app, mostrando un mensaje amigable en lugar de la pantalla blanca predeterminada."
       }
     }
   }

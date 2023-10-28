@@ -1,4 +1,10 @@
 import React from 'react';
+import { useCopy } from '@services';
+import {
+  InterpolateColorAnimation,
+  RotateAnimation,
+} from '@components/animated';
+import { FallbackAnimation, StatusBar } from '@components/atoms';
 import {
   StyledScrollView,
   BodyContainer,
@@ -7,24 +13,20 @@ import {
   ErrorContainer,
   TryAgainButton,
 } from './styles';
-import { useCopy } from '@services';
-import {
-  InterpolateColorAnimation,
-  RotateAnimation,
-} from '@components/animated';
-import { RenderWhen, FallbackAnimation, StatusBar } from '@components/atoms';
 
-export type CustomFallbackScreenProps = {
+export type CustomFallbackProps = {
   error: Error;
   resetError: () => void;
 };
 
-export const CustomFallbackScreen: React.FC<CustomFallbackScreenProps> = ({
+export const CustomFallback: React.FC<CustomFallbackProps> = ({
   error,
   resetError,
 }) => {
   const { getCopyValue } = useCopy();
-
+  const mockedErrorMessage =
+    error ||
+    'common:errors.boundaries.fallbackScreen.detailsLabelDefaultMessage';
   return (
     <InterpolateColorAnimation isScreen>
       <StatusBar />
@@ -65,34 +67,32 @@ export const CustomFallbackScreen: React.FC<CustomFallbackScreenProps> = ({
           buttonTheme="Primary"
           onPress={resetError}
         />
-        <RenderWhen isTrue={!!error}>
-          <StyledScrollView testID="CustomFallbackScreenID">
-            <ErrorContainer>
+        <StyledScrollView testID="CustomFallbackID">
+          <ErrorContainer>
+            <StyledText
+              type="Subtitle2"
+              font="primary"
+              color="surfaceL1"
+              textAlign="left"
+              weight="bold"
+            >
+              {getCopyValue(
+                'common:errors.boundaries.fallbackScreen.detailsLabel',
+              )}
               <StyledText
                 type="Subtitle2"
                 font="primary"
                 color="surfaceL1"
-                textAlign="left"
-                weight="bold"
+                textAlign="justify"
               >
-                {getCopyValue(
-                  'common:errors.boundaries.fallbackScreen.detailsLabel',
-                )}
-                <StyledText
-                  type="Subtitle2"
-                  font="primary"
-                  color="surfaceL1"
-                  textAlign="justify"
-                >
-                  {String(error)}
-                </StyledText>
+                {getCopyValue(String(error || mockedErrorMessage))}
               </StyledText>
-            </ErrorContainer>
-          </StyledScrollView>
-        </RenderWhen>
+            </StyledText>
+          </ErrorContainer>
+        </StyledScrollView>
       </BodyContainer>
     </InterpolateColorAnimation>
   );
 };
 
-export default CustomFallbackScreen;
+export default CustomFallback;

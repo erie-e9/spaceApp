@@ -3,7 +3,7 @@ import {
   RemoteConfigFeatures,
 } from '@slices/types/remoteConfigFeatures';
 
-export const getFeatureStatus = (
+export const useGetFeatureStatus = (
   featureKey: keyof RemoteConfigFeatures,
   features?: RemoteConfigFeatures,
 ): string => {

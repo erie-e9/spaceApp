@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { PressableProps } from 'react-native';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
-import { useAppAlerts, getFeatureStatus as getStatus } from '@hooks';
+import { useAppAlerts, useGetFeatureStatus as getStatus } from '@hooks';
 import { RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
 import { StyledTouchable } from './styles';
 

@@ -43,7 +43,7 @@ interface Props {
   color?: string;
   backButton?: boolean;
 }
-const CallToActionTemplate: React.FC<Props> = ({
+const CallToAction: React.FC<Props> = ({
   testID,
   title,
   adjustsFontTitle,
@@ -151,8 +151,8 @@ const CallToActionTemplate: React.FC<Props> = ({
   );
 };
 
-CallToActionTemplate.defaultProps = {
-  testID: 'CallToActionTemplateID',
+CallToAction.defaultProps = {
+  testID: 'CallToActionID',
   title: undefined,
   adjustsFontTitle: false,
   numberOfLinesTitle: 1,
@@ -165,4 +165,4 @@ CallToActionTemplate.defaultProps = {
   backButton: false,
 };
 
-export default memo(CallToActionTemplate);
+export default memo(CallToAction);

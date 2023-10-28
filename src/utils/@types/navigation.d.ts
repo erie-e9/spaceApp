@@ -2,17 +2,17 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 export type MainParamsList = {
-  HomeScreen: undefined;
+  Home: undefined;
 };
 
 export type ApplicationStackParamList = {
-  StartupScreen: undefined;
+  Startup: undefined;
   Main: NavigatorScreenParams<MainParamsList>;
-  WarningScreen: undefined;
-  HomeScreen: undefined;
-  CustomFallbackScreen: {
-    testID?: string;
-    size?: number;
+  Warning: undefined;
+  Home: undefined;
+  CustomFallback: {
+    error: Error;
+    resetError: () => void;
   };
 };
 

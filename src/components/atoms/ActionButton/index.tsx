@@ -110,14 +110,10 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     const bgColorLight =
       disabled || asyncDisabled ? bgDisabledColors : bgColorLightScondary;
 
-    const bgColorDarktSecondaryDisabled = disabled
-      ? theme.tokens.colors.primaryD1
-      : theme.tokens.colors.none;
-
     const bgColorDarkSecondary =
       !disabled && buttonTheme === 'Secondary'
         ? 'transparent'
-        : bgColorDarktSecondaryDisabled;
+        : theme.tokens.colors.primaryD1;
 
     const bgColorDark =
       disabled || asyncDisabled ? bgDisabledColors : bgColorDarkSecondary;
@@ -203,6 +199,12 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     }
   }, [onPress, asyncDisabled]);
 
+  const buttonAnimation = useAnimatedStyle(() => {
+    return {
+      width: type === 'Icon' ? 50 : width.value,
+    };
+  }, []);
+
   useEffect(() => {
     if (asyncDisabled && onPressAsync) {
       onPressAsync()
@@ -221,12 +223,6 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       });
     }
   }, [loading]);
-
-  const buttonAnimation = useAnimatedStyle(() => {
-    return {
-      width: type === 'Icon' ? 50 : width.value,
-    };
-  }, []);
 
   return (
     <AnimatedActionButton testID={testID} style={[buttonAnimation]}>

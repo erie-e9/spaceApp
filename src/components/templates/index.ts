@@ -1,1 +1,1 @@
-export { default as CallToActionTemplate } from '@components/templates/CallToActionTemplate';
+export { default as CallToAction } from '@components/templates/CallToAction';

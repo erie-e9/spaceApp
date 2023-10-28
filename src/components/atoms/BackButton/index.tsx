@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
@@ -12,11 +12,11 @@ interface Props {
 export const BackButton: React.FC<Props> = ({ testID, navigation }) => {
   const animationRef = useRef<LottieViewProps>(null);
   const { Animations, darkMode } = useTheme();
-
-  const handleOnPress = () => {
+  const handleOnPress = useCallback(() => {
     animationRef.current?.play();
+    navigation.removeListener;
     navigation.goBack();
-  };
+  }, []);
 
   return (
     <BackButtonPressable

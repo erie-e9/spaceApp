@@ -1,4 +1,4 @@
-export { default as HomeScreen } from '@components/screens/HomeScreen';
-export { default as StartupScreen } from '@components/screens/StartupScreen';
-export { default as WarningScreen } from '@components/screens/Shared/WarningScreen';
-export { default as CustomFallbackScreen } from '@components/screens/Shared/CustomFallbackScreen';
+export { default as Home } from '@components/screens/Home';
+export { default as Startup } from '@components/screens/Startup';
+export { default as Warning } from '@components/screens/Shared/Warning';
+export { default as CustomFallback } from '@components/screens/Shared/CustomFallback';

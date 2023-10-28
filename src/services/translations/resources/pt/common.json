@@ -1,7 +1,6 @@
 {
   "appName": {
-    "full": "spaceApp",
-    "initials": "RNB"
+    "full": "spaceApp"
   },
   "messages": {
     "noConnection": "A conexão não foi estabelecida. Tentando novamente.",
@@ -18,7 +17,8 @@
         "title": "Opa! Algo deu errado",
         "description": "Desculpe, ocorreu um erro",
         "button": "Tente novamente",
-        "detailsLabel": "Detalhes do erro: "
+        "detailsLabel": "Detalhes do erro: ",
+        "detailsLabelDefaultMessage": "Isso não é um erro, esta tela permitirá detectar e visualizar erros no aplicativo, exibindo uma mensagem amigável em vez da tela branca padrão."
       }
     }
   }

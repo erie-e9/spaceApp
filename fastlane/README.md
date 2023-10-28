@@ -39,6 +39,14 @@ Build aab package
 
 Build the Android APKs.
 
+### android ua_aab
+
+```sh
+[bundle exec] fastlane android ua_aab
+```
+
+Upload aab to Appcenter.
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.

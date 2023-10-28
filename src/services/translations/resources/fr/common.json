@@ -1,7 +1,6 @@
 {
   "appName": {
-    "full": "spaceApp",
-    "initials": "RNB"
+    "full": "spaceApp"
   },
   "messages": {
     "noConnection": "La connexion n'est pas établie. J'essaye à nouveau.",
@@ -18,7 +17,8 @@
         "title": "Oups! Quelque chose s'est mal passé",
         "description": "Désolé... Une erreur est survenue",
         "button": "Essayer à nouveau",
-        "detailsLabel": "Détails de l'erreur: "
+        "detailsLabel": "Détails de l'erreur: ",
+        "detailsLabelDefaultMessage": "Ce n'est pas une erreur, cet écran vous permettra de détecter et de visualiser les erreurs dans l'application, en affichant un message convivial au lieu de l'écran blanc par défaut."
       }
     }
   }
