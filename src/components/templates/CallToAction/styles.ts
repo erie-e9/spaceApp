@@ -4,7 +4,8 @@ import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { Typography, ActionButton } from '@components/atoms';
+import { Typography } from '@components/atoms';
+import { ActionButton } from '@components/molecules';
 
 export const StyledContainer = styled.View`
   flex: 1;
@@ -32,12 +33,12 @@ export const BodyContainer = styled.View`
 `;
 
 export const ButtonContainer = styled.View`
-  flex: 0.2;
+  height: auto;
   z-index: 200;
   justify-content: flex-end;
 `;
 
-export const StyledActionButton = styled(ActionButton)<{ isGreyed?: boolean }>`
+export const StyledButton = styled(ActionButton)<{ isGreyed?: boolean }>`
   margin: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(10)}px;
   opacity: ${({ isGreyed }) => (isGreyed ? 0.34 : 1)};

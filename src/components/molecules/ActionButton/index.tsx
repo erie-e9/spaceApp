@@ -6,7 +6,8 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { SCREEN_WIDTH } from '@utils/functions';
+import { useCopy } from '@services';
+import { screen_width } from '@utils/functions';
 import { LoaderThreeDots } from '@components/atoms';
 import {
   AnimatedActionButton,
@@ -19,6 +20,7 @@ import {
 export interface ActionButtonProps {
   testID?: string;
   title?: string;
+  subtitle?: string;
   loading?: boolean;
   textColor?: string;
   numberOfLines?: number;
@@ -32,9 +34,7 @@ export interface ActionButtonProps {
   disabled?: boolean;
   grouped?: boolean;
   fontWeight?: CSS.StandardProperties['fontWeight'];
-  fontSize?: CSS.StandardProperties['fontSize'];
   lineHeight?: CSS.StandardProperties['lineHeight'];
-  fullWidth?: boolean;
   Icon?: JSX.Element;
   buttonType?: string;
   textTransform?: CSS.StandardProperties['textTransform'] | undefined;
@@ -45,6 +45,7 @@ export interface ActionButtonProps {
 const ActionButton: React.FC<ActionButtonProps> = ({
   testID,
   title,
+  subtitle,
   textColor,
   numberOfLines,
   backgroundColor,
@@ -57,19 +58,18 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   style,
   grouped,
   fontWeight,
-  fontSize,
   disabledColor,
   Icon,
-  fullWidth = true,
   buttonType,
   buttonTheme,
   textTransform,
   featureFlags = [],
   ...rest
 }) => {
+  const { getCopyValue } = useCopy();
   const theme = useTheme();
   const colorScheme = theme.mode;
-  const width = useSharedValue(SCREEN_WIDTH - 50);
+  const width = useSharedValue(screen_width - 50);
   const [asyncDisabled, setAsyncDisabled] = useState(false);
 
   const getButtonTheme = (): {
@@ -82,19 +82,14 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     let hasBorder = false;
     const typeButton = type ?? 'Button';
 
-    const buttomThemeSecondary =
-      colorScheme === 'light'
-        ? theme.tokens.colors.opposing
-        : theme.tokens.colors.opposing;
-
     const disableButtonTextColor =
       buttonTheme === 'Secondary'
-        ? buttomThemeSecondary
+        ? theme.tokens.colors.opposing
         : theme.tokens.colors.disabledButtonTextColor;
 
     const notDisableButtonTextColor =
       buttonTheme === 'Secondary'
-        ? buttomThemeSecondary
+        ? theme.tokens.colors.opposing
         : theme.tokens.colors.none;
 
     const bgColorLightScondary =
@@ -130,24 +125,19 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       case 'Text':
         hasBorder = false;
         if (buttonTheme === 'Secondary') {
-          txtColor =
-            buttonTheme === 'Secondary'
-              ? theme.tokens.colors.surfaceL4
-              : theme.tokens.colors.primaryD1;
-          bgColor = 'transparent';
+          txtColor = theme.tokens.colors.opposing;
         } else if (buttonTheme === 'Dark') {
           txtColor =
             buttonTheme === 'Dark'
               ? theme.tokens.colors.secondaryL5
               : theme.tokens.colors.primaryD1;
-          bgColor = 'transparent';
         } else {
           txtColor =
             buttonTheme === 'Primary'
               ? theme.tokens.colors.surfaceL4
               : theme.tokens.colors.primaryD1;
-          bgColor = theme.tokens.colors.none;
         }
+        bgColor = 'transparent';
         break;
       case 'Icon':
         hasBorder = true;
@@ -217,7 +207,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
     if (loading) {
       width.value = withSpring(50, { stiffness: 100, damping: 15 });
     } else {
-      width.value = withSpring(SCREEN_WIDTH - 50, {
+      width.value = withSpring(screen_width - 50, {
         stiffness: 100,
         damping: 15,
       });
@@ -253,20 +243,31 @@ const ActionButton: React.FC<ActionButtonProps> = ({
           </LoadingContainer>
         )}
         {!loading && Icon && <IconContainer>{Icon}</IconContainer>}
-        {!loading && !asyncDisabled && (
-          <StyledText
-            fontWeight={fontWeight}
-            color={textColor || btnTheme.txtColor}
-            fontSize={fontSize}
-            fullWidth={fullWidth}
-            disabled={disabled || asyncDisabled}
-            disabledColor={disabledColor}
-            buttonType={buttonType}
-            textTransform={textTransform}
-            numberOfLines={numberOfLines}
-          >
-            {title}
-          </StyledText>
+        {!loading && !asyncDisabled && title && (
+          <>
+            <StyledText
+              testID="actionbutton-title"
+              fontWeight={fontWeight}
+              color={textColor || btnTheme.txtColor}
+              type="Body2"
+              disabled={disabled || asyncDisabled}
+              disabledColor={disabledColor}
+              buttonType={buttonType}
+              textTransform={textTransform}
+              numberOfLines={numberOfLines}
+            >
+              {getCopyValue(title)}
+            </StyledText>
+            {!!subtitle && (
+              <StyledText
+                testID="actionbutton-subtitle"
+                type="Subtitle2"
+                color={textColor || btnTheme.txtColor}
+              >
+                {getCopyValue(subtitle)}
+              </StyledText>
+            )}
+          </>
         )}
       </StyledButton>
     </AnimatedActionButton>
@@ -275,7 +276,8 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
 ActionButton.defaultProps = {
   testID: 'ActionButtonID',
-  title: '',
+  title: undefined,
+  subtitle: undefined,
   textColor: '',
   numberOfLines: 1,
   textTransform: undefined,
@@ -288,10 +290,8 @@ ActionButton.defaultProps = {
   loading: false,
   disabled: false,
   grouped: false,
-  fontSize: undefined,
   fontWeight: 'normal',
   lineHeight: 'normal',
-  fullWidth: true,
   buttonType: undefined,
   backgroundColor: '',
   Icon: undefined,

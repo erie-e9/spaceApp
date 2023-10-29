@@ -1,7 +1,4 @@
 export type { LottieViewProps } from '@components/atoms/Lottie';
-export { default as ActionButton } from '@components/atoms/ActionButton';
-export { default as BackButton } from '@components/atoms/BackButton';
-export { default as CloseButton } from '@components/atoms/CloseButton';
 export { default as LoaderThreeDots } from '@components/atoms/LoaderThreeDots';
 export { default as Lottie } from '@components/atoms/Lottie';
 export { default as RenderWhen } from '@components/atoms/RenderWhen';

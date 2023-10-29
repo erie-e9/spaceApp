@@ -5,7 +5,8 @@ import {
   getNormalizedHorizontalSize,
 } from '@utils/functions';
 import { InterpolateColorAnimation } from '@components/animated';
-import { ActionButton, Touchable, Typography } from '@components/atoms';
+import { Touchable, Typography } from '@components/atoms';
+import { ActionButton } from '@components/molecules';
 
 export const StyledScrollView = styled.ScrollView`
   flex: 1;
@@ -17,8 +18,8 @@ export const NavigateButtonFallbackContainer = styled.View`
   height: 20px;
   width: 20px;
   z-index: 100;
-  top: ${getNormalizedVerticalSize(0)}px;
-  right: ${getNormalizedHorizontalSize(0)}px;
+  top: ${getNormalizedVerticalSize(40)}px;
+  right: ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const NavigateButtonFallback = styled(Touchable)``;

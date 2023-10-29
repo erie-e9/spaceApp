@@ -3,10 +3,10 @@ import { Dimensions, PixelRatio, Platform } from 'react-native';
 const fontScale = PixelRatio.getFontScale();
 export const responsiveFontSize = (size: number) => size / fontScale;
 
-const { height: SCREEN_HEIGHT, width: SCREEN_WIDTH } = Dimensions.get('screen');
-export { SCREEN_HEIGHT, SCREEN_WIDTH };
-const scaleVertical = SCREEN_HEIGHT / 812;
-const scale = SCREEN_WIDTH / 375;
+const { height: screen_height, width: screen_width } = Dimensions.get('screen');
+export { screen_height, screen_width };
+const scaleVertical = screen_height / 812;
+const scale = screen_width / 375;
 
 export const getNormalizedVerticalSize = (size: number) => {
   const newSize = size * scaleVertical;

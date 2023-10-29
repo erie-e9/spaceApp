@@ -17,7 +17,7 @@
     "debugger": "open 'rndebugger://set-debugger-loc?host=localhost&port=8081'",
     "androidbuild": "react-native run-android --variant=release --verbose",
     "android": "rm -rf node_modules/ && yarn && cd android && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native start --reset-cache",
-    "ios": "rm -rf node_modules/ && yarn && cd ios && rm -rf Pods/ build/ Podfile.lock && bundle install && pod install --repo-update && cd .. && npx react-native start --reset-cache",
+    "ios": "rm -rf node_modules/ && yarn && cd ios && rm -rf Pods/ build/ Podfile.lock && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
     "a": "yarn && cd android && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native start --reset-cache",
     "i": "yarn && cd ios && bundle install && RCT_NEW_ARCH_ENABLED=1 bundle exec pod install --repo-update && cd .. && npx react-native start --reset-cache",
     "aabi": "cd android && adb uninstall com.spaceApp && cd app && rm -rf .cxx && cd .. && ./gradlew clean && ./gradlew --stop && cd .. && npx react-native run-android --active-arch-only"
@@ -37,7 +37,7 @@
     "jail-monkey": "^2.8.0",
     "lodash": "^4.17.21",
     "lottie-ios": "^4.3.3",
-    "lottie-react-native": "^6.3.1",
+    "lottie-react-native": "^6.4.0",
     "react": "^18.2.0",
     "react-i18next": "^13.3.1",
     "react-native": "^0.72.6",

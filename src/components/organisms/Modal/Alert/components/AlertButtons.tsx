@@ -39,7 +39,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
 }) => {
   const isDarkMode = theme.mode === 'dark';
   const handlersPresent = handlers && handlers[0];
-  const defaultSecondButtonColor = isDarkMode ? 'surfaceL5' : 'darkBlueD1';
+  const defaultSecondButtonColor = isDarkMode ? 'surfaceL5' : 'surfaceL1';
 
   const multipleOptionsGenerator = (
     handleCloseFn: () => void,
@@ -66,7 +66,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
       }
       return (
         <TypographyStyled
-          color={isDarkMode ? 'secondaryD5' : 'darkBlueD1'}
+          color={isDarkMode ? 'secondaryD5' : 'surfaceL1'}
           type="Subtitle1"
           fontSize={18}
           weight={item.fontWeight}
@@ -137,7 +137,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
                 textColor={theme.colors.opposing}
                 backgroundColor={
                   isDarkMode
-                    ? theme.tokens.colors.darkBlueD2
+                    ? theme.tokens.colors.surfaceL1
                     : theme.tokens.colors.none
                 }
                 key={`otp${0 + i}`}

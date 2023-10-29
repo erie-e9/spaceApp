@@ -16,10 +16,10 @@ import {
   withSpring,
 } from 'react-native-reanimated';
 import { ModalPayload } from '@slices/types/modal';
-import { SCREEN_HEIGHT } from '@utils/functions';
+import { screen_height } from '@utils/functions';
 import { useNativeActions, useLanguage } from '@hooks';
 import { hideModal } from '@slices/shared/modal';
-import { CloseButton } from '@components/atoms';
+import { CloseButton } from '@components/molecules';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
 import ModalItem from '@components/organisms/Modal/ModalItem';
 import AnimatedBackground from '@components/organisms/Modal/AnimatedBackground';
@@ -31,7 +31,7 @@ import {
   FlatList,
 } from './styles';
 
-const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 80;
+const MAX_TRANSLATE_Y = -screen_height + 80;
 
 export type BottomSheetRefProps = {
   scrollTo: (destination: number) => void;
@@ -96,9 +96,9 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
         }
       })
       .onEnd(() => {
-        if (translateY.value > -SCREEN_HEIGHT / 5) {
+        if (translateY.value > -screen_height / 5) {
           runOnJS(handleClose)();
-        } else if (translateY.value < -SCREEN_HEIGHT / 1.5) {
+        } else if (translateY.value < -screen_height / 1.5) {
           scrollTo(MAX_TRANSLATE_Y);
         }
       });
@@ -120,11 +120,11 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
     useNativeBackButton({ callback: handleClose });
 
     const bottomSheetSizeHandler = () => {
-      if (!active.value) scrollTo(-SCREEN_HEIGHT / 3);
-      if (active.value && translateY.value < -SCREEN_HEIGHT / 3) {
-        scrollTo(-SCREEN_HEIGHT / 3);
+      if (!active.value) scrollTo(-screen_height / 3);
+      if (active.value && translateY.value < -screen_height / 3) {
+        scrollTo(-screen_height / 3);
       }
-      if (list && active.value && translateY.value >= -SCREEN_HEIGHT / 3) {
+      if (list && active.value && translateY.value >= -screen_height / 3) {
         scrollTo(MAX_TRANSLATE_Y);
       }
     };

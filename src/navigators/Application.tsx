@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  TransitionPresets,
-  createStackNavigator,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import SplashScreen from 'react-native-lottie-splash-screen';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -16,10 +13,11 @@ import { ApplicationStackParamList } from 'types/navigation';
 import { useCopy, initAppCheck } from '@services';
 import { useTheme, useToast, useCheckNet } from '@hooks';
 import { darkTheme, lightTheme } from '@theme/themesi';
+import SharedNavigator from './Shared';
 import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
-import { Modal, Toast } from '@components/organisms';
-import MainNavigator from './Main';
-import { Startup, Warning, CustomFallback } from '@components/screens';
+import { Toast } from '@components/molecules';
+import { Modal } from '@components/organisms';
+import { CustomFallback } from '@components/screens/Shared';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
@@ -78,19 +76,9 @@ const Application = () => {
               <Navigator
                 screenOptions={{
                   headerShown: false,
-                  freezeOnBlur: true,
-                  headerMode: 'screen',
-                  // SlideFromRightIOS
-                  ...TransitionPresets.ScaleFromCenterAndroid,
                 }}
               >
-                <Screen name="Startup" component={Startup} />
-                <Screen name="Main" component={MainNavigator} />
-                <Screen name="Warning" component={Warning} />
-                <Screen
-                  name="CustomFallback"
-                  component={CustomFallback as any}
-                />
+                <Screen name="Shared" component={SharedNavigator} />
               </Navigator>
             </GestureHandlerRootView>
             <Toast />

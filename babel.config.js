@@ -26,6 +26,7 @@ module.exports = {
         alias: {
           root: ['./src'],
           '@hooks': './src/hooks',
+          '@navigators': './src/navigators',
           '@components': './src/components',
           '@redux': './src/redux',
           '@store': './src/redux/store',

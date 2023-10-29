@@ -2,7 +2,6 @@ import { PixelRatio } from 'react-native';
 import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import type * as CSS from 'csstype';
-import { toInteger } from 'lodash';
 import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
@@ -17,6 +16,7 @@ export interface StyledButtonProps {
   disabled?: boolean;
   hasBorder?: boolean;
   colorScheme: string;
+  type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
 }
 
 export interface StyleButtonTextProps {
@@ -24,11 +24,9 @@ export interface StyleButtonTextProps {
   textTransform?: CSS.StandardProperties['textTransform'];
   fontWeight?: CSS.StandardProperties['fontWeight'];
   fontSize?: string | number;
-  fullWidth: boolean;
   readonly disabledColor?: keyof DefaultTheme['colors'];
   disabled?: boolean;
   buttonType?: string;
-  type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
   testID?: string;
 }
 
@@ -55,7 +53,7 @@ export const StyledButton = styled(Touchable)<StyledButtonProps>`
   padding: ${getNormalizedVerticalSize(0)}px
     ${({ loading }) => getNormalizedHorizontalSize(loading ? 15 : 20)}px;
   border-radius: ${({ loading, type }) =>
-    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 10)}px;
+    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 20)}px;
   elevation: 0;
   background-color: ${({ backgroundColor }) => backgroundColor};
   ${({ disabled }) => disabled && 'opacity: 1'};
@@ -83,11 +81,9 @@ export const IconContainer = styled.View`
 `;
 
 export const StyledText = styled(Typography)<StyleButtonTextProps>`
-  text-align: center;
+  text-align: ${({ textAlign }) => textAlign || 'center'};
   justify-content: center;
   font-weight: ${({ fontWeight }) => fontWeight || '500'};
-  font-size: ${({ fontWeight }) =>
-    getNormalizedHorizontalSize(toInteger(fontWeight) || 18)}px;
   line-height: ${getNormalizedVerticalSize(25)}px;
   color: ${({ color }) => color};
   ${({ buttonType, theme }) =>

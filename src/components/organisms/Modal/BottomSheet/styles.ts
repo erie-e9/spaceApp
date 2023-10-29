@@ -3,18 +3,18 @@ import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { FlatList as Flat } from 'react-native-gesture-handler';
 import {
-  SCREEN_HEIGHT,
+  screen_height,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
 import { Touchable } from '@components/atoms';
 
 export const AnimatedBottomSheet = styled(Animated.View)`
-  height: ${SCREEN_HEIGHT}px;
+  height: ${screen_height}px;
   width: 99%;
   align-self: center;
   position: absolute;
-  top: ${SCREEN_HEIGHT}px;
+  top: ${screen_height}px;
   border-radius: ${getNormalizedHorizontalSize(25)}px;
   background-color: ${({ theme }) => theme.tokens.colors.none};
   z-index: 100;

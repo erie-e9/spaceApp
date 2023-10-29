@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@utils/functions';
+import { screen_height, screen_width } from '@utils/functions';
 
 export const AnimatedBackgroundContainer = styled(Animated.View).attrs({
   ...StyleSheet.absoluteFillObject,
 })`
-  width: ${SCREEN_WIDTH}px;
-  height: ${SCREEN_HEIGHT}px;
+  width: ${screen_width}px;
+  height: ${screen_height}px;
   justify-content: center;
   align-items: center;
   z-index: 100;

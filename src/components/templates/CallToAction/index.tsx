@@ -1,11 +1,12 @@
 import React, { memo, useLayoutEffect } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
+import { useCopy } from '@services';
 import type * as CSS from 'csstype';
 import { useNavigation } from '@react-navigation/core';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
 import { InterpolateColorAnimation } from '@components/animated';
-import { BackButton } from '@components/atoms';
+import { BackButton } from '@components/molecules';
 import {
   StyledContainer,
   HeaderContainer,
@@ -13,7 +14,7 @@ import {
   TitleTypography,
   BodyContainer,
   ButtonContainer,
-  StyledActionButton,
+  StyledButton,
   LegendActionButton,
 } from './styles';
 
@@ -56,6 +57,7 @@ const CallToAction: React.FC<Props> = ({
   footer,
   backButton,
 }) => {
+  const { getCopyValue } = useCopy();
   const { darkMode } = useTheme();
   const navigation = useNavigation<ApplicationScreenProps>();
 
@@ -88,7 +90,7 @@ const CallToAction: React.FC<Props> = ({
                 numberOfLines={numberOfLinesTitle}
                 color="textLabelNeutral"
               >
-                {title}
+                {getCopyValue(title)}
               </TitleTypography>
             </TitleContainer>
           )}
@@ -96,7 +98,7 @@ const CallToAction: React.FC<Props> = ({
         <BodyContainer testID={bodyTestID || undefined}>{body}</BodyContainer>
         <ButtonContainer>
           {primaryButton && (
-            <StyledActionButton
+            <StyledButton
               testID={primaryButton.testID || undefined}
               title={primaryButton.title}
               onPress={primaryButton.onPress}
@@ -111,7 +113,7 @@ const CallToAction: React.FC<Props> = ({
             />
           )}
           {secondaryButton && (
-            <StyledActionButton
+            <StyledButton
               testID={secondaryButton.testID || undefined}
               title={secondaryButton.title}
               onPress={secondaryButton.onPress}
@@ -128,7 +130,7 @@ const CallToAction: React.FC<Props> = ({
             />
           )}
           {tertiaryButton && (
-            <StyledActionButton
+            <StyledButton
               testID={tertiaryButton.testID || undefined}
               title={tertiaryButton.title}
               onPress={tertiaryButton.onPress}

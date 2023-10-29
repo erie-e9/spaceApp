@@ -83,7 +83,7 @@ export const Home: React.FC<Props> = ({ navigation }) => {
   }, []);
 
   return (
-    <InterpolateColorAnimation isScreen>
+    <InterpolateColorAnimation>
       <HeaderContainer>
         <NavigateButtonFallbackContainer>
           <NavigateButtonFallback

@@ -1,5 +1,5 @@
 import { DeviceEventEmitter } from 'react-native';
-import { ToastProps } from '@components/organisms/Toast';
+import { ToastProps } from '@components/molecules/Toast';
 
 export const useToast = {
   info: ({ message, duration, vibration }: ToastProps): void => {

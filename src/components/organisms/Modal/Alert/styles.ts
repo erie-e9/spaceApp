@@ -1,11 +1,12 @@
 import { PixelRatio, StyleSheet, ViewStyle } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import {
-  SCREEN_WIDTH,
+  screen_width,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
-import { ActionButton, Typography } from '@components/atoms';
+import { Typography } from '@components/atoms';
+import { ActionButton } from '@components/molecules';
 
 export const MODAL_STYLE: ViewStyle = {
   flex: 1,
@@ -28,7 +29,7 @@ export const ModalBodyContainer = styled.View`
 
 export const Wrapper = styled.View<{ width?: number }>`
   height: auto;
-  width: ${({ width }) => width || SCREEN_WIDTH - 30 + 'px'};
+  width: ${({ width }) => width || screen_width - 30 + 'px'};
   z-index: 100;
   border-radius: ${getNormalizedHorizontalSize(15)}px;
   shadow-color: #000;
@@ -93,8 +94,8 @@ export const TextButtonItem = styled(Typography)<{
   ${({ isSimpleButton, theme }) => {
     const colorByTheme =
       theme.mode === 'dark'
-        ? `color: ${theme.tokens.colors.darkBlueL3}`
-        : `color: ${theme.tokens.colors.darkBlueD2}`;
+        ? `color: ${theme.tokens.colors.surfaceL1}`
+        : `color: ${theme.tokens.colors.surfaceL1}`;
     return isSimpleButton ? colorByTheme : undefined;
   }}
 `;

@@ -1,20 +1,11 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-
-export type MainParamsList = {
-  Home: undefined;
-};
+import { SharedParamsList } from '@navigators/Shared';
 
 export type ApplicationStackParamList = {
-  Startup: undefined;
-  Main: NavigatorScreenParams<MainParamsList>;
-  Warning: undefined;
-  Home: undefined;
-  CustomFallback: {
-    error: Error;
-    resetError: () => void;
-  };
+  Shared: NavigatorScreenParams<SharedParamsList>;
 };
 
-export type ApplicationScreenProps =
-  StackNavigationProp<ApplicationStackParamList>;
+export type ApplicationScreenProps = StackNavigationProp<
+  ApplicationStackParamList & SharedParamsList
+>;

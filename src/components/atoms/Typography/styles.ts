@@ -106,7 +106,7 @@ export const Subtitle1 = css`
 `;
 
 export const Subtitle2 = css`
-  font-weight: 800;
+  font-weight: 300;
   font-size: ${responsiveFontSize(15)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.1)}px;
   line-height: ${getNormalizedVerticalSize(19)}px;
@@ -114,7 +114,7 @@ export const Subtitle2 = css`
 
 export const Subtitle3 = css`
   font-weight: 600;
-  font-size: ${responsiveFontSize(14)}px;
+  font-size: ${responsiveFontSize(10)}px;
   letter-spacing: ${getNormalizedHorizontalSize(0.1)}px;
   line-height: ${getNormalizedVerticalSize(17)}px;
 `;

@@ -14,11 +14,11 @@ const initAppCheck = (useDebugToken: boolean): void => {
       .newReactNativeFirebaseAppCheckProvider();
     rnFirebaseProvider.configure({
       android: {
-        provider: __DEV__ ? 'debug' : 'playIntegrity',
+        provider: isDebug ? 'debug' : 'playIntegrity',
         debugToken: APP_CHECK_ANDROID_DEBUG_TOKEN,
       },
       apple: {
-        provider: __DEV__ ? 'debug' : 'appAttestWithDeviceCheckFallback',
+        provider: isDebug ? 'debug' : 'appAttestWithDeviceCheckFallback',
         debugToken: APP_CHECK_IOS_DEBUG_TOKEN,
       },
       web: {

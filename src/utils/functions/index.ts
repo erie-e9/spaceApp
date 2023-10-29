@@ -1,6 +1,6 @@
 export {
-  SCREEN_HEIGHT,
-  SCREEN_WIDTH,
+  screen_height,
+  screen_width,
   responsiveFontSize,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,

@@ -11,6 +11,11 @@ export const BodyContainer = styled.View`
   align-items: center;
 `;
 
+export const StyledScrollView = styled.ScrollView`
+  flex: 1;
+  margin: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px;
+`;
+
 export const DescriptionContainer = styled.View`
   padding-vertical: ${getNormalizedVerticalSize(7)}px;
 `;

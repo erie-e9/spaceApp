@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { getNormalizedVerticalSize, SCREEN_WIDTH } from '@utils/functions';
+import { getNormalizedVerticalSize, screen_width } from '@utils/functions';
 import { Touchable, Typography } from '@components/atoms';
 
 export interface ToastTextContainer {
@@ -22,7 +22,7 @@ export const TouchableAreaContainer = styled(Touchable)`
 `;
 
 export const ToastBodyContainer = styled.View`
-  width: ${SCREEN_WIDTH}px;
+  width: ${screen_width}px;
   height: ${getNormalizedVerticalSize(52)}px;
   align-items: center;
   justify-content: flex-end;

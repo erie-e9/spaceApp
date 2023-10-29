@@ -1,10 +1,11 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useCopy } from '@services';
-import { useTheme, useToast, useModal } from '@hooks';
+import { useTheme, useModal } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { CallToAction } from '@components/templates';
 import {
   BodyContainer,
+  StyledScrollView,
   DescriptionContainer,
   SubDescriptionContainer,
   TitleText,
@@ -16,7 +17,6 @@ export const Warning = () => {
   const { showModal } = useModal();
   const { Animations } = useTheme();
   const [primaryButtonLoading, setPrimaryButtonLoading] = useState(false);
-  const [secondaryButtonLoading, setSecondaryButtonLoading] = useState(false);
 
   const handlePrimaryButton = useCallback(async (): Promise<void> => {
     showModal({
@@ -25,17 +25,7 @@ export const Warning = () => {
       description: 'security:Warning.actions.primaryButton.modal.description',
       legacyOptions: { typeError: 'error' },
     });
-    setSecondaryButtonLoading(false);
     await setPrimaryButtonLoading(!primaryButtonLoading);
-  }, []);
-
-  const handleSecondaryButton = useCallback(async (): Promise<void> => {
-    await setPrimaryButtonLoading(false);
-    setSecondaryButtonLoading(!secondaryButtonLoading);
-    useToast.info({
-      message: getCopyValue('security:Warning.actions.secondaryButton.message'),
-      duration: 3000,
-    });
   }, []);
 
   useEffect(() => {
@@ -49,7 +39,7 @@ export const Warning = () => {
 
   return (
     <CallToAction
-      title={getCopyValue('security:Warning.title')}
+      title="security:Warning.title"
       numberOfLinesTitle={3}
       backButton
       body={
@@ -64,44 +54,39 @@ export const Warning = () => {
             width={120}
             height={120}
           />
-          <DescriptionContainer>
-            <TitleText
-              type="Subtitle1"
-              font="primary"
-              color="surfaceL1"
-              textAlign="justify"
-            >
-              {getCopyValue('security:Warning.description', {
-                appName: process.env.APP_NAME,
-              })}
-            </TitleText>
-          </DescriptionContainer>
-          <SubDescriptionContainer>
-            <TitleText
-              type="Subtitle1"
-              font="primary"
-              color="surfaceL1"
-              textAlign="center"
-              weight="bold"
-            >
-              {getCopyValue('security:Warning.sub-description')}
-            </TitleText>
-          </SubDescriptionContainer>
+          <StyledScrollView testID="WarningID">
+            <DescriptionContainer>
+              <TitleText
+                type="Subtitle1"
+                font="primary"
+                color="surfaceL1"
+                textAlign="center"
+              >
+                {getCopyValue('security:Warning.description', {
+                  appName: process.env.APP_NAME,
+                })}
+              </TitleText>
+            </DescriptionContainer>
+            <SubDescriptionContainer>
+              <TitleText
+                type="Subtitle1"
+                font="primary"
+                color="surfaceL1"
+                textAlign="center"
+                weight="bold"
+              >
+                {getCopyValue('security:Warning.sub-description')}
+              </TitleText>
+            </SubDescriptionContainer>
+          </StyledScrollView>
         </BodyContainer>
       }
       primaryButton={{
-        title: getCopyValue('security:Warning.actions.primaryButton.title'),
+        title: 'security:Warning.actions.primaryButton.title',
         onPress: handlePrimaryButton,
         testID: 'Warning.primaryButton',
         disabled: primaryButtonLoading,
         loading: primaryButtonLoading,
-      }}
-      secondaryButton={{
-        title: getCopyValue('security:Warning.actions.secondaryButton.title'),
-        onPress: handleSecondaryButton,
-        testID: 'Warning.secondaryButtonLoading',
-        disabled: secondaryButtonLoading,
-        loading: secondaryButtonLoading,
       }}
     />
   );
