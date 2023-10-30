@@ -28,7 +28,7 @@ import {
   CloseIconContainer,
   PanGestureHandlerView,
   CloseBottomSheetButton,
-  FlatList,
+  StyledList,
 } from './styles';
 
 const MAX_TRANSLATE_Y = -screen_height + 80;
@@ -78,7 +78,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
     ]);
 
     const handleClose = useCallback(async () => {
-      scrollTo(50);
+      scrollTo(100);
       setTimeout(() => {
         dispatch(hideModal());
       }, 500);
@@ -160,8 +160,8 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
               <ActivityIndicator size={25} />
             ) : (
               list && (
-                <FlatList
-                  data={list.data}
+                <StyledList
+                  data={list.data || []}
                   renderItem={({ item }) => (
                     <ModalItem
                       item={item}
@@ -169,7 +169,6 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
                       onPress={() => onPressHandler({ item })}
                     />
                   )}
-                  keyExtractor={(item, index) => `${index}`}
                 />
               )
             )}

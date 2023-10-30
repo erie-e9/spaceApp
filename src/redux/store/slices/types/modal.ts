@@ -5,7 +5,7 @@ import { FontWeight } from 'react-native-svg';
 
 export interface ListProps {
   predefinedList?: 'languages';
-  data: ArrayLike<string>;
+  data: Array<string>;
   onPressItem: any;
 }
 

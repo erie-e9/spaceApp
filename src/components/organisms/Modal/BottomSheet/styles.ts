@@ -1,13 +1,13 @@
 import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { FlatList as Flat } from 'react-native-gesture-handler';
 import {
   screen_height,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
 } from '@utils/functions';
 import { Touchable } from '@components/atoms';
+import { List } from '@components/organisms';
 
 export const AnimatedBottomSheet = styled(Animated.View)`
   height: ${screen_height}px;
@@ -47,8 +47,6 @@ export const ListFooterComponentView = styled.View`
   height: ${getNormalizedVerticalSize(Platform.OS === 'ios' ? 180 : 40)}px;
 `;
 
-export const FlatList = styled(Flat).attrs({
-  ListFooterComponent: ListFooterComponentView,
-})`
+export const StyledList = styled(List)`
   flex: 1;
 `;
