@@ -24,6 +24,11 @@ export const CloseBottomSheetButton = styled(Touchable)`
   height: ${getNormalizedVerticalSize(30)}px;
 `;
 
+export const BodyContainer = styled.View<{ height: number }>`
+  min-height: ${({ height }) => getNormalizedVerticalSize(height)}px;
+  justify-content: ${({ height }) => (height > 30 ? 'flex-start' : 'center')};
+`;
+
 export const PanGestureHandlerView = styled.View`
   height: ${getNormalizedVerticalSize(5)}px;
   width: ${getNormalizedHorizontalSize(50)}px;

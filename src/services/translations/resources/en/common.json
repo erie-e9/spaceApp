@@ -21,5 +21,10 @@
         "detailsLabelDefaultMessage": "This is not an error, this screen will allow you to detect and view errors in the app, displaying a friendly message instead of the default white screen."
       }
     }
+  },
+  "webviewer": {
+    "option1": "Share",
+    "option2": "Reload",
+    "option3": "Open on browser"
   }
 }

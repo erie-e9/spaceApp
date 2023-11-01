@@ -4,3 +4,4 @@ export { default as RotateAnimation } from '@components/animated/RotateAnimation
 export { default as ScaleAnimation } from '@components/animated/ScaleAnimation';
 export { default as FlipAnimation } from '@components/animated/FlipAnimation';
 export { default as InterpolateColorAnimation } from '@components/animated/InterpolateColorAnimation';
+export { default as AnimatedButton } from '@components/animated/AnimatedButton';

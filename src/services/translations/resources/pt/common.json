@@ -21,5 +21,10 @@
         "detailsLabelDefaultMessage": "Isso não é um erro, esta tela permitirá detectar e visualizar erros no aplicativo, exibindo uma mensagem amigável em vez da tela branca padrão."
       }
     }
+  },
+  "webviewer": {
+    "option1": "Compartilhar",
+    "option2": "Recarregar",
+    "option3": "Abrir no navegador"
   }
 }

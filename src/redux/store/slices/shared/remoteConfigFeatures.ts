@@ -6,6 +6,9 @@ export const initialState: RemoteConfigFeatures = {
   triggerAlert: { status: 'on' },
   warning: { status: 'on' },
   changeTheme: { status: 'on' },
+  webviewOpenOnBrowser: { status: 'on' },
+  webviewReload: { status: 'on' },
+  webviewShare: { status: 'on' },
 };
 
 const slice = createSlice({

@@ -28,6 +28,7 @@ import {
   CloseIconContainer,
   PanGestureHandlerView,
   CloseBottomSheetButton,
+  BodyContainer,
   StyledList,
 } from './styles';
 
@@ -46,9 +47,10 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       isVisible,
       testID,
       showCancelIcon,
-      children,
+      body,
       list,
       loading,
+      drawerOptions,
     },
     ref,
   ) => {
@@ -120,7 +122,11 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
     useNativeBackButton({ callback: handleClose });
 
     const bottomSheetSizeHandler = () => {
-      if (!active.value) scrollTo(-screen_height / 3);
+      if (!active.value) {
+        scrollTo(
+          drawerOptions?.height ? -drawerOptions?.height : -screen_height / 3,
+        );
+      }
       if (active.value && translateY.value < -screen_height / 3) {
         scrollTo(-screen_height / 3);
       }
@@ -155,7 +161,11 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
               </CloseIconContainer>
             )}
             <ModalHeader title={title} description={description || ''} />
-            {children}
+            {body && (
+              <BodyContainer height={drawerOptions?.height || 30}>
+                {body}
+              </BodyContainer>
+            )}
             {loading ? (
               <ActivityIndicator size={25} />
             ) : (
@@ -183,7 +193,7 @@ BottomSheet.defaultProps = {
   testID: 'BottomSheetID',
   title: undefined,
   description: undefined,
-  children: undefined,
+  body: undefined,
   showCancelIcon: false,
   titleColor: undefined,
   isVisible: false,

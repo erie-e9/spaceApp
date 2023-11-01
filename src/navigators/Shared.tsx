@@ -9,6 +9,7 @@ import {
   Startup,
   Settings,
   Warning,
+  WebViewer,
 } from '@components/screens/Shared';
 
 export type SharedParamsList = {
@@ -20,6 +21,8 @@ export type SharedParamsList = {
   Startup: undefined;
   WebViewer: {
     url: string;
+    onReload?: () => void;
+    onClose?: () => void;
   };
   Settings: undefined;
   Warning: undefined;
@@ -44,6 +47,7 @@ export const SharedNavigator = () => {
       <Screen name="Startup" component={Startup} />
       <Screen name="Settings" component={Settings} />
       <Screen name="Warning" component={Warning} />
+      <Screen name="WebViewer" component={WebViewer} />
     </Navigator>
   );
 };

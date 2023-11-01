@@ -30,6 +30,7 @@ export interface DrawerOptions extends ModalProps {
   text?: string;
   hasIcon?: boolean;
   refreshCallback?: () => Promise<void>;
+  height?: number;
 }
 
 export interface ModalPayload {
@@ -39,7 +40,7 @@ export interface ModalPayload {
   description?: string;
   Icon?: SVGElement;
   showCloseModalIcon?: boolean;
-  children?: ReactElement;
+  body?: ReactElement;
   options?: Partial<OptionsMap[]>;
   list?: Partial<ListProps>;
   onClose?: () => void;

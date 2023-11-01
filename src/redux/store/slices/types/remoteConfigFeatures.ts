@@ -9,4 +9,7 @@ export interface RemoteConfigFeatures {
   triggerAlert: FeatureValue;
   warning: FeatureValue;
   changeTheme: FeatureValue;
+  webviewOpenOnBrowser: FeatureValue;
+  webviewReload: FeatureValue;
+  webviewShare: FeatureValue;
 }

@@ -21,5 +21,10 @@
         "detailsLabelDefaultMessage": "Ce n'est pas une erreur, cet écran vous permettra de détecter et de visualiser les erreurs dans l'application, en affichant un message convivial au lieu de l'écran blanc par défaut."
       }
     }
+  },
+  "webviewer": {
+    "option1": "Partager",
+    "option2": "Recharger",
+    "option3": "Ouvrir sur le navigateur"
   }
 }

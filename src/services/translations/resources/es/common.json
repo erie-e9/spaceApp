@@ -21,5 +21,10 @@
         "detailsLabelDefaultMessage": "Esto no es un error, esta pantalla te permitirá detectar y visualizar errores en la app, mostrando un mensaje amigable en lugar de la pantalla blanca predeterminada."
       }
     }
+  },
+  "webviewer": {
+    "option1": "Compartir",
+    "option2": "Volver a cargar",
+    "option3": "Abrir en navegador"
   }
 }

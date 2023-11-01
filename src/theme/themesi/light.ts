@@ -44,7 +44,7 @@ export const lightTheme: DefaultTheme = {
       backgroundColorLight: '#FFFFFF',
       backgroundColorDark: '#1B1A23',
       default_accent: '#B7B7B7',
-      success_accent: '#30af54',
+      success_accent: '#14DA72',
       warning_accent: '#FFCC47',
       danger_accent: '#D54141',
       success_state: '#1A9E40',

@@ -7,6 +7,7 @@ const initialState: Partial<ModalPayload> = {
   type: null,
   description: '',
   showCancelIcon: true,
+  body: undefined,
 };
 
 export const modalSlice = createSlice({
@@ -18,6 +19,7 @@ export const modalSlice = createSlice({
         ...initialState,
         isVisible: true,
         showCancelIcon: true,
+        body: payload.body,
         ...payload,
       };
     },

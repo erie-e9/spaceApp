@@ -12,6 +12,12 @@ import BackButton from '@assets/light/svg/back-button.svg';
 import BackButtonDark from '@assets/dark/svg/back-button.svg';
 import CloseButton from '@assets/light/svg/close.svg';
 import CloseButtonDark from '@assets/dark/svg/close.svg';
+import BrowserIconLight from '@assets/light/svg/browser.svg';
+import BrowserIconDark from '@assets/dark/svg/browser.svg';
+import ReloadIconLight from '@assets/light/svg/reload.svg';
+import ReloadIconDark from '@assets/dark/svg/reload.svg';
+import ShareIconLight from '@assets/light/svg/share.svg';
+import ShareIconDark from '@assets/dark/svg/share.svg';
 
 interface SvgObject {
   [key: string]: {
@@ -45,6 +51,17 @@ const svgLibrary: SvgObject = {
   CloseButton: {
     light: CloseButton,
     dark: CloseButtonDark,
+  BrowserIcon: {
+    light: BrowserIconLight,
+    dark: BrowserIconDark,
+  },
+  ReloadIcon: {
+    light: ReloadIconLight,
+    dark: ReloadIconDark,
+  },
+  ShareIcon: {
+    light: ShareIconLight,
+    dark: ShareIconDark,
   },
 };
 
