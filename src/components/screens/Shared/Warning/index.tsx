@@ -11,7 +11,7 @@ import {
   TitleText,
 } from './styles';
 
-export const Warning = () => {
+export const Warning: React.FC = () => {
   const animationRef = useRef<LottieViewProps>(null);
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();

@@ -8,6 +8,7 @@ import { Touchable, Typography } from '@components/atoms';
 export const ItemLabelContainer = styled.View`
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme }) => theme.tokens.colors.none};
   padding: ${getNormalizedVerticalSize(7)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(7)}px ${getNormalizedHorizontalSize(0)}px;
 `;

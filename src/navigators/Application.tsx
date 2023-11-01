@@ -10,14 +10,14 @@ import {
 import { useFlipper } from '@react-navigation/devtools';
 import ErrorBoundary from 'react-native-error-boundary';
 import { ApplicationStackParamList } from 'types/navigation';
-import { useCopy, initAppCheck } from '@services';
+import { useCopy, initAppCheck, Logger } from '@services';
 import { useTheme, useToast, useCheckNet } from '@hooks';
 import { darkTheme, lightTheme } from '@theme/themesi';
 import SharedNavigator from './Shared';
 import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
 import { Toast } from '@components/molecules';
 import { Modal } from '@components/organisms';
-import { CustomFallback } from '@components/screens/Shared';
+import { CustomFallback, Startup } from '@components/screens/Shared';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
@@ -57,7 +57,7 @@ const Application = () => {
   }, [appConnected.isConnected, appConnected.type]);
 
   const handleJSErrorForErrorBoundary = (error: any, stackTrace: string) => {
-    console.log('handleJSErrorForErrorBoundary: ', { stackTrace, error });
+    Logger.log('handleJSErrorForErrorBoundary: ', { stackTrace, error });
   };
 
   useFlipper(navigationRef);
@@ -78,6 +78,7 @@ const Application = () => {
                   headerShown: false,
                 }}
               >
+                <Screen name="Startup" component={Startup} />
                 <Screen name="Shared" component={SharedNavigator} />
               </Navigator>
             </GestureHandlerRootView>

@@ -5,7 +5,7 @@ import { AppPreferencesState } from '@slices/types/appPreferences';
 import { changeTheme, setDefaultTheme } from '@slices/shared';
 import { useTheme, useSVG, useToast, useModal } from '@hooks';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
-import { useCopy } from '@services';
+import { Logger, useCopy } from '@services';
 import * as resources from '@services/translations/resources';
 import {
   InterpolateColorAnimation,
@@ -44,15 +44,15 @@ interface Props {
 }
 
 export const Home: React.FC<Props> = ({ navigation }) => {
+  const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
+  const dispatch = useDispatch();
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
-  const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
-  const QRCodeIconIcon = useSVG('QRCodeIcon');
-  const AlertTriangleIcon = useSVG('AlertTriangle');
-  const LanguageIcon = useSVG('Language');
-  const SwitchThemeIcon = useSVG('SwitchTheme');
   const { Images, darkMode: isDarkMode } = useTheme();
-  const dispatch = useDispatch();
+  const QRCodeIconIcon = useSVG('QRCodeIcon');
+  const AlertTriangleIcon = useSVG('AlertTriangleIcon');
+  const LanguageIcon = useSVG('LanguageIcon');
+  const SwitchThemeIcon = useSVG('SwitchThemeIcon');
 
   const appPresentation = useCallback((): void => {
     useToast.success({
@@ -83,11 +83,16 @@ export const Home: React.FC<Props> = ({ navigation }) => {
   }, []);
 
   return (
-    <InterpolateColorAnimation>
+    <InterpolateColorAnimation isScreen>
       <HeaderContainer>
         <NavigateButtonFallbackContainer>
           <NavigateButtonFallback
-            onPress={() => navigation.navigate('CustomFallback')}
+            onPress={() =>
+              navigation.navigate('CustomFallback', {
+                error: Error('Mocked error'),
+                resetError: () => Logger.error('Mocked error'),
+              })
+            }
           >
             <RotateAnimation
               duration={3000}
@@ -263,7 +268,11 @@ export const Home: React.FC<Props> = ({ navigation }) => {
             <FeatureButton
               type="Icon"
               buttonTheme="Primary"
-              onPress={() => navigation.navigate('Warning')}
+              onPress={() =>
+                navigation.navigate('WebViewer', {
+                  url: 'https://www.google.com.mx/',
+                })
+              }
               Icon={<AlertTriangleIcon />}
               featureFlags={['warning']}
             />

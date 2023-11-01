@@ -73,7 +73,7 @@ const CallToAction: React.FC<Props> = ({
           height: 50,
           shadowColor: 'transparent',
         },
-        headerLeft: () => <BackButton navigation={navigation} />,
+        headerLeft: () => <BackButton />,
       });
     }
   }, []);

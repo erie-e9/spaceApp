@@ -8,7 +8,7 @@ import { Typography } from '@components/atoms';
 
 export const ModalHeaderContainer = styled.View`
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
+    ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const TitleWrapper = styled.View`

@@ -11,6 +11,7 @@ interface ListProps {
   renderItem?: ({ item }: any) => JSX.Element;
   horizontal?: boolean;
   showsHorizontalScrollIndicator?: boolean;
+  showsVerticalScrollIndicator?: boolean;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -19,6 +20,7 @@ export const List: React.FC<ListProps> = ({
   renderItem,
   horizontal,
   showsHorizontalScrollIndicator,
+  showsVerticalScrollIndicator,
 }) => {
   const ref = useRef(null);
   const [blankAreaTrakerResult, onBlankArea] = useBlankAreaTracker(ref);
@@ -56,6 +58,7 @@ export const List: React.FC<ListProps> = ({
       keyboardDismissMode="interactive"
       renderItem={renderItem || renderElement}
       showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
+      showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       onLoad={onLoadListener}
       onBlankArea={onBlankArea}
     />
@@ -67,6 +70,7 @@ List.defaultProps = {
   renderItem: undefined,
   horizontal: false,
   showsHorizontalScrollIndicator: false,
+  showsVerticalScrollIndicator: false,
 };
 
 export default memo(List);

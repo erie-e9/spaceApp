@@ -18,12 +18,13 @@ import {
   CloseIconContainer,
   MODAL_STYLE,
 } from './styles';
+
 export const Alert: React.FC = ({
   testID,
   isVisible,
   title,
   description,
-  children,
+  body,
   showCancelIcon,
   options,
   width,
@@ -87,7 +88,7 @@ export const Alert: React.FC = ({
                     </CloseIconContainer>
                   </RenderWhen>
                 </HeaderContainer>
-                {children || <></>}
+                {body || <></>}
                 <AlertButtons
                   options={parsedOptions}
                   theme={theme}

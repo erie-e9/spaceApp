@@ -1,17 +1,17 @@
 import { SvgProps } from 'react-native-svg';
 import { useTheme } from 'styled-components';
-import QRCodeIcon from '@assets/light/svg/qrcode-icon.svg';
+import QRCodeIconLight from '@assets/light/svg/qrcode-icon.svg';
 import QRCodeIconDark from '@assets/dark/svg/qrcode-icon.svg';
-import AlertTriangle from '@assets/light/svg/alert-triangle.svg';
-import AlertTriangleDark from '@assets/dark/svg/alert-triangle.svg';
-import Language from '@assets/light/svg/language.svg';
-import LanguageDark from '@assets/dark/svg/language.svg';
-import DarkMode from '@assets/light/svg/dark-mode.svg';
-import LightMode from '@assets/dark/svg/light-mode.svg';
-import BackButton from '@assets/light/svg/back-button.svg';
-import BackButtonDark from '@assets/dark/svg/back-button.svg';
-import CloseButton from '@assets/light/svg/close.svg';
-import CloseButtonDark from '@assets/dark/svg/close.svg';
+import AlertTriangleIconLight from '@assets/light/svg/alert-triangle.svg';
+import AlertTriangleIconDark from '@assets/dark/svg/alert-triangle.svg';
+import LanguageIconLight from '@assets/light/svg/language.svg';
+import LanguageIconDark from '@assets/dark/svg/language.svg';
+import SwitchThemeIconLight from '@assets/light/svg/dark-mode.svg';
+import SwitchThemeIconDark from '@assets/dark/svg/light-mode.svg';
+import BackIcon from '@assets/light/svg/back-button.svg';
+import BackIconDark from '@assets/dark/svg/back-button.svg';
+import CloseIcon from '@assets/light/svg/close.svg';
+import CloseIconDark from '@assets/dark/svg/close.svg';
 import BrowserIconLight from '@assets/light/svg/browser.svg';
 import BrowserIconDark from '@assets/dark/svg/browser.svg';
 import ReloadIconLight from '@assets/light/svg/reload.svg';
@@ -29,28 +29,29 @@ interface SvgObject {
 
 const svgLibrary: SvgObject = {
   QRCodeIcon: {
-    light: QRCodeIcon,
+    light: QRCodeIconLight,
     dark: QRCodeIconDark,
   },
-  AlertTriangle: {
-    light: AlertTriangle,
-    dark: AlertTriangleDark,
+  AlertTriangleIcon: {
+    light: AlertTriangleIconLight,
+    dark: AlertTriangleIconDark,
   },
-  Language: {
-    light: Language,
-    dark: LanguageDark,
+  LanguageIcon: {
+    light: LanguageIconLight,
+    dark: LanguageIconDark,
   },
-  SwitchTheme: {
-    light: DarkMode,
-    dark: LightMode,
+  SwitchThemeIcon: {
+    light: SwitchThemeIconLight,
+    dark: SwitchThemeIconDark,
   },
-  BackButton: {
-    light: BackButton,
-    dark: BackButtonDark,
+  BackIcon: {
+    light: BackIcon,
+    dark: BackIconDark,
   },
-  CloseButton: {
-    light: CloseButton,
-    dark: CloseButtonDark,
+  CloseIcon: {
+    light: CloseIcon,
+    dark: CloseIconDark,
+  },
   BrowserIcon: {
     light: BrowserIconLight,
     dark: BrowserIconDark,

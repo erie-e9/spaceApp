@@ -31,7 +31,7 @@ export const Startup: React.FC<Props> = ({ navigation }) => {
       }
       await navigation.reset({
         index: 0,
-        routes: [{ name: 'Home' }],
+        routes: [{ name: 'Shared' }],
       });
     }
   };

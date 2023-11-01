@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useSVG } from '@hooks';
 import { CloseButtonContainer, CloseButtonPressable } from './styles';
 
@@ -8,16 +8,20 @@ interface Props {
 }
 
 export const CloseButton: React.FC<Props> = ({ testID, onPress }) => {
-  const CloseButtonIcon = useSVG('CloseButton');
+  const CloseIcon = useSVG('CloseIcon');
+
+  const handleOnPress = useCallback(() => {
+    if (onPress) onPress();
+  }, []);
 
   return (
     <CloseButtonPressable
       testID={testID}
-      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
-      onPress={onPress}
+      hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
+      onPress={handleOnPress}
     >
       <CloseButtonContainer>
-        <CloseButtonIcon />
+        <CloseIcon />
       </CloseButtonContainer>
     </CloseButtonPressable>
   );

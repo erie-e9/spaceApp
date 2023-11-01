@@ -6,8 +6,6 @@ import {
 import {
   CustomFallback,
   Home,
-  Startup,
-  Settings,
   Warning,
   WebViewer,
 } from '@components/screens/Shared';
@@ -19,13 +17,12 @@ export type SharedParamsList = {
   };
   Home: undefined;
   Startup: undefined;
+  Warning: undefined;
   WebViewer: {
     url: string;
     onReload?: () => void;
     onClose?: () => void;
   };
-  Settings: undefined;
-  Warning: undefined;
 };
 
 const { Navigator, Screen } = createStackNavigator<SharedParamsList>();
@@ -33,19 +30,16 @@ const { Navigator, Screen } = createStackNavigator<SharedParamsList>();
 export const SharedNavigator = () => {
   return (
     <Navigator
-      initialRouteName="Startup"
+      initialRouteName="Home"
       screenOptions={{
         headerShown: false,
         freezeOnBlur: true,
         headerMode: 'screen',
         ...TransitionPresets.ScaleFromCenterAndroid,
-        // {/* <Screen name="Startup" component={Startup} /> */}z
       }}
     >
       <Screen name="CustomFallback" component={CustomFallback as any} />
       <Screen name="Home" component={Home} />
-      <Screen name="Startup" component={Startup} />
-      <Screen name="Settings" component={Settings} />
       <Screen name="Warning" component={Warning} />
       <Screen name="WebViewer" component={WebViewer} />
     </Navigator>

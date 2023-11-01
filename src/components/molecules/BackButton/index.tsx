@@ -3,25 +3,30 @@ import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { BackButtonContainer, BackButtonPressable } from './styles';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   testID?: string;
-  navigation: ApplicationScreenProps;
+  onPress?: () => void;
+  size?: number;
 }
 
-export const BackButton: React.FC<Props> = ({ testID, navigation }) => {
+export const BackButton: React.FC<Props> = ({ testID, onPress, size }) => {
   const animationRef = useRef<LottieViewProps>(null);
   const { Animations, darkMode } = useTheme();
+  const navigation: ApplicationScreenProps = useNavigation();
+
   const handleOnPress = useCallback(() => {
     animationRef.current?.play();
     navigation.removeListener;
     navigation.goBack();
+    if (onPress) onPress;
   }, []);
 
   return (
     <BackButtonPressable
       testID={testID}
-      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+      hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
       onPress={handleOnPress}
     >
       <BackButtonContainer>
@@ -32,8 +37,8 @@ export const BackButton: React.FC<Props> = ({ testID, navigation }) => {
           renderMode="SOFTWARE"
           loop={false}
           resizeMode="contain"
-          width={40}
-          height={40}
+          width={size || 40}
+          height={size || 40}
           colorFilters={[
             {
               keypath: 'Layer 4',
@@ -48,6 +53,8 @@ export const BackButton: React.FC<Props> = ({ testID, navigation }) => {
 
 BackButton.defaultProps = {
   testID: 'BackButtonID',
+  onPress: undefined,
+  size: 40,
 };
 
 export default memo(BackButton);

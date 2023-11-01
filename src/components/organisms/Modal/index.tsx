@@ -4,11 +4,9 @@ import { ModalPayload } from '@slices/types/modal';
 import Alert from '@components/organisms/Modal/Alert';
 import BottomSheet from '@components/organisms/Modal/BottomSheet';
 
-const AlertsAndDrawers: React.FC = () => {
+const AlertAndBottomSheet: React.FC = () => {
   const modalSelector = useModalSelectorHook();
   const { type } = modalSelector;
-
-  if (!type) return <></>;
 
   let modalArgs: ModalPayload = {};
 
@@ -26,6 +24,7 @@ const AlertsAndDrawers: React.FC = () => {
     case 'bottomsheet':
       modalArgs = {
         ...modalSelector,
+        body: modalSelector.body,
         // isVisible: true,
         ...modalSelector.legacyOptions,
       };
@@ -35,9 +34,10 @@ const AlertsAndDrawers: React.FC = () => {
       break;
   }
 
+  if (!type) return <></>;
   if (type === 'alert') return <Alert {...modalArgs} />;
   if (type === 'bottomsheet') return <BottomSheet {...modalArgs} />;
   return <></>;
 };
 
-export default memo(AlertsAndDrawers);
+export default memo(AlertAndBottomSheet);

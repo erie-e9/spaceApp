@@ -23,7 +23,7 @@ export type LottieProps = extractComponentPropsType<LottieView> & {
 
 export type LottieViewProps = LottieView;
 
-export const Lottie: React.FC<LottieProps> = forwardRef(function (props, ref) {
+export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
   const [appState, setAppState] = useState(AppState.currentState);
   const animationRef = useRef<LottieView>(null);
 
