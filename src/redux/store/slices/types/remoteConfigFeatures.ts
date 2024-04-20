@@ -12,4 +12,18 @@ export interface RemoteConfigFeatures {
   webviewOpenOnBrowser: FeatureValue;
   webviewReload: FeatureValue;
   webviewShare: FeatureValue;
+  infoAndSupport: FeatureValue;
+  hackedDevice: FeatureValue;
+  errorCatcher: FeatureValue;
+  contactUsViaEmail: FeatureValue;
+  contactUsViaFacebook: FeatureValue;
+  contactUsViaInstagram: FeatureValue;
+  contactUsViaCall: FeatureValue;
+  contactUsViaTelegram: FeatureValue;
+  contactUsViaWhatsApp: FeatureValue;
+  aboutUs: FeatureValue;
+  noticeOfPrivacy: FeatureValue;
+  termsAndConditions: FeatureValue;
+  contactUs: FeatureValue;
+  faqs: FeatureValue;
 }

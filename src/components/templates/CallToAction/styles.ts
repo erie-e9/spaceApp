@@ -17,7 +17,7 @@ export const HeaderContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-left: ${PixelRatio.roundToNearestPixel(40)}px;
+  /* padding-left: ${PixelRatio.roundToNearestPixel(40)}px; */
   padding-top: ${PixelRatio.roundToNearestPixel(10)}px;
 `;
 

@@ -25,3 +25,4 @@ export { useRemoteConfig } from '@hooks/utils/useRemoteConfig';
 export { useGetFeatureStatus } from '@hooks/utils/useGetFeatureStatus';
 export { useAppAlerts } from '@hooks/utils/useAppAlerts';
 export { useAppCheck } from '@hooks/auth/useAppCheck';
+export { useOptionSelectorModal } from '@hooks/utils/useOptionSelectorModal';

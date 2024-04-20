@@ -6,7 +6,7 @@ export interface StyledTouchableProps {
 }
 
 export const StyledTouchable = styled.Pressable<StyledTouchableProps>`
-  opacity: ${({ isGreyed }) => (isGreyed ? 0.34 : 1)};
+  opacity: ${({ isGreyed }) => (isGreyed ? 0.35 : 1)};
   width: 100%;
   max-width: ${getNormalizedHorizontalSize(370)}px;
 `;

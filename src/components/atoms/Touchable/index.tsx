@@ -103,7 +103,7 @@ export const Touchable: React.FC<TappableProps> = ({
     <Tappable
       isGreyed={off}
       testID={testID}
-      style={style[0]}
+      style={style}
       onPress={onPressType === 'onPress' ? onTap : undefined}
       onPressIn={onPressType === 'onPressIn' ? onTap : undefined}
       onPressOut={onPressType === 'onPressOut' ? onTap : undefined}

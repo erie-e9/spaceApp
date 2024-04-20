@@ -1,0 +1,124 @@
+{
+    "settings": {
+        "screenTitle": "Paramètres",
+        "appPreferences": {
+            "title": "Préférences de l'application",
+            "items": {
+                "changeTheme": {
+                    "title": "Thème",
+                    "description": "Choisissez un thème pour l'application ou laissez-la se mettre à jour automatiquement avec celui de votre appareil.",
+                    "themes": {
+                        "title": "Sélectionne un thème",
+                        "lightTheme": "Thème lumière",
+                        "darkTheme": "Thème sombre",
+                        "systemTheme": "Thème de l'appareil"
+                    }
+                },
+                "changeLanguage": {
+                    "title": "Langue",
+                    "description": "Changez la langue pour celle que vous préférez. Choisissez-en une parmi les options possibles."
+                }
+            }
+        },
+        "infoAndSupport": {
+            "title": "Informations et assistance",
+            "items": {
+                "title": "",
+                "description": "Besoin d'aide ou souhaitez en savoir plus sur nous? Vous pouvez nous contacter et obtenir des informations ici, nous serions ravis de vous entendre."
+            }
+        },
+        "extra": {
+            "title": "Supplémentaire",
+            "items": {
+                "hackedDevice": {
+                    "title": "Écran de sécurité",
+                    "description": "Cet écran s'affichera lorsque l'utilisateur utilise cette application sur un appareil non autorisé."
+                },
+                "errorCatcher": {
+                    "title": "Écran de récupération d'erreurs",
+                    "description": "Lorsqu'une erreur se produit, l'utilisateur peut voir cet écran convivial au lieu d'un écran vide."
+                }
+            }
+        }
+    },"infoAndSupport": {
+        "screenTitle": "Informations et assistance",
+        "info": {
+            "title": "Info",
+            "items": {
+                "aboutUs": {
+                    "title": "À propos de nous",
+                    "description": "Qui nous sommes, notre histoire, nos valeurs et pourquoi nous faisons ce que nous faisons.",
+                    "content": "Chez $t(common:appName.full), nous sommes bien plus qu'une simple entreprise; nous sommes une équipe dévouée d'individus travaillant ensemble pour faire la différence. Notre parcours a commencé avec une idée simple - créer quelque chose d'extraordinaire qui apporte de la valeur au monde. Cette idée s'est depuis transformée en une mission qui guide tout ce que nous faisons. Nous sommes animés par l'innovation, et notre passion pour elle nourrit nos efforts quotidiens. Nous sommes là pour remettre en question le statu quo et repousser les limites, nous efforçant de rendre l'impossible possible. Avec la créativité au cœur de notre démarche, nous transformons les concepts en réalité, en créant des solutions qui ont de l'importance. Notre engagement envers l'excellence est inébranlable. Nous sommes fiers de notre travail, veillant à ce que chaque produit et service que nous offrons respecte les normes les plus élevées. Nos clients sont au cœur de tout ce que nous faisons, et leur satisfaction est notre objectif ultime. Nous célébrons la diversité, sachant que les meilleures idées naissent de différentes perspectives. Notre équipe est un mélange de talents, chacun apportant un ensemble unique de compétences et d'expériences. Ensemble, nous sommes inarrêtables. Rejoignez-nous dans notre parcours alors que nous continuons d'innover, de dépasser les attentes et de laisser une empreinte durable. Ensemble, nous pouvons créer un avenir plus radieux."
+                },
+                "noticeOfPrivacy": {
+                    "title": "Avis de confidentialité",
+                    "description": "Connaissez notre avis de confidentialité.",
+                    "content": "Chez $t(common:appName.full), nous prenons votre vie privée au sérieux. Cet avis de confidentialité décrit comment nous recueillons, utilisons, partageons et protégeons vos informations personnelles. Nous vous encourageons à lire attentivement cet avis pour comprendre nos pratiques.\nInformations que nous recueillons \nNous recueillons les informations que vous nous fournissez directement. Cela comprend des informations personnelles telles que votre nom, vos coordonnées et toute autre donnée que vous choisissez de partager avec nous. Nous pouvons également recueillir automatiquement des informations telles que votre adresse IP, le type de navigateur et des informations sur l'appareil. \nComment nous utilisons vos informations \nNous utilisons les informations que nous recueillons à diverses fins, notamment : \nFournir et maintenir nos services. Personnaliser votre expérience. Vous envoyer des mises à jour importantes et des notifications. Surveiller et analyser les modèles d'utilisation pour améliorer nos services. Respecter les obligations légales et résoudre les litiges. Partage des informations \nNous pouvons partager vos informations personnelles avec : \nDes prestataires de services qui nous aident à fournir nos services. Les forces de l'ordre ou les agences gouvernementales en réponse à une demande légale. Des tiers avec votre consentement. Nous ne vendons pas vos informations personnelles à des tiers. \nSécurité des données \nNous prenons la sécurité des données au sérieux et utilisons des mesures de sécurité standard de l'industrie pour protéger vos informations personnelles. Cependant, aucun moyen de transmission sur Internet ou de stockage électronique n'est totalement sécurisé. \nVos choix en matière de confidentialité \nVous avez le droit de : \nAccéder, corriger ou supprimer vos informations personnelles. Vous opposer ou limiter le traitement de vos informations personnelles. Retirer votre consentement à tout moment si vous l'avez précédemment donné. Confidentialité des Enfants \nNos services ne sont pas destinés aux enfants de moins de 13 ans. Nous ne recueillons pas sciemment ni ne conservons des informations sur les enfants. \nModifications de cet Avis \nNous pouvons mettre à jour cet avis de confidentialité pour refléter des changements dans nos pratiques ou pour d'autres raisons opérationnelles, légales ou réglementaires. Nous vous informerons de toute modification importante. \nContactez-nous \nSi vous avez des questions, des préoccupations ou des demandes concernant vos informations personnelles ou cet avis de confidentialité, veuillez nous contacter à [Vos coordonnées]. \nDate d'entrée en vigueur : [Date] \nMerci de nous avoir confié vos informations. Votre vie privée est importante pour nous et nous nous engageons à la protéger."
+                },
+                "termsAndConditions": {
+                    "title": "Termes et conditions",
+                    "description": "Connaissez nos termes et conditions.",
+                    "content": "Ces termes et conditions régissent votre utilisation de ce mobile app et de tous les services fournis par celui-ci. En utilisant ce mobile app, vous acceptez ces termes et conditions dans leur intégralité. Si vous n'êtes pas d'accord avec une partie de ces termes et conditions, vous ne devez pas utiliser ce mobile app. \nLicence d'utilisation du mobile app \nSauf indication contraire, nous ou nos concédants de licence détenons les droits de propriété intellectuelle sur le mobile app et le contenu du mobile app. Sous réserve de la licence ci-dessous, tous ces droits de propriété intellectuelle sont réservés. \nVous pouvez consulter, télécharger à des fins de mise en cache uniquement et imprimer des pages du mobile app pour votre usage personnel, sous réserve des restrictions énoncées ci-dessous et ailleurs dans les présentes conditions générales. \nVous ne devez pas : \nRepublier le matériel de ce mobile app. Vendre, louer ou sous-licencier du matériel du mobile app. Montrez tout élément du mobile app en public. Reproduire, dupliquer, copier ou exploiter de toute autre manière le matériel de ce mobile app à des fins commerciales. Éditer ou modifier de toute autre manière tout élément du mobile app. Limitations de responsabilité \nLes informations sur ce mobile app sont fournies gratuitement et vous reconnaissez qu'il serait déraisonnable de nous tenir responsables à l'égard de ce mobile app et des informations contenues dans ce mobile app. Bien que nous nous efforcions de garantir l'exactitude des informations, nous ne garantissons pas leur exhaustivité ou leur exactitude ; nous ne nous engageons pas non plus à garantir que le mobile app reste disponible ou que le contenu du mobile app est tenu à jour. \nDans la mesure permise par la loi applicable, nous excluons toutes les représentations, garanties et conditions (y compris, sans s'y limiter, les conditions implicites par la loi de qualité satisfaisante, d'adéquation à un usage et d'utilisation de soins et de compétences raisonnables). \nVariation \nNous pouvons réviser ces termes et conditions de temps à autre. Veuillez consulter cette page régulièrement pour vous assurer que vous connaissez la version actuelle. \nContrat complet \nCes termes et conditions, ainsi que notre politique de confidentialité, constituent l'intégralité de l'accord entre vous et nous concernant votre utilisation de notre mobile app et remplacent tous les accords précédents concernant votre utilisation de ce mobile app. \nEn utilisant ce mobile app, vous acceptez ces termes et conditions dans leur intégralité. Si vous n'êtes pas d'accord avec une partie de ces termes et conditions, vous ne devez pas utiliser ce mobile app."
+                }
+            }
+        },
+        "support": {
+            "title": "Assistance",
+            "items": {
+                "contactUs": {
+                    "title": "Contactez-nous",
+                    "description": "Hey! wanna talk? reach us out now, we have different ways.",
+                    "content": {
+                        "description": "Nous avons différentes manières de communiquer avec nous, choisissez celle que vous préférez."
+                    }
+                },
+                "faqs": {
+                    "title": "FAQ's",
+                    "description": "Les questions les plus courantes sont résolues ici, sinon vous pouvez nous contacter.",
+                    "content": {
+                        "faq1": {
+                            "question": "Comment puis-je réinitialiser mon mot de passe?",
+                            "answer": "Vous pouvez réinitialiser votre mot de passe en vous rendant sur l'écran de connexion et en cliquant sur 'Mot de passe oublié?' Ensuite, suivez les instructions pour le réinitialiser."
+                        },
+                        "faq2": {
+                            "question": "Comment puis-je mettre à jour mes informations de profil?",
+                            "answer": "Pour mettre à jour vos informations de profil, rendez-vous dans la section des paramètres de profil. Là, vous pouvez éditer et enregistrer les modifications que vous souhaitez apporter."
+                        },
+                        "faq3": {
+                            "question": "Comment puis-je contacter le support client?",
+                            "answer": "Pour contacter notre équipe de support, rendez-vous dans la section 'Support' de l'application. Vous y trouverez des options pour envoyer un e-mail ou discuter en direct avec nos agents."
+                        },
+                        "faq4": {
+                            "question": "Que dois-je faire si je ne reçois pas d'e-mail de confirmation de compte?",
+                            "answer": "Vérifiez votre dossier de courrier indésirable ou de spam. Si vous ne trouvez pas l'e-mail de confirmation, vous pouvez demander qu'il vous soit renvoyé depuis l'écran de connexion."
+                        },
+                        "faq5": {
+                            "question": "Comment puis-je changer mon adresse e-mail?",
+                            "answer": "Pour changer votre adresse e-mail, rendez-vous dans la section des paramètres de profil et sélectionnez l'option pour mettre à jour votre adresse e-mail. Assurez-vous de vérifier la nouvelle adresse."
+                        },
+                        "faq6": {
+                            "question": "Que dois-je faire si je rencontre des problèmes techniques avec l'application?",
+                            "answer": "Si vous rencontrez des problèmes techniques, commencez par redémarrer l'application et assurez-vous d'avoir la dernière version. Si le problème persiste, contactez notre équipe de support."
+                        },
+                        "faq7": {
+                            "question": "Comment puis-je supprimer mon compte?",
+                            "answer": "Pour supprimer votre compte, rendez-vous dans la section des paramètres de profil et sélectionnez l'option pour supprimer votre compte. Veuillez noter que cette action est irréversible."
+                        },
+                        "faq8": {
+                            "question": "Où puis-je trouver les politiques de confidentialité et les termes et conditions?",
+                            "answer": "Les politiques de confidentialité et les termes et conditions se trouvent dans la section 'Info' ou 'Termes et conditions' de l'application."
+                        },
+                        "faq9": {
+                            "question": "Quelles mesures de sécurité sont appliquées à mes données personnelles?",
+                            "answer": "Nous attachons de l'importance à votre vie privée et appliquons des mesures de sécurité robustes pour protéger vos données personnelles. Vous pouvez vous référer à nos politiques de confidentialité pour plus de détails."
+                        },
+                        "faq10": {
+                            "question": "Que faire si vous trouvez une erreur dans l'application?",
+                            "answer": "Cela peut arriver à nous tous, donc si vous trouvez un bug, vous pouvez le signaler via l'un des moyens proposés par l'application dans la section Contactez-nous."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

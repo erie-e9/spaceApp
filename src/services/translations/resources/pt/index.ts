@@ -3,6 +3,7 @@ import home from '@services/translations/resources/pt/home.json';
 import welcome from '@services/translations/resources/pt/welcome.json';
 import security from '@services/translations/resources/pt/security.json';
 import languages from '@services/translations/resources/pt/languages.json';
+import settings from '@services/translations/resources/pt/shared/settings.json';
 
 export default {
   common,
@@ -10,4 +11,5 @@ export default {
   welcome,
   security,
   languages,
+  settings,
 };

@@ -7,7 +7,7 @@ import {
 
 export const BodyContainer = styled.View`
   width: 100%;
-  min-height: 400px;
+  min-height: ${getNormalizedVerticalSize(400)}px;
   align-items: center;
   justify-content: center;
 `;

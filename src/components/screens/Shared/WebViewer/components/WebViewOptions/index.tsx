@@ -4,7 +4,6 @@ import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { useSVG } from '@hooks';
 import { useCopy } from '@services';
 import { hideModal } from '@slices/shared/modal';
-import { AnimatedButton } from '@components/animated';
 import { RenderWhen } from '@components/atoms';
 import {
   OptionButton,

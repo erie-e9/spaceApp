@@ -8,18 +8,19 @@ import { Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
 export const ContainerWithOutPress = styled(View)`
-  height: 88px;
   flex-direction: row;
-  padding: 0 24px;
+  height: ${getNormalizedVerticalSize(88)}px;
+  padding: ${getNormalizedVerticalSize(0)}px
+    ${getNormalizedHorizontalSize(24)}px;
   align-items: center;
 `;
 
 export const TextContainer = styled(View)`
   flex: 1;
-  margin-left: 16px;
+  margin-left: ${getNormalizedHorizontalSize(16)}px;
   justify-content: center;
-  font-size: 14px;
-  line-height: 20.56px;
+  font-size: ${getNormalizedVerticalSize(14)}px;
+  line-height: ${getNormalizedVerticalSize(20.56)}px;
   font-weight: 500;
   height: auto;
   width: 100%;
@@ -36,8 +37,8 @@ export const StyledSubtitle = styled(Typography)``;
 
 export const RightContainer = styled.View`
   position: absolute;
-  right: 24px;
   height: 100%;
+  right: ${getNormalizedHorizontalSize(24)}px;
   justify-content: center;
 `;
 

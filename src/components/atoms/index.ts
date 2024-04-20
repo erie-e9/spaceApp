@@ -7,3 +7,4 @@ export { default as Touchable } from '@components/atoms/Touchable';
 export { default as Typography } from '@components/atoms/Typography';
 export { default as FallbackAnimation } from '@components/atoms/FallbackAnimation';
 export { default as StatusBar } from '@components/atoms/StatusBar';
+export { default as SVGIcon } from '@components/atoms/SVGIcon';

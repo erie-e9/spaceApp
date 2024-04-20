@@ -19,6 +19,8 @@ export interface StyledButtonProps {
   type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
 }
 
+const isIconSize: number = 40;
+
 export interface StyleButtonTextProps {
   readonly color?: string;
   textTransform?: CSS.StandardProperties['textTransform'];
@@ -49,11 +51,18 @@ export const StyledButton = styled(Touchable)<StyledButtonProps>`
   justify-content: center;
   align-items: center;
   margin-vertical: ${getNormalizedVerticalSize(2)}px;
-  height: ${PixelRatio.roundToNearestPixel(50)}px;
+  height: ${({ loading, type }) =>
+    loading || type === 'Icon'
+      ? PixelRatio.roundToNearestPixel(isIconSize) + 'px'
+      : isIconSize + 'px'};
+  /* width: ${({ loading, type }) =>
+    loading || type === 'Icon'
+      ? PixelRatio.roundToNearestPixel(isIconSize) + 'px'
+      : '100%'}; */
   padding: ${getNormalizedVerticalSize(0)}px
     ${({ loading }) => getNormalizedHorizontalSize(loading ? 15 : 20)}px;
   border-radius: ${({ loading, type }) =>
-    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 20)}px;
+    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 15)}px;
   elevation: 0;
   background-color: ${({ backgroundColor }) => backgroundColor};
   ${({ disabled }) => disabled && 'opacity: 1'};

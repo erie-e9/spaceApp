@@ -30,7 +30,7 @@ export const defaultProps = {
   active: false,
 };
 
-export const LoaderThreeDots = (props: DotProps): JSX.Element => {
+export const LoaderThreeDots = (props: DotProps): React.JSX.Element => {
   const [active, setActive] = useState(1);
   useEffect(() => {
     const interval = setInterval(() => {

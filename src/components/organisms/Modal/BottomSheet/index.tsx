@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useEffect,
   useImperativeHandle,
+  useMemo,
 } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -49,6 +50,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       showCancelIcon,
       body,
       list,
+      expandible,
       loading,
       drawerOptions,
     },
@@ -59,6 +61,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
     const { useNativeBackButton } = useNativeActions();
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
+    const items = useMemo(() => list?.data, [list?.data]);
 
     const scrollTo = useCallback((destination: number) => {
       'worklet';
@@ -92,7 +95,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
         context.value = { y: translateY.value };
       })
       .onUpdate(event => {
-        if (list) {
+        if (list || expandible) {
           translateY.value = event.translationY + context.value.y;
           translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
         }
@@ -162,7 +165,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
             )}
             <ModalHeader title={title} description={description || ''} />
             {body && (
-              <BodyContainer height={drawerOptions?.height || 30}>
+              <BodyContainer drawerOptions={drawerOptions}>
                 {body}
               </BodyContainer>
             )}
@@ -171,7 +174,8 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
             ) : (
               list && (
                 <StyledList
-                  data={list.data || []}
+                  data={items || []}
+                  numColumns={drawerOptions ? drawerOptions.numColumns : 1}
                   renderItem={({ item }) => (
                     <ModalItem
                       item={item}

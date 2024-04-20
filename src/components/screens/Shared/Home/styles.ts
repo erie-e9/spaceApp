@@ -15,11 +15,11 @@ export const StyledScrollView = styled.ScrollView`
 
 export const NavigateButtonFallbackContainer = styled.View`
   position: absolute;
-  height: 20px;
-  width: 20px;
-  z-index: 100;
+  height: ${getNormalizedVerticalSize(20)}px;
+  width: ${getNormalizedHorizontalSize(20)}px;
   top: ${getNormalizedVerticalSize(40)}px;
   right: ${getNormalizedHorizontalSize(10)}px;
+  z-index: 100;
 `;
 
 export const NavigateButtonFallback = styled(Touchable)``;
@@ -57,7 +57,7 @@ export const TitleContainer = styled.View`
 
 export const DescriptionContainer = styled.View`
   margin: ${getNormalizedVerticalSize(12)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(2)}px;
 `;
 
 export const StyledTypography = styled(Typography)<{

@@ -1,0 +1,125 @@
+{
+    "settings": {
+        "screenTitle": "Configuración",
+        "appPreferences": {
+            "title": "Preferencias de aplicación",
+            "items": {
+                "changeTheme": {
+                    "title": "Tema",
+                    "description": "Elige un tema para la aplicación o deja que se actualice automáticamente con el de tu dispositivo.",
+                    "themes": {
+                        "title": "Seleciona un tema",
+                        "lightTheme": "Tema claro",
+                        "darkTheme": "Tema oscuro",
+                        "systemTheme": "Tema del dispositivo"
+                    }
+                },
+                "changeLanguage": {
+                    "title": "Idioma",
+                    "description": "Cambia de idioma al que mas te agrade. Elige uno entre las opciones posibles."
+                }
+            }
+        },
+        "infoAndSupport": {
+            "title": "Info & support",
+            "items": {
+                "title": "Información y soporte",
+                "description": "Aquí puedes obtener más información sobre nosotros, contactarnos o resolver tus dudas."
+            }
+        },
+        "extra": {
+            "title": "Extra",
+            "items": {
+                "hackedDevice": {
+                    "title": "Pantalla de seguridad",
+                    "description": "Esta pantalla se mostrará cuando el usuario utilice esta aplicación en un dispositivo no autorizado."
+                },
+                "errorCatcher": {
+                    "title": "Pantalla de captura de errores",
+                    "description": "Cuando ocurre un error, el usuario puede ver esta amigable pantalla en lugar de una pantalla en blanco."
+                }
+            }
+        }
+    },
+    "infoAndSupport": {
+        "screenTitle": "Información y soporte",
+        "info": {
+            "title": "Información",
+            "items": {
+                "aboutUs": {
+                    "title": "Sobre nosotros",
+                    "description": "Quienes somos, nuestra historia, valores y el porqué hacemos lo que hacemos.",
+                    "content": "En $t(common:appName.full), somos más que una simple empresa; somos un equipo dedicado de individuos que trabajan juntos para marcar la diferencia. Nuestra historia comenzó con una idea sencilla: crear algo extraordinario que aporte valor al mundo. Esa idea ha evolucionado en una misión que guía todo lo que hacemos. Nos impulsa la innovación, y nuestra pasión por ella alimenta nuestros esfuerzos diarios. Estamos aquí para desafiar el statu quo y traspasar límites, esforzándonos por hacer posible lo imposible. Con la creatividad en nuestro núcleo, convertimos conceptos en realidad, creando soluciones que tienen importancia.Nuestro compromiso con la excelencia es inquebrantable. Nos enorgullecemos de nuestro trabajo, asegurando que cada producto y servicio que ofrecemos cumple con los estándares más altos. Nuestros clientes están en el centro de todo lo que hacemos, y su satisfacción es nuestro objetivo final.Apreciamos la diversidad, sabiendo que las mejores ideas provienen de diferentes perspectivas. Nuestro equipo es una mezcla de talentos, cada uno aportando un conjunto único de habilidades y experiencias. Juntos, somos imparables.Únete a nosotros en nuestro viaje mientras continuamos innovando, superando expectativas y dejando un impacto duradero. Juntos, podemos crear un futuro más brillante."
+                },
+                "noticeOfPrivacy": {
+                    "title": "Aviso de privacidad",
+                    "description": "Conoce nuestro aviso de privacidad.",
+                    "content": "En $t(common:appName.full), tomamos tu privacidad en serio. Este Aviso de Privacidad describe cómo recopilamos, usamos, compartimos y protegemos tu información personal. Te recomendamos leer este aviso detenidamente para comprender nuestras prácticas.\nInformación que Recopilamos\nRecopilamos información que nos proporcionas directamente. Esto incluye información personal, como tu nombre, información de contacto y cualquier otro dato que elijas compartir con nosotros. También podemos recopilar información de manera automática, como tu dirección IP, tipo de navegador e información del dispositivo.\nCómo Usamos Tu Información\nUtilizamos la información que recopilamos para varios fines, incluyendo:\nProporcionar y mantener nuestros servicios.Personalizar tu experiencia.Enviarte actualizaciones importantes y notificaciones.Supervisar y analizar patrones de uso para mejorar nuestros servicios.Cumplir con obligaciones legales y resolver disputas.Compartir Información\nPodemos compartir tu información personal con:\nProveedores de servicios que nos ayudan a ofrecer nuestros servicios.Las fuerzas del orden o agencias gubernamentales en respuesta a una solicitud legal.Terceros con tu consentimiento.No vendemos tu información personal a terceros.\nSeguridad de Datos\nTomamos la seguridad de los datos en serio y utilizamos medidas de seguridad estándar de la industria para proteger tu información personal. Sin embargo, ningún método de transmisión por internet o almacenamiento electrónico es 100% seguro.\nTus Opciones de Privacidad\nTienes derecho a:\nAcceder, corregir o eliminar tu información personal.Oponerte o restringir el procesamiento de tu información personal.Retirar tu consentimiento en cualquier momento si previamente lo proporcionaste.Privacidad de los Niños\nNuestros servicios no están destinados a niños menores de 13 años. No recopilamos ni mantenemos información de manera consciente de niños.\nCambios en Este Aviso\nPodemos actualizar este Aviso de Privacidad para reflejar cambios en nuestras prácticas u otras razones operativas, legales o regulatorias. Te notificaremos de cambios materiales.\nContáctanos\nSi tienes preguntas, inquietudes o solicitudes relacionadas con tu información personal o este Aviso de Privacidad, contáctanos en [Tu Información de Contacto].\nFecha de Entrada en Vigor: [Fecha]\nGracias por confiarnos tu información. Tu privacidad es importante para nosotros y estamos comprometidos a protegerla."
+                },
+                "termsAndConditions": {
+                    "title": "Términos y condiciones",
+                    "description": "Conoce nuestros términos y condiciones.",
+                    "content": "Estos términos y condiciones rigen el uso de esta aplicación móvil y de cualquier servicio proporcionado por ella. Al utilizar esta aplicación móvil, acepta estos términos y condiciones en su totalidad. Si no está de acuerdo con alguna parte de estos términos y condiciones, no debe utilizar esta aplicación móvil. \nLicencia para usar la aplicación móvil \nA menos que se indique lo contrario, nosotros o nuestros licenciantes poseemos los derechos de propiedad intelectual de la aplicación móvil y del material de la aplicación móvil. Sujeto a la licencia a continuación, todos estos derechos de propiedad intelectual están reservados. \nPuede ver, descargar únicamente con fines de almacenamiento en caché e imprimir páginas de la aplicación móvil para su uso personal, sujeto a las restricciones establecidas a continuación y en otras partes de estos términos y condiciones. \nNo debes: \nVolver a publicar material de esta aplicación móvil. Vender, alquilar o sublicenciar material de la aplicación móvil. Mostrar cualquier material de la aplicación móvil en público. Reproducir, duplicar, copiar o explotar de otro modo el material de esta aplicación móvil con fines comerciales. Editar o modificar de otro modo cualquier material de la aplicación móvil. Limitaciones de responsabilidad \nLa información de esta aplicación móvil se proporciona de forma gratuita y usted reconoce que no sería razonable responsabilizarnos con respecto a esta aplicación móvil y la información contenida en esta aplicación móvil. Si bien nos esforzamos por garantizar que la información sea correcta, no garantizamos su integridad o exactitud; ni nos comprometemos a garantizar que la aplicación móvil permanezca disponible o que el material de la aplicación móvil se mantenga actualizado. \nEn la medida máxima permitida por la ley aplicable, excluimos todas las representaciones, garantías y condiciones (incluidas, entre otras, las condiciones implícitas por la ley de calidad satisfactoria, idoneidad para el propósito y el uso de cuidado y habilidad razonables). \nVariación \nPodemos revisar estos términos y condiciones de vez en cuando. Por favor revise esta página periódicamente para asegurarte de que está familiarizado con la versión actual. \nAcuerdo completo \nEstos términos y condiciones, junto con nuestra Política de privacidad, constituyen el acuerdo completo entre usted y nosotros en relación con su uso de nuestra aplicación móvil y reemplazan todos los acuerdos anteriores con respecto a su uso de esta aplicación móvil. \nAl utilizar esta aplicación móvil, acepta estos términos y condiciones en su totalidad. Si no está de acuerdo con alguna parte de estos términos y condiciones, no debe utilizar esta aplicación móvil."
+                }
+            }
+        },
+        "support": {
+            "title": "Soporte",
+            "items": {
+                "contactUs": {
+                    "title": "Contáctanos",
+                    "description": "¿Deseas contactarnos? envíanos un mensaje por medio de alguna de las opciones disponibles.",
+                    "content": {
+                        "description": "Tenemos diferentes formas de que te comuniques con nosotros, elige la que más te agrade."
+                    }
+                },
+                "faqs": {
+                    "title": "Preguntas frecuentes",
+                    "description": "Quizá tus preguntas ya tengan respuesta, busca aquí. Si no, envianos un mensaje.",
+                    "content": {
+                        "faq1": {
+                            "question": "¿Cómo puedo restablecer mi contraseña?",
+                            "answer": "Puedes restablecer tu contraseña yendo a la pantalla de inicio de sesión y haciendo clic en 'Olvidaste tu contraseña?' Luego, sigue las instrucciones para restablecerla."
+                        },
+                        "faq2": {
+                            "question": "¿Cómo actualizo mi información de perfil?",
+                            "answer": "Para actualizar tu información de perfil, ve a la sección de configuración de tu perfil. Allí, puedes editar y guardar los cambios que desees."
+                        },
+                        "faq3": {
+                            "question": "¿Cómo puedo ponerme en contacto con el soporte al cliente?",
+                            "answer": "Para ponerse en contacto con nuestro equipo de soporte, visita la sección de 'Soporte' en la aplicación. Allí encontrarás opciones para enviar un correo electrónico o chatear en vivo con nuestros agentes."
+                        },
+                        "faq4": {
+                            "question": "¿Qué hago si no recibo un correo de confirmación de mi cuenta?",
+                            "answer": "Revisa tu carpeta de correo no deseado o spam. Si no encuentras el correo de confirmación, puedes solicitar que se te envíe nuevamente desde la pantalla de inicio de sesión."
+                        },
+                        "faq5": {
+                            "question": "¿Cómo puedo cambiar mi dirección de correo electrónico?",
+                            "answer": "Para cambiar tu dirección de correo electrónico, visita la sección de configuración de su perfil y selecciona la opción para actualizar tu dirección de correo electrónico. Asegúrate de verificar la nueva dirección."
+                        },
+                        "faq6": {
+                            "question": "¿Qué hago si experimento problemas técnicos con la aplicación?",
+                            "answer": "Si experimentas problemas técnicos, primero intenta reiniciar la aplicación y asegurarte de tener la última versión. Si el problema persiste, ponte en contacto con nuestro equipo de soporte."
+                        },
+                        "faq7": {
+                            "question": "¿Cómo puedo eliminar mi cuenta?",
+                            "answer": "Para eliminar tu cuenta, visita la sección de configuración de perfil y selecciona la opción para eliminar cuenta. Ten en cuenta que esta acción es irreversible."
+                        },
+                        "faq8": {
+                            "question": "¿Dónde puedo encontrar las políticas de privacidad y términos y condiciones?",
+                            "answer": "Las políticas de privacidad y los términos y condiciones se encuentran en la sección de 'Información' o 'Términos y Condiciones' de la aplicación."
+                        },
+                        "faq9": {
+                            "question": "¿Qué medidas de seguridad se aplican a mis datos personales?",
+                            "answer": "Valoramos tu privacidad y aplicamos medidas de seguridad robustas para proteger tus datos personales. Puedes consultar nuestras políticas de privacidad para obtener más detalles."
+                        },
+                        "faq10": {
+                            "question": "¿Que hacer en caso de encontrar un bug en la aplicación?",
+                            "answer": "A todos nos puedes pasar, así que si encuentras un bug, puedes reportarlo por medio de alguna de las vías que la aplicación provee en la sección Contáctanos."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

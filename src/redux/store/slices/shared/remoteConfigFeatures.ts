@@ -9,6 +9,20 @@ export const initialState: RemoteConfigFeatures = {
   webviewOpenOnBrowser: { status: 'on' },
   webviewReload: { status: 'on' },
   webviewShare: { status: 'on' },
+  infoAndSupport: { status: 'on' },
+  hackedDevice: { status: 'on' },
+  errorCatcher: { status: 'on' },
+  contactUsViaEmail: { status: 'on' },
+  contactUsViaFacebook: { status: 'on' },
+  contactUsViaInstagram: { status: 'on' },
+  contactUsViaCall: { status: 'on' },
+  contactUsViaTelegram: { status: 'on' },
+  contactUsViaWhatsApp: { status: 'on' },
+  aboutUs: { status: 'on' },
+  noticeOfPrivacy: { status: 'on' },
+  termsAndConditions: { status: 'on' },
+  contactUs: { status: 'on' },
+  faqs: { status: 'on' },
 };
 
 const slice = createSlice({

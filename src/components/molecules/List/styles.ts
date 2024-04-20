@@ -1,8 +1,6 @@
-import { FlashList } from '@shopify/flash-list';
 import styled from 'styled-components/native';
+import { FlashList } from '@shopify/flash-list';
 
 export const StyledList = styled(FlashList).attrs({
-  contentContainerStyle: {
-    paddingBottom: 10,
-  },
+  contentContainerStyle: {},
 })``;

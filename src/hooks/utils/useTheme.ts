@@ -24,6 +24,7 @@ export default function () {
     (state: { appPreferences: AppPreferencesState }) =>
       state.appPreferences.darkMode,
   );
+
   const darkMode = isDark === null ? colorScheme === 'dark' : isDark;
 
   let variables = {};

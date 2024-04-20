@@ -30,7 +30,7 @@ interface ButtonProps {
   backgroundColor?: string;
   featureFlags?: string[];
 }
-interface Props {
+interface CallToActionProps {
   testID?: string;
   title?: string;
   adjustsFontTitle?: boolean;
@@ -44,7 +44,8 @@ interface Props {
   color?: string;
   backButton?: boolean;
 }
-const CallToAction: React.FC<Props> = ({
+
+const CallToAction: React.FC<CallToActionProps> = ({
   testID,
   title,
   adjustsFontTitle,

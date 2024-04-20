@@ -1,5 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useCopy } from '@services';
+import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { RotateAnimation } from '@components/animated';
 import { FallbackAnimation, StatusBar } from '@components/atoms';
 import { CallToAction } from '@components/templates';
@@ -21,21 +23,21 @@ export const CustomFallback: React.FC<CustomFallbackProps> = ({
   resetError,
 }) => {
   const { getCopyValue } = useCopy();
-  const [primaryButtonLoading, setPrimaryButtonLoading] = useState(false);
-  const [secondaryButtonLoading, setSecondaryButtonLoading] = useState(false);
+  const navigation: ApplicationScreenProps = useNavigation();
   const mockedErrorMessage =
     error ||
     'common:errors.boundaries.fallbackScreen.detailsLabelDefaultMessage';
 
   const handlePrimaryButton = useCallback(async (): Promise<void> => {
-    await setPrimaryButtonLoading(!primaryButtonLoading);
-    await setSecondaryButtonLoading(false);
     if (resetError) await resetError();
   }, []);
 
   const handleSecondaryButton = useCallback(async (): Promise<void> => {
-    await setSecondaryButtonLoading(!secondaryButtonLoading);
-    await setPrimaryButtonLoading(false);
+    await navigation.navigate('ContactUs');
+    await navigation.reset({
+      index: 0,
+      routes: [{ name: 'ContactUs' }],
+    });
   }, []);
 
   return (
@@ -99,21 +101,17 @@ export const CustomFallback: React.FC<CustomFallbackProps> = ({
         </BodyContainer>
       }
       primaryButton={{
+        testID: 'CustomFallback.primaryButton',
         title: 'common:errors.boundaries.fallbackScreen.button',
         onPress: handlePrimaryButton,
-        testID: 'CustomFallback.primaryButton',
-        disabled: primaryButtonLoading,
-        loading: primaryButtonLoading,
       }}
       secondaryButton={{
+        testID: 'Warning.secondaryButtonLoading',
         title: 'security:Warning.actions.secondaryButton.title',
         onPress: handleSecondaryButton,
-        testID: 'Warning.secondaryButtonLoading',
-        disabled: secondaryButtonLoading,
-        loading: secondaryButtonLoading,
       }}
     />
   );
 };
 
-export default CustomFallback;
+export default memo(CustomFallback);

@@ -5,7 +5,7 @@ import { ItemButton, ItemLabelContainer, ItemLabel } from './styles';
 
 export interface ModalItemProps {
   testID?: string;
-  item: unknown;
+  item: string;
   onPress: () => void;
   predefinedList?: 'languages';
 }

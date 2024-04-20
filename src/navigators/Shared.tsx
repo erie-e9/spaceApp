@@ -3,12 +3,15 @@ import {
   TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
+import { ApplicationStackParamList } from '@utils/@types/navigation';
 import {
   CustomFallback,
   Home,
+  SettingsNavigator,
   Warning,
   WebViewer,
 } from '@components/screens/Shared';
+import { SettingsParamsList } from '@components/screens/Shared/Settings';
 
 export type SharedParamsList = {
   CustomFallback: {
@@ -16,6 +19,8 @@ export type SharedParamsList = {
     resetError: () => void;
   };
   Home: undefined;
+  Settings: undefined;
+  InfoAndSupportMenu: undefined;
   Startup: undefined;
   Warning: undefined;
   WebViewer: {
@@ -23,9 +28,9 @@ export type SharedParamsList = {
     onReload?: () => void;
     onClose?: () => void;
   };
-};
+} & SettingsParamsList;
 
-const { Navigator, Screen } = createStackNavigator<SharedParamsList>();
+const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
 export const SharedNavigator = () => {
   return (
@@ -38,10 +43,15 @@ export const SharedNavigator = () => {
         ...TransitionPresets.ScaleFromCenterAndroid,
       }}
     >
-      <Screen name="CustomFallback" component={CustomFallback as any} />
-      <Screen name="Home" component={Home} />
-      <Screen name="Warning" component={Warning} />
-      <Screen name="WebViewer" component={WebViewer} />
+      <Screen
+        key="CustomFallback"
+        name="CustomFallback"
+        component={CustomFallback as any}
+      />
+      <Screen key="Home" name="Home" component={Home} />
+      <Screen key="Settings" name="Settings" component={SettingsNavigator} />
+      <Screen key="Warning" name="Warning" component={Warning} />
+      <Screen key="WebViewer" name="WebViewer" component={WebViewer} />
     </Navigator>
   );
 };

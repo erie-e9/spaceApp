@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useRef } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { BackButtonContainer, BackButtonPressable } from './styles';
-import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   testID?: string;

@@ -1,5 +1,8 @@
-import React, { useEffect } from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import React, { memo, useEffect } from 'react';
+import {
+  TransitionPresets,
+  createStackNavigator,
+} from '@react-navigation/stack';
 import SplashScreen from 'react-native-lottie-splash-screen';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -7,7 +10,7 @@ import {
   NavigationContainer,
   useNavigationContainerRef,
 } from '@react-navigation/native';
-import { useFlipper } from '@react-navigation/devtools';
+// import { useFlipper } from '@react-navigation/devtools';
 import ErrorBoundary from 'react-native-error-boundary';
 import { ApplicationStackParamList } from 'types/navigation';
 import { useCopy, initAppCheck, Logger } from '@services';
@@ -60,7 +63,7 @@ const Application = () => {
     Logger.log('handleJSErrorForErrorBoundary: ', { stackTrace, error });
   };
 
-  useFlipper(navigationRef);
+  // useFlipper(navigationRef);
 
   return (
     <ThemeProvider theme={theme}>
@@ -76,6 +79,9 @@ const Application = () => {
               <Navigator
                 screenOptions={{
                   headerShown: false,
+                  freezeOnBlur: true,
+                  headerMode: 'screen',
+                  ...TransitionPresets.ScaleFromCenterAndroid,
                 }}
               >
                 <Screen name="Startup" component={Startup} />
@@ -90,4 +96,4 @@ const Application = () => {
   );
 };
 
-export default Application;
+export default memo(Application);

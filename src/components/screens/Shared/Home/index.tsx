@@ -1,12 +1,8 @@
-import React, { memo, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { ApplicationScreenProps } from 'types/navigation';
-import { AppPreferencesState } from '@slices/types/appPreferences';
-import { changeTheme, setDefaultTheme } from '@slices/shared';
-import { useTheme, useSVG, useToast, useModal } from '@hooks';
-import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
+import React, { memo } from 'react';
 import { Logger, useCopy } from '@services';
-import * as resources from '@services/translations/resources';
+import { ApplicationScreenProps } from 'types/navigation';
+import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
+import { useTheme, useSVG } from '@hooks';
 import {
   InterpolateColorAnimation,
   TransformAnimation,
@@ -45,45 +41,12 @@ interface Props {
 
 export const Home: React.FC<Props> = ({ navigation }) => {
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
-  const dispatch = useDispatch();
   const { getCopyValue } = useCopy();
-  const { showModal } = useModal();
-  const { Images, darkMode: isDarkMode } = useTheme();
-  const QRCodeIconIcon = useSVG('QRCodeIcon');
-  const AlertTriangleIcon = useSVG('AlertTriangleIcon');
-  const LanguageIcon = useSVG('LanguageIcon');
-  const SwitchThemeIcon = useSVG('SwitchThemeIcon');
-
-  const appPresentation = useCallback((): void => {
-    useToast.success({
-      message: getCopyValue('home:helloUser'),
-      duration: 3000,
-      vibration: true,
-    });
-    dispatch(setDefaultTheme({ theme: 'default', darkMode: null }));
-  }, []);
-
-  const onChangeTheme = useCallback(
-    ({ theme, darkMode }: Partial<AppPreferencesState>): void => {
-      dispatch(changeTheme({ theme, darkMode }));
-    },
-    [],
-  );
-
-  const onChangeLanguage = useCallback((): void => {
-    showModal({
-      type: 'bottomsheet',
-      title: 'languages:switchLanguage.title',
-      description: 'languages:switchLanguage.description',
-      list: {
-        data: Object.keys(resources),
-        predefinedList: 'languages',
-      },
-    });
-  }, []);
+  const { Images } = useTheme();
+  const SettingsIcon = useSVG('SettingsIcon');
 
   return (
-    <InterpolateColorAnimation isScreen>
+    <InterpolateColorAnimation>
       <HeaderContainer>
         <NavigateButtonFallbackContainer>
           <NavigateButtonFallback
@@ -242,7 +205,7 @@ export const Home: React.FC<Props> = ({ navigation }) => {
             </StyledTypography>
             <DescriptionContainer>
               <StyledTypography
-                type="Subtitle1"
+                type="Subtitle2"
                 font="primary"
                 color="surfaceL1"
                 textAlign="left"
@@ -253,50 +216,13 @@ export const Home: React.FC<Props> = ({ navigation }) => {
           </ContentContainer>
         </StyledScrollView>
         <FeaturesContainer>
-          <RenderWhen
-            isTrue={remoteConfigFeatures?.triggerAlert?.status !== 'hide'}
-          >
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => appPresentation()}
-              Icon={<QRCodeIconIcon />}
-              featureFlags={['triggerAlert']}
-            />
-          </RenderWhen>
           <RenderWhen isTrue={remoteConfigFeatures?.warning?.status !== 'hide'}>
             <FeatureButton
               type="Icon"
               buttonTheme="Primary"
-              onPress={() =>
-                navigation.navigate('WebViewer', {
-                  url: 'https://www.google.com.mx/',
-                })
-              }
-              Icon={<AlertTriangleIcon />}
+              onPress={() => navigation.navigate('Settings')}
+              Icon={<SettingsIcon />}
               featureFlags={['warning']}
-            />
-          </RenderWhen>
-          <RenderWhen
-            isTrue={remoteConfigFeatures?.changeTheme?.status !== 'hide'}
-          >
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => onChangeTheme({ darkMode: !isDarkMode })}
-              Icon={<SwitchThemeIcon />}
-              featureFlags={['changeTheme']}
-            />
-          </RenderWhen>
-          <RenderWhen
-            isTrue={remoteConfigFeatures?.changeLanguage?.status !== 'hide'}
-          >
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => onChangeLanguage()}
-              Icon={<LanguageIcon />}
-              featureFlags={['changeLanguage']}
             />
           </RenderWhen>
         </FeaturesContainer>

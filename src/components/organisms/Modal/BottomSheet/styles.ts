@@ -7,7 +7,7 @@ import {
   getNormalizedHorizontalSize,
 } from '@utils/functions';
 import { Touchable } from '@components/atoms';
-import { List } from '@components/organisms';
+import { List } from '@components/molecules';
 
 export const AnimatedBottomSheet = styled(Animated.View)`
   height: ${screen_height}px;
@@ -24,9 +24,12 @@ export const CloseBottomSheetButton = styled(Touchable)`
   height: ${getNormalizedVerticalSize(30)}px;
 `;
 
-export const BodyContainer = styled.View<{ height: number }>`
-  min-height: ${({ height }) => getNormalizedVerticalSize(height)}px;
-  justify-content: ${({ height }) => (height > 30 ? 'flex-start' : 'center')};
+export const BodyContainer = styled.View<{ drawerOptions?: any }>`
+  min-height: ${({ drawerOptions }) =>
+    drawerOptions.height
+      ? getNormalizedVerticalSize(drawerOptions.height) + 'px'
+      : 'auto'};
+  justify-content: ${({ drawerOptions }) => drawerOptions.justifContent};
 `;
 
 export const PanGestureHandlerView = styled.View`

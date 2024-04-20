@@ -15,7 +15,7 @@ export const AnimatedDotItem = ({
   animationScale,
   animationTranslateY,
   active = false,
-}: DotProps): JSX.Element => {
+}: DotProps): React.JSX.Element => {
   const scale = useSharedValue(1);
   const translateY = useSharedValue(1);
 
@@ -58,6 +58,7 @@ export const AnimatedDotItem = ({
       scaleYUp();
     }
   }, [active, scaleDown, scaleUp]);
+
   return (
     <AnimatedDot
       testID={testID + 'AnimatedDotItem'}

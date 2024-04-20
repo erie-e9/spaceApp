@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, memo, useCallback, useRef } from 'react';
 import { useCopy } from '@services';
 import { useTheme, useModal } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
@@ -39,6 +39,7 @@ export const Warning: React.FC = () => {
 
   return (
     <CallToAction
+      testID="WarningID"
       title="security:Warning.title"
       numberOfLinesTitle={3}
       backButton
@@ -54,10 +55,10 @@ export const Warning: React.FC = () => {
             width={120}
             height={120}
           />
-          <StyledScrollView testID="WarningID">
+          <StyledScrollView>
             <DescriptionContainer>
               <TitleText
-                type="Subtitle1"
+                type="Subtitle2"
                 font="primary"
                 color="surfaceL1"
                 textAlign="center"
@@ -69,7 +70,7 @@ export const Warning: React.FC = () => {
             </DescriptionContainer>
             <SubDescriptionContainer>
               <TitleText
-                type="Subtitle1"
+                type="Subtitle2"
                 font="primary"
                 color="surfaceL1"
                 textAlign="center"

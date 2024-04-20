@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { useTheme } from 'styled-components';
 import { useCopy } from '@services';
+import { useTheme } from '@hooks';
 import { ModalHeaderContainer, TitleWrapper, StyledText } from './styles';
 
 export interface ModalHeaderProps {
@@ -14,9 +14,8 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   title,
   description,
 }) => {
-  const theme = useTheme();
   const { getCopyValue } = useCopy();
-  const isDarkMode = theme.mode === 'dark';
+  const { darkMode: isDarkMode } = useTheme();
   const defaultTitleColor = isDarkMode ? 'secondaryD1' : 'primaryD1';
 
   return (

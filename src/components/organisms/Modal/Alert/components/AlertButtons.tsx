@@ -82,7 +82,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
   const generatedButtons = (
     handleCloseFn: () => void,
     btnOptions: any[],
-  ): JSX.Element | JSX.Element[] => {
+  ): React.JSX.Element| JSX.Element[] => {
     if (btnOptions.length === 1) {
       const option = btnOptions[0];
       const renderDefaultHander = !(!option.handleAsync && option.handler);

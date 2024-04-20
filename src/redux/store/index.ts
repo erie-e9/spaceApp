@@ -14,8 +14,8 @@ import {
 import { MMKV } from 'react-native-mmkv';
 import { api } from '@hooks/api';
 import { reducers } from '@store/reducers';
-import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
-import { setupDefaultFlipperReporter } from 'react-native-performance-flipper-reporter';
+// import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
+// import { setupDefaultFlipperReporter } from 'react-native-performance-flipper-reporter';
 
 const { APP_NAME } = process.env;
 const storage = new MMKV({
@@ -24,8 +24,8 @@ const storage = new MMKV({
 });
 
 if (__DEV__) {
-  initializeMMKVFlipper({ default: storage });
-  setupDefaultFlipperReporter();
+  // initializeMMKVFlipper({ default: storage });
+  // setupDefaultFlipperReporter();
 }
 
 export const reduxStorage: Storage = {
@@ -62,8 +62,8 @@ const store = configureStore({
     }).concat(api.middleware);
 
     if (__DEV__ && !process.env.JEST_WORKER_ID) {
-      const createDebugger = require('redux-flipper').default;
-      middlewares.push(createDebugger());
+      // const createDebugger = require('redux-flipper').default;
+      middlewares.push();
     }
 
     return middlewares;

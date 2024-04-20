@@ -7,6 +7,7 @@ export interface ListProps {
   predefinedList?: 'languages';
   data: Array<string>;
   onPressItem: any;
+  horizontal: boolean;
 }
 
 export interface OptionsMap {
@@ -31,6 +32,8 @@ export interface DrawerOptions extends ModalProps {
   hasIcon?: boolean;
   refreshCallback?: () => Promise<void>;
   height?: number;
+  justifyContent?: string;
+  alignItems?: string;
 }
 
 export interface ModalPayload {
@@ -43,6 +46,7 @@ export interface ModalPayload {
   body?: ReactElement;
   options?: Partial<OptionsMap[]>;
   list?: Partial<ListProps>;
+  expandible?: boolean;
   onClose?: () => void;
   timeout?: number;
   type?: 'alert' | 'bottomsheet' | null;

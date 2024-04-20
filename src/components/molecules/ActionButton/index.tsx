@@ -5,6 +5,7 @@ import {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming
 } from 'react-native-reanimated';
 import { useCopy } from '@services';
 import { screen_width } from '@utils/functions';
@@ -191,7 +192,7 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
   const buttonAnimation = useAnimatedStyle(() => {
     return {
-      width: type === 'Icon' ? 50 : width.value,
+      width: type === 'Icon' ? 40 : width.value,
     };
   }, []);
 
@@ -205,9 +206,9 @@ const ActionButton: React.FC<ActionButtonProps> = ({
 
   useEffect(() => {
     if (loading) {
-      width.value = withSpring(50, { stiffness: 100, damping: 15 });
+      width.value = withSpring(40, { stiffness: 100, damping: 15 });
     } else {
-      width.value = withSpring(screen_width - 50, {
+      width.value = withSpring(screen_width - 40, {
         stiffness: 100,
         damping: 15,
       });

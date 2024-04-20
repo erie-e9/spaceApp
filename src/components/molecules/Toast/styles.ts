@@ -26,7 +26,7 @@ export const ToastBodyContainer = styled.View`
   height: ${getNormalizedVerticalSize(52)}px;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 1px;
+  padding-bottom: ${getNormalizedVerticalSize(1)}px;
 `;
 
 export const ToastTextContainer = styled.View<ToastTextContainer>`

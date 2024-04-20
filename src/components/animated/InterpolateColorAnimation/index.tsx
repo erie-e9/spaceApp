@@ -100,7 +100,7 @@ export const InterpolateColorAnimation: React.FC<
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: insets.top,
+    paddingTop: 90,
     paddingBottom: 15,
   };
 
