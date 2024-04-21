@@ -13,4 +13,9 @@ module.exports = {
       ? { 'react-native-flipper': { platforms: { ios: null } } }
       : {}),
   },
+  dependency: {
+    ...(process.env.NO_FLIPPER
+      ? {'react-native-flipper': {platforms: {ios: null}}}
+      : {}),
+  },
 };

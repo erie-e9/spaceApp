@@ -1,7 +1,9 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.facebook.react'
-apply from: './versionCode.gradle'
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
 apply plugin: 'com.google.gms.google-services'
+apply from: './versionCode.gradle'
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -36,7 +38,7 @@ react {
     //   The name of the generated asset file containing your JS bundle
     // bundleAssetName = "MyApplication.android.bundle"
     //
-    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.ts'
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
     // entryFile = file("../js/MyApplication.android.js")
     //
     //   A list of extra flags to pass to the 'bundle' commands.
@@ -71,16 +73,16 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 
 android {
     ndkVersion rootProject.ext.ndkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdk rootProject.ext.compileSdkVersion
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
-
-    namespace 'com.spaceApp'
+    namespace "com.spaceapp"
     defaultConfig {
-        applicationId 'com.spaceApp'
+        applicationId "com.spaceapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode Integer.parseInt(VERSION_CODE)
-        versionName '1.0.1'
+        versionName '1.0.0'
     }
     signingConfigs {
         debug {
@@ -105,7 +107,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.release //! Uncomment only if you are releasing to playstore.
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -114,25 +116,18 @@ android {
 
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
-    implementation('com.facebook.react:react-android')
+    implementation("com.facebook.react:react-android")
     implementation 'com.facebook.fresco:webpsupport:2.5.0'
     // To display animated WebP images
     implementation 'com.facebook.fresco:animated-webp:2.5.0'
-    implementation platform('com.google.firebase:firebase-bom:32.3.1')
-    // implementation('com.google.firebase:firebase-appcheck-playintegrity')
-    // implementation 'com.google.android.play:integrity:1.1.0'
-    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
-    debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
+    implementation("com.facebook.react:flipper-integration")
+    implementation project(':react-native-lottie-splash-screen')
 
-        exclude group:'com.squareup.okhttp3', module:'okhttp'
-    }
-
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}")
     if (hermesEnabled.toBoolean()) {
-        implementation('com.facebook.react:hermes-android')
+        implementation("com.facebook.react:hermes-android")
     } else {
         implementation jscFlavor
     }
 }
 
-apply from: file('../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle'); applyNativeModulesAppBuildGradle(project)
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

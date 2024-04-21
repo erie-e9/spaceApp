@@ -29,6 +29,7 @@ end
 target 'spaceApp' do
   # use_frameworks!
   $RNFirebaseAnalyticsWithoutAdIdSupport = true
+  pod 'FirebaseAnalytics'
   pod 'Firebase', :modular_headers => true
   pod 'FirebaseCore', :modular_headers => true
   pod 'GoogleUtilities', :modular_headers => true
@@ -37,23 +38,24 @@ target 'spaceApp' do
   pod 'GoogleDataTransport', :modular_headers => true  
   pod 'nanopb', :modular_headers => true
 
-  $RNFirebaseAsStaticFramework = true
-  $FirebaseSDKVersion = '10.15.0'
+  $FirebaseSDKVersion = '10.24.0'
   config = use_native_modules!
 
   # Flags change depending on the env values.
   flags = get_default_flags()
-
+  
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
   use_react_native!(
     :path => config[:reactNativePath],
     # Hermes is now enabled by default. Disable by setting this flag to false.
-    :hermes_enabled => flags[:hermes_enabled],
-    :fabric_enabled => flags[:fabric_enabled],
+    # :hermes_enabled => flags[:hermes_enabled],
+    # :fabric_enabled => flags[:fabric_enabled],
     # Enables Flipper.
     #
     # Note that if you have use_frameworks! enabled, Flipper will not work and
     # you should disable the next line.
-    :flipper_configuration => flipper_config,
+    # :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
@@ -70,6 +72,34 @@ target 'spaceApp' do
       config[:reactNativePath],
       :mac_catalyst_enabled => false
     )
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
+
+$static_library = [
+     'React',
+     'react-native-skia/Api',
+     'react-native-skia/Jsi',
+     'react-native-skia/RNSkia',
+     'react-native-skia/SkiaHeaders',
+     'react-native-skia/Utils',
+     'react-native-skia',
+  ]
+
+  pre_install do |installer|
+    Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+
+    installer.pod_targets.each do |pod|
+      ## Skia pod correction
+      if $static_library.include?(pod.name)
+        puts "Overriding the build_type to static_library from static_framework for #{pod.name}"
+        def pod.build_type;
+          Pod::BuildType.static_library
+        end
+      end
+
+      ## Firebase
+      bt = pod.send(:build_type)
+      puts "#{pod.name} (#{bt})"
+      puts "  linkage: #{bt.send(:linkage)} packaging: #{bt.send(:packaging)}"
+    end
+  end
