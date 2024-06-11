@@ -7,7 +7,10 @@ interface Props {
   onPress?: () => void;
 }
 
-export const CloseButton: React.FC<Props> = ({ testID, onPress }) => {
+export const CloseButton: React.FC<Props> = ({
+  testID = 'CloseButtonID',
+  onPress = undefined,
+}) => {
   const CloseIcon = useSVG('CloseIcon');
 
   const handleOnPress = useCallback(() => {
@@ -25,11 +28,6 @@ export const CloseButton: React.FC<Props> = ({ testID, onPress }) => {
       </CloseButtonContainer>
     </CloseButtonPressable>
   );
-};
-
-CloseButton.defaultProps = {
-  testID: 'CloseButtonID',
-  onPress: undefined,
 };
 
 export default memo(CloseButton);

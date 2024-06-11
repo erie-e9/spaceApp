@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>124944014292-q5tijfe5d3hc47m1qa6lfv1qd01iqu1r.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.124944014292-q5tijfe5d3hc47m1qa6lfv1qd01iqu1r</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>124944014292-prcsbpc45jklh3l9fq415m9d1uflh1qb.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCzhEXOXMKP0epCuH_arbbjowoJua17bkc</string>
+	<string>AIzaSyAJkBgB-Sl2GcrGMmisyFFcZFlQND2qmP0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>509168775669</string>
+	<string>124944014292</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.spaceapp</string>
+	<string>com.spaceApp</string>
 	<key>PROJECT_ID</key>
-	<string>spaceapp-c022d</string>
+	<string>spaceapp-818a0</string>
 	<key>STORAGE_BUCKET</key>
-	<string>spaceapp-c022d.appspot.com</string>
+	<string>spaceapp-818a0.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:509168775669:ios:1251bcea627aec0345b0bc</string>
+	<string>1:124944014292:ios:3b7b823caded8d364e5441</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Enabling Face ID allows you quick and secure access to your account.</string>
 </dict>
 </plist>

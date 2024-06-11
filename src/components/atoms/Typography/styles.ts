@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { Text as NativeText, Platform } from 'react-native';
-import { isFinite } from 'lodash';
+import { Text as NativeText, Platform, PixelRatio } from 'react-native';
 import styled, { css, DefaultTheme } from 'styled-components/native';
+import { isFinite } from 'lodash';
 import {
   responsiveFontSize,
   getNormalizedVerticalSize,
@@ -39,7 +39,8 @@ export interface TextProps {
     | 'Body3'
     | 'Body4'
     | 'Button'
-    | 'Caption';
+    | 'Caption'
+    | 'Label';
   font?: 'primary' | 'secondary';
   color?: keyof DefaultTheme['tokens']['colors'];
   weight?: number | 'bold' | 'semi-bold' | 'normal';
@@ -63,68 +64,68 @@ export const Headline1 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(60)}px;
   line-height: ${getNormalizedVerticalSize(62.4)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(-1.5)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(-1.5)}px;
 `;
 export const Headline2 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(51)}px;
+  font-size: ${responsiveFontSize(43)}px;
   line-height: ${getNormalizedVerticalSize(52.8)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(-0.5)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(-0.5)}px;
 `;
 export const Headline3 = css`
   font-weight: 400;
-  font-size: ${responsiveFontSize(42)}px;
+  font-size: ${responsiveFontSize(38)}px;
   line-height: ${getNormalizedVerticalSize(43.2)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.3)}px;
 `;
 
 export const Headline4 = css`
   font-weight: 500;
-  font-size: ${responsiveFontSize(34)}px;
+  font-size: ${responsiveFontSize(29)}px;
   line-height: ${getNormalizedVerticalSize(41)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.8)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.6)}px;
 `;
 
 export const Headline5 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(25)}px;
   line-height: ${getNormalizedVerticalSize(32)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0)}px;
 `;
 
 export const Headline6 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(20)}px;
   line-height: ${getNormalizedVerticalSize(25.2)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(1)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(1)}px;
 `;
 
 export const Subtitle1 = css`
-  font-weight: 900;
+  font-weight: 700;
   font-size: ${responsiveFontSize(17)}px;
   line-height: ${getNormalizedVerticalSize(21)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(1)}px;
 `;
 
 export const Subtitle2 = css`
-  font-weight: 300;
-  font-size: ${responsiveFontSize(15)}px;
-  line-height: ${getNormalizedVerticalSize(19)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.2)}px;
+  font-weight: 400;
+  font-size: ${responsiveFontSize(14.5)}px;
+  line-height: ${getNormalizedVerticalSize(18.5)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(1)}px;
 `;
 
 export const Subtitle3 = css`
-  font-weight: 600;
-  font-size: ${responsiveFontSize(10)}px;
-  line-height: ${getNormalizedVerticalSize(17)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.1)}px;
+  font-weight: 400;
+  font-size: ${responsiveFontSize(12.5)}px;
+  line-height: ${getNormalizedVerticalSize(15)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.85)}px;
 `;
 
 export const Body1 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(24)}px;
   line-height: ${getNormalizedVerticalSize(27.6)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.08)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.8)}px;
   ${SecondaryFont}
 `;
 
@@ -132,7 +133,7 @@ export const Body2 = css`
   font-weight: 300;
   font-size: ${responsiveFontSize(17)}px;
   line-height: ${getNormalizedVerticalSize(22)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.08)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.08)}px;
   ${SecondaryFont}
 `;
 
@@ -140,15 +141,15 @@ export const Body3 = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(16)}px;
   line-height: ${getNormalizedVerticalSize(19)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.08)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.08)}px;
   ${SecondaryFont}
 `;
 
 export const Body4 = css`
   font-weight: 500;
   font-size: ${responsiveFontSize(14.5)}px;
-  line-height: ${getNormalizedVerticalSize(20.8)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0.2)}px;
+  line-height: ${getNormalizedVerticalSize(18)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.05)}px;
   ${SecondaryFont}
 `;
 
@@ -156,15 +157,23 @@ export const Button = css`
   font-weight: 500;
   font-size: ${responsiveFontSize(18)}px;
   line-height: ${getNormalizedVerticalSize(20)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(1.25)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(1.25)}px;
   ${SecondaryFont}
 `;
 
 export const Caption = css`
   font-weight: 400;
   font-size: ${responsiveFontSize(13)}px;
-  line-height: ${getNormalizedVerticalSize(19.4)}px;
-  letter-spacing: ${getNormalizedHorizontalSize(0)}px;
+  line-height: ${getNormalizedVerticalSize(16.4)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.3)}px;
+  ${SecondaryFont}
+`;
+
+export const Label = css`
+  font-weight: 400;
+  font-size: ${responsiveFontSize(10)}px;
+  line-height: ${getNormalizedVerticalSize(16.4)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(0.3)}px;
   ${SecondaryFont}
 `;
 
@@ -235,6 +244,8 @@ export const Text = styled(NativeText)<TextProps>`
         return Button;
       case 'Caption':
         return Caption;
+      case 'Label':
+        return Label;
       default:
         return Body4;
     }
@@ -260,7 +271,7 @@ export const Text = styled(NativeText)<TextProps>`
 `;
 
 Text.defaultProps = {
-  color: 'textLabelNeutral',
+  color: 'textColor',
   paddingTop: 0,
   weight: 'normal',
 };

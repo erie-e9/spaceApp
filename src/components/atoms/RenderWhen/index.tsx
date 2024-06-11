@@ -8,7 +8,7 @@ type RenderWhenProps = {
 
 export const RenderWhen = ({
   limit = 1,
-  isTrue,
+  isTrue = true,
   children,
 }: RenderWhenProps) => {
   const list: ReactNode[] = [];
@@ -24,11 +24,6 @@ export const RenderWhen = ({
   });
 
   return <>{list}</>;
-};
-
-RenderWhen.defaultProps = {
-  limit: 1,
-  isTrue: true,
 };
 
 export default memo(RenderWhen);

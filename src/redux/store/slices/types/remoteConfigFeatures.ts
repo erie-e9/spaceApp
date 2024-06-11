@@ -26,4 +26,12 @@ export interface RemoteConfigFeatures {
   termsAndConditions: FeatureValue;
   contactUs: FeatureValue;
   faqs: FeatureValue;
+  accountRecovery: FeatureValue;
+  useBiometrics: FeatureValue;
+  googleLogIn: FeatureValue;
+  facebookLogin: FeatureValue;
+  instagramLogin: FeatureValue;
+  logIn: FeatureValue;
+  signUp: FeatureValue;
+  socialNetworksLogIn: FeatureValue;
 }

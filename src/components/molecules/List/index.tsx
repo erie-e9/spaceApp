@@ -6,12 +6,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useWindowDimensions } from 'react-native';
 import { useBlankAreaTracker } from '@shopify/flash-list';
 import { screen_height } from '@utils/functions';
 import { Logger } from '@services';
 import ListItem from '@components/molecules/List/components/ListItem';
 import { StyledList } from './styles';
-import { useWindowDimensions } from 'react-native';
 
 interface ListProps {
   data: Array<string>;
@@ -26,12 +26,13 @@ interface ListProps {
 
 export const List: React.FC<ListProps> = ({
   data,
-  estimatedItemSize,
-  renderItem,
-  numColumns,
-  showsHorizontalScrollIndicator,
-  showsVerticalScrollIndicator,
-  refreshHanlder,
+  estimatedItemSize = 50,
+  renderItem = undefined,
+  horizontal = false,
+  numColumns = 1,
+  showsHorizontalScrollIndicator = false,
+  showsVerticalScrollIndicator = false,
+  refreshHanlder = undefined,
 }) => {
   const ref = useRef(null);
   const { width: windowWidth } = useWindowDimensions();
@@ -56,7 +57,13 @@ export const List: React.FC<ListProps> = ({
 
   const [numberColumns, setNumColumns] = useState(calcNumColumns());
   const renderElement = useCallback(
-    ({ item, index }: { item: any; index: number }): React.JSX.Element| null => {
+    ({
+      item,
+      index,
+    }: {
+      item: any;
+      index: number;
+    }): React.JSX.Element | null => {
       return (
         <ListItem key={index} title={item.title} subtitle={item.subtitle} />
       );
@@ -111,16 +118,6 @@ export const List: React.FC<ListProps> = ({
       onBlankArea={onBlankArea}
     />
   );
-};
-
-List.defaultProps = {
-  estimatedItemSize: 50,
-  renderItem: undefined,
-  horizontal: false,
-  numColumns: 1,
-  showsHorizontalScrollIndicator: false,
-  showsVerticalScrollIndicator: false,
-  refreshHanlder: undefined,
 };
 
 export default memo(List);

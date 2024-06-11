@@ -1,62 +1,60 @@
 import React, { memo, useLayoutEffect } from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
 import { useCopy } from '@services';
-import type * as CSS from 'csstype';
 import { useNavigation } from '@react-navigation/core';
 import { ApplicationScreenProps } from '@utils/@types/navigation';
 import { useTheme } from '@hooks';
 import { InterpolateColorAnimation } from '@components/animated';
 import { BackButton } from '@components/molecules';
+import { ActionButtonProps } from '@components/molecules/ActionButton';
 import {
   StyledContainer,
   HeaderContainer,
   TitleContainer,
   TitleTypography,
+  DescriptionContainer,
+  DescriptionText,
   BodyContainer,
-  ButtonContainer,
+  ButtonsContainer,
   StyledButton,
   LegendActionButton,
+  ArrayButtonsContainer,
+  ArrayButtonContainer,
+  ArrayFooterTextContainer,
+  ArrayFooterText,
 } from './styles';
 
-interface ButtonProps {
-  testID?: string;
-  title: string;
-  onPress?: () => void;
-  onPressAsync?: () => Promise<void>;
-  textTransform?: CSS.StandardProperties['textTransform'] | undefined;
-  style?: StyleProp<ViewStyle>;
-  loading?: boolean;
-  disabled?: boolean;
-  backgroundColor?: string;
-  featureFlags?: string[];
-}
-interface CallToActionProps {
+interface Props {
   testID?: string;
   title?: string;
+  description?: string;
   adjustsFontTitle?: boolean;
   numberOfLinesTitle?: number;
   body: JSX.Element;
   bodyTestID?: string;
-  primaryButton?: ButtonProps;
-  secondaryButton?: ButtonProps;
-  tertiaryButton?: ButtonProps;
+  primaryButton?: ActionButtonProps;
+  secondaryButton?: ActionButtonProps;
+  tertiaryButton?: ActionButtonProps;
+  arrayInlineButtons?: Array<ActionButtonProps> | undefined;
+  arrayInlineButtonsFooterText?: JSX.Element | string | undefined;
   footer?: JSX.Element;
-  color?: string;
   backButton?: boolean;
 }
 
-const CallToAction: React.FC<CallToActionProps> = ({
-  testID,
-  title,
-  adjustsFontTitle,
-  numberOfLinesTitle,
+const CallToAction: React.FC<Props> = ({
+  testID = 'CallToActionID',
+  title = undefined,
+  description = undefined,
+  adjustsFontTitle = false,
+  numberOfLinesTitle = 1,
   body,
-  bodyTestID,
-  primaryButton,
-  secondaryButton,
-  tertiaryButton,
-  footer,
-  backButton,
+  bodyTestID = undefined,
+  primaryButton = undefined,
+  secondaryButton = undefined,
+  tertiaryButton = undefined,
+  arrayInlineButtons = undefined,
+  arrayInlineButtonsFooterText = undefined,
+  footer = undefined,
+  backButton = false,
 }) => {
   const { getCopyValue } = useCopy();
   const { darkMode } = useTheme();
@@ -71,7 +69,6 @@ const CallToAction: React.FC<CallToActionProps> = ({
         headerStyle: {
           elevation: 0,
           shadowOpacity: 0,
-          height: 50,
           shadowColor: 'transparent',
         },
         headerLeft: () => <BackButton />,
@@ -86,7 +83,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
           {title && (
             <TitleContainer>
               <TitleTypography
-                type="Headline5"
+                type="Headline4"
                 adjustsFontSizeToFit={adjustsFontTitle}
                 numberOfLines={numberOfLinesTitle}
                 color="textLabelNeutral"
@@ -95,9 +92,68 @@ const CallToAction: React.FC<CallToActionProps> = ({
               </TitleTypography>
             </TitleContainer>
           )}
+          {description && (
+            <DescriptionContainer>
+              <DescriptionText
+                type="Subtitle3"
+                font="primary"
+                color="tertiaryL5"
+                textAlign="left"
+              >
+                {description}
+              </DescriptionText>
+            </DescriptionContainer>
+          )}
         </HeaderContainer>
         <BodyContainer testID={bodyTestID || undefined}>{body}</BodyContainer>
-        <ButtonContainer>
+        <ButtonsContainer>
+          <ArrayButtonsContainer>
+            {arrayInlineButtons &&
+              arrayInlineButtons.map((button, index) => {
+                return (
+                  <ArrayButtonContainer key={index}>
+                    <StyledButton
+                      testID={button.testID || undefined}
+                      title={button.title}
+                      icon={button.icon}
+                      iconType={button.iconType}
+                      startFrameAnimation={button.startFrameAnimation}
+                      endFrameAnimation={button.endFrameAnimation}
+                      widthIcon={button.widthIcon}
+                      heightIcon={button.heightIcon}
+                      onPress={button.onPress}
+                      onPressAsync={button.onPressAsync}
+                      onPressType="onPressIn"
+                      textTransform={button.textTransform || undefined}
+                      style={button.style}
+                      buttonTheme={darkMode ? 'Dark' : 'Secondary'}
+                      type="Icon"
+                      loading={button.loading || undefined}
+                      disabled={button.disabled || undefined}
+                      backgroundColor={button.backgroundColor || undefined}
+                      featureFlags={button.featureFlags || []}
+                    />
+                  </ArrayButtonContainer>
+                );
+              })}
+          </ArrayButtonsContainer>
+          {arrayInlineButtonsFooterText && (
+            <ArrayFooterTextContainer>
+              {typeof arrayInlineButtonsFooterText === 'string' ? (
+                <ArrayFooterText
+                  type="Subtitle2"
+                  font="primary"
+                  color="tertiaryL5"
+                  textAlign="center"
+                  weight={400}
+                >
+                  {getCopyValue(arrayInlineButtonsFooterText)}
+                </ArrayFooterText>
+              ) : (
+                arrayInlineButtonsFooterText
+              )}
+            </ArrayFooterTextContainer>
+          )}
           {primaryButton && (
             <StyledButton
               testID={primaryButton.testID || undefined}
@@ -140,7 +196,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
               textTransform={tertiaryButton.textTransform || undefined}
               style={tertiaryButton.style || undefined}
               buttonTheme={darkMode ? 'Dark' : 'Secondary'}
-              type={'Text'}
+              type="Text"
               loading={tertiaryButton.loading || undefined}
               disabled={tertiaryButton.disabled || undefined}
               backgroundColor={tertiaryButton.backgroundColor || undefined}
@@ -148,24 +204,10 @@ const CallToAction: React.FC<CallToActionProps> = ({
             />
           )}
           {footer && <LegendActionButton>{footer}</LegendActionButton>}
-        </ButtonContainer>
+        </ButtonsContainer>
       </StyledContainer>
     </InterpolateColorAnimation>
   );
-};
-
-CallToAction.defaultProps = {
-  testID: 'CallToActionID',
-  title: undefined,
-  adjustsFontTitle: false,
-  numberOfLinesTitle: 1,
-  bodyTestID: undefined,
-  primaryButton: undefined,
-  secondaryButton: undefined,
-  tertiaryButton: undefined,
-  footer: undefined,
-  color: undefined,
-  backButton: false,
 };
 
 export default memo(CallToAction);

@@ -23,6 +23,14 @@ export const initialState: RemoteConfigFeatures = {
   termsAndConditions: { status: 'on' },
   contactUs: { status: 'on' },
   faqs: { status: 'on' },
+  accountRecovery: { status: 'on' },
+  useBiometrics: { status: 'on' },
+  facebookLogin: { status: 'on' },
+  googleLogIn: { status: 'on' },
+  instagramLogin: { status: 'on' },
+  logIn: { status: 'on' },
+  signUp: { status: 'on' },
+  socialNetworksLogIn: { status: 'on' },
 };
 
 const slice = createSlice({

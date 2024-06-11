@@ -7,14 +7,14 @@ export interface ModalItemProps {
   testID?: string;
   item: string;
   onPress: () => void;
-  predefinedList?: 'languages';
+  predefinedList?: string;
 }
 
 export const ModalItem = ({
-  testID,
+  testID = 'ModalItemID',
   item,
   onPress,
-  predefinedList,
+  predefinedList = 'languages',
 }: ModalItemProps): ReactElement => {
   const onPressHandler = () => {
     if (onPress) onPress();
@@ -29,11 +29,6 @@ export const ModalItem = ({
       </ItemLabelContainer>
     </ItemButton>
   );
-};
-
-ModalItem.defaultProps = {
-  testID: 'ModalItemID',
-  predefinedList: null,
 };
 
 export default memo(ModalItem);

@@ -14,7 +14,7 @@ export const BackButtonPressable = styled(Touchable)`
 export const BackButtonContainer = styled.View`
   height: ${getNormalizedVerticalSize(30)}px;
   width: ${getNormalizedHorizontalSize(40)}px;
-  padding: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(2)}px
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(2)}px
     ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(2)}px;
   justify-content: center;
   align-items: center;

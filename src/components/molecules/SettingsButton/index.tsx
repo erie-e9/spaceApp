@@ -19,13 +19,13 @@ import {
 } from './styles';
 
 const SettingsButton: React.FC<SettingsItemProps> = ({
-  testID,
-  onPress,
-  title,
-  leftIcon,
-  rightIcon,
-  description,
-  selectedOption,
+  testID = 'SettingsButtonID',
+  onPress = undefined,
+  title = undefined,
+  leftIcon = undefined,
+  rightIcon = undefined,
+  description = undefined,
+  selectedOption = undefined,
   remoteConfig,
 }) => {
   const { getCopyValue } = useCopy();
@@ -49,7 +49,7 @@ const SettingsButton: React.FC<SettingsItemProps> = ({
                   {leftIcon && <SVGIcon icon={leftIcon} />}
                   {title && title !== '' && (
                     <TitleContainer leftIcon={Boolean(leftIcon)}>
-                      <StyledTitleText type="Body4" weight={'bold'}>
+                      <StyledTitleText type="Body4" weight="bold">
                         {getCopyValue(title)}
                       </StyledTitleText>
                     </TitleContainer>
@@ -66,7 +66,12 @@ const SettingsButton: React.FC<SettingsItemProps> = ({
             )}
             {description && (
               <SubTitleContainer>
-                <StyledSubTitleText type="Caption">
+                <StyledSubTitleText
+                  type="Subtitle3"
+                  font="primary"
+                  color="tertiaryL5"
+                  textAlign="left"
+                >
                   {getCopyValue(description)}
                 </StyledSubTitleText>
               </SubTitleContainer>
@@ -81,16 +86,6 @@ const SettingsButton: React.FC<SettingsItemProps> = ({
       </TouchableAreaContainer>
     </BodyContainer>
   );
-};
-
-SettingsButton.defaultProps = {
-  testID: 'SettingsButtonID',
-  onPress: undefined,
-  title: undefined,
-  leftIcon: undefined,
-  rightIcon: undefined,
-  description: undefined,
-  selectedOption: undefined,
 };
 
 export default memo(SettingsButton);

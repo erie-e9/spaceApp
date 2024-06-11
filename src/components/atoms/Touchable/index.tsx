@@ -1,33 +1,44 @@
 import React, { memo, useMemo } from 'react';
 import { PressableProps } from 'react-native';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
+import { DefaultTheme } from 'styled-components/native';
+import { useCopy } from '@services';
 import { useAppAlerts, useGetFeatureStatus as getStatus } from '@hooks';
 import { RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
-import { StyledTouchable } from './styles';
+import { StyledTouchable, TappableText } from './styles';
 
 interface TappableProps extends PressableProps {
   testID?: string;
-  component?: Element;
+  title?: string;
   onPress?: () => void;
   onPressType?: 'onPress' | 'onPressIn' | 'onLongPress' | 'onPressOut';
-  style?: any;
-  [x: string]: unknown;
+  component?: Element;
   featureFlags?: string[] | (keyof RemoteConfigFeatures)[];
+  minHeight?: number;
+  titleFontSize?: number;
+  style?: any;
+  disabledColor?: keyof DefaultTheme['tokens']['colors'];
+  [x: string]: unknown;
 }
 
 export const Touchable: React.FC<TappableProps> = ({
-  testID,
   children,
-  style,
-  onPress,
-  onPressType,
-  component,
-  featureFlags,
+  testID = 'TouchableID',
+  component = undefined,
+  title = undefined,
+  onPress = undefined,
+  onPressType = 'onPress',
+  featureFlags = [],
+  minHeight = undefined,
+  titleFontSize = undefined,
+  style = {},
+  disabledColor = undefined,
   ...props
 }) => {
   const Tappable = (component || StyledTouchable) as unknown as React.FC<any>;
   const { showFeatureUnavailableToast } = useAppAlerts();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
+  const { getCopyValue } = useCopy();
 
   const getFeatureStatus = (
     featureKey: keyof RemoteConfigFeatures,
@@ -104,24 +115,26 @@ export const Touchable: React.FC<TappableProps> = ({
       isGreyed={off}
       testID={testID}
       style={style}
+      minHeight={minHeight}
+      disabledColor={disabledColor || 'primaryD1'}
       onPress={onPressType === 'onPress' ? onTap : undefined}
       onPressIn={onPressType === 'onPressIn' ? onTap : undefined}
       onPressOut={onPressType === 'onPressOut' ? onTap : undefined}
       onLongPress={onPressType === 'onLongPress' ? onTap : undefined}
       {...props}
     >
-      {children}
+      {title && !children && (
+        <TappableText
+          type="Subtitle1"
+          color={props.disabled ? disabledColor : 'primaryD1'}
+          titleFontSize={titleFontSize}
+        >
+          {getCopyValue(title)}
+        </TappableText>
+      )}
+      {children && !title && children}
     </Tappable>
   );
-};
-
-Touchable.defaultProps = {
-  testID: 'TouchableID',
-  component: undefined,
-  onPress: undefined,
-  onPressType: 'onPress',
-  featureFlags: [],
-  style: {},
 };
 
 export default memo(Touchable);

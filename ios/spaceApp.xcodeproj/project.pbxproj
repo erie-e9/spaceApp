@@ -13,8 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2800A4D32BCF01D100CD3956 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800A4D22BCF01D100CD3956 /* Dynamic.swift */; };
 		2800A4D42BCF01D100CD3956 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800A4D22BCF01D100CD3956 /* Dynamic.swift */; };
-		280FCAD52BC5E55D0058D40D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 280FCAD42BC5E55D0058D40D /* GoogleService-Info.plist */; };
-		280FCAD62BC5E55D0058D40D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 280FCAD42BC5E55D0058D40D /* GoogleService-Info.plist */; };
+		280AD7EE2BE4B0D4008178F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 280AD7ED2BE4B0D4008178F6 /* GoogleService-Info.plist */; };
 		2841756F2BAC952B007F52E9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		284175712BAC952B007F52E9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		284175732BAC952B007F52E9 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
@@ -24,7 +23,6 @@
 		4C63D5E4C7FCCC966AA54A08 /* Pods_spaceApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C20EC974D94E40F48A40560F /* Pods_spaceApp.framework */; };
 		5E6861DCE99A4487B80AEADC /* RobotoMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F9BEAC307314ACE970A3FB0 /* RobotoMedium.ttf */; };
 		79FE786111B6448CAC890DF6 /* RobotoBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE4AEC64AEF54B99BC93A8E8 /* RobotoBlack.ttf */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C69458EA21C648E6A29538EE /* RobotoRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C397631E3A8C4E8FB42537BF /* RobotoRegular.ttf */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +48,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = spaceApp/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = RnDiffApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2800A4D22BCF01D100CD3956 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
-		280FCAD42BC5E55D0058D40D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		280AD7ED2BE4B0D4008178F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2854AC1E2BD2A8FE009BCA17 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ../../iceCream/ios/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		2854AC282BD2CB38009BCA17 /* spaceApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "spaceApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		28E6650A2B9FC5EA00BF9AD4 /* splash_app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = splash_app.json; path = ../android/app/src/main/res/raw/splash_app.json; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 		4F9BEAC307314ACE970A3FB0 /* RobotoMedium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RobotoMedium.ttf; path = ../src/assets/fonts/RobotoMedium.ttf; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-spaceApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spaceApp.release.xcconfig"; path = "Target Support Files/Pods-spaceApp/Pods-spaceApp.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-spaceApp-spaceAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spaceApp-spaceAppTests.debug.xcconfig"; path = "Target Support Files/Pods-spaceApp-spaceAppTests/Pods-spaceApp-spaceAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = spaceApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-spaceApp-spaceAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spaceApp-spaceAppTests.release.xcconfig"; path = "Target Support Files/Pods-spaceApp-spaceAppTests/Pods-spaceApp-spaceAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		C20EC974D94E40F48A40560F /* Pods_spaceApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_spaceApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C397631E3A8C4E8FB42537BF /* RobotoRegular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = RobotoRegular.ttf; path = ../src/assets/fonts/RobotoRegular.ttf; sourceTree = "<group>"; };
@@ -110,19 +107,26 @@
 		13B07FAE1A68108700A75B9A /* spaceApp */ = {
 			isa = PBXGroup;
 			children = (
+				280AD7ED2BE4B0D4008178F6 /* GoogleService-Info.plist */,
 				2854AC1E2BD2A8FE009BCA17 /* PrivacyInfo.xcprivacy */,
-				280FCAD42BC5E55D0058D40D /* GoogleService-Info.plist */,
 				28E6650A2B9FC5EA00BF9AD4 /* splash_app.json */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				2854AC282BD2CB38009BCA17 /* spaceApp-Bridging-Header.h */,
 			);
 			name = spaceApp;
+			sourceTree = "<group>";
+		};
+		280AD7EC2BE47F46008178F6 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				2800A4D22BCF01D100CD3956 /* Dynamic.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -162,6 +166,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				6115552C222244BA9CC8B024 /* Resources */,
+				280AD7EC2BE47F46008178F6 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -277,7 +282,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				280FCAD62BC5E55D0058D40D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,14 +289,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
+				280AD7EE2BE4B0D4008178F6 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				28E6650B2B9FC5EA00BF9AD4 /* splash_app.json in Resources */,
 				79FE786111B6448CAC890DF6 /* RobotoBlack.ttf in Resources */,
 				5E6861DCE99A4487B80AEADC /* RobotoMedium.ttf in Resources */,
 				C69458EA21C648E6A29538EE /* RobotoRegular.ttf in Resources */,
 				2854AC1F2BD2A8FF009BCA17 /* PrivacyInfo.xcprivacy in Resources */,
-				280FCAD52BC5E55D0058D40D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

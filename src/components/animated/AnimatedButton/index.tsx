@@ -11,18 +11,18 @@ interface Props {
 }
 
 export const AnimatedButton: React.FC<Props> = ({
-  testID,
+  testID = 'AnimatedButtonID',
   onPress,
   source = 'menu',
-  size,
+  size = 40,
 }) => {
   const animationRef = useRef<LottieViewProps>(null);
   const { Animations, darkMode } = useTheme();
 
   const handleOnPress = useCallback(() => {
     animationRef.current?.play();
-    if (onPress) onPress();
-  }, []);
+    onPress?.();
+  }, [onPress]);
 
   return (
     <AnimatedButtonPressable
@@ -38,25 +38,13 @@ export const AnimatedButton: React.FC<Props> = ({
           renderMode="SOFTWARE"
           loop={false}
           resizeMode="contain"
-          width={size || 40}
-          height={size || 40}
+          width={size}
+          height={size}
           colorFilters={[
-            {
-              keypath: '#arrow',
-              color: darkMode ? '#FFFFFF' : '#000000',
-            },
-            {
-              keypath: '#circle',
-              color: darkMode ? '#FFFFFF' : '#000000',
-            },
-            {
-              keypath: 'TOP',
-              color: darkMode ? '#FFFFFF' : '#000000',
-            },
-            {
-              keypath: 'DOWN',
-              color: darkMode ? '#FFFFFF' : '#000000',
-            },
+            { keypath: '#arrow', color: darkMode ? '#FFFFFF' : '#000000' },
+            { keypath: '#circle', color: darkMode ? '#FFFFFF' : '#000000' },
+            { keypath: 'TOP', color: darkMode ? '#FFFFFF' : '#000000' },
+            { keypath: 'DOWN', color: darkMode ? '#FFFFFF' : '#000000' },
             {
               keypath: 'Other#1 Outlines 2',
               color: darkMode ? '#FFFFFF' : '#000000',
@@ -66,12 +54,6 @@ export const AnimatedButton: React.FC<Props> = ({
       </AnimatedButtonContainer>
     </AnimatedButtonPressable>
   );
-};
-
-AnimatedButton.defaultProps = {
-  testID: 'AnimatedButtonID',
-  onPress: undefined,
-  size: 40,
 };
 
 export default memo(AnimatedButton);

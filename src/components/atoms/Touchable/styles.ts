@@ -1,12 +1,25 @@
-import styled from 'styled-components/native';
-import { getNormalizedHorizontalSize } from '@utils/functions';
+import styled, { DefaultTheme } from 'styled-components/native';
+import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
+import { Typography } from '@components/atoms';
 
 export interface StyledTouchableProps {
-  isGreyed?: boolean;
+  disabled?: boolean;
+  minHeight?: number;
+  width?: string | number;
+}
+
+export interface TappableTextProps {
+  titleFontSize?: number;
+  disabledColor?: keyof DefaultTheme['tokens']['colors'];
 }
 
 export const StyledTouchable = styled.Pressable<StyledTouchableProps>`
-  opacity: ${({ isGreyed }) => (isGreyed ? 0.35 : 1)};
-  width: 100%;
-  max-width: ${getNormalizedHorizontalSize(370)}px;
+  width: ${({ width }) => width ? String(width).includes('%') ? width : width + 'px' : '100%'};
+  opacity: ${({ disabled }) => (disabled ? 0.65 : 1)};
+  min-height: ${({ minHeight }) => getNormalizedVerticalSize(minHeight || 38)}px;
+  max-width: ${getNormalizedHorizontalSize(350)}px;
+`;
+
+export const TappableText = styled(Typography)<TappableTextProps>`
+    font-size: ${({ titleFontSize }) => getNormalizedVerticalSize(titleFontSize || 12)}px;
 `;

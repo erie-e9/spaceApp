@@ -14,7 +14,10 @@ interface SettingsListProps {
   listItems: Array<ListItemsProps>;
 }
 
-const SettingsList: React.FC<SettingsListProps> = ({ testID, listItems }) => {
+const SettingsList: React.FC<SettingsListProps> = ({
+  testID = 'SettingsListID',
+  listItems,
+}) => {
   const items = useMemo(() => listItems, [listItems]);
 
   return (
@@ -31,10 +34,6 @@ const SettingsList: React.FC<SettingsListProps> = ({ testID, listItems }) => {
       />
     </BodyContainer>
   );
-};
-
-SettingsList.defaultProps = {
-  testID: 'SettingsListID',
 };
 
 export default memo(SettingsList);

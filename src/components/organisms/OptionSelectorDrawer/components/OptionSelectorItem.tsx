@@ -41,7 +41,7 @@ export const OptionSelectorItem: React.FC<
               if (onPress) onPress();
               closeBottomSheet();
             }}
-            Icon={<SVGIcon icon={icon || ''} />}
+            icon={<SVGIcon icon={icon || ''} />}
             featureFlags={remoteConfig ? [remoteConfig] : undefined}
           />
           {title && (
@@ -57,7 +57,5 @@ export const OptionSelectorItem: React.FC<
     </RenderWhen>
   );
 };
-
-OptionSelectorItem.defaultProps = {};
 
 export default memo(OptionSelectorItem);

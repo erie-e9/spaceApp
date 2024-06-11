@@ -5,12 +5,12 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { AnimatedDot } from './styles';
-import { DotProps, defaultProps } from '.';
+import { DotProps } from '.';
 
 export const AnimatedDotItem = ({
-  testID,
-  color,
-  size,
+  testID = 'LoaderDotsID',
+  color = 'primaryD1',
+  size = 4,
   animationDuration,
   animationScale,
   animationTranslateY,
@@ -68,7 +68,5 @@ export const AnimatedDotItem = ({
     />
   );
 };
-
-AnimatedDotItem.defaultProps = defaultProps;
 
 export default memo(AnimatedDotItem);

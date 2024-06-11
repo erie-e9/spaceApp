@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { StyleSheet, useColorScheme } from 'react-native';
+import { StyleSheet, useColorScheme, Platform } from 'react-native';
 import { useSelector } from 'react-redux';
 import { DefaultTheme, useTheme } from 'styled-components/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -22,7 +22,6 @@ export interface InterpolateColorAnimationProps {
   children?: string | React.ReactElement | React.ReactElement[];
   initialColor?: string | keyof DefaultTheme['tokens']['colors'];
   finalColor?: string | keyof DefaultTheme['tokens']['colors'];
-  trigger?: boolean;
   duration?: number;
   style?: any;
   animationType?: 'text' | 'background';
@@ -33,15 +32,15 @@ export interface InterpolateColorAnimationProps {
 export const InterpolateColorAnimation: React.FC<
   InterpolateColorAnimationProps
 > = ({
-  testID,
-  children,
-  initialColor,
-  finalColor,
-  duration,
-  style,
-  animationType,
-  isScreen,
-  props,
+  testID = 'InterpolateColorAnimationID',
+  children = undefined,
+  initialColor = 'backgroundColorLight',
+  finalColor = 'backgroundColorDark',
+  duration = undefined,
+  style = { ...StyleSheet.absoluteFillObject },
+  animationType = 'background',
+  props = undefined,
+  isScreen = false,
 }) => {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -100,7 +99,7 @@ export const InterpolateColorAnimation: React.FC<
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: 90,
+    paddingTop: Platform.OS === 'ios' ? 100 : 75,
     paddingBottom: 15,
   };
 
@@ -110,7 +109,7 @@ export const InterpolateColorAnimation: React.FC<
         testID={testID}
         style={[style, reanimatedViewStyle, isScreen ? insetStyles : null]}
       >
-        {children}
+        {children && children}
       </StyledBackgroundContainer>
     ) : (
       <StyledTextContainer
@@ -123,19 +122,6 @@ export const InterpolateColorAnimation: React.FC<
     );
 
   return <SafeAreaContainer>{AnimatedChildren}</SafeAreaContainer>;
-};
-
-InterpolateColorAnimation.defaultProps = {
-  testID: 'InterpolateColorAnimationID',
-  children: undefined,
-  initialColor: 'backgroundColorLight',
-  finalColor: 'backgroundColorDark',
-  trigger: false,
-  duration: undefined,
-  style: { ...StyleSheet.absoluteFillObject },
-  animationType: 'background',
-  props: undefined,
-  isScreen: false,
 };
 
 export default memo(InterpolateColorAnimation);

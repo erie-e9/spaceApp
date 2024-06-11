@@ -29,9 +29,9 @@ export const Body: React.FC<BodyProps> = ({ type }) => {
         <InfoHeader />
         <InfoContainer>
           <StyledText
-            type="Caption"
+            type="Subtitle2"
             weight={Platform.OS === 'ios' ? 300 : 100}
-            color="surfaceL3"
+            color="tertiaryL5"
             textAlign="justify"
           >
             {getCopyValue(content)}

@@ -1,5 +1,4 @@
-/* eslint-disable react/require-default-props */
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
 import {
   useSharedValue,
   useAnimatedStyle,
@@ -14,7 +13,7 @@ import { StyledAnimatedContainer } from './styles';
 interface Props {
   testID?: string;
   trigger?: boolean;
-  children?: string | React.ReactElement | React.ReactElement[];
+  children?: React.ReactNode;
   duration?: number;
   initialValue?: number;
   finalValue?: number;
@@ -23,125 +22,61 @@ interface Props {
   delay?: number;
   repeat?: number;
   reverse?: boolean;
-  easing?: typeof Easing | string | unknown;
+  easing?: keyof typeof Easing;
 }
 
 export const ScaleAnimation: React.FC<Props> = ({
-  testID,
+  testID = 'ScaleAnimationID',
   trigger = true,
   children,
-  duration,
-  initialValue,
-  finalValue,
+  duration = 2000,
+  initialValue = 0,
+  finalValue = 1,
   widthValue,
   heightValue,
-  delay,
-  repeat,
+  delay = 0,
+  repeat = 1,
   reverse = false,
-  easing,
+  easing = 'linear',
 }) => {
-  const offSetScaleValue = useSharedValue(initialValue || 0);
-  const offSetWidthValue = useSharedValue(widthValue || 0);
-  const offSetHeightValue = useSharedValue(heightValue || 0);
+  const scaleValue = useSharedValue(initialValue);
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scaleValue.value }],
+    width: widthValue ?? undefined,
+    height: heightValue ?? undefined,
+  }));
 
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform:
-        widthValue && heightValue ? [] : [{ scale: offSetScaleValue.value }],
-      width: initialValue && finalValue ? 0 : offSetWidthValue.value,
-      height: initialValue && finalValue ? 0 : offSetHeightValue.value,
+  const triggerAnimation = useCallback(() => {
+    const timingConfig = {
+      duration,
+      easing: Easing[easing] || Easing.linear,
     };
-  }, [offSetScaleValue.value, offSetWidthValue.value, offSetHeightValue.value]);
 
-  const triggerAnimate = useCallback(() => {
-    if ((trigger && initialValue) || initialValue === 0) {
-      offSetScaleValue.value = withDelay(
-        delay ?? 0,
-        withRepeat(
-          withTiming(finalValue ?? 1, {
-            duration: duration ?? 2000,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
-          }),
-          repeat ?? 1,
-          reverse ?? false,
-        ),
-      );
-    }
-    if (offSetWidthValue && widthValue) {
-      offSetWidthValue.value = withDelay(
-        delay ?? 0,
-        withRepeat(
-          withTiming(finalValue ?? 1, {
-            duration: duration ?? 2000,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
-          }),
-          repeat ?? 1,
-          reverse ?? false,
-        ),
-      );
-    }
-    if (offSetHeightValue && widthValue) {
-      offSetHeightValue.value = withDelay(
-        delay ?? 0,
-        withRepeat(
-          withTiming(finalValue ?? 1, {
-            duration: duration ?? 2000,
-            easing: easing ? Easing[easing] : Easing.inOut(Easing.quad),
-          }),
-          repeat ?? 1,
-          reverse ?? false,
-        ),
-      );
-    }
-  }, [
-    trigger,
-    duration,
-    initialValue,
-    finalValue,
-    delay,
-    repeat,
-    reverse,
-    offSetScaleValue.value,
-    offSetWidthValue.value,
-    offSetHeightValue.value,
-  ]);
+    scaleValue.value = withDelay(
+      delay,
+      withRepeat(withTiming(finalValue, timingConfig), repeat, reverse),
+    );
+  }, [duration, delay, finalValue, repeat, reverse, easing, scaleValue]);
 
   useEffect(() => {
-    const cleanup = () => {
-      cancelAnimation(offSetScaleValue);
-      cancelAnimation(offSetWidthValue);
-      cancelAnimation(offSetHeightValue);
-      offSetScaleValue.value = initialValue || 0;
-      offSetWidthValue.value = widthValue || 0;
-      offSetHeightValue.value = heightValue || 0;
-    };
     if (trigger) {
-      triggerAnimate();
+      triggerAnimation();
     } else {
-      cleanup();
+      cancelAnimation(scaleValue);
+      scaleValue.value = initialValue;
     }
+
     return () => {
-      cleanup();
+      cancelAnimation(scaleValue);
+      scaleValue.value = initialValue;
     };
-  }, [offSetScaleValue, offSetWidthValue, offSetHeightValue, trigger]);
+  }, [trigger, triggerAnimation, initialValue, scaleValue]);
 
   return (
-    <StyledAnimatedContainer testID={testID} style={[animatedStyles]}>
+    <StyledAnimatedContainer testID={testID} style={animatedStyle}>
       {children}
     </StyledAnimatedContainer>
   );
-};
-
-ScaleAnimation.defaultProps = {
-  testID: 'ScaleAnimationID',
-  trigger: true,
-  duration: 2000,
-  initialValue: 0,
-  finalValue: 1,
-  delay: 0,
-  repeat: 1,
-  reverse: false,
-  easing: 'linear',
 };
 
 export default memo(ScaleAnimation);

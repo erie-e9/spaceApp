@@ -30,7 +30,7 @@ export const ModalBodyContainer = styled.View`
 export const Wrapper = styled.View<{ width?: number }>`
   height: auto;
   width: ${({ width }) => width || screen_width - 30 + 'px'};
-  z-index: 100;
+  z-index: 1000;
   border-radius: ${getNormalizedHorizontalSize(15)}px;
   shadow-color: #000;
   shadow-opacity: 0.25;
@@ -62,7 +62,6 @@ export const CloseIconContainer = styled.View`
 
 export const ActionsWrapper = styled.View`
   flex-direction: column;
-  width: 60%;
   justify-content: center;
   align-items: center;
   margin-top: ${getNormalizedVerticalSize(10)}px;
@@ -72,7 +71,7 @@ export interface StyledButtonProps {
   minWidth?: number;
 }
 
-export const StyledButton = styled(ActionButton)<StyledButtonProps>`
+export const StyledButton = styled(ActionButton) <StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(3)}px
     ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(3)}px;
   align-self: center;
@@ -89,15 +88,16 @@ export const StyledButton = styled(ActionButton)<StyledButtonProps>`
 export const TextButtonItem = styled(Typography)<{
   isSimpleButton?: boolean;
 }>`
-  margin-top: ${({ isSimpleButton }) =>
-    getNormalizedVerticalSize(isSimpleButton ? 20 : 0)}px;
+  margin-vertical: ${PixelRatio.roundToNearestPixel(20)}px;
+  justify-content: center;
+  align-items: center;
   ${({ isSimpleButton, theme }) => {
     const colorByTheme =
       theme.mode === 'dark'
         ? `color: ${theme.tokens.colors.surfaceL1}`
         : `color: ${theme.tokens.colors.surfaceL1}`;
     return isSimpleButton ? colorByTheme : undefined;
-  }}
+  }};
 `;
 
 export const TypographyStyled = styled(Typography)<{
@@ -123,9 +123,7 @@ export const StyledActionButton = styled(ActionButton)<{
   elevation?: string;
 }>`
   width: 100%;
-  height: ${PixelRatio.roundToNearestPixel(48)}px;
   margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
-  text-transform: uppercase;
   border-color: ${({ mainBtn }) => (mainBtn ? '#5b707b' : 'transparent')};
   border-width: ${({ mainBtn }) => (mainBtn ? '1px' : '0px')};
   ${({ elevation }) =>

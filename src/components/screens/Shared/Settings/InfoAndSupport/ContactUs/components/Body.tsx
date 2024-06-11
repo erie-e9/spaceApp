@@ -15,7 +15,12 @@ export const Body: React.FC = () => {
   return (
     <BodyContainer>
       <LabelContainer>
-        <StyledText textAlign="center">
+        <StyledText
+          type="Subtitle2"
+          font="primary"
+          color="tertiaryL5"
+          textAlign="center"
+        >
           {getCopyValue(
             'settings:infoAndSupport.support.items.contactUs.content.description',
           )}

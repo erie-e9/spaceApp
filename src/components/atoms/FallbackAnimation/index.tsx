@@ -11,7 +11,10 @@ interface Props {
   size?: number;
 }
 
-export const FallbackAnimation: React.FC<Props> = ({ testID, size = 100 }) => {
+export const FallbackAnimation: React.FC<Props> = ({
+  testID = 'FallbackAnimationID',
+  size = 100,
+}) => {
   const radius = useSharedValue(0);
   const c = useDerivedValue(() => size - radius.value);
 
@@ -34,11 +37,6 @@ export const FallbackAnimation: React.FC<Props> = ({ testID, size = 100 }) => {
       </Group>
     </Canvas>
   );
-};
-
-FallbackAnimation.defaultProps = {
-  testID: 'FallbackAnimationID',
-  size: 100,
 };
 
 export default memo(FallbackAnimation);

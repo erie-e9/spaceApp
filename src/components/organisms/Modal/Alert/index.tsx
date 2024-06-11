@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTheme } from 'styled-components';
-import { ModalPayload } from '@slices/types/modal';
+import { useModalSelectorHook } from '@redux/hooks/useModalSelectorHook';
 import { useCopy } from '@services';
 import { hideModal } from '@slices/shared/modal';
+import { AnyObject } from 'yup';
 import { TransformAnimation, OpacityAnimation } from '@components/animated';
 import { RenderWhen } from '@components/atoms';
 import { CloseButton } from '@components/molecules';
@@ -19,33 +20,46 @@ import {
   MODAL_STYLE,
 } from './styles';
 
-export const Alert: React.FC = ({
-  testID,
-  isVisible,
-  title,
-  description,
-  body,
-  showCancelIcon,
-  options,
-  width,
-  callback,
-  onCloseIcon,
-}: ModalPayload) => {
+export const Alert: React.FC = () => {
+  let modalArgs: AnyObject = { ...useModalSelectorHook() };
+
+  const {
+    testID = 'AlertID',
+    isVisible,
+    title,
+    description,
+    showCancelIcon,
+    body,
+    optionsMap,
+    onModalHide,
+    options,
+    handlers,
+    Icon,
+    style,
+    isLockedBackdrop,
+    lockBackdrop,
+    titleColor,
+    secondButtonColor,
+    width,
+    callback,
+    onCloseIcon,
+  } = modalArgs;
+
   const dispatch = useDispatch();
   const { getCopyValue } = useCopy();
   const theme = useTheme();
-
   const handleClose = (): void => {
     dispatch(hideModal());
-
+    if (onModalHide) onModalHide();
     if (onCloseIcon) onCloseIcon();
   };
 
-  const optionsLength = options ? options.length : 0;
-  const showCloseModalIcon = optionsLength < 1;
-
-  const parsedOptions = options
-    ? options.map(opt => getCopyValue(`${opt?.text}`))
+  const parsedOptionsMap = optionsMap
+    ? optionsMap.map((opt: AnyObject) => {
+        const newOpt = { ...opt };
+        newOpt.text = getCopyValue(opt.text);
+        return newOpt;
+      })
     : [];
 
   const onModalShow = (): void => {
@@ -80,9 +94,10 @@ export const Alert: React.FC = ({
                 <HeaderContainer>
                   <ModalHeader
                     title={title || ''}
+                    titleColor={titleColor}
                     description={description || ''}
                   />
-                  <RenderWhen isTrue={showCloseModalIcon && showCancelIcon}>
+                  <RenderWhen isTrue={showCancelIcon}>
                     <CloseIconContainer>
                       <CloseButton onPress={handleClose} />
                     </CloseIconContainer>
@@ -90,11 +105,13 @@ export const Alert: React.FC = ({
                 </HeaderContainer>
                 {body || <></>}
                 <AlertButtons
-                  options={parsedOptions}
+                  optionsMap={parsedOptionsMap}
+                  options={options}
                   theme={theme}
+                  handlers={handlers}
                   primaryButtonTheme="Secondary"
                   handleClose={handleClose}
-                  getCopyValue={getCopyValue}
+                  secondButtonColor={secondButtonColor}
                 />
               </Wrapper>
             </OpacityAnimation>
@@ -103,11 +120,6 @@ export const Alert: React.FC = ({
       </AnimatedBackground>
     </StyledModal>
   );
-};
-
-Alert.defaultProps = {
-  testID: 'AlertID',
-  navigation: undefined,
 };
 
 export default memo(Alert);

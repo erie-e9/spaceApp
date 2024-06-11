@@ -11,8 +11,8 @@ export const ModalHeaderContainer = styled.View`
     ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
-export const TitleWrapper = styled.View`
-  padding: ${getNormalizedVerticalSize(15)}px
+export const TitleContainer = styled.View`
+  padding: ${getNormalizedVerticalSize(0)}px
     ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(5)}px
     ${getNormalizedHorizontalSize(0)}px;
   align-items: center;

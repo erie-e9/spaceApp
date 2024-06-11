@@ -24,12 +24,12 @@ interface Props {
 }
 
 export const FlipAnimation: React.FC<Props> = ({
-  testID,
-  frontFace,
-  backFace,
-  withManualTrigger,
-  flipText,
-  easing,
+  testID = 'FlipAnimationID',
+  frontFace = undefined,
+  backFace = undefined,
+  withManualTrigger = undefined,
+  flipText = undefined,
+  easing = 'linear',
 }) => {
   const spin = useSharedValue<number>(0);
 
@@ -111,15 +111,6 @@ export const FlipAnimation: React.FC<Props> = ({
       )}
     </>
   );
-};
-
-FlipAnimation.defaultProps = {
-  testID: 'FlipAnimationID',
-  frontFace: undefined,
-  backFace: undefined,
-  withManualTrigger: undefined,
-  flipText: undefined,
-  easing: 'linear',
 };
 
 export default memo(FlipAnimation);

@@ -5,8 +5,8 @@ import {
   ApplicationStackParamList,
   ApplicationScreenProps,
 } from 'types/navigation';
-import Body from './components/Body';
 import { Info as InfoLayout } from '@components/templates';
+import Body from './components/Body';
 
 interface Props {
   navigation: ApplicationScreenProps;

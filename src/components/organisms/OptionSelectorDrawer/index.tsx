@@ -18,8 +18,8 @@ export interface OptionSelectorDrawerProps {
 
 const OptionSelectorDrawer: React.FC<OptionSelectorDrawerProps> = ({
   listOptions,
-  numColumns,
-  centered,
+  numColumns = 1,
+  centered = false,
 }) => {
   const items = useMemo(() => listOptions, [listOptions]);
 
@@ -38,11 +38,6 @@ const OptionSelectorDrawer: React.FC<OptionSelectorDrawerProps> = ({
       />
     </BodyContainer>
   );
-};
-
-OptionSelectorDrawer.defaultProps = {
-  numColumns: 1,
-  centered: false,
 };
 
 export default memo(OptionSelectorDrawer);

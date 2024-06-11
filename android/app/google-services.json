@@ -7,12 +7,41 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:124944014292:android:a563e38750f98e374e5441",
+        "mobilesdk_app_id": "1:124944014292:android:7a99b85e730ac51c4e5441",
         "android_client_info": {
           "package_name": "com.spaceapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "124944014292-785gu0ql5ublclkbu62h36q7l1789sle.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spaceapp",
+            "certificate_hash": "7454a4994f79bd9660391b2be4691fe400d43d6d"
+          }
+        },
+        {
+          "client_id": "124944014292-fnb8ql2g20b1ri10s8ccsk7i3ke6cjrd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spaceapp",
+            "certificate_hash": "8cd2c2fc4a304b47b4da6ed9063eedcc03cd6368"
+          }
+        },
+        {
+          "client_id": "124944014292-jcnjg3g3nn8j95gtggb1nc05cokav5ir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spaceapp",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "124944014292-vmkt8rcfo9nm101jp06m5ncsdo0444k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB8SJdEhxKmTLHUzs21QGr7CnpKir_WlRE"
@@ -20,7 +49,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124944014292-vmkt8rcfo9nm101jp06m5ncsdo0444k8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "124944014292-q5tijfe5d3hc47m1qa6lfv1qd01iqu1r.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.spaceApp"
+              }
+            }
+          ]
         }
       }
     }

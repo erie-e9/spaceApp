@@ -13,8 +13,10 @@ export interface ListProps {
 export interface OptionsMap {
   text: string;
   handler?: () => void | Promise<void>;
+  handleAsync?: () => Promise<void>;
   minWidth?: number;
   fontWeight?: number | 'bold' | 'semi-bold' | 'normal';
+  isSimpleButton?: boolean;
 }
 
 export interface DrawerOptions extends ModalProps {
@@ -34,11 +36,12 @@ export interface DrawerOptions extends ModalProps {
   height?: number;
   justifyContent?: string;
   alignItems?: string;
+  numColumns?: number;
 }
 
 export interface ModalPayload {
   title?: string;
-  titleColor?: string;
+  titleColor?: keyof DefaultTheme['tokens']['colors'];
   isVisible?: boolean;
   description?: string;
   Icon?: SVGElement;
@@ -70,7 +73,6 @@ export interface ModalPayload {
   ignoreHide?: boolean;
   loading?: boolean;
   isExchange?: boolean;
-  colorTitle?: keyof DefaultTheme['tokens']['colors'];
   onModalHide?: () => void;
   onCloseIcon?: () => void;
   bodyHasScrollView?: boolean;

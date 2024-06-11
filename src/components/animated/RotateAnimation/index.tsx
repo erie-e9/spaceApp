@@ -25,16 +25,16 @@ interface Props {
 }
 
 export const RotateAnimation: React.FC<Props> = ({
-  testID,
+  testID = 'RotateAnimationID',
   trigger = true,
-  children,
-  duration,
-  initialValue,
+  children = undefined,
+  duration = 2000,
+  initialValue = 0,
   finalValue = 1,
-  delay,
-  repeat,
+  delay = 0,
+  repeat = 1,
   reverse = false,
-  easing,
+  easing = 'linear',
 }) => {
   const rotate = useSharedValue(initialValue);
 
@@ -44,7 +44,7 @@ export const RotateAnimation: React.FC<Props> = ({
     };
   }, [rotate.value]);
 
-  const triggerAnimate = useCallback(() => {
+  const triggerAnimate = useCallback((): void => {
     if ((trigger && initialValue) || initialValue === 0) {
       rotate.value = withDelay(
         delay ?? 0,
@@ -87,21 +87,9 @@ export const RotateAnimation: React.FC<Props> = ({
 
   return (
     <StyledAnimatedContainer testID={testID} style={[animatedStyles]}>
-      {children}
+      {children && children}
     </StyledAnimatedContainer>
   );
-};
-
-RotateAnimation.defaultProps = {
-  testID: 'RotateAnimationID',
-  trigger: true,
-  duration: 2000,
-  initialValue: 0,
-  finalValue: 1,
-  delay: 0,
-  repeat: 1,
-  reverse: false,
-  easing: 'linear',
 };
 
 export default memo(RotateAnimation);

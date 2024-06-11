@@ -16,7 +16,6 @@
   self.initialProps = @{};
   [RNFBAppCheckModule sharedInstance];
   [FIRApp configure];
-
    BOOL success = [super application:application didFinishLaunchingWithOptions:launchOptions];
    
     if (success) {

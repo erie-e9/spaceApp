@@ -21,8 +21,8 @@ interface WebViewHeaderProps {
 
 const WebViewHeader: React.FC<WebViewHeaderProps> = ({
   url,
-  onReload,
-  onClose,
+  onReload = undefined,
+  onClose = undefined,
 }) => {
   const { showModal } = useModal();
   const ishttps = url.includes('https');
@@ -42,7 +42,7 @@ const WebViewHeader: React.FC<WebViewHeaderProps> = ({
     }
   }, [url]);
 
-  const menuHandler = useCallback(() => {
+  const menuHandler = useCallback((): void => {
     showModal({
       type: 'bottomsheet',
       body: (
@@ -87,11 +87,6 @@ const WebViewHeader: React.FC<WebViewHeaderProps> = ({
       </ActionButtonsContainer>
     </WebViewHeaderContainer>
   );
-};
-
-WebViewHeader.defaultProps = {
-  onReload: undefined,
-  onClose: undefined,
 };
 
 export default memo(WebViewHeader);

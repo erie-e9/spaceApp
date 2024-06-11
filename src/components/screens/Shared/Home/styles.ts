@@ -15,11 +15,16 @@ export const StyledScrollView = styled.ScrollView`
 
 export const NavigateButtonFallbackContainer = styled.View`
   position: absolute;
-  height: ${getNormalizedVerticalSize(20)}px;
-  width: ${getNormalizedHorizontalSize(20)}px;
+  align-items: center;
+  justify-content: center;
+  height: ${getNormalizedVerticalSize(25)}px;
+  width: ${getNormalizedHorizontalSize(55)}px;
   top: ${getNormalizedVerticalSize(40)}px;
   right: ${getNormalizedHorizontalSize(10)}px;
   z-index: 100;
+  border-width: 0.7px;
+  border-color: ${({ theme }) => theme.tokens.colors.opposing};
+  border-radius: 7px;
 `;
 
 export const NavigateButtonFallback = styled(Touchable)``;
@@ -60,7 +65,7 @@ export const DescriptionContainer = styled.View`
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(2)}px;
 `;
 
-export const StyledTypography = styled(Typography)<{
+export const StyledText = styled(Typography)<{
   underline?: boolean;
 }>`
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};

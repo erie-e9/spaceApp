@@ -1,15 +1,16 @@
-import React, { useState, useEffect, useCallback, memo } from 'react';
+import React, { useState, useEffect, useCallback, memo, useRef } from 'react';
 import { DefaultTheme, useTheme } from 'styled-components/native';
+import { useTheme as useThemeVariables } from '@hooks';
 import type * as CSS from 'csstype';
 import {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  withTiming
 } from 'react-native-reanimated';
+import LottieView from 'lottie-react-native';
 import { useCopy } from '@services';
 import { screen_width } from '@utils/functions';
-import { LoaderThreeDots } from '@components/atoms';
+import { LoaderDots, Lottie } from '@components/atoms';
 import {
   AnimatedActionButton,
   StyledButton,
@@ -31,47 +32,68 @@ export interface ActionButtonProps {
   onPressType?: 'onPress' | 'onPressIn' | 'onLongPress' | 'onPressOut';
   buttonTheme?: 'Primary' | 'Secondary' | 'Dark';
   type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
-  readonly disabledColor?: keyof DefaultTheme['colors'];
+  disabledColor?: keyof DefaultTheme['colors'];
   disabled?: boolean;
+  style?: any;
   grouped?: boolean;
   fontWeight?: CSS.StandardProperties['fontWeight'];
   lineHeight?: CSS.StandardProperties['lineHeight'];
-  Icon?: JSX.Element;
+  icon?: JSX.Element | string | any;
+  iconType?: 'svg' | 'lottie';
+  widthIcon?: number;
+  heightIcon?: number;
+  startFrameAnimation?: number;
+  endFrameAnimation?: number;
   buttonType?: string;
   textTransform?: CSS.StandardProperties['textTransform'] | undefined;
   featureFlags?: string[];
-  [x: string]: unknown;
 }
 
 const ActionButton: React.FC<ActionButtonProps> = ({
-  testID,
+  testID = 'ActionButtonID',
   title,
   subtitle,
-  textColor,
-  numberOfLines,
-  backgroundColor,
+  textColor = '',
+  numberOfLines = 1,
+  backgroundColor = '',
   onPress,
   onPressAsync,
-  onPressType,
-  loading,
+  onPressType = 'onPress',
+  loading = false,
   type,
-  disabled,
+  disabled = false,
   style,
-  grouped,
-  fontWeight,
-  disabledColor,
-  Icon,
+  grouped = false,
+  fontWeight = 'normal',
+  disabledColor = 'primaryL2',
+  icon,
+  iconType = 'svg',
+  widthIcon = 40,
+  heightIcon = 40,
+  startFrameAnimation,
+  endFrameAnimation,
   buttonType,
-  buttonTheme,
+  buttonTheme = 'Primary',
   textTransform,
   featureFlags = [],
   ...rest
 }) => {
   const { getCopyValue } = useCopy();
+  const animationRef = useRef<LottieView>(null);
+  const { Animations } = useThemeVariables();
   const theme = useTheme();
   const colorScheme = theme.mode;
   const width = useSharedValue(screen_width - 50);
   const [asyncDisabled, setAsyncDisabled] = useState(false);
+
+  useEffect(() => {
+    let timeOut = setTimeout(() => {
+      animationRef.current?.play();
+    }, 400);
+    return () => {
+      clearTimeout(timeOut);
+    };
+  }, []);
 
   const getButtonTheme = (): {
     bgColor: string;
@@ -218,7 +240,6 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   return (
     <AnimatedActionButton testID={testID} style={[buttonAnimation]}>
       <StyledButton
-        featureFlags={featureFlags}
         backgroundColor={
           backgroundColor === '' ? btnTheme.bgColor : backgroundColor
         }
@@ -236,24 +257,42 @@ const ActionButton: React.FC<ActionButtonProps> = ({
         grouped={grouped}
         colorScheme={colorScheme ?? 'light'}
         loading={loading}
+        featureFlags={featureFlags}
         {...rest}
       >
         {(loading || asyncDisabled) && (
           <LoadingContainer>
-            <LoaderThreeDots color={textColor || btnTheme.txtColor} />
+            <LoaderDots
+              animationScale={1}
+              animationTranslateY={-6}
+              color={textColor || btnTheme.txtColor}
+            />
           </LoadingContainer>
         )}
-        {!loading && Icon && <IconContainer>{Icon}</IconContainer>}
-        {!loading && !asyncDisabled && title && (
+        {!loading && icon && iconType === 'svg' && (
+          <IconContainer>{icon}</IconContainer>
+        )}
+        {icon && iconType === 'lottie' && (
+          <Lottie
+            ref={animationRef}
+            source={icon}
+            autoPlay={!false}
+            renderMode="AUTOMATIC"
+            loop={false}
+            resizeMode="contain"
+            width={widthIcon || 40}
+            height={heightIcon || 40}
+            startFrame={startFrameAnimation}
+            endFrame={endFrameAnimation}
+          />
+        )}
+        {!loading && !asyncDisabled && title && iconType !== 'lottie' && (
           <>
             <StyledText
               testID="actionbutton-title"
               fontWeight={fontWeight}
               color={textColor || btnTheme.txtColor}
               type="Body2"
-              disabled={disabled || asyncDisabled}
-              disabledColor={disabledColor}
-              buttonType={buttonType}
               textTransform={textTransform}
               numberOfLines={numberOfLines}
             >
@@ -273,30 +312,6 @@ const ActionButton: React.FC<ActionButtonProps> = ({
       </StyledButton>
     </AnimatedActionButton>
   );
-};
-
-ActionButton.defaultProps = {
-  testID: 'ActionButtonID',
-  title: undefined,
-  subtitle: undefined,
-  textColor: '',
-  numberOfLines: 1,
-  textTransform: undefined,
-  onPress: undefined,
-  onPressType: 'onPress',
-  onPressAsync: undefined,
-  buttonTheme: 'Primary',
-  type: 'Button',
-  disabledColor: 'primaryD5',
-  loading: false,
-  disabled: false,
-  grouped: false,
-  fontWeight: 'normal',
-  lineHeight: 'normal',
-  buttonType: undefined,
-  backgroundColor: '',
-  Icon: undefined,
-  featureFlags: [],
 };
 
 export default memo(ActionButton);

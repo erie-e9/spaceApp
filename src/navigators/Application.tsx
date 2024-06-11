@@ -18,7 +18,7 @@ import { useTheme, useToast, useCheckNet } from '@hooks';
 import { darkTheme, lightTheme } from '@theme/themesi';
 import SharedNavigator from './Shared';
 import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
-import { Toast } from '@components/molecules';
+import { BackButton, Toast } from '@components/molecules';
 import { Modal } from '@components/organisms';
 import { CustomFallback, Startup } from '@components/screens/Shared';
 
@@ -78,9 +78,17 @@ const Application = () => {
               <Modal />
               <Navigator
                 screenOptions={{
+                  animationEnabled: true,
                   headerShown: false,
                   freezeOnBlur: true,
                   headerMode: 'screen',
+                  headerBackTitleVisible: true,
+                  headerTitleAlign: 'center',
+                  headerTransparent: true,
+                  headerStyle: {
+                    backgroundColor: 'red',
+                  },
+                  headerLeft: () => <BackButton />,
                   ...TransitionPresets.ScaleFromCenterAndroid,
                 }}
               >

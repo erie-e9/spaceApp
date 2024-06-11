@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Logger, useCopy } from '@services';
+import { useCopy } from '@services';
 import { ApplicationScreenProps } from 'types/navigation';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { useTheme, useSVG } from '@hooks';
@@ -8,17 +8,17 @@ import {
   TransformAnimation,
   RotateAnimation,
   ScaleAnimation,
+  OpacityAnimation,
 } from '@components/animated';
-import { RenderWhen, FallbackAnimation } from '@components/atoms';
+import { RenderWhen } from '@components/atoms';
 import {
   StyledScrollView,
-  NavigateButtonFallback,
   NavigateButtonFallbackContainer,
   HeaderContainer,
   BrandCircleContainer,
   BodyContainer,
   ContentContainer,
-  StyledTypography,
+  StyledText,
   FeaturesContainer,
   FeatureButton,
   TitleContainer,
@@ -49,24 +49,15 @@ export const Home: React.FC<Props> = ({ navigation }) => {
     <InterpolateColorAnimation>
       <HeaderContainer>
         <NavigateButtonFallbackContainer>
-          <NavigateButtonFallback
+          <FeatureButton
+            type="Text"
+            title="Auth"
+            buttonTheme="Secondary"
             onPress={() =>
-              navigation.navigate('CustomFallback', {
-                error: Error('Mocked error'),
-                resetError: () => Logger.error('Mocked error'),
-              })
+              navigation.navigate('Auth', { screen: 'Authentication' })
             }
-          >
-            <RotateAnimation
-              duration={3000}
-              initialValue={0}
-              finalValue={360}
-              repeat={-1}
-              easing="linear"
-            >
-              <FallbackAnimation size={20} />
-            </RotateAnimation>
-          </NavigateButtonFallback>
+            featureFlags={['auth']}
+          />
         </NavigateButtonFallbackContainer>
         <BrandCircleContainer initialColor="#DFDFDF" finalColor="#000000" />
         <TransformAnimation
@@ -187,43 +178,48 @@ export const Home: React.FC<Props> = ({ navigation }) => {
         <StyledScrollView testID="HomeID">
           <ContentContainer>
             <TitleContainer>
-              <StyledTypography
-                type="Headline4"
-                weight="bold"
-                color="buttonColor"
-              >
+              <StyledText type="Headline4" weight="bold" color="buttonColor">
                 {getCopyValue('welcome:title')}
-              </StyledTypography>
+              </StyledText>
             </TitleContainer>
-            <StyledTypography
+            <StyledText
               type="Headline6"
               font="primary"
               color="surfaceL1"
               textAlign="left"
             >
               {getCopyValue('welcome:subtitle')}
-            </StyledTypography>
+            </StyledText>
             <DescriptionContainer>
-              <StyledTypography
+              <StyledText
                 type="Subtitle2"
                 font="primary"
-                color="surfaceL1"
+                color="tertiaryL5"
                 textAlign="left"
               >
                 {getCopyValue('welcome:description')}
-              </StyledTypography>
+              </StyledText>
             </DescriptionContainer>
           </ContentContainer>
         </StyledScrollView>
         <FeaturesContainer>
           <RenderWhen isTrue={remoteConfigFeatures?.warning?.status !== 'hide'}>
-            <FeatureButton
-              type="Icon"
-              buttonTheme="Primary"
-              onPress={() => navigation.navigate('Settings')}
-              Icon={<SettingsIcon />}
-              featureFlags={['warning']}
-            />
+            <OpacityAnimation
+              duration={1500}
+              initialValue={1}
+              finalValue={0.45}
+              delay={1000}
+              repeat={-1}
+              reverse
+            >
+              <FeatureButton
+                type="Icon"
+                buttonTheme="Primary"
+                onPress={() => navigation.navigate('Settings')}
+                icon={<SettingsIcon />}
+                featureFlags={['warning']}
+              />
+            </OpacityAnimation>
           </RenderWhen>
         </FeaturesContainer>
       </BodyContainer>

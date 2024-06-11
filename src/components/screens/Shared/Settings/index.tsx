@@ -5,13 +5,13 @@ import {
 } from '@react-navigation/stack';
 import { useCopy } from '@services';
 import { BackButton } from '@components/molecules';
+import { ApplicationStackParamList } from '@utils/@types/navigation';
 import { InfoAndSupportParamsList } from '@components/screens/Shared/Settings/InfoAndSupport';
 import { AppPreferences } from '@components/screens/Shared/Settings/AppPreferences';
 import { InfoAndSupportMenu } from '@components/screens/Shared/Settings/InfoAndSupport/InfoAndSupportMenu';
 import { ContactUs } from '@components/screens/Shared/Settings/InfoAndSupport/ContactUs';
 import { FAQs } from '@components/screens/Shared/Settings/InfoAndSupport/FAQs';
 import { Info } from '@components/screens/Shared/Settings/InfoAndSupport/Info';
-import { ApplicationStackParamList } from '@utils/@types/navigation';
 
 export type SettingsParamsList = {
   AppPreferences: undefined;
@@ -27,12 +27,15 @@ export const SettingsNavigator = (): React.JSX.Element => {
     <Navigator
       screenOptions={{
         animationEnabled: true,
-        headerShown: !true,
+        headerShown: false,
         freezeOnBlur: true,
         headerMode: 'screen',
         headerBackTitleVisible: true,
         headerTitleAlign: 'center',
         headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'red'
+        },
         ...TransitionPresets.SlideFromRightIOS,
         headerLeft: () => <BackButton />,
       }}

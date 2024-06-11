@@ -19,8 +19,6 @@ export interface StyledButtonProps {
   type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
 }
 
-const isIconSize: number = 40;
-
 export interface StyleButtonTextProps {
   readonly color?: string;
   textTransform?: CSS.StandardProperties['textTransform'];
@@ -50,31 +48,23 @@ export const StyledButton = styled(Touchable)<StyledButtonProps>`
   `}
   justify-content: center;
   align-items: center;
+  display: flex;
+  align-content: center;
   margin-vertical: ${getNormalizedVerticalSize(2)}px;
-  height: ${({ loading, type }) =>
-    loading || type === 'Icon'
-      ? PixelRatio.roundToNearestPixel(isIconSize) + 'px'
-      : isIconSize + 'px'};
-  /* width: ${({ loading, type }) =>
-    loading || type === 'Icon'
-      ? PixelRatio.roundToNearestPixel(isIconSize) + 'px'
-      : '100%'}; */
-  padding: ${getNormalizedVerticalSize(0)}px
-    ${({ loading }) => getNormalizedHorizontalSize(loading ? 15 : 20)}px;
   border-radius: ${({ loading, type }) =>
     PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 15)}px;
+  opacity: ${({ disabled }) => disabled ? 0.65 : 1};
   elevation: 0;
   background-color: ${({ backgroundColor }) => backgroundColor};
-  ${({ disabled }) => disabled && 'opacity: 1'};
+  ${({ type }) => type === 'Icon' && 'width: 43px; height: 43px;'};
   ${({ hasBorder, theme, colorScheme }) =>
     hasBorder &&
     `
-  border-width: 1px;
-  border-color: ${
-    colorScheme === 'light'
+  border-width: 0.7px;
+  border-color: ${colorScheme === 'light'
       ? theme.tokens.colors.opposing
       : theme.tokens.colors.switchOutline
-  };
+    };
   `}
 `;
 
@@ -89,7 +79,7 @@ export const IconContainer = styled.View`
   align-items: center;
 `;
 
-export const StyledText = styled(Typography)<StyleButtonTextProps>`
+export const StyledText = styled(Typography) <StyleButtonTextProps>`
   text-align: ${({ textAlign }) => textAlign || 'center'};
   justify-content: center;
   font-weight: ${({ fontWeight }) => fontWeight || '500'};
@@ -100,4 +90,11 @@ export const StyledText = styled(Typography)<StyleButtonTextProps>`
     `
   color: ${theme.tokens.colors.buttonTextColor};
   `}
+`;
+
+export const LottieIconContainer = styled.View`
+  flex: 1;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
+  align-items: center;
+  z-index: 1000;
 `;

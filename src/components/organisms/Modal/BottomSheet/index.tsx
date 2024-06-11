@@ -9,7 +9,7 @@ import { ActivityIndicator } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
-  Extrapolate,
+  clamp,
   interpolate,
   runOnJS,
   useAnimatedStyle,
@@ -18,7 +18,7 @@ import {
 } from 'react-native-reanimated';
 import { ModalPayload } from '@slices/types/modal';
 import { screen_height } from '@utils/functions';
-import { useNativeActions, useLanguage } from '@hooks';
+import { useLanguage, useNativeActions } from '@hooks';
 import { hideModal } from '@slices/shared/modal';
 import { CloseButton } from '@components/molecules';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
@@ -26,28 +26,28 @@ import ModalItem from '@components/organisms/Modal/ModalItem';
 import AnimatedBackground from '@components/organisms/Modal/AnimatedBackground';
 import {
   AnimatedBottomSheet,
-  CloseIconContainer,
-  PanGestureHandlerView,
   CloseBottomSheetButton,
   BodyContainer,
   StyledList,
+  CloseIconContainer,
+  PanGestureHandlerView,
 } from './styles';
 
 const MAX_TRANSLATE_Y = -screen_height + 80;
 
-export type BottomSheetRefProps = {
+export interface BottomSheetRefProps {
   scrollTo: (destination: number) => void;
   isActive: () => boolean;
-};
+}
 
-export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
+const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
   (
     {
+      testID = 'BottomSheetID',
       title,
       description,
       isVisible,
-      testID,
-      showCancelIcon,
+      showCancelIcon = false,
       body,
       list,
       expandible,
@@ -73,16 +73,14 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       });
     }, []);
 
-    const isActive = useCallback(() => {
-      return active.value;
-    }, []);
+    const isActive = useCallback(() => active.value, []);
 
     useImperativeHandle(ref, () => ({ scrollTo, isActive }), [
       scrollTo,
       isActive,
     ]);
 
-    const handleClose = useCallback(async () => {
+    const handleClose = useCallback(() => {
       scrollTo(100);
       setTimeout(() => {
         dispatch(hideModal());
@@ -97,7 +95,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       .onUpdate(event => {
         if (list || expandible) {
           translateY.value = event.translationY + context.value.y;
-          translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
+          translateY.value = clamp(translateY.value, MAX_TRANSLATE_Y, 0);
         }
       })
       .onEnd(() => {
@@ -108,23 +106,18 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
         }
       });
 
-    const bottomSheetStyle = useAnimatedStyle(() => {
-      const borderRadius = interpolate(
+    const bottomSheetStyle = useAnimatedStyle(() => ({
+      borderRadius: interpolate(
         translateY.value,
         [MAX_TRANSLATE_Y + 50, MAX_TRANSLATE_Y],
         [25, 5],
-        Extrapolate.CLAMP,
-      );
-
-      return {
-        borderRadius,
-        transform: [{ translateY: translateY.value }],
-      };
-    });
+      ),
+      transform: [{ translateY: translateY.value }],
+    }));
 
     useNativeBackButton({ callback: handleClose });
 
-    const bottomSheetSizeHandler = () => {
+    const bottomSheetSizeHandler = useCallback(() => {
       if (!active.value) {
         scrollTo(
           drawerOptions?.height ? -drawerOptions?.height : -screen_height / 3,
@@ -136,7 +129,7 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       if (list && active.value && translateY.value >= -screen_height / 3) {
         scrollTo(MAX_TRANSLATE_Y);
       }
-    };
+    }, [active.value, drawerOptions?.height, list, scrollTo, translateY.value]);
 
     useEffect(() => {
       if (isVisible) {
@@ -144,11 +137,14 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       }
     }, [isVisible]);
 
-    const onPressHandler = ({ item }: any) => {
-      if (list?.onPressItem) list?.onPressItem();
-      if (list?.predefinedList === 'languages') switchLanguage(item);
-      handleClose();
-    };
+    const onPressHandler = useCallback(
+      ({ item }: any) => {
+        if (list?.onPressItem) list.onPressItem();
+        if (list?.predefinedList === 'languages') switchLanguage(item);
+        handleClose();
+      },
+      [handleClose, list, switchLanguage],
+    );
 
     return (
       <>
@@ -192,16 +188,5 @@ export const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
     );
   },
 );
-
-BottomSheet.defaultProps = {
-  testID: 'BottomSheetID',
-  title: undefined,
-  description: undefined,
-  body: undefined,
-  showCancelIcon: false,
-  titleColor: undefined,
-  isVisible: false,
-  loading: false,
-};
 
 export default memo(BottomSheet);

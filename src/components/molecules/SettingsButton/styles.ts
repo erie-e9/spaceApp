@@ -8,7 +8,7 @@ import {
 export const BodyContainer = styled.View`
   align-items: center;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(2)}px;
+    ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(15)}px;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(0)}px;
   background-color: transparent;
@@ -20,15 +20,18 @@ export const TouchableAreaContainer = styled(Touchable)`
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 
 export const ContentContainer = styled.View`
   flex-direction: row;
+  background-color: transparent;
 `;
 
 export const LabelContainer = styled.View`
   width: 95%;
+  background-color: transparent;
 `;
 
 export const HeaderContainer = styled.View`
@@ -59,7 +62,7 @@ export const TitleContainer = styled.View<TitleContainerProps>`
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px
     ${getNormalizedVerticalSize(0)}px
     ${({ leftIcon }) => getNormalizedHorizontalSize(leftIcon ? 7 : 0)}px;
-  background-color: transparent;
+    background-color: transparent;
 `;
 
 export const SelectedOptionContainer = styled.View`
@@ -83,14 +86,13 @@ export const SubTitleContainer = styled.View`
   width: 100%;
   min-height: ${getNormalizedVerticalSize(5)}px;
   justify-content: center;
-  padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(1)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(1)}px
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
   background-color: transparent;
 `;
 
 export const StyledSubTitleText = styled(Typography)`
   font-weight: 100;
-  color: ${({ theme }) => theme.tokens.colors.surfaceL2};
 `;
 
 export const ArrowContainer = styled.View`

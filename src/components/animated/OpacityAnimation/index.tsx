@@ -13,7 +13,7 @@ import { StyledAnimatedContainer } from './styles';
 
 interface Props {
   testID?: string;
-  trigger?: boolean;
+  trigger?: any;
   children?: string | React.ReactElement | React.ReactElement[];
   duration?: number;
   initialValue?: number;
@@ -25,16 +25,16 @@ interface Props {
 }
 
 export const OpacityAnimation: React.FC<Props> = ({
-  testID,
+  testID = 'OpacityAnimationID',
   trigger = true,
-  children,
-  duration,
-  initialValue,
-  finalValue,
-  delay,
-  repeat,
+  children = undefined,
+  duration = 2000,
+  initialValue = 0,
+  finalValue = 1,
+  delay = 0,
+  repeat = 1,
   reverse = false,
-  easing,
+  easing = 'linear',
 }) => {
   const opacity = useSharedValue(initialValue);
 
@@ -44,7 +44,7 @@ export const OpacityAnimation: React.FC<Props> = ({
     };
   }, [opacity.value]);
 
-  const triggerAnimate = useCallback(() => {
+  const triggerAnimate = useCallback((): void => {
     if (trigger && (initialValue || finalValue)) {
       opacity.value = withDelay(
         delay ?? 0,
@@ -75,10 +75,14 @@ export const OpacityAnimation: React.FC<Props> = ({
       opacity.value = initialValue;
     };
 
-    if (trigger) {
-      triggerAnimate();
+    if (typeof trigger === 'boolean') {
+      if (trigger) {
+        triggerAnimate();
+      } else {
+        cleanup();
+      }
     } else {
-      cleanup();
+      triggerAnimate();
     }
     return () => {
       cleanup();
@@ -87,21 +91,9 @@ export const OpacityAnimation: React.FC<Props> = ({
 
   return (
     <StyledAnimatedContainer testID={testID} style={[animatedStyles]}>
-      {children}
+      {children && children}
     </StyledAnimatedContainer>
   );
-};
-
-OpacityAnimation.defaultProps = {
-  testID: 'OpacityAnimationID',
-  trigger: true,
-  duration: 2000,
-  initialValue: 0,
-  finalValue: 1,
-  delay: 0,
-  repeat: 1,
-  reverse: false,
-  easing: 'linear',
 };
 
 export default memo(OpacityAnimation);

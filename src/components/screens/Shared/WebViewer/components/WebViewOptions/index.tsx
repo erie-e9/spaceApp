@@ -19,9 +19,9 @@ interface WebViewOptionsProps {
 }
 
 const WebViewOptions: React.FC<WebViewOptionsProps> = ({
-  onReload,
-  onShare,
-  onOpenBrowser,
+  onReload = undefined,
+  onShare = undefined,
+  onOpenBrowser = undefined,
 }) => {
   const BrowserIcon = useSVG('BrowserIcon');
   const ReloadIcon = useSVG('ReloadIcon');
@@ -60,7 +60,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             type="Icon"
             buttonTheme="Primary"
             onPressIn={() => shareHandler}
-            Icon={<ShareIcon />}
+            icon={<ShareIcon />}
             featureFlags={['webviewShare']}
           />
           <OptionButtonLabel textAlign="center" color="opposing">
@@ -76,7 +76,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             type="Icon"
             buttonTheme="Primary"
             onPress={reloadHandler}
-            Icon={<ReloadIcon />}
+            icon={<ReloadIcon />}
             featureFlags={['webviewReload']}
           />
           <OptionButtonLabel textAlign="center" color="opposing">
@@ -92,7 +92,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             type="Icon"
             buttonTheme="Primary"
             onPress={openInBrowserHandler}
-            Icon={<BrowserIcon />}
+            icon={<BrowserIcon />}
             featureFlags={['webviewOpenOnBrowser']}
           />
           <OptionButtonLabel textAlign="center" color="opposing">
@@ -102,12 +102,6 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
       </RenderWhen>
     </OptionsContainer>
   );
-};
-
-WebViewOptions.defaultProps = {
-  onReload: undefined,
-  onShare: undefined,
-  onOpenBrowser: undefined,
 };
 
 export default memo(WebViewOptions);

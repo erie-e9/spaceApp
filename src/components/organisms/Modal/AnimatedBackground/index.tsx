@@ -14,8 +14,8 @@ export interface AnimatedBackgroundProps {
 
 export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   isActive,
-  children,
-  onTouch,
+  children = undefined,
+  onTouch = () => null,
 }) => {
   const backgroundAnimted = useAnimatedStyle(() => {
     return {
@@ -40,11 +40,6 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
       {children && children}
     </AnimatedBackgroundContainer>
   );
-};
-
-AnimatedBackground.defaultProps = {
-  children: undefined,
-  onTouch: () => null,
 };
 
 export default memo(AnimatedBackground);

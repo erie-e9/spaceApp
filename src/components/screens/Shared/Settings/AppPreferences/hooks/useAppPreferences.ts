@@ -65,6 +65,7 @@ export const useAppPreferences = (): {
       listOptions,
       numColumns: listOptions.length,
       centered: true,
+      expandible: false,
     });
   }, []);
 

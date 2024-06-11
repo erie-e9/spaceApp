@@ -11,7 +11,11 @@ interface Props {
   size?: number;
 }
 
-export const BackButton: React.FC<Props> = ({ testID, onPress, size }) => {
+export const BackButton: React.FC<Props> = ({
+  testID = 'BackButtonID',
+  onPress = undefined,
+  size = 40,
+}) => {
   const animationRef = useRef<LottieViewProps>(null);
   const { Animations, darkMode } = useTheme();
   const navigation: ApplicationScreenProps = useNavigation();
@@ -49,12 +53,6 @@ export const BackButton: React.FC<Props> = ({ testID, onPress, size }) => {
       </BackButtonContainer>
     </BackButtonPressable>
   );
-};
-
-BackButton.defaultProps = {
-  testID: 'BackButtonID',
-  onPress: undefined,
-  size: 40,
 };
 
 export default memo(BackButton);

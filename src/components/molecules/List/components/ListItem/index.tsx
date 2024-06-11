@@ -18,21 +18,19 @@ interface ListItemProps {
   left?: React.ReactNode;
   right?: React.ReactNode;
   onPress?: () => void;
-  onPressOut?: () => void;
   color?: keyof DefaultTheme['tokens']['colors'] | undefined;
   isPressable?: boolean;
 }
 
 export const ListItem: React.FC<ListItemProps> = ({
-  testID,
-  title,
-  subtitle,
-  left,
-  right,
-  onPress,
-  onPressOut,
-  color,
-  isPressable,
+  testID = 'ListItemID',
+  title = undefined,
+  subtitle = undefined,
+  left = undefined,
+  right = undefined,
+  onPress = undefined,
+  color = undefined,
+  isPressable = undefined,
 }) => {
   const child = (
     <>
@@ -71,7 +69,6 @@ export const ListItem: React.FC<ListItemProps> = ({
           title={title}
           subtitle={subtitle}
           onPress={onPress}
-          onPressOut={onPressOut}
           type="Text"
           buttonTheme="Secondary"
         />
@@ -90,15 +87,3 @@ export const ListItem: React.FC<ListItemProps> = ({
 };
 
 export default memo(ListItem);
-
-ListItem.defaultProps = {
-  testID: 'ListItemID',
-  title: undefined,
-  subtitle: undefined,
-  left: undefined,
-  right: undefined,
-  onPress: undefined,
-  onPressOut: undefined,
-  color: undefined,
-  isPressable: undefined,
-};

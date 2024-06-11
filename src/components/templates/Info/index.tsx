@@ -20,12 +20,13 @@ interface InfoProps {
 }
 
 export const Info: React.FC<InfoProps> = ({
-  testID,
-  title,
-  adjustsFontTitle,
-  numberOfLinesTitle,
+  testID = 'InfoID',
+  title = undefined,
+  adjustsFontTitle = false,
+  numberOfLinesTitle = 1,
   body,
-  bodyTestID,
+  bodyTestID = undefined,
+  backButton = false,
 }) => {
   const { getCopyValue } = useCopy();
 
@@ -50,15 +51,6 @@ export const Info: React.FC<InfoProps> = ({
       </StyledContainer>
     </InterpolateColorAnimation>
   );
-};
-
-Info.defaultProps = {
-  testID: 'InfoID',
-  title: undefined,
-  adjustsFontTitle: false,
-  numberOfLinesTitle: 1,
-  bodyTestID: undefined,
-  backButton: false,
 };
 
 export default memo(Info);

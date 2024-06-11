@@ -13,7 +13,7 @@ import { StyledAnimatedContainer } from './styles';
 
 interface Props {
   testID?: string;
-  trigger?: boolean;
+  trigger?: any;
   children?: string | React.ReactElement | React.ReactElement[];
   duration?: number;
   initialXValue?: number;
@@ -24,21 +24,23 @@ interface Props {
   repeat?: number;
   reverse?: boolean;
   easing?: typeof Easing | string | unknown;
+  style?: any;
 }
 
 export const TransformAnimation: React.FC<Props> = ({
-  testID,
+  testID = 'TransformAnimationID',
   trigger = true,
   children,
-  duration,
-  initialXValue,
+  duration = 2000,
+  initialXValue = 0,
   finalXValue = 1,
-  initialYValue,
+  initialYValue = 0,
   finalYValue = 1,
-  delay,
-  repeat,
+  delay = 0,
+  repeat = 1,
   reverse = false,
-  easing,
+  easing = 'linear',
+  style,
 }) => {
   const offSetX = useSharedValue(initialXValue);
   const offSetY = useSharedValue(initialYValue);
@@ -101,10 +103,14 @@ export const TransformAnimation: React.FC<Props> = ({
       offSetY.value = initialYValue || 0;
     };
 
-    if (trigger) {
-      triggerAnimate();
+    if (typeof trigger === 'boolean') {
+      if (trigger) {
+        triggerAnimate();
+      } else {
+        cleanup();
+      }
     } else {
-      cleanup();
+      triggerAnimate();
     }
     return () => {
       cleanup();
@@ -112,24 +118,10 @@ export const TransformAnimation: React.FC<Props> = ({
   }, [offSetX, offSetY, trigger]);
 
   return (
-    <StyledAnimatedContainer testID={testID} style={[animatedStyles]}>
+    <StyledAnimatedContainer testID={testID} style={[style, animatedStyles]}>
       {children}
     </StyledAnimatedContainer>
   );
-};
-
-TransformAnimation.defaultProps = {
-  testID: 'TransformAnimationID',
-  trigger: true,
-  duration: 2000,
-  initialXValue: 0,
-  finalXValue: 1,
-  initialYValue: 0,
-  finalYValue: 1,
-  delay: 0,
-  repeat: 1,
-  reverse: false,
-  easing: 'linear',
 };
 
 export default memo(TransformAnimation);

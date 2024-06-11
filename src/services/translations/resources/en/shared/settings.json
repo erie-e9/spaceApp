@@ -6,25 +6,25 @@
             "items": {
                 "changeTheme": {
                     "title": "Theme",
-                    "description": "Choose a theme for the app or let it update automatically with the one on your device.",
+                    "description": "Select a theme or use the one set on your phone.",
                     "themes": {
-                        "title": "Select theme",
-                        "lightTheme": "Light theme",
-                        "darkTheme": "Dark theme",
-                        "systemTheme": "Device theme"
+                        "title": "Choose a theme",
+                        "lightTheme": "Light",
+                        "darkTheme": "Dark",
+                        "systemTheme": "From phone device"
                     }
                 },
                 "changeLanguage": {
                     "title": "Language",
-                    "description": "Change the language to the one you like the most. Choose one from the possible options."
+                    "description": "Choose your preferred language."
                 }
             }
         },
         "infoAndSupport": {
             "title": "Info & support",
             "items": {
-                "title": "",
-                "description": "Need help or would like to know more about us? You can reach out us and get info here, We'd love to hear you."
+                "title": "Info & support",
+                "description": "Get more information, contact us, or find answers to your questions."
             }
         },
         "extra": {
@@ -32,11 +32,11 @@
             "items": {
                 "hackedDevice": {
                     "title": "Security screen",
-                    "description": "This screen will be shown when user is using this app in an unauthorized device."
+                    "description": "This screen appears if you use the app on an unauthorized device."
                 },
                 "errorCatcher": {
-                    "title": "Error catcher screen",
-                    "description": "When an error occurred, user can see this friendly screen instead of blank screen."
+                    "title": "Error screen",
+                    "description": "Displays a friendly screen when an error occurs."
                 }
             }
         }
@@ -44,21 +44,21 @@
     "infoAndSupport": {
         "screenTitle": "Info & support",
         "info": {
-            "title": "Info",
+            "title": "Information",
             "items": {
                 "aboutUs": {
                     "title": "About us",
-                    "description": "Who we are, our history, our values and why we do what we do.",
+                    "description": "Our story and values.",
                     "content": "At $t(common:appName.full), we're more than just a company; we're a dedicated team of individuals working together to make a difference. Our journey began with a simple idea - to create something extraordinary that adds value to the world. That idea has since evolved into a mission that guides everything we do.We're driven by innovation, and our passion for it fuels our daily efforts. We're here to challenge the status quo and push boundaries, striving to make the impossible possible. With creativity at our core, we turn concepts into reality, crafting solutions that matter.Our commitment to excellence is unwavering. We take pride in our work, ensuring that every product and service we offer meets the highest standards. Our customers are at the heart of everything we do, and their satisfaction is our ultimate goal.We embrace diversity, knowing that the best ideas come from different perspectives. Our team is a blend of talents, each contributing a unique set of skills and experiences. Together, we're unstoppable.Join us on our journey as we continue to innovate, exceed expectations, and leave a lasting impact. Together, we can create a brighter future."
                 },
                 "noticeOfPrivacy": {
-                    "title": "Notice of privacy",
-                    "description": "Know our notice of privacy.",
+                    "title": "Privacy notice",
+                    "description": "Learn how we protect your information.",
                     "content": "At $t(common:appName.full), we take your privacy seriously. This Privacy Notice outlines how we collect, use, share, and protect your personal information. We encourage you to read this notice carefully to understand our practices. \nInformation We Collect\nWe collect information that you provide directly to us. This includes personal information such as your name, contact information, and any other data you choose to share with us. We may also collect information automatically, such as your IP address, browser type, and device information. \nHow We Use Your Information \nWe use the information we collect for various purposes, including: \nProviding and maintaining our services. Personalizing your experience. Sending you important updates and notifications. Monitoring and analyzing usage patterns to improve our services. Complying with legal obligations and resolving disputes. Information Sharing \nWe may share your personal information with: \nService providers who help us deliver our services. Law enforcement or government agencies in response to a legal request. Third parties with your consent. We do not sell your personal information to third parties. \nData Security \nWe take data security seriously and employ industry-standard security measures to protect your personal information. However, no method of transmission over the internet or electronic storage is 100% secure. \nYour Privacy Choices \nYou have the right to: \nAccess, correct, or delete your personal information. Object to or restrict the processing of your personal information. Withdraw your consent at any time if you have previously provided it. Children's Privacy Our services are not intended for children under the age of 13. We do not knowingly collect or maintain information from children. \nChanges to This Notice \nWe may update this Privacy Notice to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes. \nContact Us \nIf you have any questions, concerns, or requests regarding your personal information or this Privacy Notice, please contact us at [Your Contact Information]. \nEffective Date: [Date] Thank you for entrusting us with your information. Your privacy is important to us, and we are committed to protecting it."
                 },
                 "termsAndConditions": {
-                    "title": "Terms and conditions",
-                    "description": "Know our terms and conditions.",
+                    "title": "Terms & conditions",
+                    "description": "Read our terms of use.",
                     "content": "These terms and conditions govern your use of this mobile app and any services provided by it. By using this mobile app, you accept these terms and conditions in full. If you disagree with any part of these terms and conditions, you must not use this mobile app. \nLicense to Use Website \nUnless otherwise stated, we or our licensors own the intellectual property rights in the mobile app and material on the mobile app. Subject to the license below, all these intellectual property rights are reserved. \nYou may view, download for caching purposes only, and print pages from the mobile app for your own personal use, subject to the restrictions set out below and elsewhere in these terms and conditions. \nYou must not: \nRepublish material from this mobile app. Sell, rent or sub-license material from the mobile app. Show any material from the mobile app in public. Reproduce, duplicate, copy or otherwise exploit material on this mobile app for a commercial purpose. Edit or otherwise modify any material on the mobile app. Limitations of Liability \nThe information on this mobile app is provided free-of-charge, and you acknowledge that it would be unreasonable to hold us liable in respect of this mobile app and the information on this mobile app. While we endeavor to ensure the information is correct, we do not warrant its completeness or accuracy; nor do we commit to ensuring that the mobile app remains available or that the material on the mobile app is kept up-to-date. \nTo the maximum extent permitted by applicable law, we exclude all representations, warranties, and conditions (including, without limitation, the conditions implied by law of satisfactory quality, fitness for purpose, and the use of reasonable care and skill). \nVariation \nWe may revise these terms and conditions from time to time. Please check this page regularly to ensure you are familiar with the current version. \nEntire Agreement \nThese terms and conditions, together with our Privacy Policy, constitute the entire agreement between you and us in relation to your use of our mobile app and supersede all previous agreements in respect of your use of this mobile app. \nBy using this mobile app, you accept these terms and conditions in full. If you disagree with any part of these terms and conditions, you must not use this mobile app."
                 }
             }
@@ -68,54 +68,54 @@
             "items": {
                 "contactUs": {
                     "title": "Contact us",
-                    "description": "Hey! wanna talk? reach us out now, we have different ways.",
+                    "description": "Send us a message through one of the available options.",
                     "content": {
-                        "description": "We have different ways for you to communicate with us, choose the one that best suits you."
+                        "description": "Choose the contact method you prefer."
                     }
                 },
                 "faqs": {
-                    "title": "FAQ's",
-                    "description": "Most common questions are been resolved here, if not you can reach us out.",
+                    "title": "FAQs",
+                    "description": "Find answers to your questions here. If not, contact us.",
                     "content": {
                         "faq1": {
                             "question": "How can I reset my password?",
-                            "answer": "You can reset your password by going to the login screen and clicking on 'Forgot your password?' Then, follow the instructions to reset it."
+                            "answer": "Go to the login screen and click on 'Forgot your password?'. Follow the instructions."
                         },
                         "faq2": {
                             "question": "How do I update my profile information?",
-                            "answer": "To update your profile information, go to the profile settings section. There, you can edit and save the changes you wish to make."
+                            "answer": "Go to your profile settings to edit and save changes."
                         },
                         "faq3": {
-                            "question": "How can I get in touch with customer support?",
-                            "answer": "To contact our support team, visit the 'Support' section in the app. There, you'll find options to send an email or chat live with our agents."
+                            "question": "How can I contact support?",
+                            "answer": "Visit the 'Support' section in the app to send an email or live chat with our agents."
                         },
                         "faq4": {
-                            "question": "What should I do if I don't receive an account confirmation email?",
-                            "answer": "Check your spam or junk email folder. If you can't find the confirmation email, you can request it to be resent from the login screen."
+                            "question": "What if I don't receive the confirmation email?",
+                            "answer": "Check your spam folder. If it's not there, request a new one from the login screen."
                         },
                         "faq5": {
-                            "question": "How can I change my email address?",
-                            "answer": "To change your email address, go to the profile settings section and select the option to update your email address. Be sure to verify the new address."
+                            "question": "How do I change my email address?",
+                            "answer": "Go to your profile settings to update your email. Verify the new address."
                         },
                         "faq6": {
-                            "question": "What should I do if I experience technical issues with the app?",
-                            "answer": "f you experience technical issues, first try restarting the app and ensure you have the latest version. If the problem persists, contact our support team."
+                            "question": "What should I do if I experience technical issues?",
+                            "answer": "Restart the app and make sure you have the latest version. If the problem persists, contact support."
                         },
                         "faq7": {
-                            "question": "How can I delete my account?",
-                            "answer": "To delete your account, visit the profile settings section and select the option to delete your account. Please note that this action is irreversible."
+                            "question": "How do I delete my account?",
+                            "answer": "Go to your profile settings and select 'Delete account'. This action is irreversible."
                         },
                         "faq8": {
-                            "question": "Where can I find the privacy policies and terms and conditions?",
-                            "answer": "Privacy policies and terms and conditions can be found in the 'Info' or 'Terms and Conditions' section of the app."
+                            "question": "Where can I find the privacy policy and terms?",
+                            "answer": "They are in the 'Information' or 'Terms and Conditions' section of the app."
                         },
                         "faq9": {
-                            "question": "What security measures are applied to my personal data?",
-                            "answer": "We value your privacy and apply robust security measures to protect your personal data. You can refer to our privacy policies for more details."
+                            "question": "How is my personal data protected?",
+                            "answer": "We apply robust security measures. Check our privacy policies for more details."
                         },
                         "faq10": {
-                            "question": "What to do if you find an error in the application?",
-                            "answer": "It can happen to all of us, so if you find a bug, you can report it through one of the ways that the application provides in the Contact Us section."
+                            "question": "What should I do if I find a bug?",
+                            "answer": "Report the bug through the contact options in the 'Contact Us' section."
                         }
                     }
                 }

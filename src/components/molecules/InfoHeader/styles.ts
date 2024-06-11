@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { PixelRatio, Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { Typography } from '@components/atoms';
 import {
@@ -30,9 +30,9 @@ export interface LogoProps {
 }
 
 export const LogoContainer = styled.View<LogoProps>`
-  height: ${({ logoSize }) => getNormalizedVerticalSize(Platform.OS === 'ios' ? logoSize : logoSize + 10)}px;
-  width: ${({ logoSize }) => getNormalizedHorizontalSize(logoSize)}px;
-  border-radius: ${({ avatarRadius }) => avatarRadius}px;
+  height: ${({ logoSize }) => PixelRatio.roundToNearestPixel(logoSize)}px;
+  width: ${({ logoSize }) => PixelRatio.roundToNearestPixel(logoSize)}px;
+  border-radius: ${({ avatarRadius }) => PixelRatio.roundToNearestPixel(avatarRadius)}px;
   flex-direction: row;
   display: flex;
   justify-content: center;
