@@ -7,6 +7,7 @@ import {
   remoteConfigFeatures,
   responseHandler,
 } from '@slices/shared';
+import { token, user } from '@slices/auth';
 
 export const reducers = combineReducers({
   appPreferences,
@@ -14,5 +15,7 @@ export const reducers = combineReducers({
   modal,
   remoteConfigFeatures,
   responseHandler,
+  token,
+  user,
   [api.reducerPath]: api.reducer,
 });
