@@ -2,17 +2,13 @@ import 'whatwg-fetch';
 import 'react-native-gesture-handler/jestSetup';
 import '@testing-library/jest-native/extend-expect';
 
-jest.mock('react-native-reanimated', () =>
-  require('react-native-reanimated/mock'),
-);
+jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
 
 jest.mock('redux-persist', () => {
   const real = jest.requireActual('redux-persist');
   return {
     ...real,
-    persistReducer: jest
-      .fn()
-      .mockImplementation((config, reducers) => reducers),
+    persistReducer: jest.fn().mockImplementation((config, reducers) => reducers),
   };
 });
 
@@ -23,7 +19,7 @@ jest.mock('react-i18next', () => ({
   // this mock makes sure any components using the translation hook can use it without a warning being shown
   useTranslation: () => {
     return {
-      t: str => str,
+      t: (str) => str,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },

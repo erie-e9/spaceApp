@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "target": "esnext", /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
-    "module": "commonjs", /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "target": "esnext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */,
+    "module": "commonjs" /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
     "lib": ["es2017"],
     "isolatedModules": true,
-    "strict": true, /* Enable all strict type-checking options. */
+    "strict": true /* Enable all strict type-checking options. */,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
     "esModuleInterop": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
@@ -16,7 +20,7 @@
     "typeRoots": ["@types", "./node_modules/@types"],
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
+      "@*": ["./src/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@hooks": ["./src/hooks/index.ts"],
       "@navigators/*": ["./src/navigators/*"],
@@ -44,10 +48,5 @@
     }
   },
   "extends": "@tsconfig/react-native/tsconfig.json",
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

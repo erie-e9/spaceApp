@@ -4,7 +4,7 @@ import React, { useLayoutEffect } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { store, persistor } from '@store';
-import ApplicationNavigator from './navigators/Application';
+import ApplicationNavigator from '@navigators/Application';
 import { useRemoteConfig } from '@hooks';
 
 const App = () => {

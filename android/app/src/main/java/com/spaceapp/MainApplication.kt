@@ -1,8 +1,7 @@
-package com.spaceapp
+package com.spaceApp
 
 import android.app.Application
 import com.facebook.react.PackageList
-import org.devio.rn.splashscreen.SplashScreenReactPackage
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
 import com.facebook.react.ReactNativeHost
