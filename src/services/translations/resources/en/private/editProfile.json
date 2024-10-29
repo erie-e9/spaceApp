@@ -1,0 +1,12 @@
+{
+  "editProfile": {
+    "description": "Change the value you defined in your sign up.",
+    "alerts": {
+      "update": "{{field}} was updated successfully"
+    },
+    "buttons": {
+      "update": "Update",
+      "changePassword": "Change password"
+    }
+  }
+}

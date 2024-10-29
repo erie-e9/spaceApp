@@ -1,10 +1,8 @@
-import React, { memo } from 'react';
-import { useDispatch } from 'react-redux';
-import { useTheme } from 'styled-components';
-import { useModalSelectorHook } from '@redux/hooks/useModalSelectorHook';
-import { useCopy } from '@services';
-import { hideModal } from '@slices/shared/modal';
+import React, { Fragment, memo, useCallback } from 'react';
 import { AnyObject } from 'yup';
+import { testProperties } from '@utils/functions';
+import { useModal } from '@hooks';
+import { useModalSelectorHook } from '@redux/hooks/useModalSelectorHook';
 import { TransformAnimation, OpacityAnimation } from '@components/animated';
 import { RenderWhen } from '@components/atoms';
 import { CloseButton } from '@components/molecules';
@@ -21,7 +19,7 @@ import {
 } from './styles';
 
 export const Alert: React.FC = () => {
-  let modalArgs: AnyObject = { ...useModalSelectorHook() };
+  const modalArgs: AnyObject = { ...useModalSelectorHook() };
 
   const {
     testID = 'AlertID',
@@ -30,89 +28,62 @@ export const Alert: React.FC = () => {
     description,
     showCancelIcon,
     body,
-    optionsMap,
     onModalHide,
     options,
     handlers,
-    Icon,
-    style,
-    isLockedBackdrop,
-    lockBackdrop,
-    titleColor,
-    secondButtonColor,
     width,
     callback,
     onCloseIcon,
+    buttonsStyles,
+    // lockBackdrop,
   } = modalArgs;
 
-  const dispatch = useDispatch();
-  const { getCopyValue } = useCopy();
-  const theme = useTheme();
+  const { hideModal } = useModal();
   const handleClose = (): void => {
-    dispatch(hideModal());
+    hideModal();
     if (onModalHide) onModalHide();
     if (onCloseIcon) onCloseIcon();
   };
 
-  const parsedOptionsMap = optionsMap
-    ? optionsMap.map((opt: AnyObject) => {
-        const newOpt = { ...opt };
-        newOpt.text = getCopyValue(opt.text);
-        return newOpt;
-      })
-    : [];
-
-  const onModalShow = (): void => {
+  const onModalShow = useCallback((): void => {
     if (callback) callback();
-  };
+  }, []);
+
+  if (!isVisible) return;
 
   return (
     <StyledModal
-      testID={testID}
+      {...testProperties(testID)}
       transparent
       visible={isVisible}
       onShow={onModalShow}
-      animationType="fade"
+      animationType="none"
       style={MODAL_STYLE}
       statusBarTranslucent
     >
-      <AnimatedBackground isActive={isVisible}>
+      <AnimatedBackground onTouch={true ? undefined : handleClose} isActive>
         <ModalBodyContainer>
-          <TransformAnimation
-            trigger={isVisible}
-            initialYValue={0}
-            finalYValue={-20}
-            duration={200}
-          >
-            <OpacityAnimation
-              trigger={isVisible}
-              initialValue={0}
-              finalValue={1}
-              duration={200}
-            >
+          <TransformAnimation trigger={isVisible} initialYValue={0} finalYValue={-5} duration={250}>
+            <OpacityAnimation trigger={isVisible} initialValue={0} finalValue={1} duration={100}>
               <Wrapper width={width}>
                 <HeaderContainer>
-                  <ModalHeader
-                    title={title || ''}
-                    titleColor={titleColor}
-                    description={description || ''}
-                  />
+                  <ModalHeader title={title || ''} description={description || ''} />
                   <RenderWhen isTrue={showCancelIcon}>
                     <CloseIconContainer>
                       <CloseButton onPress={handleClose} />
                     </CloseIconContainer>
                   </RenderWhen>
                 </HeaderContainer>
-                {body || <></>}
-                <AlertButtons
-                  optionsMap={parsedOptionsMap}
-                  options={options}
-                  theme={theme}
-                  handlers={handlers}
-                  primaryButtonTheme="Secondary"
-                  handleClose={handleClose}
-                  secondButtonColor={secondButtonColor}
-                />
+                {body || <Fragment></Fragment>}
+                {options && (
+                  <AlertButtons
+                    options={options}
+                    handlers={handlers}
+                    primaryButtonTheme="Secondary"
+                    handleClose={handleClose}
+                    buttonsStyles={buttonsStyles}
+                  />
+                )}
               </Wrapper>
             </OpacityAnimation>
           </TransformAnimation>

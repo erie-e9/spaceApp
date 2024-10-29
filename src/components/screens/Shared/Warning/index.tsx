@@ -1,35 +1,30 @@
-import React, { useState, useEffect, memo, useCallback, useRef } from 'react';
+import React, { useEffect, memo, useRef, useCallback } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useCopy } from '@services';
-import { useTheme, useModal } from '@hooks';
+import { useTheme, useBlockScreen } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { CallToAction } from '@components/templates';
 import {
   BodyContainer,
   StyledScrollView,
-  DescriptionContainer,
+  LabelContainer,
   SubDescriptionContainer,
-  TitleText,
+  LabelText,
 } from './styles';
 
 export const Warning: React.FC = () => {
   const animationRef = useRef<LottieViewProps>(null);
+  const navigation = useNavigation();
   const { getCopyValue } = useCopy();
-  const { showModal } = useModal();
+  useBlockScreen();
   const { Animations } = useTheme();
-  const [primaryButtonLoading, setPrimaryButtonLoading] = useState(false);
 
-  const handlePrimaryButton = useCallback(async (): Promise<void> => {
-    showModal({
-      type: 'alert',
-      title: 'security:Warning.actions.primaryButton.modal.title',
-      description: 'security:Warning.actions.primaryButton.modal.description',
-      legacyOptions: { typeError: 'error' },
-    });
-    await setPrimaryButtonLoading(!primaryButtonLoading);
+  const primaryButtonHandler = useCallback(async (): Promise<void> => {
+    navigation.navigate('ContactUs');
   }, []);
 
   useEffect(() => {
-    let timeOut = setTimeout(() => {
+    const timeOut = setTimeout(() => {
       animationRef.current?.play();
     }, 400);
     return () => {
@@ -41,53 +36,52 @@ export const Warning: React.FC = () => {
     <CallToAction
       testID="WarningID"
       title="security:Warning.title"
-      numberOfLinesTitle={3}
-      backButton
+      headerStyle="Secondary"
+      numberOfLinesTitle={2}
+      initialColor="warning_status"
+      finalColor="backgroundColor"
       body={
-        <BodyContainer testID="WarningID">
-          <Lottie
-            ref={animationRef}
-            source={Animations.warning}
-            autoPlay={false}
-            renderMode="AUTOMATIC"
-            loop={false}
-            resizeMode="contain"
-            width={120}
-            height={120}
-          />
-          <StyledScrollView>
-            <DescriptionContainer>
-              <TitleText
-                type="Subtitle2"
-                font="primary"
-                color="surfaceL1"
-                textAlign="center"
-              >
+        <StyledScrollView>
+          <BodyContainer testID="WarningBodyID">
+            <Lottie
+              ref={animationRef}
+              source={Animations.warning}
+              autoPlay={false}
+              renderMode="AUTOMATIC"
+              loop={false}
+              resizeMode="contain"
+              width={120}
+              height={120}
+            />
+            <LabelContainer>
+              <LabelText type="Body4" font="Primary" color="secondary700" textAlign="center">
                 {getCopyValue('security:Warning.description', {
                   appName: process.env.APP_NAME,
                 })}
-              </TitleText>
-            </DescriptionContainer>
+              </LabelText>
+            </LabelContainer>
             <SubDescriptionContainer>
-              <TitleText
-                type="Subtitle2"
-                font="primary"
-                color="surfaceL1"
-                textAlign="center"
-                weight="bold"
-              >
-                {getCopyValue('security:Warning.sub-description')}
-              </TitleText>
+              <LabelText type="Subtitle2" font="Primary" color="secondary900" textAlign="center">
+                {'security:Warning.sub-description'}
+              </LabelText>
             </SubDescriptionContainer>
-          </StyledScrollView>
-        </BodyContainer>
+            <SubDescriptionContainer>
+              <LabelContainer>
+                <LabelText type="Subtitle2" font="Primary" color="secondary700" textAlign="center">
+                  {'security:Warning.actions.areWeWrong.title'}
+                </LabelText>
+                <LabelText type="Subtitle2" font="Primary" color="secondary700" textAlign="center">
+                  {'security:Warning.actions.areWeWrong.description'}
+                </LabelText>
+              </LabelContainer>
+            </SubDescriptionContainer>
+          </BodyContainer>
+        </StyledScrollView>
       }
       primaryButton={{
-        title: 'security:Warning.actions.primaryButton.title',
-        onPress: handlePrimaryButton,
-        testID: 'Warning.primaryButton',
-        disabled: primaryButtonLoading,
-        loading: primaryButtonLoading,
+        testID: 'warningPrimaryButton',
+        title: 'menu:helpCenter.support.items.contactUs.title',
+        onPress: primaryButtonHandler,
       }}
     />
   );

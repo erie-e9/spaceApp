@@ -1,44 +1,30 @@
 import React, { memo, useMemo } from 'react';
-import { PressableProps } from 'react-native';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
-import { DefaultTheme } from 'styled-components/native';
-import { useCopy } from '@services';
+import { testProperties } from '@utils/functions';
+import { type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
+import { type TouchableProps } from '@types';
 import { useAppAlerts, useGetFeatureStatus as getStatus } from '@hooks';
-import { RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
 import { StyledTouchable, TappableText } from './styles';
 
-interface TappableProps extends PressableProps {
-  testID?: string;
-  title?: string;
-  onPress?: () => void;
-  onPressType?: 'onPress' | 'onPressIn' | 'onLongPress' | 'onPressOut';
-  component?: Element;
-  featureFlags?: string[] | (keyof RemoteConfigFeatures)[];
-  minHeight?: number;
-  titleFontSize?: number;
-  style?: any;
-  disabledColor?: keyof DefaultTheme['tokens']['colors'];
-  [x: string]: unknown;
-}
-
-export const Touchable: React.FC<TappableProps> = ({
+export const Touchable: React.FC<TouchableProps> = ({
   children,
   testID = 'TouchableID',
   component = undefined,
   title = undefined,
   onPress = undefined,
   onPressType = 'onPress',
-  featureFlags = [],
+  remoteFeatureFlags = [],
   minHeight = undefined,
   titleFontSize = undefined,
   style = {},
   disabledColor = undefined,
+  accessibilityRole,
+  disabled,
   ...props
 }) => {
   const Tappable = (component || StyledTouchable) as unknown as React.FC<any>;
   const { showFeatureUnavailableToast } = useAppAlerts();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
-  const { getCopyValue } = useCopy();
 
   const getFeatureStatus = (
     featureKey: keyof RemoteConfigFeatures,
@@ -50,10 +36,8 @@ export const Touchable: React.FC<TappableProps> = ({
   const [on, off, hide] = useMemo(() => {
     let [onR, offR, hideR] = [true, false, false];
     let conditional = 'and';
-    (featureFlags || []).forEach((featureFlag: string, index: number): void => {
-      const [onT, offT, hideT] = getFeatureStatus(
-        featureFlag as keyof RemoteConfigFeatures,
-      );
+    (remoteFeatureFlags || []).forEach((featureFlag: string, index: number): void => {
+      const [onT, offT, hideT] = getFeatureStatus(featureFlag as keyof RemoteConfigFeatures);
       if (['and', 'or', 'hide'].includes(featureFlag)) {
         conditional = featureFlag;
         return;
@@ -79,7 +63,7 @@ export const Touchable: React.FC<TappableProps> = ({
       }
     });
     return [onR, offR, hideR];
-  }, [featureFlags]);
+  }, [remoteFeatureFlags]);
 
   const onTap = (): void => {
     let calls = [];
@@ -112,11 +96,14 @@ export const Touchable: React.FC<TappableProps> = ({
 
   return (
     <Tappable
-      isGreyed={off}
-      testID={testID}
+      disabledButton={off || disabled}
+      {...testProperties(testID || 'animatedButton')}
       style={style}
       minHeight={minHeight}
-      disabledColor={disabledColor || 'primaryD1'}
+      accessible={true}
+      accessibilityLabel={title}
+      accessibilityRole={accessibilityRole || 'button'}
+      disabledColor={disabledColor || 'primary200'}
       onPress={onPressType === 'onPress' ? onTap : undefined}
       onPressIn={onPressType === 'onPressIn' ? onTap : undefined}
       onPressOut={onPressType === 'onPressOut' ? onTap : undefined}
@@ -125,11 +112,12 @@ export const Touchable: React.FC<TappableProps> = ({
     >
       {title && !children && (
         <TappableText
-          type="Subtitle1"
-          color={props.disabled ? disabledColor : 'primaryD1'}
+          type="Subtitle2"
+          color={props.disabled ? disabledColor : 'primary500'}
           titleFontSize={titleFontSize}
+          remoteFeatureFlags={remoteFeatureFlags}
         >
-          {getCopyValue(title)}
+          {'title'}
         </TappableText>
       )}
       {children && !title && children}

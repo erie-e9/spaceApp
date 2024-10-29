@@ -1,38 +1,8 @@
-export {
-  screen_height,
-  screen_width,
-  responsiveFontSize,
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions/responsiveness';
-
-export {
-  countOccurrences,
-  listToObject,
-  clamp,
-  objectMove,
-  removeItemFromArrray
-} from '@utils/functions/array'
-
-export {
-  isEmptyArray,
-  isEmptyObject,
-  isEmpty,
-  isEmptyValue,
-} from '@utils/functions/empty'
-
-export {
-  emailValidatorRegEx,
-  nameLastnameRegex,
-  onlyNumbersRegex,
-  onlyLettersRegex,
-  onlyLettersSpecialRegex,
-  formatedCreditCardNumber,
-  formatedCardLabel,
-  emailRegEx,
-  isPhoneNumberRegEx,
-  phoneNumberOrEmailRegEx,
-  removeBlankSpaces,
-  removeSpecialCharacters,
-  toCamelCase,
-} from '@utils/functions/regex'
+export * from '@utils/functions/responsiveness';
+export * from '@utils/functions/array';
+export * from '@utils/functions/empty';
+export * from '@utils/functions/regex';
+export * from '@utils/functions/string';
+export * from '@utils/functions/date';
+export * from '@utils/functions/testID';
+export * from '@utils/functions/random';

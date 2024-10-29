@@ -3,7 +3,7 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "Connection is not established. Trying again.",
+    "noConnection": "Can't connect, retrying.",
     "features": {
       "unavailable": {
         "title": "Feature unavailable",
@@ -15,10 +15,43 @@
     "boundaries": {
       "fallbackScreen": {
         "title": "Whoops! Something went wrong",
-        "description": "Sorry, an error occurred",
+        "description": "Sorry, an error occurred.",
         "button": "Try again",
         "detailsLabel": "Error details: ",
         "detailsLabelDefaultMessage": "This is not an error, this screen will allow you to detect and view errors in the app, displaying a friendly message instead of the default white screen."
+      }
+    }
+  },
+  "alerts": {
+    "permissions": {
+      "blocked": {
+        "title": "Permission blocked",
+        "description": "Please grant permission from the app settings in your {{deviceName}}.",
+        "buttons": {
+          "buttonOne": "Go to Settings"
+        }
+      },
+      "denied": {
+        "title": "Permission required",
+        "description": "This permission is required to continue. Please grant it.",
+        "buttons": {
+          "buttonOne": "Request again"
+        }
+      },
+      "libraryOrCam": {
+        "title": "Select profile photo",
+        "description": "Do you prefer to continue with camera or library?",
+        "buttons": {
+          "buttonOne": "Camera",
+          "buttonTwo": "Library"
+        }
+      }
+    },
+    "authRequired": {
+      "title": "User-only feature",
+      "description": "You need to log in to use this feature.",
+      "buttons": {
+        "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
     }
   },
@@ -26,5 +59,70 @@
     "option1": "Share",
     "option2": "Reload",
     "option3": "Open on browser"
+  },
+  "calendar": {
+    "values": {
+      "today": "Today",
+      "dayNames": {
+        "sunday": "Sunday",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday"
+      },
+      "dayNamesShort": {
+        "su": "Su",
+        "mo": "Mo",
+        "tu": "Tr",
+        "we": "We",
+        "th": "Th",
+        "fr": "Fr",
+        "sa": "Sa"
+      },
+      "monthNames": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+      },
+      "monthNamesShort": {
+        "january": "Jan",
+        "february": "Feb",
+        "march": "Mar",
+        "april": "Apr",
+        "may": "May",
+        "june": "Jun",
+        "july": "Jul",
+        "august": "Aug",
+        "september": "Sep",
+        "october": "Oct",
+        "november": "Nov",
+        "december": "Dec"
+      }
+    }
+  },
+  "banners": {
+    "auth": {
+      "greeting": "Hello",
+      "invitation": "Hey, join us to get a better experience, create a new account or use your own.",
+      "buttons": {
+        "auth": "Auth"
+      }
+    }
+  },
+  "controllers": {
+    "inputs": {
+      "search": "Search {{seachPlaceholder}}"
+    }
   }
 }

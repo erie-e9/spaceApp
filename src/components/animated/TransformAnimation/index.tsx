@@ -1,6 +1,7 @@
-/* eslint-disable react/require-default-props */
 import React, { memo, useCallback, useEffect } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import {
+  AnimatedStyle,
   useSharedValue,
   useAnimatedStyle,
   withTiming,
@@ -9,6 +10,7 @@ import {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
 import { StyledAnimatedContainer } from './styles';
 
 interface Props {
@@ -24,7 +26,7 @@ interface Props {
   repeat?: number;
   reverse?: boolean;
   easing?: typeof Easing | string | unknown;
-  style?: any;
+  style?: StyleProp<AnimatedStyle<StyleProp<ViewStyle>>>;
 }
 
 export const TransformAnimation: React.FC<Props> = ({
@@ -39,7 +41,7 @@ export const TransformAnimation: React.FC<Props> = ({
   delay = 0,
   repeat = 1,
   reverse = false,
-  easing = 'linear',
+  easing,
   style,
 }) => {
   const offSetX = useSharedValue(initialXValue);
@@ -118,7 +120,7 @@ export const TransformAnimation: React.FC<Props> = ({
   }, [offSetX, offSetY, trigger]);
 
   return (
-    <StyledAnimatedContainer testID={testID} style={[style, animatedStyles]}>
+    <StyledAnimatedContainer {...testProperties(testID)} style={[style, animatedStyles]}>
       {children}
     </StyledAnimatedContainer>
   );

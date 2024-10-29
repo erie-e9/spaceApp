@@ -2,19 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launch_screen_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/lottieBackgroundColor"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:background="@drawable/splash_screen">
+    tools:context=".MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
         android:layout_centerInParent="true"
-        app:lottie_rawRes="@raw/splash_app"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_autoPlay="true"/>
+        app:lottie_rawRes="@raw/spaceapp_light" />
 </LinearLayout>

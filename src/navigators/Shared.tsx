@@ -1,34 +1,27 @@
 import React, { memo } from 'react';
-import {
-  TransitionPresets,
-  createStackNavigator,
-} from '@react-navigation/stack';
-import { ApplicationStackParamList } from '@utils/@types/navigation';
-import {
-  CustomFallback,
-  Home,
-  SettingsNavigator,
-  Warning,
-  WebViewer,
-} from '@components/screens/Shared';
-import { SettingsParamsList } from '@components/screens/Shared/Settings';
+import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
+import { type UserState } from '@redux/store/slices/types';
+import { type ApplicationStackParamList, type InfoType } from '@types';
+import { Home, MenuNavigator, WebViewer, type MenuParamsList } from '@components/screens/Shared';
 
 export type SharedParamsList = {
-  CustomFallback: {
-    error: Error;
-    resetError: () => void;
-  };
   Home: undefined;
   Settings: undefined;
   InfoAndSupportMenu: undefined;
   Startup: undefined;
-  Warning: undefined;
   WebViewer: {
     url: string;
     onReload?: () => void;
     onClose?: () => void;
   };
-} & SettingsParamsList;
+  FieldEditor: {
+    fieldId: Partial<UserState>;
+    fieldName: string;
+  };
+  Info: {
+    type: InfoType;
+  } & MenuParamsList;
+};
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
@@ -37,20 +30,24 @@ export const SharedNavigator = () => {
     <Navigator
       initialRouteName="Home"
       screenOptions={{
-        headerShown: false,
+        gestureEnabled: true,
+        animationEnabled: true,
         freezeOnBlur: true,
+        headerShown: false,
         headerMode: 'screen',
-        ...TransitionPresets.ScaleFromCenterAndroid,
+        headerBackTitleVisible: true,
+        headerTransparent: true,
       }}
     >
-      <Screen
-        key="CustomFallback"
-        name="CustomFallback"
-        component={CustomFallback as any}
-      />
       <Screen key="Home" name="Home" component={Home} />
-      <Screen key="Settings" name="Settings" component={SettingsNavigator} />
-      <Screen key="Warning" name="Warning" component={Warning} />
+      <Screen
+        key="MenuNavigator"
+        name="MenuNavigator"
+        component={MenuNavigator}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
+        }}
+      />
       <Screen key="WebViewer" name="WebViewer" component={WebViewer} />
     </Navigator>
   );

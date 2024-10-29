@@ -1,8 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 

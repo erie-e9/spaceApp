@@ -1,9 +1,5 @@
 import React, { ReactElement, memo } from 'react';
-import {
-  useAnimatedProps,
-  useAnimatedStyle,
-  withTiming,
-} from 'react-native-reanimated';
+import { useAnimatedProps, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { AnimatedBackgroundContainer } from './styles';
 
 export interface AnimatedBackgroundProps {

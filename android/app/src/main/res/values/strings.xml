@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">spaceApp</string>
+    <string name="facebook_app_id">398987086495617</string>
+    <string name="fb_login_protocol_scheme">fb398987086495617</string>
+    <string name="facebook_client_token">875b1ce5d077b758bbc94e24db47f640</string>
 </resources>

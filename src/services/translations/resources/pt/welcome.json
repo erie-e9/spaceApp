@@ -1,5 +1,5 @@
 {
   "title": "Bem vindo",
   "subtitle": "O aplicativo $t(common:appName.full)",
-  "description": "Quer descobrir alguns recursos? Basta clicar em um dos quatro botões na parte inferior da tela. O primeiro permite chamar um alerta com uma mensagem. O segundo permite ir para uma tela de aviso. O terceiro irá ajudá-lo a mudar a cor do tema. E o quarto permite alterar o idioma."
+  "description": "Um aplicativo móvel projetado para entusiastas da astronomia e do espaço. Com o $t(common:appName.full), você pode descobrir o vasto universo na palma da sua mão. Explore planetas, estrelas, galáxias e constelações com informações detalhadas e visualizações interativas. O aplicativo oferece notícias atualizadas sobre eventos astronômicos, missões espaciais e descobertas científicas. Além disso, inclui uma seção de aprendizado com artigos educativos, vídeos e quizzes para testar seu conhecimento. Seja você um astrônomo amador ou simplesmente curioso sobre o cosmos, o $t(common:appName.full) é seu portal para mergulhar nos mistérios do espaço."
 }

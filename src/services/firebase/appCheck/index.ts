@@ -9,9 +9,7 @@ const debugger_mode = `${DEBUGGER_MODE}` === 'true';
 const initAppCheck = (useDebugToken: boolean): void => {
   const isDebug = debugger_mode || useDebugToken;
   try {
-    const rnFirebaseProvider = firebase
-      .appCheck()
-      .newReactNativeFirebaseAppCheckProvider();
+    const rnFirebaseProvider = firebase.appCheck().newReactNativeFirebaseAppCheckProvider();
     rnFirebaseProvider.configure({
       android: {
         provider: isDebug ? 'debug' : 'playIntegrity',

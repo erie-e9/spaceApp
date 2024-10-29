@@ -1,9 +1,6 @@
 import styled from 'styled-components/native';
 import { Typography } from '@components/atoms';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 
 export const BodyContainer = styled.View`
   width: 100%;
@@ -21,17 +18,14 @@ export const HeaderContainer = styled.View<{ paddingBottom?: number }>`
   justify-content: space-between;
   align-items: center;
   height: auto;
-  padding: ${getNormalizedVerticalSize(30)}px
-    ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(10)}px
-    ${getNormalizedHorizontalSize(0)}px;
+  padding: ${getNormalizedVerticalSize(30)}px ${getNormalizedHorizontalSize(0)}px
+    ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const StyledText = styled(Typography)<{
   underline?: boolean;
-  isGreyed?: boolean;
 }>`
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
-  opacity: ${({ isGreyed }) => (isGreyed ? 0.34 : 1)};
 `;
 
 export const ErrorContainer = styled.View`

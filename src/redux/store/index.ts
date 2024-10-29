@@ -11,33 +11,31 @@ import {
   REGISTER,
   Storage,
 } from 'redux-persist';
-import { MMKV } from 'react-native-mmkv';
+import { MMKV, Mode } from 'react-native-mmkv';
 import { api } from '@hooks/api';
 import { reducers } from '@store/reducers';
-// import { initializeMMKVFlipper } from 'react-native-mmkv-flipper-plugin';
-// import { setupDefaultFlipperReporter } from 'react-native-performance-flipper-reporter';
 
-const { APP_NAME } = process.env;
-const storage = new MMKV({
-  id: `${APP_NAME}-storage`,
-  encryptionKey: `${APP_NAME}`,
+const { APP_NAME, APP_ENCRYPTION_KEY } = process.env;
+
+// Use a secure method to store and retrieve your encryption key
+const encryptionKey = `${APP_NAME}-${APP_ENCRYPTION_KEY}-encryption-key`;
+
+export const storage = new MMKV({
+  id: `user-${APP_NAME}-storage`,
+  encryptionKey,
+  mode: 'MULTI_PROCESS',
 });
-
-if (__DEV__) {
-  // initializeMMKVFlipper({ default: storage });
-  // setupDefaultFlipperReporter();
-}
 
 export const reduxStorage: Storage = {
   setItem: (key, value) => {
     storage.set(key, value);
     return Promise.resolve(true);
   },
-  getItem: key => {
+  getItem: (key) => {
     const value = storage.getString(key);
     return Promise.resolve(value);
   },
-  removeItem: key => {
+  removeItem: (key) => {
     storage.delete(key);
     return Promise.resolve();
   },
@@ -46,14 +44,14 @@ export const reduxStorage: Storage = {
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['appPreferences', 'auth', 'languages', 'remoteConfigFeatures'],
+  whitelist: ['appPreferences', 'auth', 'languages', 'remoteConfigFeatures', 'token', 'user'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware => {
+  middleware: (getDefaultMiddleware) => {
     const middlewares = getDefaultMiddleware({
       // serializableCheck: {
       //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -62,7 +60,6 @@ const store = configureStore({
     }).concat(api.middleware);
 
     if (__DEV__ && !process.env.JEST_WORKER_ID) {
-      // const createDebugger = require('redux-flipper').default;
       middlewares.push();
     }
 
@@ -74,4 +71,5 @@ const persistor = persistStore(store);
 
 setupListeners(store.dispatch);
 
+export type RootState = ReturnType<typeof store.getState>;
 export { store, persistor };

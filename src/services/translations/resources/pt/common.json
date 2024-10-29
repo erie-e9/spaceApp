@@ -3,7 +3,7 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "A conexão não foi estabelecida. Tentando novamente.",
+    "noConnection": "A conexão não foi estabelecida, tentando novamente.",
     "features": {
       "unavailable": {
         "title": "Função não disponível",
@@ -15,10 +15,43 @@
     "boundaries": {
       "fallbackScreen": {
         "title": "Opa! Algo deu errado",
-        "description": "Desculpe, ocorreu um erro",
+        "description": "Desculpe, ocorreu um erro.",
         "button": "Tente novamente",
         "detailsLabel": "Detalhes do erro: ",
         "detailsLabelDefaultMessage": "Isso não é um erro, esta tela permitirá detectar e visualizar erros no aplicativo, exibindo uma mensagem amigável em vez da tela branca padrão."
+      }
+    }
+  },
+  "alerts": {
+    "permissions": {
+      "blocked": {
+        "title": "Permissão bloqueada",
+        "description": "Conceda permissão nas configurações do aplicativo no seu {{deviceName}}.",
+        "buttons": {
+          "buttonOne": "Vá para Configurações"
+        }
+      },
+      "denied": {
+        "title": "Permissão necessária",
+        "description": "Esta permissão é necessária para continuar. Por favor, conceda-a.",
+        "buttons": {
+          "buttonOne": "Solicitar novamente"
+        }
+      },
+      "libraryOrCam": {
+        "title": "Selecione a foto do perfil",
+        "description": "Você prefere continuar com a câmera ou a biblioteca?",
+        "buttons": {
+          "buttonOne": "Câmera",
+          "buttonTwo": "Biblioteca"
+        }
+      }
+    },
+    "authRequired": {
+      "title": "Recurso somente para o usuário",
+      "description": "Você precisa fazer login para usar este recurso.",
+      "buttons": {
+        "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
     }
   },
@@ -26,5 +59,70 @@
     "option1": "Compartilhar",
     "option2": "Recarregar",
     "option3": "Abrir no navegador"
+  },
+  "calendar": {
+    "values": {
+      "today": "Hoje",
+      "dayNames": {
+        "sunday": "Domingo",
+        "monday": "Segunda-feira",
+        "tuesday": "Terça-feira",
+        "wednesday": "Quarta-feira",
+        "thursday": "Quinta-feira",
+        "friday": "Sexta-feira",
+        "saturday": "Sábado"
+      },
+      "dayNamesShort": {
+        "su": "Do",
+        "mo": "Se",
+        "tu": "Te",
+        "we": "Qu",
+        "th": "Qu",
+        "fr": "Se",
+        "sa": "Sá"
+      },
+      "monthNames": {
+        "january": "Janeiro",
+        "february": "Fevereiro",
+        "march": "Março",
+        "april": "Abril",
+        "may": "Maio",
+        "june": "Junho",
+        "july": "Julho",
+        "august": "Agosto",
+        "september": "Setembro",
+        "october": "Outubro",
+        "november": "Novembro",
+        "december": "Dezembro"
+      },
+      "monthNamesShort": {
+        "january": "Jan",
+        "february": "Fev",
+        "march": "Mar",
+        "april": "Abr",
+        "may": "Mai",
+        "june": "Jun",
+        "july": "Jul",
+        "august": "Ago",
+        "september": "Set",
+        "october": "Out",
+        "november": "Nov",
+        "december": "Dez"
+      }
+    }
+  },
+  "banners": {
+    "auth": {
+      "greeting": "Olá",
+      "invitation": "Olá, junte-se a nós para ter uma experiência melhor, crie uma nova conta ou use a sua própria.",
+      "buttons": {
+        "auth": "Entre"
+      }
+    }
+  },
+  "controllers": {
+    "inputs": {
+      "search": "Procurar {{seachPlaceholder}}"
+    }
   }
 }

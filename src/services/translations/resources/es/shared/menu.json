@@ -1,0 +1,169 @@
+{
+  "Menu": {
+    "screenTitle": "Ajustes",
+    "description": "Administra configuraciones que mejoren y personalicen tu experiencia.",
+    "settings": {
+      "items": {
+        "appPreferences": {
+          "title": "Preferencias",
+          "items": {
+            "changeAppearance": {
+              "title": "Apariencia",
+              "description": "Define un modo y tema en toda la aplicación.",
+              "modes": {
+                "title": "Modo",
+                "lightMode": "Claro",
+                "darkMode": "Oscuro",
+                "systemMode": "De {{osDevice}}",
+                "sunflowerMode": "Girasol"
+              },
+              "themes": {
+                "title": "Tema"
+              }
+            },
+            "changeLanguage": {
+              "title": "Idioma",
+              "description": "Elige el idioma que prefieras.",
+              "languages": {
+                "fromPhoneDevice": "De {{osDevice}}",
+                "english": "Inglés",
+                "spanish": "Español",
+                "french": "Francés",
+                "portuguese": "Portugués",
+                "german": "Alemán"
+              }
+            },
+            "notifications": {
+              "title": "Notificaciones",
+              "description": "Cambia los ajustes de notificación a tu preferencia."
+            }
+          }
+        },
+        "security": {
+          "title": "Seguridad",
+          "items": {
+            "authentication": {
+              "title": "Autenticación",
+              "items": {
+                "changePassword": {
+                  "title": "Contraseña",
+                  "description": "Cambia tu contraseña."
+                },
+                "useFingerprint": {
+                  "title": "Huella dactilar",
+                  "description": "Habilita el uso de la huella dactilar para solicitudes de autenticación y confirmación.",
+                  "prompTitleEnableBiometrics": "Habilitar {{biometryType}}"
+                }
+              }
+            },
+            "info": {
+              "title": "Información",
+              "items": {
+                "safetyTips": {
+                  "title": "Consejos de seguridad",
+                  "description": "Tú también puedes contribuir a la seguridad usando esta aplicación."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "menu": {
+      "items": {
+        "untrustedDevice": {
+          "title": "Alerta de seguridad",
+          "description": "Esta pantalla aparece si usas la aplicación en un dispositivo no autorizado."
+        },
+        "errorCatcher": {
+          "title": "Pantalla de errores",
+          "description": "Muestra una pantalla amigable cuando ocurre un error."
+        },
+        "feedbackAndSharing": {
+          "title": "Retroalimentación y compartir",
+          "description": "¿Piensas que podemos mejorar algo o deseas compartir esta aplicación?"
+        }
+      }
+    }
+  },
+  "helpCenter": {
+    "screenTitle": "Centro de ayuda",
+    "description": "Obtén más información, contáctanos o resuelve tus dudas.",
+    "info": {
+      "title": "Información",
+      "items": {
+        "aboutUs": {
+          "title": "Sobre nosotros",
+          "description": "Nuestra historia y valores.",
+          "content": "En $t(common:appName.full), somos más que una simple empresa; somos un equipo dedicado de individuos que trabajan juntos para marcar la diferencia. Nuestra historia comenzó con una idea sencilla: crear algo extraordinario que aporte valor al mundo. Esa idea ha evolucionado en una misión que guía todo lo que hacemos. Nos impulsa la innovación, y nuestra pasión por ella alimenta nuestros esfuerzos diarios. Estamos aquí para desafiar el statu quo y traspasar límites, esforzándonos por hacer posible lo imposible. Con la creatividad en nuestro núcleo, convertimos conceptos en realidad, creando soluciones que tienen importancia. Nuestro compromiso con la excelencia es inquebrantable. Nos enorgullecemos de nuestro trabajo, asegurando que cada producto y servicio que ofrecemos cumple con los estándares más altos. Nuestros clientes están en el centro de todo lo que hacemos, y su satisfacción es nuestro objetivo final. Apreciamos la diversidad, sabiendo que las mejores ideas provienen de diferentes perspectivas. Nuestro equipo es una mezcla de talentos, cada uno aportando un conjunto único de habilidades y experiencias. Juntos, somos imparables. Únete a nosotros en nuestro viaje mientras continuamos innovando, superando expectativas y dejando un impacto duradero. Juntos, podemos crear un futuro más brillante."
+        },
+        "termsOfUse": {
+          "title": "Términos de uso",
+          "description": "Lee nuestros términos de uso.",
+          "content": "Estos términos de uso rigen el uso de esta aplicación móvil y de cualquier servicio proporcionado por ella. Al utilizar esta aplicación móvil, aceptas estos términos de uso en su totalidad. Si no estás de acuerdo con alguna parte de estos términos de uso, no debes utilizar esta aplicación móvil. \nLicencia para usar la aplicación móvil \nA menos que se indique lo contrario, nosotros o nuestros licenciantes poseemos los derechos de propiedad intelectual de la aplicación móvil y del material de la aplicación móvil. Sujeto a la licencia a continuación, todos estos derechos de propiedad intelectual están reservados. \nPuedes ver, descargar únicamente con fines de almacenamiento en caché e imprimir páginas de la aplicación móvil para uso personal, sujeto a las restricciones establecidas a continuación y en otras partes de estos términos de uso. \nNo debes: \nVolver a publicar material de esta aplicación móvil. \nVender, alquilar o sublicenciar material de la aplicación móvil. \nMostrar cualquier material de la aplicación móvil en público. Reproducir, duplicar, copiar o explotar de otro modo el material de esta aplicación móvil con fines comerciales. \nEditar o modificar de otro modo cualquier material de la aplicación móvil. \nLimitaciones de responsabilidad \nLa información de esta aplicación móvil se proporciona de forma gratuita y reconoces que no sería razonable responsabilizarnos con respecto a esta aplicación móvil y la información contenida en esta aplicación móvil. Si bien nos esforzamos por garantizar que la información sea correcta, no garantizamos su integridad o exactitud; ni nos comprometemos a garantizar que la aplicación móvil permanezca disponible o que el material de la aplicación móvil se mantenga actualizado. \nEn la medida máxima permitida por la ley aplicable, excluimos todas las representaciones, garantías y condiciones (incluidas, entre otras, las condiciones implícitas por la ley de calidad satisfactoria, idoneidad para el propósito y el uso de cuidado y habilidad razonables). \nVariación \nPodemos revisar estos términos de uso de vez en cuando. Por favor revisa esta página periódicamente para asegurarte de que estás familiarizado con la versión actual. \n\nAcuerdo completo \nEstos términos de uso, junto con nuestra Política de privacidad, constituyen el acuerdo completo entre tú y nosotros en relación con su uso de nuestra aplicación móvil y reemplazan todos los acuerdos anteriores con respecto a su uso de esta aplicación móvil. \nAl utilizar esta aplicación móvil, aceptas estos términos de uso en su totalidad. Si no estás de acuerdo con alguna parte de estos términos de uso, no debes utilizar esta aplicación móvil."
+        },
+        "privacyPolicy": {
+          "title": "Politica de privacidad",
+          "description": "Conoce cómo protegemos tu información.",
+          "content": "En $t(common:appName.full), tomamos tu privacidad en serio. Esta politica de privacidad describe cómo recopilamos, usamos, compartimos y protegemos tu información personal. Te recomendamos leer este aviso detenidamente para comprender nuestras prácticas.\nInformación que Recopilamos\nRecopilamos información que nos proporcionas directamente. Esto incluye información personal, como tu nombre, información de contacto y cualquier otro dato que elijas compartir con nosotros. También podemos recopilar información de manera automática, como tu dirección IP, tipo de navegador e información del dispositivo.\nCómo Usamos Tu Información\nUtilizamos la información que recopilamos para varios fines, incluyendo:\nProporcionar y mantener nuestros servicios. Personalizar tu experiencia. Enviarte actualizaciones importantes y notificaciones. Supervisar y analizar patrones de uso para mejorar nuestros servicios. Cumplir con obligaciones legales y resolver disputas. Compartir Información\nPodemos compartir tu información personal con:\nProveedores de servicios que nos ayudan a ofrecer nuestros servicios. Las fuerzas del orden o agencias gubernamentales en respuesta a una solicitud legal. Terceros con tu consentimiento. No vendemos tu información personal a terceros.\nSeguridad de Datos\nTomamos la seguridad de los datos en serio y utilizamos medidas de seguridad estándar de la industria para proteger tu información personal. Sin embargo, ningún método de transmisión por internet o almacenamiento electrónico es 100% seguro.\nTus Opciones de Privacidad\nTienes derecho a:\nAcceder, corregir o eliminar tu información personal. Oponerte o restringir el procesamiento de tu información personal. Retirar tu consentimiento en cualquier momento si previamente lo proporcionaste. Privacidad de los Niños\nNuestros servicios no están destinados a niños menores de 13 años. No recopilamos ni mantenemos información de manera consciente de niños.\nCambios en Este Aviso\nPodemos actualizar esta politica de privacidad para reflejar cambios en nuestras prácticas u otras razones operativas, legales o regulatorias. Te notificaremos de cambios materiales.\nContáctanos\nSi tienes preguntas, inquietudes o solicitudes relacionadas con tu información personal o esta politica de privacidad, ",
+          "content2": ".\nFecha de Entrada en Vigor: 27 de Abril del 1992\nGracias por confiarnos tu información. Tu privacidad es importante para nosotros y estamos comprometidos a protegerla."
+        },
+        "appPermissions": {
+          "title": "Permisos de la aplicación",
+          "description": "Conoce qué información de tu dispositivo nos interesa."
+        }
+      }
+    },
+    "support": {
+      "title": "Soporte",
+      "items": {
+        "contactUs": {
+          "title": "Contáctanos",
+          "description": "Envíanos un mensaje por alguna de las opciones disponibles.",
+          "content": {
+            "description": "Puedes enviarnos un mensaje por la red social que prefieras, mandarnos un email o hablar con alguno de nuestros asesores."
+          }
+        },
+        "faqs": {
+          "title": "Preguntas frecuentes",
+          "description": "Busca respuestas a tus preguntas. Si no encuentras lo que buscas, contáctanos."
+        },
+        "bugReporter": {
+          "title": "Reportar un error",
+          "description": "¿Encontraste un error o crees que podemos mejorar algo? Cuentanos, nos encanta mejorar.",
+          "short-description": "¿Encontraste un error? Repórtalo.",
+          "founddBug": "Si encontraste un error o algo que podamos mejorar, envíanos tus comentarios y ayúdanos a mejorar.",
+          "form": {
+            "bugDescription": {
+              "name": "Añade una descripción",
+              "validations": {
+                "min": "Descripción debe tener al menos 3 caracteres.",
+                "max": "Descripción no debe exceder los 255 caracteres.",
+                "matches": "Por favor, ingresa solo letras y números.",
+                "required": "Incluye una descripción de lo ocurrido."
+              }
+            },
+            "attachMultimedia": {
+              "name": "Adjunta imagenes o vídeos",
+              "required": "Por favor, incluye evidencia que apoye al reporte."
+            },
+            "primaryButton": "Reportar"
+          }
+        }
+      }
+    }
+  },
+  "privateSettings": {
+    "notificationsCenter": {
+      "screenTitle": "Notificaciones",
+      "description": "Ve todos los movimientos que ha hecho tu cuenta.",
+      "controllers": {
+        "previousNotificationsButton": "Ver notificaciones anteriores"
+      }
+    },
+    "notifications": {
+      "screenTitle": "$t(menu:Menu.settings.items.notifications.title)",
+      "description": ""
+    }
+  }
+}

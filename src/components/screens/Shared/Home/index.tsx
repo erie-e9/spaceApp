@@ -1,8 +1,6 @@
 import React, { memo } from 'react';
-import { useCopy } from '@services';
-import { ApplicationScreenProps } from 'types/navigation';
-import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
-import { useTheme, useSVG } from '@hooks';
+import { type ApplicationScreenProps } from '@types';
+import { useTheme, useShare } from '@hooks';
 import {
   InterpolateColorAnimation,
   TransformAnimation,
@@ -10,10 +8,10 @@ import {
   ScaleAnimation,
   OpacityAnimation,
 } from '@components/animated';
-import { RenderWhen } from '@components/atoms';
+import { BlackHoleToMoon } from '@components/molecules';
 import {
   StyledScrollView,
-  NavigateButtonFallbackContainer,
+  CornerTopRightContainer,
   HeaderContainer,
   BrandCircleContainer,
   BodyContainer,
@@ -35,31 +33,17 @@ import {
   BrandDecorItem9,
 } from './styles';
 
-interface Props {
+interface HomeProps {
   navigation: ApplicationScreenProps;
 }
 
-export const Home: React.FC<Props> = ({ navigation }) => {
-  const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
-  const { getCopyValue } = useCopy();
+export const Home: React.FC<HomeProps> = ({ navigation }) => {
   const { Images } = useTheme();
-  const SettingsIcon = useSVG('SettingsIcon');
+  const { shareMessage, shareCustomContent } = useShare();
 
   return (
     <InterpolateColorAnimation>
       <HeaderContainer>
-        <NavigateButtonFallbackContainer>
-          <FeatureButton
-            type="Text"
-            title="Auth"
-            buttonTheme="Secondary"
-            onPress={() =>
-              navigation.navigate('Auth', { screen: 'Authentication' })
-            }
-            featureFlags={['auth']}
-          />
-        </NavigateButtonFallbackContainer>
-        <BrandCircleContainer initialColor="#DFDFDF" finalColor="#000000" />
         <TransformAnimation
           duration={3500}
           initialXValue={20}
@@ -83,33 +67,11 @@ export const Home: React.FC<Props> = ({ navigation }) => {
           <BrandDecorItem2 source={Images.sparkles.bottomLeft2} />
         </TransformAnimation>
         <BrandDecorItem3>
-          <TransformAnimation
-            duration={2000}
-            initialXValue={0}
-            finalXValue={0}
-            initialYValue={0}
-            finalYValue={15}
-            repeat={-1}
-            reverse
-          >
-            <RotateAnimation
-              duration={5000}
-              initialValue={0}
-              finalValue={20}
-              repeat={-1}
-              reverse
-            >
-              <Brand source={Images.logo} />
-            </RotateAnimation>
-          </TransformAnimation>
+          <BlackHoleToMoon>
+            <Brand source={Images.logo} />
+          </BlackHoleToMoon>
         </BrandDecorItem3>
-        <ScaleAnimation
-          duration={3000}
-          initialValue={1}
-          finalValue={1.05}
-          repeat={-1}
-          reverse
-        >
+        <ScaleAnimation duration={3000} initialValue={1} finalValue={1.05} repeat={-1} reverse>
           <BrandDecorItem4 source={Images.sparkles.topLeft} />
         </ScaleAnimation>
         <TransformAnimation
@@ -164,63 +126,51 @@ export const Home: React.FC<Props> = ({ navigation }) => {
         >
           <BrandDecorItem8 source={Images.sparkles.bottomRight} />
         </TransformAnimation>
-        <ScaleAnimation
-          duration={3000}
-          initialValue={1}
-          finalValue={1.1}
-          repeat={-1}
-          reverse
-        >
+        <ScaleAnimation duration={3000} initialValue={1} finalValue={1.1} repeat={-1} reverse>
           <BrandDecorItem9 source={Images.sparkles.bottom} />
         </ScaleAnimation>
       </HeaderContainer>
       <BodyContainer>
-        <StyledScrollView testID="HomeID">
-          <ContentContainer>
-            <TitleContainer>
-              <StyledText type="Headline4" weight="bold" color="buttonColor">
-                {getCopyValue('welcome:title')}
-              </StyledText>
-            </TitleContainer>
-            <StyledText
-              type="Headline6"
-              font="primary"
-              color="surfaceL1"
-              textAlign="left"
-            >
-              {getCopyValue('welcome:subtitle')}
+        <ContentContainer>
+          <TitleContainer>
+            <StyledText type="Headline2" weight="bold" color="primary500">
+              {'welcome:title'}
             </StyledText>
+          </TitleContainer>
+          <StyledText type="Subtitle1" font="Primary" color="tertiary950" textAlign="left">
+            {'welcome:subtitle'}
+          </StyledText>
+        </ContentContainer>
+        <StyledScrollView testID="HomeContentContainerID">
+          <ContentContainer>
             <DescriptionContainer>
-              <StyledText
-                type="Subtitle2"
-                font="primary"
-                color="tertiaryL5"
-                textAlign="left"
-              >
-                {getCopyValue('welcome:description')}
+              <StyledText type="Subtitle2" font="Primary" color="tertiary800" textAlign="justify">
+                {'welcome:description'}
               </StyledText>
             </DescriptionContainer>
           </ContentContainer>
         </StyledScrollView>
         <FeaturesContainer>
-          <RenderWhen isTrue={remoteConfigFeatures?.warning?.status !== 'hide'}>
-            <OpacityAnimation
-              duration={1500}
-              initialValue={1}
-              finalValue={0.45}
-              delay={1000}
-              repeat={-1}
-              reverse
-            >
-              <FeatureButton
-                type="Icon"
-                buttonTheme="Primary"
-                onPress={() => navigation.navigate('Settings')}
-                icon={<SettingsIcon />}
-                featureFlags={['warning']}
-              />
-            </OpacityAnimation>
-          </RenderWhen>
+          <OpacityAnimation
+            duration={1500}
+            initialValue={1}
+            finalValue={0.7}
+            delay={1000}
+            repeat={-1}
+            reverse
+          >
+            <FeatureButton
+              type="Icon"
+              icon="features"
+              iconType="svg"
+              buttonTheme="Primary"
+              onPress={() => {
+                navigation.removeListener;
+                navigation.navigate('MenuNavigator', { screen: 'Menu' } as never);
+              }}
+              remoteFeatureFlags={['menu']}
+            />
+          </OpacityAnimation>
         </FeaturesContainer>
       </BodyContainer>
     </InterpolateColorAnimation>

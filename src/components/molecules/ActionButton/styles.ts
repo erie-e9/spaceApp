@@ -1,26 +1,13 @@
 import { PixelRatio } from 'react-native';
 import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
+import { type TouchableProps } from '@types';
 import type * as CSS from 'csstype';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
-import { Touchable, Typography } from '@components/atoms';
-
-export interface StyledButtonProps {
-  readonly backgroundColor?: string;
-  readonly disabledColor?: keyof DefaultTheme['colors'];
-  grouped?: boolean;
-  loading?: boolean;
-  disabled?: boolean;
-  hasBorder?: boolean;
-  colorScheme: string;
-  type?: 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon';
-}
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
+import { Touchable, Typography, Image } from '@components/atoms';
 
 export interface StyleButtonTextProps {
-  readonly color?: string;
+  readonly color?: keyof DefaultTheme['tokens']['colors'];
   textTransform?: CSS.StandardProperties['textTransform'];
   fontWeight?: CSS.StandardProperties['fontWeight'];
   fontSize?: string | number;
@@ -30,40 +17,40 @@ export interface StyleButtonTextProps {
   testID?: string;
 }
 
-export const AnimatedActionButton = styled(Animated.View)`
+export const AnimatedContainer = styled(Animated.View)`
   align-self: center;
   align-items: center;
   justify-content: center;
   z-index: 200;
+  width: 100%;
 `;
 
-export const StyledButton = styled(Touchable)<StyledButtonProps>`
-  ${({ grouped }) =>
-    grouped &&
-    `
-    flex: 1;
-    margin: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(
-      2,
-    )}px;
-  `}
+export interface StyledButtonProps extends Partial<TouchableProps> {
+  hasBorder?: boolean;
+  colorScheme: string;
+}
+
+export const StyledButton = styled(Touchable) <StyledButtonProps>`
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
   align-content: center;
+  /* max-width: ${PixelRatio.roundToNearestPixel(355)}px; */
+  min-width: ${PixelRatio.roundToNearestPixel(45)}px;
+  min-height: ${PixelRatio.roundToNearestPixel(45)}px; // change mutual height's here
   margin-vertical: ${getNormalizedVerticalSize(2)}px;
   border-radius: ${({ loading, type }) =>
-    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 24.5 : 15)}px;
-  opacity: ${({ disabled }) => disabled ? 0.65 : 1};
+    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 30 : 20)}px;
+  border-color: ${({ theme }) => theme.tokens.colors.primary500};
   elevation: 0;
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ theme, backgroundColor }) =>
+    backgroundColor ? theme.tokens.colors[backgroundColor] : 'transparent'};
   ${({ type }) => type === 'Icon' && 'width: 43px; height: 43px;'};
   ${({ hasBorder, theme, colorScheme }) =>
     hasBorder &&
     `
-  border-width: 0.7px;
-  border-color: ${colorScheme === 'light'
-      ? theme.tokens.colors.opposing
-      : theme.tokens.colors.switchOutline
+  border-width: 0.4px;
+  border-color: ${colorScheme === 'light' ? theme.tokens.colors.secondary950 : theme.tokens.colors.secondary950
     };
   `}
 `;
@@ -78,17 +65,26 @@ export const IconContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+export interface StyledImageProps {
+  size: number;
+}
+
+export const StyledImage = styled(Image) <StyledImageProps>`
+  height: ${({ size }) => getNormalizedVerticalSize(size)}px;
+  width: ${({ size }) => getNormalizedHorizontalSize(size)}px;
+  border-radius: ${({ size }) => size / 2}px;
+`;
 
 export const StyledText = styled(Typography) <StyleButtonTextProps>`
   text-align: ${({ textAlign }) => textAlign || 'center'};
   justify-content: center;
   font-weight: ${({ fontWeight }) => fontWeight || '500'};
   line-height: ${getNormalizedVerticalSize(25)}px;
-  color: ${({ color }) => color};
+  color: ${({ theme, color }) => theme.tokens.colors[color || 'secondary950']};
   ${({ buttonType, theme }) =>
     buttonType === 'flat' &&
     `
-  color: ${theme.tokens.colors.buttonTextColor};
+  color: ${theme.tokens.colors.primary500};
   `}
 `;
 

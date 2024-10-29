@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React, { Fragment, memo } from 'react';
 import { useModalSelectorHook } from '@redux/hooks';
-import { ModalPayload } from '@slices/types/modal';
+import { type ModalPayload } from '@slices/types/modal';
 import Alert from '@components/organisms/Modal/Alert';
 import BottomSheet from '@components/organisms/Modal/BottomSheet';
 
@@ -18,7 +18,6 @@ const AlertAndBottomSheet: React.FC = () => {
         onModalHide: modalSelector.onClose,
         options: undefined,
         showCloseModalIcon: true,
-        ...modalSelector.legacyOptions,
       };
       break;
     case 'bottomsheet':
@@ -26,7 +25,6 @@ const AlertAndBottomSheet: React.FC = () => {
         ...modalSelector,
         body: modalSelector.body,
         // isVisible: true,
-        ...modalSelector.legacyOptions,
       };
       break;
 
@@ -34,10 +32,10 @@ const AlertAndBottomSheet: React.FC = () => {
       break;
   }
 
-  if (!type) return <></>;
-  if (type === 'alert') return <Alert {...modalArgs} />;
+  if (!type) return <Fragment></Fragment>;
+  if (type === 'alert') return <Alert />;
   if (type === 'bottomsheet') return <BottomSheet {...modalArgs} />;
-  return <></>;
+  return <Fragment></Fragment>;
 };
 
 export default memo(AlertAndBottomSheet);

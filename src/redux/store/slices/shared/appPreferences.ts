@@ -1,49 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  AppPreferencesState,
-  AppPreferencesPayload,
-} from '@slices/types/appPreferences';
+import { type AppPreferencesState, type AppPreferencesPayload } from '@slices/types/appPreferences';
 
 const initialState: Partial<AppPreferencesState> = {
   theme: 'default',
-  darkMode: null,
-  language: 'en',
+  mode: null,
+  language: null,
+  biometrics: false,
 };
 
-const slice = createSlice({
+const appPreferencesSlice = createSlice({
   name: 'appPreferences',
   initialState,
   reducers: {
-    changeTheme: (
-      state,
-      { payload: { theme, darkMode } }: AppPreferencesPayload,
-    ) => {
+    changeTheme: (state, { payload: { theme } }: AppPreferencesPayload) => {
       if (typeof theme !== 'undefined') {
         state.theme = theme;
       }
-      if (typeof darkMode !== 'undefined') {
-        state.darkMode = darkMode;
-      }
     },
-    setDefaultTheme: (
-      state,
-      { payload: { theme, darkMode } }: AppPreferencesPayload,
-    ) => {
-      if (state.theme) {
-        if (typeof theme !== 'undefined') {
-          state.theme = theme;
-        }
-        if (typeof darkMode !== 'undefined') {
-          state.darkMode = darkMode;
-        }
-      }
+    changeMode: (state, { payload: { mode } }: AppPreferencesPayload) => {
+      state.mode = mode;
     },
     changeLanguage: (state, { payload: { language } }) => {
       state.language = language;
     },
+    toggleBiometrics: (state, { payload: { biometrics } }) => {
+      state.biometrics = biometrics;
+    },
   },
 });
 
-export const { changeTheme, setDefaultTheme, changeLanguage } = slice.actions;
+export const { changeTheme, changeMode, changeLanguage, toggleBiometrics } =
+  appPreferencesSlice.actions;
 
-export default slice.reducer;
+export default appPreferencesSlice.reducer;

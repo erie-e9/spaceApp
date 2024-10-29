@@ -1,15 +1,12 @@
 import React, { memo, useCallback, useEffect } from 'react';
-import {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
 import { AnimatedDot } from './styles';
 import { DotProps } from '.';
 
 export const AnimatedDotItem = ({
   testID = 'LoaderDotsID',
-  color = 'primaryD1',
+  color = 'primary500',
   size = 4,
   animationDuration,
   animationScale,
@@ -60,12 +57,7 @@ export const AnimatedDotItem = ({
   }, [active, scaleDown, scaleUp]);
 
   return (
-    <AnimatedDot
-      testID={testID + 'AnimatedDotItem'}
-      style={[animatedStyles]}
-      size={size}
-      color={color}
-    />
+    <AnimatedDot {...testProperties(testID)} style={[animatedStyles]} size={size} color={color} />
   );
 };
 

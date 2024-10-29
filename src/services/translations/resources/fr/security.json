@@ -1,15 +1,12 @@
 {
   "Warning": {
-    "title": "Nous prenons au sérieux la sécurité de vos données",
-    "description": "Il semble que vous utilisez un appareil susceptible de compromettre la sécurité de vos informations privées. L'application {{appName}} n'est pas prise en charge par ce type d'appareils.",
+    "title": "Alerte de sécurité",
+    "description": "Il semble que vous utilisez un appareil susceptible de compromettre la sécurité de vos informations privées. Nous prenons au sérieux la sécurité de vos données, c'est pourquoi l'application {{appName}} n'est pas prise en charge par ce type d'appareils.",
     "sub-description": "Nous vous recommandons d'installer notre application sur un appareil plus fiable.",
     "actions": {
-      "primaryButton": {
-        "title": "Visitez notre site Web FAQ's",
-        "modal": {
-          "title": "S'il vous plaît, attendez...",
-          "description": "Vous êtes redirigé vers un site Web de FAQ."
-        }
+      "areWeWrong": {
+        "title": "Vous pensez que nous faisons une erreur?",
+        "description": "Contactez-nous maintenant"
       },
       "secondaryButton": {
         "title": "Contactez-nous",

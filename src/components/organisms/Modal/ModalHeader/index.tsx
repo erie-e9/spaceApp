@@ -1,8 +1,7 @@
 import React, { memo } from 'react';
 import { DefaultTheme } from 'styled-components/native';
-import { useCopy } from '@services';
-import { useTheme } from '@hooks';
-import { ModalHeaderContainer, TitleContainer, StyledText } from './styles';
+import { testProperties } from '@utils/functions';
+import { ModalHeaderContainer, TitleContainer, DescriptionContainer, StyledText } from './styles';
 
 export interface ModalHeaderProps {
   testID?: string;
@@ -16,25 +15,24 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   title = '',
   description = '',
   titleColor,
-
 }) => {
-  const { getCopyValue } = useCopy();
-  const { darkMode: isDarkMode } = useTheme();
-  const defaultTitleColor = titleColor ? titleColor :isDarkMode ? 'secondaryD1' : 'primaryD1';
+  const defaultTitleColor = titleColor ? titleColor : 'secondary950';
 
   return (
-    <ModalHeaderContainer testID={testID}>
+    <ModalHeaderContainer {...testProperties(testID)}>
       {title && (
         <TitleContainer>
-          <StyledText type="Headline6" color={defaultTitleColor}>
-            {getCopyValue(title)}
+          <StyledText type="Headline6" weight="normal" color={defaultTitleColor}>
+            {title}
           </StyledText>
         </TitleContainer>
       )}
       {description && (
-        <StyledText type="Subtitle2" color="tertiaryL5">
-          {getCopyValue(description)}
-        </StyledText>
+        <DescriptionContainer>
+          <StyledText type="Subtitle2" color="tertiary800">
+            {description}
+          </StyledText>
+        </DescriptionContainer>
       )}
     </ModalHeaderContainer>
   );

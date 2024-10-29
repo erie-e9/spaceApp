@@ -1,9 +1,10 @@
 import React, { memo, useCallback } from 'react';
+import { DevSettings } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useCopy } from '@services';
-import { ApplicationScreenProps } from '@utils/@types/navigation';
+import { type ApplicationScreenProps } from '@types';
+import { useBlockScreen } from '@hooks';
 import { RotateAnimation } from '@components/animated';
-import { FallbackAnimation, StatusBar } from '@components/atoms';
+import { FallbackAnimation } from '@components/atoms';
 import { CallToAction } from '@components/templates';
 import {
   HeaderContainer,
@@ -15,36 +16,26 @@ import {
 
 export type CustomFallbackProps = {
   error: Error;
-  resetError: () => void;
 };
 
-export const CustomFallback: React.FC<CustomFallbackProps> = ({
-  error,
-  resetError,
-}) => {
-  const { getCopyValue } = useCopy();
+export const CustomFallback: React.FC<CustomFallbackProps> = ({ error }) => {
   const navigation: ApplicationScreenProps = useNavigation();
   const mockedErrorMessage =
-    error ||
-    'common:errors.boundaries.fallbackScreen.detailsLabelDefaultMessage';
+    error || 'common:errors.boundaries.fallbackScreen.detailsLabelDefaultMessage';
 
-  const handlePrimaryButton = useCallback(async (): Promise<void> => {
-    if (resetError) await resetError();
+  useBlockScreen();
+  const primaryButtonHandler = useCallback(async (): Promise<void> => {
+    DevSettings.reload();
   }, []);
 
-  const handleSecondaryButton = useCallback(async (): Promise<void> => {
-    await navigation.navigate('ContactUs');
-    await navigation.reset({
-      index: 0,
-      routes: [{ name: 'ContactUs' }],
-    });
+  const secondaryButtonHandler = useCallback(async (): Promise<void> => {
+    navigation.navigate('HelpCenter', { screen: 'BugReporter' } as never);
   }, []);
 
   return (
     <CallToAction
       body={
-        <BodyContainer>
-          <StatusBar />
+        <BodyContainer testID="CustomFallbackID">
           <RotateAnimation
             duration={10000}
             initialValue={0}
@@ -55,60 +46,52 @@ export const CustomFallback: React.FC<CustomFallbackProps> = ({
             <FallbackAnimation />
           </RotateAnimation>
           <HeaderContainer>
-            <StyledText
-              type="Headline5"
-              font="primary"
-              color="textLabelNeutral"
-              textAlign="center"
-            >
-              {getCopyValue('common:errors.boundaries.fallbackScreen.title')}
+            <StyledText type="Headline5" font="Primary" color="secondary900" textAlign="center">
+              {'common:errors.boundaries.fallbackScreen.title'}
             </StyledText>
             <StyledText
               type="Subtitle1"
-              font="primary"
-              color="textLabelNeutral"
+              font="Primary"
+              color="secondary900"
               textAlign="center"
               paddingTop={5}
             >
-              {getCopyValue(
-                'common:errors.boundaries.fallbackScreen.description',
-              )}
+              {'common:errors.boundaries.fallbackScreen.description'}
             </StyledText>
           </HeaderContainer>
-          <StyledScrollView testID="CustomFallbackID">
+          <StyledScrollView>
             <ErrorContainer>
               <StyledText
                 type="Subtitle2"
-                font="primary"
-                color="surfaceL1"
+                font="Primary"
+                color="secondary800"
                 textAlign="left"
                 weight="bold"
               >
-                {getCopyValue(
-                  'common:errors.boundaries.fallbackScreen.detailsLabel',
-                )}
+                {'common:errors.boundaries.fallbackScreen.detailsLabel'}
                 <StyledText
                   type="Subtitle2"
-                  font="primary"
-                  color="surfaceL1"
+                  font="Primary"
+                  color="secondary800"
                   textAlign="justify"
+                  weight={400}
                 >
-                  {getCopyValue(String(error || mockedErrorMessage))}
+                  {String(error || mockedErrorMessage)}
                 </StyledText>
               </StyledText>
             </ErrorContainer>
           </StyledScrollView>
         </BodyContainer>
       }
-      primaryButton={{
-        testID: 'CustomFallback.primaryButton',
-        title: 'common:errors.boundaries.fallbackScreen.button',
-        onPress: handlePrimaryButton,
-      }}
       secondaryButton={{
-        testID: 'Warning.secondaryButtonLoading',
-        title: 'security:Warning.actions.secondaryButton.title',
-        onPress: handleSecondaryButton,
+        testID: 'customFallbackSecondaryButton',
+        title: 'menu:helpCenter.support.items.bugReporter.form.primaryButton',
+        onPress: secondaryButtonHandler,
+      }}
+      primaryButton={{
+        testID: 'customFallbackPrimaryButton',
+        title: 'common:errors.boundaries.fallbackScreen.button',
+        onPress: primaryButtonHandler,
       }}
     />
   );

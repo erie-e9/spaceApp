@@ -1,12 +1,8 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { DeviceEventEmitter, Vibration } from 'react-native';
 import { useTheme } from 'styled-components/native';
-import {
-  withTiming,
-  useSharedValue,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
-import { getHasNotch } from '@hooks';
+import { withTiming, useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
+import { getHasNotch, useTheme as useThemeApp } from '@hooks';
 import {
   StyledAnimatedContainer,
   TouchableAreaContainer,
@@ -32,6 +28,7 @@ export interface ToastProps {
 
 export const Toast = () => {
   const hasNotch = getHasNotch();
+  const { darkMode } = useThemeApp();
   const [{ message, type }, setToast] = useState<ToastProps>({
     message: null,
     type: 'info',
@@ -40,15 +37,23 @@ export const Toast = () => {
   const timeOutRef = useRef<any>();
   const animatedOpacity = useSharedValue(0);
   const theme = useTheme();
+
   const animatedStyle = useAnimatedStyle(() => {
     return { opacity: animatedOpacity.value };
   });
 
+  const colorTextStatus: ColorStatus = {
+    info: 'secondary900',
+    success: darkMode ? 'tertiary50' : 'secondary950',
+    error: 'secondary900',
+    warning: 'tertiary50',
+  };
+
   const colorStatus: ColorStatus = {
-    info: theme.tokens.states.info_accent,
-    success: theme.tokens.states.success_accent,
-    error: theme.tokens.states.danger_accent,
-    warning: theme.tokens.states.warning_accent,
+    info: theme.tokens.colors.info_status,
+    success: theme.tokens.colors.success_status,
+    error: theme.tokens.colors.danger_status,
+    warning: theme.tokens.colors.warning_status,
   };
 
   const OnNewToast = (data: any) => {
@@ -56,10 +61,7 @@ export const Toast = () => {
       setDuration(data.duration);
     }
     if (data.vibration) {
-      Vibration.vibrate(
-        typeof data.vibration === 'boolean' ? 40 : data.vibration,
-        true,
-      );
+      Vibration.vibrate(typeof data.vibration === 'boolean' ? 40 : data.vibration, true);
     }
     setToast({ message: data.message, type: data.type });
   };
@@ -83,7 +85,7 @@ export const Toast = () => {
         if (duration <= 0) {
           closeToast();
         } else {
-          setDuration(prev => prev && prev - 1000);
+          setDuration((prev) => prev && prev - 1000);
         }
       }, 1000);
     }
@@ -112,21 +114,23 @@ export const Toast = () => {
 
   return (
     <StyledAnimatedContainer
+      hasNotch={hasNotch}
       style={[
         {
-          backgroundColor: colorStatus[type || 'info'],
+          backgroundColor: colorStatus[type || 'success'],
         },
         animatedStyle,
       ]}
     >
-      <TouchableAreaContainer onPress={closeToast}>
+      <TouchableAreaContainer onPress={closeToast} hasNotch={hasNotch}>
         <ToastBodyContainer onStartShouldSetResponder={closeToast}>
           <ToastTextContainer hasNotch={hasNotch}>
             <ToastText
-              type="Subtitle2"
-              color="textColor"
+              type="Subtitle3"
+              color={colorTextStatus[type || 'success']}
               textAlign="center"
               numberOfLines={1}
+              weight={500}
             >
               {message}
             </ToastText>

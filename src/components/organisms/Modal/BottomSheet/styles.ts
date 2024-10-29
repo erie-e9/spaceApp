@@ -13,23 +13,23 @@ export const AnimatedBottomSheet = styled(Animated.View)`
   height: ${screen_height}px;
   width: 99%;
   align-self: center;
+  align-items: center;
   position: absolute;
   top: ${screen_height}px;
-  border-radius: ${getNormalizedHorizontalSize(25)}px;
-  background-color: ${({ theme }) => theme.tokens.colors.none};
   z-index: 100;
+  border-radius: ${getNormalizedHorizontalSize(25)}px;
+  background-color: ${({ theme }) => theme.tokens.colors.backgroundColor};
 `;
 
 export const CloseBottomSheetButton = styled(Touchable)`
   height: ${getNormalizedVerticalSize(30)}px;
 `;
 
-export const BodyContainer = styled.View<{ drawerOptions?: any }>`
-  min-height: ${({ drawerOptions }) =>
-    drawerOptions.height
-      ? getNormalizedVerticalSize(drawerOptions.height) + 'px'
-      : 'auto'};
-  justify-content: ${({ drawerOptions }) => drawerOptions.justifContent};
+export const BodyContainer = styled.View<{ dropdownOptions?: any }>`
+  height: ${({ dropdownOptions }) =>
+    dropdownOptions.height ? getNormalizedVerticalSize(dropdownOptions.height) + 'px' : 'auto'};
+  align-items: center;
+  justify-content: ${({ dropdownOptions }) => dropdownOptions.justifContent};
 `;
 
 export const PanGestureHandlerView = styled.View`

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
+import { PixelRatio } from 'react-native';
 import { getNormalizedVerticalSize } from '@utils/functions';
 import { Touchable } from '@components/atoms';
-import { PixelRatio } from 'react-native';
 
 export const AnimatedButtonContainer = styled.View`
   height: ${getNormalizedVerticalSize(40)}px;

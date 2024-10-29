@@ -1,10 +1,10 @@
 import { Platform } from 'react-native';
+import { getLocales } from 'react-native-localize';
 import {
   getUniqueId as getUniqueIdDeviceInfo,
   getModel as getModelInfo,
   isEmulator as getIsEmulator,
   getReadableVersion,
-  getPhoneNumber as getPhoneNumberInfo,
   getIpAddress as getIpAddressInfo,
   getSystemVersion as getSystemVersionInfo,
   hasNotch as hasNotchInfo,
@@ -12,19 +12,19 @@ import {
   getBundleId as getBundleIdInfo,
 } from 'react-native-device-info';
 import { Logger } from '@services';
+import { Language } from '@slices/types/appPreferences';
 
-export const getUniqueId = async (): Promise<string> => {
-  const deviceId = await getUniqueIdDeviceInfo();
-  Logger.log('getUniqueId: ', deviceId);
-  return deviceId;
+export const getUniqueId = (): Promise<string> => {
+  return getUniqueIdDeviceInfo();
 };
 
 export const getModel = (): string => {
   return getModelInfo();
 };
 
-export const getDeviceLabel = (): string => {
-  return `${Platform.OS}_${getUniqueId()}`;
+export const getDeviceLabel = async (): Promise<string> => {
+  const uniqueId = await getUniqueId();
+  return `${Platform.OS}_${uniqueId}`;
 };
 
 export const isNotEmulator = async (): Promise<boolean> => {
@@ -32,7 +32,7 @@ export const isNotEmulator = async (): Promise<boolean> => {
   return __DEV__ ? true : !isEmulator;
 };
 
-export const getAppVersion = async (): Promise<string> => {
+export const getAppVersion = (): string => {
   return getReadableVersion();
 };
 
@@ -40,12 +40,13 @@ export const getOSVersion = (): string => {
   return getSystemVersionInfo();
 };
 
-export const getPhoneNumber = async (): Promise<string | void> => {
-  return getPhoneNumberInfo();
-};
-
-export const getIpAddress = async (): Promise<string | void> => {
-  return getIpAddressInfo();
+export const getIpAddress = async (): Promise<string | null> => {
+  try {
+    return await getIpAddressInfo();
+  } catch (error) {
+    Logger.error('Failed to get IP address', { error });
+    return null;
+  }
 };
 
 export const getHasNotch = (): boolean => {
@@ -61,26 +62,61 @@ export const getBundleId = (): string => {
   return bundleId;
 };
 
-export const getDeviceInfo = (): Promise<any> => {
-  const promises = [
-    getUniqueId(),
-    getModel(),
-    getDeviceLabel(),
-    isNotEmulator(),
-    getAppVersion(),
-    getPhoneNumber(),
-    getIpAddress(),
-    getOSVersion(),
-    getHasNotch(),
-    hasDynamicIsland(),
-    getBundleIdInfo(),
-  ];
-  return Promise.all(promises)
-    .then(results => {
-      Logger.log('getDeviceInfo', { results });
-      return results;
-    })
-    .catch(error => {
-      Logger.error('getDeviceInfo', { error });
-    });
+export const getDeviceLanguage = (): Language => {
+  try {
+    const languageCode = getLocales()[0]?.languageCode;
+    const validLanguages: Language[] = ['de', 'en', 'es', 'fr', 'pt'];
+
+    return validLanguages.includes(languageCode as Language) ? (languageCode as Language) : 'en';
+  } catch (e) {
+    console.error('Failed to get device language', e);
+    return 'en';
+  }
+};
+
+export const getDeviceInfo = async (): Promise<any> => {
+  try {
+    const [
+      uniqueId,
+      model,
+      deviceLabel,
+      isEmulator,
+      appVersion,
+      ipAddress,
+      osVersion,
+      hasNotch,
+      dynamicIsland,
+      bundleId,
+      deviceLanguage,
+    ] = await Promise.all([
+      getUniqueId(),
+      getModel(),
+      getDeviceLabel(),
+      isNotEmulator(),
+      getAppVersion(),
+      getIpAddress(),
+      getOSVersion(),
+      getHasNotch(),
+      hasDynamicIsland(),
+      getBundleId(),
+      getDeviceLanguage(),
+    ]);
+
+    return {
+      uniqueId,
+      model,
+      deviceLabel,
+      isEmulator,
+      appVersion,
+      ipAddress,
+      osVersion,
+      hasNotch,
+      dynamicIsland,
+      bundleId,
+      deviceLanguage,
+    };
+  } catch (error) {
+    Logger.error('Failed to get device info', { error });
+    return null;
+  }
 };

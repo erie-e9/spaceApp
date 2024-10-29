@@ -1,0 +1,56 @@
+{
+  "Profile": {
+    "title": "Profile",
+    "description": "See and update your personal information.",
+    "section1": {
+      "title": "$t(signup:SignUp.screenHeaders.step1.title)",
+      "fields": {
+        "username": "$t(signup:SignUp.form.fields.username.name)",
+        "phoneNumber": "$t(signup:SignUp.form.fields.phoneNumber.name)",
+        "email": "$t(signup:SignUp.form.fields.email.name)",
+        "noEmail": "No email provided, add your email now.",
+        "password": "$t(signup:SignUp.form.fields.password.name)",
+        "confirmPassword": "$t(signup:SignUp.form.fields.confirmPassword.name)"
+      }
+    },
+    "section2": {
+      "title": "$t(signup:SignUp.screenHeaders.step2.title)",
+      "fields": {
+        "fullName": "Full name",
+        "firstName": "$t(signup:SignUp.form.fields.firstName.name)",
+        "lastName": "$t(signup:SignUp.form.fields.lastName.name)",
+        "dateOfBirth": "$t(signup:SignUp.form.fields.dateOfBirth.name)",
+        "genre": "$t(signup:SignUp.form.fields.genre.name)"
+      }
+    },
+    "section3": {
+      "title": "$t(signup:SignUp.screenHeaders.step3.title)",
+      "fields": {
+        "address": "Address",
+        "streetAddressLine1": "$t(signup:SignUp.form.fields.streetAddressLine1.name)",
+        "streetAddressLine2": "$t(signup:SignUp.form.fields.streetAddressLine2.name)",
+        "zipCode": "$t(signup:SignUp.form.fields.zipCode.name)",
+        "city": "$t(signup:SignUp.form.fields.city.name)",
+        "country": "$t(signup:SignUp.form.fields.country.name)"
+      }
+    },
+    "alerts": {
+      "deleteAccount": {
+        "title": "Are you sure?",
+        "description": "Your personal information will be deleted and you cannot recovery it.",
+        "options": {
+          "confirmButton": "Confirm",
+          "cancelButton": "Cancel"
+        }
+      }
+    },
+    "buttons": {
+      "deleteAccount": "Delete account"
+    },
+    "accountStatus": {
+      "basic": "Basic",
+      "pro": "Pro",
+      "premium": "Premium"
+    }
+  }
+}

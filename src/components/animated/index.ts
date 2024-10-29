@@ -5,3 +5,5 @@ export { default as ScaleAnimation } from '@components/animated/ScaleAnimation';
 export { default as FlipAnimation } from '@components/animated/FlipAnimation';
 export { default as InterpolateColorAnimation } from '@components/animated/InterpolateColorAnimation';
 export { default as AnimatedButton } from '@components/animated/AnimatedButton';
+export { default as PasswordStrengthAnimation } from '@components/animated/PasswordStrengthAnimation';
+export { default as Skeleton } from '@components/animated/Skeleton';

@@ -1,15 +1,15 @@
-import React, { memo, useCallback, useRef } from 'react';
+import React, { Fragment, memo, useCallback, useRef } from 'react';
 import { RouteProp } from '@react-navigation/core';
-import { ApplicationStackParamList } from 'types/navigation';
 import { Logger } from '@services';
+import { type ApplicationStackParamList } from '@types';
 import WebViewHeader from './components/WebViewHeader';
 import { StyledWebView } from './styles';
 
-export interface Props {
+export interface WebViewerProps {
   route: RouteProp<ApplicationStackParamList, 'WebViewer'>;
 }
 
-const WebViewer: React.FC<Props> = ({ route }) => {
+export const WebViewer: React.FC<WebViewerProps> = ({ route }) => {
   const webViewRef = useRef();
   const { url } = route?.params;
 
@@ -22,12 +22,8 @@ const WebViewer: React.FC<Props> = ({ route }) => {
   }, []);
 
   return (
-    <>
-      <WebViewHeader
-        url={url}
-        onReload={onReloadHandler}
-        onClose={onCloseHandler}
-      />
+    <Fragment>
+      <WebViewHeader url={url} onReload={onReloadHandler} onClose={onCloseHandler} />
       <StyledWebView
         ref={webViewRef}
         source={{ uri: url }}
@@ -42,7 +38,7 @@ const WebViewer: React.FC<Props> = ({ route }) => {
           };
           removeHeader();`}
       />
-    </>
+    </Fragment>
   );
 };
 

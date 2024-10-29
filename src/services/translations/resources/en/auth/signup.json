@@ -1,0 +1,232 @@
+{
+  "SignUp": {
+    "screenHeaders": {
+      "step1": {
+        "title": "Account data",
+        "description": "Enter the following information necessary to create your new account."
+      },
+      "step2": {
+        "title": "Personal details",
+        "description": "We need some personal details to identify you."
+      },
+      "step3": {
+        "title": "Location details",
+        "description": "Please provide your location information."
+      },
+      "step4": {
+        "title": "Upload documents",
+        "description": "Please attach the required files."
+      },
+      "step5": {
+        "title": "Account security",
+        "description": "Set up your account security preferences."
+      },
+      "step6": {
+        "title": "Link social media",
+        "description": "Optionally, link your social media accounts."
+      }
+    },
+    "form": {
+      "fields": {
+        "username": {
+          "name": "Username",
+          "validations": {
+            "required": "Username is necessary.",
+            "matches": "Enter only letters, numbers and underscores.",
+            "min": "Enter at least 3 characters.",
+            "max": "Username must not exceed 30 characters."
+          }
+        },
+        "phoneNumber": {
+          "name": "$t(authentication:Authentication.form.fields.phoneNumber.name)",
+          "validations": {
+            "required": "$t(authentication:Authentication.form.fields.phoneNumber.validations.required)",
+            "min": "$t(authentication:Authentication.form.fields.phoneNumber.validations.min)",
+            "max": "$t(authentication:Authentication.form.fields.phoneNumber.validations.max)",
+            "matches": "$t(authentication:Authentication.form.fields.phoneNumber.validations.matches)"
+          }
+        },
+        "email": {
+          "name": "Email address",
+          "validations": {
+            "matches": "Please enter a valid email address."
+          }
+        },
+        "password": {
+          "name": "$t(authentication:Authentication.form.fields.password.name)",
+          "validations": {
+            "required": "$t(authentication:Authentication.form.fields.password.validations.required)",
+            "min": "$t(authentication:Authentication.form.fields.password.validations.min)",
+            "max": "$t(authentication:Authentication.form.fields.password.validations.max)",
+            "status": {
+              "weak": "weak",
+              "medium": "medium",
+              "good": "good",
+              "strong": "strong"
+            }
+          }
+        },
+        "confirmPassword": {
+          "name": "Re-enter password",
+          "validations": {
+            "required": "Please re-enter your password.",
+            "matches": "Passwords don't match."
+          }
+        },
+        "currentPassword": {
+          "name": "Current password",
+          "validations": {
+            "required": "Your current password is necessary.",
+            "min": "Should have at least 8 characters.",
+            "max": "Password should not exceed 127 characters."
+          }
+        },
+        "newPassword": {
+          "name": "New password",
+          "validations": {
+            "required": "Enter your new password.",
+            "min": "Should have at least 8 characters.",
+            "max": "Password should not exceed 127 characters.",
+            "status": {
+              "weak": "$t(signup:SignUp.form.fields.password.validations.status.weak)",
+              "medium": "$t(signup:SignUp.form.fields.password.validations.status.medium)",
+              "good": "$t(signup:SignUp.form.fields.password.validations.status.good)",
+              "strong": "$t(signup:SignUp.form.fields.password.validations.status.strong)"
+            }
+          }
+        },
+        "firstName": {
+          "name": "First name",
+          "validations": {
+            "required": "First name is necessary.",
+            "matches": "Please enter your first name with only letters.",
+            "min": "First name should have at least 2 characters.",
+            "max": "First name should not exceed 50 characters."
+          }
+        },
+        "lastName": {
+          "name": "Last name",
+          "validations": {
+            "required": "Last name is necessary.",
+            "matches": "Please enter a last name with only letters.",
+            "min": "Last name should have at least 3 characters.",
+            "max": "Last name should not exceed 50 characters."
+          }
+        },
+        "dateOfBirth": {
+          "name": "Date of birth",
+          "placeholder": "Select your date of birth",
+          "validations": {
+            "required": "Date of birth is necessary.",
+            "matches": "Please enter a valid date of birth."
+          },
+          "messages": {
+            "blockedDate": "{{blockedDate}} is blocked because {{blockedReason}}"
+          },
+          "labels": {
+            "day": "Day",
+            "month": "Month",
+            "year": "Year",
+            "submit": "Submit"
+          }
+        },
+        "genre": {
+          "name": "Genre",
+          "placeholder": "Select your genre",
+          "validations": {
+            "required": "Genre is necessary."
+          },
+          "options": {
+            "man": "Man",
+            "woman": "Woman",
+            "trans": "Trans",
+            "noBinary": "No binary",
+            "undetermined": "Undetermined"
+          }
+        },
+        "streetAddressLine1": {
+          "name": "Street address line 1",
+          "validations": {
+            "required": "Street address is necessary.",
+            "matches": "Please enter a valid street address.",
+            "min": "Street address should have at least 10 characters.",
+            "max": "Street address should not exceed 100 characters."
+          }
+        },
+        "streetAddressLine2": {
+          "name": "Street address line 2",
+          "validations": {
+            "matches": "Please enter a valid street address.",
+            "min": "Street address should have at least 10 characters.",
+            "max": "Street address should not exceed 100 characters."
+          }
+        },
+        "zipCode": {
+          "name": "Zip code",
+          "validations": {
+            "required": "Zip code is necessary.",
+            "matches": "Please enter a valid zip code.",
+            "min": "Zip code should have at least 5 characters.",
+            "max": "Zip code should not exceed 5 characters."
+          }
+        },
+        "city": {
+          "name": "City",
+          "validations": {
+            "required": "City is necessary.",
+            "matches": "Please enter a valid city name.",
+            "min": "City name should have at least 3 characters.",
+            "max": "City name should not exceed 50 characters."
+          }
+        },
+        "country": {
+          "name": "Country",
+          "validations": {
+            "required": "Country is necessary.",
+            "matches": "Please enter a valid country name.",
+            "min": "Country name should have at least 3 characters.",
+            "max": "Country name should not exceed 50 characters."
+          }
+        },
+        "photo": {
+          "name": "Photo",
+          "validations": {
+            "required": "Please upload a photo for your profile."
+          }
+        },
+        "genericValidations": {
+          "string": {
+            "required": "{{field}} is necessary.",
+            "matches": "Invalid format, please try again.",
+            "min": "Please enter at least {{min}} characters.",
+            "max": "Please enter no more than {{max}} characters."
+          }
+        }
+      },
+      "termsAndPolicy": {
+        "text1": "By clicking $t(signup:SignUp.submitButtons.finishText), you agree to our",
+        "text2": "and that you've read our"
+      }
+    },
+    "submitButtons": {
+      "continueText": "Continue",
+      "previousText": "Previous",
+      "finishText": "Sign up"
+    },
+    "alerts": {
+      "signUpSuccess": {
+        "title": "Sign up successfully",
+        "toastTitle": "Welcome, your sign up is complete.",
+        "description": "Your sign up is complete."
+      },
+      "signUpPending": {
+        "title": "Registration pending",
+        "description": "You have a pending sign up with this phone number. Do you want to continue it?",
+        "buttons": {
+          "buttonOne": "Start over",
+          "buttonTwo": "Resume"
+        }
+      }
+    }
+  }
+}

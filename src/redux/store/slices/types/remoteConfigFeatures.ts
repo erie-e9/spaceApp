@@ -5,16 +5,10 @@ export interface FeatureValue {
 }
 
 export interface RemoteConfigFeatures {
-  changeLanguage: FeatureValue;
-  triggerAlert: FeatureValue;
-  warning: FeatureValue;
-  changeTheme: FeatureValue;
+  // shared
   webviewOpenOnBrowser: FeatureValue;
   webviewReload: FeatureValue;
   webviewShare: FeatureValue;
-  infoAndSupport: FeatureValue;
-  hackedDevice: FeatureValue;
-  errorCatcher: FeatureValue;
   contactUsViaEmail: FeatureValue;
   contactUsViaFacebook: FeatureValue;
   contactUsViaInstagram: FeatureValue;
@@ -22,16 +16,58 @@ export interface RemoteConfigFeatures {
   contactUsViaTelegram: FeatureValue;
   contactUsViaWhatsApp: FeatureValue;
   aboutUs: FeatureValue;
-  noticeOfPrivacy: FeatureValue;
-  termsAndConditions: FeatureValue;
+  termsOfUse: FeatureValue;
+  privacyPolicy: FeatureValue;
   contactUs: FeatureValue;
   faqs: FeatureValue;
-  accountRecovery: FeatureValue;
-  useBiometrics: FeatureValue;
-  googleLogIn: FeatureValue;
-  facebookLogin: FeatureValue;
-  instagramLogin: FeatureValue;
+  versionApp: FeatureValue;
+
+  // settings
+  settingsMenu: FeatureValue;
+  changeAppearance: FeatureValue;
+  changeTheme: FeatureValue;
+  changeMode: FeatureValue;
+  changeLanguage: FeatureValue;
+  notificationSettings: FeatureValue;
+  fingerprint: FeatureValue;
+  enableBiometrics: FeatureValue;
+  safetyTips: FeatureValue;
+  appPermissions: FeatureValue;
+  appSecurity: FeatureValue;
+
+  // help center
+  helpCenter: FeatureValue;
+  feedbackAndSharing: FeatureValue;
+  bugReporter: FeatureValue;
+  untrustedDevice: FeatureValue;
+  errorCatcher: FeatureValue;
+
+  // auth
   logIn: FeatureValue;
   signUp: FeatureValue;
-  socialNetworksLogIn: FeatureValue;
+  accountRecovery: FeatureValue;
+  useBiometrics: FeatureValue;
+  googleAuth: FeatureValue;
+  facebookAuth: FeatureValue;
+  instagramAuth: FeatureValue;
+  xAuth: FeatureValue;
+  appleAuth: FeatureValue;
+  socialNetworksAuth: FeatureValue;
+
+  // features
+  notificationCenter: FeatureValue;
+
+  // profile
+  editUsername: FeatureValue;
+  editPhoneNumber: FeatureValue;
+  editEmail: FeatureValue;
+  editPhoto: FeatureValue;
+  editPassword: FeatureValue;
+  editFullName: FeatureValue;
+  editDateOfBirth: FeatureValue;
+  editGenre: FeatureValue;
+  editAddress: FeatureValue;
+  editZipCode: FeatureValue;
+  editCity: FeatureValue;
+  editCountry: FeatureValue;
 }

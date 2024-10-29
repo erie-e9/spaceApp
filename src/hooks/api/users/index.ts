@@ -6,9 +6,9 @@ export type User = {
 };
 
 export const userApi = api.injectEndpoints({
-  endpoints: build => ({
+  endpoints: (build) => ({
     fetchUser: build.query<User, string>({
-      query: id => `/users/${id}`,
+      query: (id) => `/users/${id}`,
     }),
   }),
   overrideExisting: false,

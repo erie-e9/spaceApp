@@ -1,10 +1,7 @@
 import { PixelRatio } from 'react-native';
 import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 
 export const LoaderDotsContainer = styled.View`
   flex-direction: row;
@@ -23,6 +20,5 @@ export const AnimatedDot = styled(Animated.View)<AnimatedDotProps>`
   width: ${({ size }) => PixelRatio.roundToNearestPixel(size)}px;
   border-radius: ${({ size }) => PixelRatio.roundToNearestPixel(size / 2)}px;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(4)}px;
-  background-color: ${({ color, theme }) =>
-    color || theme.tokens.colors.textColor};
+  background-color: ${({ theme, color }) => theme.tokens.colors[color || 'secondary950']};
 `;

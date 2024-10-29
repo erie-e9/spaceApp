@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import React, { memo, useCallback, useEffect } from 'react';
 import {
   useSharedValue,
@@ -9,6 +8,7 @@ import {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
 import { StyledAnimatedContainer } from './styles';
 
 interface Props {
@@ -58,16 +58,7 @@ export const RotateAnimation: React.FC<Props> = ({
         ),
       );
     }
-  }, [
-    trigger,
-    duration,
-    initialValue,
-    finalValue,
-    delay,
-    repeat,
-    reverse,
-    rotate,
-  ]);
+  }, [trigger, duration, initialValue, finalValue, delay, repeat, reverse, rotate]);
 
   useEffect(() => {
     const cleanup = () => {
@@ -86,7 +77,7 @@ export const RotateAnimation: React.FC<Props> = ({
   }, [rotate, trigger]);
 
   return (
-    <StyledAnimatedContainer testID={testID} style={[animatedStyles]}>
+    <StyledAnimatedContainer {...testProperties(testID)} style={[animatedStyles]}>
       {children && children}
     </StyledAnimatedContainer>
   );

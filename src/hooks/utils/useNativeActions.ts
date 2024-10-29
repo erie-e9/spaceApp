@@ -10,14 +10,11 @@ export const useNativeActions = (): {
 } => {
   const useNativeBackButton = ({ callback }: NativeActionsProps): void => {
     useEffect(() => {
-      const unsubscribe = BackHandler.addEventListener(
-        'hardwareBackPress',
-        () => {
-          if (callback) callback();
+      const unsubscribe = BackHandler.addEventListener('hardwareBackPress', () => {
+        if (callback) callback();
 
-          return true;
-        },
-      );
+        return true;
+      });
 
       return () => unsubscribe.remove();
     }, []);
@@ -25,5 +22,3 @@ export const useNativeActions = (): {
 
   return { useNativeBackButton };
 };
-
-export default useNativeActions;

@@ -25,13 +25,7 @@ export const useOptionSelectorModal = (): {
   const { showModal } = useModal();
 
   const optionSelectorModal = useCallback(
-    ({
-      title,
-      listOptions,
-      numColumns,
-      centered,
-      expandible,
-    }: OptionsSelectorProps) => {
+    ({ title, listOptions, numColumns, centered, expandible }: OptionsSelectorProps) => {
       showModal({
         type: 'bottomsheet',
         title: title || '',
@@ -39,14 +33,15 @@ export const useOptionSelectorModal = (): {
           <OptionSelectorDrawer
             listOptions={listOptions}
             numColumns={numColumns}
-            centered={centered}
+            horizontal={true}
           />
         ),
         expandible: expandible,
-        drawerOptions: {
+        dropdownOptions: {
           height: 250,
           justifyContent: 'center',
           alignItems: 'center',
+          autoCloseOnSelect: true,
         },
       });
     },

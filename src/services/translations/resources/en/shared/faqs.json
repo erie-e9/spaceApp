@@ -1,0 +1,42 @@
+{
+  "faq1": {
+    "question": "How can I reset my password?",
+    "answer": "Go to the login screen and click on 'Forgot your password?'. Follow the instructions."
+  },
+  "faq2": {
+    "question": "How do I update my profile information?",
+    "answer": "Go to your profile settings to edit and save changes."
+  },
+  "faq3": {
+    "question": "How can I contact support?",
+    "answer": "Visit the '$t(menu:helpCenter.support.title)' section in the app to send an email or live chat with our agents."
+  },
+  "faq4": {
+    "question": "What if I don't receive the confirmation email?",
+    "answer": "Check your spam folder. If it's not there, request a new one from the login screen."
+  },
+  "faq5": {
+    "question": "How do I change my email address?",
+    "answer": "Go to your profile settings to update your email. Verify the new address."
+  },
+  "faq6": {
+    "question": "What should I do if I experience technical issues?",
+    "answer": "Restart the app and make sure you have the latest version. If the problem persists, contact support."
+  },
+  "faq7": {
+    "question": "How do I delete my account?",
+    "answer": "Go to your profile settings and select 'Delete account'. This action is irreversible."
+  },
+  "faq8": {
+    "question": "Where can I find the privacy policy and terms of use?",
+    "answer": "They are in the 'Information' or 'Terms of use' section of the app."
+  },
+  "faq9": {
+    "question": "How is my personal data protected?",
+    "answer": "We apply robust security measures. Check our privacy policies for more details."
+  },
+  "faq10": {
+    "question": "What should I do if I find a bug?",
+    "answer": "Report the bug through the '$t(menu:helpCenter.support.items.bugReporter.title)' section."
+  }
+}

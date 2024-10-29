@@ -21,4 +21,3 @@ export const useRemoteConfig = (
 
   return { getRemoteFeatures };
 };
-export default useRemoteConfig;

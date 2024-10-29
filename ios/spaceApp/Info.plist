@@ -25,15 +25,24 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>google</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.124944014292-q5tijfe5d3hc47m1qa6lfv1qd01iqu1r</string>
+				<string>fb398987086495617</string>
 			</array>
 		</dict>
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>FacebookAppID</key>
+	<string>398987086495617</string>
+	<key>FacebookClientToken</key>
+	<string>875b1ce5d077b758bbc94e24db47f640</string>
+	<key>FacebookDisplayName</key>
+	<string>spaceApp</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -43,8 +52,20 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>spaceApp requires access to the photo library for app features.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>spaceApp wants to use camera to take photos and videos in some app features.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>spaceApp wants to use biometric to enhance the security of your account.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>spaceApp wants to know your location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>spaceApp wants to use your microphone to access to sounds some app features.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>spaceApp requires access to the photo library for app features.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>RobotoBlack.ttf</string>
@@ -57,11 +78,20 @@
 	<array>
 		<string>arm64</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string></string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>instagram</string>
+		<string>x</string>
+		<string>fb</string>
+		<string>twitter</string>
+	</array>
 </dict>
 </plist>

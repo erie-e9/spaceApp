@@ -3,15 +3,18 @@ export const isEmptyArray = (arg: unknown[]): boolean => {
 };
 
 export const isEmptyObject = (arg: unknown): boolean => {
-  const result = Object.keys(arg as Record<string, unknown>).length > 0;
-  return !result;
+  // const result = Object.keys(arg as Record<string, unknown>).length > 0;
+  // return !result;
+  if (typeof arg === 'object' && arg !== null) {
+    return Object.keys(arg).length === 0;
+  }
+  return false;
 };
 
 export const isEmpty = (arg: unknown): boolean => {
   let isNullish = !arg;
   if (isNullish) return true;
   if (typeof arg === 'object') {
-
     isNullish = isEmptyObject(arg);
   }
   return isNullish;

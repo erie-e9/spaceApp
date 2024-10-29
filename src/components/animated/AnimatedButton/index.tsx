@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useRef } from 'react';
 import { useTheme } from '@hooks';
+import { testProperties } from '@utils/functions';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { AnimatedButtonContainer, AnimatedButtonPressable } from './styles';
 
@@ -26,7 +27,7 @@ export const AnimatedButton: React.FC<Props> = ({
 
   return (
     <AnimatedButtonPressable
-      testID={testID}
+      {...testProperties(testID)}
       hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
       onPress={handleOnPress}
     >

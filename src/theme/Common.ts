@@ -4,7 +4,7 @@
  * Use it to define generic component styles (e.g. the default text styles, default button styles...).
  */
 import { StyleSheet } from 'react-native';
-import { CommonParams } from 'types/theme';
+import { type CommonParams } from '@types';
 
 export default function <C>({}: CommonParams<C>) {
   return {

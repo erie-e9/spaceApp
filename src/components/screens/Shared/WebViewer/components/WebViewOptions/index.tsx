@@ -1,16 +1,8 @@
 import React, { memo, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
-import { useSVG } from '@hooks';
-import { useCopy } from '@services';
-import { hideModal } from '@slices/shared/modal';
+import { useSVG, useModal } from '@hooks';
 import { RenderWhen } from '@components/atoms';
-import {
-  OptionButton,
-  OptionButtonContainer,
-  OptionsContainer,
-  OptionButtonLabel,
-} from './styles';
+import { OptionButton, OptionButtonContainer, OptionsContainer, OptionButtonLabel } from './styles';
 
 interface WebViewOptionsProps {
   onReload?: () => void;
@@ -23,16 +15,15 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
   onShare = undefined,
   onOpenBrowser = undefined,
 }) => {
-  const BrowserIcon = useSVG('BrowserIcon');
-  const ReloadIcon = useSVG('ReloadIcon');
-  const ShareIcon = useSVG('ShareIcon');
+  const BrowserIcon = useSVG('browser');
+  const ReloadIcon = useSVG('reload');
+  const ShareIcon = useSVG('share');
+  const { hideModal } = useModal();
 
-  const dispatch = useDispatch();
-  const { getCopyValue } = useCopy();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
 
   const closeBottomSheet = useCallback(() => {
-    dispatch(hideModal());
+    hideModal();
   }, []);
 
   const shareHandler = useCallback(() => {
@@ -52,51 +43,45 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
 
   return (
     <OptionsContainer>
-      <RenderWhen
-        isTrue={remoteConfigFeatures?.webviewShare?.status !== 'hide'}
-      >
+      <RenderWhen isTrue={remoteConfigFeatures?.webviewShare?.status !== 'hide'}>
         <OptionButtonContainer>
           <OptionButton
             type="Icon"
             buttonTheme="Primary"
-            onPressIn={() => shareHandler}
+            onPress={() => shareHandler}
             icon={<ShareIcon />}
-            featureFlags={['webviewShare']}
+            remoteFeatureFlags={['webviewShare']}
           />
-          <OptionButtonLabel textAlign="center" color="opposing">
-            {getCopyValue('common:webviewer.option1')}
+          <OptionButtonLabel textAlign="center" color="secondary950">
+            {'common:webviewer.option1'}
           </OptionButtonLabel>
         </OptionButtonContainer>
       </RenderWhen>
-      <RenderWhen
-        isTrue={remoteConfigFeatures?.webviewReload?.status !== 'hide'}
-      >
+      <RenderWhen isTrue={remoteConfigFeatures?.webviewReload?.status !== 'hide'}>
         <OptionButtonContainer>
           <OptionButton
             type="Icon"
             buttonTheme="Primary"
             onPress={reloadHandler}
             icon={<ReloadIcon />}
-            featureFlags={['webviewReload']}
+            remoteFeatureFlags={['webviewReload']}
           />
-          <OptionButtonLabel textAlign="center" color="opposing">
-            {getCopyValue('common:webviewer.option2')}
+          <OptionButtonLabel textAlign="center" color="secondary950">
+            {'common:webviewer.option2'}
           </OptionButtonLabel>
         </OptionButtonContainer>
       </RenderWhen>
-      <RenderWhen
-        isTrue={remoteConfigFeatures?.webviewOpenOnBrowser?.status !== 'hide'}
-      >
+      <RenderWhen isTrue={remoteConfigFeatures?.webviewOpenOnBrowser?.status !== 'hide'}>
         <OptionButtonContainer>
           <OptionButton
             type="Icon"
             buttonTheme="Primary"
             onPress={openInBrowserHandler}
             icon={<BrowserIcon />}
-            featureFlags={['webviewOpenOnBrowser']}
+            remoteFeatureFlags={['webviewOpenOnBrowser']}
           />
-          <OptionButtonLabel textAlign="center" color="opposing">
-            {getCopyValue('common:webviewer.option3')}
+          <OptionButtonLabel textAlign="center" color="secondary950">
+            {'common:webviewer.option3'}
           </OptionButtonLabel>
         </OptionButtonContainer>
       </RenderWhen>

@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { Fragment, memo } from 'react';
 import { DefaultTheme } from 'styled-components/native';
+import { testProperties } from '@utils/functions';
 import {
-  ContainerWithOutPress,
+  Container,
   TextContainer,
   TitleContainer,
   StyledTitle,
@@ -32,40 +33,36 @@ export const ListItem: React.FC<ListItemProps> = ({
   color = undefined,
   isPressable = undefined,
 }) => {
-  const child = (
-    <>
+  const children = (
+    <Fragment>
       {left}
       <TextContainer>
         <TitleContainer>
           {!!title && (
-            <StyledTitle
-              testID="list-title"
-              type="Body3"
-              color={color || 'surfaceL1'}
-            >
+            <StyledTitle testID={testID + 'ListTitle'} type="Body3" color={color || 'secondary800'}>
               {title}
             </StyledTitle>
           )}
         </TitleContainer>
         {!!subtitle && (
           <StyledSubtitle
-            testID="list-subtitle"
+            testID={testID + 'ListSubtitle'}
             type="Subtitle3"
-            color={color || 'surfaceL1'}
+            color={color || 'secondary800'}
           >
             {subtitle}
           </StyledSubtitle>
         )}
       </TextContainer>
-    </>
+    </Fragment>
   );
 
-  if (isPressable === undefined || isPressable === false) {
+  if (isPressable) {
     return (
       <StyledSafeAreaView>
         {left}
         <StyledButton
-          testID={testID || undefined}
+          testID={testID + 'Button'}
           title={title}
           subtitle={subtitle}
           onPress={onPress}
@@ -80,7 +77,7 @@ export const ListItem: React.FC<ListItemProps> = ({
 
   return (
     <StyledSafeAreaView>
-      <ContainerWithOutPress testID={testID}>{child}</ContainerWithOutPress>
+      <Container {...testProperties(testID)}>{children}</Container>
       <RightContainer>{right}</RightContainer>
     </StyledSafeAreaView>
   );

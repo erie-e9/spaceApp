@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Text as NativeText, Platform, PixelRatio } from 'react-native';
 import styled, { css, DefaultTheme } from 'styled-components/native';
-import { isFinite } from 'lodash';
+import isFinite from 'lodash/isFinite';
 import {
   responsiveFontSize,
   getNormalizedVerticalSize,
@@ -41,7 +41,7 @@ export interface TextProps {
     | 'Button'
     | 'Caption'
     | 'Label';
-  font?: 'primary' | 'secondary';
+  font?: 'Primary' | 'Secondary';
   color?: keyof DefaultTheme['tokens']['colors'];
   weight?: number | 'bold' | 'semi-bold' | 'normal';
   paddingTop?: number;
@@ -50,7 +50,20 @@ export interface TextProps {
   textTransform?: string;
   textDecorationLine?: string;
   disabled?: boolean;
+  firstCapitalized?: boolean;
 }
+
+const createFontStyle = (
+  fontSize: number,
+  lineHeight: number,
+  letterSpacing: number,
+  fontWeight: number | string,
+) => css`
+  font-size: ${responsiveFontSize(fontSize)}px;
+  line-height: ${getNormalizedVerticalSize(lineHeight)}px;
+  letter-spacing: ${PixelRatio.roundToNearestPixel(letterSpacing)}px;
+  font-weight: ${fontWeight};
+`;
 
 export const MainFont = css`
   font-family: 'Arial';
@@ -60,153 +73,41 @@ export const SecondaryFont = css`
   font-family: '${Fonts.RobotoRegular}';
 `;
 
-export const Headline1 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(60)}px;
-  line-height: ${getNormalizedVerticalSize(62.4)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(-1.5)}px;
-`;
-export const Headline2 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(43)}px;
-  line-height: ${getNormalizedVerticalSize(52.8)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(-0.5)}px;
-`;
-export const Headline3 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(38)}px;
-  line-height: ${getNormalizedVerticalSize(43.2)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.3)}px;
-`;
+export const Headline1 = createFontStyle(32, 40, -1.25, 400);
+export const Headline2 = createFontStyle(26, 34, -0.5, 400);
+export const Headline3 = createFontStyle(24, 32, 0, 400);
+export const Headline4 = createFontStyle(22, 28, 0.25, 500);
+export const Headline5 = createFontStyle(20, 26, 0, 400);
+export const Headline6 = createFontStyle(18, 24, 0.15, 400);
 
-export const Headline4 = css`
-  font-weight: 500;
-  font-size: ${responsiveFontSize(29)}px;
-  line-height: ${getNormalizedVerticalSize(41)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.6)}px;
-`;
+export const Subtitle1 = createFontStyle(16, 24, 0.15, 400);
+export const Subtitle2 = createFontStyle(14, 21, 0.1, 500);
+export const Subtitle3 = createFontStyle(12, 18, 0.4, 400);
 
-export const Headline5 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(25)}px;
-  line-height: ${getNormalizedVerticalSize(32)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0)}px;
-`;
+export const Body1 = createFontStyle(16, 24, 0.5, 400);
+export const Body2 = createFontStyle(15, 20, 0.25, 400);
+export const Body3 = createFontStyle(14, 20, 0.25, 400);
+export const Body4 = createFontStyle(13, 18, 0.05, 400);
 
-export const Headline6 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(20)}px;
-  line-height: ${getNormalizedVerticalSize(25.2)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(1)}px;
-`;
-
-export const Subtitle1 = css`
-  font-weight: 700;
-  font-size: ${responsiveFontSize(17)}px;
-  line-height: ${getNormalizedVerticalSize(21)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(1)}px;
-`;
-
-export const Subtitle2 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(14.5)}px;
-  line-height: ${getNormalizedVerticalSize(18.5)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(1)}px;
-`;
-
-export const Subtitle3 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(12.5)}px;
-  line-height: ${getNormalizedVerticalSize(15)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.85)}px;
-`;
-
-export const Body1 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(24)}px;
-  line-height: ${getNormalizedVerticalSize(27.6)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.8)}px;
-  ${SecondaryFont}
-`;
-
-export const Body2 = css`
-  font-weight: 300;
-  font-size: ${responsiveFontSize(17)}px;
-  line-height: ${getNormalizedVerticalSize(22)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.08)}px;
-  ${SecondaryFont}
-`;
-
-export const Body3 = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(16)}px;
-  line-height: ${getNormalizedVerticalSize(19)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.08)}px;
-  ${SecondaryFont}
-`;
-
-export const Body4 = css`
-  font-weight: 500;
-  font-size: ${responsiveFontSize(14.5)}px;
-  line-height: ${getNormalizedVerticalSize(18)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.05)}px;
-  ${SecondaryFont}
-`;
-
-export const Button = css`
-  font-weight: 500;
-  font-size: ${responsiveFontSize(18)}px;
-  line-height: ${getNormalizedVerticalSize(20)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(1.25)}px;
-  ${SecondaryFont}
-`;
-
-export const Caption = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(13)}px;
-  line-height: ${getNormalizedVerticalSize(16.4)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.3)}px;
-  ${SecondaryFont}
-`;
-
-export const Label = css`
-  font-weight: 400;
-  font-size: ${responsiveFontSize(10)}px;
-  line-height: ${getNormalizedVerticalSize(16.4)}px;
-  letter-spacing: ${PixelRatio.roundToNearestPixel(0.3)}px;
-  ${SecondaryFont}
-`;
-
-export const Bold = css`
-  font-weight: bold;
-`;
-
-export const SemiBold = css`
-  font-weight: 500;
-`;
-
-export const Normal = css`
-  font-weight: normal;
-`;
+export const Button = createFontStyle(14, 20, 1.25, 500);
+export const Caption = createFontStyle(12, 16, 0.4, 400);
+export const Label = createFontStyle(11, 16, 0.5, 400);
 
 export const Text = styled(NativeText)<TextProps>`
-  padding-top: ${({ paddingTop }) =>
-    getNormalizedVerticalSize(paddingTop || 0)}px;
-  margin-right: ${({ marginRight }) =>
-    getNormalizedHorizontalSize(marginRight || 0)}px;
+  padding-top: ${({ paddingTop }) => getNormalizedVerticalSize(paddingTop || 0)}px;
+  margin-right: ${({ marginRight }) => getNormalizedHorizontalSize(marginRight || 0)}px;
   text-align: ${({ textAlign }) => textAlign || 'left'};
   text-transform: ${({ textTransform }) => textTransform || 'none'};
-  text-decoration-line: ${({ textDecorationLine }) =>
-    textDecorationLine || 'none'};
-  color: ${({ color, theme }) => {
-    return theme.tokens.colors[color || 'primaryD1'];
+  text-decoration-line: ${({ textDecorationLine }) => textDecorationLine || 'none'};
+  color: ${({ theme, color }) => {
+    return theme.tokens.colors[color || 'secondary950'];
   }};
-  opacity: ${({ disabled }) => (disabled ? 0.35 : 1)};
+  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
   ${({ font }) => {
     switch (font) {
-      case 'primary':
+      case 'Primary':
         return MainFont;
-      case 'secondary':
+      case 'Secondary':
         return SecondaryFont;
       default:
         return MainFont;
@@ -250,7 +151,6 @@ export const Text = styled(NativeText)<TextProps>`
         return Body4;
     }
   }}
-
   ${({ weight }) => {
     if (isFinite(weight)) {
       return css`
@@ -260,18 +160,24 @@ export const Text = styled(NativeText)<TextProps>`
 
     switch (weight) {
       case 'bold':
-        return Bold;
+        return css`
+          font-weight: bold;
+        `;
       case 'semi-bold':
-        return SemiBold;
+        return css`
+          font-weight: 500;
+        `;
       case 'normal':
       default:
-        return Normal;
+        return css`
+          font-weight: normal;
+        `;
     }
   }}
 `;
 
 Text.defaultProps = {
-  color: 'textColor',
+  color: 'secondary800',
   paddingTop: 0,
   weight: 'normal',
 };

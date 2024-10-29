@@ -1,5 +1,5 @@
 {
   "title": "Welcome on",
   "subtitle": "The $t(common:appName.full) app",
-  "description": "Do you want to discover some features? Just click one of the four buttons at the bottom of the screen. The first allows you to call an alert with a message. The second allows you to go to a warning screen. The third one will help you change the theme color. And the fourth allows you to change the language."
+  "description": "A mobile application designed for astronomy and space enthusiasts. With $t(common:appName.full), you can discover the vast universe from the palm of your hand. Explore planets, stars, galaxies, and constellations with detailed information and interactive visualizations. The app offers up-to-date news on astronomical events, space missions, and scientific discoveries. Additionally, it includes a learning section with educational articles, videos, and quizzes to test your knowledge. Whether you're an amateur astronomer or simply curious about the cosmos, $t(common:appName.full) is your gateway to delve into the mysteries of space."
 }

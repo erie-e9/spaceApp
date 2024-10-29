@@ -1,15 +1,12 @@
 {
   "Warning": {
-    "title": "Nos tomamos en serio mantener tus datos seguros",
-    "description": "Parece que estás utilizando un dispositivo que podría comprometer la seguridad de tu información privada. La aplicación {{appName}} no es compatible con este tipo de dispositivos.",
+    "title": "Alerta de seguridad",
+    "description": "Parece que estás utilizando un dispositivo que podría comprometer la seguridad de tu información privada. Nos tomamos en serio mantener tus datos seguros, por ello la aplicación {{appName}} no es compatible con este tipo de dispositivos.",
     "sub-description": "Te recomendamos instalar nuestra aplicación en un dispositivo de más confianza.",
     "actions": {
-      "primaryButton": {
-        "title": "Ir a ayuda",
-        "modal": {
-          "title": "Un momento por favor...",
-          "description": "Estás siendo redirigido a nuestra sección de ayuda."
-        }
+      "areWeWrong": {
+        "title": "¿Crees que estamos cometiendo un error?",
+        "description": "Contáctanos ahora"
       },
       "secondaryButton": {
         "title": "Envíanos un mensaje",

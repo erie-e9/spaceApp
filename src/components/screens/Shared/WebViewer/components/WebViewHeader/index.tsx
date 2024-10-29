@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { Alert, Linking } from 'react-native';
-import { truncate } from 'lodash';
+import truncate from 'lodash/truncate';
 import { useModal } from '@hooks';
 import { AnimatedButton } from '@components/animated';
 import { BackButton } from '@components/molecules';
@@ -45,13 +45,8 @@ const WebViewHeader: React.FC<WebViewHeaderProps> = ({
   const menuHandler = useCallback((): void => {
     showModal({
       type: 'bottomsheet',
-      body: (
-        <WebViewOptions
-          onReload={onReload}
-          onOpenBrowser={onOpenBrowserHandler}
-        />
-      ),
-      drawerOptions: {
+      body: <WebViewOptions onReload={onReload} onOpenBrowser={onOpenBrowserHandler} />,
+      dropdownOptions: {
         height: 175,
       },
     });
@@ -66,16 +61,12 @@ const WebViewHeader: React.FC<WebViewHeaderProps> = ({
         <UrlContainer>
           <StyledUrlText
             testID="url-text-protocol"
-            color={ishttps ? 'success_accent' : 'opposing'}
+            color={ishttps ? 'success_status' : 'secondary950'}
             type="Body3"
           >
             {splittedUrl[0]}
           </StyledUrlText>
-          <StyledUrlText
-            testID="url-text-address"
-            color={'opposing'}
-            type="Body3"
-          >
+          <StyledUrlText testID="url-text-address" color={'secondary950'} type="Body3">
             {truncate(splittedUrl[1], {
               length: 15,
             })}

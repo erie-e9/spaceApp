@@ -1,82 +1,61 @@
-import React, { memo } from 'react';
-import { DefaultTheme } from 'styled-components/native';
-import { OptionsMap } from '@store/slices/types/modal';
+import React, { memo, useCallback } from 'react';
+import { type ButtonContainerProps, type OptionsMap } from '@store/slices/types/modal';
 import { useCopy } from '@services';
-import { useTheme } from '@hooks';
+import { truncate, testProperties } from '@utils/functions';
 import {
   StyledButton,
-  TypographyStyled,
   StyledActionButton,
   ActionsWrapper,
-  TextButtonItem,
+  StyledList,
+  ButtonContainer,
 } from '../styles';
 
-export interface AlertButtonsProps {
+interface AlertButtonsProps {
   testID?: string;
-  optionsMap?: OptionsMap[];
-  options?: OptionsMap[];
+  options: OptionsMap[];
   handleClose: () => void;
   handlers?: (() => void)[];
   handlerAction?: () => void;
-  primaryButtonTheme: 'Primary' | 'Secondary' | 'Dark' | undefined;
+  primaryButtonTheme?: 'Primary' | 'Secondary' | 'Dark';
   actions?: boolean;
-  secondButtonColor?: keyof DefaultTheme['tokens']['colors'];
+  buttonsStyles?: ButtonContainerProps;
 }
 
 export const AlertButtons: React.FC<AlertButtonsProps> = ({
   testID = 'AlertButtonsID',
-  optionsMap = undefined,
-  options = undefined,
+  options,
   handleClose,
-  handlers = undefined,
-  handlerAction = undefined,
-  primaryButtonTheme,
+  handlerAction,
+  primaryButtonTheme = 'Primary',
   actions = true,
-  secondButtonColor = undefined,
+  buttonsStyles,
 }) => {
   const { getCopyValue } = useCopy();
-  const { darkMode: isDarkMode } = useTheme();
-
-  const multipleOptionsGenerator = (
-    handleCloseFn: () => void,
-    btnOptions: OptionsMap[],
-  ): JSX.Element[] => {
-    return btnOptions?.map((item, i) => {
-      const text = getCopyValue(item.text);
-      if (i < 1) {
-        return (
-          <StyledButton
-            key={`alert-primary${0 + i}`}
-            onPress={item.handler ? item.handler : undefined}
-            onPressAsync={
-              (item.handleAsync
-                ? item.handleAsync
-                : undefined) as () => Promise<void>
-            }
-            title={text}
-            buttonTheme="Secondary"
-            fontWeight={item.fontWeight}
-            minWidth={item.minWidth ? item.minWidth : undefined}
-          />
-        );
-      }
-      return (
-        <TypographyStyled
-          color={isDarkMode ? 'secondaryD5' : 'surfaceL1'}
-          type="Subtitle1"
-          fontSize={18}
-          weight={item.fontWeight}
-          key={`alert-${0 + i}`}
-          onPress={item.handler ? item.handler : handleCloseFn}
-        >
-          {text}
-        </TypographyStyled>
-      );
-    });
-  };
+  const renderButtons = useCallback(
+    ({ item, index }: { item: OptionsMap; index: number }) => (
+      <ButtonContainer
+        key={`button-container-${index}`}
+        direction={buttonsStyles?.direction || 'row'}
+        alignment={buttonsStyles?.alignment || 'center'}
+      >
+        <StyledActionButton
+          title={truncate(getCopyValue(item.text), 16)}
+          widthButton="auto"
+          textColor={item.color}
+          type={item.isSimpleButton ? 'Text' : 'Button'}
+          onPress={() => {
+            if (item.handler) item.handler();
+            if (handlerAction) handlerAction();
+            handleClose();
+          }}
+        />
+      </ButtonContainer>
+    ),
+    [],
+  );
 
   return (
-    <ActionsWrapper testID={testID}>
+    <ActionsWrapper {...testProperties(testID)} optionsLenght={options.length}>
       {!actions && (
         <StyledButton
           type="Button"
@@ -85,41 +64,18 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
           title="Ok"
         />
       )}
-      {/* {optionsMap && generatedButtons(handleClose, optionsMap)} */}
-      {options?.map((item, i) => {
-        const text = getCopyValue(item?.text);
-        if (i < 1) {
-          if (item?.isSimpleButton) {
-            return (
-              <TextButtonItem
-                isSimpleButton
-                type="Body2"
-                key={`item-${0 + i}`}
-                onPress={() => {
-                  if (item?.handler) item?.handler();
-                  handleClose();
-                }}
-              >
-                {text}
-              </TextButtonItem>
-            );
-          }
-          return (
-            <StyledActionButton
-              key={`item${0 + i}`}
-              mainBtn={i < 1}
-              title={text}
-              elevation="0"
-              onPress={() => {
-                if (item?.handler && handlerAction) {
-                  item?.handler();
-                  handlerAction();
-                }
-              }}
-            />
-          );
-        }
-      })}
+      <StyledList
+        data={options}
+        showsVerticalScrollIndicator={false}
+        horizontal={options.length > 1}
+        renderItem={renderButtons}
+        scrollEnabled={options.length > 1}
+        containerStyle={{
+          // width: '65%', //! check
+          alignItems: 'center',
+        }}
+        alignItems={(options.length > 1 && 'flex-end') || undefined}
+      />
     </ActionsWrapper>
   );
 };

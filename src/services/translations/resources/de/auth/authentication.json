@@ -1,0 +1,122 @@
+{
+  "Authentication": {
+    "screenHeaders": {
+      "newLogin": {
+        "title": "Anmelden",
+        "description": "Für ein persönlicheres Erlebnis."
+      },
+      "loggedBiometrics": {
+        "title": "Willkommen zurück {{username}}!",
+        "description": "Verwenden Sie Ihren Fingerabdruck, um sich anzumelden."
+      },
+      "logged": {
+        "title": "Willkommen zurück {{username}}!",
+        "description": "Wir freuen uns, Sie wiederzusehen.",
+        "descriptionBiometrics": "Verwenden Sie Ihren Fingerabdruck, um sich anzumelden."
+      },
+      "accountRecovery": {
+        "title": "Kontowiederherstellung",
+        "description": "Passwort vergessen? Kein Problem, wir helfen Ihnen, es wiederherzustellen."
+      },
+      "signUp": {
+        "title": "Registrieren",
+        "description": "Lassen Sie uns Ihr neues Konto erstellen. Bitte geben Sie Ihre Informationen ein, um zu beginnen."
+      }
+    },
+    "form": {
+      "fields": {
+        "phoneNumberOrEmail": {
+          "name": "Telefonnummer oder E-Mail",
+          "validations": {
+            "required": "Telefonnummer oder E-Mail ist erforderlich.",
+            "min": "Bitte geben Sie mindestens 10 Zeichen ein.",
+            "matches": "Bitte geben Sie eine gültige Telefonnummer oder E-Mail ein."
+          }
+        },
+        "phoneNumber": {
+          "name": "Telefonnummer",
+          "validations": {
+            "required": "Telefonnummer ist erforderlich.",
+            "min": "Bitte geben Sie mindestens 10 Zeichen ein.",
+            "max": "Bitte geben Sie nicht mehr als 12 Zeichen ein.",
+            "matches": "Bitte geben Sie eine gültige Telefonnummer ein."
+          }
+        },
+        "email": {
+          "name": "E-Mail",
+          "validations": {
+            "matches": "Bitte geben Sie eine gültige E-Mail-Adresse ein."
+          }
+        },
+        "password": {
+          "name": "Passwort",
+          "validations": {
+            "required": "Passwort ist erforderlich.",
+            "min": "Sollte mindestens 8 Zeichen lang sein.",
+            "max": "Passwort darf nicht länger als 127 Zeichen sein."
+          }
+        },
+        "genericValidations": {
+          "string": {
+            "required": "{{field}} ist erforderlich.",
+            "matches": "Ungültiges Format. Bitte versuchen Sie es erneut.",
+            "min": "Bitte geben Sie mindestens {{min}} Zeichen ein.",
+            "max": "Bitte geben Sie nicht mehr als {{max}} Zeichen ein."
+          }
+        }
+      },
+      "submitButtons": {
+        "logInText": "Anmelden",
+        "signUpText": "Registrieren",
+        "forgotPasswordText": "Code senden",
+        "sendCodeText": "Code senden",
+        "logOutText": "Ausloggen",
+        "google": {
+          "logInText": "Mit Google anmelden",
+          "signUpText": "Mit Google registrieren"
+        }
+      }
+    },
+    "alreadyHaveAccount": "Bereits ein Konto?",
+    "noAccount": "Kein Konto? Jetzt erstellen.",
+    "forgotPassword": "Passwort vergessen?",
+    "rememberedPassword": "Haben Sie Ihr Passwort wiedergefunden?",
+    "logInWith": "Anmelden mit",
+    "signUpWith": "Registrieren mit",
+    "usePassword": "Verwenden Sie stattdessen Ihr Passwort",
+    "isNotYourAccount": "Ist das nicht Ihr Konto?",
+    "useAnotherAccount": "Mit einem anderen Konto anmelden",
+    "biometrics": {
+      "buttons": {
+        "useBiometrics": "Biometrie verwenden",
+        "useFingerprint": "Fingerabdruck verwenden",
+        "useFaceIDBiometrics": "Face ID verwenden"
+      },
+      "logIn": {
+        "promptMessage": "Verwenden Sie Ihren Fingerabdruck, um sich anzumelden."
+      }
+    },
+    "otp": {
+      "alert": {
+        "title": "Code eingeben",
+        "description": "Wir haben einen Code per SMS oder E-Mail gesendet. Bitte überprüfen und eingeben.",
+        "buttons": {
+          "primaryButton": "Code erneut senden"
+        }
+      }
+    },
+    "alerts": {
+      "useAnotherAccount": {
+        "title": "Anderes konto verwenden",
+        "description": "Möchten Sie das konto wirklich ändern?",
+        "buttons": {
+          "buttonOne": "Ja, Ich bin sicher"
+        }
+      },
+      "authSocialMedia": {
+        "signInSuccess": "Anmeldung erfolgreich mit {{provider}}.",
+        "signInFail": "Bei der Anmeldung mit {{provider}}."
+      }
+    }
+  }
+}

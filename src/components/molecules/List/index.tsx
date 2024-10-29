@@ -1,122 +1,290 @@
-import React, {
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
-import { useWindowDimensions } from 'react-native';
-import { useBlankAreaTracker } from '@shopify/flash-list';
+import React, { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { FlatList, useWindowDimensions } from 'react-native';
+import Animated, { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
+import LottieView from 'lottie-react-native';
+import { AnyObject } from 'yup';
+import { Logger, useCopy } from '@services';
 import { screen_height } from '@utils/functions';
-import { Logger } from '@services';
-import ListItem from '@components/molecules/List/components/ListItem';
-import { StyledList } from './styles';
+import { useResponseHandler } from '@hooks';
+import { AnimatedListItem } from './components/AnimatedListItem';
+import { NullableNumber } from './components/types';
+import { ScaleAnimation } from '@components/animated';
+import { BackButton, ListItem, Loader, TextInput } from '@components/molecules';
+import {
+  ListContainer,
+  StyledList,
+  LoaderContainer,
+  Container,
+  ScrollToTopContainer,
+  ScrollToTopButtonContainer,
+} from './styles';
 
 interface ListProps {
-  data: Array<string>;
+  data: Array<any>;
   estimatedItemSize?: number;
-  renderItem?: ({ item }: any) => JSX.Element;
   horizontal?: boolean;
   numColumns?: number;
   showsHorizontalScrollIndicator?: boolean;
   showsVerticalScrollIndicator?: boolean;
-  refreshHanlder?: () => undefined;
+  scrollEnabled?: boolean;
+  alignItems?: 'flex-start' | 'center' | 'flex-end';
+  draggable?: boolean;
+  renderItem?: ({ item }: any) => JSX.Element;
+  refreshHandler?: () => void;
+  itemHeight?: number;
+  footerComponent?: React.ReactElement;
+  containerStyle?: any;
+  filterBy?: string | string[];
 }
 
 export const List: React.FC<ListProps> = ({
   data,
   estimatedItemSize = 50,
-  renderItem = undefined,
   horizontal = false,
   numColumns = 1,
   showsHorizontalScrollIndicator = false,
   showsVerticalScrollIndicator = false,
-  refreshHanlder = undefined,
+  scrollEnabled = true,
+  alignItems = 'center',
+  draggable = false,
+  renderItem,
+  refreshHandler,
+  itemHeight = 60,
+  footerComponent,
+  containerStyle,
+  filterBy,
 }) => {
-  const ref = useRef(null);
+  const { getCopyValue } = useCopy();
+  const ref = useRef<FlatList>(null);
+  const animationRef = useRef<LottieView>(null);
+  const [offsetY, setOffsetY] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [showScrollToButton, setShowScrollToButton] = useState<boolean>(false);
+  const extraPaddingTop = useSharedValue(0);
   const { width: windowWidth } = useWindowDimensions();
+  const { loading, setLoading } = useResponseHandler();
 
-  const [refreshing, setRefreshing] = useState(false);
-  const [blankAreaTrakerResult, onBlankArea] = useBlankAreaTracker(ref);
   const items = useMemo(() => data, [data]);
-
-  const minCols = numColumns || 1;
+  const [filteredUsers, setFilteredUsers] = useState<Array<any>>(items);
+  const contentContainerStyle: object = useMemo(() => {
+    return {
+      height: items.length * (itemHeight * (filterBy ? 1.05 : 1.025)),
+    };
+  }, [items.length, itemHeight, filteredUsers]);
 
   const calcNumColumns = useCallback(() => {
-    const swidth = windowWidth / minCols - 1;
+    const swidth = windowWidth / numColumns - 1;
     const smargin = 1;
-
     const cols = windowWidth / swidth;
-    const colsFloor = Math.floor(cols) > minCols ? Math.floor(cols) : minCols;
+    const colsFloor = Math.floor(cols) > numColumns ? Math.floor(cols) : numColumns;
     const colsMinusMargin = cols - 2 * colsFloor * smargin;
-    if (colsMinusMargin < colsFloor && colsFloor > minCols) {
-      return colsFloor - 1;
-    } else return colsFloor;
-  }, [windowWidth]);
+    return colsMinusMargin < colsFloor && colsFloor > numColumns ? colsFloor - 1 : colsFloor;
+  }, [windowWidth, numColumns]);
 
-  const [numberColumns, setNumColumns] = useState(calcNumColumns());
-  const renderElement = useCallback(
-    ({
-      item,
-      index,
-    }: {
-      item: any;
-      index: number;
-    }): React.JSX.Element | null => {
-      return (
-        <ListItem key={index} title={item.title} subtitle={item.subtitle} />
+  const isDragging = useSharedValue<0 | 1>(0);
+  const draggedItemId = useSharedValue<NullableNumber>(null);
+  const getInitialPositions = () => {
+    let positions: AnyObject = {};
+    for (let i = 0; i < items.length; i++) {
+      positions[i] = {
+        updatedIndex: i,
+        updatedTop: i * itemHeight,
+      };
+    }
+    return positions;
+  };
+
+  const currentPositions = useSharedValue(getInitialPositions());
+
+  const [numberColumns, setNumColumns] = useState<number>(calcNumColumns());
+
+  const renderItemHandler = useCallback(
+    ({ item, index }: { item: any; index: number }): React.JSX.Element | null => {
+      return draggable ? (
+        <AnimatedListItem
+          item={item}
+          key={item.id}
+          isDragging={isDragging}
+          draggedItemId={draggedItemId}
+          currentPositions={currentPositions}
+          itemsLength={filteredUsers.length}
+          itemHeight={itemHeight}
+        >
+          {renderItem && renderItem({ item, index })}
+        </AnimatedListItem>
+      ) : renderItem ? (
+        <Fragment>{renderItem({ item, index })}</Fragment>
+      ) : (
+        <ListItem title={item.username} subtitle={item.post_title} />
       );
     },
-    [],
+    [items, filteredUsers, itemHeight, draggable, renderItem],
   );
-
-  const onLoadListener = useCallback(
-    (info: { elapsedTimeInMs: number }): void => {
-      Logger.log('onLoadListener: ', { info });
-    },
-    [],
-  );
-
-  useEffect(() => {
-    return () => {
-      Logger.log('On blank area', { blankAreaTrakerResult }); // lower value means less blank space and better performance, might be less of 150ms
-    };
-  }, []);
 
   useEffect(() => {
     setNumColumns(calcNumColumns());
-  }, [windowWidth]);
+  }, [windowWidth, calcNumColumns]);
+
+  const onRefresh = useCallback(() => {
+    try {
+      refreshHandler?.();
+    } catch (error) {
+      Logger.log('List onRefresh', { error });
+    } finally {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    if (loading && refreshHandler) {
+      animationRef.current?.play();
+      if (offsetY <= -80) {
+        extraPaddingTop.value = withTiming(50, { duration: 0 });
+        onRefresh();
+      }
+    } else {
+      extraPaddingTop.value = withTiming(0, {
+        duration: 400,
+        easing: Easing.elastic(0.7),
+      });
+    }
+  }, [loading, extraPaddingTop, refreshHandler, offsetY]);
+
+  useEffect(() => {
+    let updatedItems = items;
+    if (searchQuery) {
+      updatedItems = items.filter((item) =>
+        (Array.isArray(filterBy) ? filterBy : [filterBy || 'id']).some((key) =>
+          item[key]?.toLowerCase().includes(searchQuery.toLowerCase()),
+        ),
+      );
+    }
+    setFilteredUsers(updatedItems);
+  }, [searchQuery, items]);
+
+  let progress = 0;
+  if (offsetY < 0 && !loading) {
+    progress = offsetY / -50;
+  }
+
+  const scrollTo = useCallback(() => {
+    ref?.current?.scrollToOffset({
+      animated: true,
+      offset: 0,
+    });
+  }, []);
 
   return (
-    <StyledList
-      ref={ref}
-      onEndReachedThreshold={0.1}
-      data={items}
-      numColumns={numberColumns}
-      refreshing={refreshing}
-      onRefresh={
-        refreshHanlder
-          ? () => {
-              setRefreshing(true);
-              setTimeout(() => {
-                refreshHanlder();
-                setRefreshing(false);
-              }, 2000);
-            }
-          : null
-      }
-      keyExtractor={(_item: unknown, index: React.Key): string => `key${index}`}
-      getItemType={(item: any) => (item.type ? item.type : 'Text')}
-      estimatedItemSize={estimatedItemSize || screen_height / data.length}
-      // horizontal={horizontal}
-      keyboardDismissMode="interactive"
-      renderItem={renderItem || renderElement}
-      showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
-      showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-      onLoad={onLoadListener}
-      onBlankArea={onBlankArea}
-    />
+    <Fragment>
+      {filterBy && (
+        <Container>
+          <TextInput
+            label={getCopyValue('common:controllers.inputs.search', {
+              seachPlaceholder: '',
+            })}
+            name="searcher"
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
+        </Container>
+      )}
+      {/*
+        {draggable ? (
+          <>
+            <Animated.ScrollView
+              contentContainerStyle={{ height: items.length * itemHeight }}
+            >
+              {items.map((item, index) => (
+                <AnimatedListItem
+                  item={item}
+                  key={item.id}
+                  isDragging={isDragging}
+                  draggedItemId={draggedItemId}
+                  currentPositions={currentPositions}
+                  itemsLength={items.length}
+                  itemHeight={itemHeight}
+                >
+                  {renderItem && renderItem({ item, index })}
+                </AnimatedListItem>
+              ))}
+            </Animated.ScrollView>
+          </>
+        ) : ( */}
+      <ListContainer>
+        <StyledList
+          ref={ref}
+          data={filteredUsers || items}
+          keyExtractor={(_item, index) => `key${index}`}
+          onEndReachedThreshold={0.1}
+          contentContainerStyle={
+            containerStyle ? containerStyle : (draggable || refreshHandler) && contentContainerStyle
+          }
+          numColumns={horizontal ? 1 : numberColumns}
+          scrollEnabled={scrollEnabled}
+          onScroll={({ nativeEvent }) => {
+            refreshHandler && setOffsetY(nativeEvent.contentOffset.y);
+            setShowScrollToButton(nativeEvent.contentOffset.y > screen_height / 4);
+          }}
+          onResponderRelease={() => {
+            if (offsetY <= -80 && !loading) setLoading(true);
+          }}
+          ListHeaderComponent={
+            <Animated.View style={{ paddingTop: extraPaddingTop }}>
+              {filteredUsers.length > 0 && loading && refreshHandler && (
+                <LoaderContainer height={extraPaddingTop.value}>
+                  <Loader
+                    animationRef={animationRef}
+                    width={180}
+                    height={extraPaddingTop.value}
+                    progress={progress}
+                  />
+                </LoaderContainer>
+              )}
+            </Animated.View>
+          }
+          refreshing={loading}
+          // onRefresh={
+          //   refreshHandler
+          //     ? () => {
+          //         setLoading(true);
+          //         setTimeout(() => {
+          //           refreshHandler?.();
+          //           setLoading(false);
+          //         }, 2000);
+          //       }
+          //     : undefined
+          // }
+          renderItem={renderItemHandler}
+          showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
+          showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+          horizontal={horizontal}
+          keyboardDismissMode="interactive"
+          ListFooterComponent={footerComponent || null}
+          // estimatedItemSize={estimatedItemSize || itemHeight * items.length}
+          // getItemType={(item: any) => (item.type ? item.type : 'Text')}
+          // renderItem={({ item }) => renderItem && renderItem({ item })}
+          // onLoad={onLoadListener}
+          // onBlankArea={onBlankArea}
+        />
+      </ListContainer>
+      {showScrollToButton && (
+        <ScrollToTopContainer>
+          <ScaleAnimation
+            trigger={showScrollToButton && filteredUsers.length * itemHeight >= screen_height}
+            duration={200}
+            initialValue={0}
+            finalValue={1}
+            repeat={1}
+          >
+            <ScrollToTopButtonContainer>
+              <BackButton onPress={() => scrollTo()} colorRowInverted />
+            </ScrollToTopButtonContainer>
+          </ScaleAnimation>
+        </ScrollToTopContainer>
+      )}
+    </Fragment>
   );
 };
 

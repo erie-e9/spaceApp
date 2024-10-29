@@ -1,8 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
@@ -11,6 +8,7 @@ export const OptionContainer = styled.View`
   align-items: center;
   min-height: auto;
   min-width: auto;
+  margin: ${getNormalizedHorizontalSize(7)}px;
 `;
 
 export const OptionButton = styled(ActionButton)``;

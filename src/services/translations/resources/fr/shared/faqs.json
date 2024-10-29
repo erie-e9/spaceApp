@@ -1,0 +1,42 @@
+{
+  "faq1": {
+    "question": "Comment réinitialiser mon mot de passe?",
+    "answer": "Allez sur l'écran de connexion et cliquez sur 'Mot de passe oublié?'. Suivez les instructions."
+  },
+  "faq2": {
+    "question": "Comment mettre à jour les informations de mon profil?",
+    "answer": "Accédez aux paramètres de votre profil pour modifier et enregistrer les changements."
+  },
+  "faq3": {
+    "question": "Comment contacter le support?",
+    "answer": "Visitez la section '$t(menu:helpCenter.support.title)' dans l'application pour envoyer un email ou discuter en direct avec nos agents."
+  },
+  "faq4": {
+    "question": "Que faire si je ne reçois pas l'email de confirmation?",
+    "answer": "Vérifiez votre dossier de spam. S'il n'y est pas, demandez un nouvel envoi depuis l'écran de connexion."
+  },
+  "faq5": {
+    "question": "Comment changer mon adresse email?",
+    "answer": "Allez dans les paramètres de votre profil pour mettre à jour votre adresse email. Vérifiez la nouvelle adresse."
+  },
+  "faq6": {
+    "question": "Que faire en cas de problèmes techniques?",
+    "answer": "Redémarrez l'application et assurez-vous d'avoir la dernière version. Si le problème persiste, contactez le support."
+  },
+  "faq7": {
+    "question": "Comment supprimer mon compte?",
+    "answer": "Allez dans les paramètres de votre profil et sélectionnez 'Supprimer le compte'. Cette action est irréversible."
+  },
+  "faq8": {
+    "question": "Où trouver la politique de confidentialité et les conditions d'utilisation?",
+    "answer": "Elles se trouvent dans la section 'Information' ou 'Conditions d'utilisation' de l'application."
+  },
+  "faq9": {
+    "question": "Comment mes données personnelles sont-elles protégées?",
+    "answer": "Nous appliquons des mesures de sécurité robustes. Consultez nos politiques de confidentialité pour plus de détails."
+  },
+  "faq10": {
+    "question": "Que faire si je trouve un bug?",
+    "answer": "Signalez le bug via les options de contact dans la section '$t(menu:helpCenter.support.items.bugReporter.title)'."
+  }
+}

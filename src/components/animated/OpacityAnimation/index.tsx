@@ -1,6 +1,7 @@
-/* eslint-disable react/require-default-props */
 import React, { memo, useCallback, useEffect } from 'react';
+import { StyleProp, ViewStyle } from 'react-native';
 import {
+  AnimatedStyle,
   useSharedValue,
   useAnimatedStyle,
   withTiming,
@@ -9,6 +10,7 @@ import {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
 import { StyledAnimatedContainer } from './styles';
 
 interface Props {
@@ -22,6 +24,7 @@ interface Props {
   repeat?: number;
   reverse?: boolean;
   easing?: typeof Easing | string | unknown;
+  style?: StyleProp<AnimatedStyle<StyleProp<ViewStyle>>>;
 }
 
 export const OpacityAnimation: React.FC<Props> = ({
@@ -35,14 +38,16 @@ export const OpacityAnimation: React.FC<Props> = ({
   repeat = 1,
   reverse = false,
   easing = 'linear',
+  style,
 }) => {
   const opacity = useSharedValue(initialValue);
 
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
+  const animatedStyles = useAnimatedStyle(
+    () => ({
       opacity: opacity.value ?? 1,
-    };
-  }, [opacity.value]);
+    }),
+    [opacity.value],
+  );
 
   const triggerAnimate = useCallback((): void => {
     if (trigger && (initialValue || finalValue)) {
@@ -58,16 +63,7 @@ export const OpacityAnimation: React.FC<Props> = ({
         ),
       );
     }
-  }, [
-    trigger,
-    duration,
-    initialValue,
-    finalValue,
-    delay,
-    repeat,
-    reverse,
-    opacity.value,
-  ]);
+  }, [trigger, duration, initialValue, finalValue, delay, repeat, reverse, opacity.value]);
 
   useEffect(() => {
     const cleanup = () => {
@@ -90,7 +86,7 @@ export const OpacityAnimation: React.FC<Props> = ({
   }, [opacity, trigger]);
 
   return (
-    <StyledAnimatedContainer testID={testID} style={[animatedStyles]}>
+    <StyledAnimatedContainer {...testProperties(testID)} style={[style, animatedStyles]}>
       {children && children}
     </StyledAnimatedContainer>
   );

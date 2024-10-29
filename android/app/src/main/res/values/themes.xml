@@ -1,0 +1,14 @@
+<resources>
+    <style name="Theme.App.Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Other theme attributes -->
+        <item name="lottieBackgroundColor">@color/light</item>
+        <item name="android:windowBackground">@color/light</item>
+    </style>
+    
+        <!-- Screen theme for light mode -->
+    <style name="SplashScreenTheme_Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/light</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

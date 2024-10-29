@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ModalPayload } from '@slices/types/modal';
+import { type ModalPayload } from '@slices/types/modal';
 
 const initialState: Partial<ModalPayload> = {
   isVisible: false,
@@ -23,7 +23,7 @@ export const modalSlice = createSlice({
         ...payload,
       };
     },
-    hideModal: state => {
+    hideModal: (state) => {
       if (state.type?.includes('bottomsheet')) {
         return initialState;
       }

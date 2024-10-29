@@ -3,7 +3,7 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "Sin conexión a internet. Intentando de nuevo.",
+    "noConnection": "Sin conexión a internet, reintentando.",
     "features": {
       "unavailable": {
         "title": "Función no disponible",
@@ -15,10 +15,43 @@
     "boundaries": {
       "fallbackScreen": {
         "title": "¡Ups! Algo salió mal",
-        "description": "Lo sentimos, ocurrió un error",
+        "description": "Lo sentimos, ocurrió un error.",
         "button": "Intentar de nuevo",
         "detailsLabel": "Detalles del error: ",
         "detailsLabelDefaultMessage": "Esto no es un error, esta pantalla te permitirá detectar y visualizar errores en la app, mostrando un mensaje amigable en lugar de la pantalla blanca predeterminada."
+      }
+    }
+  },
+  "alerts": {
+    "permissions": {
+      "blocked": {
+        "title": "Permiso bloqueado",
+        "description": "Por favor provee el permiso desde las configuraciones de aplicación en tu {{deviceName}}.",
+        "buttons": {
+          "buttonOne": "Ir a Configuraciones"
+        }
+      },
+      "denied": {
+        "title": "Permiso requerido",
+        "description": "Este permiso es requerido, por favor proveelo.",
+        "buttons": {
+          "buttonOne": "Solicitar de nuevo"
+        }
+      },
+      "libraryOrCam": {
+        "title": "Seleccionar foto de perfil",
+        "description": "¿Prefieres continuar con cámara o galería?",
+        "buttons": {
+          "buttonOne": "Cámara",
+          "buttonTwo": "Galería"
+        }
+      }
+    },
+    "authRequired": {
+      "title": "Función exclusiva para usuarios",
+      "description": "Para utilizar esta función es necesario iniciar sesión.",
+      "buttons": {
+        "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
     }
   },
@@ -26,5 +59,70 @@
     "option1": "Compartir",
     "option2": "Volver a cargar",
     "option3": "Abrir en navegador"
+  },
+  "calendar": {
+    "values": {
+      "today": "Hoy",
+      "dayNames": {
+        "sunday": "Domingo",
+        "monday": "Lunes",
+        "tuesday": "Martes",
+        "wednesday": "Miércoles",
+        "thursday": "Jueves",
+        "friday": "Viernes",
+        "saturday": "Sábado"
+      },
+      "dayNamesShort": {
+        "su": "Do",
+        "mo": "Lu",
+        "tu": "Ma",
+        "we": "Mi",
+        "th": "Ju",
+        "fr": "Vi",
+        "sa": "Sa"
+      },
+      "monthNames": {
+        "january": "Enero",
+        "february": "Febrero",
+        "march": "Marzo",
+        "april": "Abril",
+        "may": "Mayo",
+        "june": "Junio",
+        "july": "Julio",
+        "august": "Agosto",
+        "september": "Septiembre",
+        "october": "Octubre",
+        "november": "Noviembre",
+        "december": "Diciembre"
+      },
+      "monthNamesShort": {
+        "january": "Ene",
+        "february": "Feb",
+        "march": "Mar",
+        "april": "Abr",
+        "may": "May",
+        "june": "Jun",
+        "july": "Jul",
+        "august": "Ago",
+        "september": "Sep",
+        "october": "Oct",
+        "november": "Nov",
+        "december": "Dic"
+      }
+    }
+  },
+  "banners": {
+    "auth": {
+      "greeting": "Hola",
+      "invitation": "Hey! únete a nosotros para obtener una mejor experiencia, crea una nueva cuenta o usa la tuya.",
+      "buttons": {
+        "auth": "Ingresar"
+      }
+    }
+  },
+  "controllers": {
+    "inputs": {
+      "search": "Buscar {{seachPlaceholder}}"
+    }
   }
 }

@@ -1,0 +1,121 @@
+{
+  "Authentication": {
+    "screenHeaders": {
+      "newLogin": {
+        "title": "Connexion",
+        "description": "Connectez-vous pour profiter d'une expérience plus personnalisée."
+      },
+      "logged": {
+        "title": "Bon retour {{username}}!",
+        "description": "Nous sommes ravis de vous revoir."
+      },
+      "loggedBiometrics": {
+        "title": "Bon retour {{username}}!",
+        "description": "Utilisez votre empreinte digitale pour vous connecter."
+      },
+      "accountRecovery": {
+        "title": "Récupération de compte",
+        "description": "Mot de passe oublié? Pas de soucis, nous allons vous aider à le récupérer."
+      },
+      "signUp": {
+        "title": "Inscription",
+        "description": "Nous allons créer votre nouveau compte. Veuillez fournir les informations suivantes pour commencer."
+      }
+    },
+    "form": {
+      "fields": {
+        "phoneNumberOrEmail": {
+          "name": "Numéro de téléphone ou email",
+          "validations": {
+            "required": "Le numéro de téléphone ou l'email est nécessaire.",
+            "min": "Veuillez entrer au moins 10 caractères.",
+            "matches": "Veuillez entrer un numéro de téléphone ou un email valide."
+          }
+        },
+        "phoneNumber": {
+          "name": "Numéro de téléphone",
+          "validations": {
+            "required": "Le numéro de téléphone est nécessaire.",
+            "min": "Veuillez entrer au moins 10 caractères.",
+            "max": "Veuillez entrer au maximum 12 caractères.",
+            "matches": "Veuillez entrer un numéro de téléphone valide."
+          }
+        },
+        "email": {
+          "name": "Email",
+          "validations": {
+            "matches": "Veuillez entrer une adresse email valide."
+          }
+        },
+        "password": {
+          "name": "Mot de passe",
+          "validations": {
+            "required": "Le mot de passe est nécessaire.",
+            "min": "Doit contenir au moins 8 caractères.",
+            "max": "Mot de passe ne doit pas dépasser 127 caractères."
+          }
+        },
+        "genericValidations": {
+          "string": {
+            "required": "{{field}} est nécessaire.",
+            "matches": "Format invalide. Veuillez réessayer.",
+            "min": "Veuillez entrer au moins {{min}} caractères.",
+            "max": "Veuillez entrer au maximum {{max}} caractères."
+          }
+        }
+      },
+      "submitButtons": {
+        "logInText": "Connexion",
+        "signUpText": "Inscription",
+        "forgotPasswordText": "Envoyer le code",
+        "sendCodeText": "Envoyer le code",
+        "logOutText": "Déconnexion",
+        "google": {
+          "logInText": "Connexion avec Google",
+          "signUpText": "Inscription avec Google"
+        }
+      }
+    },
+    "alreadyHaveAccount": "Vous avez déjà un compte?",
+    "noAccount": "Pas de compte? Créez-en un maintenant.",
+    "forgotPassword": "Mot de passe oublié?",
+    "rememberedPassword": "Vous souvenez-vous de votre mot de passe ?",
+    "logInWith": "Connectez-vous avec",
+    "signUpWith": "Inscrivez-vous avec",
+    "usePassword": "Utilisez plutôt votre mot de passe",
+    "isNotYourAccount": "Ce n'est pas votre compte?",
+    "useAnotherAccount": "Connectez-vous avec un autre",
+    "biometrics": {
+      "buttons": {
+        "useBiometrics": "Utiliser les données biométriques",
+        "useFingerprint": "Utiliser l'empreinte digitale",
+        "useFaceIDBiometrics": "Utiliser Face ID"
+      },
+      "logIn": {
+        "promptMessage": "Utilisez votre empreinte digitale pour vous connecter."
+      }
+    },
+    "otp": {
+      "alert": {
+        "title": "Entrez le code",
+        "description": "Nous avons envoyé un code par SMS ou email. Veuillez vérifier et l'entrer.",
+        "buttons": {
+          "primaryButton": "Renvoyer le code"
+        }
+      }
+    },
+    "alerts": {
+      "useAnotherAccount": {
+        "title": "Utiliser un autre compte",
+        "description": "Etes-vous sûr de vouloir changer de compte?",
+        "buttons": {
+          "buttonOne": "Oui, j'en suis sûr"
+        }
+      },
+      "authSocialMedia": {
+        "signInSuccess": "Connectez-vous avec succès avec {{provider}}.",
+        "signInFail": "Erreur lors de la connexion avec {{provider}}."
+      }
+    }
+  }
+}

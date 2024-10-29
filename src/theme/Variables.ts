@@ -1,7 +1,7 @@
 export const NavigationColors = {};
 
 export const NavigationProps = {
-  interpolationTime: 800,
+  interpolationTime: 1000,
 };
 
 export default {

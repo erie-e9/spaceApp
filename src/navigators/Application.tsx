@@ -1,47 +1,66 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import {
+  CardStyleInterpolators,
   TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
+import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import SplashScreen from 'react-native-lottie-splash-screen';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import {
-  NavigationContainer,
-  useNavigationContainerRef,
-} from '@react-navigation/native';
-// import { useFlipper } from '@react-navigation/devtools';
 import ErrorBoundary from 'react-native-error-boundary';
-import { ApplicationStackParamList } from 'types/navigation';
-import { useCopy, initAppCheck, Logger } from '@services';
-import { useTheme, useToast, useCheckNet } from '@hooks';
-import { darkTheme, lightTheme } from '@theme/themesi';
-import SharedNavigator from './Shared';
+import { lightMode } from '@theme/themes/light';
+import { darkMode } from '@theme/themes/dark';
+import { type ApplicationStackParamList } from '@types';
+import { initAppCheck, Logger } from '@services';
+import { isEmpty } from '@utils/functions';
+import {
+  useTheme,
+  useToast,
+  useCheckNet,
+  useAuthenticationHook,
+  useAppPreferences,
+  useDeviceSecurity,
+} from '@hooks';
+import AuthNavigator from '@navigators/Auth';
+import SharedNavigator from '@navigators/Shared';
+import PrivateNavigator from '@navigators/Private';
+import {
+  CustomFallback,
+  FieldEditor,
+  Startup,
+  Warning,
+  Info,
+  ContactUs,
+} from '@components/screens/Shared';
 import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
-import { BackButton, Toast } from '@components/molecules';
+import { Toast } from '@components/molecules';
 import { Modal } from '@components/organisms';
-import { CustomFallback, Startup } from '@components/screens/Shared';
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
 const Application = () => {
-  const gestureHandlerRootViewStyle = { flex: 1 };
-  const { darkMode, NavigationTheme } = useTheme();
+  const { token } = useAuthenticationHook();
+  const { darkMode: darkModeApp, NavigationTheme } = useTheme();
+  const { theme: themeApp } = useAppPreferences();
   const { appConnected } = useCheckNet();
-  const { getCopyValue } = useCopy();
+  const gestureHandlerRootViewStyle = { flex: 1 };
+  const isAuthenticated: boolean = !isEmpty(token);
+  const { checkIsReliableDevice } = useDeviceSecurity();
+  const [isReliableDevice, setIsReliableDevice] = useState<boolean>(false);
 
-  const theme = (): DefaultTheme => {
-    if (darkMode) {
-      return darkTheme;
+  const mode = (): DefaultTheme => {
+    if (darkModeApp) {
+      return darkMode(themeApp === 'default' ? 'theme0' : themeApp);
     }
-    return lightTheme;
+    return lightMode(themeApp === 'default' ? 'theme0' : themeApp);
   };
 
   const navigationRef = useNavigationContainerRef();
 
   useEffect(() => {
     initAppCheck(true);
-    let timeOut = setTimeout(() => {
+    const timeOut = setTimeout(() => {
       SplashScreen.hide();
     }, 1000);
     return () => {
@@ -52,7 +71,7 @@ const Application = () => {
   useEffect(() => {
     if (!appConnected.isConnected) {
       useToast.warning({
-        message: getCopyValue('common:messages.noConnection'),
+        message: 'common:messages.noConnection',
       });
     } else {
       useToast.close();
@@ -63,40 +82,97 @@ const Application = () => {
     Logger.log('handleJSErrorForErrorBoundary: ', { stackTrace, error });
   };
 
-  // useFlipper(navigationRef);
+  const checkDevice = useCallback(async () => {
+    const deviceReliable = await checkIsReliableDevice({});
+    setIsReliableDevice(deviceReliable);
+  }, []);
+
+  useLayoutEffect(() => {
+    checkDevice();
+  }, []);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={mode}>
       <SafeAreaViewProvider>
         <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
-          <ErrorBoundary
-            FallbackComponent={CustomFallback}
-            onError={handleJSErrorForErrorBoundary}
-          >
+          <ErrorBoundary FallbackComponent={CustomFallback} onError={handleJSErrorForErrorBoundary}>
             <GestureHandlerRootView style={gestureHandlerRootViewStyle}>
               <StatusBar />
-              <Modal />
               <Navigator
+                initialRouteName={'Startup'}
                 screenOptions={{
+                  gestureEnabled: true,
                   animationEnabled: true,
-                  headerShown: false,
                   freezeOnBlur: true,
+                  headerShown: false,
                   headerMode: 'screen',
                   headerBackTitleVisible: true,
-                  headerTitleAlign: 'center',
                   headerTransparent: true,
-                  headerStyle: {
-                    backgroundColor: 'red',
-                  },
-                  headerLeft: () => <BackButton />,
                   ...TransitionPresets.ScaleFromCenterAndroid,
                 }}
               >
-                <Screen name="Startup" component={Startup} />
-                <Screen name="Shared" component={SharedNavigator} />
+                <Screen key="Startup" name="Startup" component={Startup} />
+                <Screen
+                  key="ContactUs"
+                  name="ContactUs"
+                  component={ContactUs}
+                  options={{
+                    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                  }}
+                />
+                {isReliableDevice ? (
+                  <>
+                    {isAuthenticated ? ( // All accesible screens only if user is authenticated.
+                      <Screen
+                        key="Private"
+                        name="Private"
+                        component={PrivateNavigator}
+                        options={{
+                          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                        }}
+                      />
+                    ) : (
+                      <Screen key="Auth" name="Auth" component={AuthNavigator} />
+                    )}
+                    <Screen // All accesible screens even if user is authenticated or not, both cases.
+                      key="Shared"
+                      name="Shared"
+                      component={SharedNavigator}
+                      options={{
+                        cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
+                      }}
+                    />
+                    <Screen
+                      key="FieldEditor"
+                      name="FieldEditor"
+                      component={FieldEditor}
+                      options={{
+                        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                      }}
+                    />
+                    <Screen
+                      key="Info"
+                      name="Info"
+                      component={Info}
+                      options={{
+                        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                      }}
+                    />
+                  </>
+                ) : (
+                  <Screen
+                    key="Warning"
+                    name="Warning"
+                    component={Warning}
+                    options={{
+                      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                    }}
+                  />
+                )}
               </Navigator>
+              <Modal />
+              <Toast />
             </GestureHandlerRootView>
-            <Toast />
           </ErrorBoundary>
         </NavigationContainer>
       </SafeAreaViewProvider>

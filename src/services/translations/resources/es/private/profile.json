@@ -1,0 +1,56 @@
+{
+  "Profile": {
+    "title": "Perfil",
+    "description": "Consulta y actualiza tu información personal.",
+    "section1": {
+      "title": "$t(signup:SignUp.screenHeaders.step1.title)",
+      "fields": {
+        "username": "$t(signup:SignUp.form.fields.username.name)",
+        "phoneNumber": "$t(signup:SignUp.form.fields.phoneNumber.name)",
+        "email": "$t(signup:SignUp.form.fields.email.name)",
+        "noEmail": "Sin email, agrégalo ahora.",
+        "password": "$t(signup:SignUp.form.fields.password.name)",
+        "confirmPassword": "$t(signup:SignUp.form.fields.confirmPassword.name)"
+      }
+    },
+    "section2": {
+      "title": "$t(signup:SignUp.screenHeaders.step2.title)",
+      "fields": {
+        "fullName": "Nombre completo",
+        "firstName": "$t(signup:SignUp.form.fields.firstName.name)",
+        "lastName": "$t(signup:SignUp.form.fields.lastName.name)",
+        "dateOfBirth": "$t(signup:SignUp.form.fields.dateOfBirth.name)",
+        "genre": "$t(signup:SignUp.form.fields.genre.name)"
+      }
+    },
+    "section3": {
+      "title": "$t(signup:SignUp.screenHeaders.step3.title)",
+      "fields": {
+        "address": "Dirección",
+        "streetAddressLine1": "$t(signup:SignUp.form.fields.streetAddressLine1.name)",
+        "streetAddressLine2": "$t(signup:SignUp.form.fields.streetAddressLine2.name)",
+        "zipCode": "$t(signup:SignUp.form.fields.zipCode.name)",
+        "city": "$t(signup:SignUp.form.fields.city.name)",
+        "country": "$t(signup:SignUp.form.fields.country.name)"
+      }
+    },
+    "alerts": {
+      "deleteAccount": {
+        "title": "¿Estás seguro?",
+        "description": "Tu información personal será eliminada y no podrás recuperarla.",
+        "options": {
+          "confirmButton": "Confirmo",
+          "cancelButton": "Cancelar"
+        }
+      }
+    },
+    "buttons": {
+      "deleteAccount": "Eliminar cuenta"
+    },
+    "accountStatus": {
+      "basic": "Básico",
+      "pro": "Pro",
+      "premium": "Premium"
+    }
+  }
+}

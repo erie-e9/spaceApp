@@ -44,7 +44,8 @@
       "@utils": ["./src/utils/index.ts"],
       "@theme/*": ["./src/theme/*"],
       "@theme": ["./src/theme/index.ts"],
-      "types/*": ["./src/utils/@types/*"]
+      "@types/*": ["./src/utils/types/*"],
+      "@types": ["./src/utils/types/index.ts"]
     }
   },
   "extends": "@tsconfig/react-native/tsconfig.json",

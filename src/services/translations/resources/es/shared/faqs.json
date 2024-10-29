@@ -1,0 +1,42 @@
+{
+  "faq1": {
+    "question": "¿Cómo puedo restablecer mi contraseña?",
+    "answer": "Ve a la pantalla de inicio de sesión y haz clic en '$t(authentication:Authentication.forgotPassword)'. Sigue las instrucciones."
+  },
+  "faq2": {
+    "question": "¿Cómo actualizo mi información de perfil?",
+    "answer": "Ve a la sección de configuración de tu perfil para editar y guardar cambios."
+  },
+  "faq3": {
+    "question": "¿Cómo puedo contactar al soporte?",
+    "answer": "Visita la sección '$t(menu:helpCenter.support.title)' en la aplicación para enviar un correo o chatear en vivo."
+  },
+  "faq4": {
+    "question": "¿Qué hago si no recibo el correo de confirmación?",
+    "answer": "Revisa tu carpeta de spam. Si no está, solicita el envío nuevamente desde la pantalla de inicio de sesión."
+  },
+  "faq5": {
+    "question": "¿Cómo cambio mi dirección de correo electrónico?",
+    "answer": "Visita la configuración de perfil para actualizar tu correo. Verifica la nueva dirección."
+  },
+  "faq6": {
+    "question": "¿Qué hago si tengo problemas técnicos?",
+    "answer": "Reinicia la aplicación y asegúrate de tener la última versión. Si el problema persiste, contacta al soporte."
+  },
+  "faq7": {
+    "question": "¿Cómo elimino mi cuenta?",
+    "answer": "Ve a la configuración de perfil y selecciona 'Eliminar cuenta'. Esta acción es irreversible."
+  },
+  "faq8": {
+    "question": "¿Dónde están las políticas de privacidad y términos de uso?",
+    "answer": "Están en la sección 'Información' o 'Términos de uso' de la aplicación."
+  },
+  "faq9": {
+    "question": "¿Cómo se protegen mis datos personales?",
+    "answer": "Aplicamos medidas de seguridad robustas. Consulta nuestras políticas de privacidad para más detalles."
+  },
+  "faq10": {
+    "question": "¿Qué hago si encuentro un error?",
+    "answer": "Reporta el error a través de la sección '$t(menu:helpCenter.support.items.bugReporter.title)'."
+  }
+}

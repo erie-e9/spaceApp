@@ -1,0 +1,128 @@
+{
+  "appName": {
+    "full": "spaceApp"
+  },
+  "messages": {
+    "noConnection": "Keine Verbindung, erneuter Versuch.",
+    "features": {
+      "unavailable": {
+        "title": "Funktion nicht verfügbar",
+        "body": "Leider ist diese Funktion momentan nicht zugänglich. Bitte versuchen Sie es später erneut."
+      }
+    }
+  },
+  "errors": {
+    "boundaries": {
+      "fallbackScreen": {
+        "title": "Ups! Etwas ist schief gelaufen",
+        "description": "Entschuldigung, ein Fehler ist aufgetreten.",
+        "button": "Erneut versuchen",
+        "detailsLabel": "Fehlerdetails: ",
+        "detailsLabelDefaultMessage": "Dies ist kein Fehler, dieser Bildschirm ermöglicht es Ihnen, Fehler in der App zu erkennen und anzuzeigen und eine freundliche Nachricht anstelle des standardmäßigen weißen Bildschirms anzuzeigen."
+      }
+    }
+  },
+  "alerts": {
+    "permissions": {
+      "blocked": {
+        "title": "Berechtigung blockiert",
+        "description": "Bitte erteilen Sie die Berechtigung in den App-Einstellungen Ihres {{deviceName}}.",
+        "buttons": {
+          "buttonOne": "Gehen Sie zu Einstellungen"
+        }
+      },
+      "denied": {
+        "title": "Erlaubnis erforderlich",
+        "description": "Um fortzufahren, ist diese Berechtigung erforderlich. Bitte erteilen Sie sie.",
+        "buttons": {
+          "buttonOne": "Erneut anfordern"
+        }
+      },
+      "libraryOrCam": {
+        "title": "Profilfoto auswählen",
+        "description": "Möchten Sie lieber mit der Kamera oder der bibliothek fortfahren?",
+        "buttons": {
+          "buttonOne": "Kamera",
+          "buttonTwo": "Bibliothek"
+        }
+      }
+    },
+    "authRequired": {
+      "title": "Nur benutzer funktion",
+      "description": "Sie müssen sich anmelden, um diese funktion zu nutzen.",
+      "buttons": {
+        "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
+      }
+    }
+  },
+  "webviewer": {
+    "option1": "Teilen",
+    "option2": "Neu laden",
+    "option3": "Im Browser öffnen"
+  },
+  "calendar": {
+    "values": {
+      "today": "Heute",
+      "dayNames": {
+        "sunday": "Sonntag",
+        "monday": "Montag",
+        "tuesday": "Dienstag",
+        "wednesday": "Mittwoch",
+        "thursday": "Donnerstag",
+        "friday": "Freitag",
+        "saturday": "Samstag"
+      },
+      "dayNamesShort": {
+        "su": "So",
+        "mo": "Mo",
+        "tu": "Di",
+        "we": "Mi",
+        "th": "Do",
+        "fr": "Fr",
+        "sa": "Sa"
+      },
+      "monthNames": {
+        "january": "Januar",
+        "february": "Februar",
+        "march": "März",
+        "april": "April",
+        "may": "Mai",
+        "june": "Juni",
+        "july": "Juli",
+        "august": "August",
+        "september": "September",
+        "october": "Oktober",
+        "november": "November",
+        "december": "Dezember"
+      },
+      "monthNamesShort": {
+        "january": "Jan",
+        "february": "Feb",
+        "march": "Mär",
+        "april": "Apr",
+        "may": "Mai",
+        "june": "Jun",
+        "july": "Jul",
+        "august": "Aug",
+        "september": "Sep",
+        "october": "Okt",
+        "november": "Nov",
+        "december": "Dez"
+      }
+    }
+  },
+  "banners": {
+    "auth": {
+      "greeting": "Hallo",
+      "invitation": "Hey, komm zu uns, um ein besseres Erlebnis zu bekommen, erstelle ein neues Konto oder verwende dein eigenes.",
+      "buttons": {
+        "auth": "Auth"
+      }
+    }
+  },
+  "controllers": {
+    "inputs": {
+      "search": "Suchen {{seachPlaceholder}}"
+    }
+  }
+}

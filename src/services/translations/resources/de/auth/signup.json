@@ -1,0 +1,232 @@
+{
+  "SignUp": {
+    "screenHeaders": {
+      "step1": {
+        "title": "Kontodaten",
+        "description": "Geben Sie die folgenden Informationen ein, die zum Erstellen Ihres neuen Kontos erforderlich sind."
+      },
+      "step2": {
+        "title": "Persönliche details",
+        "description": "Wir benötigen einige persönliche details, um Sie zu identifizieren."
+      },
+      "step3": {
+        "title": "Standortdetails",
+        "description": "Bitte geben Sie Ihre Standortinformationen an."
+      },
+      "step4": {
+        "title": "Dokumente hochladen",
+        "description": "Bitte fügen Sie die erforderlichen Dateien bei."
+      },
+      "step5": {
+        "title": "Kontosicherheit",
+        "description": "Richten Sie Ihre Sicherheitseinstellungen ein."
+      },
+      "step6": {
+        "title": "Soziale Medien verknüpfen",
+        "description": "Optional können Sie Ihre Social-Media-Konten verknüpfen."
+      }
+    },
+    "form": {
+      "fields": {
+        "username": {
+          "name": "Nutzername",
+          "validations": {
+            "required": "Benutzername ist erforderlich.",
+            "matches": "Zahlen und Unterstriche ein.",
+            "min": "Geben Sie mindestens 3 Zeichen ein.",
+            "max": "Darf 30 Zeichen nicht überschreiten."
+          }
+        },
+        "phoneNumber": {
+          "name": "$t(authentication:Authentication.form.fields.phoneNumber.name)",
+          "validations": {
+            "required": "$t(authentication:Authentication.form.fields.phoneNumber.validations.required)",
+            "min": "$t(authentication:Authentication.form.fields.phoneNumber.validations.min)",
+            "max": "$t(authentication:Authentication.form.fields.phoneNumber.validations.max)",
+            "matches": "$t(authentication:Authentication.form.fields.phoneNumber.validations.matches)"
+          }
+        },
+        "email": {
+          "name": "E-mail-adresse",
+          "validations": {
+            "matches": "Bitte geben Sie eine gültige e-mail-adresse ein."
+          }
+        },
+        "password": {
+          "name": "$t(authentication:Authentication.form.fields.password.name)",
+          "validations": {
+            "required": "$t(authentication:Authentication.form.fields.password.validations.required)",
+            "min": "$t(authentication:Authentication.form.fields.password.validations.min)",
+            "max": "$t(authentication:Authentication.form.fields.password.validations.max)",
+            "status": {
+              "weak": "schwach",
+              "medium": "mittel",
+              "good": "gutes",
+              "strong": "stark"
+            }
+          }
+        },
+        "confirmPassword": {
+          "name": "Kennwort erneut eingeben",
+          "validations": {
+            "required": "Bitte geben Sie Ihr passwort erneut ein.",
+            "matches": "Passwörter stimmen nicht überein."
+          }
+        },
+        "currentPassword": {
+          "name": "Aktuelles passwort",
+          "validations": {
+            "required": "Dafür wird Ihr aktuelles passwort benötigt.",
+            "min": "Sollte mindestens 8 Zeichen lang sein.",
+            "max": "Passwort darf nicht länger als 127 Zeichen sein."
+          }
+        },
+        "newPassword": {
+          "name": "Neues passwort",
+          "validations": {
+            "required": "Geben Sie Ihr neues passwort ein.",
+            "min": "Sollte mindestens 8 Zeichen lang sein.",
+            "max": "Passwort darf nicht länger als 127 Zeichen sein.",
+            "status": {
+              "weak": "$t(signup:SignUp.form.fields.password.validations.status.weak)",
+              "medium": "$t(signup:SignUp.form.fields.password.validations.status.medium)",
+              "good": "$t(signup:SignUp.form.fields.password.validations.status.good)",
+              "strong": "$t(signup:SignUp.form.fields.password.validations.status.strong)"
+            }
+          }
+        },
+        "firstName": {
+          "name": "Vorname",
+          "validations": {
+            "required": "Vorname ist erforderlich.",
+            "matches": "Bitte geben sie ihren vornamen nur mit buchstaben ein.",
+            "min": "Der vorname sollte mindestens 2 zeichen haben.",
+            "max": "Der vorname sollte nicht mehr als 50 zeichen haben."
+          }
+        },
+        "lastName": {
+          "name": "Nachname",
+          "validations": {
+            "required": "Nachname ist erforderlich.",
+            "matches": "Bitte geben Sie einen nachnamen nur mit Buchstaben ein.",
+            "min": "Der Nachname sollte mindestens 3 Zeichen haben.",
+            "max": "Der Nachname sollte nicht mehr als 50 Zeichen haben."
+          }
+        },
+        "dateOfBirth": {
+          "name": "Geburtsdatum",
+          "placeholder": "Wählen Sie Ihr Geburtsdatum",
+          "validations": {
+            "required": "Geburtsdatum ist erforderlich.",
+            "matches": "Bitte geben Sie ein gültiges Geburtsdatum ein."
+          },
+          "messages": {
+            "blockedDate": "{{blockedDate}} ist blockiert, weil {{blockedReason}}"
+          },
+          "labels": {
+            "day": "Tag",
+            "month": "Monat",
+            "year": "Jahr",
+            "submit": "Einreichen"
+          }
+        },
+        "genre": {
+          "name": "Geschlecht",
+          "placeholder": "Wählen Sie Ihr Geschlecht",
+          "validations": {
+            "required": "Geschlecht ist erforderlich."
+          },
+          "options": {
+            "man": "Mann",
+            "woman": "Frau",
+            "trans": "Trans",
+            "noBinary": "Nicht binär",
+            "undetermined": "Unbestimmt"
+          }
+        },
+        "streetAddressLine1": {
+          "name": "Straße und Hausnummer",
+          "validations": {
+            "required": "Straße und Hausnummer sind erforderlich.",
+            "matches": "Bitte geben Sie eine gültige Adresse ein.",
+            "min": "Die Adresse sollte mindestens 10 Zeichen haben.",
+            "max": "Die Adresse sollte nicht mehr als 100 Zeichen haben."
+          }
+        },
+        "streetAddressLine2": {
+          "name": "Adresszusatz",
+          "validations": {
+            "matches": "Bitte geben Sie eine gültige Adresse ein.",
+            "min": "Die Adresse sollte mindestens 10 Zeichen haben.",
+            "max": "Die Adresse sollte nicht mehr als 100 Zeichen haben."
+          }
+        },
+        "zipCode": {
+          "name": "Postleitzahl",
+          "validations": {
+            "required": "Postleitzahl ist erforderlich.",
+            "matches": "Bitte geben Sie eine gültige Postleitzahl ein.",
+            "min": "Die Postleitzahl sollte mindestens 5 Zeichen haben.",
+            "max": "Die Postleitzahl sollte nicht mehr als 5 Zeichen haben."
+          }
+        },
+        "city": {
+          "name": "Stadt",
+          "validations": {
+            "required": "Stadt ist erforderlich.",
+            "matches": "Bitte geben Sie einen gültigen Stadtnamen ein.",
+            "min": "Der Stadtname sollte mindestens 3 Zeichen haben.",
+            "max": "Der Stadtname sollte nicht mehr als 50 Zeichen haben."
+          }
+        },
+        "country": {
+          "name": "Land",
+          "validations": {
+            "required": "Land ist erforderlich.",
+            "matches": "Bitte geben Sie einen gültigen Ländernamen ein.",
+            "min": "Der Ländername sollte mindestens 3 Zeichen haben.",
+            "max": "Der Ländername sollte nicht mehr als 50 Zeichen haben."
+          }
+        },
+        "photo": {
+          "name": "Foto",
+          "validations": {
+            "required": "Bitte laden Sie ein foto für Ihr profil hoch."
+          }
+        },
+        "genericValidations": {
+          "string": {
+            "required": "{{field}} ist erforderlich.",
+            "matches": "Ungültiges Format, bitte versuchen Sie es erneut.",
+            "min": "Bitte geben Sie mindestens {{min}} Zeichen ein.",
+            "max": "Bitte geben Sie nicht mehr als {{max}} Zeichen ein."
+          }
+        }
+      },
+      "termsAndPolicy": {
+        "text1": "Indem Sie auf $t(signup:SignUp.submitButtons.finishText) klicken, stimmen Sie unseren",
+        "text2": "und bestätigen Sie, dass Sie unsere"
+      }
+    },
+    "submitButtons": {
+      "continueText": "Weiter",
+      "previousText": "Zurück",
+      "finishText": "Registrieren"
+    },
+    "alerts": {
+      "signUpSuccess": {
+        "title": "Anmeldung erfolgreich",
+        "toastTitle": "Willkommen, Ihre anmeldung ist abgeschlossen.",
+        "description": "Ihre anmeldung ist abgeschlossen."
+      },
+      "signUpPending": {
+        "title": "Registrierung ausstehend",
+        "description": "Sie haben eine ausstehende anmeldung mit dieser telefonnummer. Möchten Sie diese fortsetzen?",
+        "buttons": {
+          "buttonOne": "Von vorne beginnen",
+          "buttonTwo": "Fortsetzen"
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
   "title": "Bienvenue sur",
   "subtitle": "Le $t(common:appName.full) app",
-  "description": "Vous souhaitez découvrir quelques fonctionnalités? Cliquez simplement sur l'un des quatre boutons en bas de l'écran. Le premier permet d'appeler une alerte avec un message. La seconde permet d'accéder à un écran d'avertissement. Le troisième vous aidera à changer la couleur du thème. Et le quatrième permet de changer la langue."
+  "description": "Une application mobile conçue pour les passionnés d'astronomie et d'espace. Avec $t(common:appName.full), vous pouvez découvrir l'immensité de l'univers depuis la paume de votre main. Explorez des planètes, des étoiles, des galaxies et des constellations avec des informations détaillées et des visualisations interactives. L'application offre des nouvelles à jour sur les événements astronomiques, les missions spatiales et les découvertes scientifiques. De plus, elle comprend une section d'apprentissage avec des articles éducatifs, des vidéos et des quiz pour tester vos connaissances. Que vous soyez un astronome amateur ou simplement curieux du cosmos, $t(common:appName.full) est votre portail pour plonger dans les mystères de l'espace."
 }

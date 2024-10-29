@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react';
-import NetInfo, {
-  NetInfoState,
-  NetInfoStateType,
-} from '@react-native-community/netinfo';
+import NetInfo, { NetInfoState, NetInfoStateType } from '@react-native-community/netinfo';
 
 interface CheckNetProps {
   appConnected: Partial<NetInfoState>;
@@ -16,12 +13,12 @@ export const useCheckNet = (): CheckNetProps => {
   });
 
   useEffect(() => {
-    const subscription = NetInfo.addEventListener(change => {
-      setAppConnected(change);
+    const subscription = NetInfo.addEventListener((state) => {
+      setAppConnected(state);
     });
 
     return () => {
-      subscription();
+      subscription && subscription();
     };
   }, []);
 

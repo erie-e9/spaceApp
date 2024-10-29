@@ -8,6 +8,7 @@ import {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
 import { StyledAnimatedContainer } from './styles';
 
 interface Props {
@@ -73,7 +74,7 @@ export const ScaleAnimation: React.FC<Props> = ({
   }, [trigger, triggerAnimation, initialValue, scaleValue]);
 
   return (
-    <StyledAnimatedContainer testID={testID} style={animatedStyle}>
+    <StyledAnimatedContainer {...testProperties(testID)} style={animatedStyle}>
       {children}
     </StyledAnimatedContainer>
   );

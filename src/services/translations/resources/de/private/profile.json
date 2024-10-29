@@ -1,0 +1,56 @@
+{
+  "Profile": {
+    "title": "Profil",
+    "description": "Sehen und aktualisieren Sie Ihre persönlichen Informationen.",
+    "section1": {
+      "title": "$t(signup:SignUp.screenHeaders.step1.title)",
+      "fields": {
+        "username": "$t(signup:SignUp.form.fields.username.name)",
+        "phoneNumber": "$t(signup:SignUp.form.fields.phoneNumber.name)",
+        "email": "$t(signup:SignUp.form.fields.email.name)",
+        "noEmail": "Keine E-Mail angegeben. Fügen Sie jetzt Ihre E-Mail hinzu.",
+        "password": "$t(signup:SignUp.form.fields.password.name)",
+        "confirmPassword": "$t(signup:SignUp.form.fields.confirmPassword.name)"
+      }
+    },
+    "section2": {
+      "title": "$t(signup:SignUp.screenHeaders.step2.title)",
+      "fields": {
+        "fullName": "Vollständiger Name",
+        "firstName": "$t(signup:SignUp.form.fields.firstName.name)",
+        "lastName": "$t(signup:SignUp.form.fields.lastName.name)",
+        "dateOfBirth": "$t(signup:SignUp.form.fields.dateOfBirth.name)",
+        "genre": "$t(signup:SignUp.form.fields.genre.name)"
+      }
+    },
+    "section3": {
+      "title": "$t(signup:SignUp.screenHeaders.step3.title)",
+      "fields": {
+        "address": "Adresse",
+        "streetAddressLine1": "$t(signup:SignUp.form.fields.streetAddressLine1.name)",
+        "streetAddressLine2": "$t(signup:SignUp.form.fields.streetAddressLine2.name)",
+        "zipCode": "$t(signup:SignUp.form.fields.zipCode.name)",
+        "city": "$t(signup:SignUp.form.fields.city.name)",
+        "country": "$t(signup:SignUp.form.fields.country.name)"
+      }
+    },
+    "alerts": {
+      "deleteAccount": {
+        "title": "Bist du sicher?",
+        "description": "Ihre persönlichen Informationen werden gelöscht und Sie können sie nicht wiederherstellen.",
+        "options": {
+          "confirmButton": "Bestätige",
+          "cancelButton": "Abbrechen"
+        }
+      }
+    },
+    "buttons": {
+      "deleteAccount": "Konto löschen"
+    },
+    "accountStatus": {
+      "basic": "Basis",
+      "pro": "Pro",
+      "premium": "Premium"
+    }
+  }
+}

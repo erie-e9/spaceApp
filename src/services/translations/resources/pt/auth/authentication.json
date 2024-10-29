@@ -1,0 +1,121 @@
+{
+  "Authentication": {
+    "screenHeaders": {
+      "newLogin": {
+        "title": "Login",
+        "description": "Faça login para desfrutar de uma experiência mais personalizada."
+      },
+      "logged": {
+        "title": "Bem-vind{{genre}} de volta {{username}}!",
+        "description": "Estamos felizes em vê-lo novamente."
+      },
+      "loggediometrics": {
+        "title": "Bem-vindo de volta {{username}}!",
+        "description": "Use sua impressão digital para fazer login."
+      },
+      "accountRecovery": {
+        "title": "Recuperação de conta",
+        "description": "Esqueceu sua senha? Não tem problema. Vamos tentar ajudá-lo de todas as maneiras."
+      },
+      "signUp": {
+        "title": "Cadastro",
+        "description": "Vamos criar sua nova conta. Por favor, forneça os seguintes dados para começar."
+      }
+    },
+    "form": {
+      "fields": {
+        "phoneNumberOrEmail": {
+          "name": "Número de telefone ou email",
+          "validations": {
+            "required": "Número de telefone ou email é necessário.",
+            "min": "Por favor, insira pelo menos 10 caracteres.",
+            "matches": "Por favor, insira um número de telefone ou email válido."
+          }
+        },
+        "phoneNumber": {
+          "name": "Número de telefone",
+          "validations": {
+            "required": "Número de telefone é necessário.",
+            "min": "Por favor, insira pelo menos 10 caracteres.",
+            "max": "Por favor, insira no máximo 12 caracteres.",
+            "matches": "Por favor, insira um número de telefone válido."
+          }
+        },
+        "email": {
+          "name": "Email",
+          "validations": {
+            "matches": "Deve ser um email válido."
+          }
+        },
+        "password": {
+          "name": "Senha",
+          "validations": {
+            "required": "A senha é necessária.",
+            "min": "Deve ter pelo menos 8 caracteres.",
+            "max": "A senha não deve exceder 127 caracteres."
+          }
+        },
+        "genericValidations": {
+          "string": {
+            "required": "{{field}} é necessário.",
+            "matches": "Formato inválido, por favor, tente novamente.",
+            "min": "Por favor, insira pelo menos {{min}} caracteres.",
+            "max": "Por favor, insira no máximo {{max}} caracteres."
+          }
+        }
+      },
+      "submitButtons": {
+        "logInText": "Login",
+        "signUpText": "Cadastro",
+        "forgotPasswordText": "Enviar código",
+        "sendCodeText": "Enviar código",
+        "logOutText": "Sair",
+        "google": {
+          "logInText": "Login com Google",
+          "signUpText": "Cadastro com Google"
+        }
+      }
+    },
+    "alreadyHaveAccount": "Já possui uma conta?",
+    "noAccount": "Sem conta? Crie uma agora.",
+    "forgotPassword": "Esqueceu a senha?",
+    "rememberedPassword": "Você lembrou da sua senha?",
+    "logInWith": "Entrar com",
+    "signUpWith": "Cadastre-se com",
+    "usePassword": "Use sua senha",
+    "isNotYourAccount": "Não é sua conta?",
+    "useAnotherAccount": "Faça login com outra",
+    "biometrics": {
+      "buttons": {
+        "useBiometrics": "Usar biometria",
+        "useFingerprint": "huella digital",
+        "useFaceIDBiometrics": "Face ID"
+      },
+      "logIn": {
+        "promptMessage": "Use sua huella digital para fazer login."
+      }
+    },
+    "otp": {
+      "alert": {
+        "title": "Digite o código",
+        "description": "Enviamos um código por SMS ou email. Por favor, verifique e insira-o.",
+        "buttons": {
+          "primaryButton": "Reenviar código"
+        }
+      }
+    },
+    "alerts": {
+      "useAnotherAccount": {
+        "title": "Use outra conta",
+        "description": "Tem certeza de que deseja alterar a conta?",
+        "buttons": {
+          "buttonOne": "Sim, tenho certeza"
+        }
+      },
+      "authSocialMedia": {
+        "signInSuccess": "Login efetuado com sucesso com {{provider}}.",
+        "signInFail": "Algo deu errado ao tentar fazer login com {{provider}}."
+      }
+    }
+  }
+}

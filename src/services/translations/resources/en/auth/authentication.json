@@ -1,0 +1,129 @@
+{
+  "Authentication": {
+    "screenHeaders": {
+      "newLogin": {
+        "title": "Log in",
+        "description": "To enjoy a more personalized experience."
+      },
+      "loggedBiometrics": {
+        "title": "Welcome back {{username}}!",
+        "description": "Use your fingerprint to log in."
+      },
+      "logged": {
+        "title": "Welcome back {{username}}!",
+        "description": "We're thrilled to see you again.",
+        "descriptionBiometrics": "Use your fingerprint to log in."
+      },
+      "accountRecovery": {
+        "title": "Account recovery",
+        "description": "Forgot your password? No worries, we'll help you recover it."
+      },
+      "signUp": {
+        "title": "Sign up",
+        "description": "Let's create your new account. Please provide your information to get started."
+      }
+    },
+    "form": {
+      "fields": {
+        "phoneNumberOrEmail": {
+          "name": "Phone number or email",
+          "validations": {
+            "required": "Phone number or email is necessary.",
+            "min": "Please enter at least 10 characters.",
+            "matches": "Please enter a valid phone number or email."
+          }
+        },
+        "phoneNumber": {
+          "name": "Phone number",
+          "validations": {
+            "required": "Phone number is necessary.",
+            "min": "Please enter at least 10 characters.",
+            "max": "Please enter no more than 12 characters.",
+            "matches": "Please enter a valid phone number."
+          }
+        },
+        "email": {
+          "name": "Email",
+          "validations": {
+            "matches": "Please enter a valid email address."
+          }
+        },
+        "password": {
+          "name": "Password",
+          "validations": {
+            "required": "Password is necessary.",
+            "min": "Should have at least 8 characters.",
+            "max": "Password should not exceed 127 characters.",
+            "passwordStrength": "Password strength",
+            "status": {
+              "weak": "weak",
+              "medium": "medium",
+              "good": "good",
+              "strong": "strong"
+            }
+          }
+        },
+        "genericValidations": {
+          "string": {
+            "required": "{{field}} is necessary.",
+            "matches": "Invalid format. Please try again.",
+            "min": "Please enter at least {{min}} characters.",
+            "max": "Please enter no more than {{max}} characters."
+          }
+        }
+      },
+      "submitButtons": {
+        "logInText": "Log in",
+        "signUpText": "Sign up",
+        "forgotPasswordText": "Send code",
+        "sendCodeText": "Send code",
+        "logOutText": "Log out",
+        "google": {
+          "logInText": "Log in with Google",
+          "signUpText": "Sign up with Google"
+        }
+      }
+    },
+    "alreadyHaveAccount": "Already have an account?",
+    "noAccount": "No account? Create one now.",
+    "forgotPassword": "Forgot password?",
+    "rememberedPassword": "Did you remember your password?",
+    "logInWith": "Log in with",
+    "signUpWith": "Sign up with",
+    "usePassword": "Use your password instead",
+    "isNotYourAccount": "Is not your account?",
+    "useAnotherAccount": "Log in with another one",
+    "biometrics": {
+      "buttons": {
+        "useBiometrics": "Use biometrics",
+        "useFingerprint": "Use fingerprint",
+        "useFaceIDBiometrics": "Use Face ID"
+      },
+      "logIn": {
+        "promptMessage": "Use your fingerprint to log in."
+      }
+    },
+    "otp": {
+      "alert": {
+        "title": "Enter code",
+        "description": "We've sent a code via SMS or email. Please check and enter it.",
+        "buttons": {
+          "primaryButton": "Resend code"
+        }
+      }
+    },
+    "alerts": {
+      "useAnotherAccount": {
+        "title": "Use another account",
+        "description": "Are you sure you want to change account?",
+        "buttons": {
+          "buttonOne": "Yes, I'm sure"
+        }
+      },
+      "authSocialMedia": {
+        "signInSuccess": "Sign in successful with {{provider}}.",
+        "signInFail": "Something went wrong trying to sign in with {{provider}}."
+      }
+    }
+  }
+}

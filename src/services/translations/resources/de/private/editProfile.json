@@ -1,0 +1,12 @@
+{
+  "editProfile": {
+    "description": "Ändern Sie den Wert, den Sie bei Ihrer Anmeldung definiert haben.",
+    "alerts": {
+      "update": "{{field}} wurde erfolgreich aktualisiert"
+    },
+    "buttons": {
+      "update": "Aktualisieren",
+      "changePassword": "Kennwort ändern"
+    }
+  }
+}

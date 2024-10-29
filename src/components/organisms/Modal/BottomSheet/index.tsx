@@ -1,12 +1,5 @@
-import React, {
-  memo,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useMemo,
-} from 'react';
+import React, { Fragment, memo, useCallback, useEffect, useImperativeHandle, useMemo } from 'react';
 import { ActivityIndicator } from 'react-native';
-import { useDispatch } from 'react-redux';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   clamp,
@@ -16,10 +9,11 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { ModalPayload } from '@slices/types/modal';
-import { screen_height } from '@utils/functions';
-import { useLanguage, useNativeActions } from '@hooks';
-import { hideModal } from '@slices/shared/modal';
+import { type ModalPayload } from '@slices/types/modal';
+import { type Language } from '@slices/types/appPreferences';
+import { screen_height, testProperties } from '@utils/functions';
+import { changeLanguage as changeLanguageApp } from '@services';
+import { getDeviceLanguage, useAppPreferences, useNativeActions, useModal } from '@hooks';
 import { CloseButton } from '@components/molecules';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
 import ModalItem from '@components/organisms/Modal/ModalItem';
@@ -52,12 +46,13 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       list,
       expandible,
       loading,
-      drawerOptions,
+      lockBackdrop,
+      dropdownOptions,
     },
     ref,
   ) => {
-    const dispatch = useDispatch();
-    const { switchLanguage } = useLanguage();
+    const { hideModal } = useModal();
+    const { switchLanguage } = useAppPreferences();
     const { useNativeBackButton } = useNativeActions();
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
@@ -75,15 +70,12 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
 
     const isActive = useCallback(() => active.value, []);
 
-    useImperativeHandle(ref, () => ({ scrollTo, isActive }), [
-      scrollTo,
-      isActive,
-    ]);
+    useImperativeHandle(ref, () => ({ scrollTo, isActive }), [scrollTo, isActive]);
 
     const handleClose = useCallback(() => {
       scrollTo(100);
       setTimeout(() => {
-        dispatch(hideModal());
+        hideModal();
       }, 500);
     }, [translateY.value]);
 
@@ -92,7 +84,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       .onStart(() => {
         context.value = { y: translateY.value };
       })
-      .onUpdate(event => {
+      .onUpdate((event) => {
         if (list || expandible) {
           translateY.value = event.translationY + context.value.y;
           translateY.value = clamp(translateY.value, MAX_TRANSLATE_Y, 0);
@@ -107,11 +99,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
       });
 
     const bottomSheetStyle = useAnimatedStyle(() => ({
-      borderRadius: interpolate(
-        translateY.value,
-        [MAX_TRANSLATE_Y + 50, MAX_TRANSLATE_Y],
-        [25, 5],
-      ),
+      borderRadius: interpolate(translateY.value, [MAX_TRANSLATE_Y + 50, MAX_TRANSLATE_Y], [25, 5]),
       transform: [{ translateY: translateY.value }],
     }));
 
@@ -119,17 +107,15 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
 
     const bottomSheetSizeHandler = useCallback(() => {
       if (!active.value) {
-        scrollTo(
-          drawerOptions?.height ? -drawerOptions?.height : -screen_height / 3,
-        );
+        scrollTo(dropdownOptions?.height ? -dropdownOptions?.height : -screen_height / 3);
       }
       if (active.value && translateY.value < -screen_height / 3) {
-        scrollTo(-screen_height / 3);
+        scrollTo(-(dropdownOptions?.height ? dropdownOptions?.height : screen_height / 3));
       }
       if (list && active.value && translateY.value >= -screen_height / 3) {
         scrollTo(MAX_TRANSLATE_Y);
       }
-    }, [active.value, drawerOptions?.height, list, scrollTo, translateY.value]);
+    }, [active.value, dropdownOptions?.height, list, scrollTo, translateY.value]);
 
     useEffect(() => {
       if (isVisible) {
@@ -138,19 +124,29 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
     }, [isVisible]);
 
     const onPressHandler = useCallback(
-      ({ item }: any) => {
-        if (list?.onPressItem) list.onPressItem();
-        if (list?.predefinedList === 'languages') switchLanguage(item);
-        handleClose();
+      async ({ item }: any) => {
+        if (list?.onPressItem) list.onPressItem(item);
+        if (list?.predefinedList === 'languages') {
+          if (item !== null) {
+            switchLanguage(item);
+          } else {
+            const deviceLanguange = await getDeviceLanguage();
+            switchLanguage(null as Language);
+            changeLanguageApp(deviceLanguange);
+          }
+        }
+        if (dropdownOptions?.autoCloseOnSelect) {
+          handleClose();
+        }
       },
-      [handleClose, list, switchLanguage],
+      [handleClose, list, switchLanguage, dropdownOptions?.autoCloseOnSelect],
     );
 
     return (
-      <>
-        <AnimatedBackground onTouch={handleClose} isActive={!active.value} />
+      <Fragment>
+        <AnimatedBackground onTouch={lockBackdrop ? undefined : handleClose} isActive />
         <GestureDetector gesture={gesture}>
-          <AnimatedBottomSheet testID={testID} style={[bottomSheetStyle]}>
+          <AnimatedBottomSheet {...testProperties(testID)} style={[bottomSheetStyle]}>
             <CloseBottomSheetButton onPress={bottomSheetSizeHandler}>
               <PanGestureHandlerView />
             </CloseBottomSheetButton>
@@ -160,31 +156,30 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
               </CloseIconContainer>
             )}
             <ModalHeader title={title} description={description || ''} />
-            {body && (
-              <BodyContainer drawerOptions={drawerOptions}>
-                {body}
-              </BodyContainer>
-            )}
+            {body && <BodyContainer dropdownOptions={dropdownOptions}>{body}</BodyContainer>}
             {loading ? (
               <ActivityIndicator size={25} />
             ) : (
-              list && (
-                <StyledList
-                  data={items || []}
-                  numColumns={drawerOptions ? drawerOptions.numColumns : 1}
-                  renderItem={({ item }) => (
-                    <ModalItem
-                      item={item}
-                      predefinedList={list.predefinedList}
-                      onPress={() => onPressHandler({ item })}
-                    />
-                  )}
-                />
+              list &&
+              items && (
+                <BodyContainer dropdownOptions={dropdownOptions}>
+                  <StyledList
+                    data={items || []}
+                    numColumns={dropdownOptions ? dropdownOptions.numColumns : 1}
+                    renderItem={({ item }) => (
+                      <ModalItem
+                        item={item}
+                        predefinedList={list.predefinedList || ''}
+                        onPress={() => onPressHandler({ item })}
+                      />
+                    )}
+                  />
+                </BodyContainer>
               )
             )}
           </AnimatedBottomSheet>
         </GestureDetector>
-      </>
+      </Fragment>
     );
   },
 );

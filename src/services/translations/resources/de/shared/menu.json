@@ -1,0 +1,169 @@
+{
+  "Menu": {
+    "screenTitle": "Einstellungen",
+    "description": "Verwalten sie einstellungen, die ihr erlebnis verbessern und personalisieren.",
+    "settings": {
+      "items": {
+        "appPreferences": {
+          "title": "Einstellungen",
+          "items": {
+            "changeAppearance": {
+              "title": "Aussehen",
+              "description": "Lege einen vordefinierten Modus und ein Design für die gesamte App fest.",
+              "modes": {
+                "title": "Modus",
+                "lightMode": "Hell",
+                "darkMode": "Dunkel",
+                "systemMode": "Vom {{osDevice}}",
+                "sunflowerMode": "Sonnenblume"
+              },
+              "themes": {
+                "title": "Thema"
+              }
+            },
+            "changeLanguage": {
+              "title": "Sprache",
+              "description": "Wählen Sie Ihre bevorzugte Sprache.",
+              "languages": {
+                "fromPhoneDevice": "Vom {{osDevice}}",
+                "english": "Englisch",
+                "spanish": "Spanisch",
+                "french": "Französisch",
+                "portuguese": "Portugiesisch",
+                "german": "Deutsch"
+              }
+            },
+            "notifications": {
+              "title": "Benachrichtigungen",
+              "description": "Passe deine Benachrichtigungen an, wie du magst"
+            }
+          }
+        },
+        "security": {
+          "title": "Sicherheit",
+          "items": {
+            "authentication": {
+              "title": "Authentifizierung",
+              "items": {
+                "changePassword": {
+                  "title": "Passwort",
+                  "description": "Ändern Sie Ihr Passwort."
+                },
+                "useFingerprint": {
+                  "title": "Fingerabdruck",
+                  "description": "Schalte den Fingerabdruck für Authentifizierung und Bestätigung ein oder aus",
+                  "prompTitleEnableBiometrics": "Aktivieren Sie die {{biometryType}}"
+                }
+              }
+            },
+            "info": {
+              "title": "Information",
+              "items": {
+                "safetyTips": {
+                  "title": "Sicherheitstipps",
+                  "description": "Du kannst die Sicherheit mit der App verbessern."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "menu": {
+      "items": {
+        "untrustedDevice": {
+          "title": "Sicherheitsalarm",
+          "description": "Dieser Bildschirm erscheint, wenn Sie die App auf einem nicht autorisierten Gerät verwenden."
+        },
+        "errorCatcher": {
+          "title": "Fehlerbildschirm",
+          "description": "Zeigt einen freundlichen Bildschirm, wenn ein Fehler auftritt."
+        },
+        "feedbackAndSharing": {
+          "title": "Feedback and sharing",
+          "description": "Denken Sie, wir können etwas verbessern oder möchten Sie diese Anwendung teilen?"
+        }
+      }
+    }
+  },
+  "helpCenter": {
+    "screenTitle": "Hilfezentrum",
+    "description": "Holen Sie sich weitere Informationen, kontaktieren Sie uns oder finden Sie Antworten auf Ihre Fragen.",
+    "info": {
+      "title": "Information",
+      "items": {
+        "aboutUs": {
+          "title": "Über uns",
+          "description": "Unsere Geschichte und Werte.",
+          "content": "Bei $t(common:appName.full) sind wir mehr als nur ein Unternehmen; wir sind ein engagiertes Team von Individuen, die zusammenarbeiten, um einen Unterschied zu machen. Unsere Reise begann mit einer einfachen Idee - etwas Außergewöhnliches zu schaffen, das der Welt einen Mehrwert bietet. Diese Idee hat sich seitdem zu einer Mission entwickelt, die alles leitet, was wir tun. Wir sind von Innovation getrieben, und unsere Leidenschaft dafür treibt unsere täglichen Bemühungen an. Wir sind hier, um den Status quo herauszufordern und Grenzen zu überschreiten, um das Unmögliche möglich zu machen. Mit Kreativität im Kern verwandeln wir Konzepte in Realität und entwickeln Lösungen, die wichtig sind. Unser Engagement für Exzellenz ist unerschütterlich. Wir sind stolz auf unsere Arbeit und stellen sicher, dass jedes Produkt und jede Dienstleistung, die wir anbieten, den höchsten Standards entspricht. Unsere Kunden stehen im Mittelpunkt all dessen, was wir tun, und ihre Zufriedenheit ist unser ultimatives Ziel. Wir schätzen Vielfalt, weil wir wissen, dass die besten Ideen aus unterschiedlichen Perspektiven kommen. Unser Team ist eine Mischung aus Talenten, die jeweils einzigartige Fähigkeiten und Erfahrungen einbringen. Gemeinsam sind wir unaufhaltsam. Begleiten Sie uns auf unserer Reise, während wir weiterhin innovativ sind, Erwartungen übertreffen und einen bleibenden Eindruck hinterlassen. Gemeinsam können wir eine hellere Zukunft schaffen."
+        },
+        "termsOfUse": {
+          "title": "Nutzungsbedingungen",
+          "description": "Lesen Sie unsere Nutzungsbedingungen.",
+          "content": "Diese Nutzungsbedingungen regeln Ihre Nutzung dieser mobilen App und aller von ihr bereitgestellten Dienstleistungen. Durch die Nutzung dieser mobilen App akzeptieren Sie diese Nutzungsbedingungen in vollem Umfang. Wenn Sie mit einem Teil dieser Nutzungsbedingungen nicht einverstanden sind, dürfen Sie diese mobile App nicht verwenden. \nLizenz zur Nutzung der Website \nSofern nicht anders angegeben, besitzen wir oder unsere Lizenzgeber die geistigen Eigentumsrechte an der mobilen App und dem Material auf der mobilen App. Vorbehaltlich der nachstehenden Lizenz sind alle diese geistigen Eigentumsrechte vorbehalten. \nSie dürfen Seiten von der mobilen App für Ihren eigenen persönlichen Gebrauch anzeigen, nur für Caching-Zwecke herunterladen und ausdrucken, vorbehaltlich der unten und an anderer Stelle in diesen Nutzungsbedingungen festgelegten Einschränkungen. \nSie dürfen nicht: \nMaterial von dieser mobilen App erneut veröffentlichen. Material von der mobilen App verkaufen, vermieten oder unterlizenzieren. Material von der mobilen App in der Öffentlichkeit zeigen. Material auf dieser mobilen App für kommerzielle Zwecke reproduzieren, duplizieren, kopieren oder anderweitig verwerten. Material auf der mobilen App bearbeiten oder anderweitig modifizieren. \nHaftungsbeschränkungen \nDie Informationen auf dieser mobilen App werden kostenlos bereitgestellt, und Sie erkennen an, dass es unvernünftig wäre, uns in Bezug auf diese mobile App und die Informationen auf dieser mobilen App haftbar zu machen. Obwohl wir bestrebt sind, die Informationen korrekt zu halten, garantieren wir weder ihre Vollständigkeit noch ihre Genauigkeit; wir verpflichten uns auch nicht, die mobile App ständig verfügbar zu halten oder das Material auf der mobilen App auf dem neuesten Stand zu halten. \nSoweit gesetzlich zulässig, schließen wir alle Darstellungen, Garantien und Bedingungen aus (einschließlich, ohne Einschränkung, der durch das Gesetz implizierten Bedingungen von zufriedenstellender Qualität, Eignung für den Zweck und der Anwendung angemessener Sorgfalt und Fertigkeit). \nÄnderungen \nWir können diese Nutzungsbedingungen von Zeit zu Zeit überarbeiten. Bitte überprüfen Sie diese Seite regelmäßig, um sicherzustellen, dass Sie mit der aktuellen Version vertraut sind. \nGesamtvereinbarung \nDiese Nutzungsbedingungen, zusammen mit unserer Datenschutzrichtlinie, bilden die gesamte Vereinbarung zwischen Ihnen und uns in Bezug auf Ihre Nutzung unserer mobilen App und ersetzen alle vorherigen Vereinbarungen in Bezug auf Ihre Nutzung dieser mobilen App. \nDurch die Nutzung dieser mobilen App akzeptieren Sie diese Nutzungsbedingungen in vollem Umfang. Wenn Sie mit einem Teil dieser Nutzungsbedingungen nicht einverstanden sind, dürfen Sie diese mobile App nicht verwenden."
+        },
+        "privacyPolicy": {
+          "title": "Datenschutzhinweis",
+          "description": "Erfahren Sie, wie wir Ihre Informationen schützen.",
+          "content": "Bei $t(common:appName.full) nehmen wir Ihren Datenschutz ernst. Diese Datenschutzrichtlinie erläutert, wie wir Ihre persönlichen Daten sammeln, verwenden, teilen und schützen. Wir empfehlen Ihnen, diesen Hinweis sorgfältig zu lesen, um unsere Praktiken zu verstehen. \nInformationen, die wir sammeln \nWir sammeln Informationen, die Sie uns direkt zur Verfügung stellen. Dazu gehören persönliche Informationen wie Ihr Name, Ihre Kontaktdaten und alle anderen Daten, die Sie mit uns teilen möchten. Wir können auch automatisch Informationen wie Ihre IP-Adresse, den Browsertyp und Geräteinformationen sammeln. \nWie wir Ihre Informationen verwenden \nWir verwenden die gesammelten Informationen zu verschiedenen Zwecken, einschließlich: \nBereitstellung und Wartung unserer Dienstleistungen. Personalisierung Ihrer Erfahrung. Senden wichtiger Updates und Benachrichtigungen. Überwachung und Analyse von Nutzungsmustern zur Verbesserung unserer Dienstleistungen. Einhaltung gesetzlicher Verpflichtungen und Lösung von Streitigkeiten. \nInformationsweitergabe \nWir können Ihre persönlichen Daten teilen mit: \nDienstanbietern, die uns bei der Bereitstellung unserer Dienstleistungen unterstützen. Strafverfolgungs- oder Regierungsbehörden als Antwort auf eine gesetzliche Anfrage. Dritten mit Ihrer Zustimmung. Wir verkaufen Ihre persönlichen Daten nicht an Dritte. \nDatensicherheit \nWir nehmen die Datensicherheit ernst und wenden branchenübliche Sicherheitsmaßnahmen an, um Ihre persönlichen Daten zu schützen. Keine Methode der Datenübertragung über das Internet oder elektronische Speicherung ist jedoch zu 100% sicher. \nIhre Datenschutzrechte \nSie haben das Recht: \nZugang zu Ihren persönlichen Daten zu verlangen, sie zu korrigieren oder zu löschen. Der Verarbeitung Ihrer persönlichen Daten zu widersprechen oder sie einzuschränken. Ihre Einwilligung jederzeit zu widerrufen, wenn Sie sie zuvor erteilt haben. \nDatenschutz für Kinder \nUnsere Dienstleistungen sind nicht für Kinder unter 13 Jahren bestimmt. Wir sammeln oder speichern keine Informationen von Kindern wissentlich. \nÄnderungen an diesem Hinweis \nWir können diesen Datenschutzhinweis aktualisieren, um Änderungen in unseren Praktiken oder aus anderen betrieblichen, rechtlichen oder regulatorischen Gründen zu berücksichtigen. Wir werden Sie über wesentliche Änderungen informieren. \nKontakt \nWenn Sie Fragen, Bedenken oder Anfragen zu Ihren persönlichen Daten oder diesem Datenschutzhinweis haben, ",
+          "content2": "\nDatum des Inkrafttretens: 27. April 1992\nVielen Dank, dass Sie uns Ihre Informationen anvertrauen. Ihre Privatsphäre ist uns wichtig, und wir sind bestrebt, sie zu schützen."
+        },
+        "appPermissions": {
+          "title": "App-Berechtigungen",
+          "description": "Erfahren Sie, welche Informationen von Ihrem Gerät uns interessieren."
+        }
+      }
+    },
+    "support": {
+      "title": "Unterstützung",
+      "items": {
+        "contactUs": {
+          "title": "Kontaktieren Sie uns",
+          "description": "Senden Sie uns eine Nachricht über eine der verfügbaren Optionen.",
+          "content": {
+            "description": "Sie können uns eine Nachricht über das von Ihnen bevorzugte soziale Netzwerk senden, uns eine E-Mail senden oder mit einem unserer Berater sprechen."
+          }
+        },
+        "faqs": {
+          "title": "Häufig gestellte Fragen",
+          "description": "Finden Sie hier Antworten auf Ihre Fragen. Wenn nicht, kontaktieren Sie uns."
+        },
+        "bugReporter": {
+          "title": "Einen Fehler melden",
+          "description": "Haben Sie einen Fehler entdeckt oder glauben Sie, dass wir etwas verbessern können? Sagen Sie uns, wir lieben es, uns zu verbessern.",
+          "short-description": "Sie haben einen Fehler gefunden? Melden Sie ihn.",
+          "founddBug": "Wenn Sie einen Fehler oder etwas gefunden haben, das wir verbessern können, senden Sie uns bitte Ihr Feedback und helfen Sie uns, uns zu verbessern.",
+          "form": {
+            "bugDescription": {
+              "name": "Fügen Sie eine Beschreibung hinzu",
+              "validations": {
+                "min": "Die Beschreibung muss mindestens 3 Zeichen lang sein.",
+                "max": "Die Beschreibung darf 255 Zeichen nicht überschreiten.",
+                "matches": "Bitte geben Sie nur Buchstaben und Zahlen ein.",
+                "required": "Fügen Sie eine Beschreibung des Geschehens hinzu."
+              }
+            },
+            "attachMultimedia": {
+              "name": "Fügen Sie Bilder oder Videos an",
+              "required": "Bitte fügen Sie Beweise zur Unterstützung des Berichts bei."
+            },
+            "primaryButton": "Melden"
+          }
+        }
+      }
+    }
+  },
+  "privateSettings": {
+    "notificationsCenter": {
+      "screenTitle": "Benachrichtigungen",
+      "description": "Sehen Sie alle bewegungen ihres kontos.",
+      "controllers": {
+        "previousNotificationsButton": "Vorherige Benachrichtigungen anzeigen"
+      }
+    },
+    "notifications": {
+      "screenTitle": "$t(menu:Menu.settings.items.notifications.title)",
+      "description": ""
+    }
+  }
+}

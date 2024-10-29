@@ -1,17 +1,13 @@
 import { View } from 'react-native';
 import styled from 'styled-components/native';
-import {
-  getNormalizedHorizontalSize,
-  getNormalizedVerticalSize,
-} from '@utils/functions';
+import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
-export const ContainerWithOutPress = styled(View)`
+export const Container = styled(View)`
   flex-direction: row;
-  height: ${getNormalizedVerticalSize(88)}px;
-  padding: ${getNormalizedVerticalSize(0)}px
-    ${getNormalizedHorizontalSize(24)}px;
+  height: ${getNormalizedVerticalSize(60)}px;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(24)}px;
   align-items: center;
 `;
 
@@ -50,7 +46,6 @@ export const StyledButton = styled(ActionButton)`
   margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(3)}px
     ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(3)}px;
   align-self: center;
-  border: ${({ theme: { colors } }) => colors.opposing};
-  color: ${({ theme }) =>
-    theme.mode === 'dark' ? theme.tokens.colors.surfaceL5 : '#67686b'};
+  border: ${({ theme }) => theme.tokens.colors.secondary950};
+  color: ${({ theme }) => (theme.mode === 'dark' ? theme.tokens.colors.secondary900 : '#67686b')};
 `;

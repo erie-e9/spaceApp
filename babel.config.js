@@ -38,7 +38,7 @@ module.exports = {
           '@libs': './src/utils/libs',
           '@utils': './src/utils',
           '@theme': './src/theme',
-          '@types': './src/utils/@types',
+          '@types': './src/utils/types',
         },
       },
     ],

@@ -1,0 +1,12 @@
+{
+  "editProfile": {
+    "description": "Cambia la información que proveiste en tu registro.",
+    "alerts": {
+      "update": "{{field}} fue actualizado exitosamente."
+    },
+    "buttons": {
+      "update": "Actualizar",
+      "changePassword": "Cambiar contraseña"
+    }
+  }
+}

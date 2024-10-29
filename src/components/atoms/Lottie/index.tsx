@@ -7,11 +7,10 @@ import React, {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { AppState, AppStateStatus } from 'react-native';
+import { AppState, AppStateStatus, StyleProp, ViewStyle } from 'react-native';
 import LottieView from 'lottie-react-native';
 
-type extractComponentPropsType<Type> =
-  Type extends Component<infer X> ? X : null;
+type extractComponentPropsType<Type> = Type extends Component<infer X> ? X : null;
 
 export type LottieProps = extractComponentPropsType<LottieView> & {
   testID?: 'LottieID';
@@ -21,6 +20,8 @@ export type LottieProps = extractComponentPropsType<LottieView> & {
   startFrame?: number;
   endFrame?: number;
   resizeMode?: 'center' | 'cover' | 'contain';
+  style?: StyleProp<ViewStyle>;
+  progress?: number;
 };
 
 export type LottieViewProps = LottieView;
@@ -39,7 +40,6 @@ export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
             props.endFrame && props.endFrame,
           );
         },
-        //
       };
     },
     [props.startFrame, props.endFrame],
@@ -55,10 +55,7 @@ export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    const appStateSubscription = AppState.addEventListener(
-      'change',
-      handleAppStateChange,
-    );
+    const appStateSubscription = AppState.addEventListener('change', handleAppStateChange);
     return () => {
       appStateSubscription.remove();
     };
@@ -69,12 +66,14 @@ export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
       {...props}
       testID={props.testID || 'LottieID'}
       ref={animationRef}
+      progress={props.progress}
       source={props.source}
       renderMode={props.renderMode}
       resizeMode={props.resizeMode || 'contain'}
       style={{
         width: props.width,
         height: props.height,
+        ...props.style,
       }}
     />
   );

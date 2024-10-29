@@ -1,15 +1,12 @@
 {
   "Warning": {
-    "title": "We're serious about keeping your data secure",
-    "description": "It seems you are using a device that could compromise the security of your private information. {{appName}} app isn't supported by these kinds of devices.",
+    "title": "Security alert",
+    "description": "It seems you are using a device that could compromise the security of your private information. We're serious about keeping your data secure, which is why the {{appName}} app isn't supported by these types of devices.",
     "sub-description": "We recommend installing our application on a more trusted device.",
     "actions": {
-      "primaryButton": {
-        "title": "Visit our FAQ's website",
-        "modal": {
-          "title": "Please wait...",
-          "description": "You're been redirected to to FAQ's website."
-        }
+      "areWeWrong": {
+        "title": "Do you think we are making a mistake?",
+        "description": "Contact us now"
       },
       "secondaryButton": {
         "title": "Contact us",

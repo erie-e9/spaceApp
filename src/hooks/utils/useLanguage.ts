@@ -1,24 +1,23 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { changeLanguage, storeLanguages } from '@slices/shared';
-import { AppPreferencesState, Language } from '@slices/types/appPreferences';
-import { LanguagesState } from '@slices/types/languages';
+import { type AppPreferencesState, type Language } from '@slices/types/appPreferences';
+import { type LanguagesState } from '@slices/types/languages';
 import { changeLanguage as changeLanguageApp, Logger } from '@services';
 
 export const useLanguage = (): {
-  language: string;
+  language: Language;
   switchLanguage: (languageParam: Language) => void;
   saveLanguages: (languagesParam: any) => void;
   languages: any;
 } => {
+  const dispatch = useDispatch();
+
   const language = useSelector(
-    (state: { appPreferences: AppPreferencesState }) =>
-      state.appPreferences.language,
-  );
-  const languages = useSelector(
-    (state: { languages: LanguagesState }) => state.languages.content,
+    (state: { appPreferences: AppPreferencesState }) => state.appPreferences.language,
   );
 
-  const dispatch = useDispatch();
+  const languages = useSelector((state: { languages: LanguagesState }) => state.languages.content);
+
   const switchLanguage = (languageParam: Language): void => {
     try {
       dispatch(changeLanguage({ language: languageParam }));

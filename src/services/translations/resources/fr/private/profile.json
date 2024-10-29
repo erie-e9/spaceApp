@@ -1,0 +1,56 @@
+{
+  "Profile": {
+    "title": "Profil",
+    "description": "Consultez et mettez à jour vos informations personnelles.",
+    "section1": {
+      "title": "$t(signup:SignUp.screenHeaders.step1.title)",
+      "fields": {
+        "username": "$t(signup:SignUp.form.fields.username.name)",
+        "phoneNumber": "$t(signup:SignUp.form.fields.phoneNumber.name)",
+        "email": "$t(signup:SignUp.form.fields.email.name)",
+        "noEmail": "Aucune adresse e-mail fournie, ajoutez votre adresse e-mail maintenant.",
+        "password": "$t(signup:SignUp.form.fields.password.name)",
+        "confirmPassword": "$t(signup:SignUp.form.fields.confirmPassword.name)"
+      }
+    },
+    "section2": {
+      "title": "$t(signup:SignUp.screenHeaders.step2.title)",
+      "fields": {
+        "fullName": "Nom complet",
+        "firstName": "$t(signup:SignUp.form.fields.firstName.name)",
+        "lastName": "$t(signup:SignUp.form.fields.lastName.name)",
+        "dateOfBirth": "$t(signup:SignUp.form.fields.dateOfBirth.name)",
+        "genre": "$t(signup:SignUp.form.fields.genre.name)"
+      }
+    },
+    "section3": {
+      "title": "$t(signup:SignUp.screenHeaders.step3.title)",
+      "fields": {
+        "address": "Adresse",
+        "streetAddressLine1": "$t(signup:SignUp.form.fields.streetAddressLine1.name)",
+        "streetAddressLine2": "$t(signup:SignUp.form.fields.streetAddressLine2.name)",
+        "zipCode": "$t(signup:SignUp.form.fields.zipCode.name)",
+        "city": "$t(signup:SignUp.form.fields.city.name)",
+        "country": "$t(signup:SignUp.form.fields.country.name)"
+      }
+    },
+    "alerts": {
+      "deleteAccount": {
+        "title": "Es-tu sûr?",
+        "description": "Vos informations personnelles seront supprimées et vous ne pourrez pas les récupérer.",
+        "options": {
+          "confirmButton": "Confirme",
+          "cancelButton": "Annuler"
+        }
+      }
+    },
+    "buttons": {
+      "deleteAccount": "Supprimer le compte"
+    },
+    "accountStatus": {
+      "basic": "Basique",
+      "pro": "Pro",
+      "premium": "Premium"
+    }
+  }
+}

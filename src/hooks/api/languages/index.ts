@@ -5,9 +5,9 @@ export type Language = {
 };
 
 export const userApi = api.injectEndpoints({
-  endpoints: build => ({
+  endpoints: (build) => ({
     fetchLanguage: build.query<Language, string>({
-      query: id => `/languages/${id}`,
+      query: (id) => `/languages/${id}`,
     }),
   }),
   overrideExisting: false,

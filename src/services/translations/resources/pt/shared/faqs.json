@@ -1,0 +1,42 @@
+{
+  "faq1": {
+    "question": "Como posso redefinir minha senha?",
+    "answer": "Vá para a tela de login e clique em 'Esqueceu sua senha?'. Siga as instruções."
+  },
+  "faq2": {
+    "question": "Como atualizar as informações do meu perfil?",
+    "answer": "Acesse as configurações do seu perfil para editar e salvar as alterações."
+  },
+  "faq3": {
+    "question": "Como entrar em contato com o suporte?",
+    "answer": "Visite a seção '$t(menu:helpCenter.support.title)' no aplicativo para enviar um email ou conversar ao vivo com nossos agentes."
+  },
+  "faq4": {
+    "question": "O que fazer se eu não receber o email de confirmação?",
+    "answer": "Verifique sua pasta de spam. Se não estiver lá, solicite um novo envio na tela de login."
+  },
+  "faq5": {
+    "question": "Como mudar meu endereço de email?",
+    "answer": "Vá para as configurações do seu perfil para atualizar seu endereço de email. Verifique o novo endereço."
+  },
+  "faq6": {
+    "question": "O que fazer em caso de problemas técnicos?",
+    "answer": "Reinicie o aplicativo e certifique-se de ter a versão mais recente. Se o problema persistir, entre em contato com o suporte."
+  },
+  "faq7": {
+    "question": "Como excluir minha conta?",
+    "answer": "Vá para as configurações do seu perfil e selecione 'Excluir conta'. Esta ação é irreversível."
+  },
+  "faq8": {
+    "question": "Onde encontrar a política de privacidade e os termos de uso?",
+    "answer": "Eles estão na seção 'Informações' ou 'Termos de uso' do aplicativo."
+  },
+  "faq9": {
+    "question": "Como meus dados pessoais são protegidos?",
+    "answer": "Aplicamos medidas de segurança robustas. Consulte nossas políticas de privacidade para mais detalhes."
+  },
+  "faq10": {
+    "question": "O que fazer se eu encontrar um bug?",
+    "answer": "Reporte o bug através das opções de contato na seção '$t(menu:helpCenter.support.items.bugReporter.title)'."
+  }
+}

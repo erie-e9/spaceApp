@@ -1,26 +1,28 @@
 import React, { memo, useEffect } from 'react';
-import { ActivityIndicator } from 'react-native';
-import { useDeviceSecurity, useLanguage, useCheckNet, useTheme } from '@hooks';
-import { ApplicationScreenProps } from 'types/navigation';
-import { Language } from '@slices/types/appPreferences';
+import { CommonActions } from '@react-navigation/native';
+import { Logger } from '@services';
+import { useDeviceSecurity, useAppPreferences, useCheckNet, useTheme, getDeviceInfo } from '@hooks';
+import { type ApplicationScreenProps } from '@types';
+import { type Language } from '@slices/types/appPreferences';
 import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
 import { InterpolateColorAnimation } from '@components/animated';
+import { Loader } from '@components/molecules';
 import { Container, Brand } from './styles';
 
-interface Props {
+export interface StartUpProps {
   navigation: ApplicationScreenProps;
 }
 
-export const Startup: React.FC<Props> = ({ navigation }) => {
-  const { checkPhoneIntegrity } = useDeviceSecurity();
+export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
+  const { checkIsReliableDevice } = useDeviceSecurity();
   const { appConnected } = useCheckNet();
-  const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
-  const { switchLanguage, saveLanguages, language } = useLanguage();
   const { Images } = useTheme();
+  const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
+  const { switchLanguage, saveLanguages, language } = useAppPreferences();
 
   const preInit = async (): Promise<void> => {
     const promises = [
-      checkPhoneIntegrity({
+      checkIsReliableDevice({
         fallback: () => navigation.replace('Warning'),
       }),
     ];
@@ -29,26 +31,31 @@ export const Startup: React.FC<Props> = ({ navigation }) => {
       if (appConnected.isConnected) {
         await fetchLanguage('en');
       }
-      await navigation.reset({
-        index: 0,
-        routes: [{ name: 'Shared' }],
-      });
+      await navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{ name: 'Shared', params: { screen: 'Home' } }],
+        }),
+      );
     }
   };
 
   const init = async () => {
-    await new Promise(resolve =>
+    const deviceInfo = await getDeviceInfo();
+    Logger.log('Startup init', { deviceInfo });
+
+    await new Promise((resolve) =>
       setTimeout(() => {
         resolve(true);
-      }, 2000),
+      }, 3000),
     );
     await preInit();
-    await switchLanguage(language as Language);
+    language !== null && (await switchLanguage(language as Language));
   };
 
   useEffect(() => {
     if (isSuccess) {
-      saveLanguages(data?.Warning);
+      saveLanguages(data?.id);
     } else {
       init();
     }
@@ -58,7 +65,7 @@ export const Startup: React.FC<Props> = ({ navigation }) => {
     <InterpolateColorAnimation isScreen>
       <Container testID="StartupID">
         <Brand source={Images.logo} />
-        <ActivityIndicator size={'small'} />
+        <Loader width={150} height={75} />
       </Container>
     </InterpolateColorAnimation>
   );

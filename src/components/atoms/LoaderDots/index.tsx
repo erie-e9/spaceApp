@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { DefaultTheme } from 'styled-components/native';
+import { testProperties } from '@utils/functions';
 import AnimatedDotItem from '@components/atoms/LoaderDots/AnimatedDotItem';
 import { LoaderDotsContainer } from './styles';
 
@@ -23,25 +24,25 @@ export type DotProps = {
 
 export const LoaderDots = ({
   testID = 'LoaderDotsID',
-  color = 'primaryD1',
+  color = 'secondary50',
   size = SIZE_DOT,
   animationDuration = ANIMATION_TIME,
   animationScale = ANIMATION_SCALE_VALUE,
   animationTranslateY = ANIMATION_TRANSLATE_Y_VALUE,
 }: DotProps): React.JSX.Element => {
-  const [activeDot, setActiveDot] = useState(1);
+  const [activeDot, setActiveDot] = useState<number>(1);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveDot(state => (state >= DOTS.length ? 1 : state + 1));
+      setActiveDot((state) => (state >= DOTS.length ? 1 : state + 1));
     }, INTERVAL_VALUE);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <LoaderDotsContainer testID={testID}>
-      {DOTS.map(dot => (
+    <LoaderDotsContainer {...testProperties(testID)}>
+      {DOTS.map((dot) => (
         <AnimatedDotItem
           key={`dot-${dot}`}
           color={color}

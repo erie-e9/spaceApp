@@ -3,7 +3,7 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "La connexion n'est pas établie. J'essaye à nouveau.",
+    "noConnection": "La connexion n'est pas établie, réessayer.",
     "features": {
       "unavailable": {
         "title": "Fonctionnalité indisponible",
@@ -15,10 +15,43 @@
     "boundaries": {
       "fallbackScreen": {
         "title": "Oups! Quelque chose s'est mal passé",
-        "description": "Désolé... Une erreur est survenue",
+        "description": "Désolé... Une erreur est survenue.",
         "button": "Essayer à nouveau",
         "detailsLabel": "Détails de l'erreur: ",
         "detailsLabelDefaultMessage": "Ce n'est pas une erreur, cet écran vous permettra de détecter et de visualiser les erreurs dans l'application, en affichant un message convivial au lieu de l'écran blanc par défaut."
+      }
+    }
+  },
+  "alerts": {
+    "permissions": {
+      "blocked": {
+        "title": "Permission bloquée",
+        "description": "Veuillez accorder l'autorisation à partir des paramètres de l'application dans votre {{deviceName}}.",
+        "buttons": {
+          "buttonOne": "Accéder aux paramètres"
+        }
+      },
+      "denied": {
+        "title": "Permission requise",
+        "description": "Cette autorisation est nécessaire pour continuer. Veuillez l'accorder.",
+        "buttons": {
+          "buttonOne": "Demander à nouveau"
+        }
+      },
+      "libraryOrCam": {
+        "title": "Sélectionnez la photo de profil",
+        "description": "Préférez-vous continuer avec caméra ou la bibliothèque?",
+        "buttons": {
+          "buttonOne": "Caméra",
+          "buttonTwo": "Bibliothèque"
+        }
+      }
+    },
+    "authRequired": {
+      "title": "Réservé aux utilisateurs",
+      "description": "Vous devez vous connecter pour utiliser cette fonctionnalité.",
+      "buttons": {
+        "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
     }
   },
@@ -26,5 +59,70 @@
     "option1": "Partager",
     "option2": "Recharger",
     "option3": "Ouvrir sur le navigateur"
+  },
+  "calendar": {
+    "values": {
+      "today": "Aujourd'hui",
+      "dayNames": {
+        "sunday": "Dimanche",
+        "monday": "Lundi",
+        "tuesday": "Mardi",
+        "wednesday": "Mercredi",
+        "thursday": "Jeudi",
+        "friday": "Vendredi",
+        "saturday": "Samedi"
+      },
+      "dayNamesShort": {
+        "su": "Di",
+        "mo": "Lu",
+        "tu": "Ma",
+        "we": "Me",
+        "th": "Je",
+        "fr": "Ve",
+        "sa": "Sa"
+      },
+      "monthNames": {
+        "january": "Janvier",
+        "february": "Février",
+        "march": "Mars",
+        "april": "Avril",
+        "may": "Mai",
+        "june": "Juin",
+        "july": "Juillet",
+        "august": "Août",
+        "september": "Septembre",
+        "october": "Octobre",
+        "november": "Novembre",
+        "december": "Décembre"
+      },
+      "monthNamesShort": {
+        "january": "Jan",
+        "february": "Fév",
+        "march": "Mar",
+        "april": "Avr",
+        "may": "Mai",
+        "june": "Jui",
+        "july": "Jui",
+        "august": "Aoû",
+        "september": "Sep",
+        "october": "Oct",
+        "november": "Nov",
+        "december": "Déc"
+      }
+    }
+  },
+  "banners": {
+    "auth": {
+      "greeting": "Bonjour",
+      "invitation": "Hé, rejoignez-nous pour obtenir une meilleure expérience, créez un nouveau compte ou utilisez le vôtre.",
+      "buttons": {
+        "auth": "Auth"
+      }
+    }
+  },
+  "controllers": {
+    "inputs": {
+      "search": "Recherche {{seachPlaceholder}}"
+    }
   }
 }

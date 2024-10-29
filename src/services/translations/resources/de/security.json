@@ -1,0 +1,17 @@
+{
+  "Warning": {
+    "title": "Sicherheitsalarm",
+    "description": "Es scheint, dass Sie ein Gerät verwenden, das die Sicherheit Ihrer privaten Informationen gefährden könnte. Aus diesem Grund wird die {{appName}}-App von diesen Gerätetypen nicht unterstützt.",
+    "sub-description": "Wir empfehlen, unsere Anwendung auf einem vertrauenswürdigeren Gerät zu installieren.",
+    "actions": {
+      "areWeWrong": {
+        "title": "Denken Sie, wir machen einen Fehler?",
+        "description": "Kontaktieren Sie uns jetzt"
+      },
+      "secondaryButton": {
+        "title": "Kontaktieren Sie uns",
+        "message": "Suche nach einem Berater"
+      }
+    }
+  }
+}

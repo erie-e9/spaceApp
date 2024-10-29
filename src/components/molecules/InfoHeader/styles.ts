@@ -1,10 +1,7 @@
 import { PixelRatio, Platform } from 'react-native';
 import styled from 'styled-components/native';
-import { Typography } from '@components/atoms';
-import {
-  getNormalizedHorizontalSize,
-  getNormalizedVerticalSize,
-} from '@utils/functions';
+import { Typography, Image } from '@components/atoms';
+import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 
 export const ContentHeader = styled.View`
   flex: 0.3;
@@ -20,8 +17,7 @@ export const ContentContainer = styled.View`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  padding: ${getNormalizedVerticalSize(10)}px
-    ${getNormalizedHorizontalSize(20)}px;
+  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(20)}px;
 `;
 
 export interface LogoProps {
@@ -37,12 +33,13 @@ export const LogoContainer = styled.View<LogoProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-width: ${getNormalizedHorizontalSize(0.3)}px;
-  background-color: ${({ theme }) => theme.tokens.colors.opposing};
+  border-width: 0.3px;
+  background-color: ${({ theme }) => theme.tokens.colors.secondary950};
 `;
 
-export const Logo = styled.Image<LogoProps>`
-  height: ${({ logoSize }) => getNormalizedVerticalSize(Platform.OS === 'ios' ? logoSize : logoSize + 10)}px;
+export const Logo = styled(Image)<LogoProps>`
+  height: ${({ logoSize }) =>
+    getNormalizedVerticalSize(Platform.OS === 'ios' ? logoSize : logoSize + 10)}px;
   width: ${({ logoSize }) => getNormalizedHorizontalSize(logoSize)}px;
   border-radius: ${({ avatarRadius }) => avatarRadius}px;
 `;

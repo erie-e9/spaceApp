@@ -14,6 +14,29 @@ node_require('react-native-permissions/scripts/setup.rb')
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
 
+setup_permissions([
+  # 'AppTrackingTransparency',
+  # 'Bluetooth',
+  # 'Calendars',
+  # 'CalendarsWriteOnly',
+  'Camera',
+  # 'Contacts',
+  'FaceID',
+  'LocationAccuracy',
+  'LocationAlways',
+  'LocationWhenInUse',
+  'MediaLibrary',
+  'Microphone',
+  # 'Motion',
+  'Notifications',
+  'PhotoLibrary',
+  # 'PhotoLibraryAddOnly',
+  # 'Reminders',
+  # 'Siri',
+  # 'SpeechRecognition',
+  # 'StoreKit',
+])
+
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
   Pod::UI.puts "Configuring Pod with #{linkage}ally linked Frameworks".green
@@ -31,8 +54,9 @@ target 'spaceApp' do
   pod 'FirebaseInstallations', :modular_headers => true  
   pod 'GoogleDataTransport', :modular_headers => true  
   pod 'nanopb', :modular_headers => true
+  pod 'FBSDKLoginKit'
+  $FirebaseSDKVersion = '10.29.0'
 
-  $FirebaseSDKVersion = '10.24.0'
   config = use_native_modules!
 
   # Flags change depending on the env values.

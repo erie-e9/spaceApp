@@ -5,6 +5,7 @@ import {
   languages,
   modal,
   remoteConfigFeatures,
+  responseHandler,
 } from '@slices/shared';
 
 export const reducers = combineReducers({
@@ -12,5 +13,6 @@ export const reducers = combineReducers({
   languages,
   modal,
   remoteConfigFeatures,
+  responseHandler,
   [api.reducerPath]: api.reducer,
 });

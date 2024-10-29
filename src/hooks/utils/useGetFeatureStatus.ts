@@ -1,7 +1,4 @@
-import {
-  FeatureValue,
-  RemoteConfigFeatures,
-} from '@slices/types/remoteConfigFeatures';
+import { type FeatureValue, type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
 
 export const useGetFeatureStatus = (
   featureKey: keyof RemoteConfigFeatures,

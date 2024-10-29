@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { ApplicationScreenProps } from '@utils/@types/navigation';
+import { type ApplicationScreenProps } from '@types';
+import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { BackButtonContainer, BackButtonPressable } from './styles';
@@ -9,12 +10,16 @@ interface Props {
   testID?: string;
   onPress?: () => void;
   size?: number;
+  children?: JSX.Element | string;
+  colorRowInverted?: boolean;
 }
 
 export const BackButton: React.FC<Props> = ({
   testID = 'BackButtonID',
   onPress = undefined,
-  size = 40,
+  size = 30,
+  children = null,
+  colorRowInverted,
 }) => {
   const animationRef = useRef<LottieViewProps>(null);
   const { Animations, darkMode } = useTheme();
@@ -23,13 +28,16 @@ export const BackButton: React.FC<Props> = ({
   const handleOnPress = useCallback(() => {
     animationRef.current?.play();
     navigation.removeListener;
-    navigation.goBack();
-    if (onPress) onPress;
+    if (onPress) {
+      onPress();
+    } else {
+      navigation.goBack();
+    }
   }, []);
 
   return (
     <BackButtonPressable
-      testID={testID}
+      {...testProperties(testID)}
       hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
       onPress={handleOnPress}
     >
@@ -41,15 +49,22 @@ export const BackButton: React.FC<Props> = ({
           renderMode="SOFTWARE"
           loop={false}
           resizeMode="contain"
-          width={size || 40}
-          height={size || 40}
+          width={size || 30}
+          height={size || 30}
           colorFilters={[
             {
               keypath: 'Layer 4',
-              color: darkMode ? '#FFFFFF' : '#000000',
+              color: colorRowInverted
+                ? darkMode
+                  ? '#181725'
+                  : '#FFFFFF'
+                : darkMode
+                ? '#FFFFFF'
+                : '#181725',
             },
           ]}
         />
+        {children && children}
       </BackButtonContainer>
     </BackButtonPressable>
   );

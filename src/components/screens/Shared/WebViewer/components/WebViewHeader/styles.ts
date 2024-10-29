@@ -1,8 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
 
 export const UrlContainer = styled.View`
@@ -12,9 +9,8 @@ export const UrlContainer = styled.View`
   align-items: center;
   justify-content: center;
   border-radius: ${getNormalizedVerticalSize(7)}px;
-  padding: ${getNormalizedVerticalSize(2)}px
-    ${getNormalizedHorizontalSize(20)}px;
-  background-color: ${({ theme }) => theme.tokens.colors.tertiaryD3};
+  padding: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(20)}px;
+  background-color: ${({ theme }) => theme.tokens.colors.secondary800};
 `;
 
 export const StyledUrlText = styled(Typography)`
@@ -26,7 +22,7 @@ export const WebViewHeaderContainer = styled.View`
   justify-content: flex-end;
   align-items: flex-end;
   padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px;
-  background-color: ${({ theme }) => theme.tokens.colors.none};
+  background-color: ${({ theme }) => theme.tokens.colors.tertiary50};
 `;
 
 export const ActionButtonsContainer = styled.View`
@@ -35,14 +31,13 @@ export const ActionButtonsContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: ${getNormalizedVerticalSize(10)}px
-    ${getNormalizedHorizontalSize(20)}px;
+  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(20)}px;
 `;
 
 export const ActionButtonContainer = styled.View`
   height: ${getNormalizedVerticalSize(30)}px;
   width: ${getNormalizedHorizontalSize(30)}px;
-  margin: ${getNormalizedVerticalSize(0)} ${getNormalizedHorizontalSize(0)}px;
+  margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
   align-items: center;
   justify-content: center;
 `;

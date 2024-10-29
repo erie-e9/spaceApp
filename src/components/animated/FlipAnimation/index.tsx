@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { Fragment, memo, useEffect } from 'react';
 import {
   interpolate,
   useAnimatedStyle,
@@ -7,6 +7,7 @@ import {
   Easing,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
 import {
   AnimatedFrontFace,
   FlipAnimationText,
@@ -14,7 +15,7 @@ import {
   AnimatedBackFace,
 } from './styles';
 
-interface Props {
+interface FlipAnimationProps {
   testID?: string;
   frontFace?: string | React.ReactElement | React.ReactElement[];
   backFace?: string | React.ReactElement | React.ReactElement[];
@@ -23,7 +24,7 @@ interface Props {
   easing?: typeof Easing | string | unknown;
 }
 
-export const FlipAnimation: React.FC<Props> = ({
+export const FlipAnimation: React.FC<FlipAnimationProps> = ({
   testID = 'FlipAnimationID',
   frontFace = undefined,
   backFace = undefined,
@@ -83,12 +84,12 @@ export const FlipAnimation: React.FC<Props> = ({
   }, [spin, withManualTrigger]);
 
   return (
-    <>
-      <AnimatedFrontFace testID={testID} style={[animatedStyle]}>
+    <Fragment>
+      <AnimatedFrontFace {...testProperties(testID)} style={[animatedStyle]}>
         {frontFace && typeof frontFace !== 'string' ? (
           frontFace
         ) : (
-          <FlipAnimationText type="Headline5" color="secondaryD1">
+          <FlipAnimationText type="Headline5" color="tertiary950">
             {frontFace}
           </FlipAnimationText>
         )}
@@ -97,19 +98,19 @@ export const FlipAnimation: React.FC<Props> = ({
         {backFace && typeof backFace !== 'string' ? (
           backFace
         ) : (
-          <FlipAnimationText type="Headline5" color="secondaryD1">
+          <FlipAnimationText type="Headline5" color="tertiary950">
             {backFace}
           </FlipAnimationText>
         )}
       </AnimatedBackFace>
       {withManualTrigger && (
         <TriggerAnimationButton onPress={spinTrigger}>
-          <FlipAnimationText type="Headline5" color="secondaryD1">
+          <FlipAnimationText type="Headline5" color="tertiary950">
             {flipText || 'flip'}
           </FlipAnimationText>
         </TriggerAnimationButton>
       )}
-    </>
+    </Fragment>
   );
 };
 

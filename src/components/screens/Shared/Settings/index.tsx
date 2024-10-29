@@ -1,115 +1,43 @@
 import React, { memo } from 'react';
-import {
-  TransitionPresets,
-  createStackNavigator,
-} from '@react-navigation/stack';
-import { useCopy } from '@services';
-import { BackButton } from '@components/molecules';
-import { ApplicationStackParamList } from '@utils/@types/navigation';
-import { InfoAndSupportParamsList } from '@components/screens/Shared/Settings/InfoAndSupport';
-import { AppPreferences } from '@components/screens/Shared/Settings/AppPreferences';
-import { InfoAndSupportMenu } from '@components/screens/Shared/Settings/InfoAndSupport/InfoAndSupportMenu';
-import { ContactUs } from '@components/screens/Shared/Settings/InfoAndSupport/ContactUs';
-import { FAQs } from '@components/screens/Shared/Settings/InfoAndSupport/FAQs';
-import { Info } from '@components/screens/Shared/Settings/InfoAndSupport/Info';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
+import { type ApplicationStackParamList } from '@types';
+import { HelpCenterNavigator, HelpCenterParamsList } from '@components/screens/Shared';
+import { CustomFallback, Menu, SettingsMenu } from '@components/screens/Shared';
 
-export type SettingsParamsList = {
-  AppPreferences: undefined;
-  InfoAndSupport: undefined;
-} & InfoAndSupportParamsList;
+export type MenuParamsList = {
+  CustomFallback: {
+    error: Error;
+    resetError: () => void;
+  };
+  Menu: undefined;
+  HelpCenter: undefined;
+  SettingsMenu: undefined;
+  Warning: undefined;
+} & HelpCenterParamsList;
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
 
-export const SettingsNavigator = (): React.JSX.Element => {
-  const { getCopyValue } = useCopy();
-
+export const MenuNavigator = (): React.JSX.Element => {
   return (
     <Navigator
+      initialRouteName="Menu"
       screenOptions={{
+        gestureEnabled: true,
         animationEnabled: true,
-        headerShown: false,
         freezeOnBlur: true,
+        headerShown: false,
         headerMode: 'screen',
         headerBackTitleVisible: true,
-        headerTitleAlign: 'center',
         headerTransparent: true,
-        headerStyle: {
-          backgroundColor: 'red'
-        },
         ...TransitionPresets.SlideFromRightIOS,
-        headerLeft: () => <BackButton />,
       }}
     >
-      <Screen
-        key="AppPreferences"
-        name="AppPreferences"
-        component={AppPreferences}
-        options={{
-          title: getCopyValue('settings:settings.screenTitle'),
-          headerShown: true,
-          headerTitleStyle: {
-            fontSize: 16,
-            textAlign: 'center',
-          },
-        }}
-      />
-      <Screen
-        key="ContactUs"
-        name="ContactUs"
-        component={ContactUs}
-        options={{
-          title: getCopyValue(
-            'settings:infoAndSupport.support.items.contactUs.title',
-          ),
-          headerShown: true,
-          headerTitleStyle: {
-            fontSize: 16,
-            textAlign: 'center',
-          },
-        }}
-      />
-      <Screen
-        key="FAQs"
-        name="FAQs"
-        component={FAQs}
-        options={{
-          title: getCopyValue(
-            'settings:infoAndSupport.support.items.faqs.title',
-          ),
-          headerShown: true,
-          headerTitleStyle: {
-            fontSize: 16,
-            textAlign: 'center',
-          },
-        }}
-      />
-      <Screen
-        key="Info"
-        name="Info"
-        component={Info}
-        options={{
-          headerShown: true,
-          headerTitleStyle: {
-            fontSize: 16,
-            textAlign: 'center',
-          },
-        }}
-      />
-      <Screen
-        key="InfoAndSupportMenu"
-        name="InfoAndSupportMenu"
-        component={InfoAndSupportMenu}
-        options={{
-          title: getCopyValue('settings:infoAndSupport.screenTitle'),
-          headerShown: true,
-          headerTitleStyle: {
-            fontSize: 16,
-            textAlign: 'center',
-          },
-        }}
-      />
+      <Screen key="CustomFallback" name="CustomFallback" component={CustomFallback as any} />
+      <Screen key="Menu" name="Menu" component={Menu} />
+      <Screen key="SettingsMenu" name="SettingsMenu" component={SettingsMenu} />
+      <Screen key="HelpCenter" name="HelpCenter" component={HelpCenterNavigator} />
     </Navigator>
   );
 };
 
-export default memo(SettingsNavigator);
+export default memo(MenuNavigator);

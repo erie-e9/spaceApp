@@ -1,0 +1,121 @@
+{
+  "Authentication": {
+    "screenHeaders": {
+      "newLogin": {
+        "title": "Inicio de sesión",
+        "description": "Ingresa para disfrutar de una experiencia más personalizada."
+      },
+      "logged": {
+        "title": "¡Bienvenid{{genre}} {{username}}!",
+        "description": "Nos alegra verte de nuevo."
+      },
+      "loggedBiometrics": {
+        "title": "¡Bienvenid@ {{username}}!",
+        "description": "Usa tu huella digital para ingresar."
+      },
+      "accountRecovery": {
+        "title": "Recuperación de cuenta",
+        "description": "¿Olvidaste tu contraseña? No hay problema, haremos todo lo posible para ayudarte."
+      },
+      "signUp": {
+        "title": "Regístro",
+        "description": "Vamos a crear tu nueva cuenta. Por favor, proporciona los siguientes datos para iniciar."
+      }
+    },
+    "form": {
+      "fields": {
+        "phoneNumberOrEmail": {
+          "name": "Teléfono o email",
+          "validations": {
+            "required": "Teléfono o email es necesario.",
+            "min": "Por favor, introduce al menos 4 caracteres.",
+            "matches": "Formato inválido, inténtalo de nuevo."
+          }
+        },
+        "phoneNumber": {
+          "name": "Teléfono",
+          "validations": {
+            "required": "Es necesario que ingreses un teléfono.",
+            "min": "Por favor, introduce al menos 10 caracteres.",
+            "max": "Por favor, introduce un máximo de 12 caracteres.",
+            "matches": "Teléfono no válido"
+          }
+        },
+        "email": {
+          "name": "Correo electrónico",
+          "validations": {
+            "matches": "Debe ser un correo electrónico válido."
+          }
+        },
+        "password": {
+          "name": "Contraseña",
+          "validations": {
+            "required": "Contraseña es necesaria.",
+            "min": "Debe tener al menos 8 caracteres.",
+            "max": "Contraseña no debe exceder los 127 caracteres."
+          }
+        },
+        "genericValidations": {
+          "string": {
+            "required": "{{field}} es necesario.",
+            "matches": "Formato inválido, por favor inténtalo de nuevo.",
+            "min": "Por favor, introduce al menos {{min}} caracteres.",
+            "max": "Por favor, introduce un máximo de {{max}} caracteres."
+          }
+        }
+      },
+      "submitButtons": {
+        "logInText": "Iniciar sesión",
+        "signUpText": "Registrarse",
+        "forgotPasswordText": "Enviar código",
+        "sendCodeText": "Enviar código",
+        "logOutText": "Cerrar sesión",
+        "google": {
+          "logInText": "Iniciar sesión con Google",
+          "signUpText": "Registrarse con Google"
+        }
+      }
+    },
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "noAccount": "¿Sin cuenta? Crea una ahora.",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "rememberedPassword": "¿Recordaste tu contraseña?",
+    "logInWith": "Inicia sesión con",
+    "signUpWith": "Registrate con",
+    "usePassword": "Usa tu contraseña en su lugar",
+    "isNotYourAccount": "¿No es tu cuenta?",
+    "useAnotherAccount": "Ingresa con otra cuenta",
+    "biometrics": {
+      "buttons": {
+        "useBiometrics": "Usar biometría",
+        "useFingerprint": "Huella digital",
+        "useFaceIDBiometrics": "Face ID"
+      },
+      "logIn": {
+        "promptMessage": "Usa tu huella digital para iniciar sesión."
+      }
+    },
+    "otp": {
+      "alert": {
+        "title": "Introduce el código",
+        "description": "Hemos enviado un código por SMS o correo electrónico, por favor revísalo e introdúcelo.",
+        "buttons": {
+          "primaryButton": "Reenviar código"
+        }
+      }
+    },
+    "alerts": {
+      "useAnotherAccount": {
+        "title": "Usar otra cuenta",
+        "description": "¿Seguro que quieres cambiar de cuenta?",
+        "buttons": {
+          "buttonOne": "Sí, seguro"
+        }
+      },
+      "authSocialMedia": {
+        "signInSuccess": "Autenticación éxitosa con {{provider}}.",
+        "signInFail": "Algo salió mal tratando de ingresar con {{provider}}."
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "faq1": {
+    "question": "Wie kann ich mein Passwort zurücksetzen?",
+    "answer": "Gehen Sie zum Anmeldebildschirm und klicken Sie auf 'Passwort vergessen?'. Folgen Sie den Anweisungen."
+  },
+  "faq2": {
+    "question": "Wie aktualisiere ich meine Profilinformationen?",
+    "answer": "Gehen Sie zu Ihren Profileinstellungen, um Änderungen vorzunehmen und zu speichern."
+  },
+  "faq3": {
+    "question": "Wie kann ich den Support kontaktieren?",
+    "answer": "Besuchen Sie den Abschnitt '$t(menu:helpCenter.support.title)' in der App, um eine E-Mail zu senden oder mit unseren Agenten zu chatten."
+  },
+  "faq4": {
+    "question": "Was soll ich tun, wenn ich die Bestätigungs-E-Mail nicht erhalte?",
+    "answer": "Überprüfen Sie Ihren Spam-Ordner. Wenn sie dort nicht zu finden ist, fordern Sie eine neue E-Mail auf dem Anmeldebildschirm an."
+  },
+  "faq5": {
+    "question": "Wie ändere ich meine E-Mail-Adresse?",
+    "answer": "Gehen Sie zu Ihren Profileinstellungen, um Ihre E-Mail-Adresse zu aktualisieren. Bestätigen Sie die neue Adresse."
+  },
+  "faq6": {
+    "question": "Was soll ich tun, wenn ich technische Probleme habe?",
+    "answer": "Starten Sie die App neu und stellen Sie sicher, dass Sie die neueste Version haben. Wenn das Problem weiterhin besteht, kontaktieren Sie den Support."
+  },
+  "faq7": {
+    "question": "Wie lösche ich mein Konto?",
+    "answer": "Gehen Sie zu Ihren Profileinstellungen und wählen Sie 'Konto löschen'. Diese Aktion ist unwiderruflich."
+  },
+  "faq8": {
+    "question": "Wo finde ich die Datenschutzerklärung und die Nutzungsbedingungen?",
+    "answer": "Sie befinden sich im Abschnitt 'Information' oder 'Nutzungsbedingungen' der App."
+  },
+  "faq9": {
+    "question": "Wie werden meine persönlichen Daten geschützt?",
+    "answer": "Wir wenden robuste Sicherheitsmaßnahmen an. Lesen Sie unsere Datenschutzrichtlinien für weitere Details."
+  },
+  "faq10": {
+    "question": "Was soll ich tun, wenn ich einen Fehler finde?",
+    "answer": "Melden Sie den Fehler über die Kontaktoptionen im Abschnitt '$t(menu:helpCenter.support.items.bugReporter.title)'."
+  }
+}

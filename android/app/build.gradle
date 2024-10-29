@@ -1,6 +1,9 @@
-apply plugin: 'com.android.application'
-apply plugin: 'org.jetbrains.kotlin.android'
-apply plugin: 'com.facebook.react'
+ext.abiCodes = ["x86":1, "armeabi-v7a":2, "arm64-v8a":3, "x86_64":4] // this order matters
+import com.android.build.OutputFile
+
+apply plugin: "com.android.application"
+apply plugin: "org.jetbrains.kotlin.android"
+apply plugin: "com.facebook.react"
 apply plugin: 'com.google.gms.google-services'
 apply from: './versionCode.gradle'
 
@@ -53,11 +56,17 @@ react {
     // hermesFlags = ["-O", "-output-source-map"]
 }
 
+def enableSeparateBuildPerCPUArchitecture = true
+
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
 def enableProguardInReleaseBuilds = false
 
+/**
+ * Enables remove unused resources, it requires Proguard is true.
+ */
+def enableShrinkResourcesInReleaseBuilds = false
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
  *
@@ -114,6 +123,29 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk true  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+        }
+    }
+     packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+
+    android.applicationVariants.configureEach { variant ->
+    variant.outputs.each { output ->
+        def baseAbiVersionCode = project.ext.abiCodes.get(output.getFilter(OutputFile.ABI))
+            if (baseAbiVersionCode != null) {
+                output.versionCodeOverride =
+                        baseAbiVersionCode * 1000 + variant.versionCode
+            }
+        }
+    }
 }
 
 dependencies {
@@ -124,6 +156,7 @@ dependencies {
     // To display animated WebP images
     implementation 'com.facebook.fresco:animated-webp:2.5.0'
     implementation project(':react-native-lottie-splash-screen')
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     if (hermesEnabled.toBoolean()) {
         implementation('com.facebook.react:hermes-android')
     } else {

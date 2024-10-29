@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import JailMonkey from 'jail-monkey';
 import { isNotEmulator } from '@hooks';
 import { Logger } from '@services';
@@ -8,37 +9,54 @@ interface CheckPhoneIntegrityProps {
 }
 
 export const useDeviceSecurity = (): {
-  checkPhoneIntegrity: ({
-    callback,
-    fallback,
-  }: CheckPhoneIntegrityProps) => Promise<boolean>;
+  checkIsReliableDevice: ({ callback, fallback }: CheckPhoneIntegrityProps) => Promise<boolean>;
 } => {
-  const isNotJailbroken = async (): Promise<boolean> => {
-    const isDevEnv = await JailMonkey.isDebuggedMode();
-
-    if (isDevEnv) return true;
-    return !JailMonkey.isJailBroken();
-  };
-
-  const checkPhoneIntegrity = async ({
-    callback,
-    fallback,
-  }: CheckPhoneIntegrityProps): Promise<boolean> => {
+  const isDeviceSecure = useCallback(async (): Promise<boolean> => {
     try {
-      const promises = [isNotJailbroken(), isNotEmulator()];
-      const results = await Promise.all(promises);
+      const isDevEnv = (await process.env.DEBUGGER_MODE) ? false : JailMonkey?.isDebuggedMode();
+      const isJailbroken = await JailMonkey?.isJailBroken();
+      const isRooted = await JailMonkey?.androidRootedDetectionMethods?.rootBeer
+        ?.detectRootManagementApps;
+      const detectDangerousApps = await JailMonkey?.androidRootedDetectionMethods?.rootBeer
+        ?.detectPotentiallyDangerousApps;
+      const isExternalStorage = await JailMonkey?.isOnExternalStorage();
 
-      if (!results.includes(false)) {
-        if (callback) callback();
-        return true;
-      }
-      if (fallback) fallback();
-      return false;
+      return !(isDevEnv || isJailbroken || isRooted || detectDangerousApps || isExternalStorage);
     } catch (error) {
-      Logger.error('checkPhoneIntegrity', { error });
-      return false;
+      Logger.error('isDeviceSecure Error', { error });
+      return false; // it's not reliable
     }
-  };
+  }, []);
 
-  return { checkPhoneIntegrity };
+  const checkMockLocation = useCallback(() => {
+    const isMockLocationAppRunning = JailMonkey?.canMockLocation();
+    return isMockLocationAppRunning;
+  }, []);
+
+  const checkIsReliableDevice = useCallback(
+    async ({ callback, fallback }: CheckPhoneIntegrityProps): Promise<boolean> => {
+      try {
+        const [deviceSecure, notEmulator, mockLocation] = await Promise.all([
+          isDeviceSecure(),
+          isNotEmulator(),
+          checkMockLocation(),
+        ]);
+
+        if (deviceSecure && notEmulator && mockLocation) {
+          callback?.();
+          return true;
+        }
+
+        fallback?.();
+        return false; // it's not reliable
+      } catch (error) {
+        Logger.error('checkIsReliableDevice Error', { error });
+        fallback?.();
+        return false; // it's not reliable
+      }
+    },
+    [isDeviceSecure, checkMockLocation],
+  );
+
+  return { checkIsReliableDevice };
 };

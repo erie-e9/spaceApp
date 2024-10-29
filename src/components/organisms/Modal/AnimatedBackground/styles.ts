@@ -11,6 +11,5 @@ export const AnimatedBackgroundContainer = styled(Animated.View).attrs({
   justify-content: center;
   align-items: center;
   z-index: 100;
-  background-color: ${({ theme }) =>
-    theme.tokens.colors.backgroundColorDark + '60'};
+  background-color: ${() => '#000000' + '50'};
 `;

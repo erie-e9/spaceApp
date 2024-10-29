@@ -1,6 +1,6 @@
-import { ThemeVariables } from 'types/theme';
+import { type ThemeVariables } from '@types';
 
-export default function ({}: ThemeVariables) {
+export default function ({ }: ThemeVariables) {
   return {
     logo: require('@assets/shared/images/AestheticSpace.webp'),
     sparkles: {
@@ -13,10 +13,15 @@ export default function ({}: ThemeVariables) {
       bottomLeft: require('@assets/shared/images/solarsystem.webp'),
       bottomLeft2: require('@assets/shared/images/sparkles-bottom-left.webp'),
     },
+    wallpapers: {
+      background1: require('@assets/shared/images/background.jpg'),
+      background2: require('@assets/shared/images/background2.jpg'),
+      background3: require('@assets/shared/images/background3.webp'),
+    },
     icons: {
-      colors: require('@assets/shared/images/colorswatch.webp'),
-      send: require('@assets/shared/images/send.webp'),
-      translate: require('@assets/shared/images/translate.webp'),
+      // colors: require('@assets/shared/images/colorswatch.webp'),
+      // send: require('@assets/shared/images/send.webp'),
+      // translate: require('@assets/shared/images/translate.webp'),
     },
   };
 }

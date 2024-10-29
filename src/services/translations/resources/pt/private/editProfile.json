@@ -1,0 +1,12 @@
+{
+  "editProfile": {
+    "description": "Altere o valor que você definiu em sua inscrição.",
+    "alerts": {
+      "update": "{{field}} foi atualizado com sucesso"
+    },
+    "buttons": {
+      "update": "Atualizar",
+      "changePassword": "Alterar a senha"
+    }
+  }
+}

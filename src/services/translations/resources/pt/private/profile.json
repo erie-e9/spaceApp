@@ -1,0 +1,56 @@
+{
+  "Profile": {
+    "title": "Perfil",
+    "description": "Veja e atualize suas informações pessoais.",
+    "section1": {
+      "title": "$t(signup:SignUp.screenHeaders.step1.title)",
+      "fields": {
+        "username": "$t(signup:SignUp.form.fields.username.name)",
+        "phoneNumber": "$t(signup:SignUp.form.fields.phoneNumber.name)",
+        "email": "$t(signup:SignUp.form.fields.email.name)",
+        "noEmail": "Nenhum e-mail fornecido, adicione seu e-mail agora.",
+        "password": "$t(signup:SignUp.form.fields.password.name)",
+        "confirmPassword": "$t(signup:SignUp.form.fields.confirmPassword.name)"
+      }
+    },
+    "section2": {
+      "title": "$t(signup:SignUp.screenHeaders.step2.title)",
+      "fields": {
+        "fullName": "Nome completo",
+        "firstName": "$t(signup:SignUp.form.fields.firstName.name)",
+        "lastName": "$t(signup:SignUp.form.fields.lastName.name)",
+        "dateOfBirth": "$t(signup:SignUp.form.fields.dateOfBirth.name)",
+        "genre": "$t(signup:SignUp.form.fields.genre.name)"
+      }
+    },
+    "section3": {
+      "title": "$t(signup:SignUp.screenHeaders.step3.title)",
+      "fields": {
+        "address": "Endereço",
+        "streetAddressLine1": "$t(signup:SignUp.form.fields.streetAddressLine1.name)",
+        "streetAddressLine2": "$t(signup:SignUp.form.fields.streetAddressLine2.name)",
+        "zipCode": "$t(signup:SignUp.form.fields.zipCode.name)",
+        "city": "$t(signup:SignUp.form.fields.city.name)",
+        "country": "$t(signup:SignUp.form.fields.country.name)"
+      }
+    },
+    "alerts": {
+      "deleteAccount": {
+        "title": "Tem certeza?",
+        "description": "Suas informações pessoais serão excluídas e você não poderá recuperá-las.",
+        "options": {
+          "confirmButton": "Confirmo",
+          "cancelButton": "Cancelar"
+        }
+      }
+    },
+    "buttons": {
+      "deleteAccount": "Excluir conta"
+    },
+    "accountStatus": {
+      "basic": "Básico",
+      "pro": "Pro",
+      "premium": "Premium"
+    }
+  }
+}
