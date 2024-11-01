@@ -11,7 +11,6 @@ import {
 } from './styles';
 
 export const MenuItem: React.FC<MenuItemProps> = ({ icon, title, items }) => {
-  console.log('ewe', { itemsL: items[2] });
   const renderItem = useCallback(({ item }: { item: SettingsRenderItemProps }) => {
     return (
       <MenuButton

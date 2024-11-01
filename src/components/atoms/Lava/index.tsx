@@ -1,9 +1,8 @@
 import React, { memo, useMemo } from 'react';
-import { useWindowDimensions } from 'react-native';
-import { BackdropFilter, Blur, BlurMask, CircleProps, Fill } from '@shopify/react-native-skia';
+import { BackdropFilter, Blur, CircleProps, Fill } from '@shopify/react-native-skia';
 import randomcolor from 'randomcolor';
 import { type ScreenBackgroundProps } from '@types';
-import { getRandomNumber, getRandonColorRGB } from '@utils/functions';
+import { getRandomNumber, getRandonColorRGB, screen_height, screen_width } from '@utils/functions';
 import {
   Easing,
   useDerivedValue,
@@ -15,19 +14,18 @@ import { useTheme } from 'styled-components/native';
 import BlurCircle from './components/BlurCircle';
 import { LavaContainer, SkiaCanvas } from './styles';
 
-const Lava: React.FC<Partial<ScreenBackgroundProps> & CircleProps> = ({
+const Lava: React.FC<Partial<ScreenBackgroundProps> & Partial<CircleProps>> = ({
   children,
   dimensions,
   style,
 }) => {
   const theme = useTheme();
   const isDarkMode = theme.mode === 'dark';
-  const { width, height } = useWindowDimensions();
   const { tokens } = useTheme();
   const randomNumber = getRandomNumber(7, 10) / 10;
   const circles = useMemo(() => {
     const color = getRandonColorRGB();
-    const radius = (width * randomNumber) / 2;
+    const radius = (screen_width * randomNumber) / 2;
 
     return Array.from({ length: 6 }).map((circle, index) => {
       return {
@@ -35,12 +33,12 @@ const Lava: React.FC<Partial<ScreenBackgroundProps> & CircleProps> = ({
         circle,
         color,
         radius,
-        x: Math.random() * (width - radius * 2),
-        y: Math.random() * (height - radius * 2),
+        x: Math.random() * (screen_width - radius * 2),
+        y: Math.random() * (screen_height - radius * 2),
       };
     });
   }, []);
-  const step = height / circles.length;
+  const step = screen_height / circles.length;
 
   const randomRotation = Math.random() * 360;
 
@@ -74,7 +72,7 @@ const Lava: React.FC<Partial<ScreenBackgroundProps> & CircleProps> = ({
           return (
             <BlurCircle
               key={index}
-              cx={index % 2 ? width * randomNumber : 0}
+              cx={index % 2 ? screen_width * randomNumber : 0}
               cy={step * index}
               r={circle.radius}
               delay={index * 1000}
@@ -92,7 +90,10 @@ const Lava: React.FC<Partial<ScreenBackgroundProps> & CircleProps> = ({
           );
         })}
         {/* <BlurMask blur={100} style="normal" /> */}
-        <BackdropFilter clip={{ x: 0, y: 0, width, height }} filter={<Blur blur={50} />}>
+        <BackdropFilter
+          clip={{ x: 0, y: 0, width: screen_width, height: screen_height }}
+          filter={<Blur blur={50} />}
+        >
           <Fill color={isDarkMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.5)'} />
         </BackdropFilter>
       </SkiaCanvas>
