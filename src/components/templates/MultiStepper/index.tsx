@@ -110,7 +110,6 @@ const MultiStepper: React.FC<Props> = ({
                   <StepItemContainer>
                     {step.items.map((item, i) => {
                       const sharedProps = {
-                        key: i,
                         ref: item.ref,
                         label: item.label,
                         name: item.name,
@@ -125,8 +124,8 @@ const MultiStepper: React.FC<Props> = ({
                         case 'textinput':
                           return (
                             <TextInput
+                              key={i}
                               {...sharedProps}
-                              blurOnSubmit={false}
                               secureTextEntry={item.secureTextEntry}
                               maxLength={item?.maxLength}
                               maintainFocus={item.maintainFocus}
@@ -157,6 +156,7 @@ const MultiStepper: React.FC<Props> = ({
                         case 'dropdown':
                           return (
                             <Dropdown
+                              key={i}
                               {...sharedProps}
                               data={item.items}
                               placeholder={item.label}
@@ -170,8 +170,8 @@ const MultiStepper: React.FC<Props> = ({
                         case 'switch':
                           return (
                             <Switch
-                              {...sharedProps}
                               activated={values[item.name]}
+                              {...sharedProps}
                               color={'primary500'}
                               size={25}
                               showIndicators={!false}
@@ -181,6 +181,7 @@ const MultiStepper: React.FC<Props> = ({
                         case 'camera-image':
                           return (
                             <ButtonImagePicker
+                              key={i}
                               {...sharedProps}
                               placeholder={item.label}
                               origin={item.origin}
@@ -192,6 +193,7 @@ const MultiStepper: React.FC<Props> = ({
                         case 'date-picker':
                           return (
                             <DatePicker
+                              key={i}
                               {...sharedProps}
                               placeholder={item.label}
                               onSelect={hookHandler.handleChange(item.name)}

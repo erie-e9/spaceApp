@@ -14,37 +14,39 @@ export const BodyContainer = styled.View`
   align-items: center;
 `;
 
-export const NotificationItemContainer = styled(InterpolateColorAnimation)<NotificationContent>`
+export const NotificationItemContainer = styled(InterpolateColorAnimation) <NotificationContent>`
   height: ${({ itemHeight }) => (itemHeight && `${itemHeight}px`) || 'auto'};
   width: 100%;
   justify-content: center;
   align-items: flex-start;
-  border-radius: 15px;
+  border-radius: 20px;
   border-width: 0.7px;
   border-color: #333;
-  margin: 5px 0px;
-  padding: ${getNormalizedVerticalSize(20)}px ${getNormalizedHorizontalSize(10)}px
-    ${getNormalizedVerticalSize(20)}px ${getNormalizedHorizontalSize(10)}px;
+  margin: 1px 0px;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const NotificationContentContainer = styled.View<NotificationContent>`
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   height: ${({ itemHeight }) => (itemHeight && `${itemHeight}px`) || 'auto'};
   width: 100%;
-  padding: ${getNormalizedVerticalSize(20)}px ${getNormalizedHorizontalSize(0)}px;
+  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const NotificationContentData = styled.View`
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;  
+  width: 55%;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px;
 `;
 
 export const NotificationList = styled(List)``;
 
 export const NotificationTitleText = styled(Typography)``;
+
 export const NotificationDescriptionText = styled(Typography)``;
 
 export const AvatarImage = styled(Image)`
@@ -65,11 +67,8 @@ export const MoreNotificationButton = styled(ActionButton)`
 `;
 
 export const RightTopContainer = styled.View`
-  width: auto;
+  width: 15%;
   align-items: flex-end;
-  justify-content: flex-start;
-  position: absolute;
-  right: ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const RightTopText = styled(Typography)``;

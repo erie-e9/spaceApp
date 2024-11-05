@@ -14,6 +14,7 @@ export const useDeviceSecurity = (): {
   const isDeviceSecure = useCallback(async (): Promise<boolean> => {
     try {
       const isDevEnv = (await process.env.DEBUGGER_MODE) ? false : JailMonkey?.isDebuggedMode();
+      const trustDeviceFall = (await process.env.DEBUGGER_MODE) ? false : JailMonkey.trustFall();
       const isJailbroken = await JailMonkey?.isJailBroken();
       const isRooted = await JailMonkey?.androidRootedDetectionMethods?.rootBeer
         ?.detectRootManagementApps;
@@ -21,7 +22,7 @@ export const useDeviceSecurity = (): {
         ?.detectPotentiallyDangerousApps;
       const isExternalStorage = await JailMonkey?.isOnExternalStorage();
 
-      return !(isDevEnv || isJailbroken || isRooted || detectDangerousApps || isExternalStorage);
+      return !(isDevEnv || isJailbroken || isRooted || detectDangerousApps || isExternalStorage || trustDeviceFall);
     } catch (error) {
       Logger.error('isDeviceSecure Error', { error });
       return false; // it's not reliable
@@ -38,8 +39,8 @@ export const useDeviceSecurity = (): {
       try {
         const [deviceSecure, notEmulator, mockLocation] = await Promise.all([
           isDeviceSecure(),
-          isNotEmulator(),
           checkMockLocation(),
+          isNotEmulator(),
         ]);
 
         if (deviceSecure && notEmulator && mockLocation) {

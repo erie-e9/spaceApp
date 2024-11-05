@@ -26,7 +26,7 @@ export const LabelColorAnimationContainer = styled(InterpolateColorAnimation)`
 
 export const CounterColorAnimationContainer = styled(InterpolateColorAnimation)`
   position: absolute;
-  bottom: -10px;
+  bottom: 15px;
   width: auto;
   right: ${getNormalizedHorizontalSize(15)}px;
   border-radius: 5px;

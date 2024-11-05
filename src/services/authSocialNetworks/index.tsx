@@ -100,13 +100,15 @@ export const authSocialNetworks = () => {
             response = { success: false, error: 'Invalid provider' };
             break;
         }
-        useToast.success({
-          message: getCopyValue(
-            'authentication:Authentication.alerts.authSocialMedia.signInSuccess',
-            { provider: firstCapitalized(provider) },
-          ),
-          duration: 3000,
-        });
+        if (response.success) {
+          useToast.success({
+            message: getCopyValue(
+              'authentication:Authentication.alerts.authSocialMedia.signInSuccess',
+              { provider: firstCapitalized(provider) },
+            ),
+            duration: 3000,
+          });
+        }
 
         return response;
       } catch (error: any) {

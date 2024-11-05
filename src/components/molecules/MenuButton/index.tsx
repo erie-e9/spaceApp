@@ -61,14 +61,14 @@ const MenuButton: React.FC<SettingsRenderItemProps> = ({
                     <TitleContainer leftIcon={!!leftIcon}>
                       <StyledTitleText
                         type={hasParent ? 'Body3' : 'Subtitle1'}
-                        color="secondary950"
+                        color="typography950"
                       >
                         {title}
                       </StyledTitleText>
 
                       {description && (
                         <SubTitleContainer>
-                          <StyledSubTitleText type="Label" font="Primary" color="secondary700">
+                          <StyledSubTitleText type="Label" font="Primary" color="typography700">
                             {description}
                           </StyledSubTitleText>
                         </SubTitleContainer>
@@ -88,7 +88,7 @@ const MenuButton: React.FC<SettingsRenderItemProps> = ({
                     )}
                     {!rightIcon && !rightBody && selectedOption && (
                       <SelectedOptionContainer>
-                        <SelectedOptionText type="Body3" color="secondary950">
+                        <SelectedOptionText type="Body3" color="typography950">
                           {selectedOption}
                         </SelectedOptionText>
                       </SelectedOptionContainer>

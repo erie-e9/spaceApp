@@ -48,38 +48,38 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
       step1Filled
         ? user
         : {
-            // phoneNumber: '',
-            // username: '',
-            // email: '',
-            // // photo: null,
-            // password: '',
-            // confirmPassword: '',
-            // firstName: '',
-            // lastName: '',
-            // dateOfBirth: '',
-            // genre: '',
-            // streetAddressLine1: '',
-            // streetAddressLine2: '',
-            // zipCode: '',
-            // city: '',
-            // country: '',
+          // phoneNumber: '',
+          // username: '',
+          // email: '',
+          // // photo: null,
+          // password: '',
+          // confirmPassword: '',
+          // firstName: '',
+          // lastName: '',
+          // dateOfBirth: '',
+          // genre: '',
+          // streetAddressLine1: '',
+          // streetAddressLine2: '',
+          // zipCode: '',
+          // city: '',
+          // country: '',
 
-            username: 'Erie_e9',
-            email: 'erictorresandrade.1@gmail.com',
-            // photo: null,
-            password: 'qwerty.1Lovegun@0o0o',
-            confirmPassword: 'qwerty.1Lovegun@0o0o',
-            firstName: 'Eric',
-            lastName: 'Torres',
-            dateOfBirth: '27/04/1992',
-            genre: 'man',
-            streetAddressLine1: 'Calle Washington, col. Universal 203, Durango, Dgo.',
-            streetAddressLine2: 'A una calle de blvd. Dolores del Río.',
-            zipCode: '34000',
-            city: 'Durango',
-            country: 'México',
-            loggedOnDevice: false,
-          },
+          username: 'Erie_e9',
+          email: 'erictorresandrade.1@gmail.com',
+          // photo: null,
+          password: 'qwerty.1Lovegun@0o0o',
+          confirmPassword: 'qwerty.1Lovegun@0o0o',
+          firstName: 'Eric',
+          lastName: 'Torres',
+          dateOfBirth: '27/04/1992',
+          genre: 'man',
+          streetAddressLine1: 'Calle Washington, col. Universal 203, Durango, Dgo.',
+          streetAddressLine2: 'A una calle de blvd. Dolores del Río.',
+          zipCode: '34000',
+          city: 'Durango',
+          country: 'México',
+          loggedOnDevice: false,
+        },
     [user],
   );
 
@@ -120,44 +120,44 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
             await updateUser(
               user.signUpMethod === 'form'
                 ? {
-                    username: cleanedValues.username,
-                    phoneNumber: user.phoneNumber,
-                    email: cleanedValues.email,
-                    // photo: cleanedValues.photo,
-                    password: '',
-                    confirmPassword: '',
-                    firstName: cleanedValues.firstName,
-                    lastName: cleanedValues.lastName,
-                    dateOfBirth: cleanedValues.dateOfBirth,
-                    genre: cleanedValues.genre,
-                    streetAddressLine1: cleanedValues.streetAddressLine1,
-                    streetAddressLine2: cleanedValues.streetAddressLine2,
-                    zipCode: cleanedValues.zipCode,
-                    city: cleanedValues.city,
-                    country: cleanedValues.country,
-                    loggedOnDevice: true,
-                    // ...values,
-                    // password: '',
-                    // confirmPassword: '',
-                  }
+                  username: cleanedValues.username,
+                  phoneNumber: user.phoneNumber,
+                  email: cleanedValues.email,
+                  // photo: cleanedValues.photo,
+                  password: '',
+                  confirmPassword: '',
+                  firstName: cleanedValues.firstName,
+                  lastName: cleanedValues.lastName,
+                  dateOfBirth: cleanedValues.dateOfBirth,
+                  genre: cleanedValues.genre,
+                  streetAddressLine1: cleanedValues.streetAddressLine1,
+                  streetAddressLine2: cleanedValues.streetAddressLine2,
+                  zipCode: cleanedValues.zipCode,
+                  city: cleanedValues.city,
+                  country: cleanedValues.country,
+                  loggedOnDevice: true,
+                  // ...values,
+                  // password: '',
+                  // confirmPassword: '',
+                }
                 : {
-                    phoneNumber: user.phoneNumber,
-                    email: user.email,
-                    // photo: user.photo,
-                    firstName: user.firstName,
-                    lastName: user.lastName,
-                    username: cleanedValues.username,
-                    password: '',
-                    confirmPassword: '',
-                    dateOfBirth: cleanedValues.dateOfBirth,
-                    genre: cleanedValues.genre,
-                    streetAddressLine1: cleanedValues.streetAddressLine1,
-                    streetAddressLine2: cleanedValues.streetAddressLine2,
-                    zipCode: cleanedValues.zipCode,
-                    city: cleanedValues.city,
-                    country: cleanedValues.country,
-                    loggedOnDevice: true,
-                  },
+                  phoneNumber: user.phoneNumber,
+                  email: user.email,
+                  // photo: user.photo,
+                  firstName: user.firstName,
+                  lastName: user.lastName,
+                  username: cleanedValues.username,
+                  password: '',
+                  confirmPassword: '',
+                  dateOfBirth: cleanedValues.dateOfBirth,
+                  genre: cleanedValues.genre,
+                  streetAddressLine1: cleanedValues.streetAddressLine1,
+                  streetAddressLine2: cleanedValues.streetAddressLine2,
+                  zipCode: cleanedValues.zipCode,
+                  city: cleanedValues.city,
+                  country: cleanedValues.country,
+                  loggedOnDevice: true,
+                },
             );
             useToast.success({
               message: 'signup:SignUp.alerts.signUpSuccess.toastTitle',
@@ -206,36 +206,35 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
         : (accountWithSocialMediaSchema[index] as yup.ObjectSchema<any>),
       formik.values,
     );
-    if (isEmpty(errors)) {
-      if (index < 1 && user.signUpMethod === 'socialMedia') {
-        // phoneNumber is in index 0 and shown for social media
-        await showSendOTPAlert(() => {
-          updateUser({
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            // photo: user.photo,
-            phoneNumber: formik.values.phoneNumber,
-            username: formik.values.username,
-            dateOfBirth: formik.values.dateOfBirth,
-            genre: formik.values.genre,
-            streetAddressLine1: formik.values.streetAddressLine1,
-            streetAddressLine2: formik.values.streetAddressLine2,
-            city: formik.values.city,
-            zipCode: formik.values.zipCode,
-            country: formik.values.country,
-          });
-          setIndex(index + 1);
-        });
-      } else {
-        await updateUser(formik.values);
-        await setIndex(index + 1);
-      }
-
-      await formik.setErrors(errors);
-    } else {
+    if (!isEmpty(errors)) {
       formik.setErrors(errors);
     }
+    if (index < 1 && user.signUpMethod === 'socialMedia') {
+      // phoneNumber is in index 0 and shown for social media
+      showSendOTPAlert(() => {
+        updateUser({
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          // photo: user.photo,
+          phoneNumber: formik.values.phoneNumber,
+          username: formik.values.username,
+          dateOfBirth: formik.values.dateOfBirth,
+          genre: formik.values.genre,
+          streetAddressLine1: formik.values.streetAddressLine1,
+          streetAddressLine2: formik.values.streetAddressLine2,
+          city: formik.values.city,
+          zipCode: formik.values.zipCode,
+          country: formik.values.country,
+        });
+        setIndex(index + 1);
+      });
+    } else {
+      setIndex(index + 1);
+      updateUser(formik.values);
+    }
+
+    await formik.setErrors(errors);
   }, [index, formik.errors, formik.values, user.signUpMethod]);
 
   const fieldValueHandler = useCallback(
@@ -284,143 +283,143 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
     () =>
       user.signUpMethod === 'form'
         ? [
-            // login with form
-            {
-              title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
-              description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
-              items: [
-                {
-                  ...username,
-                  ref: (r: any) => (refs.current.username = r),
-                  onSubmitEditing: () =>
-                    onSubmitEditingNext('username', user.email !== '' ? 'button' : 'textinput'),
-                },
-                user.email === '' && {
-                  ...email,
-                  ref: (r: any) => (refs.current.email = r),
-                  onSubmitEditing: () => onSubmitEditingNext('email', 'textinput'),
-                }, //? change it to 'button' if photo is available
-                // { ...photo, ref: (r: any) => refs.current.photo = r, },
-                {
-                  ...password,
-                  ref: (r: any) => (refs.current.password = r),
-                  onSubmitEditing: () => onSubmitEditingNext('password', 'textinput'),
-                },
-                {
-                  ...confirmPassword,
-                  ref: (r: any) => (refs.current.confirmPassword = r),
-                  onSubmitEditing: () => onNextStepHandler(),
-                },
-              ],
-            },
-            {
-              title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
-              description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
-              items: [
-                {
-                  ...firstName,
-                  ref: (r: any) => (refs.current.firstName = r),
-                  onSubmitEditing: () => onSubmitEditingNext('firstName'),
-                },
-                {
-                  ...lastName,
-                  ref: (r: any) => (refs.current.lastName = r),
-                  onSubmitEditing: () => onSubmitEditingNext('lastName', 'button'),
-                },
-                { ...dateOfBirth, ref: (r: any) => (refs.current.dateOfBirth = r) },
-                { ...genre, ref: (r: any) => (refs.current.genre = r), items: genres },
-              ],
-            },
-            {
-              title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
-              description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
-              items: [
-                {
-                  ...streetAddressLine1,
-                  ref: (r: any) => (refs.current.streetAddressLine1 = r),
-                  onSubmitEditing: () => onSubmitEditingNext('streetAddressLine1'),
-                },
-                {
-                  ...streetAddressLine2,
-                  ref: (r: any) => (refs.current.streetAddressLine2 = r),
-                  onSubmitEditing: () => onSubmitEditingNext('streetAddressLine2'),
-                },
-                {
-                  ...zipCode,
-                  ref: (r: any) => (refs.current.zipCode = r),
-                  onSubmitEditing: () => onSubmitEditingNext('zipCode'),
-                },
-                {
-                  ...city,
-                  ref: (r: any) => (refs.current.city = r),
-                  onSubmitEditing: () => onSubmitEditingNext('city'),
-                },
-                {
-                  ...country,
-                  ref: (r: any) => (refs.current.country = r),
-                  onSubmitEditing: () => onSubmitHandler(),
-                },
-              ],
-            },
-          ]
+          // login with form
+          {
+            title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
+            description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
+            items: [
+              {
+                ...username,
+                ref: (r: any) => (refs.current.username = r),
+                onSubmitEditing: () =>
+                  onSubmitEditingNext('username', user.email !== '' ? 'button' : 'textinput'),
+              },
+              user.email === '' && {
+                ...email,
+                ref: (r: any) => (refs.current.email = r),
+                onSubmitEditing: () => onSubmitEditingNext('email', 'textinput'),
+              }, //? change it to 'button' if photo is available
+              // { ...photo, ref: (r: any) => refs.current.photo = r, },
+              {
+                ...password,
+                ref: (r: any) => (refs.current.password = r),
+                onSubmitEditing: () => onSubmitEditingNext('password', 'textinput'),
+              },
+              {
+                ...confirmPassword,
+                ref: (r: any) => (refs.current.confirmPassword = r),
+                onSubmitEditing: () => onNextStepHandler(),
+              },
+            ],
+          },
+          {
+            title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
+            description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
+            items: [
+              {
+                ...firstName,
+                ref: (r: any) => (refs.current.firstName = r),
+                onSubmitEditing: () => onSubmitEditingNext('firstName'),
+              },
+              {
+                ...lastName,
+                ref: (r: any) => (refs.current.lastName = r),
+                onSubmitEditing: () => onSubmitEditingNext('lastName', 'button'),
+              },
+              { ...dateOfBirth, ref: (r: any) => (refs.current.dateOfBirth = r) },
+              { ...genre, ref: (r: any) => (refs.current.genre = r), items: genres },
+            ],
+          },
+          {
+            title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
+            description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
+            items: [
+              {
+                ...streetAddressLine1,
+                ref: (r: any) => (refs.current.streetAddressLine1 = r),
+                onSubmitEditing: () => onSubmitEditingNext('streetAddressLine1'),
+              },
+              {
+                ...streetAddressLine2,
+                ref: (r: any) => (refs.current.streetAddressLine2 = r),
+                onSubmitEditing: () => onSubmitEditingNext('streetAddressLine2'),
+              },
+              {
+                ...zipCode,
+                ref: (r: any) => (refs.current.zipCode = r),
+                onSubmitEditing: () => onSubmitEditingNext('zipCode'),
+              },
+              {
+                ...city,
+                ref: (r: any) => (refs.current.city = r),
+                onSubmitEditing: () => onSubmitEditingNext('city'),
+              },
+              {
+                ...country,
+                ref: (r: any) => (refs.current.country = r),
+                onSubmitEditing: () => onSubmitHandler(),
+              },
+            ],
+          },
+        ]
         : [
-            // social media
-            {
-              title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
-              description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
-              items: [
-                {
-                  ...phoneNumber,
-                  ref: (r: any) => (refs.current.phoneNumber = r),
-                  onSubmitEditing: () => onSubmitEditingNext('phoneNumber'),
-                },
-                {
-                  ...username,
-                  ref: (r: any) => (refs.current.username = r),
-                  onSubmitEditing: () => onSubmitEditingNext('username', 'textinput'),
-                },
-              ],
-            },
-            {
-              title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
-              description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
-              items: [
-                { ...dateOfBirth, ref: (r: any) => (refs.current.dateOfBirth = r) },
-                { ...genre, ref: (r: any) => (refs.current.genre = r), items: genres },
-              ],
-            },
-            {
-              title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
-              description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
-              items: [
-                {
-                  ...streetAddressLine1,
-                  ref: (r: any) => (refs.current.streetAddressLine1 = r),
-                  onSubmitEditing: () => onSubmitEditingNext('streetAddressLine1'),
-                },
-                {
-                  ...streetAddressLine2,
-                  ref: (r: any) => (refs.current.streetAddressLine2 = r),
-                  onSubmitEditing: () => onSubmitEditingNext('streetAddressLine2'),
-                },
-                {
-                  ...zipCode,
-                  ref: (r: any) => (refs.current.zipCode = r),
-                  onSubmitEditing: () => onSubmitEditingNext('zipCode'),
-                },
-                {
-                  ...city,
-                  ref: (r: any) => (refs.current.city = r),
-                  onSubmitEditing: () => onSubmitEditingNext('city'),
-                },
-                {
-                  ...country,
-                  ref: (r: any) => (refs.current.country = r),
-                  onSubmitEditing: () => onSubmitHandler(),
-                },
-              ],
-            },
-          ],
+          // social media
+          {
+            title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
+            description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
+            items: [
+              {
+                ...phoneNumber,
+                ref: (r: any) => (refs.current.phoneNumber = r),
+                onSubmitEditing: () => onSubmitEditingNext('phoneNumber'),
+              },
+              {
+                ...username,
+                ref: (r: any) => (refs.current.username = r),
+                onSubmitEditing: () => onSubmitEditingNext('username', 'textinput'),
+              },
+            ],
+          },
+          {
+            title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
+            description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
+            items: [
+              { ...dateOfBirth, ref: (r: any) => (refs.current.dateOfBirth = r) },
+              { ...genre, ref: (r: any) => (refs.current.genre = r), items: genres },
+            ],
+          },
+          {
+            title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
+            description: `signup:SignUp.screenHeaders.step${index + 1}.description`,
+            items: [
+              {
+                ...streetAddressLine1,
+                ref: (r: any) => (refs.current.streetAddressLine1 = r),
+                onSubmitEditing: () => onSubmitEditingNext('streetAddressLine1'),
+              },
+              {
+                ...streetAddressLine2,
+                ref: (r: any) => (refs.current.streetAddressLine2 = r),
+                onSubmitEditing: () => onSubmitEditingNext('streetAddressLine2'),
+              },
+              {
+                ...zipCode,
+                ref: (r: any) => (refs.current.zipCode = r),
+                onSubmitEditing: () => onSubmitEditingNext('zipCode'),
+              },
+              {
+                ...city,
+                ref: (r: any) => (refs.current.city = r),
+                onSubmitEditing: () => onSubmitEditingNext('city'),
+              },
+              {
+                ...country,
+                ref: (r: any) => (refs.current.country = r),
+                onSubmitEditing: () => onSubmitHandler(),
+              },
+            ],
+          },
+        ],
     [index, genres, user.signUpMethod],
   );
 

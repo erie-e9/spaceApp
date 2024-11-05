@@ -7,7 +7,6 @@ import { ActionButton } from '@components/molecules';
 export const StyledContainer = styled.View`
   flex: 1;
   width: 100%;
-  flex-direction: column;
   justify-content: space-between;
 `;
 

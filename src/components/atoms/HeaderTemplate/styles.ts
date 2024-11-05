@@ -5,6 +5,7 @@ import { Platform } from 'react-native';
 
 interface HeaderStyle {
   headerStyle: 'Primary' | 'Secondary';
+  backButton?: boolean;
 }
 
 export const HeaderContainer = styled.View<HeaderStyle>`
@@ -22,7 +23,7 @@ export const HeaderWrapper = styled.View`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  /* background-color: #1ac05ac7; */
+  background-color: transparent;
 `;
 export const HeaderLeftCotainer = styled.View<{
   hasHeaderOptions: boolean;
@@ -30,7 +31,7 @@ export const HeaderLeftCotainer = styled.View<{
   flex-direction: row;
   width: ${({ hasHeaderOptions }) => (hasHeaderOptions ? '75%' : '100%')};
   justify-content: flex-start;
-  /* background-color: #1ac05ac7; */
+  background-color: transparent;
 `;
 
 export const BackButtonContainer = styled.View<HeaderStyle>`
@@ -40,18 +41,18 @@ export const BackButtonContainer = styled.View<HeaderStyle>`
   justify-content: flex-start;
   padding: ${getNormalizedVerticalSize(4)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
-  /* background-color: #dcba10d8; */
+  background-color: transparent;
 `;
 
 export const TitleTextContainer = styled.View<HeaderStyle>`
-  width: 90%;
+  width: ${({ backButton }) => backButton ? 90 : 100}%;
   justify-content: center;
   min-height: ${({ headerStyle }) =>
     getNormalizedVerticalSize(
       headerStyle === 'Primary' ? getNormalizedVerticalSize(30) : getNormalizedVerticalSize(30),
     )}px;
   align-items: ${({ headerStyle }) => (headerStyle === 'Primary' ? 'flex-start' : 'center')};
-  /* background-color: #1a4fc0b3; */
+  background-color: transparent;
 `;
 
 export const TitleText = styled(Typography)``;
@@ -62,7 +63,7 @@ export const HeaderRightContainer = styled.View`
   justify-content: flex-end;
   width: 20%;
   height: 100%;
-  /* background-color: #c01a1db3; */
+  background-color: transparent;
 `;
 
 export const DescriptionContainer = styled.View<HeaderStyle>`

@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin, User, statusCodes } from '@react-native-google-signin/google-signin';
+import {
+  GoogleSignin, User, isCancelledResponse, isSuccessResponse, statusCodes,
+} from '@react-native-google-signin/google-signin';
 import { Logger } from '@services';
 import { AuthResponseProps } from '.';
 
@@ -24,22 +26,26 @@ export const useGoogleAuth = () => {
       await GoogleSignin.hasPlayServices({
         showPlayServicesUpdateDialog: true,
       });
-      const userInfo = await GoogleSignin.signIn();
-      const googleCredential = auth.GoogleAuthProvider.credential(userInfo.idToken);
+      const response = await GoogleSignin.signIn();
+      if (!isSuccessResponse(response) || isCancelledResponse(response)) {
+        throw 'cancelled'
+      } else {
+        const googleCredential = auth.GoogleAuthProvider.credential(response.data.idToken);
+        const userCredential = await auth().signInWithCredential(googleCredential);
+        Logger.log('credencial', userCredential.user)
+        return {
+          success: true,
+          data: {
+            token: response.data.idToken,
+            picture: userCredential?.user?.photoURL,
+            firstName: userCredential?.additionalUserInfo?.profile?.given_name,
+            lastName: userCredential?.additionalUserInfo?.profile?.family_name,
+            email: userCredential?.additionalUserInfo?.profile?.email,
+            ...userCredential,
+          },
+        };
+      }
 
-      const userCredential = await auth().signInWithCredential(googleCredential);
-
-      return {
-        success: true,
-        data: {
-          token: userInfo.idToken,
-          picture: userCredential?.user?.photoURL,
-          firstName: userCredential?.additionalUserInfo?.profile?.given_name,
-          lastName: userCredential?.additionalUserInfo?.profile?.family_name,
-          email: userCredential?.additionalUserInfo?.profile?.email,
-          ...userCredential,
-        },
-      };
     } catch (error: any) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         Logger.log('Cancel');

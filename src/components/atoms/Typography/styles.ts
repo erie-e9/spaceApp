@@ -25,22 +25,22 @@ const Fonts = {
 
 export interface TextProps {
   type?:
-    | 'Headline1'
-    | 'Headline2'
-    | 'Headline3'
-    | 'Headline4'
-    | 'Headline5'
-    | 'Headline6'
-    | 'Subtitle1'
-    | 'Subtitle2'
-    | 'Subtitle3'
-    | 'Body1'
-    | 'Body2'
-    | 'Body3'
-    | 'Body4'
-    | 'Button'
-    | 'Caption'
-    | 'Label';
+  | 'Headline1'
+  | 'Headline2'
+  | 'Headline3'
+  | 'Headline4'
+  | 'Headline5'
+  | 'Headline6'
+  | 'Subtitle1'
+  | 'Subtitle2'
+  | 'Subtitle3'
+  | 'Body1'
+  | 'Body2'
+  | 'Body3'
+  | 'Body4'
+  | 'Button'
+  | 'Caption'
+  | 'Label';
   font?: 'Primary' | 'Secondary';
   color?: keyof DefaultTheme['tokens']['colors'];
   weight?: number | 'bold' | 'semi-bold' | 'normal';
@@ -93,14 +93,14 @@ export const Button = createFontStyle(14, 20, 1.25, 500);
 export const Caption = createFontStyle(12, 16, 0.4, 400);
 export const Label = createFontStyle(11, 16, 0.5, 400);
 
-export const Text = styled(NativeText)<TextProps>`
+export const Text = styled(NativeText) <TextProps>`
   padding-top: ${({ paddingTop }) => getNormalizedVerticalSize(paddingTop || 0)}px;
   margin-right: ${({ marginRight }) => getNormalizedHorizontalSize(marginRight || 0)}px;
   text-align: ${({ textAlign }) => textAlign || 'left'};
   text-transform: ${({ textTransform }) => textTransform || 'none'};
   text-decoration-line: ${({ textDecorationLine }) => textDecorationLine || 'none'};
   color: ${({ theme, color }) => {
-    return theme.tokens.colors[color || 'secondary950'];
+    return theme.tokens.colors[color || 'typography950'];
   }};
   opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
   ${({ font }) => {

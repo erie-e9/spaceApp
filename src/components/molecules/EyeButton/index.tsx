@@ -32,7 +32,7 @@ export const EyeButton: React.FC<EyeButtonProps> = ({
   }, [visible]);
 
   return (
-    <StyledButton {...testProperties(testID)} error={hasError} onPress={onPress}>
+    <StyledButton {...testProperties(testID || 'EyeButtonID')} error={hasError} onPress={onPress}>
       <Lottie
         ref={animationRef}
         source={Animations.eye}

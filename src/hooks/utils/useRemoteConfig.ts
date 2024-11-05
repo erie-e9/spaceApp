@@ -14,7 +14,7 @@ export const useRemoteConfig = (
       dispatch(updateRemoteConfigFeatures(features));
       return features;
     } catch (err: unknown) {
-      Logger.error(err);
+      Logger.warn(err);
     }
     return {};
   }, []);

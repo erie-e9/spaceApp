@@ -1,27 +1,11 @@
-import { PixelRatio } from 'react-native';
 import styled from 'styled-components/native';
 import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
-import { InterpolateColorAnimation } from '@components/animated';
 import { Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
 export const StyledScrollView = styled.ScrollView`
   flex: 1;
   flex-direction: column;
-`;
-
-export const CornerTopRightContainer = styled.View`
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  height: ${getNormalizedVerticalSize(25)}px;
-  width: ${getNormalizedHorizontalSize(55)}px;
-  top: ${getNormalizedVerticalSize(50)}px;
-  right: ${getNormalizedHorizontalSize(0)}px;
-  z-index: 100;
-  border-width: 0px;
-  border-color: ${({ theme }) => theme.tokens.colors.secondary950};
-  border-radius: 7px;
 `;
 
 export const HeaderContainer = styled.View`
@@ -37,15 +21,6 @@ export const BodyContainer = styled.View`
   flex: 1;
   width: 100%;
   justify-content: space-between;
-`;
-
-export const BrandCircleContainer = styled(InterpolateColorAnimation)`
-  position: absolute;
-  height: ${PixelRatio.roundToNearestPixel(250)}px;
-  width: ${PixelRatio.roundToNearestPixel(250)}px;
-  border-radius: ${PixelRatio.roundToNearestPixel(140)}px;
-  top: ${getNormalizedVerticalSize(70)}px;
-  align-self: center;
 `;
 
 export const ContentContainer = styled.View``;

@@ -9,11 +9,12 @@ import React, {
 } from 'react';
 import { AppState, AppStateStatus, StyleProp, ViewStyle } from 'react-native';
 import LottieView from 'lottie-react-native';
+import { testProperties } from '@utils/functions';
 
 type extractComponentPropsType<Type> = Type extends Component<infer X> ? X : null;
 
 export type LottieProps = extractComponentPropsType<LottieView> & {
-  testID?: 'LottieID';
+  testID?: string;
   ref: any;
   height: number;
   width: number;
@@ -64,7 +65,7 @@ export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
   return (
     <LottieView
       {...props}
-      testID={props.testID || 'LottieID'}
+      {...testProperties(props.testID || 'LottieID')}
       ref={animationRef}
       progress={props.progress}
       source={props.source}

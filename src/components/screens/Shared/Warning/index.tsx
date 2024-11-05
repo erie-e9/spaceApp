@@ -54,23 +54,23 @@ export const Warning: React.FC = () => {
               height={120}
             />
             <LabelContainer>
-              <LabelText type="Body4" font="Primary" color="secondary700" textAlign="center">
+              <LabelText type="Body3" font="Primary" color="typography800" textAlign="center">
                 {getCopyValue('security:Warning.description', {
                   appName: process.env.APP_NAME,
                 })}
               </LabelText>
             </LabelContainer>
             <SubDescriptionContainer>
-              <LabelText type="Subtitle2" font="Primary" color="secondary900" textAlign="center">
+              <LabelText type="Subtitle2" font="Primary" color="typography950" textAlign="center">
                 {'security:Warning.sub-description'}
               </LabelText>
             </SubDescriptionContainer>
             <SubDescriptionContainer>
               <LabelContainer>
-                <LabelText type="Subtitle2" font="Primary" color="secondary700" textAlign="center">
+                <LabelText type="Subtitle2" font="Primary" color="typography800" textAlign="center">
                   {'security:Warning.actions.areWeWrong.title'}
                 </LabelText>
-                <LabelText type="Subtitle2" font="Primary" color="secondary700" textAlign="center">
+                <LabelText type="Subtitle2" font="Primary" color="typography800" textAlign="center">
                   {'security:Warning.actions.areWeWrong.description'}
                 </LabelText>
               </LabelContainer>

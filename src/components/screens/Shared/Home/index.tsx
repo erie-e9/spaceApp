@@ -11,9 +11,7 @@ import {
 import { BlackHoleToMoon } from '@components/molecules';
 import {
   StyledScrollView,
-  CornerTopRightContainer,
   HeaderContainer,
-  BrandCircleContainer,
   BodyContainer,
   ContentContainer,
   StyledText,

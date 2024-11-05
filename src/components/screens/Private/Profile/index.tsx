@@ -34,7 +34,7 @@ const Profile: React.FC<Props> = () => {
         <BodyContainer testID="ProfileBodyID">
           <StyledScrollView>
             <ProfileImageContainer>
-              <AvatarProfile showImagePickerButton={true} size={100} trigger={false} />
+              <AvatarProfile showImagePickerButton={true} size={90} trigger={false} />
             </ProfileImageContainer>
 
             <OpacityAnimation

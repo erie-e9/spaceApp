@@ -113,7 +113,7 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
 
     return (
       <FieldInputMask
-        {...testProperties(testID)}
+        {...testProperties(testID || 'DatePickerID')}
         value={value}
         required={required}
         label={label}

@@ -16,7 +16,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   description = '',
   titleColor,
 }) => {
-  const defaultTitleColor = titleColor ? titleColor : 'secondary950';
+  const defaultTitleColor = titleColor || 'typography950';
 
   return (
     <ModalHeaderContainer {...testProperties(testID)}>

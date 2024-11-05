@@ -81,14 +81,14 @@ const CallToAction: React.FC<CallToActionProps> = ({
   return (
     <ScreenBackground
       testID={testID}
-      type="solid"
+      type="gradient"
       initialColor={initialColor}
       finalColor={finalColor}
       // colors={['#51506b', '#181725', '#181725', '#06060a']}
-      colors={['#66768a', '#253e3f', '#172325', '#060a0a']}
+      // colors={['#66768a', '#253e3f', '#172325', '#060a0a']}
       layerOpacity={0.9}
-      backgroundType="image"
-      backgroundSource={Images.wallpapers.background1}
+      // backgroundType="image"
+      // backgroundSource={Images.wallpapers.background1}
       // backgroundSource={
       //   'https://firebasestorage.googleapis.com/v0/b/start-react-native.appspot.com/o/BigBuckBunny.mp4?alt=media&token=42bb3922-af22-4491-93a6-5100fc6a5f27'
       // }

@@ -42,10 +42,11 @@ export const HeaderContainer = styled.View`
 `;
 
 export const LeftContainer = styled.View`
-  flex: 0.87;
+  flex: 1;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
+  background-color: transparent;
 `;
 
 export const LeftIconContainer = styled.View<{
@@ -53,8 +54,8 @@ export const LeftIconContainer = styled.View<{
 }>`
   height: auto;
   width: auto;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   border-radius: 20px;
   padding: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(7)}px
@@ -66,7 +67,7 @@ interface TitleContainerProps {
 }
 
 export const TitleContainer = styled.View<TitleContainerProps>`
-  width: auto;
+  width: 100%;
   min-height: ${getNormalizedVerticalSize(20)}px;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px
     ${getNormalizedVerticalSize(0)}px

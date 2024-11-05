@@ -4,7 +4,7 @@ import { CallToAction } from '@components/templates';
 import { BodyContainer, NotificationList, MoreNotificationButton } from './styles';
 import Item from './components/Item';
 
-export const ITEM_HEIGHT = 70;
+export const ITEM_HEIGHT = 90;
 export const Notifications: React.FC = () => {
   const notificationsHook = useNotifications();
 

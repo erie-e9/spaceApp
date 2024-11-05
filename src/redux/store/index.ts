@@ -65,6 +65,7 @@ const store = configureStore({
 
     return middlewares;
   },
+  devTools: process.env.NODE_ENV !== 'production'
 });
 
 const persistor = persistStore(store);

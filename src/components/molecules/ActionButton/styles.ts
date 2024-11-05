@@ -80,7 +80,7 @@ export const StyledText = styled(Typography) <StyleButtonTextProps>`
   justify-content: center;
   font-weight: ${({ fontWeight }) => fontWeight || '500'};
   line-height: ${getNormalizedVerticalSize(25)}px;
-  color: ${({ theme, color }) => theme.tokens.colors[color || 'secondary950']};
+  color: ${({ theme, color }) => theme.tokens.colors[color || 'typography950']};
   ${({ buttonType, theme }) =>
     buttonType === 'flat' &&
     `

@@ -114,7 +114,7 @@ export const TextInput: React.FC<InputProps> = forwardRef(
         {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
         <StyledTextInput
           ref={ref}
-          {...testProperties(testID)}
+          {...testProperties(testID || 'TextInputID')}
           name={name}
           multiline={multiline}
           colorTextOpposing

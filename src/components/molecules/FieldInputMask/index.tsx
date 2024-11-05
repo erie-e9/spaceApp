@@ -1,7 +1,7 @@
 import React, { ReactNode, memo, useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { type CommonControllerProps } from '@types';
-import { OpacityAnimation, TransformAnimation } from '@components/animated';
+import { TransformAnimation } from '@components/animated';
 import { Tooltip } from '@components/atoms';
 import {
   TextInputContainer,
@@ -81,7 +81,7 @@ const FieldInputMask: React.FC<Props> = ({
         editable={editable}
         touched={touched}
         focused={focused || !!value}
-        error={showError}
+        error={showError || false}
         hasValue={hasValue}
         maintainFocus={maintainFocus}
         heightExpansible={heightExpansible}
@@ -89,28 +89,19 @@ const FieldInputMask: React.FC<Props> = ({
         {children}
       </Wrapper>
       {focused && characterCounter && (
-        <OpacityAnimation
-          trigger={focused}
-          duration={100}
-          initialValue={0}
-          finalValue={1}
-          repeat={1}
-          style={{ zIndex: 1000 }}
-        >
-          <CounterColorAnimationContainer>
-            <StyledText
-              type="Label"
-              focused={focused || maintainFocus}
-              error={showError}
-              backgroundLabel={backgroundLabel}
-              hasValue={hasValue}
-              editable={editable}
-              touched={touched}
-            >
-              {characterCounter}
-            </StyledText>
-          </CounterColorAnimationContainer>
-        </OpacityAnimation>
+        <CounterColorAnimationContainer>
+          <StyledText
+            type="Label"
+            focused={focused || maintainFocus}
+            error={showError}
+            backgroundLabel={backgroundLabel}
+            hasValue={hasValue}
+            editable={editable}
+            touched={touched}
+          >
+            {characterCounter}
+          </StyledText>
+        </CounterColorAnimationContainer>
       )}
       <FooterContainer>
         {showError && error && (

@@ -124,7 +124,7 @@ const ButtonImagePicker: React.FC<Props> = forwardRef(
       <RenderWhen isTrue={remoteConfigFeatures?.editPhoto?.status === 'on'}>
         {!children ? (
           <FieldInputMask
-            {...testProperties(testID)}
+            {...testProperties(testID || 'ButtonImagePickerID')}
             value={value?.fileName || ''}
             required={required}
             label={label || ''}

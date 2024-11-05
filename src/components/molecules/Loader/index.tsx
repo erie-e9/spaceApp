@@ -22,7 +22,7 @@ export const Loader: React.FC<LoaderProps> = ({
 
   return (
     <Lottie
-      {...testProperties(testID)}
+      {...testProperties(testID || 'LoaderID')}
       ref={animationRef}
       source={Animations[isDarkMode ? 'loaderd' : 'loader']}
       autoPlay={true}

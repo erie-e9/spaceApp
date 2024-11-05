@@ -43,7 +43,12 @@ const Image: React.FC<CustomImageProps> = ({
 
   // Determine if the source is a web, base64, or local URI, otherwise use it as FastImageSource
   if (isWebImage(source) || isBase64Image(source) || isLocalUri(source)) {
-    imageSource = { uri: source };
+    imageSource = {
+      uri: source,
+      priority: FastImage.priority[priority || 'normal'],
+      headers,
+      cache: 'cacheOnly',
+    };
   } else {
     imageSource = source as FastImageSource;
   }

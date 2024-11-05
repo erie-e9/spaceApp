@@ -88,7 +88,7 @@ const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps)
   });
 
   return (
-    <OtpInputContainer {...testProperties(testID)}>
+    <OtpInputContainer {...testProperties(testID || 'OTPInputID')}>
       {otp.map((digit, index) => (
         <InputContainer key={index} style={animatedStyles}>
           <StyledTextInput

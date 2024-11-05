@@ -5,19 +5,21 @@ import {
   screen_height,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
+  screen_width,
 } from '@utils/functions';
 import { Touchable } from '@components/atoms';
 import { List } from '@components/molecules';
 
 export const AnimatedBottomSheet = styled(Animated.View)`
   height: ${screen_height}px;
-  width: 99%;
+  width: ${screen_width - 2}px;
   align-self: center;
   align-items: center;
+  align-content: center;
   position: absolute;
   top: ${screen_height}px;
-  z-index: 100;
-  border-radius: ${getNormalizedHorizontalSize(25)}px;
+  z-index: 1000;
+  border-radius: ${getNormalizedHorizontalSize(30)}px;
   background-color: ${({ theme }) => theme.tokens.colors.backgroundColor};
 `;
 
@@ -43,11 +45,11 @@ export const PanGestureHandlerView = styled.View`
 `;
 
 export const CloseIconContainer = styled.View`
-  position: absolute;
-  right: ${getNormalizedHorizontalSize(-65)}px;
-  top: ${getNormalizedVerticalSize(15)}px;
   height: ${getNormalizedVerticalSize(100)}px;
   width: ${getNormalizedHorizontalSize(100)}px;
+  right: ${getNormalizedHorizontalSize(-65)}px;
+  top: ${getNormalizedVerticalSize(15)}px;
+  position: absolute;
   z-index: 2;
 `;
 

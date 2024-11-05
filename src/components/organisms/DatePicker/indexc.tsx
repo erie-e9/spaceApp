@@ -9,6 +9,7 @@ import { CoolDatePicker, getToday, modeCalendarType, FieldInputMask } from '@com
 import useAutoFocus from '@components/molecules/TextInput/hooks/useAutoFocus';
 import { StyledButton, StyledElementContainer, StyledText } from './styles';
 import { ModernDateTimePickerOptions } from '../../molecules/CoolDatePicker';
+import { testProperties } from '@utils/functions';
 
 interface DatePickerProps {
   testID?: string;

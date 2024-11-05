@@ -49,9 +49,9 @@ export const AvatarProfile: React.FC<AvatarProfile> = ({
   };
 
   return (
-    <Container {...testProperties(testID)} size={size}>
+    <Container {...testProperties(testID || 'AvatarProfileID')} size={size}>
       {photo?.uri ? (
-        <UserImage source={photo?.uri || ''} size={size} />
+        <UserImage source={photo?.uri || ''} size={size} borderRadius={size / 2} />
       ) : (
         <Lottie
           ref={animationRef}

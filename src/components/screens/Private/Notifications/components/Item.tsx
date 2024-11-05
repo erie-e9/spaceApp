@@ -43,22 +43,6 @@ export const Item: React.FC<ItemProps> = ({
   return (
     <NotificationItemContainer {...testProperties(testID || 'ItemID')} itemHeight={itemHeight}>
       <NotificationContentContainer>
-        {rightTop && (
-          <RightTopContainer>
-            {!loading ? (
-              <RightTopText color="secondary700">{rightTop}</RightTopText>
-            ) : (
-              <StyledSkeleton
-                width={30}
-                height={15}
-                borderRadius={10}
-                animationType="pulse"
-                direction="leftToRight"
-                backgroundColor={theme.tokens.colors.tertiary200}
-              />
-            )}
-          </RightTopContainer>
-        )}
         {picture && !loading ? (
           <AvatarImage source={picture} priority="normal" borderRadius={25} />
         ) : (
@@ -101,6 +85,22 @@ export const Item: React.FC<ItemProps> = ({
             />
           )}
         </NotificationContentData>
+        {rightTop && (
+          <RightTopContainer>
+            {!loading ? (
+              <RightTopText color="secondary700">{rightTop}</RightTopText>
+            ) : (
+              <StyledSkeleton
+                width={30}
+                height={15}
+                borderRadius={10}
+                animationType="pulse"
+                direction="leftToRight"
+                backgroundColor={theme.tokens.colors.tertiary200}
+              />
+            )}
+          </RightTopContainer>
+        )}
       </NotificationContentContainer>
     </NotificationItemContainer>
   );

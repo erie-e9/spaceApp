@@ -17,6 +17,11 @@ export default function ({ }: ThemeVariables) {
       background1: require('@assets/shared/images/background.jpg'),
       background2: require('@assets/shared/images/background2.jpg'),
       background3: require('@assets/shared/images/background3.webp'),
+      backgroundstar1: require('@assets/shared/images/background-star1.webp'),
+      backgroundstar2: require('@assets/shared/images/background-star2.webp'),
+      backgroundstar3: require('@assets/shared/images/background-star3.webp'),
+      backgroundstar4: require('@assets/shared/images/background-star4.webp'),
+      doodle: require('@assets/shared/images/doodle.webp'),
     },
     icons: {
       // colors: require('@assets/shared/images/colorswatch.webp'),
