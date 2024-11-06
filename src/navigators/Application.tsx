@@ -5,7 +5,7 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
-import SplashScreen from 'react-native-lottie-splash-screen';
+// import SplashScreen from 'react-native-lottie-splash-screen';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ErrorBoundary from 'react-native-error-boundary';
@@ -33,7 +33,7 @@ import {
   Info,
   ContactUs,
 } from '@components/screens/Shared';
-import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
+import { SafeAreaViewProvider, ScreenBackground, StatusBar } from '@components/atoms';
 import { Toast } from '@components/molecules';
 import { Modal } from '@components/organisms';
 
@@ -61,7 +61,7 @@ const Application = () => {
   useEffect(() => {
     initAppCheck(true);
     const timeOut = setTimeout(() => {
-      SplashScreen.hide();
+      // SplashScreen.hide();
     }, 1000);
     return () => {
       clearTimeout(timeOut);
@@ -90,6 +90,16 @@ const Application = () => {
   useLayoutEffect(() => {
     checkDevice();
   }, []);
+
+  const { Images } = useTheme();
+
+  const theme = {
+    ...NavigationTheme,
+    colors: {
+      ...NavigationTheme.colors,
+      // background: 'transparent',
+    },
+  };
 
   return (
     <ThemeProvider theme={mode}>

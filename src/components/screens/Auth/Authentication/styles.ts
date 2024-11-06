@@ -39,7 +39,7 @@ export const ForgotPasswordContainer = styled.View`
   background-color: transparent;
 `;
 
-export const StyledText = styled(Typography)<{
+export const StyledText = styled(Typography) <{
   underline?: boolean;
 }>`
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};
@@ -49,7 +49,7 @@ interface StyledButtonProps {
   disabled?: boolean;
 }
 
-export const StyledButton = styled(ActionButton)<StyledButtonProps>`
+export const StyledButton = styled(ActionButton) <StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px;
 `;

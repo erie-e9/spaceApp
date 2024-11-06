@@ -14,8 +14,8 @@ import {
 import { useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 import { testProperties, getRandonColorRGB } from '@utils/functions';
 import { ScreenBackgroundProps } from '@types';
-import { ContentContainer, SkiaCanvas, StyledBackgroundContainer } from './styles';
 import { useTheme } from '@hooks';
+import { ContentContainer, SkiaCanvas, StyledBackgroundContainer } from './styles';
 
 const GradientBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
   testID,

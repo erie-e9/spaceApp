@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { DefaultTheme } from 'styled-components';
 import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
-import { type TouchableProps } from '@types';
+import { type TouchableProps, type ScreenBackgroundProps } from '@types';
 import { HeaderTemplate, ScreenBackground } from '@components/atoms';
 import {
   StyledContainer,
@@ -37,7 +37,7 @@ interface CallToActionProps {
   finalColor?: keyof DefaultTheme['tokens']['colors'];
 }
 
-const CallToAction: React.FC<CallToActionProps> = ({
+const CallToAction: React.FC<CallToActionProps & Partial<ScreenBackgroundProps>> = ({
   testID = 'CallToActionID',
   title,
   description,
@@ -55,12 +55,20 @@ const CallToAction: React.FC<CallToActionProps> = ({
   pressTitle,
   headerStyle = 'Primary',
   headerOptions,
+  type = 'solid',
+  backgroundType,
+  backgroundSource,
+  colors,
+  layerOpacity = 1,
   initialColor,
   finalColor,
 }) => {
-  const { darkMode, Images } = useTheme();
+  const { darkMode } = useTheme();
 
-  const renderButton = (button: TouchableProps, theme: string = 'Secondary') => (
+  const renderButton = (
+    button: TouchableProps,
+    theme: TouchableProps['buttonTheme'] = 'Secondary',
+  ) => (
     <StyledButton
       testID={button?.testID}
       title={button?.title}
@@ -80,20 +88,16 @@ const CallToAction: React.FC<CallToActionProps> = ({
 
   return (
     <ScreenBackground
-      testID={testID}
-      type="gradient"
+      {...testProperties(testID + 'Background')}
+      type={type}
+      colors={colors}
       initialColor={initialColor}
       finalColor={finalColor}
-      // colors={['#51506b', '#181725', '#181725', '#06060a']}
-      // colors={['#66768a', '#253e3f', '#172325', '#060a0a']}
-      layerOpacity={0.9}
-      // backgroundType="image"
-      // backgroundSource={Images.wallpapers.background1}
-      // backgroundSource={
-      //   'https://firebasestorage.googleapis.com/v0/b/start-react-native.appspot.com/o/BigBuckBunny.mp4?alt=media&token=42bb3922-af22-4491-93a6-5100fc6a5f27'
-      // }
+      layerOpacity={layerOpacity}
+      backgroundType={backgroundType}
+      backgroundSource={backgroundSource}
     >
-      <StyledContainer {...testProperties(testID)}>
+      <StyledContainer {...testProperties(testID + 'Container')}>
         <HeaderTemplate
           title={title || ' '}
           description={description}

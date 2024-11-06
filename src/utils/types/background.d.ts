@@ -2,8 +2,9 @@ import { StyleProp, ViewStyle } from 'react-native';
 import { AnimatedStyle } from 'react-native-reanimated';
 import { DefaultTheme } from 'styled-components';
 
-export type ScreenBackgroundType = 'solid' | 'gradient' | 'blur' | 'lava' | 'multimedia' | 'animated';
+export type ScreenBackgroundType = 'solid' | 'gradient' | 'blur' | 'lava' | 'parallax' | 'loop';
 export type BackgroundType = 'image' | 'video';
+export type LoopDirection = 'left' | 'right' | 'up' | 'down';
 
 export interface ScreenBackgroundProps {
     testID: string;
@@ -23,4 +24,8 @@ export interface ScreenBackgroundProps {
         height: number;
     };
     fillColor?: string;
+    sensitivity?: number;
+    direction?: LoopDirection;
+    angleLoop?: number;
+    speedLoop?: number;
 }
