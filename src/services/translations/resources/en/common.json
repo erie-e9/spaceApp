@@ -55,6 +55,26 @@
       }
     }
   },
+  "bottomsheets": {
+    "rating": {
+      "howWasYourExperience": {
+        "title": "How was your {{FEATURENAME}} experience?",
+        "description": "Tap a star to rate your experience using {{FEATURENAME}}"
+      },
+      "tellUsMore": {
+        "title": "Could you tell us more?",
+        "placeholder": "Describe ypur experience.",
+        "charactersLabel": "characters",
+        "sumbitButton": "Send"
+      },
+      "skipButton": "Ask me later",
+      "toast": {
+        "success": {
+          "title": "Thanks for your feedback!"
+        }
+      }
+    }
+  },
   "webviewer": {
     "option1": "Share",
     "option2": "Reload",

@@ -55,6 +55,26 @@
       }
     }
   },
+  "bottomsheets": {
+    "rating": {
+      "howWasYourExperience": {
+        "title": "Como foi sua experiência com {{FEATURENAME}}?",
+        "description": "Toque em uma estrela para avaliar sua experiência usando {{FEATURENAME}}"
+      },
+      "tellUsMore": {
+        "title": "Você poderia nos contar mais?",
+        "placeholder": "Descreva sua experiência.",
+        "charactersLabel": "caracteres",
+        "sumbitButton": "Enviar"
+      },
+      "skipButton": "Pergunte-me depois",
+      "toast": {
+        "success": {
+          "title": "Obrigado pelo seu feedback!"
+        }
+      }
+    }
+  },
   "webviewer": {
     "option1": "Compartilhar",
     "option2": "Recarregar",
