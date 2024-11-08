@@ -104,6 +104,12 @@ import VersionsLogsIconDark from '@assets/dark/svg/versions.svg';
 import VersionsLogsIconLight from '@assets/light/svg/versions.svg';
 import FeaturesIconDark from '@assets/dark/svg/features.svg';
 import FeaturesIconLight from '@assets/light/svg/features.svg';
+import StarCorner from '@assets/shared/svg/starcorner.svg';
+import StarFilled from '@assets/shared/svg/starfilled.svg';
+import AddIconDark from '@assets/dark/svg/add.svg';
+import AddIconLight from '@assets/light/svg/add.svg';
+import RemoveIconDark from '@assets/dark/svg/remove.svg';
+import RemoveIconLight from '@assets/light/svg/remove.svg';
 
 interface SvgObject {
   [key: string]: {
@@ -321,6 +327,22 @@ const svgLibrary: SvgObject = {
   features: {
     dark: FeaturesIconDark,
     light: FeaturesIconLight,
+  },
+  starcorner: {
+    dark: StarCorner,
+    light: StarCorner,
+  },
+  starfilled: {
+    dark: StarFilled,
+    light: StarFilled,
+  },
+  add: {
+    dark: AddIconDark,
+    light: AddIconLight,
+  },
+  remove: {
+    dark: RemoveIconDark,
+    light: RemoveIconLight
   },
 };
 

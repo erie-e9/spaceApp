@@ -59,9 +59,9 @@ export const TitleText = styled(Typography)``;
 
 export const HeaderRightContainer = styled.View`
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-end;
-  width: 20%;
+  width: auto;
   height: 100%;
   background-color: transparent;
 `;

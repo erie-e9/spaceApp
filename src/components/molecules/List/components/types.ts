@@ -3,7 +3,6 @@ import { SharedValue } from 'react-native-reanimated';
 export type TItem = {
   id: number;
   title: string;
-  singer: string;
   imageSrc: string;
 };
 

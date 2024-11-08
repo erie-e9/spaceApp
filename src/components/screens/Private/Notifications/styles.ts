@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { InterpolateColorAnimation } from '@components/animated';
 import { Skeleton } from '@components/animated';
-import { Image, Typography } from '@components/atoms';
+import { Image, Touchable, Typography } from '@components/atoms';
 import { ActionButton, List } from '@components/molecules';
 
 export interface NotificationContent {
@@ -19,12 +19,10 @@ export const NotificationItemContainer = styled(InterpolateColorAnimation) <Noti
   width: 100%;
   justify-content: center;
   align-items: flex-start;
-  border-radius: 20px;
-  border-width: 0.7px;
+  border-width: ${getNormalizedHorizontalSize(0)}px;
   border-color: #333;
-  margin: 1px 0px;
-  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
+  /* padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px; */
 `;
 
 export const NotificationContentContainer = styled.View<NotificationContent>`
@@ -33,14 +31,15 @@ export const NotificationContentContainer = styled.View<NotificationContent>`
   align-items: flex-start;
   height: ${({ itemHeight }) => (itemHeight && `${itemHeight}px`) || 'auto'};
   width: 100%;
+  /* background-color: green; */
   padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
 `;
 
 export const NotificationContentData = styled.View`
   justify-content: flex-start;
   align-items: flex-start;  
-  width: 55%;
-  margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px;
+  width: 60%;
+  /* background-color: pink; */
 `;
 
 export const NotificationList = styled(List)``;
@@ -66,9 +65,13 @@ export const MoreNotificationButton = styled(ActionButton)`
     ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px;
 `;
 
+export const ItemButton = styled(Touchable)`
+`;
+
 export const RightTopContainer = styled.View`
-  width: 15%;
+  width: 20%;
   align-items: flex-end;
 `;
 
-export const RightTopText = styled(Typography)``;
+export const RightTopText = styled(Typography)`
+`;

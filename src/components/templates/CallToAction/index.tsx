@@ -120,7 +120,7 @@ const CallToAction: React.FC<CallToActionProps & Partial<ScreenBackgroundProps>>
                   <ArrayFooterText
                     type="Subtitle3"
                     font="Primary"
-                    color="secondary600"
+                    color="typography600"
                     textAlign="center"
                     weight={400}
                   >

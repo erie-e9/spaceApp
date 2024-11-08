@@ -46,13 +46,13 @@ export const CustomFallback: React.FC<CustomFallbackProps> = ({ error }) => {
             <FallbackAnimation />
           </RotateAnimation>
           <HeaderContainer>
-            <StyledText type="Headline5" font="Primary" color="secondary900" textAlign="center">
+            <StyledText type="Headline5" font="Primary" color="typography900" textAlign="center">
               {'common:errors.boundaries.fallbackScreen.title'}
             </StyledText>
             <StyledText
               type="Subtitle1"
               font="Primary"
-              color="secondary900"
+              color="typography900"
               textAlign="center"
               paddingTop={5}
             >
@@ -64,7 +64,7 @@ export const CustomFallback: React.FC<CustomFallbackProps> = ({ error }) => {
               <StyledText
                 type="Subtitle2"
                 font="Primary"
-                color="secondary800"
+                color="typography800"
                 textAlign="left"
                 weight="bold"
               >
@@ -72,7 +72,7 @@ export const CustomFallback: React.FC<CustomFallbackProps> = ({ error }) => {
                 <StyledText
                   type="Subtitle2"
                   font="Primary"
-                  color="secondary800"
+                  color="typography800"
                   textAlign="justify"
                   weight={400}
                 >

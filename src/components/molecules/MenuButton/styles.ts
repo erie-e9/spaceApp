@@ -42,7 +42,7 @@ export const HeaderContainer = styled.View`
 `;
 
 export const LeftContainer = styled.View`
-  flex: 1;
+  flex: 0.95;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
@@ -106,11 +106,13 @@ export const ArrowContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
 export const RightContainer = styled.View`
-  min-width: ${getNormalizedHorizontalSize(50)}px;
+  min-width: ${getNormalizedHorizontalSize(65)}px;
   align-items: flex-end;
-  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
+  background-color: transparent;
 `;
 
 export const RightBodyContainer = styled.View`

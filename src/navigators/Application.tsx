@@ -43,7 +43,7 @@ const Application = () => {
   const { token } = useAuthenticationHook();
   const { darkMode: darkModeApp, NavigationTheme } = useTheme();
   const { theme: themeApp } = useAppPreferences();
-  const { appConnected } = useCheckNet();
+  const { isOnline } = useCheckNet();
   const gestureHandlerRootViewStyle = { flex: 1 };
   const isAuthenticated: boolean = !isEmpty(token);
   const { checkIsReliableDevice } = useDeviceSecurity();
@@ -69,14 +69,14 @@ const Application = () => {
   }, []);
 
   useEffect(() => {
-    if (!appConnected.isConnected) {
+    if (!isOnline.isConnected) {
       useToast.warning({
         message: 'common:messages.noConnection',
       });
     } else {
       useToast.close();
     }
-  }, [appConnected.isConnected, appConnected.type]);
+  }, [isOnline.isConnected, isOnline.type]);
 
   const handleJSErrorForErrorBoundary = (error: any, stackTrace: string) => {
     Logger.log('handleJSErrorForErrorBoundary: ', { stackTrace, error });

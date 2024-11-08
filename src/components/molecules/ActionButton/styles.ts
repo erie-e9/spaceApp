@@ -40,7 +40,7 @@ export const StyledButton = styled(Touchable) <StyledButtonProps>`
   min-height: ${PixelRatio.roundToNearestPixel(45)}px; // change mutual height's here
   margin-vertical: ${getNormalizedVerticalSize(2)}px;
   border-radius: ${({ loading, type }) =>
-    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 30 : 20)}px;
+    PixelRatio.roundToNearestPixel(loading || type === 'Icon' ? 30 : 30)}px;
   border-color: ${({ theme }) => theme.tokens.colors.primary500};
   elevation: 0;
   background-color: ${({ theme, backgroundColor }) =>

@@ -6,10 +6,10 @@ import { AnyObject } from 'yup';
 import { Logger, useCopy } from '@services';
 import { screen_height } from '@utils/functions';
 import { useResponseHandler } from '@hooks';
-import { AnimatedListItem } from './components/AnimatedListItem';
-import { NullableNumber } from './components/types';
 import { ScaleAnimation } from '@components/animated';
 import { BackButton, ListItem, Loader, TextInput } from '@components/molecules';
+import AnimatedListItem from './components/AnimatedListItem';
+import { NullableNumber } from './components/types';
 import {
   ListContainer,
   StyledList,
@@ -81,18 +81,19 @@ export const List: React.FC<ListProps> = ({
     return colsMinusMargin < colsFloor && colsFloor > numColumns ? colsFloor - 1 : colsFloor;
   }, [windowWidth, numColumns]);
 
-  const isDragging = useSharedValue<0 | 1>(0);
+  const isDragging = useSharedValue(0);
   const draggedItemId = useSharedValue<NullableNumber>(null);
-  const getInitialPositions = () => {
+
+  const getInitialPositions = useCallback(() => {
     let positions: AnyObject = {};
-    for (let i = 0; i < items.length; i++) {
-      positions[i] = {
-        updatedIndex: i,
-        updatedTop: i * itemHeight,
+    items.forEach((item, index) => {
+      positions[item.id] = {
+        updatedIndex: index,
+        updatedTop: index * itemHeight,
       };
-    }
+    });
     return positions;
-  };
+  }, [items]);
 
   const currentPositions = useSharedValue(getInitialPositions());
 
@@ -103,7 +104,7 @@ export const List: React.FC<ListProps> = ({
       return draggable ? (
         <AnimatedListItem
           item={item}
-          key={item.id}
+          key={index}
           isDragging={isDragging}
           draggedItemId={draggedItemId}
           currentPositions={currentPositions}

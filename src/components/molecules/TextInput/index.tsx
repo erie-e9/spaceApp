@@ -44,6 +44,7 @@ export const TextInput: React.FC<InputProps> = forwardRef(
       rightIconHandler,
       onChangeText,
       multiline,
+      textContentType,
       ...props
     },
     ref,
@@ -99,7 +100,7 @@ export const TextInput: React.FC<InputProps> = forwardRef(
             <FooterContainer>
               <PasswordStrengthAnimation passwordStrength={passwordStrength} />
               <FooterTextContainer>
-                <StyledText type="Label" font="Primary" color="secondary700" textAlign="justify">
+                <StyledText type="Label" font="Primary" color="typography700" textAlign="justify">
                   {`signup:SignUp.form.fields.password.validations.status.${passwordStrength}`}
                 </StyledText>
               </FooterTextContainer>
@@ -133,6 +134,7 @@ export const TextInput: React.FC<InputProps> = forwardRef(
           secureTextEntry={secureTextEntry ? !showPassword : false}
           styledFocus={styledFocus}
           textTextInputContainerType={autoCompleteType}
+          textContentType={textContentType || 'none'}
           {...props}
         />
 

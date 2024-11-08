@@ -13,7 +13,7 @@ export const Biometrics: React.FC<BiometricsProps> = ({ onSuccess, icon, text })
       <TitleText
         type="Subtitle2"
         font="Primary"
-        color="secondary800"
+        color="typography800"
         textAlign="center"
         weight={400}
       >

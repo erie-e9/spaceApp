@@ -14,10 +14,10 @@ export const InfoHeader: React.FC = () => {
         <Logo source={Images.logo} logoSize={logoSize} avatarRadius={avatarRadius} />
       </LogoContainer>
       <ContentContainer>
-        <StyledText type="Headline2" textAlign="center" color="secondary950">
+        <StyledText type="Headline2" textAlign="center" color="typography950">
           {process.env.APP_NAME}
         </StyledText>
-        <StyledText textAlign="left" color="secondary700">
+        <StyledText textAlign="left" color="typography700">
           {process.env.APP_SLOGAN}
         </StyledText>
       </ContentContainer>

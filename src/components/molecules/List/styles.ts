@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { FlashList } from '@shopify/flash-list';
@@ -16,7 +16,6 @@ export const ListContainer = styled.View<{
   alignItems?: ViewStyle['alignItems'];
 }>`
   flex: 1;
-  /* height: 100%; */
   align-items: ${({ alignItems }) => (alignItems && alignItems) || 'center'};
   justify-content: center;
   width: 100%;
@@ -50,7 +49,7 @@ export const ChildrenContainer = styled.View`
   width: 90%;
 `;
 
-export const ItemImage = styled(Image)<{
+export const ItemImage = styled(Image) <{
   size: number;
 }>`
   width: ${({ size }) => getNormalizedVerticalSize(size)}px;
@@ -79,18 +78,16 @@ export const ScrollToTopButtonContainer = styled.View`
   background-color: ${({ theme }) => theme.tokens.colors.secondary950};
 `;
 
-export const styles = StyleSheet.create({
-  draggerContainer: {
-    width: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  descriptionContainer: {
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    alignSelf: 'flex-start',
-    minWidth: '60%',
-    // height: 'auto',
-    marginHorizontal: 20,
-  },
-});
+export const DescriptionContainer = styled.View`
+  min-width: 60%;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  margin-horizontal: ${getNormalizedHorizontalSize(20)}px;
+`;
+
+export const AnimatedDraggerContainer = styled(Animated.View)`
+  width: ${getNormalizedHorizontalSize(30)}px;
+  align-items: center;
+  justify-content: center;
+`;

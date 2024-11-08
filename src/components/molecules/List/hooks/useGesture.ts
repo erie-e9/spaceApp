@@ -55,20 +55,20 @@ export const useGesture = ({
 
   useAnimatedReaction(
     () => {
-      return currentPositionsDerived.value[item.id].updatedIndex;
+      const itemPosition = currentPositionsDerived.value[item.id];
+      return itemPosition ? itemPosition.updatedIndex : undefined;
     },
     (currentValue, previousValue) => {
-      if (currentValue !== previousValue) {
+      if (currentValue !== undefined && currentValue !== previousValue) {
         if (draggedItemIdDerived.value !== null && item.id === draggedItemIdDerived.value) {
-          top.value = withSpring(currentPositionsDerived.value[item.id].updatedIndex * itemHeight);
+          top.value = withSpring(currentValue * itemHeight);
         } else {
-          top.value = withTiming(currentPositionsDerived.value[item.id].updatedIndex * itemHeight, {
-            duration: 400,
-          });
+          top.value = withTiming(currentValue * itemHeight, { duration: 400 });
         }
       }
     },
   );
+
 
   const isCurrentDraggingItem = useDerivedValue(() => {
     return isDraggingDerived.value && draggedItemIdDerived.value === item.id;
@@ -180,18 +180,18 @@ export const useGesture = ({
       ],
       backgroundColor: isCurrentDraggingItem.value
         ? interpolateColor(
-            isDraggingDerived.value,
-            [0, 1],
-            [theme.tokens.colors.tertiary50, theme.tokens.colors.tertiary50],
-          )
+          isDraggingDerived.value,
+          [0, 1],
+          [theme.tokens.colors.tertiary50, theme.tokens.colors.tertiary50],
+        )
         : 'transparent', // background by default
 
       shadowColor: isCurrentDraggingItem.value
         ? interpolateColor(
-            isDraggingDerived.value,
-            [0, 1],
-            [theme.tokens.colors.secondary950, theme.tokens.colors.secondary950],
-          )
+          isDraggingDerived.value,
+          [0, 1],
+          [theme.tokens.colors.secondary950, theme.tokens.colors.secondary950],
+        )
         : undefined,
       shadowOffset: {
         width: 0,
@@ -208,7 +208,6 @@ export const useGesture = ({
       elevation: isCurrentDraggingItem.value
         ? interpolate(isDraggingDerived.value, [0, 1], [0, 5])
         : 0,
-      zIndex: isCurrentDraggingItem.value ? 1 : 0,
     };
   }, [draggedItemIdDerived.value, isDraggingDerived.value]);
 

@@ -38,7 +38,7 @@ export const OnBoarding: React.FC = () => {
       />
       <StyledScrollView>
         <DescriptionContainer>
-          <TitleText type="Subtitle2" font="Primary" color="secondary800" textAlign="center">
+          <TitleText type="Subtitle2" font="Primary" color="typography800" textAlign="center">
             {getCopyValue('security:OnBoarding.description', {
               appName: process.env.APP_NAME,
             })}
@@ -48,7 +48,7 @@ export const OnBoarding: React.FC = () => {
           <TitleText
             type="Subtitle2"
             font="Primary"
-            color="secondary800"
+            color="typography800"
             textAlign="center"
             weight="bold"
           >

@@ -15,7 +15,7 @@ export interface StartUpProps {
 
 export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
   const { checkIsReliableDevice } = useDeviceSecurity();
-  const { appConnected } = useCheckNet();
+  const { isOnline } = useCheckNet();
   const { Images } = useTheme();
   const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
   const { switchLanguage, saveLanguages, language } = useAppPreferences();
@@ -28,8 +28,8 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
     ];
     const results = await Promise.all(promises);
     if (!results.includes(false)) {
-      if (appConnected.isConnected) {
         await fetchLanguage('en');
+      if (isOnline.isConnected) {
       }
       await navigation.dispatch(
         CommonActions.reset({

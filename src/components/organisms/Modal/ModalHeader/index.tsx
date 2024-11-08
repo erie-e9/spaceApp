@@ -29,7 +29,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
       )}
       {description && (
         <DescriptionContainer>
-          <StyledText type="Subtitle2" color="tertiary800">
+          <StyledText type="Subtitle2" color="typography800">
             {description}
           </StyledText>
         </DescriptionContainer>

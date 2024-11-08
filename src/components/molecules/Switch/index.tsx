@@ -64,7 +64,7 @@ export const Switch: React.FC<SwitchProps> = ({
     <Container>
       {label && (
         <DescriptionContainer>
-          <StyledText type="Subtitle2" font="Primary" color="secondary100" textAlign="justify">
+          <StyledText type="Subtitle2" font="Primary" color="typography100" textAlign="justify">
             {name}
           </StyledText>
         </DescriptionContainer>

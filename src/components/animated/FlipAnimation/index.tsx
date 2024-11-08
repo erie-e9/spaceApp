@@ -89,7 +89,7 @@ export const FlipAnimation: React.FC<FlipAnimationProps> = ({
         {frontFace && typeof frontFace !== 'string' ? (
           frontFace
         ) : (
-          <FlipAnimationText type="Headline5" color="tertiary950">
+          <FlipAnimationText type="Headline5" color="typography950">
             {frontFace}
           </FlipAnimationText>
         )}
@@ -98,14 +98,14 @@ export const FlipAnimation: React.FC<FlipAnimationProps> = ({
         {backFace && typeof backFace !== 'string' ? (
           backFace
         ) : (
-          <FlipAnimationText type="Headline5" color="tertiary950">
+          <FlipAnimationText type="Headline5" color="typography950">
             {backFace}
           </FlipAnimationText>
         )}
       </AnimatedBackFace>
       {withManualTrigger && (
         <TriggerAnimationButton onPress={spinTrigger}>
-          <FlipAnimationText type="Headline5" color="tertiary950">
+          <FlipAnimationText type="Headline5" color="typography950">
             {flipText || 'flip'}
           </FlipAnimationText>
         </TriggerAnimationButton>

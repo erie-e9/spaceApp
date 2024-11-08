@@ -23,7 +23,7 @@ export const Body: React.FC<BodyProps> = ({ navigation, type }) => {
           <StyledText
             type="Subtitle2"
             weight={Platform.OS === 'ios' ? 300 : 100}
-            color="secondary700"
+            color="typography700"
             textAlign="justify"
           >
             {content}
@@ -31,7 +31,7 @@ export const Body: React.FC<BodyProps> = ({ navigation, type }) => {
               <StyledText
                 type="Subtitle2"
                 weight="bold"
-                color="tertiary600"
+                color="typography600"
                 textAlign="justify"
                 onPress={() => navigation.navigate('ContactUs', {} as never)}
               >
@@ -43,7 +43,7 @@ export const Body: React.FC<BodyProps> = ({ navigation, type }) => {
             <StyledText
               type="Subtitle2"
               weight={Platform.OS === 'ios' ? 300 : 100}
-              color="secondary700"
+              color="typography700"
               textAlign="justify"
             >
               {content2}

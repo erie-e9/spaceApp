@@ -43,10 +43,10 @@ export const Toast = () => {
   });
 
   const colorTextStatus: ColorStatus = {
-    info: 'secondary900',
-    success: darkMode ? 'tertiary50' : 'secondary950',
-    error: 'secondary900',
-    warning: 'tertiary50',
+    info: 'typography900',
+    success: darkMode ? 'typography50' : 'typography950',
+    error: 'typography900',
+    warning: 'typography50',
   };
 
   const colorStatus: ColorStatus = {
@@ -130,7 +130,7 @@ export const Toast = () => {
               color={colorTextStatus[type || 'success']}
               textAlign="center"
               numberOfLines={1}
-              weight={500}
+              weight={400}
             >
               {message}
             </ToastText>

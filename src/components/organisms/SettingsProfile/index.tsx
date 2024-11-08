@@ -76,7 +76,7 @@ const SettingsProfile = () => {
                     <EditIcon />
                   </ProfileButton>
                   {username && (
-                    <ProfileDetailText type="Body3" color="secondary300">
+                    <ProfileDetailText type="Body3" color="typography300">
                       @{username}
                     </ProfileDetailText>
                   )}

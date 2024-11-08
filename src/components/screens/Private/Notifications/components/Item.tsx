@@ -1,6 +1,7 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTheme } from 'styled-components';
 import { testProperties } from '@utils/functions';
+import { dayjs } from '@utils/formatters';
 import {
   AvatarImage,
   StyledSkeleton,
@@ -11,6 +12,7 @@ import {
   NotificationTitleText,
   RightTopContainer,
   RightTopText,
+  ItemButton,
 } from '../styles';
 
 export interface ItemProps {
@@ -25,7 +27,7 @@ export interface ItemProps {
   rightTop: string;
   itemHeight?: number | undefined;
   loading?: boolean;
-  onPress?: (() => void) | undefined;
+  onPress?: ((item: any) => void) | undefined;
 }
 
 export const Item: React.FC<ItemProps> = ({
@@ -39,70 +41,85 @@ export const Item: React.FC<ItemProps> = ({
   loading,
   onPress,
 }) => {
+  const formattedTime = useMemo(() => {
+    // return dayjs('2024-11-07T21:09:14.517Z').fromNow();
+    return `${dayjs(rightTop).fromNow()}`;
+  }, [rightTop]);
+
   const theme = useTheme();
   return (
-    <NotificationItemContainer {...testProperties(testID || 'ItemID')} itemHeight={itemHeight}>
-      <NotificationContentContainer>
-        {picture && !loading ? (
-          <AvatarImage source={picture} priority="normal" borderRadius={25} />
-        ) : (
-          <StyledSkeleton
-            width={50}
-            height={50}
-            borderRadius={30}
-            animationType="pulse"
-            direction="leftToRight"
-            backgroundColor={theme.tokens.colors.tertiary200}
-          />
-        )}
-        <NotificationContentData>
-          {!loading ? (
-            <NotificationTitleText>
-              {id} {title}
-            </NotificationTitleText>
-          ) : (
-            <StyledSkeleton
-              width={60}
-              height={20}
-              borderRadius={0}
-              animationType="pulse"
-              direction="leftToRight"
-              backgroundColor={theme.tokens.colors.tertiary200}
-            />
-          )}
-          {!loading ? (
-            <NotificationDescriptionText color="secondary600">
-              {description}
-            </NotificationDescriptionText>
-          ) : (
-            <StyledSkeleton
-              width={80}
-              height={10}
-              borderRadius={0}
-              animationType="pulse"
-              direction="leftToRight"
-              backgroundColor={theme.tokens.colors.tertiary200}
-            />
-          )}
-        </NotificationContentData>
-        {rightTop && (
-          <RightTopContainer>
+    <ItemButton
+      onPress={() =>
+        onPress &&
+        onPress({
+          id,
+          title,
+          description,
+        })
+      }
+    >
+      <NotificationItemContainer {...testProperties(testID || 'ItemID')} itemHeight={itemHeight}>
+        <NotificationContentContainer>
+          {picture && <AvatarImage source={picture} priority="normal" borderRadius={25} />}
+          {/* <StyledSkeleton
+          width={50}
+          height={50}
+          borderRadius={30}
+          animationType="pulse"
+          direction="leftToRight"
+          backgroundColor={theme.tokens.colors.tertiary200}
+          /> */}
+          <NotificationContentData>
             {!loading ? (
-              <RightTopText color="secondary700">{rightTop}</RightTopText>
+              <NotificationTitleText>
+                {id} {title}
+              </NotificationTitleText>
             ) : (
               <StyledSkeleton
-                width={30}
-                height={15}
-                borderRadius={10}
+                width={60}
+                height={20}
+                borderRadius={0}
                 animationType="pulse"
                 direction="leftToRight"
                 backgroundColor={theme.tokens.colors.tertiary200}
               />
             )}
-          </RightTopContainer>
-        )}
-      </NotificationContentContainer>
-    </NotificationItemContainer>
+            {!loading ? (
+              <NotificationDescriptionText color="typography600">
+                {description}
+              </NotificationDescriptionText>
+            ) : (
+              <>
+                <StyledSkeleton
+                  width={200}
+                  height={15}
+                  borderRadius={0}
+                  animationType="pulse"
+                  direction="leftToRight"
+                  backgroundColor={theme.tokens.colors.tertiary200}
+                />
+              </>
+            )}
+          </NotificationContentData>
+          {rightTop && (
+            <RightTopContainer>
+              {!loading ? (
+                <RightTopText type="Label">{formattedTime}</RightTopText>
+              ) : (
+                <StyledSkeleton
+                  width={60}
+                  height={20}
+                  borderRadius={10}
+                  animationType="pulse"
+                  direction="leftToRight"
+                  backgroundColor={theme.tokens.colors.tertiary200}
+                />
+              )}
+            </RightTopContainer>
+          )}
+        </NotificationContentContainer>
+      </NotificationItemContainer>
+    </ItemButton>
   );
 };
 

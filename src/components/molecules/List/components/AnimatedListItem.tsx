@@ -1,11 +1,16 @@
-import React from 'react';
-import { Image, View } from 'react-native';
+import React, { memo } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
 import { useSVG } from '@hooks';
 import { useGesture } from '../hooks/useGesture';
 import { TListItem } from './types';
-import { AnimatedItemContainer, ChildrenContainer, StyledText, styles } from '../styles';
+import { Image } from '@components/atoms';
+import {
+  AnimatedDraggerContainer,
+  AnimatedItemContainer,
+  ChildrenContainer,
+  DescriptionContainer,
+  StyledText,
+} from '../styles';
 
 export const AnimatedListItem = ({
   item,
@@ -34,20 +39,21 @@ export const AnimatedListItem = ({
         <>
           <Image
             source={{
-              uri: item.postimage,
+              uri: item.imageSrc,
             }}
-            style={styles.image}
           />
-          <View style={styles.descriptionContainer}>
-            <StyledText>{item.username}</StyledText>
-          </View>
+          <DescriptionContainer>
+            <StyledText>{item.title}</StyledText>
+          </DescriptionContainer>
         </>
       )}
       <GestureDetector gesture={gesture}>
-        <Animated.View style={styles.draggerContainer}>
+        <AnimatedDraggerContainer>
           <DraggerIcon />
-        </Animated.View>
+        </AnimatedDraggerContainer>
       </GestureDetector>
     </AnimatedItemContainer>
   );
 };
+
+export default memo(AnimatedListItem);

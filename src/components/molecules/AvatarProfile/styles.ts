@@ -19,7 +19,7 @@ export const Container = styled.View<{
   background-color: ${({ theme }) => theme.tokens.colors.primary500};
 `;
 
-export const UserImage = styled(Image)<{
+export const UserImage = styled(Image) <{
   size: number;
 }>`
   width: ${({ size }) => getNormalizedHorizontalSize(size)}px;
@@ -29,10 +29,10 @@ export const UserImage = styled(Image)<{
 
 export const ImagePickerButtonContainer = styled.View`
   position: absolute;
-  bottom: ${getNormalizedHorizontalSize(-5)}px;
+  bottom: ${getNormalizedVerticalSize(-5)}px;
   right: ${getNormalizedHorizontalSize(10)}px;
-  padding: ${getNormalizedHorizontalSize(5)}px ${getNormalizedHorizontalSize(5)}px
-    ${getNormalizedHorizontalSize(5)}px ${getNormalizedHorizontalSize(5)}px;
+  padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(5)}px
+    ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(5)}px;
   border-radius: 20px;
   border-width: 0.5px;
   border-color: #767676;

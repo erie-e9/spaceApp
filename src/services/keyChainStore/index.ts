@@ -20,8 +20,8 @@ export const useKeyChainStore = (): {
   removeCredentials: () => Promise<void>;
 } => {
   const bundleId = getBundleId();
-  const { API_URL } = process.env;
-  const server = API_URL + bundleId;
+  const { API_REST_BASE } = process.env;
+  const server = API_REST_BASE + bundleId;
 
   const setCredentials = async ({ username, password }: keyChainCredential): Promise<void> => {
     try {

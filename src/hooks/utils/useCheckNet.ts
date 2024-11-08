@@ -2,19 +2,25 @@ import { useEffect, useState } from 'react';
 import NetInfo, { NetInfoState, NetInfoStateType } from '@react-native-community/netinfo';
 
 interface CheckNetProps {
-  appConnected: Partial<NetInfoState>;
+  isOnline: Partial<NetInfoState>;
 }
 
 export const useCheckNet = (): CheckNetProps => {
-  const [appConnected, setAppConnected] = useState<Partial<NetInfoState>>({
+  const [isOnline, setIsOnline] = useState<Partial<NetInfoState>>({
     isConnected: true,
     isInternetReachable: true,
     type: NetInfoStateType.wifi,
   });
 
   useEffect(() => {
+    const checkConnection = async () => {
+      const state = await NetInfo.fetch();
+      setIsOnline(state);
+    };
+
+    checkConnection();
     const subscription = NetInfo.addEventListener((state) => {
-      setAppConnected(state);
+      setIsOnline(state);
     });
 
     return () => {
@@ -22,5 +28,5 @@ export const useCheckNet = (): CheckNetProps => {
     };
   }, []);
 
-  return { appConnected: appConnected as Partial<NetInfoState> };
+  return { isOnline: isOnline as Partial<NetInfoState> };
 };

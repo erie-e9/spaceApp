@@ -31,6 +31,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
   buttonsStyles,
 }) => {
   const { getCopyValue } = useCopy();
+
   const renderButtons = useCallback(
     ({ item, index }: { item: OptionsMap; index: number }) => (
       <ButtonContainer

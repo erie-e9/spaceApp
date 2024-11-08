@@ -48,7 +48,7 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
 
             <SubDescriptionContainer>
               <LabelContainer>
-                <LabelText type="Subtitle2" font="Primary" color="secondary700" textAlign="center">
+                <LabelText type="Subtitle2" font="Primary" color="typography700" textAlign="center">
                   {'menu:helpCenter.support.items.bugReporter.founddBug'}
                 </LabelText>
               </LabelContainer>

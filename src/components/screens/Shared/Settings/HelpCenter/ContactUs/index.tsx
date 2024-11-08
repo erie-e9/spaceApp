@@ -15,7 +15,7 @@ export const ContactUs: React.FC = () => {
         <ContentContainer>
           <InfoHeader />
           <LabelContainer>
-            <StyledText type="Subtitle2" font="Primary" color="secondary700" textAlign="center">
+            <StyledText type="Subtitle2" font="Primary" color="typography700" textAlign="center">
               {'menu:helpCenter.support.items.contactUs.content.description'}
             </StyledText>
           </LabelContainer>

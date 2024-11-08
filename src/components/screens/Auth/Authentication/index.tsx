@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, memo, Fragment } from 'react';
-import { RouteProp } from '@react-navigation/core';
 import { type ApplicationScreenProps } from '@types';
-import { AuthenticationParamsList } from '@navigators/Auth';
 import { Logger, useCopy } from '@services';
 import { useTheme } from '@hooks';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
@@ -27,10 +25,9 @@ import {
 type NavigationType = ApplicationScreenProps;
 interface Props {
   navigation: NavigationType;
-  route: RouteProp<AuthenticationParamsList, 'Authentication'>;
 }
 
-export const Authentication: React.FC<Props> = ({ navigation, route }) => {
+export const Authentication: React.FC<Props> = ({ navigation }) => {
   const animationRef = useRef<LottieViewProps>(null);
   const { getCopyValue } = useCopy();
   const { Animations } = useTheme();
@@ -115,7 +112,7 @@ export const Authentication: React.FC<Props> = ({ navigation, route }) => {
                           <StyledText
                             type="Subtitle2"
                             font="Primary"
-                            color="secondary900"
+                            color="typography900"
                             textAlign="center"
                             weight={500}
                           >
@@ -136,7 +133,7 @@ export const Authentication: React.FC<Props> = ({ navigation, route }) => {
                           <StyledText
                             type="Subtitle3"
                             font="Primary"
-                            color="secondary800"
+                            color="typography800"
                             textAlign="right"
                             weight={500}
                           >
@@ -152,7 +149,7 @@ export const Authentication: React.FC<Props> = ({ navigation, route }) => {
                         <StyledText
                           type="Subtitle2"
                           font="Primary"
-                          color="secondary600"
+                          color="typography600"
                           textAlign="center"
                           weight={400}
                         >
@@ -164,7 +161,7 @@ export const Authentication: React.FC<Props> = ({ navigation, route }) => {
                           <StyledText
                             type="Subtitle2"
                             font="Primary"
-                            color="secondary800"
+                            color="typography800"
                             textAlign="center"
                             weight={500}
                           >
@@ -187,7 +184,7 @@ export const Authentication: React.FC<Props> = ({ navigation, route }) => {
                       <StyledText
                         type="Subtitle2"
                         font="Primary"
-                        color="secondary600"
+                        color="typography600"
                         textAlign="center"
                         weight={400}
                       >
@@ -205,7 +202,7 @@ export const Authentication: React.FC<Props> = ({ navigation, route }) => {
                         <StyledText
                           type="Subtitle2"
                           font="Primary"
-                          color="secondary800"
+                          color="typography800"
                           textAlign="center"
                           weight={500}
                         >

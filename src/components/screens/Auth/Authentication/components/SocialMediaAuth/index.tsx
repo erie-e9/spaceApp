@@ -28,7 +28,7 @@ export const SocialMediaAuth: React.FC<Props> = ({ hookHandler }) => {
             <SocialMediaFooterText
               type="Subtitle2"
               font="Primary"
-              color="secondary900"
+              color="typography900"
               textAlign="center"
               weight={400}
             >

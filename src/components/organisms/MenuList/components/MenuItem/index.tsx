@@ -14,11 +14,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({ icon, title, items }) => {
   const renderItem = useCallback(({ item }: { item: SettingsRenderItemProps }) => {
     return (
       <MenuButton
-        title={item.title}
         hasParent={!!title}
+        title={item.title}
+        description={item.description || undefined}
         leftIcon={item.leftIcon}
         rightIcon={item.rightIcon}
-        description={item.description || undefined}
         onPress={item.onPress}
         selectedOption={item.selectedOption}
         remoteFeatureFlags={item.remoteFeatureFlags}
@@ -34,7 +34,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({ icon, title, items }) => {
         {icon && <SVGIcon icon={icon} />}
         {title && title !== '' && (
           <TitleContainer leftIcon={Boolean(icon)}>
-            <SettingItemTitle type="Subtitle1" color="secondary950">
+            <SettingItemTitle type="Subtitle1" color="typography950">
               {title}
             </SettingItemTitle>
           </TitleContainer>

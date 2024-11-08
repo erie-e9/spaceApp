@@ -38,12 +38,12 @@ export const SignUp: React.FC<SignUpProps> = ({ navigation, route }) => {
   const extraElementLastStep = useMemo(() => {
     return (
       <TermsPolicyContainer>
-        <TermsPolicyText type="Subtitle3" font="Primary" color="secondary600" textAlign="center">
+        <TermsPolicyText type="Subtitle3" font="Primary" color="typography600" textAlign="center">
           {'signup:SignUp.form.termsAndPolicy.text1'}{' '}
           <TermsPolicyText
             type="Subtitle3"
             font="Primary"
-            color="secondary700"
+            color="typography700"
             textAlign="center"
             weight="bold"
             remoteFeatureFlags={['termsOfUse']}
@@ -51,13 +51,13 @@ export const SignUp: React.FC<SignUpProps> = ({ navigation, route }) => {
           >
             {getCopyValue('menu:helpCenter.info.items.termsOfUse.title')}{' '}
           </TermsPolicyText>
-          <TermsPolicyText type="Subtitle3" font="Primary" color="secondary600" textAlign="center">
+          <TermsPolicyText type="Subtitle3" font="Primary" color="typography600" textAlign="center">
             {getCopyValue('signup:SignUp.form.termsAndPolicy.text2')}{' '}
           </TermsPolicyText>
           <TermsPolicyText
             type="Subtitle3"
             font="Primary"
-            color="secondary700"
+            color="typography700"
             textAlign="center"
             weight="bold"
             onPress={() => navigatorHandler('privacyPolicy')}

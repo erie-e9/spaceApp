@@ -52,7 +52,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             icon={<ShareIcon />}
             remoteFeatureFlags={['webviewShare']}
           />
-          <OptionButtonLabel textAlign="center" color="secondary950">
+          <OptionButtonLabel textAlign="center" color="typography950">
             {'common:webviewer.option1'}
           </OptionButtonLabel>
         </OptionButtonContainer>
@@ -66,7 +66,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             icon={<ReloadIcon />}
             remoteFeatureFlags={['webviewReload']}
           />
-          <OptionButtonLabel textAlign="center" color="secondary950">
+          <OptionButtonLabel textAlign="center" color="typography950">
             {'common:webviewer.option2'}
           </OptionButtonLabel>
         </OptionButtonContainer>
@@ -80,7 +80,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             icon={<BrowserIcon />}
             remoteFeatureFlags={['webviewOpenOnBrowser']}
           />
-          <OptionButtonLabel textAlign="center" color="secondary950">
+          <OptionButtonLabel textAlign="center" color="typography950">
             {'common:webviewer.option3'}
           </OptionButtonLabel>
         </OptionButtonContainer>

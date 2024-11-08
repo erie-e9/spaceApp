@@ -28,7 +28,7 @@ export const ModalItem = ({
   return (
     <ItemButton {...testProperties(testID)} onPress={onPressHandler}>
       <ItemLabelContainer>
-        <ItemLabel type="Subtitle2" color="secondary950">
+        <ItemLabel type="Subtitle2" color="typography950">
           {predefinedList !== '' && predefinedList === 'languages' && item !== null
             ? (languagesList[item].nativeName as Language)
             : // ? `menu:Menu.settings.items.appPreferences.items.changeLanguage.languages.${String(languagesList[item].name as Language).toLowerCase()}`
