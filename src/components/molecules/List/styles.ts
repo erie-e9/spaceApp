@@ -64,7 +64,7 @@ export const ScrollToTopContainer = styled.View`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: ${getNormalizedHorizontalSize(20)}px;
+  right: ${getNormalizedHorizontalSize(0)}px;
   bottom: ${getNormalizedVerticalSize(10)}px;
   transform: rotate(90deg);
 `;

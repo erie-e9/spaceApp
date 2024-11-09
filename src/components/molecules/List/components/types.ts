@@ -8,6 +8,7 @@ export type TItem = {
 
 export type TListItem = {
   item: TItem;
+  id: number;
   isDragging: SharedValue<number>;
   draggedItemId: SharedValue<NullableNumber>;
   currentPositions: SharedValue<TSongPositions>;

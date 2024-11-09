@@ -77,7 +77,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({
       </HeaderWrapper>
       {description && (
         <DescriptionContainer headerStyle={headerStyle}>
-          <DescriptionText type="Subtitle2" color="typography800" font="Primary" textAlign="left">
+          <DescriptionText type="Subtitle2" color="typography700" font="Primary" textAlign="left">
             {description}
           </DescriptionText>
         </DescriptionContainer>

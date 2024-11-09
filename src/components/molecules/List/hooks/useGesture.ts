@@ -17,6 +17,7 @@ import { NullableNumber, TSongPositions, TItem } from '../components/types';
 export const ANIMATION_DURATION = 600;
 export const useGesture = ({
   item,
+  id,
   isDragging,
   draggedItemId,
   currentPositions,
@@ -24,6 +25,7 @@ export const useGesture = ({
   itemHeight = 60,
 }: {
   item: TItem;
+  id: number;
   isDragging: SharedValue<number>;
   draggedItemId: SharedValue<NullableNumber>;
   currentPositions: SharedValue<TSongPositions>;
@@ -43,7 +45,7 @@ export const useGesture = ({
     return currentPositions.value;
   });
 
-  const top = useSharedValue(item.id * itemHeight);
+  const top = useSharedValue(id * itemHeight);
 
   const isDraggingDerived = useDerivedValue(() => {
     return isDragging.value;
@@ -55,12 +57,12 @@ export const useGesture = ({
 
   useAnimatedReaction(
     () => {
-      const itemPosition = currentPositionsDerived.value[item.id];
+      const itemPosition = currentPositionsDerived.value[id];
       return itemPosition ? itemPosition.updatedIndex : undefined;
     },
     (currentValue, previousValue) => {
       if (currentValue !== undefined && currentValue !== previousValue) {
-        if (draggedItemIdDerived.value !== null && item.id === draggedItemIdDerived.value) {
+        if (draggedItemIdDerived.value !== null && id === draggedItemIdDerived.value) {
           top.value = withSpring(currentValue * itemHeight);
         } else {
           top.value = withTiming(currentValue * itemHeight, { duration: 400 });
@@ -71,7 +73,7 @@ export const useGesture = ({
 
 
   const isCurrentDraggingItem = useDerivedValue(() => {
-    return isDraggingDerived.value && draggedItemIdDerived.value === item.id;
+    return isDraggingDerived.value && draggedItemIdDerived.value === id;
   });
 
   const getKeyOfValue = (value: number, obj: TSongPositions): number | undefined => {
@@ -90,10 +92,10 @@ export const useGesture = ({
       isDragging.value = withSpring(1);
 
       //keep track of dragged item
-      draggedItemId.value = item.id;
+      draggedItemId.value = id;
 
       //store dragged item id for future swap
-      currentIndex.value = currentPositionsDerived.value[item.id].updatedIndex;
+      currentIndex.value = currentPositionsDerived.value[id].updatedIndex;
     })
     .onUpdate((e) => {
       if (draggedItemIdDerived.value === null) {

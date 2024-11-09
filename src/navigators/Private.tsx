@@ -16,11 +16,9 @@ export const PrivateNavigator = () => {
       initialRouteName="Profile"
       screenOptions={{
         gestureEnabled: true,
-        animationEnabled: true,
         freezeOnBlur: true,
         headerShown: false,
         headerMode: 'screen',
-        headerBackTitleVisible: true,
         headerTransparent: true,
       }}
     >

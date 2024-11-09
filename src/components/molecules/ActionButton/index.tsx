@@ -84,7 +84,8 @@ const ActionButton: React.FC<TouchableProps> = ({
         ? 'tertiary50' // text button dark
         : 'secondary950'; // text button light
 
-    const backgroundColorLightScondary = buttonTheme === 'Secondary' ? 'transparent' : 'primary500'; // color enable button
+    const backgroundColorLightScondary =
+      buttonTheme === 'Secondary' ? 'transparent' : 'transparent'; // color enable button
 
     const backgroundDisabledColors =
       buttonTheme === 'Primary'
@@ -99,7 +100,11 @@ const ActionButton: React.FC<TouchableProps> = ({
         : backgroundColorLightScondary;
 
     const backgroundColorDarkSecondary =
-      !disabled && buttonTheme === 'Secondary' ? 'transparent' : 'primary500'; // color enable button
+      !disabled && buttonTheme === 'Secondary'
+        ? 'transparent'
+        : buttonTheme === 'Primary'
+        ? 'primary500'
+        : 'transparent'; // color enable button
 
     const backgroundColorDark = //? here
       (disabled || asyncDisabled) && !loading
@@ -209,7 +214,7 @@ const ActionButton: React.FC<TouchableProps> = ({
             <LoaderDots
               animationScale={1}
               animationTranslateY={-6}
-              color={customButtonTheme.buttonTextColor}
+              color={textColor || customButtonTheme.buttonTextColor}
             />
           </LoadingContainer>
         )}

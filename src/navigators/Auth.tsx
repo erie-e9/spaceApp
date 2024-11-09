@@ -19,11 +19,9 @@ export const AuthenticationNavigator = () => {
       initialRouteName="Authentication"
       screenOptions={{
         gestureEnabled: true,
-        animationEnabled: true,
         freezeOnBlur: true,
         headerShown: false,
         headerMode: 'screen',
-        headerBackTitleVisible: true,
         headerTransparent: true,
         ...TransitionPresets.ScaleFromCenterAndroid,
       }}

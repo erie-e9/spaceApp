@@ -87,7 +87,7 @@ export const List: React.FC<ListProps> = ({
   const getInitialPositions = useCallback(() => {
     let positions: AnyObject = {};
     items.forEach((item, index) => {
-      positions[item.id] = {
+      positions[index] = {
         updatedIndex: index,
         updatedTop: index * itemHeight,
       };
@@ -104,6 +104,7 @@ export const List: React.FC<ListProps> = ({
       return draggable ? (
         <AnimatedListItem
           item={item}
+          id={index}
           key={index}
           isDragging={isDragging}
           draggedItemId={draggedItemId}

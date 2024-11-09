@@ -14,6 +14,7 @@ import {
 
 export const AnimatedListItem = ({
   item,
+  id,
   isDragging,
   draggedItemId,
   currentPositions,
@@ -24,6 +25,7 @@ export const AnimatedListItem = ({
   const DraggerIcon = useSVG('menu');
   const { animatedStyles, gesture } = useGesture({
     item,
+    id,
     isDragging,
     draggedItemId,
     currentPositions,

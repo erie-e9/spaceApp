@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, memo, useMemo, forwardRef } from 'react';
 import { TextInput, KeyboardAvoidingView } from 'react-native';
-import moment from 'moment';
+import { dayjs } from '@utils/formatters';
 import { Dropdown } from '@components/molecules';
 import { screen_width, compareDates, testProperties } from '@utils/functions';
 import {
@@ -10,31 +10,55 @@ import {
   StyledDropdownButton,
 } from '../styles';
 
-const defaultMonths = moment
-  .months()
-  .map((month) => ({ value: month.toLowerCase(), label: month }));
-const currentYear = moment().year();
-const currentMonth = moment().month() + 1;
-const currentDay = moment().date();
+const defaultMonths = [
+  { value: 'january', label: 'January' },
+  { value: 'february', label: 'February' },
+  { value: 'march', label: 'March' },
+  { value: 'april', label: 'April' },
+  { value: 'may', label: 'May' },
+  { value: 'june', label: 'June' },
+  { value: 'july', label: 'July' },
+  { value: 'august', label: 'August' },
+  { value: 'september', label: 'September' },
+  { value: 'october', label: 'October' },
+  { value: 'november', label: 'November' },
+  { value: 'december', label: 'December' },
+];
 
-const isLeapYear = (year: number) => {
-  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-};
+const currentYear = dayjs().year();
+const currentMonth = dayjs().month() + 1;
+const currentDay = dayjs().date();
 
-const getDaysInMonth = (month: string, year: number) => {
-  const monthIndex: number = moment().month(month).format('M') - 1;
-  if (monthIndex === 1) {
-    return isLeapYear(year) ? 29 : 28;
+const getDaysInMonth = (month: string, year: number): number => {
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const monthIndex = months.findIndex((m) => m.toLowerCase() === month.toLowerCase());
+
+  if (monthIndex === -1) {
+    throw new Error('Invalid month name');
   }
-  return moment(`${year}-${monthIndex + 1}`, 'YYYY-MM').daysInMonth();
+
+  // `monthIndex + 1` convierte el índice (0-based) a un valor de mes (1-based)
+  return dayjs(`${year}-${monthIndex + 1}`, 'YYYY-M').daysInMonth();
 };
 
 interface DateDropdownProps {
   testID?: string;
   selected?: string;
-  monthNames: Array<
-    string | number | null | { [key: string]: string | number; value: string | number }
-  >;
+  monthNames: Array<{ [key: string]: string; label: string }>;
   onSelect: (date: string) => void;
   outputFormat?: string;
   maxDate?: string;
@@ -103,19 +127,6 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
       }
     };
 
-    const adjustDayMonth = (year: number, month: string, day: number) => {
-      if (maxDateValues && year === maxDateValues.year) {
-        const monthIndex = monthNames.findIndex((m) => m.value === month) + 1;
-        if (monthIndex > maxDateValues.month) {
-          month = monthNames[maxDateValues.month - 1].value;
-        }
-        if (monthIndex === maxDateValues.month && day > maxDateValues.day) {
-          day = maxDateValues.day;
-        }
-      }
-      return { adjustedDay: day, adjustedMonth: month };
-    };
-
     useEffect(() => {
       updateDays(selectedMonth, selectedYear);
     }, [selectedMonth, selectedYear]);
@@ -173,17 +184,22 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
 
     const handleSubmit = () => {
       if (isFormValid) {
-        const monthIndex = monthNames.findIndex((m) => m.value === selectedMonth) + 1;
-
-        const formattedDate = moment(
-          `${selectedYear}-${monthIndex}-${selectedDay}`,
+        const formatedSelectedMonth = Number(
+          monthNames.findIndex((m) => m.value === selectedMonth) + 1,
+        )
+          .toString()
+          .padStart(2, '0');
+        const formatedSelectedDay = selectedDay.toString().padStart(2, '0');
+        const formattedDate = dayjs(
+          `${selectedYear}-${formatedSelectedMonth}-${formatedSelectedDay}`,
           'YYYY-MM-DD',
         ).format(outputFormat);
 
-        const formattedMaxDate = moment(maxDate, 'YYYY-MM-DD').format(outputFormat);
+        const formattedMaxDate = dayjs(maxDate, 'YYYY-MM-DD').format(outputFormat);
         if (maxDate) {
           const result = compareDates(formattedDate, formattedMaxDate);
 
+          // is date minor or equal to max date
           if (result === -1 || result === 0) {
             onSelect(formattedDate);
           } else {
