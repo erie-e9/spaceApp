@@ -1,9 +1,8 @@
 #import "AppDelegate.h"
 #import "RNFBAppCheckModule.h"
 #import <Firebase.h>
-#import "RNSplashScreen.h"
-#import "React/RCTBridgeModule.h"
 #import <React/RCTBundleURLProvider.h>
+#import "RNSplashScreen.h"
 #import "SpaceApp-Swift.h"
 #import <AuthenticationServices/AuthenticationServices.h>
 #import <SafariServices/SafariServices.h>

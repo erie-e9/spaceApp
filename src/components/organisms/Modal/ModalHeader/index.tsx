@@ -1,25 +1,19 @@
 import React, { memo } from 'react';
-import { DefaultTheme } from 'styled-components/native';
 import { testProperties } from '@utils/functions';
+import { type ModalProps } from '@slices/types';
 import { ModalHeaderContainer, TitleContainer, DescriptionContainer, StyledText } from './styles';
 
-export interface ModalHeaderProps {
-  testID?: string;
-  title?: string;
-  description?: string;
-  titleColor?: keyof DefaultTheme['tokens']['colors'];
-}
-
-export const ModalHeader: React.FC<ModalHeaderProps> = ({
+export const ModalHeader: React.FC<Partial<ModalProps>> = ({
   testID = 'ModalHeaderID',
   title = '',
   description = '',
   titleColor,
+  alignHeader = 'center',
 }) => {
   const defaultTitleColor = titleColor || 'typography950';
 
   return (
-    <ModalHeaderContainer {...testProperties(testID)}>
+    <ModalHeaderContainer {...testProperties(testID)} alignHeader={alignHeader}>
       {title && (
         <TitleContainer>
           <StyledText type="Headline6" weight="normal" color={defaultTitleColor}>

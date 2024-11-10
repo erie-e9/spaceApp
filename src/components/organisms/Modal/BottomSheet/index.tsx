@@ -9,7 +9,7 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { type ModalPayload } from '@slices/types/modal';
+import { type ModalProps } from '@slices/types';
 import { type Language } from '@slices/types/appPreferences';
 import { screen_height, testProperties } from '@utils/functions';
 import { changeLanguage as changeLanguageApp } from '@services';
@@ -34,11 +34,13 @@ export interface BottomSheetRefProps {
   isActive: () => boolean;
 }
 
-const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
+const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
   (
     {
       testID = 'BottomSheetID',
       title,
+      titleColor,
+      alignHeader,
       description,
       isVisible,
       showCancelIcon = false,
@@ -155,7 +157,12 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalPayload>(
                 <CloseButton onPress={handleClose} />
               </CloseIconContainer>
             )}
-            <ModalHeader title={title} description={description || ''} />
+            <ModalHeader
+              title={title}
+              titleColor={titleColor}
+              description={description || ''}
+              alignHeader={alignHeader}
+            />
             {body && <BodyContainer dropdownOptions={dropdownOptions}>{body}</BodyContainer>}
             {loading ? (
               <ActivityIndicator size={25} />

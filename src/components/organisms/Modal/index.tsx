@@ -1,6 +1,6 @@
 import React, { Fragment, memo } from 'react';
 import { useModalSelectorHook } from '@redux/hooks';
-import { type ModalPayload } from '@slices/types/modal';
+import { type ModalProps } from '@slices/types';
 import Alert from '@components/organisms/Modal/Alert';
 import BottomSheet from '@components/organisms/Modal/BottomSheet';
 
@@ -8,7 +8,7 @@ const AlertAndBottomSheet: React.FC = () => {
   const modalSelector = useModalSelectorHook();
   const { type } = modalSelector;
 
-  let modalArgs: ModalPayload = {};
+  let modalArgs: ModalProps = {};
 
   switch (type) {
     case 'alert':

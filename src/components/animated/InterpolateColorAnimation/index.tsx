@@ -21,9 +21,9 @@ export interface InterpolateColorAnimationProps {
   duration?: number;
   animationType?: 'text' | 'background';
   isScreen?: boolean;
-  props?: any;
   style?: StyleProp<AnimatedStyle<StyleProp<ViewStyle | any>>>;
   dimensions?: object;
+  props?: any;
 }
 
 export const InterpolateColorAnimation: React.FC<InterpolateColorAnimationProps> = ({

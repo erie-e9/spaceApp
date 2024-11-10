@@ -5,7 +5,7 @@ import {
   createStackNavigator,
 } from '@react-navigation/stack';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
-// import SplashScreen from 'react-native-lottie-splash-screen';
+import SplashScreen from '@attarchi/react-native-lottie-splash-screen';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ErrorBoundary from 'react-native-error-boundary';
@@ -61,7 +61,7 @@ const Application = () => {
   useEffect(() => {
     initAppCheck(true);
     const timeOut = setTimeout(() => {
-      // SplashScreen.hide();
+      SplashScreen.hide();
     }, 1000);
     return () => {
       clearTimeout(timeOut);

@@ -3,6 +3,7 @@ import { Ref, forwardRef, memo } from 'react';
 import { useTheme } from 'styled-components/native';
 import Svg, { SvgProps, G, Path, Defs, ClipPath } from 'react-native-svg';
 export { default as SelectedSVG } from './components/Selected';
+
 export interface DeviceSVGProps extends SvgProps {
   opacity: number;
   widthIcon: number | string;

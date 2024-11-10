@@ -1,5 +1,4 @@
 import React, { Fragment, memo, useCallback } from 'react';
-import { AnyObject } from 'yup';
 import { testProperties } from '@utils/functions';
 import { useModal } from '@hooks';
 import { useModalSelectorHook } from '@redux/hooks/useModalSelectorHook';
@@ -8,6 +7,7 @@ import { RenderWhen } from '@components/atoms';
 import { CloseButton } from '@components/molecules';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
 import AlertButtons from '@components/organisms/Modal/Alert/components/AlertButtons';
+import { type ModalProps } from '@slices/types';
 import AnimatedBackground from '@components/organisms/Modal/AnimatedBackground';
 import {
   StyledModal,
@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 export const Alert: React.FC = () => {
-  const modalArgs: AnyObject = { ...useModalSelectorHook() };
+  const modalArgs: ModalProps & any = { ...useModalSelectorHook() };
 
   const {
     testID = 'AlertID',

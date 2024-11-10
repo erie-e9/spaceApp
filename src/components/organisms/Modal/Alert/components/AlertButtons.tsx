@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { type ButtonContainerProps, type OptionsMap } from '@store/slices/types/modal';
+import { type OptionsMap, type AlertButtonsProps } from '@slices/types/modal';
 import { useCopy } from '@services';
 import { truncate, testProperties } from '@utils/functions';
 import {
@@ -9,17 +9,6 @@ import {
   StyledList,
   ButtonContainer,
 } from '../styles';
-
-interface AlertButtonsProps {
-  testID?: string;
-  options: OptionsMap[];
-  handleClose: () => void;
-  handlers?: (() => void)[];
-  handlerAction?: () => void;
-  primaryButtonTheme?: 'Primary' | 'Secondary' | 'Dark';
-  actions?: boolean;
-  buttonsStyles?: ButtonContainerProps;
-}
 
 export const AlertButtons: React.FC<AlertButtonsProps> = ({
   testID = 'AlertButtonsID',

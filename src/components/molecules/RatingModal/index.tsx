@@ -1,4 +1,5 @@
-import React, { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
+import { Keyboard } from 'react-native';
 import { useCopy } from '@services';
 import { testProperties } from '@utils/functions';
 import RatingBar from './components/RatingBar';
@@ -11,7 +12,6 @@ import {
   ActionSubmitButton,
   ActionSkipButton,
 } from './styles';
-import { Keyboard } from 'react-native';
 
 interface RatingModalParams {
   handleRating: (

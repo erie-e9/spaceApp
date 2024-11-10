@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type ModalPayload } from '@slices/types/modal';
+import { type ModalProps } from '@slices/types';
 
-const initialState: Partial<ModalPayload> = {
+const initialState: Partial<ModalProps> = {
   isVisible: false,
   title: '',
   type: null,
@@ -14,7 +14,7 @@ export const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    showModal: (_state, { payload }: PayloadAction<Partial<ModalPayload>>) => {
+    showModal: (_state, { payload }: PayloadAction<Partial<ModalProps>>) => {
       return {
         ...initialState,
         isVisible: true,

@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { getReadableVersion } from 'react-native-device-info';
 import { Logger } from '@services';
 import { type MenuItemProps, type ApplicationScreenProps } from '@types';
-import { useAuthenticationHook, useResponseHandler, useTheme } from '@hooks';
+import { useAuthenticationHook, useRatingModal, useResponseHandler, useTheme } from '@hooks';
 import { isEmpty } from '@utils/functions';
 
 export const useMenu = (): {
@@ -22,6 +22,7 @@ export const useMenu = (): {
   const { token, removeToken } = useAuthenticationHook();
   const [disableContinueButton, setDisableContinueButton] = useState<boolean>(false);
   const navigation = useNavigation<ApplicationScreenProps>();
+  const { ratingModal } = useRatingModal({ navigation });
 
   const isAuthenticated = !isEmpty(token);
 
@@ -103,6 +104,23 @@ export const useMenu = (): {
           remoteFeatureFlags: ['errorCatcher'],
         },
       );
+    }
+
+    if (isAuthenticated) {
+      helpCenterItems.push({
+        testID: 'menuNotificationsButton',
+        title: 'menu:Menu.menu.items.feedbackAndSharing.title',
+        rightIcon: 'right',
+        leftIcon: 'hearthandshake',
+        onPress: () => {
+          // ratingModal({
+          //   feature_name: 'User auth',
+          //   feedback_request_id: '1',
+          // });
+          navigation.navigate('Private', { screen: 'Tasks' });
+        },
+        remoteFeatureFlags: ['feedbackAndSharing'],
+      });
     }
 
     return [

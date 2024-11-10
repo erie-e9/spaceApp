@@ -1,7 +1,9 @@
 import { ReactElement } from 'react';
-import { ModalProps, StyleProp, ViewStyle } from 'react-native';
+import { ModalProps as RNModalProps, StyleProp, ViewStyle } from 'react-native';
 import { DefaultTheme } from 'styled-components/native';
 
+
+export type AlignHeaderType = ViewStyle['alignItems'];
 export interface ButtonContainerProps {
   alignment: 'left' | 'center' | 'right';
   direction: 'column' | 'row';
@@ -24,7 +26,18 @@ export interface OptionsMap {
   handleAsync?: () => Promise<void>;
 }
 
-export interface DrawerOptions extends ModalProps {
+export interface AlertButtonsProps extends ModalProps {
+  testID?: string;
+  options: OptionsMap[];
+  handleClose: () => void;
+  handlers?: (() => void)[];
+  handlerAction?: () => void;
+  primaryButtonTheme?: 'Primary' | 'Secondary' | 'Dark';
+  actions?: boolean;
+  buttonsStyles?: ButtonContainerProps;
+}
+
+export interface DrawerOptions extends RNModalProps {
   disabledArrow?: boolean;
   fontWeight?: number | 'bold' | 'semi-bold' | 'normal';
   showIcon?: boolean;
@@ -43,9 +56,10 @@ export interface DrawerOptions extends ModalProps {
   refreshCallback?: () => Promise<void>;
 }
 
-export interface ModalPayload {
-  title?: string;
+export interface ModalProps {
   testID?: string;
+  title?: string;
+  alignHeader?: AlignHeaderType;
   titleColor?: keyof DefaultTheme['tokens']['colors'];
   isVisible?: boolean;
   description?: string;

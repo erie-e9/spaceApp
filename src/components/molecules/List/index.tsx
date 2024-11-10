@@ -2,7 +2,6 @@ import React, { Fragment, memo, useCallback, useEffect, useMemo, useRef, useStat
 import { FlatList, useWindowDimensions } from 'react-native';
 import Animated, { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
 import LottieView from 'lottie-react-native';
-import { AnyObject } from 'yup';
 import { Logger, useCopy } from '@services';
 import { screen_height } from '@utils/functions';
 import { useResponseHandler } from '@hooks';
@@ -35,6 +34,7 @@ interface ListProps {
   footerComponent?: React.ReactElement;
   containerStyle?: any;
   filterBy?: string | string[];
+  listEmptyComponent?: React.ReactElement;
 }
 
 export const List: React.FC<ListProps> = ({
@@ -53,6 +53,7 @@ export const List: React.FC<ListProps> = ({
   footerComponent,
   containerStyle,
   filterBy,
+  listEmptyComponent,
 }) => {
   const { getCopyValue } = useCopy();
   const ref = useRef<FlatList>(null);
@@ -85,7 +86,7 @@ export const List: React.FC<ListProps> = ({
   const draggedItemId = useSharedValue<NullableNumber>(null);
 
   const getInitialPositions = useCallback(() => {
-    let positions: AnyObject = {};
+    let positions: any = {};
     items.forEach((item, index) => {
       positions[index] = {
         updatedIndex: index,
@@ -232,6 +233,7 @@ export const List: React.FC<ListProps> = ({
           onResponderRelease={() => {
             if (offsetY <= -80 && !loading) setLoading(true);
           }}
+          ListEmptyComponent={listEmptyComponent}
           ListHeaderComponent={
             <Animated.View style={{ paddingTop: extraPaddingTop }}>
               {filteredUsers.length > 0 && loading && refreshHandler && (

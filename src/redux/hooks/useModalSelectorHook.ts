@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { type ModalPayload } from '@slices/types/modal';
+import { type ModalProps } from '@slices/types';
 
-export const useModalSelectorHook = (): Partial<ModalPayload> =>
-  useSelector((state: { modal: ModalPayload }) => state.modal);
+export const useModalSelectorHook = (): Partial<ModalProps> =>
+  useSelector((state: { modal: ModalProps }) => state.modal);

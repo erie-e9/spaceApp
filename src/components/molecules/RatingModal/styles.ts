@@ -1,9 +1,8 @@
 import { PixelRatio } from 'react-native';
 import styled from 'styled-components/native';
-import { Typography } from '@components/atoms';
-import { TextInput } from '@components/molecules';
-import { ActionButton } from '@components/molecules';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize, screen_width } from '@utils/functions';
+import { Typography } from '@components/atoms';
+import { ActionButton, TextInput } from '@components/molecules';
 
 export const HeaderContainer = styled.View`
   align-items: center;
