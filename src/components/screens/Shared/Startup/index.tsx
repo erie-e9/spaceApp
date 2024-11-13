@@ -7,6 +7,7 @@ import { type Language } from '@slices/types/appPreferences';
 import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
 import { InterpolateColorAnimation } from '@components/animated';
 import { Loader } from '@components/molecules';
+import { ScreenBackground } from '@components/atoms';
 import { Container, Brand } from './styles';
 
 export interface StartUpProps {
@@ -62,12 +63,12 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
   }, [isSuccess]);
 
   return (
-    <InterpolateColorAnimation isScreen>
+    <ScreenBackground type="solid">
       <Container testID="StartupID">
         <Brand source={Images.logo} />
         <Loader width={150} height={75} />
       </Container>
-    </InterpolateColorAnimation>
+    </ScreenBackground>
   );
 };
 

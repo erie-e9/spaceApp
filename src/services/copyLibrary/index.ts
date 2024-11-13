@@ -5,6 +5,7 @@ export const useCopy = (): {
   getCopyValue: (key: string, options?: any) => string;
 } => {
   const { t: translation } = useTranslation();
+
   const getCopyValue = (key: string, options?: any): string => {
     return translation(key, options) as string;
   };

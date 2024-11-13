@@ -7,8 +7,12 @@ export const ModalHeaderContainer = styled.View<{ alignHeader: AlignHeaderType }
   align-items: ${({ alignHeader }) => alignHeader || 'center'};
   justify-content: flex-start;
   width: 100%;
+  min-height: 100px;
+  min-height: ${getNormalizedVerticalSize(30)}px;
+  z-index: 1;
   padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
+
 `;
 
 export const TitleContainer = styled.View`

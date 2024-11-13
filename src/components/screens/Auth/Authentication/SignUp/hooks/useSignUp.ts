@@ -3,7 +3,7 @@ import { Keyboard } from 'react-native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Logger } from '@services';
-import { type UserState } from '@slices/types';
+import { type User } from '@slices/types';
 import { type SignUpProps } from '../../SignUp';
 import { useAuthenticationHook, useToast, useAppAlerts } from '@hooks';
 import { isEmpty, trimValues } from '@utils/functions';
@@ -43,7 +43,7 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
   const [index, setIndex] = useState<number>(step1Filled && !step2Filled ? 1 : step2Filled ? 2 : 0);
   const { genres } = labels();
 
-  const initialValues: UserState = useMemo(
+  const initialValues: User = useMemo(
     () =>
       step1Filled
         ? user
@@ -102,7 +102,7 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
     country: null,
   });
 
-  const formik = useFormik<UserState>({
+  const formik = useFormik<User>({
     initialValues,
     validationSchema:
       user.signUpMethod === 'form' ? accountSchema[index] : accountWithSocialMediaSchema[index],
@@ -180,7 +180,7 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
     [formik],
   );
 
-  const validateStep = useCallback(async (schema: yup.ObjectSchema<any>, values: UserState) => {
+  const validateStep = useCallback(async (schema: yup.ObjectSchema<any>, values: User) => {
     try {
       await schema.validate(values, { abortEarly: false });
       return {};
@@ -248,7 +248,7 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
     (currentFieldName: string, nextFieldType: 'textinput' | 'button' = 'textinput') => {
       const fieldNames = Object.keys(refs.current);
       const currentIndex = fieldNames.indexOf(currentFieldName);
-      const nextFieldName: Partial<UserState> = fieldNames[currentIndex + 1] as Partial<UserState>;
+      const nextFieldName: Partial<User> = fieldNames[currentIndex + 1] as Partial<User>;
 
       if (nextFieldName) {
         if (nextFieldType === 'textinput') {

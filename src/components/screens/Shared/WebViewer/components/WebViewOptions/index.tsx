@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
-import { useSVG, useModal } from '@hooks';
-import { RenderWhen } from '@components/atoms';
+import { useModal } from '@hooks';
+import { RenderWhen, SVGIcon } from '@components/atoms';
 import { OptionButton, OptionButtonContainer, OptionsContainer, OptionButtonLabel } from './styles';
 
 interface WebViewOptionsProps {
@@ -15,9 +15,6 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
   onShare = undefined,
   onOpenBrowser = undefined,
 }) => {
-  const BrowserIcon = useSVG('browser');
-  const ReloadIcon = useSVG('reload');
-  const ShareIcon = useSVG('share');
   const { hideModal } = useModal();
 
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
@@ -49,7 +46,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             type="Icon"
             buttonTheme="Primary"
             onPress={() => shareHandler}
-            icon={<ShareIcon />}
+            icon={<SVGIcon icon="share" />}
             remoteFeatureFlags={['webviewShare']}
           />
           <OptionButtonLabel textAlign="center" color="typography950">
@@ -63,7 +60,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             type="Icon"
             buttonTheme="Primary"
             onPress={reloadHandler}
-            icon={<ReloadIcon />}
+            icon={<SVGIcon icon="reload" />}
             remoteFeatureFlags={['webviewReload']}
           />
           <OptionButtonLabel textAlign="center" color="typography950">
@@ -77,7 +74,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
             type="Icon"
             buttonTheme="Primary"
             onPress={openInBrowserHandler}
-            icon={<BrowserIcon />}
+            icon={<SVGIcon icon="browser" />}
             remoteFeatureFlags={['webviewOpenOnBrowser']}
           />
           <OptionButtonLabel textAlign="center" color="typography950">

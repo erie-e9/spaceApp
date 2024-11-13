@@ -9,7 +9,7 @@ interface OptionsSelectorProps {
   listOptions: Array<OptionSelectorItemProps>;
   numColumns?: number;
   centered?: boolean;
-  expandible?: boolean;
+  expandable?: boolean;
 }
 
 export const useOptionSelectorModal = (): {
@@ -18,14 +18,14 @@ export const useOptionSelectorModal = (): {
     listOptions,
     numColumns,
     centered,
-    expandible,
+    expandable,
   }: OptionsSelectorProps) => void;
 } => {
   // Global Hooks
   const { showModal } = useModal();
 
   const optionSelectorModal = useCallback(
-    ({ title, listOptions, numColumns, centered, expandible }: OptionsSelectorProps) => {
+    ({ title, listOptions, numColumns, centered, expandable }: OptionsSelectorProps) => {
       showModal({
         type: 'bottomsheet',
         title: title || '',
@@ -36,7 +36,7 @@ export const useOptionSelectorModal = (): {
             horizontal={true}
           />
         ),
-        expandible: expandible,
+        expandable,
         dropdownOptions: {
           height: 250,
           justifyContent: 'center',

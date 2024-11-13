@@ -177,7 +177,7 @@ export const Text = styled(NativeText) <TextProps>`
 `;
 
 Text.defaultProps = {
-  color: 'secondary800',
+  color: 'typography950',
   paddingTop: 0,
   weight: 'normal',
 };

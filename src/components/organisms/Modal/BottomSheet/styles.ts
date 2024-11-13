@@ -5,22 +5,24 @@ import {
   screen_height,
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
-  screen_width,
 } from '@utils/functions';
 import { Touchable } from '@components/atoms';
-import { List } from '@components/molecules';
+import { ActionButton, List } from '@components/molecules';
 
 export const AnimatedBottomSheet = styled(Animated.View)`
   height: ${screen_height}px;
-  width: ${screen_width - 2}px;
+  width: 100%;
   align-self: center;
   align-items: center;
   align-content: center;
   position: absolute;
   top: ${screen_height}px;
   z-index: 1000;
+  overflow: hidden;
   border-radius: ${getNormalizedHorizontalSize(30)}px;
   background-color: ${({ theme }) => theme.tokens.colors.backgroundColor};
+  padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(15)}px
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(15)}px;
 `;
 
 export const CloseBottomSheetButton = styled(Touchable)`
@@ -28,10 +30,14 @@ export const CloseBottomSheetButton = styled(Touchable)`
 `;
 
 export const BodyContainer = styled.View<{ dropdownOptions?: any }>`
-  height: ${({ dropdownOptions }) =>
+  flex: 1;
+  max-height: ${({ dropdownOptions }) =>
     dropdownOptions.height ? getNormalizedVerticalSize(dropdownOptions.height) + 'px' : 'auto'};
   align-items: center;
   justify-content: ${({ dropdownOptions }) => dropdownOptions.justifContent};
+`;
+
+export const ListContainer = styled.View<{ dropdownOptions?: any }>`
 `;
 
 export const PanGestureHandlerView = styled.View`
@@ -58,5 +64,21 @@ export const ListFooterComponentView = styled.View`
 `;
 
 export const StyledList = styled(List)`
-  flex: 1;
+  flex: 1
 `;
+
+interface FooterContainerProps {
+  position: number;
+}
+export const FooterContainer = styled.View<FooterContainerProps>`
+  flex: 0.1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  top: ${({ position }) => position - 65}px;
+  z-index: 100;
+`;
+
+export const ActionSubmitButton = styled(ActionButton)``;
+

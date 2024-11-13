@@ -2,9 +2,10 @@ import React, { Fragment, memo, useCallback, useEffect, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import { type ApplicationScreenProps } from '@types';
-import { useAuthenticationHook, useSVG, useTheme } from '@hooks';
+import { useAuthenticationHook, useTheme } from '@hooks';
 import { isEmpty } from '@utils/functions';
 import { TransformAnimation } from '@components/animated';
+import { SVGIcon } from '@components/atoms';
 import { AvatarProfile } from '@components/molecules';
 import {
   ProfileButton,
@@ -26,7 +27,6 @@ const SettingsProfile = () => {
   const { token } = useAuthenticationHook();
   const isAuthenticated = !isEmpty(token);
   const animationRef = useRef<LottieView>(null);
-  const EditIcon = useSVG('edit');
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
@@ -73,7 +73,7 @@ const SettingsProfile = () => {
                 </StyledText>
                 <ProfileDetailHorizontalContainer>
                   <ProfileButton onPress={navigationHandler}>
-                    <EditIcon />
+                    <SVGIcon icon="edit" />
                   </ProfileButton>
                   {username && (
                     <ProfileDetailText type="Body3" color="typography300">

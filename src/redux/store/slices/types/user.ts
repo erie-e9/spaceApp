@@ -1,6 +1,6 @@
 import { signUpMethod } from '@navigators/Auth';
 
-export type UserState = {
+export interface User {
   username?: string;
   phoneNumber?: string;
   email?: string;

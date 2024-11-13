@@ -42,10 +42,6 @@ export const useSettingsMenu = (): {
     return `menu:Menu.settings.items.appPreferences.items.changeAppearance.modes.${mode}Mode`;
   }, [mode, getCopyValue]);
 
-  const buttonHandler = useCallback((navigateTo: string) => {
-    navigation.navigate(navigateTo === 'contactUs' ? 'ContactUs' : 'FAQs', {} as never);
-  }, []);
-
   const editFieldHandler = useCallback(
     ({ fieldId, fieldName }: { fieldId: string; fieldName: string }) => {
       navigation.navigate('FieldEditor', { fieldId, fieldName } as never);
@@ -70,7 +66,7 @@ export const useSettingsMenu = (): {
       title: 'menu:Menu.settings.items.appPreferences.items.changeAppearance.title',
       description: 'menu:Menu.settings.items.appPreferences.items.changeAppearance.description',
       body: <AppearanceSelector />,
-      expandible: true,
+      expandable: true,
       dropdownOptions: {
         height: screen_height / 1.7,
         justifyContent: 'center',
@@ -87,7 +83,7 @@ export const useSettingsMenu = (): {
         data: [null, ...Object.keys(resources)],
         predefinedList: 'languages',
       },
-      expandible: true,
+      expandable: true,
       dropdownOptions: {
         height: 300,
         justifyContent: 'center',

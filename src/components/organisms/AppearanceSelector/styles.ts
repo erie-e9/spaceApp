@@ -12,7 +12,7 @@ import { Typography } from '@components/atoms';
 export const OptionSelectorList = styled(List)``;
 
 export const BodyContainer = styled.View`
-  width: 92%;
+  width: 100%;
   height: auto;
   border-radius: 20px;
   align-items: flex-start;

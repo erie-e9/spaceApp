@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Logger, validateTokenStructure } from '@services';
-import { type UserState, type TokenState } from '@slices/types';
+import { type User, type TokenState } from '@slices/types';
 import {
   storeToken as storeTokenSlice,
   removeToken as removeTokenSlice,
@@ -17,15 +17,15 @@ export const useAuthenticationHook = (): {
   removeToken: () => void;
   storeRefreshToken: (token: string) => void;
   removeRefreshToken: () => void;
-  user: UserState;
-  storeUser: (user: UserState) => void;
-  updateUser: (user: UserState) => void;
+  user: User;
+  storeUser: (user: User) => void;
+  updateUser: (user: User) => void;
   removeUser: () => void;
 } => {
   const dispatch = useDispatch();
   const token = useSelector((state: { token: TokenState }) => state.token.content);
 
-  const user = useSelector((state: { user: UserState }) => state.user);
+  const user = useSelector((state: { user: User }) => state.user);
 
   const storeToken = async (token: string): Promise<void> => {
     try {
@@ -63,7 +63,7 @@ export const useAuthenticationHook = (): {
     }
   };
 
-  const storeUser = (user: UserState): void => {
+  const storeUser = (user: User): void => {
     try {
       dispatch(storeUserSlice(user));
     } catch (error) {
@@ -72,7 +72,7 @@ export const useAuthenticationHook = (): {
     }
   };
 
-  const updateUser = (user: Partial<UserState>): void => {
+  const updateUser = (user: Partial<User>): void => {
     try {
       dispatch(updateUserSlice(user));
     } catch (error) {

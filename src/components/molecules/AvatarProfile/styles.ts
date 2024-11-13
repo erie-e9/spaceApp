@@ -19,7 +19,7 @@ export const Container = styled.View<{
   background-color: ${({ theme }) => theme.tokens.colors.primary500};
 `;
 
-export const UserImage = styled(Image) <{
+export const StyledImage = styled(Image) <{
   size: number;
 }>`
   width: ${({ size }) => getNormalizedHorizontalSize(size)}px;

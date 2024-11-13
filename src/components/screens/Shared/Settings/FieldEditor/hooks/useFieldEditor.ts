@@ -3,11 +3,10 @@ import { Keyboard } from 'react-native';
 import { useFormik } from 'formik';
 import { useIsFocused } from '@react-navigation/native';
 import * as yup from 'yup';
-import { useCopy } from '@services';
+import { Logger, useCopy } from '@services';
+import { type User } from '@slices/types';
 import { useAuthenticationHook, useToast } from '@hooks';
 import { isEmpty, trimValues } from '@utils/functions';
-import { type UserState } from '@store/slices/types';
-import { type FieldEditorProps } from '..';
 import { formSchemas } from '@utils/forms/validators/schemas';
 import {
   username,
@@ -41,6 +40,7 @@ import {
   country as countryValidator,
 } from '@utils/forms/validators/fields';
 import { labels } from '@utils/forms/labels';
+import { type FieldEditorProps } from '..';
 
 export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
   const { fieldId, fieldName } = route.params;
@@ -59,7 +59,7 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
     [fieldId],
   );
 
-  const initialValues: UserState = useMemo(() => user, [user]);
+  const initialValues: User = useMemo(() => user, [user]);
 
   const refs = useRef({
     //! re-usable
@@ -114,7 +114,7 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
     }
   }, [fieldId, isFocused]);
 
-  const formik = useFormik<UserState>({
+  const formik = useFormik<User>({
     initialValues,
     validationSchema: yup.object().shape(fieldValidator),
     onSubmit: async (values) => {
@@ -137,20 +137,20 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
           }
         }
       } catch (error) {
-        console.error('Error on onSubmit', error);
+        Logger.error('[useFieldEditor] onSubmit', { error });
       }
     },
   });
 
   const clearInputHandler = useCallback(
     //! re-usable
-    (elementName: keyof UserState) => formik.setFieldValue(elementName, ''),
+    (elementName: keyof User) => formik.setFieldValue(elementName, ''),
     [formik],
   );
 
   const validateStep = useCallback(
     //! re-usable
-    async (schema: yup.ObjectSchema<object>, values: UserState) => {
+    async (schema: yup.ObjectSchema<object>, values: User) => {
       try {
         await schema.validate(values, { abortEarly: false });
         return {};
@@ -174,8 +174,8 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
   }, [validateStep, formik.values]);
 
   const onSubmitEditingNext = useCallback(
-    (currentFieldName: keyof UserState, nextFieldType: 'textinput' | 'button' = 'textinput') => {
-      const fieldNames = Object.keys(refs.current) as Array<keyof UserState>;
+    (currentFieldName: keyof User, nextFieldType: 'textinput' | 'button' = 'textinput') => {
+      const fieldNames = Object.keys(refs.current) as Array<keyof User>;
       const currentIndex = fieldNames.indexOf(currentFieldName);
       const nextFieldName = fieldNames[currentIndex + 1];
 
@@ -198,7 +198,7 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
   const steps = useMemo(() => {
     const elements: any[] = [];
 
-    const addField = (field: any, refName: keyof UserState) => {
+    const addField = (field: any, refName: keyof User) => {
       elements.push({
         ...field,
         ref: (r: any) => (refs.current[refName] = r),
@@ -272,7 +272,7 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
     steps,
     fieldValueHandler: formik.setFieldValue,
     submitButtonTitle,
-    prevStepButtonHandler: () => {},
+    prevStepButtonHandler: () => { },
     nextStepButtonHandler,
     clearInputHandler,
     onSubmitHandler,

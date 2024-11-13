@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type UserState } from '@slices/types';
+import { type User } from '@slices/types';
 
-const initialState: UserState = {
+const initialState: User = {
   username: '',
   phoneNumber: '',
   email: '',
@@ -32,10 +32,10 @@ const slice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    storeUser: (state, action: PayloadAction<UserState>) => {
+    storeUser: (state, action: PayloadAction<User>) => {
       return { ...state, ...action.payload };
     },
-    updateUser: (state, action: PayloadAction<Partial<UserState>>) => {
+    updateUser: (state, action: PayloadAction<Partial<User>>) => {
       return { ...state, ...action.payload };
     },
     removeUser: () => initialState,

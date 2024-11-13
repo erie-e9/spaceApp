@@ -1,5 +1,5 @@
 import React, { Fragment, memo, useCallback, useEffect, useImperativeHandle, useMemo } from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, ScrollView } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   clamp,
@@ -25,6 +25,9 @@ import {
   StyledList,
   CloseIconContainer,
   PanGestureHandlerView,
+  ActionSubmitButton,
+  FooterContainer,
+  ListContainer,
 } from './styles';
 
 const MAX_TRANSLATE_Y = -screen_height + 80;
@@ -46,7 +49,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
       showCancelIcon = false,
       body,
       list,
-      expandible,
+      expandable,
       loading,
       lockBackdrop,
       dropdownOptions,
@@ -87,7 +90,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
         context.value = { y: translateY.value };
       })
       .onUpdate((event) => {
-        if (list || expandible) {
+        if (list || expandable) {
           translateY.value = event.translationY + context.value.y;
           translateY.value = clamp(translateY.value, MAX_TRANSLATE_Y, 0);
         }
@@ -163,13 +166,15 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
               description={description || ''}
               alignHeader={alignHeader}
             />
-            {body && <BodyContainer dropdownOptions={dropdownOptions}>{body}</BodyContainer>}
+            <ScrollView>
+              {body && <BodyContainer dropdownOptions={dropdownOptions}>{body}</BodyContainer>}
+            </ScrollView>
             {loading ? (
               <ActivityIndicator size={25} />
             ) : (
               list &&
               items && (
-                <BodyContainer dropdownOptions={dropdownOptions}>
+                <ListContainer>
                   <StyledList
                     data={items || []}
                     numColumns={dropdownOptions ? dropdownOptions.numColumns : 1}
@@ -181,8 +186,20 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
                       />
                     )}
                   />
-                </BodyContainer>
+                </ListContainer>
               )
+            )}
+            {dropdownOptions?.showFooter && (
+              <FooterContainer position={dropdownOptions?.height || 0}>
+                <ActionSubmitButton
+                  {...testProperties('action-submit-button')}
+                  type="Button"
+                  title={'common:bottomsheets.rating.tellUsMore.sumbitButton'}
+                  // onPress={submitHandler}
+                  buttonTheme="Primary"
+                  // disabled={limitExceeded}
+                />
+              </FooterContainer>
             )}
           </AnimatedBottomSheet>
         </GestureDetector>

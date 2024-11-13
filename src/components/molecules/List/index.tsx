@@ -1,11 +1,21 @@
 import React, { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, useWindowDimensions } from 'react-native';
-import Animated, { Easing, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, {
+  Easing,
+  useSharedValue,
+  withTiming,
+  SharedValue,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+import { useTheme } from 'styled-components';
+import { SwipeableMethods } from 'react-native-gesture-handler/ReanimatedSwipeable';
 import LottieView from 'lottie-react-native';
 import { Logger, useCopy } from '@services';
 import { screen_height } from '@utils/functions';
 import { useResponseHandler } from '@hooks';
 import { ScaleAnimation } from '@components/animated';
+import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
+import { SVGIcon } from '@components/atoms';
 import { BackButton, ListItem, Loader, TextInput } from '@components/molecules';
 import AnimatedListItem from './components/AnimatedListItem';
 import { NullableNumber } from './components/types';
@@ -16,6 +26,12 @@ import {
   Container,
   ScrollToTopContainer,
   ScrollToTopButtonContainer,
+  RightAction,
+  LeftAction,
+  RightActionSecond,
+  RightActionThird,
+  AnimatedView,
+  SwipeableFullContainer,
 } from './styles';
 
 interface ListProps {
@@ -28,6 +44,7 @@ interface ListProps {
   scrollEnabled?: boolean;
   alignItems?: 'flex-start' | 'center' | 'flex-end';
   draggable?: boolean;
+  swipeable?: boolean;
   renderItem?: ({ item }: any) => JSX.Element;
   refreshHandler?: () => void;
   itemHeight?: number;
@@ -47,6 +64,7 @@ export const List: React.FC<ListProps> = ({
   scrollEnabled = true,
   alignItems = 'center',
   draggable = false,
+  swipeable = false,
   renderItem,
   refreshHandler,
   itemHeight = 60,
@@ -57,7 +75,9 @@ export const List: React.FC<ListProps> = ({
 }) => {
   const { getCopyValue } = useCopy();
   const ref = useRef<FlatList>(null);
+  const swipeableRef = useRef<SwipeableMethods | null>(null);
   const animationRef = useRef<LottieView>(null);
+  const theme = useTheme();
   const [offsetY, setOffsetY] = useState<number>(0);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showScrollToButton, setShowScrollToButton] = useState<boolean>(false);
@@ -100,25 +120,93 @@ export const List: React.FC<ListProps> = ({
 
   const [numberColumns, setNumColumns] = useState<number>(calcNumColumns());
 
+  const renderRightActions = (prog: SharedValue<number>, drag: SharedValue<number>) => {
+    return (
+      <>
+        <AnimatedView>
+          <RightAction onPress={() => console.log('rightAction')}>
+            <SVGIcon icon="remove" iconColor={'#fff'} />
+          </RightAction>
+          <RightActionThird onPress={() => console.log('leftAction')}>
+            <SVGIcon icon="share" />
+          </RightActionThird>
+          <RightActionSecond onPress={() => console.log('leftAction')}>
+            <SVGIcon icon="heartfilled" iconColor="danger_status" />
+          </RightActionSecond>
+        </AnimatedView>
+      </>
+    );
+  };
+
+  const renderLeftActions = (prog: SharedValue<number>, drag: SharedValue<number>) => {
+    return (
+      <SwipeableFullContainer>
+        <LeftAction onPress={() => console.log('leftAction')}>
+          <SVGIcon icon="check" opposingColor strokeWidth={2} iconColor={'#fff'} />
+        </LeftAction>
+      </SwipeableFullContainer>
+    );
+  };
+
   const renderItemHandler = useCallback(
     ({ item, index }: { item: any; index: number }): React.JSX.Element | null => {
-      return draggable ? (
-        <AnimatedListItem
-          item={item}
-          id={index}
-          key={index}
-          isDragging={isDragging}
-          draggedItemId={draggedItemId}
-          currentPositions={currentPositions}
-          itemsLength={filteredUsers.length}
-          itemHeight={itemHeight}
+      return swipeable ? (
+        <Swipeable
+          // friction={2}
+          overshootFriction={40}
+          enableTrackpadTwoFingerGesture
+          rightThreshold={30}
+          dragOffsetFromRightEdge={15}
+          leftThreshold={30}
+          dragOffsetFromLeftEdge={15}
+          renderRightActions={renderRightActions}
+          renderLeftActions={renderLeftActions}
+          containerStyle={{
+            alignItems: 'center',
+            backgroundColor: theme.tokens.colors.tertiary200,
+            borderRadius: 10,
+          }}
         >
-          {renderItem && renderItem({ item, index })}
-        </AnimatedListItem>
-      ) : renderItem ? (
-        <Fragment>{renderItem({ item, index })}</Fragment>
+          {draggable ? (
+            <AnimatedListItem
+              item={item}
+              id={index}
+              key={index}
+              isDragging={isDragging}
+              draggedItemId={draggedItemId}
+              currentPositions={currentPositions}
+              itemsLength={filteredUsers.length}
+              itemHeight={itemHeight}
+            >
+              {renderItem && renderItem({ item, index })}
+            </AnimatedListItem>
+          ) : renderItem ? (
+            <Fragment>{renderItem({ item, index })}</Fragment>
+          ) : (
+            <ListItem title={item.username} subtitle={item.post_title} />
+          )}
+        </Swipeable>
       ) : (
-        <ListItem title={item.username} subtitle={item.post_title} />
+        <>
+          {draggable ? (
+            <AnimatedListItem
+              item={item}
+              id={index}
+              key={index}
+              isDragging={isDragging}
+              draggedItemId={draggedItemId}
+              currentPositions={currentPositions}
+              itemsLength={filteredUsers.length}
+              itemHeight={itemHeight}
+            >
+              {renderItem && renderItem({ item, index })}
+            </AnimatedListItem>
+          ) : renderItem ? (
+            <Fragment>{renderItem({ item, index })}</Fragment>
+          ) : (
+            <ListItem title={item.username} subtitle={item.post_title} />
+          )}
+        </>
       );
     },
     [items, filteredUsers, itemHeight, draggable, renderItem],

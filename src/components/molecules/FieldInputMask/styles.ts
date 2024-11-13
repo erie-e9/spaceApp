@@ -45,11 +45,11 @@ export const StyledText = styled(Typography) <{
   color: ${({ error, theme, focused, hasValue, editable }) => {
     const color =
       focused || (hasValue && editable)
-        ? theme.tokens.colors.secondary600
-        : theme.tokens.colors.secondary600;
+        ? theme.tokens.colors.typography700
+        : theme.tokens.colors.typography700;
     const colorFocused = error
       ? theme.tokens.colors.danger_status
-      : theme.tokens.colors.tertiary950;
+      : theme.tokens.colors.typography700;
     return error ? colorFocused : color;
   }};
   letter-spacing: 0.5px;

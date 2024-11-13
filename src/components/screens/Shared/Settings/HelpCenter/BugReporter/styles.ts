@@ -1,10 +1,9 @@
 import styled from 'styled-components/native';
-import { Typography } from '@components/atoms';
 import {
   getNormalizedVerticalSize,
   getNormalizedHorizontalSize,
-  screen_width,
 } from '@utils/functions';
+import { Typography } from '@components/atoms';
 
 export const BodyContainer = styled.View`
   flex: 1;
@@ -20,9 +19,11 @@ export const StyledScrollView = styled.ScrollView`
 export const LabelContainer = styled.View`
   padding-vertical: ${getNormalizedVerticalSize(15)}px;
 `;
-export const SubDescriptionContainer = styled.View``;
+export const SubDescriptionContainer = styled.View`
+  width: 100%;
+`;
 
-export const LabelText = styled(Typography)<{
+export const LabelText = styled(Typography) <{
   underline?: boolean;
 }>`
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};

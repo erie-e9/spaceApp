@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Ref, forwardRef, memo } from 'react';
+import React, { Ref, forwardRef, memo } from 'react';
 import { useTheme } from 'styled-components/native';
 import Svg, { SvgProps, G, Path, Defs, ClipPath } from 'react-native-svg';
 export { default as SelectedSVG } from './components/Selected';

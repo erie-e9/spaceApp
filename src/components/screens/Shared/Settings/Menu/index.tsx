@@ -27,10 +27,10 @@ export const Menu: React.FC = () => {
       // backgroundSource={
       //   'https://firebasestorage.googleapis.com/v0/b/start-react-native.appspot.com/o/BigBuckBunny.mp4?alt=media&token=42bb3922-af22-4491-93a6-5100fc6a5f27'
       // }
-      type="blur"
+      type="loop"
       layerOpacity={0.5} // blur
       backgroundType="image"
-      backgroundSource={Images.wallpapers.background3}
+      backgroundSource={Images.wallpapers.doodle}
       body={
         <BodyContainer>
           <SettingsProfile />

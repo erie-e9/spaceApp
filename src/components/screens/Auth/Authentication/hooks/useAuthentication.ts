@@ -184,9 +184,9 @@ export const useAuthentication = ({ navigation }: Props) => {
 
   const editFieldHandler = useCallback(
     ({ fieldId, fieldName }: { fieldId: string; fieldName: string }) => {
-      navigation.navigate('FieldEditor', { fieldId, fieldName } as never);
+      navigation.navigate('FieldEditor', { fieldId, fieldName });
     },
-    [],
+    [navigation],
   );
 
   const sendSignUpCodeHandler = useCallback(

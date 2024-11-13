@@ -37,7 +37,7 @@ export interface AlertButtonsProps extends ModalProps {
   buttonsStyles?: ButtonContainerProps;
 }
 
-export interface DrawerOptions extends RNModalProps {
+export interface BottomSheetOptions extends RNModalProps {
   disabledArrow?: boolean;
   fontWeight?: number | 'bold' | 'semi-bold' | 'normal';
   showIcon?: boolean;
@@ -54,6 +54,7 @@ export interface DrawerOptions extends RNModalProps {
   handleCancel?: () => void;
   handleAttemptFail?: () => void;
   refreshCallback?: () => Promise<void>;
+  showFooter?: boolean;
 }
 
 export interface ModalProps {
@@ -68,10 +69,10 @@ export interface ModalProps {
   body?: ReactElement;
   options?: Partial<OptionsMap[]>;
   list?: Partial<ListProps>;
-  expandible?: boolean;
+  expandable?: boolean;
   timeout?: number;
   type?: 'alert' | 'bottomsheet' | null;
-  dropdownOptions?: Partial<DrawerOptions>;
+  dropdownOptions?: Partial<BottomSheetOptions>;
   status?: 'success' | 'info' | 'warn' | 'error';
   showCancelIcon?: boolean;
   swipeDirection?: 'up' | 'down' | 'left' | 'right' | 'no-swipeDirection';

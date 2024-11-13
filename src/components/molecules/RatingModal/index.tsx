@@ -70,7 +70,7 @@ const RatingModal = ({
         <ContentWrapper>
           <StyledInput
             {...testProperties('feedback-input')}
-            label={getCopyValue(`common:bottomsheets.rating.tellUsMore.placeholder`)}
+            label={`common:bottomsheets.rating.tellUsMore.placeholder`}
             name={'tellUsMore'}
             multiline
             required={true}
@@ -91,7 +91,7 @@ const RatingModal = ({
             {...testProperties('action-submit-button')}
             type="Button"
             widthButton="100%"
-            title={getCopyValue('common:bottomsheets.rating.tellUsMore.sumbitButton')}
+            title={'common:bottomsheets.rating.tellUsMore.sumbitButton'}
             onPressAsync={async () => {
               handleRating(featureRequestId, defaultRating, feedbackValue);
             }}

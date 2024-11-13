@@ -84,8 +84,7 @@ const ActionButton: React.FC<TouchableProps> = ({
         ? 'tertiary50' // text button dark
         : 'secondary950'; // text button light
 
-    const backgroundColorLightScondary =
-      buttonTheme === 'Secondary' ? 'transparent' : 'transparent'; // color enable button
+    const backgroundColorLightScondary = buttonTheme === 'Secondary' ? 'transparent' : 'primary500'; // color enable button
 
     const backgroundDisabledColors =
       buttonTheme === 'Primary'

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { ActivityIndicator, ImageProps } from 'react-native';
 import FastImage, { FastImageProps, Source as FastImageSource } from '@d11/react-native-fast-image';
 import { LoaderIndicatorContainer, PlaceholderContainer, StyledImage } from './styles';
@@ -39,20 +39,19 @@ const Image: React.FC<CustomImageProps> = ({
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  let imageSource: FastImageSource;
 
-  // Determine if the source is a web, base64, or local URI, otherwise use it as FastImageSource
-  if (isWebImage(source) || isBase64Image(source) || isLocalUri(source)) {
-    imageSource = {
-      uri: source,
-      priority: FastImage.priority[priority || 'normal'],
-      headers,
-      cache: 'cacheOnly',
-    };
-  } else {
-    imageSource = source as FastImageSource;
-  }
-
+  const imageSource: FastImageSource = useMemo(() => {
+    if (isWebImage(source) || isBase64Image(source) || isLocalUri(source)) {
+      return {
+        uri: source,
+        priority: FastImage.priority[priority || 'normal'],
+        headers,
+        // cache: 'cacheOnly',
+      };
+    } else {
+      return source as FastImageSource;
+    }
+  }, [source, priority, headers]);
   const imageStyle = style as { width: number; height: number };
 
   return (

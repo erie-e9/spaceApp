@@ -18,12 +18,14 @@ export const Container = styled.View<{
   shadow-radius: 25px;
   shadow-color: ${({ darkMode }) => (darkMode ? '#f7f7f7' : '#000000')};
 `;
+
 export const Touchable = styled(Pressable)`
   width: ${getNormalizedHorizontalSize(255)}px;
   height: ${getNormalizedVerticalSize(255)}px;
   z-index: 200;
   border-radius: 150px;
 `;
+
 export const SkiaCanvas = styled(Canvas)`
   position: absolute;
   width: ${getNormalizedHorizontalSize(280)}px;
@@ -31,6 +33,7 @@ export const SkiaCanvas = styled(Canvas)`
   justify-content: center;
   align-items: center;
 `;
+
 export const ChildrenContainer = styled.View`
   /* position: absolute; */
   justify-content: center;

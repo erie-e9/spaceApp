@@ -76,7 +76,7 @@ const MenuButton: React.FC<SettingsRenderItemProps> = ({
                     </TitleContainer>
                   )}
                 </LeftContainer>
-                {(rightBody || rightIcon || selectedOption !== '') && (
+                {(rightBody || rightIcon || selectedOption) && (
                   <RightContainer>
                     {rightIcon && !rightBody && !selectedOption && (
                       <ArrowContainer>
@@ -98,19 +98,6 @@ const MenuButton: React.FC<SettingsRenderItemProps> = ({
               </HeaderContainer>
             )}
           </LabelContainer>
-          {/* {rightBody ||
-            (rightIcon && (
-              <RightContainer>
-                {rightIcon && !rightBody && (
-                  <ArrowContainer>
-                    <SVGIcon icon={rightIcon} />
-                  </ArrowContainer>
-                )}
-                {!rightIcon && rightBody && (
-                  <RightBodyContainer>{rightBody}</RightBodyContainer>
-                )}
-              </RightContainer>
-            ))} */}
         </ContentContainer>
       </TouchableAreaContainer>
     </BodyContainer>

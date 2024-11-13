@@ -121,7 +121,7 @@ export const TransformAnimation: React.FC<Props> = ({
 
   return (
     <StyledAnimatedContainer {...testProperties(testID)} style={[style, animatedStyles]}>
-      {children}
+      <>{children}</>
     </StyledAnimatedContainer>
   );
 };

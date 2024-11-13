@@ -25,8 +25,9 @@
     "fix-dependencies": "npx rnx-align-deps --write"
   },
   "dependencies": {
+    "@attarchi/react-native-lottie-splash-screen": "^2.0.4",
     "@bokuhe/react-native-check-app-install": "^0.1.0",
-    "@d11/react-native-fast-image": "^8.8.0",
+    "@d11/react-native-fast-image": "^8.8.1",
     "@invertase/react-native-apple-authentication": "^2.4.0",
     "@marianj97/react-native-biometrics": "^1.0.3",
     "@react-native-community/netinfo": "^11.4.1",

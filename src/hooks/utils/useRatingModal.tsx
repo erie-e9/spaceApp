@@ -43,7 +43,7 @@ const useRatingModal = ({
       type: 'bottomsheet',
       title: '',
       lockBackdrop: true,
-      expandible: true,
+      expandable: true,
       dropdownOptions: {
         height: 300,
       },

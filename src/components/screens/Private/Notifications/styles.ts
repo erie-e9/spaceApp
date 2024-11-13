@@ -31,20 +31,19 @@ export const NotificationContentContainer = styled.View<NotificationContent>`
   align-items: flex-start;
   height: ${({ itemHeight }) => (itemHeight && `${itemHeight}px`) || 'auto'};
   width: 100%;
-  /* background-color: green; */
-  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
+  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(5)}px;
 `;
 
 export const NotificationContentData = styled.View`
   justify-content: flex-start;
   align-items: flex-start;  
   width: 60%;
-  /* background-color: pink; */
 `;
 
 export const NotificationList = styled(List)``;
 
-export const NotificationTitleText = styled(Typography)``;
+export const NotificationTitleText = styled(Typography)`
+`;
 
 export const NotificationDescriptionText = styled(Typography)``;
 

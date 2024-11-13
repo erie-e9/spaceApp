@@ -1,5 +1,5 @@
 import { Dispatch, memo, SetStateAction, useCallback } from 'react';
-import { useSVG } from '@hooks';
+import { SVGIcon } from '@components/atoms';
 import { RatingBarContainer, RatingButton } from '../styles';
 
 interface RatingBarProps {
@@ -17,9 +17,6 @@ const RatingBar = ({
   setDefaultRating,
   setTellUsMoreVisible,
 }: RatingBarProps): React.ReactElement => {
-  const StarCorner = useSVG('starcorner');
-  const StarFilled = useSVG('starfilled');
-
   const ratingHandler = useCallback(
     (score: number) => {
       setDefaultRating(score);
@@ -35,7 +32,7 @@ const RatingBar = ({
       {maxRating.map((score) => {
         return (
           <RatingButton key={score} onPress={() => ratingHandler(score)}>
-            {score <= defaultRating ? <StarFilled /> : <StarCorner />}
+            {score <= defaultRating ? <SVGIcon icon="starfilled" /> : <SVGIcon icon="star" />}
           </RatingButton>
         );
       })}

@@ -43,7 +43,7 @@ export const Wrapper = styled.View<{ width?: number }>`
   background-color: ${({ theme }) => theme.tokens.colors.tertiary50};
 `;
 
-export const HeaderContainer = styled.View<{ paddingBottom?: number }>`
+export const HeaderContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -51,6 +51,12 @@ export const HeaderContainer = styled.View<{ paddingBottom?: number }>`
   padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(10)}px;
   background-color: transparent;
+`;
+
+export const BodyContainer = styled.View`
+  min-height: 30px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const CloseIconContainer = styled.View`
@@ -78,7 +84,7 @@ export interface StyledButtonProps {
   minWidth?: number;
 }
 
-export const StyledButton = styled(ActionButton)<StyledButtonProps>`
+export const StyledButton = styled(ActionButton) <StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(3)}px
     ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(3)}px;
   align-self: center;

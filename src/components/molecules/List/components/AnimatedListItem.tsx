@@ -1,9 +1,8 @@
 import React, { memo } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
-import { useSVG } from '@hooks';
 import { useGesture } from '../hooks/useGesture';
 import { TListItem } from './types';
-import { Image } from '@components/atoms';
+import { Image, SVGIcon } from '@components/atoms';
 import {
   AnimatedDraggerContainer,
   AnimatedItemContainer,
@@ -22,7 +21,6 @@ export const AnimatedListItem = ({
   itemHeight,
   children,
 }: TListItem) => {
-  const DraggerIcon = useSVG('menu');
   const { animatedStyles, gesture } = useGesture({
     item,
     id,
@@ -51,7 +49,7 @@ export const AnimatedListItem = ({
       )}
       <GestureDetector gesture={gesture}>
         <AnimatedDraggerContainer>
-          <DraggerIcon />
+          <SVGIcon icon="menu" />
         </AnimatedDraggerContainer>
       </GestureDetector>
     </AnimatedItemContainer>

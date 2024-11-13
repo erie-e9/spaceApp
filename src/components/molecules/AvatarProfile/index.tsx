@@ -1,10 +1,10 @@
 import React, { memo, useEffect, useRef } from 'react';
 import LottieView from 'lottie-react-native';
-import { useAuthenticationHook, useSVG, useTheme } from '@hooks';
+import { useAuthenticationHook, useTheme } from '@hooks';
 import { testProperties } from '@utils/functions';
-import { Lottie } from '@components/atoms';
-import { ButtonImagePicker } from '@components/organisms';
-import { UserImage, ImagePickerButtonContainer, Container } from './styles';
+import { Lottie, SVGIcon } from '@components/atoms';
+import { MultimediaPicker } from '@components/organisms';
+import { StyledImage, ImagePickerButtonContainer, Container } from './styles';
 
 interface AvatarProfile {
   testID?: string;
@@ -23,7 +23,6 @@ export const AvatarProfile: React.FC<AvatarProfile> = ({
   const { Animations } = useTheme();
   const { user, updateUser } = useAuthenticationHook();
   const { photo } = user;
-  const CameraIcon = useSVG('camera');
 
   useEffect(() => {
     if (trigger) {
@@ -51,7 +50,7 @@ export const AvatarProfile: React.FC<AvatarProfile> = ({
   return (
     <Container {...testProperties(testID || 'AvatarProfileID')} size={size}>
       {photo?.uri ? (
-        <UserImage source={photo?.uri || ''} size={size} borderRadius={size / 2} />
+        <StyledImage source={photo?.uri || ''} size={size} borderRadius={size / 2} />
       ) : (
         <Lottie
           ref={animationRef}
@@ -68,16 +67,16 @@ export const AvatarProfile: React.FC<AvatarProfile> = ({
       )}
 
       {showImagePickerButton && (
-        <ButtonImagePicker
-          editable
+        <MultimediaPicker
           mediaType="photo"
+          panel={false}
           selectionLimit={1}
           onSelect={profileImageHandler}
         >
           <ImagePickerButtonContainer>
-            <CameraIcon />
+            <SVGIcon icon="camera" />
           </ImagePickerButtonContainer>
-        </ButtonImagePicker>
+        </MultimediaPicker>
       )}
     </Container>
   );

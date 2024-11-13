@@ -1,13 +1,13 @@
 import { useCallback, useMemo } from 'react';
 import { useTheme } from 'styled-components';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { type UserState } from '@slices/types';
+import { type User } from '@slices/types';
 import { type ApplicationScreenProps, type MenuItemProps } from '@types';
 import { labels } from '@utils/forms/labels';
 import { useAuthenticationHook, useModal, useResponseHandler } from '@hooks';
 
 export const useProfile = (): {
-  user: UserState;
+  user: User;
   listItemsSection1: Array<MenuItemProps>;
   listItemsSection2: Array<MenuItemProps>;
   listItemsSection3: Array<MenuItemProps>;
@@ -197,6 +197,7 @@ export const useProfile = (): {
       title: 'profile:Profile.alerts.deleteAccount.title',
       description: 'profile:Profile.alerts.deleteAccount.description',
       showCancelIcon: true,
+      onCloseIcon: () => setLoading(false),
       buttonsStyles: {
         direction: 'row',
         alignment: 'right',

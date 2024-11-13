@@ -16,6 +16,7 @@ import {
   HeaderContainer,
   CloseIconContainer,
   MODAL_STYLE,
+  BodyContainer,
 } from './styles';
 
 export const Alert: React.FC = () => {
@@ -39,11 +40,12 @@ export const Alert: React.FC = () => {
   } = modalArgs;
 
   const { hideModal } = useModal();
-  const handleClose = (): void => {
+
+  const handleClose = useCallback((): void => {
     hideModal();
     if (onModalHide) onModalHide();
     if (onCloseIcon) onCloseIcon();
-  };
+  }, []);
 
   const onModalShow = useCallback((): void => {
     if (callback) callback();
@@ -74,7 +76,7 @@ export const Alert: React.FC = () => {
                     </CloseIconContainer>
                   </RenderWhen>
                 </HeaderContainer>
-                {body || <Fragment></Fragment>}
+                {<BodyContainer>{body}</BodyContainer>}
                 {options && (
                   <AlertButtons
                     options={options}

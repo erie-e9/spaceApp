@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import { testProperties } from '@utils/functions';
-import { useSVG } from '@hooks';
+import { SVGIcon } from '@components/atoms';
 import { CloseButtonContainer, CloseButtonPressable } from './styles';
 
 interface Props {
@@ -9,8 +9,6 @@ interface Props {
 }
 
 export const CloseButton: React.FC<Props> = ({ testID = 'CloseButtonID', onPress = undefined }) => {
-  const CloseIcon = useSVG('close');
-
   const pressHandler = useCallback(() => {
     if (onPress) onPress();
   }, []);
@@ -22,7 +20,7 @@ export const CloseButton: React.FC<Props> = ({ testID = 'CloseButtonID', onPress
       onPress={pressHandler}
     >
       <CloseButtonContainer>
-        <CloseIcon />
+        <SVGIcon icon="close" />
       </CloseButtonContainer>
     </CloseButtonPressable>
   );

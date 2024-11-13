@@ -102,7 +102,7 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
             )}
           </Fragment>
         ),
-        expandible: !true,
+        expandable: !true,
         dropdownOptions: {
           height: mode === 'calendar' ? 350 : 450,
           justifyContent: 'center',

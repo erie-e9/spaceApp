@@ -5,7 +5,7 @@ import { removeBlankSpaces, testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { TextInput } from '@components/molecules';
-import { ButtonImagePicker } from '@components/organisms';
+import { MultimediaPicker } from '@components/organisms';
 import { CallToAction } from '@components/templates';
 import { useBugReporter } from './hooks/useBugReporter';
 import {
@@ -53,7 +53,7 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
                 </LabelText>
               </LabelContainer>
               <TextInput
-                {...testProperties('bugReporterBugDescription')}
+                {...testProperties('bugReporterDescription')}
                 label={`menu:helpCenter.support.items.bugReporter.form.bugDescription.name`}
                 name={'reporteBugInput'}
                 multiline
@@ -64,9 +64,7 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
                 onBlur={userBugReporterHook.handleBlur('bugDescription')}
                 maxLength={255}
                 // maintainFocus={!!userBugReporterHook?.dataUser?.phonenumber_email}
-                onChangeText={(text) =>
-                  userBugReporterHook.handleChange('bugDescription')(removeBlankSpaces(text))
-                }
+                onChangeText={userBugReporterHook.handleChange('bugDescription')}
                 rightIconHandler={() => userBugReporterHook.clearInputHandler('bugDescription')}
                 rightIcon="clear"
                 editable={true}
@@ -79,20 +77,8 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
                 returnKeyLabel={'send'}
                 enablesReturnKeyAutomatically={true}
               />
-              <ButtonImagePicker
-                {...testProperties('bugReporterAttachMultimedia')}
-                label={'menu:helpCenter.support.items.bugReporter.form.attachMultimedia.name'}
-                placeholder={'menu:helpCenter.support.items.bugReporter.form.attachMultimedia.name'}
-                value={userBugReporterHook?.values?.photo}
-                error={userBugReporterHook?.errors?.photo}
-                touched={!userBugReporterHook?.values?.photo}
-                editable={true}
-                required={true}
-                origin={'library'}
-                mediaType={'mixed'}
-                selectionLimit={2}
-                onSelect={(value) => userBugReporterHook.fieldValueHandler('photo', value)}
-              />
+
+              <MultimediaPicker selectionLimit={2} onSelect={(items) => console.log(items)} />
             </SubDescriptionContainer>
           </BodyContainer>
         </StyledScrollView>

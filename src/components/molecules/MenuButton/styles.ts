@@ -67,7 +67,7 @@ interface TitleContainerProps {
 }
 
 export const TitleContainer = styled.View<TitleContainerProps>`
-  width: 100%;
+  width: auto;
   min-height: ${getNormalizedVerticalSize(20)}px;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px
     ${getNormalizedVerticalSize(0)}px
