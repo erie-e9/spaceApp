@@ -1,24 +1,16 @@
 import { ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { FlashList } from '@shopify/flash-list';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { Image, Typography } from '@components/atoms';
-
-export const StyledList = styled(Animated.FlatList)`
-  width: 100%;
-`;
-
-// export const StyledList = styled(FlashList)`
-// `;
+import { ActionButton } from '@components/molecules';
 
 export const ListContainer = styled.View<{
   alignItems?: ViewStyle['alignItems'];
 }>`
   flex: 1;
-  align-items: ${({ alignItems }) => (alignItems && alignItems) || 'center'};
-  justify-content: center;
   width: 100%;
+  justify-content: center;
 `;
 
 export const AnimatedItemContainer = styled(Animated.View)`
@@ -57,16 +49,12 @@ export const ItemImage = styled(Image) <{
   border-radius: ${({ size }) => size / 2}px;
 `;
 
-export const ScrollToTopContainer = styled.View`
-  height: ${getNormalizedVerticalSize(40)}px;
-  width: ${getNormalizedHorizontalSize(40)}px;
-  border-radius: 20px;
+export const ScrollToTopContainer = styled(Animated.View)`
+  height: 40px;
+  width: 40px;
+  border-radius: 30px;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  right: ${getNormalizedHorizontalSize(0)}px;
-  bottom: ${getNormalizedVerticalSize(10)}px;
-  transform: rotate(90deg);
 `;
 
 export const ScrollToTopButtonContainer = styled.View`
@@ -75,6 +63,7 @@ export const ScrollToTopButtonContainer = styled.View`
   border-radius: 20px;
   justify-content: center;
   align-items: center;
+  transform: rotate(90deg);
   background-color: ${({ theme }) => theme.tokens.colors.secondary950};
 `;
 
@@ -91,3 +80,15 @@ export const AnimatedDraggerContainer = styled(Animated.View)`
   align-items: center;
   justify-content: center;
 `;
+
+export const ButtonsContainer = styled.View`
+  position: absolute;
+  right: ${getNormalizedHorizontalSize(0)}px;
+  bottom: ${getNormalizedVerticalSize(10)}px;
+`;
+
+export const FloatingButton = styled(ActionButton)`
+  margin-top: 10px;
+  border-width: 0;
+  background-color: ${({ theme }) => theme.tokens.colors.primary500};
+`

@@ -34,4 +34,5 @@ export interface TouchableProps extends PressableProps {
   component?: Element;
   [x: string]: unknown;
   onPressAsync?: () => Promise<void>;
+  opposingIconColor?: boolean;
 }

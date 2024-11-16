@@ -46,7 +46,7 @@ const Image: React.FC<CustomImageProps> = ({
         uri: source,
         priority: FastImage.priority[priority || 'normal'],
         headers,
-        // cache: 'cacheOnly',
+        cache: 'cacheOnly',
       };
     } else {
       return source as FastImageSource;

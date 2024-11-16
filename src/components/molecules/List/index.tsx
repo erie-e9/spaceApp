@@ -1,48 +1,21 @@
 import React, { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { FlatList, useWindowDimensions } from 'react-native';
-import Animated, {
-  Easing,
-  useSharedValue,
-  withTiming,
-  SharedValue,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
-import { useTheme } from 'styled-components';
+import { FlatList } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { SwipeableMethods } from 'react-native-gesture-handler/ReanimatedSwipeable';
+import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import LottieView from 'lottie-react-native';
 import { Logger, useCopy } from '@services';
-import { screen_height } from '@utils/functions';
 import { useResponseHandler } from '@hooks';
-import { ScaleAnimation } from '@components/animated';
-import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
-import { SVGIcon } from '@components/atoms';
-import { BackButton, ListItem, Loader, TextInput } from '@components/molecules';
-import AnimatedListItem from './components/AnimatedListItem';
-import { NullableNumber } from './components/types';
-import {
-  ListContainer,
-  StyledList,
-  LoaderContainer,
-  Container,
-  ScrollToTopContainer,
-  ScrollToTopButtonContainer,
-  RightAction,
-  LeftAction,
-  RightActionSecond,
-  RightActionThird,
-  AnimatedView,
-  SwipeableFullContainer,
-} from './styles';
+import { BackButton, Loader, TextInput } from '@components/molecules';
+import Item from './components/Item';
+import { ListContainer, LoaderContainer, Container, ScrollToTopContainer, ScrollToTopButtonContainer, FloatingButton, ButtonsContainer } from './styles';
 
-interface ListProps {
+export interface ListProps {
   data: Array<any>;
-  estimatedItemSize?: number;
   horizontal?: boolean;
   numColumns?: number;
-  showsHorizontalScrollIndicator?: boolean;
-  showsVerticalScrollIndicator?: boolean;
   scrollEnabled?: boolean;
-  alignItems?: 'flex-start' | 'center' | 'flex-end';
+  useFlashList?: boolean;
   draggable?: boolean;
   swipeable?: boolean;
   renderItem?: ({ item }: any) => JSX.Element;
@@ -52,17 +25,20 @@ interface ListProps {
   containerStyle?: any;
   filterBy?: string | string[];
   listEmptyComponent?: React.ReactElement;
+  renderRightAction?: (item: any) => void;
+  renderRightActions?: (item: any) => JSX.Element;
+  renderLeftAction?: (item: any) => void;
+  renderLeftActions?: (item: any) => JSX.Element;
+  extraFunction?: () => void;
+  searchLabel?: string;
 }
 
-export const List: React.FC<ListProps> = ({
+const List: React.FC<ListProps> = ({
   data,
-  estimatedItemSize = 50,
   horizontal = false,
   numColumns = 1,
-  showsHorizontalScrollIndicator = false,
-  showsVerticalScrollIndicator = false,
   scrollEnabled = true,
-  alignItems = 'center',
+  useFlashList = false,
   draggable = false,
   swipeable = false,
   renderItem,
@@ -72,38 +48,27 @@ export const List: React.FC<ListProps> = ({
   containerStyle,
   filterBy,
   listEmptyComponent,
+  renderRightAction,
+  renderRightActions,
+  renderLeftAction,
+  renderLeftActions,
+  extraFunction,
+  searchLabel,
 }) => {
-  const { getCopyValue } = useCopy();
   const ref = useRef<FlatList>(null);
-  const swipeableRef = useRef<SwipeableMethods | null>(null);
   const animationRef = useRef<LottieView>(null);
-  const theme = useTheme();
-  const [offsetY, setOffsetY] = useState<number>(0);
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [showScrollToButton, setShowScrollToButton] = useState<boolean>(false);
-  const extraPaddingTop = useSharedValue(0);
-  const { width: windowWidth } = useWindowDimensions();
+  const swipeableRef = useRef<SwipeableMethods | null>(null);
+  const { getCopyValue } = useCopy();
   const { loading, setLoading } = useResponseHandler();
-
+  const [offsetY, setOffsetY] = useState<number>(0);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [filteredUsers, setFilteredUsers] = useState<Array<any>>(data);
+  const extraPaddingTop = useSharedValue(0);
   const items = useMemo(() => data, [data]);
-  const [filteredUsers, setFilteredUsers] = useState<Array<any>>(items);
-  const contentContainerStyle: object = useMemo(() => {
-    return {
-      height: items.length * (itemHeight * (filterBy ? 1.05 : 1.025)),
-    };
-  }, [items.length, itemHeight, filteredUsers]);
-
-  const calcNumColumns = useCallback(() => {
-    const swidth = windowWidth / numColumns - 1;
-    const smargin = 1;
-    const cols = windowWidth / swidth;
-    const colsFloor = Math.floor(cols) > numColumns ? Math.floor(cols) : numColumns;
-    const colsMinusMargin = cols - 2 * colsFloor * smargin;
-    return colsMinusMargin < colsFloor && colsFloor > numColumns ? colsFloor - 1 : colsFloor;
-  }, [windowWidth, numColumns]);
-
-  const isDragging = useSharedValue(0);
-  const draggedItemId = useSharedValue<NullableNumber>(null);
+  const searchTextLabel = useMemo(() => {
+    return getCopyValue(searchLabel ? searchLabel : 'common:controllers.inputs.search')
+  }, [searchLabel]);
 
   const getInitialPositions = useCallback(() => {
     let positions: any = {};
@@ -118,103 +83,25 @@ export const List: React.FC<ListProps> = ({
 
   const currentPositions = useSharedValue(getInitialPositions());
 
-  const [numberColumns, setNumColumns] = useState<number>(calcNumColumns());
-
-  const renderRightActions = (prog: SharedValue<number>, drag: SharedValue<number>) => {
-    return (
-      <>
-        <AnimatedView>
-          <RightAction onPress={() => console.log('rightAction')}>
-            <SVGIcon icon="remove" iconColor={'#fff'} />
-          </RightAction>
-          <RightActionThird onPress={() => console.log('leftAction')}>
-            <SVGIcon icon="share" />
-          </RightActionThird>
-          <RightActionSecond onPress={() => console.log('leftAction')}>
-            <SVGIcon icon="heartfilled" iconColor="danger_status" />
-          </RightActionSecond>
-        </AnimatedView>
-      </>
-    );
-  };
-
-  const renderLeftActions = (prog: SharedValue<number>, drag: SharedValue<number>) => {
-    return (
-      <SwipeableFullContainer>
-        <LeftAction onPress={() => console.log('leftAction')}>
-          <SVGIcon icon="check" opposingColor strokeWidth={2} iconColor={'#fff'} />
-        </LeftAction>
-      </SwipeableFullContainer>
-    );
-  };
-
-  const renderItemHandler = useCallback(
-    ({ item, index }: { item: any; index: number }): React.JSX.Element | null => {
-      return swipeable ? (
-        <Swipeable
-          // friction={2}
-          overshootFriction={40}
-          enableTrackpadTwoFingerGesture
-          rightThreshold={30}
-          dragOffsetFromRightEdge={15}
-          leftThreshold={30}
-          dragOffsetFromLeftEdge={15}
-          renderRightActions={renderRightActions}
-          renderLeftActions={renderLeftActions}
-          containerStyle={{
-            alignItems: 'center',
-            backgroundColor: theme.tokens.colors.tertiary200,
-            borderRadius: 10,
-          }}
-        >
-          {draggable ? (
-            <AnimatedListItem
-              item={item}
-              id={index}
-              key={index}
-              isDragging={isDragging}
-              draggedItemId={draggedItemId}
-              currentPositions={currentPositions}
-              itemsLength={filteredUsers.length}
-              itemHeight={itemHeight}
-            >
-              {renderItem && renderItem({ item, index })}
-            </AnimatedListItem>
-          ) : renderItem ? (
-            <Fragment>{renderItem({ item, index })}</Fragment>
-          ) : (
-            <ListItem title={item.username} subtitle={item.post_title} />
-          )}
-        </Swipeable>
-      ) : (
-        <>
-          {draggable ? (
-            <AnimatedListItem
-              item={item}
-              id={index}
-              key={index}
-              isDragging={isDragging}
-              draggedItemId={draggedItemId}
-              currentPositions={currentPositions}
-              itemsLength={filteredUsers.length}
-              itemHeight={itemHeight}
-            >
-              {renderItem && renderItem({ item, index })}
-            </AnimatedListItem>
-          ) : renderItem ? (
-            <Fragment>{renderItem({ item, index })}</Fragment>
-          ) : (
-            <ListItem title={item.username} subtitle={item.post_title} />
-          )}
-        </>
-      );
-    },
-    [items, filteredUsers, itemHeight, draggable, renderItem],
+  const contentContainerStyle = useMemo(
+    () => ({
+      height: data.length * itemHeight * 1.025,
+    }),
+    [data, itemHeight],
   );
 
   useEffect(() => {
-    setNumColumns(calcNumColumns());
-  }, [windowWidth, calcNumColumns]);
+    if (searchQuery) {
+      const updatedItems = data.filter((item) =>
+        (Array.isArray(filterBy) ? filterBy : [filterBy || 'id']).some((key) =>
+          String(item[key])?.toLowerCase().includes(searchQuery.toLowerCase()),
+        ),
+      );
+      setFilteredUsers(updatedItems);
+    } else {
+      setFilteredUsers(data);
+    }
+  }, [searchQuery, data, filterBy]);
 
   const onRefresh = useCallback(() => {
     try {
@@ -222,104 +109,114 @@ export const List: React.FC<ListProps> = ({
     } catch (error) {
       Logger.log('List onRefresh', { error });
     } finally {
-      setTimeout(() => {
-        setLoading(false);
-      }, 3000);
+      setTimeout(() => setLoading(false), 3000);
     }
-  }, [loading]);
+  }, [refreshHandler, setLoading]);
 
   useEffect(() => {
-    if (loading && refreshHandler) {
-      animationRef.current?.play();
-      if (offsetY <= -80) {
-        extraPaddingTop.value = withTiming(50, { duration: 0 });
-        onRefresh();
-      }
+    if (loading && refreshHandler && offsetY <= -80) {
+      extraPaddingTop.value = withTiming(50, { duration: 0 });
+      onRefresh();
     } else {
       extraPaddingTop.value = withTiming(0, {
         duration: 400,
         easing: Easing.elastic(0.7),
       });
     }
-  }, [loading, extraPaddingTop, refreshHandler, offsetY]);
+  }, [loading, extraPaddingTop, refreshHandler, offsetY, onRefresh]);
+
+  const onSwipeableWillOpen = useCallback(
+    (direction: 'left' | 'right', current: SwipeableMethods | null) => {
+      // if (direction === 'left') {
+      //   console.warn('REMOVER');
+      // }
+
+      if (swipeableRef.current) {
+        swipeableRef.current.close();
+      }
+      swipeableRef.current = current;
+    },
+    [swipeableRef.current],
+  );
+
+    const handleScrollToTop = () => {
+    ref.current?.scrollToOffset({ animated: true, offset: 0 });
+  };
 
   useEffect(() => {
-    let updatedItems = items;
-    if (searchQuery) {
-      updatedItems = items.filter((item) =>
-        (Array.isArray(filterBy) ? filterBy : [filterBy || 'id']).some((key) =>
-          item[key]?.toLowerCase().includes(searchQuery.toLowerCase()),
-        ),
+    setShowScrollButton(offsetY > 500); // Mostrar botón al hacer scroll hacia abajo
+  }, [offsetY]);
+
+  const buttonStyle = useAnimatedStyle(() => ({
+    opacity: withTiming(showScrollButton ? 1 : 0),
+    transform: [{ scale: withTiming(showScrollButton ? 1 : 0) }],
+  }));
+
+  const renderItemHandler = useCallback(
+    ({ item, index, current }: { item: any; index: number; current: SwipeableMethods | null }) => {
+      return (
+        <Item
+          ref={(swipeableItemRef: SwipeableMethods | null) => (current = swipeableItemRef)}
+          item={item}
+          key={item}
+          index={index}
+          renderItem={renderItem}
+          currentPositions={currentPositions}
+          filteredUsers={filteredUsers}
+          itemHeight={itemHeight}
+          swipeable={swipeable}
+          draggable={draggable}
+          onSwipeableWillOpen={(direction) => onSwipeableWillOpen(direction, current)}
+          renderRightActions={renderRightActions}
+          renderRightAction={(item) => {            
+            swipeableRef?.current?.close();
+            renderRightAction?.(item)
+            }
+          }
+          renderLeftActions={renderLeftActions}
+          renderLeftAction={(item) => {            
+            swipeableRef?.current?.close();
+            renderLeftAction?.(item)}
+          }/>
       );
-    }
-    setFilteredUsers(updatedItems);
-  }, [searchQuery, items]);
+    },
+    // [renderLeftActions, renderRightActions, renderRightAction, renderLeftAction],
+    [
+      renderItem,
+      onSwipeableWillOpen,
+      swipeable,
+      draggable,
+      currentPositions,
+      filteredUsers,
+      itemHeight,
+      renderRightActions,
+      renderRightAction,
+      renderLeftActions,
+      renderLeftAction,
+    ]);
 
-  let progress = 0;
-  if (offsetY < 0 && !loading) {
-    progress = offsetY / -50;
-  }
-
-  const scrollTo = useCallback(() => {
-    ref?.current?.scrollToOffset({
-      animated: true,
-      offset: 0,
-    });
-  }, []);
+    const ListComponent = useFlashList ? FlashList : FlatList;
 
   return (
     <Fragment>
       {filterBy && (
         <Container>
-          <TextInput
-            label={getCopyValue('common:controllers.inputs.search', {
-              seachPlaceholder: '',
-            })}
-            name="searcher"
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-          />
+          <TextInput label={searchTextLabel} value={searchQuery} onChangeText={setSearchQuery} />
         </Container>
       )}
-      {/*
-        {draggable ? (
-          <>
-            <Animated.ScrollView
-              contentContainerStyle={{ height: items.length * itemHeight }}
-            >
-              {items.map((item, index) => (
-                <AnimatedListItem
-                  item={item}
-                  key={item.id}
-                  isDragging={isDragging}
-                  draggedItemId={draggedItemId}
-                  currentPositions={currentPositions}
-                  itemsLength={items.length}
-                  itemHeight={itemHeight}
-                >
-                  {renderItem && renderItem({ item, index })}
-                </AnimatedListItem>
-              ))}
-            </Animated.ScrollView>
-          </>
-        ) : ( */}
       <ListContainer>
-        <StyledList
+        <ListComponent
           ref={ref}
-          data={filteredUsers || items}
-          keyExtractor={(_item, index) => `key${index}`}
-          onEndReachedThreshold={0.1}
-          contentContainerStyle={
-            containerStyle ? containerStyle : (draggable || refreshHandler) && contentContainerStyle
-          }
-          numColumns={horizontal ? 1 : numberColumns}
+          data={filteredUsers}
+          keyExtractor={(_, index) => `key${index}`}
+          // debug={true}
+          initialNumToRender={15}
+          maxToRenderPerBatch={15}
+          removeClippedSubviews={true}
+          numColumns={horizontal ? 1 : numColumns}
           scrollEnabled={scrollEnabled}
           onScroll={({ nativeEvent }) => {
-            refreshHandler && setOffsetY(nativeEvent.contentOffset.y);
-            setShowScrollToButton(nativeEvent.contentOffset.y > screen_height / 4);
-          }}
-          onResponderRelease={() => {
-            if (offsetY <= -80 && !loading) setLoading(true);
+            setOffsetY(nativeEvent.contentOffset.y);
           }}
           ListEmptyComponent={listEmptyComponent}
           ListHeaderComponent={
@@ -330,52 +227,34 @@ export const List: React.FC<ListProps> = ({
                     animationRef={animationRef}
                     width={180}
                     height={extraPaddingTop.value}
-                    progress={progress}
+                    progress={2}
                   />
                 </LoaderContainer>
               )}
             </Animated.View>
           }
-          refreshing={loading}
-          // onRefresh={
-          //   refreshHandler
-          //     ? () => {
-          //         setLoading(true);
-          //         setTimeout(() => {
-          //           refreshHandler?.();
-          //           setLoading(false);
-          //         }, 2000);
-          //       }
-          //     : undefined
-          // }
-          renderItem={renderItemHandler}
-          showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
-          showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+          renderItem={({ item, index }) => {
+            let current: SwipeableMethods | null = null;
+            return renderItemHandler({ item, index, current });
+          }}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           horizontal={horizontal}
-          keyboardDismissMode="interactive"
-          ListFooterComponent={footerComponent || null}
-          // estimatedItemSize={estimatedItemSize || itemHeight * items.length}
-          // getItemType={(item: any) => (item.type ? item.type : 'Text')}
-          // renderItem={({ item }) => renderItem && renderItem({ item })}
-          // onLoad={onLoadListener}
-          // onBlankArea={onBlankArea}
+          ListFooterComponent={footerComponent}
+          contentContainerStyle={
+            containerStyle ? containerStyle : (draggable || refreshHandler) && contentContainerStyle
+          }
+        estimatedItemSize={itemHeight}
         />
       </ListContainer>
-      {showScrollToButton && (
-        <ScrollToTopContainer>
-          <ScaleAnimation
-            trigger={showScrollToButton && filteredUsers.length * itemHeight >= screen_height}
-            duration={200}
-            initialValue={0}
-            finalValue={1}
-            repeat={1}
-          >
-            <ScrollToTopButtonContainer>
-              <BackButton onPress={() => scrollTo()} colorRowInverted />
-            </ScrollToTopButtonContainer>
-          </ScaleAnimation>
+      <ButtonsContainer>
+          <ScrollToTopContainer style={[buttonStyle]}>
+          <ScrollToTopButtonContainer>
+            <BackButton onPress={handleScrollToTop} colorRowInverted />
+          </ScrollToTopButtonContainer>
         </ScrollToTopContainer>
-      )}
+        {extraFunction && (<FloatingButton onPress={extraFunction} type="Icon" icon='add' iconType='svg' opposingIconColor></FloatingButton>)}
+      </ButtonsContainer>
     </Fragment>
   );
 };

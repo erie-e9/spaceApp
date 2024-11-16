@@ -1,7 +1,8 @@
 import React, { memo, useCallback } from 'react';
 import { type OptionsMap, type AlertButtonsProps } from '@slices/types/modal';
 import { useCopy } from '@services';
-import { truncate, testProperties } from '@utils/functions';
+import truncate from 'lodash/truncate';
+import { testProperties } from '@utils/functions';
 import {
   StyledButton,
   StyledActionButton,
@@ -29,7 +30,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
         alignment={buttonsStyles?.alignment || 'center'}
       >
         <StyledActionButton
-          title={truncate(getCopyValue(item.text), 16)}
+          title={truncate(getCopyValue(item.text), {length: 16, omission: '...'})}
           widthButton="auto"
           textColor={item.color}
           type={item.isSimpleButton ? 'Text' : 'Button'}

@@ -50,8 +50,7 @@ export const Item: React.FC<ItemProps> = ({
   return (
     <ItemButton
       onPress={() =>
-        onPress &&
-        onPress({
+        onPress?.({
           id,
           title,
           description,

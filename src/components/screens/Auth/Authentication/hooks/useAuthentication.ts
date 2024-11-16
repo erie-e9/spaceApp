@@ -9,7 +9,6 @@ import {
   useAuthenticationHook,
   useAppAlerts,
   useResponseHandler,
-  useTheme,
   useBiometrics,
 } from '@hooks';
 import { phoneNumberOrEmailRegEx, trimValues } from '@utils/functions';
@@ -29,7 +28,6 @@ export const useAuthentication = ({ navigation }: Props) => {
   const { showSendOTPAlert } = useAppAlerts();
   const { loading, setLoading } = useResponseHandler();
   const { showModal } = useModal();
-  const { darkMode } = useTheme();
   const { checkPendingFormAlert } = useCheckPendingProcess();
 
   const [toggleForm, setToggleForm] = useState<FormType>('logIn');
@@ -273,12 +271,11 @@ export const useAuthentication = ({ navigation }: Props) => {
     return {
       testID: 'authenticationPrimaryButton',
       title: `authentication:Authentication.form.submitButtons.${titleMap[toggleForm]}`,
-      textColor: darkMode ? 'tertiary50' : 'secondary950',
       disabled: loading,
       loading: loading,
       onPress: primaryButtonHandler,
     };
-  }, [loading, toggleForm, primaryButtonHandler, darkMode]);
+  }, [loading, toggleForm, primaryButtonHandler]);
 
   return {
     ...formik,

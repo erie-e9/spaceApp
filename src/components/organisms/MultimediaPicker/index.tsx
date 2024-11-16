@@ -72,7 +72,7 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
   const showLibraryOrCamAlert = useCallback(() => {
     showModal({
       type: 'alert',
-      title: 'common:alerts.permissions.libraryOrCam.title', // pending
+      title: 'common:alerts.permissions.libraryOrCam.title',
       description: 'common:alerts.permissions.libraryOrCam.description',
       showCancelIcon: true,
       options: [
@@ -116,8 +116,7 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
       {panel ? (
         <AttachmentContainer>
           <Title type="Body2" weight={900} color="tertiary500">
-            {/*  //!pending */}
-            {`${images?.length > 0 ? 'Add images' : ''} ${images?.length}/${selectionLimit}`}{' '}
+            {`${images?.length > 0 ? 'common:controllers.multimedia.addImages' : ''} ${images?.length}/${selectionLimit}`}{' '}
           </Title>
           <AttatchContainer alignItems={images.length > 0 ? 'flex-start' : 'center'}>
             {images.length >= 1 && (
@@ -143,8 +142,7 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
                 <AddPanelContainer>
                   <SVGIcon icon="add" iconColor="tertiary500" />
                   <Title type="Body2" weight={900} color="tertiary500">
-                    {/* //!pending */}
-                    Add image{selectionLimit > 1 ? 's' : ''}
+                    {selectionLimit > 1 ? 'common:controllers.multimedia.addImages' : 'common:controllers.multimedia.addImage'}
                   </Title>
                 </AddPanelContainer>
               </AddButton>

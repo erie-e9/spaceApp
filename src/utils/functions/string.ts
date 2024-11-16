@@ -1,11 +1,3 @@
-export const truncate = (text: string, limit: number, tail?: string) => {
-  if (text.length <= limit) {
-    return text;
-  }
-
-  return `${text.slice(0, limit)}${tail || '...'}`;
-};
-
 export const firstCapitalized = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 export const trimValues = (values: any) => {

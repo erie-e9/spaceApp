@@ -28,7 +28,7 @@ export const useAppAlerts = (): {
   const navigation: ApplicationScreenProps = useNavigation();
 
   const showFeatureUnavailableToast = useCallback((callback?: () => void): void => {
-    useToast.warning({
+    useToast.error({
       message: 'common:messages.features.unavailable.title',
       duration: 3000,
     });
@@ -141,7 +141,7 @@ export const useAppAlerts = (): {
   }, []);
 
   const showItemCreateActionToastFailure = useCallback((callback?: () => void): void => {
-    useToast.warning({
+    useToast.error({
       message: 'common:toasts.crudActions.create.failure',
       duration: 3000,
     });
@@ -157,7 +157,7 @@ export const useAppAlerts = (): {
   }, []);
 
   const showItemEditedActionToastFailure = useCallback((callback?: () => void): void => {
-    useToast.warning({
+    useToast.error({
       message: 'common:toasts.crudActions.update.failure',
       duration: 3000,
     });
@@ -165,7 +165,7 @@ export const useAppAlerts = (): {
   }, []);
 
   const showItemRemovedActionToastSuccess = useCallback((callback?: () => void): void => {
-    useToast.warning({
+    useToast.success({
       message: 'common:toasts.crudActions.delete.success',
       duration: 3000,
     });
@@ -173,7 +173,7 @@ export const useAppAlerts = (): {
   }, []);
 
   const showItemRemovedActionToastFailure = useCallback((callback?: () => void): void => {
-    useToast.warning({
+    useToast.error({
       message: 'common:toasts.crudActions.delete.failure',
       duration: 3000,
     });

@@ -135,7 +135,7 @@
           "founddBug": "Si encontraste un error o algo que podamos mejorar, envíanos tus comentarios y ayúdanos a mejorar.",
           "form": {
             "bugDescription": {
-              "name": "Añade una descripción",
+              "name": "Descripción",
               "validations": {
                 "min": "Descripción debe tener al menos 3 caracteres.",
                 "max": "Descripción no debe exceder los 255 caracteres.",
@@ -155,7 +155,7 @@
   },
   "privateSettings": {
     "notificationsCenter": {
-      "screenTitle": "Notificaciones",
+      "screenTitle": "Centro de notificaciones",
       "description": "Ve todos los movimientos que ha hecho tu cuenta.",
       "controllers": {
         "previousNotificationsButton": "Ver notificaciones anteriores"

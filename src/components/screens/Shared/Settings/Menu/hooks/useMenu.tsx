@@ -3,7 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { getReadableVersion } from 'react-native-device-info';
 import { Logger } from '@services';
 import { type MenuItemProps, type ApplicationScreenProps } from '@types';
-import { useAuthenticationHook, useRatingModal, useResponseHandler, useTheme } from '@hooks';
+import { useAuthenticationHook, useRatingModal, useResponseHandler } from '@hooks';
 import { isEmpty } from '@utils/functions';
 
 export const useMenu = (): {
@@ -11,13 +11,11 @@ export const useMenu = (): {
   primaryButton: {
     title: string;
     onPress: () => Promise<void>;
-    textColor: string;
     testID: string;
     disabled?: boolean;
     loading?: boolean;
   };
 } => {
-  const { darkMode } = useTheme();
   const { loading, setLoading } = useResponseHandler();
   const { token, removeToken } = useAuthenticationHook();
   const [disableContinueButton, setDisableContinueButton] = useState<boolean>(false);
@@ -113,11 +111,10 @@ export const useMenu = (): {
         rightIcon: 'right',
         leftIcon: 'hearthandshake',
         onPress: () => {
-          // ratingModal({
-          //   feature_name: 'User auth',
-          //   feedback_request_id: '1',
-          // });
-          navigation.navigate('Private', { screen: 'Tasks' });
+          ratingModal({
+            feature_name: 'User auth',
+            feedback_request_id: '1',
+          });
         },
         remoteFeatureFlags: ['feedbackAndSharing'],
       });
@@ -157,12 +154,11 @@ export const useMenu = (): {
     return {
       testID: 'menuPrimaryButton',
       title: 'authentication:Authentication.form.submitButtons.logOutText',
-      textColor: darkMode ? 'tertiary50' : 'secondary950',
       disabled: loading || disableContinueButton,
       loading: loading,
       onPress: primaryButtonHandler,
     };
-  }, [loading, darkMode]);
+  }, [loading]);
 
   return {
     listItems,

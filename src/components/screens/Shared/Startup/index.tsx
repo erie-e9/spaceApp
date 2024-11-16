@@ -63,9 +63,9 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
   }, [isSuccess]);
 
   return (
-    <ScreenBackground type="solid">
-      <Container testID="StartupID">
-        <Brand source={Images.logo} />
+    <ScreenBackground testID="StartupID" type="solid">
+      <Container>
+        {/* <Brand source={Images.logo} /> */}
         <Loader width={150} height={75} />
       </Container>
     </ScreenBackground>

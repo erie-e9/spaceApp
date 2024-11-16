@@ -22,6 +22,7 @@ export const Notifications: React.FC = () => {
             scrollEnabled={true}
             draggable={!true}
             itemHeight={ITEM_HEIGHT}
+            useFlashList
             refreshHandler={() => console.log('getting more notifications')}
             // filterBy={['username', 'post_title']}
             renderItem={({ item }) => (

@@ -42,6 +42,7 @@ const ActionButton: React.FC<TouchableProps> = ({
   remoteFeatureFlags = [],
   onPress,
   onPressAsync,
+  opposingIconColor,
   ...props
 }) => {
   const animationRef = useRef<LottieView>(null);
@@ -219,7 +220,7 @@ const ActionButton: React.FC<TouchableProps> = ({
         )}
         {!loading && icon && iconType === 'svg' && (
           <IconContainer>
-            {typeof icon === 'string' ? <SVGIcon icon={icon || ''} /> : icon}
+            {typeof icon === 'string' ? <SVGIcon icon={icon || ''} opposingColor={opposingIconColor} /> : icon}
           </IconContainer>
         )}
         {!loading && icon && iconType === 'lottie' && (

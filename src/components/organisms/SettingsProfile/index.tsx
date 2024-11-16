@@ -2,7 +2,7 @@ import React, { Fragment, memo, useCallback, useEffect, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import { type ApplicationScreenProps } from '@types';
-import { useAuthenticationHook, useTheme } from '@hooks';
+import { useAuthenticationHook } from '@hooks';
 import { isEmpty } from '@utils/functions';
 import { TransformAnimation } from '@components/animated';
 import { SVGIcon } from '@components/atoms';
@@ -22,7 +22,6 @@ import {
 
 const SettingsProfile = () => {
   const navigation: ApplicationScreenProps = useNavigation();
-  const { darkMode } = useTheme();
   const { user } = useAuthenticationHook();
   const { token } = useAuthenticationHook();
   const isAuthenticated = !isEmpty(token);
@@ -94,7 +93,6 @@ const SettingsProfile = () => {
                 <AuthButton
                   title={'common:banners.auth.buttons.auth'}
                   onPress={navigationHandler}
-                  textColor={darkMode ? 'tertiary50' : 'secondary950'}
                 />
               </AuthButtonContainer>
             </>

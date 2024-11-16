@@ -54,7 +54,7 @@ export const HeaderContainer = styled.View`
 `;
 
 export const BodyContainer = styled.View`
-  min-height: 30px;
+  min-height: auto;
   align-items: center;
   justify-content: center;
 `;

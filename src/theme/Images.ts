@@ -21,6 +21,7 @@ export default function ({ }: ThemeVariables) {
       backgroundstar2: require('@assets/shared/images/background-star2.webp'),
       backgroundstar3: require('@assets/shared/images/background-star3.webp'),
       backgroundstar4: require('@assets/shared/images/background-star4.webp'),
+      backgroundstar5: require('@assets/shared/images/background-star5.webp'),
       doodle: require('@assets/shared/images/doodle.webp'),
     },
     icons: {

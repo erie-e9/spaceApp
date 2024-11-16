@@ -60,6 +60,7 @@ import Heartfilled from '@assets/shared/svg/heartfilled.svg';
 import Search from '@assets/shared/svg/search.svg';
 import Check from '@assets/shared/svg/check.svg';
 import Checks from '@assets/shared/svg/checks.svg';
+import Tasks from '@assets/shared/svg/tasks.svg';
 
 interface SvgObject {
   [key: string]: React.FC<SvgProps> | {
@@ -129,6 +130,7 @@ const svgLibrary: SvgObject = {
   search: Search,
   check: Check,
   checks: Checks,
+  tasks: Tasks,
 };
 
 export const useSVG = (svgName: string): React.FC<SvgProps> => {

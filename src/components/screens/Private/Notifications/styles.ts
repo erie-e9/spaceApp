@@ -8,6 +8,7 @@ import { ActionButton, List } from '@components/molecules';
 export interface NotificationContent {
   itemHeight?: number;
 }
+
 export const BodyContainer = styled.View`
   flex: 1;
   width: 100%;

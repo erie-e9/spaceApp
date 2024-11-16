@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme, useShare } from '@hooks';
+import { useTheme } from '@hooks';
 import { TransformAnimation, RotateAnimation, ScaleAnimation } from '@components/animated';
 import { BlackHoleToMoon } from '@components/molecules';
 import {
@@ -19,7 +19,6 @@ import {
 
 const DecorationItems = () => {
   const { Images } = useTheme();
-  const { shareMessage, shareCustomContent } = useShare();
 
   return (
     <HeaderContainer>

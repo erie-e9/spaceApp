@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useResponseHandler, useTheme } from '@hooks';
+import { useResponseHandler } from '@hooks';
 
 export interface Notification {
   id: number | string;
@@ -12,7 +12,6 @@ export interface Notification {
 }
 
 export const useNotifications = () => {
-  const { darkMode } = useTheme();
   const { loading, setLoading } = useResponseHandler();
 
   const notificationsList = useMemo(
@@ -232,14 +231,13 @@ export const useNotifications = () => {
 
   const primaryButton = useMemo(() => {
     return {
+      testID: 'notificationsPrimaryButton',
       title: 'menu:privateSettings.notificationsCenter.controllers.previousNotificationsButton',
       onPress: primaryButtonHandler,
-      testID: 'notificationsPrimaryButton',
-      textColor: darkMode ? 'tertiary50' : 'secondary950',
       disabled: loading,
       loading: loading,
     };
-  }, [loading, darkMode]);
+  }, [loading]);
 
   return {
     notificationsList,

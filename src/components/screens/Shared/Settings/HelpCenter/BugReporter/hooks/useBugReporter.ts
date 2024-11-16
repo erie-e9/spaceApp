@@ -1,14 +1,13 @@
 import { useCallback, useMemo } from 'react';
 import { useFormik } from 'formik';
 import { Logger } from '@services';
-import { useResponseHandler, useTheme } from '@hooks';
+import { useResponseHandler } from '@hooks';
 import { trimValues } from '@utils/functions';
 import { HelpCenterParamsList } from '@components/screens/Shared';
 import { formSchemas } from '@utils/forms/validators/schemas';
 import { BugReporterProps } from '..';
 
 export const useBugReporter = ({ navigation }: BugReporterProps) => {
-  const { darkMode } = useTheme();
   const { loading, setLoading } = useResponseHandler();
   const { bugReporterSchema } = formSchemas();
 
@@ -64,7 +63,7 @@ export const useBugReporter = ({ navigation }: BugReporterProps) => {
       loading: loading,
       onPress: secondaryButtonHandler,
     };
-  }, [loading, darkMode]);
+  }, [loading]);
 
   const primaryButtonHandler = useCallback((): void => {
     // setLoading(!loading);
@@ -75,12 +74,11 @@ export const useBugReporter = ({ navigation }: BugReporterProps) => {
     return {
       testID: 'bugReporterPrimaryButton',
       title: 'menu:helpCenter.support.items.bugReporter.form.primaryButton',
-      textColor: darkMode ? 'tertiary50' : 'secondary950',
       disabled: loading,
       loading: loading,
       onPress: primaryButtonHandler,
     };
-  }, [loading, darkMode]);
+  }, [loading]);
 
   return {
     ...formik,
