@@ -1,4 +1,4 @@
-import { api } from '@hooks/api';
+import { apiTasks } from '@hooks/api/rest';
 import { combineReducers } from '@reduxjs/toolkit';
 import {
   appPreferences,
@@ -7,9 +7,11 @@ import {
   remoteConfigFeatures,
   responseHandler,
 } from '@slices/shared';
+import { tasks } from '@slices/private';
 import { token, user } from '@slices/auth';
 
 export const reducers = combineReducers({
+  // shared
   appPreferences,
   languages,
   modal,
@@ -17,5 +19,7 @@ export const reducers = combineReducers({
   responseHandler,
   token,
   user,
-  [api.reducerPath]: api.reducer,
+  // private
+  tasks,
+  [apiTasks.reducerPath]: apiTasks.reducer,
 });

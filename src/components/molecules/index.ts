@@ -20,3 +20,4 @@ export { default as FieldInputMask } from '@components/molecules/FieldInputMask'
 export { default as AvatarProfile } from '@components/molecules/AvatarProfile';
 export { default as Loader } from '@components/molecules/Loader';
 export { default as RatingModal } from '@components/molecules/RatingModal';
+export { default as TaskModal } from '@components/molecules/TaskModal';

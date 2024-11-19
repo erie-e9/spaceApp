@@ -3,27 +3,18 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import {
   persistReducer,
   persistStore,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
   Storage,
 } from 'redux-persist';
 import { MMKV, Mode } from 'react-native-mmkv';
-import { api } from '@hooks/api';
+import { apiTasks } from '@hooks/api/rest';
 import { reducers } from '@store/reducers';
 
 const { APP_NAME, APP_ENCRYPTION_KEY } = process.env;
 
-// Use a secure method to store and retrieve your encryption key
-const encryptionKey = `${APP_NAME}-${APP_ENCRYPTION_KEY}-encryption-key`;
-
 export const storage = new MMKV({
   id: `user-${APP_NAME}-storage`,
-  encryptionKey,
-  mode: 'MULTI_PROCESS',
+  encryptionKey: `${APP_NAME}-${APP_ENCRYPTION_KEY}-encryption-key`,
+  mode: Mode.MULTI_PROCESS,
 });
 
 export const reduxStorage: Storage = {
@@ -44,7 +35,7 @@ export const reduxStorage: Storage = {
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['appPreferences', 'auth', 'languages', 'remoteConfigFeatures', 'token', 'user'],
+  whitelist: ['appPreferences', 'auth', 'languages', 'remoteConfigFeatures', 'token', 'user', 'tasks'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -57,8 +48,7 @@ const store = configureStore({
       //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       // },
       serializableCheck: false,
-    }).concat(api.middleware);
-
+    }).concat(apiTasks.middleware);
     if (__DEV__ && !process.env.JEST_WORKER_ID) {
       middlewares.push();
     }

@@ -34,6 +34,19 @@ export const useMenu = (): {
   const listItems: MenuItemProps[] = useMemo(() => {
     const appFeatures: MenuItemProps['items'] = [];
 
+    if (isAuthenticated) {
+      appFeatures.push({
+        testID: 'menuTasksButton',
+        title: 'menu:Menu.menu.items.tasks.title',
+        rightIcon: 'right',
+        leftIcon: 'tasks',
+        onPress: () => {
+          navigation.navigate('Private', { screen: 'Tasks' });
+        },
+        remoteFeatureFlags: ['tasks'],
+      });
+    }
+
     const appPreferences: MenuItemProps['items'] = [
       {
         testID: 'settingsMenuButton',
