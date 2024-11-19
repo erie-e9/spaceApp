@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Logger } from '@services';
 import { type User } from '@slices/types';
-import { type SignUpProps } from '../../SignUp';
 import { useAuthenticationHook, useToast, useAppAlerts } from '@hooks';
 import { isEmpty, trimValues } from '@utils/functions';
 import { formSchemas } from '@utils/forms/validators/schemas';
@@ -26,6 +25,7 @@ import {
 } from '@utils/forms/fields';
 import { labels } from '@utils/forms/labels';
 import { StepsProps } from '@components/templates/MultiStepper';
+import { type SignUpProps } from '../../SignUp';
 
 export const useSignUp = ({ navigation }: SignUpProps) => {
   const [nextStepButtonDisabled, setNextStepButtonDisabled] = useState<boolean>(true);

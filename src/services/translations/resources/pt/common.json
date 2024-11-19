@@ -53,6 +53,16 @@
       "buttons": {
         "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
+    },
+    "crudActions": {
+      "delete": {
+        "title": "Tem certeza?",
+        "description": "Esta ação não pode ser desfeita.",
+        "options": {
+          "confirmButton": "Confirmar exclusão",
+          "cancelButton": "Cancelar"
+        }
+      }
     }
   },
   "bottomsheets": {
@@ -70,8 +80,27 @@
       "skipButton": "Pergunte-me depois",
       "toast": {
         "success": {
-          "title": "Obrigado pelo seu feedback!"
+          "title": "Obrigado pela sua opinião!!"
         }
+      }
+    }
+  },
+  "toasts": {
+    "crudActions": {
+      "create": {
+        "success": "Criada com sucesso",
+        "failure": "Falha ao criar um novo",
+        "noWifi": "Sem wifi disponível, mas será criado quando a conexão retornar"
+      },
+      "update": {
+        "success": "Atualizada com sucesso",
+        "failure": "Falha ao atualizar",
+        "noWifi": "Sem wifi disponível, mas será atualizado quando a conexão retornar"
+      },
+      "delete": {
+        "success": "Excluída com sucesso",
+        "failure": "Falha ao excluir",
+        "noWifi": "Sem wifi disponível, mas será excluído quando a conexão retornar"
       }
     }
   },
@@ -140,9 +169,54 @@
       }
     }
   },
-  "controllers": {
-    "inputs": {
-      "search": "Procurar {{seachPlaceholder}}"
+  "forms": {
+    "fields": {
+      "inputs": {
+        "search": "Buscar {{seachPlaceholder}}",
+        "title": {
+          "name": "Título",
+          "validations": {
+            "required": "O título é obrigatório.",
+            "matches": "Use apenas letras, números e underscores.",
+            "min": "Mínimo de 3 caracteres.",
+            "max": "Máximo de 100 caracteres."
+          }
+        },
+        "description": {
+          "name": "Descrição",
+          "validations": {
+            "min": "Deve ter pelo menos 3 caracteres.",
+            "max": "Não pode exceder 255 caracteres.",
+            "matches": "Apenas letras e números permitidos.",
+            "required": "Inclua uma descrição."
+          }
+        },
+        "date": {
+          "name": "Data",
+          "placeholder": "Selecione uma data",
+          "validations": {
+            "required": "A data é obrigatória.",
+            "matches": "Insira uma data válida."
+          },
+          "messages": {
+            "blockedDate": "{{blockedDate}} está bloqueada porque {{blockedReason}}"
+          }
+        }
+      },
+      "controllers": {
+        "multimedia": {
+          "addImage": "Adicionar Imagem",
+          "addImages": "Adicionar Imagens"
+        }
+      },
+      "listItems": {
+        "status": {
+          "undefined": "Indefinido",
+          "pending": "Pendente",
+          "inProgress": "Em andamento",
+          "completed": "Concluída"
+        }
+      }
     }
   }
 }

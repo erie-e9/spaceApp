@@ -24,17 +24,17 @@ const unixTime = (): string => getHour12H();
 export const Logger = {
   error: (message?: unknown, ...optionalParams: unknown[]): void => {
     if (debugger_mode) {
-      console.error('\n\n', unixTime(), `[${Platform.OS.toUpperCase()}]`, '-', message, optionalParams);
+      console.error('\n\n', unixTime(), `| ${Platform.OS.toUpperCase()} | `, message, optionalParams);
     }
   },
   log: (message?: unknown, ...optionalParams: unknown[]): void => {
     if (debugger_mode) {
-      console.log('\n\n', unixTime(), `[${Platform.OS.toUpperCase()}]`, '-', message, optionalParams);
+      console.log('\n\n', unixTime(), `| ${Platform.OS.toUpperCase()} | `, message, optionalParams);
     }
   },
   warn: (message?: unknown, ...optionalParams: unknown[]): void => {
     if (debugger_mode) {
-      console.warn('\n\n', unixTime(), `[${Platform.OS.toUpperCase()}]`, '-', message, optionalParams);
+      console.warn('\n\n', unixTime(), `| ${Platform.OS.toUpperCase()} | `, message, optionalParams);
     }
   },
 };

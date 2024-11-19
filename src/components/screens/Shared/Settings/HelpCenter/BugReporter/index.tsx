@@ -54,7 +54,7 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
               </LabelContainer>
               <TextInput
                 {...testProperties('bugReporterDescription')}
-                label={`menu:helpCenter.support.items.bugReporter.form.bugDescription.name`}
+                label={`common:forms.fields.inputs.description.name`}
                 name={'reporteBugInput'}
                 multiline
                 value={userBugReporterHook?.values?.bugDescription}

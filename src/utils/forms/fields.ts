@@ -109,18 +109,22 @@ export const lastName = {
 export const dateOfBirth = {
   name: 'dateOfBirth',
   label: 'signup:SignUp.form.fields.dateOfBirth.name',
+  title: 'signup:SignUp.form.fields.dateOfBirth.name',
+  description: 'signup:SignUp.form.fields.dateOfBirth.placeholder',
   type: 'date-picker',
   required: true,
+  mode: 'dropdown',
 };
 
 export const genre = {
   name: 'genre',
   label: 'signup:SignUp.form.fields.genre.name',
+  description: 'signup:SignUp.form.fields.genre.placeholder',
   type: 'dropdown',
   bottomSheet: true,
   showButton: false,
   required: true,
-  dropdownHeight: 250,
+  dropdownHeight: 350,
 };
 
 export const streetAddressLine1 = {

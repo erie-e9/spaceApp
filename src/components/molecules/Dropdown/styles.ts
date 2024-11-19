@@ -1,4 +1,4 @@
-import { PixelRatio, TouchableWithoutFeedback } from 'react-native';
+import { PixelRatio, TouchableWithoutFeedback, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components/native';
@@ -66,21 +66,19 @@ export const AnimatedDropdownContent = styled(Animated.View)`
   background-color: ${({ theme }) => theme.tokens.colors.secondary800};
 `;
 
-export const Item = styled.TouchableOpacity<{
-  width?: string | number;
+export const ListItemContainer = styled.View<{
+  width?: ViewStyle['width'];
 }>`
+  height: auto;
+  /* padding: 15px 15px; */
+  width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
+`;
+
+export const Item = styled.TouchableOpacity`
   border-bottom-width: ${getNormalizedHorizontalSize(0.7)}px;
   padding-vertical: ${getNormalizedVerticalSize(10)}px;
   border-bottom-color: ${({ theme }) => theme.tokens.colors.secondary600};
   background-color: transparent;
-`;
-
-export const ListItemContainer = styled.View<{
-  width?: string | number;
-}>`
-  height: auto;
-  /* padding: 15px 15px; */
-  width: ${({ width }) => width || '100'}px;
 `;
 
 export const DropdownsContainer = styled.View`

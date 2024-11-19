@@ -71,6 +71,10 @@
     },
     "menu": {
       "items": {
+        "tasks": {
+          "title": "Aufgaben",
+          "description": "Verwalten Sie definierte Aufgaben und erstellen Sie neue. Sie können auch die Ihnen zugewiesenen Aufgaben von Lehrern verfolgen."
+        },
         "untrustedDevice": {
           "title": "Sicherheitsalarm",
           "description": "Dieser Bildschirm erscheint, wenn Sie die App auf einem nicht autorisierten Gerät verwenden."
@@ -79,8 +83,8 @@
           "title": "Fehlerbildschirm",
           "description": "Zeigt einen freundlichen Bildschirm, wenn ein Fehler auftritt."
         },
-        "feedbackAndSharing": {
-          "title": "Feedback and sharing",
+        "feedback": {
+          "title": "Feedback",
           "description": "Denken Sie, wir können etwas verbessern oder möchten Sie diese Anwendung teilen?"
         }
       }
@@ -134,15 +138,6 @@
           "short-description": "Sie haben einen Fehler gefunden? Melden Sie ihn.",
           "founddBug": "Wenn Sie einen Fehler oder etwas gefunden haben, das wir verbessern können, senden Sie uns bitte Ihr Feedback und helfen Sie uns, uns zu verbessern.",
           "form": {
-            "bugDescription": {
-              "name": "Beschreibung",
-              "validations": {
-                "min": "Die Beschreibung muss mindestens 3 Zeichen lang sein.",
-                "max": "Die Beschreibung darf 255 Zeichen nicht überschreiten.",
-                "matches": "Bitte geben Sie nur Buchstaben und Zahlen ein.",
-                "required": "Fügen Sie eine Beschreibung des Geschehens hinzu."
-              }
-            },
             "attachMultimedia": {
               "name": "Fügen Sie Bilder oder Videos an",
               "required": "Bitte fügen Sie Beweise zur Unterstützung des Berichts bei."

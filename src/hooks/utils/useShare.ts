@@ -1,6 +1,6 @@
 import { Logger } from '@services';
 import { Platform } from 'react-native';
-import Share, { ShareOptions, ShareSingleOptions, Social } from 'react-native-share';
+import Share, { ShareOptions, Social } from 'react-native-share';
 
 interface UseShareResult {
   shareMessage: (message: string) => Promise<void>;
@@ -142,7 +142,7 @@ export const useShare = (): UseShareResult => {
     try {
       await Share.open(options!);
     } catch (error) {
-      console.error('useShare - shareCustomContent', { error });
+      Logger.error('useShare - shareCustomContent', { error });
     }
   };
 

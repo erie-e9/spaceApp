@@ -27,7 +27,7 @@ const ActionButton: React.FC<TouchableProps> = ({
   disabled = false,
   style,
   grouped = false,
-  fontWeight = 'normal',
+  fontWeight,
   disabledColor = 'primary700',
   icon,
   iconType = 'svg',
@@ -220,7 +220,7 @@ const ActionButton: React.FC<TouchableProps> = ({
         )}
         {!loading && icon && iconType === 'svg' && (
           <IconContainer>
-            {typeof icon === 'string' ? <SVGIcon icon={icon || ''} opposingColor={opposingIconColor} /> : icon}
+            {typeof icon === 'string' ? <SVGIcon icon={icon || ''} opposingColor={opposingIconColor} strokeWidth={fontWeight || 1.5} /> : icon}
           </IconContainer>
         )}
         {!loading && icon && iconType === 'lottie' && (
@@ -244,7 +244,7 @@ const ActionButton: React.FC<TouchableProps> = ({
           <Fragment>
             <StyledText
               testID="actionbutton-title"
-              fontWeight={fontWeight}
+              fontWeight={fontWeight || 'normal'}
               color={textColor || customButtonTheme.buttonTextColor}
               type="Button"
               textTransform={textTransform}

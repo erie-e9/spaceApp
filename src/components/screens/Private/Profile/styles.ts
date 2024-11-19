@@ -45,7 +45,7 @@ export const ImagePickerButtonContainer = styled.View`
 export const ProfileDetailContainer = styled.View`
   min-height: ${getNormalizedVerticalSize(30)}px;
   width: 100%;
-  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(20)}px;
+  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(15)}px;
   border-radius: 10px;
   margin-bottom: ${getNormalizedVerticalSize(2)}px;
   justify-content: center;

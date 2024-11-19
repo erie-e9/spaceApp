@@ -12,6 +12,7 @@ import {
 import { type ModalProps } from '@slices/types';
 import { type Language } from '@slices/types/appPreferences';
 import { screen_height, testProperties } from '@utils/functions';
+import { loadLocale } from '@utils/formatters';
 import { changeLanguage as changeLanguageApp } from '@services';
 import { getDeviceLanguage, useAppPreferences, useNativeActions, useModal } from '@hooks';
 import { CloseButton } from '@components/molecules';
@@ -130,10 +131,14 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
 
     const onPressHandler = useCallback(
       async ({ item }: any) => {
-        if (list?.onPressItem) list.onPressItem(item);
+        if (list?.onPressItem) {
+          list.onPressItem(item);
+          handleClose();
+        }
         if (list?.predefinedList === 'languages') {
           if (item !== null) {
             switchLanguage(item);
+            loadLocale(item);
           } else {
             const deviceLanguange = await getDeviceLanguage();
             switchLanguage(null as Language);

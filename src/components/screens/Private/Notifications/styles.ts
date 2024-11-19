@@ -60,11 +60,6 @@ export const StyledSkeleton = styled(Skeleton)`
   border-radius: 30px;
 `;
 
-export const MoreNotificationButton = styled(ActionButton)`
-  margin: ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px
-    ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px;
-`;
-
 export const ItemButton = styled(Touchable)`
 `;
 

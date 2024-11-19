@@ -24,25 +24,26 @@ export const ContentContainer = styled.View`
   flex-direction: row;
   width: 100%;
   align-items: flex-start;
-  min-height: ${getNormalizedVerticalSize(30)}px;
   justify-content: space-between;
+  min-height: ${getNormalizedVerticalSize(30)}px;
 `;
 
 export const LabelContainer = styled.View`
   flex: 1;
+  background-color: transparent
 `;
 
 export const HeaderContainer = styled.View`
   flex-direction: row;
   width: 100%;
-  min-height: ${getNormalizedVerticalSize(30)}px;
+  min-height: 100%;
   align-items: center;
   justify-content: space-between;
-  background-color: transparent;
+  background-color: transparent 
 `;
 
 export const LeftContainer = styled.View`
-  flex: 0.95;
+  flex: 0.85;
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
@@ -67,9 +68,9 @@ interface TitleContainerProps {
 }
 
 export const TitleContainer = styled.View<TitleContainerProps>`
-  width: auto;
+  width: 100%;
   min-height: ${getNormalizedVerticalSize(20)}px;
-  margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px
+  margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px
     ${({ leftIcon }) => getNormalizedHorizontalSize(leftIcon ? 0 : 0)}px;
   background-color: transparent;
@@ -81,6 +82,7 @@ export const SelectedOptionContainer = styled.View`
   width: auto;
   min-width: auto;
   min-height: ${getNormalizedVerticalSize(25)}px;
+  background-color: transparent;
 `;
 
 export const StyledTitleText = styled(Typography)`
@@ -110,7 +112,7 @@ export const ArrowContainer = styled.View`
 export const RightContainer = styled.View`
   min-width: ${getNormalizedHorizontalSize(65)}px;
   align-items: flex-end;
-  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
   background-color: transparent;
 `;

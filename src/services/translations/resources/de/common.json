@@ -53,6 +53,16 @@
       "buttons": {
         "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
+    },
+    "crudActions": {
+      "delete": {
+        "title": "Bist du sicher?",
+        "description": "Diese Aktion ist nicht umkehrbar.",
+        "options": {
+          "confirmButton": "Löschen bestätigen",
+          "cancelButton": "Abbrechen"
+        }
+      }
     }
   },
   "bottomsheets": {
@@ -70,8 +80,27 @@
       "skipButton": "Frag mich später",
       "toast": {
         "success": {
-          "title": "Danke für Ihr Feedback!"
+          "title": "Danke für deine Meinung!!"
         }
+      }
+    }
+  },
+  "toasts": {
+    "crudActions": {
+      "create": {
+        "success": "Erfolgreich erstellt",
+        "failure": "Fehler beim Erstellen",
+        "noWifi": "Kein WLAN verfügbar, wird erstellt, wenn die Verbindung wiederhergestellt ist"
+      },
+      "update": {
+        "success": "Erfolgreich aktualisiert",
+        "failure": "Fehler beim Aktualisieren",
+        "noWifi": "Kein WLAN verfügbar, wird aktualisiert, wenn die Verbindung wiederhergestellt ist"
+      },
+      "delete": {
+        "success": "Erfolgreich gelöscht",
+        "failure": "Fehler beim Löschen",
+        "noWifi": "Kein WLAN verfügbar, wird gelöscht, wenn die Verbindung wiederhergestellt ist"
       }
     }
   },
@@ -140,9 +169,54 @@
       }
     }
   },
-  "controllers": {
-    "inputs": {
-      "search": "Suchen {{seachPlaceholder}}"
+  "forms": {
+    "fields": {
+      "inputs": {
+        "search": "Suchen {{seachPlaceholder}}",
+        "title": {
+          "name": "Titel",
+          "validations": {
+            "required": "Titel ist erforderlich.",
+            "matches": "Nur Buchstaben, Zahlen und Unterstriche verwenden.",
+            "min": "Mindestens 3 Zeichen.",
+            "max": "Nicht mehr als 100 Zeichen."
+          }
+        },
+        "description": {
+          "name": "Beschreibung",
+          "validations": {
+            "min": "Mindestens 3 Zeichen erforderlich.",
+            "max": "Maximal 255 Zeichen erlaubt.",
+            "matches": "Nur Buchstaben und Zahlen verwenden.",
+            "required": "Bitte eine Beschreibung hinzufügen."
+          }
+        },
+        "date": {
+          "name": "Datum",
+          "placeholder": "Wählen Sie ein Datum",
+          "validations": {
+            "required": "Datum ist erforderlich.",
+            "matches": "Bitte ein gültiges Datum eingeben."
+          },
+          "messages": {
+            "blockedDate": "{{blockedDate}} ist gesperrt, weil {{blockedReason}}"
+          }
+        }
+      },
+      "controllers": {
+        "multimedia": {
+          "addImage": "Bild hinzufügen",
+          "addImages": "Bilder hinzufügen"
+        }
+      },
+      "listItems": {
+        "status": {
+          "undefined": "Undefiniert",
+          "pending": "Ausstehend",
+          "inProgress": "In Bearbeitungs",
+          "completed": "Erledigt"
+        }
+      }
     }
   }
 }

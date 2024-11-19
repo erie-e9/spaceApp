@@ -1,24 +1,16 @@
 import React, { memo } from 'react';
 import { useTheme } from 'styled-components/native';
-import { Calendar as Calendars, LocaleConfig } from 'react-native-calendars';
-import { AnyObject } from 'yup';
+import { Calendar as Calendars, LocaleConfig, CalendarProps as RNCalendarProps } from 'react-native-calendars';
 import { getPropertyValues } from '@utils/functions';
 import { useAppPreferences } from '@hooks';
-import { formatDate } from '@utils/formatters';
+import { dayjs, formatDate } from '@utils/formatters';
 import { CalendarContainer } from '../styles';
 
-interface CalendarProps {
+interface CalendarProps extends RNCalendarProps {
   testID?: string;
   value?: string;
-  minimunDate?: string;
-  error?: string;
-  touched?: boolean;
-  editable?: boolean;
   onSelect: (date: string) => void;
-  current: string;
   selected: string;
-  markedDates?: AnyObject;
-  firstDay?: number;
   today?: string;
   monthNames: Array<
     string | number | null | { [key: string]: string | number; value: string | number }
@@ -32,7 +24,6 @@ interface CalendarProps {
   dayNamesShort?: Array<
     string | number | null | { [key: string]: string | number; value: string | number }
   >;
-  maxDate?: string;
   onInvalidDate?: () => void;
 }
 
@@ -49,8 +40,12 @@ export const Calendar: React.FC<CalendarProps> = ({
   monthNamesShort,
   dayNames,
   dayNamesShort,
-  maxDate,
   onInvalidDate,
+  maxDate,
+  minDate,
+  allowSelectionOutOfRange,
+  disableAllTouchEventsForDisabledDays,
+  disableAllTouchEventsForInactiveDays,
 }) => {
   const theme = useTheme();
   const { language } = useAppPreferences();
@@ -64,14 +59,19 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   LocaleConfig.defaultLocale = language || 'en';
+  const todayValue = dayjs(new Date).format('YYYY-MM-DD')
 
   return (
     <CalendarContainer>
       <Calendars
         testID={`${testID}Calendar`}
-        current={formatDate(value || current, 'YYYY-MM-DD')}
+        current={formatDate(value || current || todayValue, 'YYYY-MM-DD')}
         selected={formatDate(value || selected, 'YYYY-MM-DD')}
         maxDate={maxDate}
+        minDate={minDate}
+        allowSelectionOutOfRange={allowSelectionOutOfRange}
+        disableAllTouchEventsForDisabledDays={disableAllTouchEventsForDisabledDays}
+        disableAllTouchEventsForInactiveDays={disableAllTouchEventsForInactiveDays}
         onDayPress={(date: any) => onSelect(date)}
         markedDates={markedDates}
         firstDay={firstDay}
@@ -80,18 +80,18 @@ export const Calendar: React.FC<CalendarProps> = ({
         hideExtraDays
         disabledDaysIndexes={[0, 6]}
         theme={{
-          backgroundColor: theme.tokens.colors.tertiary50, // no works
+          backgroundColor: 'yellow', // no works
           calendarBackground: theme.tokens.colors.tertiary50,
           textSectionTitleColor: theme.tokens.colors.tertiary700, // color's day of week
           textSectionTitleDisabledColor: theme.tokens.colors.tertiary400, // blocked color's day of week
           selectedDayBackgroundColor: theme.tokens.colors.primary500, // no works
           selectedDayTextColor: 'red', // no works
-          todayTextColor: 'blue', // no works
-          dayTextColor: theme.tokens.colors.primary600,
+          todayTextColor: theme.tokens.colors.tertiary950,
+          dayTextColor: theme.tokens.colors.primary500,
           textDisabledColor: theme.tokens.colors.tertiary400,
           monthTextColor: theme.tokens.colors.secondary950, // header color
-          indicatorColor: 'green', // no works
-          arrowColor: theme.tokens.colors.primary600,
+          indicatorColor: 'blue', // no works
+          arrowColor: theme.tokens.colors.tertiary800,
           stylesheet: {
             calendar: {
               header: {
@@ -109,7 +109,6 @@ export const Calendar: React.FC<CalendarProps> = ({
           paddingHorizontal: 0,
           borderRadius: 10,
         }}
-        bo
       />
     </CalendarContainer>
   );

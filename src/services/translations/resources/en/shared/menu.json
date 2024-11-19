@@ -71,6 +71,10 @@
     },
     "menu": {
       "items": {
+        "tasks": {
+          "title": "Tasks",
+          "description": "Manage defined tasks and create new ones. Also you can track teachers tasks assigned to you."
+        },
         "untrustedDevice": {
           "title": "Security alert",
           "description": "This screen appears if you use the app on an unauthorized device."
@@ -79,9 +83,9 @@
           "title": "Error screen",
           "description": "Displays a friendly screen when an error occurs."
         },
-        "feedbackAndSharing": {
-          "title": "Feedback and sharing",
-          "description": "Do you think we can improve something or do you want to share this application?"
+        "feedback": {
+          "title": "Feedback",
+          "description": "Do you think we can improve something?"
         }
       }
     }
@@ -134,15 +138,6 @@
           "short-description": "Found a bug? Report it.",
           "founddBug": "If you found a bug or something we can improve, send us your comments and help us improve.",
           "form": {
-            "bugDescription": {
-              "name": "Description",
-              "validations": {
-                "min": "Description must have at least 3 characters.",
-                "max": "Description must not exceed 255 characters.",
-                "matches": "Please enter only letters and numbers.",
-                "required": "Include a description of what happened."
-              }
-            },
             "attachMultimedia": {
               "name": "Attach images or videos",
               "required": "Please include evidence to support the report."

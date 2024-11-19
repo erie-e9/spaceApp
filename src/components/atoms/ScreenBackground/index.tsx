@@ -22,7 +22,7 @@ export const ScreenBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: Platform.OS === 'ios' ? 65 : 50,
+    paddingTop: Platform.OS === 'ios' ? 50 : 50,
     paddingHorizontal: 20,
     paddingBottom: 15,
   };

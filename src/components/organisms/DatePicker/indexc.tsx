@@ -140,7 +140,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             '2024/06/21',
           ]}
           onDateChange={(date: string) => onSelectHandler(date, 'calendar')}
-          onRangeChange={(range) => console.log(`${range.start} | ${range.end}`, 'calendar-range')}
+          onRangeChange={(range) => Logger.log(`${range.start} | ${range.end}`, 'calendar-range')}
           minRange={3}
           onMinRangeFails={(message: string) => Alert.alert(message)}
           maxRange={4}

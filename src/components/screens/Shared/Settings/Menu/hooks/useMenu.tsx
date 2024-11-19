@@ -106,8 +106,8 @@ export const useMenu = (): {
 
     if (isAuthenticated) {
       helpCenterItems.push({
-        testID: 'menuNotificationsButton',
-        title: 'menu:Menu.menu.items.feedbackAndSharing.title',
+        testID: 'menuFeedbackButton',
+        title: 'menu:Menu.menu.items.feedback.title',
         rightIcon: 'right',
         leftIcon: 'hearthandshake',
         onPress: () => {
@@ -116,7 +116,7 @@ export const useMenu = (): {
             feedback_request_id: '1',
           });
         },
-        remoteFeatureFlags: ['feedbackAndSharing'],
+        remoteFeatureFlags: ['feedback'],
       });
     }
 

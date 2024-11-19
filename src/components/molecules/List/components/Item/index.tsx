@@ -1,4 +1,4 @@
-import React, { forwardRef, memo, useCallback } from 'react';
+import React, { forwardRef, memo, useCallback, useImperativeHandle } from 'react';
 import { SharedValue, useSharedValue } from 'react-native-reanimated';
 import { useTheme } from 'styled-components';
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
@@ -68,6 +68,7 @@ const Item: React.FC<Props> = forwardRef(
         {swipeable ? (
           <Swipeable
             ref={ref}
+            overshootFriction={3}
             onSwipeableWillOpen={handleSwipeableWillOpen}
             renderLeftActions={(progress, dragX) =>
               renderLeftActions?.(item) || (
@@ -92,9 +93,8 @@ const Item: React.FC<Props> = forwardRef(
               )
             }
             containerStyle={{
-              alignItems: 'center',
               backgroundColor: theme.tokens.colors.tertiary200,
-              // borderRadius: 10,
+              borderRadius: 0,
             }}
           >
             {renderedItem}

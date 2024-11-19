@@ -5,17 +5,17 @@ import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/f
 import { Image, Typography } from '@components/atoms';
 
 interface AttatchContainerProps {
-    alignItems: ViewStyle['justifyContent'];
+  alignItems: ViewStyle['justifyContent'];
 }
 
 export interface StyledButtonProps {
-    error?: boolean;
-    focused?: boolean;
-    hasValue?: boolean;
-    editable?: boolean;
-    styledFocus?: boolean;
-    maintainFocus?: boolean;
-    touched?: boolean;
+  error?: boolean;
+  focused?: boolean;
+  hasValue?: boolean;
+  editable?: boolean;
+  styledFocus?: boolean;
+  maintainFocus?: boolean;
+  touched?: boolean;
 }
 
 export const AttachmentContainer = styled.View`
@@ -47,7 +47,7 @@ export const ImageThumbnail = styled(Image)`
 `;
 
 interface AddButtonProps {
-    fullSize?: boolean;
+  fullSize?: boolean;
 }
 
 export const AddButton = styled.TouchableOpacity<AddButtonProps>`
@@ -79,7 +79,13 @@ export const AddPanelContainer = styled.View`
   flex-direction: row;
 `;
 
+export const AttachmentTitleContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const Title = styled(Typography)`
-  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(2)}px;
   text-align: center;
 `;

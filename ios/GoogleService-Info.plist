@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>124944014292-q5tijfe5d3hc47m1qa6lfv1qd01iqu1r.apps.googleusercontent.com</string>
+	<string>842236542831-ghddoaa1ukujjgijrousa9lnfo6k2bvl.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.124944014292-q5tijfe5d3hc47m1qa6lfv1qd01iqu1r</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>124944014292-785gu0ql5ublclkbu62h36q7l1789sle.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.842236542831-ghddoaa1ukujjgijrousa9lnfo6k2bvl</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAJkBgB-Sl2GcrGMmisyFFcZFlQND2qmP0</string>
+	<string>AIzaSyDBsL1skP09E8Q-xmrtF3Hz-NOlVDqSsKw</string>
 	<key>GCM_SENDER_ID</key>
-	<string>124944014292</string>
+	<string>842236542831</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.spaceApp</string>
+	<string>com.spaceapp</string>
 	<key>PROJECT_ID</key>
-	<string>spaceapp-818a0</string>
+	<string>spaceapp-e3284</string>
 	<key>STORAGE_BUCKET</key>
-	<string>spaceapp-818a0.appspot.com</string>
+	<string>spaceapp-e3284.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:124944014292:ios:3b7b823caded8d364e5441</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Enabling Face ID allows you quick and secure access to your account.</string>
+	<string>1:842236542831:ios:3d682fb1a84a83d213f29a</string>
 </dict>
 </plist>

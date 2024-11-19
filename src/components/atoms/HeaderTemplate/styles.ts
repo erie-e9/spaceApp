@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
-import { Platform } from 'react-native';
 
 interface HeaderStyle {
   headerStyle: 'Primary' | 'Secondary';
@@ -11,11 +10,11 @@ interface HeaderStyle {
 export const HeaderContainer = styled.View<HeaderStyle>`
   flex-direction: column;
   align-items: flex-start;
+  width: auto;
   justify-content: flex-start;
   min-height: ${({ headerStyle }) =>
     getNormalizedVerticalSize(headerStyle === 'Primary' ? 80 : 45)}px;
-  /* padding: ${Platform.OS === 'ios' ? 50 : 50}px 0px 5px 0px; */
-  /* background-color: ${({ theme }) => theme.tokens.colors.tertiary100}; */
+  /* background-color: ${({ theme }) => theme.tokens.colors.tertiary700}; */
 `;
 
 export const HeaderWrapper = styled.View`
@@ -29,9 +28,11 @@ export const HeaderLeftCotainer = styled.View<{
   hasHeaderOptions: boolean;
 }>`
   flex-direction: row;
+  min-height: 50px;
+  align-items: center;
   width: ${({ hasHeaderOptions }) => (hasHeaderOptions ? '75%' : '100%')};
   justify-content: flex-start;
-  background-color: transparent;
+  /* background-color: transparent; */
 `;
 
 export const BackButtonContainer = styled.View<HeaderStyle>`
@@ -60,7 +61,7 @@ export const TitleText = styled(Typography)``;
 export const HeaderRightContainer = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   width: auto;
   height: 100%;
   background-color: transparent;

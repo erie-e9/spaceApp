@@ -1,48 +1,40 @@
 {
   "project_info": {
-    "project_number": "124944014292",
-    "project_id": "spaceapp-818a0",
-    "storage_bucket": "spaceapp-818a0.appspot.com"
+    "project_number": "842236542831",
+    "project_id": "spaceapp-e3284",
+    "storage_bucket": "spaceapp-e3284.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:124944014292:android:0087b1b466c11cc74e5441",
+        "mobilesdk_app_id": "1:842236542831:android:a9c641a9dd9a30de13f29a",
         "android_client_info": {
-          "package_name": "com.spaceApp"
+          "package_name": "com.spaceapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "124944014292-prcsbpc45jklh3l9fq415m9d1uflh1qb.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.spaceApp",
-            "certificate_hash": "8cd2c2fc4a304b47b4da6ed9063eedcc03cd6368"
-          }
-        },
-        {
-          "client_id": "124944014292-vmkt8rcfo9nm101jp06m5ncsdo0444k8.apps.googleusercontent.com",
+          "client_id": "842236542831-2rtpsq0na77kv8jo3p50qko200kkvvm6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB8SJdEhxKmTLHUzs21QGr7CnpKir_WlRE"
+          "current_key": "AIzaSyCTCGw7x4hPgGaB4Y-0ywuwBxVCEK43zjo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "124944014292-vmkt8rcfo9nm101jp06m5ncsdo0444k8.apps.googleusercontent.com",
+              "client_id": "842236542831-2rtpsq0na77kv8jo3p50qko200kkvvm6.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "124944014292-q5tijfe5d3hc47m1qa6lfv1qd01iqu1r.apps.googleusercontent.com",
+              "client_id": "842236542831-ghddoaa1ukujjgijrousa9lnfo6k2bvl.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.spaceApp"
+                "bundle_id": "com.spaceapp"
               }
             }
           ]

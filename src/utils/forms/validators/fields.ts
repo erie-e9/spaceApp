@@ -113,8 +113,35 @@ export const bugDescription = yup
   .string()
   .matches(
     alphaNumericRegex,
-    'menu:helpCenter.support.items.bugReporter.form.bugDescription.validations.matches',
+    'common:forms.fields.inputs.description.validations.matches',
   )
-  .min(3, 'menu:helpCenter.support.items.bugReporter.form.bugDescription.validations.min')
-  .max(255, 'menu:helpCenter.support.items.bugReporter.form.bugDescription.validations.max')
-  .required('menu:helpCenter.support.items.bugReporter.form.bugDescription.validations.required');
+  .min(3, 'common:forms.fields.inputs.description.validations.min')
+  .max(255, 'common:forms.fields.inputs.description.validations.max')
+  .required('common:forms.fields.inputs.description.validations.required');
+
+export const title = yup
+  .string()
+  .matches(
+    alphaNumericRegex,
+    'common:forms.fields.inputs.title.validations.matches',
+  )
+  .min(3, 'common:forms.fields.inputs.title.validations.min')
+  .max(100, 'common:forms.fields.inputs.title.validations.max')
+  .required('common:forms.fields.inputs.title.validations.required');
+
+export const descriptionNoMandatory = yup
+  .string()
+  .matches(
+    alphaNumericRegex,
+    'common:forms.fields.inputs.description.validations.matches',
+  )
+  .min(3, 'common:forms.fields.inputs.description.validations.min')
+  .max(255, 'common:forms.fields.inputs.description.validations.max')
+
+export const status = yup
+  .number()
+  .max(3)
+
+export const dateNoMandatory = yup
+  .string()
+  .matches(validDateRegex, 'common:forms.fields.inputs.date.validations.matches')

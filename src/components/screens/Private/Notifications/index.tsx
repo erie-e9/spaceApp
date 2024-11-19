@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { useNotifications } from './hooks/useNotifications';
 import { CallToAction } from '@components/templates';
-import { BodyContainer, NotificationList, MoreNotificationButton } from './styles';
+import { BodyContainer, NotificationList } from './styles';
+import { Logger } from '@services';
 import Item from './components/Item';
 
 export const ITEM_HEIGHT = 90;
@@ -23,7 +24,7 @@ export const Notifications: React.FC = () => {
             draggable={!true}
             itemHeight={ITEM_HEIGHT}
             useFlashList
-            refreshHandler={() => console.log('getting more notifications')}
+            refreshHandler={() => Logger.log('getting more notifications')}
             // filterBy={['username', 'post_title']}
             renderItem={({ item }) => (
               <Item
@@ -36,7 +37,6 @@ export const Notifications: React.FC = () => {
                 loading={notificationsHook.loading}
               />
             )}
-            estimatedItemSize={200}
             // footerComponent={
             //   <MoreNotificationButton
             //     testID={notificationsHook.primaryButton.testID || undefined}

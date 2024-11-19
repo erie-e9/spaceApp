@@ -37,7 +37,7 @@ export interface RemoteConfigFeatures {
 
   // help center
   helpCenter: FeatureValue;
-  feedbackAndSharing: FeatureValue;
+  feedback: FeatureValue;
   bugReporter: FeatureValue;
   untrustedDevice: FeatureValue;
   errorCatcher: FeatureValue;

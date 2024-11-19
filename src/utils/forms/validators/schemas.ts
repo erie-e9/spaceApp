@@ -18,7 +18,11 @@ import {
   city,
   country,
   bugDescription,
-} from '@utils/forms/validators/fields';
+  title,
+  descriptionNoMandatory,
+  status,
+  dateNoMandatory
+} from '@utils/forms/validators/fields'; // improve, pragmatic values instead of specific
 
 export const stepSchemas = () => {
   const accountDataSchema = useMemo(
@@ -83,6 +87,18 @@ export const stepSchemas = () => {
     [],
   );
 
+  const taskSchema = useMemo(
+    () =>
+      yup.object().shape({
+        title,
+        descriptionNoMandatory,
+        status,
+        dateNoMandatory,
+        // attached_files: photo,
+      }),
+    [],
+  );
+
   return {
     accountDataSchema,
     personalDetailsSchema,
@@ -90,6 +106,7 @@ export const stepSchemas = () => {
     socialMediaMissingDataPhoneNumberSchema,
     socialMediaMissingDataSchema,
     bugReporterSchema,
+    taskSchema,
   };
 };
 
@@ -102,6 +119,7 @@ export const formSchemas = () => {
     socialMediaMissingDataPhoneNumberSchema,
     socialMediaMissingDataSchema,
     bugReporterSchema,
+    taskSchema,
   } = stepSchemas();
   const accountSchema = useMemo(
     () => [accountDataSchema, personalDetailsSchema, locationDetailsSchema],
@@ -121,5 +139,6 @@ export const formSchemas = () => {
     accountSchema,
     accountWithSocialMediaSchema,
     bugReporterSchema,
+    taskSchema,
   };
 };

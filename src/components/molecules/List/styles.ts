@@ -5,12 +5,16 @@ import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/f
 import { Image, Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
+export const StyledList = styled(Animated.FlatList)`
+  width: 100%;
+`;
+
 export const ListContainer = styled.View<{
   alignItems?: ViewStyle['alignItems'];
 }>`
   flex: 1;
   width: 100%;
-  justify-content: center;
+  height: 100%;
 `;
 
 export const AnimatedItemContainer = styled(Animated.View)`

@@ -1,4 +1,4 @@
-import { TextInputProps } from 'react-native';
+import { TextInputProps, ViewStyle } from 'react-native';
 
 export interface CommonControllerProps {
   testID?: string;
@@ -31,7 +31,8 @@ export interface DropDownProps extends CommonControllerProps {
   data: Array<string | number | null | { [key: string]: string | number; value: string | number }>;
   isNumeric?: boolean;
   value?: string | number;
-  width?: string | number;
+  width?: ViewStyle['width'];
+  description?: string;
   dropdownHeight?: number;
   openDropdown?: boolean;
   disableInput?: boolean;

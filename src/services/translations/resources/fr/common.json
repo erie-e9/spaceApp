@@ -53,6 +53,16 @@
       "buttons": {
         "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
+    },
+    "crudActions": {
+      "delete": {
+        "title": "Êtes-vous sûr ?",
+        "description": "Cette action est irréversible.",
+        "options": {
+          "confirmButton": "Confirmer la suppression",
+          "cancelButton": "Annuler"
+        }
+      }
     }
   },
   "bottomsheets": {
@@ -67,11 +77,30 @@
         "charactersLabel": "caractères",
         "sumbitButton": "Envoyer"
       },
-      "skipButton": "Demandez-moi plus tard",
+      "skipButton": "Merci pour votre avis!",
       "toast": {
         "success": {
           "title": "Merci pour votre retour !"
         }
+      }
+    }
+  },
+  "toasts": {
+    "crudActions": {
+      "create": {
+        "success": "Créé avec succès",
+        "failure": "Échec de la création",
+        "noWifi": "Pas de wifi disponible, mais sera créé lorsque la connexion sera rétablie"
+      },
+      "update": {
+        "success": "Mis à jour avec succès",
+        "failure": "Échec de la mise à jour",
+        "noWifi": "Pas de wifi disponible, mais sera mis à jour lorsque la connexion sera rétablie"
+      },
+      "delete": {
+        "success": "Supprimé avec succès",
+        "failure": "Échec de la suppression",
+        "noWifi": "Pas de wifi disponible, mais sera supprimé lorsque la connexion sera rétablie"
       }
     }
   },
@@ -140,9 +169,54 @@
       }
     }
   },
-  "controllers": {
-    "inputs": {
-      "search": "Recherche {{seachPlaceholder}}"
+  "forms": {
+    "fields": {
+      "inputs": {
+        "search": "Rechercher {{seachPlaceholder}}",
+        "title": {
+          "name": "Titre",
+          "validations": {
+            "required": "Le titre est requis.",
+            "matches": "Utilisez uniquement des lettres, chiffres et underscores.",
+            "min": "Au moins 3 caractères.",
+            "max": "Ne dépassez pas 100 caractères."
+          }
+        },
+        "description": {
+          "name": "Description",
+          "validations": {
+            "min": "Au moins 3 caractères requis.",
+            "max": "255 caractères maximum.",
+            "matches": "Lettres et chiffres uniquement.",
+            "required": "Ajoutez une description."
+          }
+        },
+        "date": {
+          "name": "Date",
+          "placeholder": "Choisissez une date",
+          "validations": {
+            "required": "La date est requise.",
+            "matches": "Entrez une date valide."
+          },
+          "messages": {
+            "blockedDate": "{{blockedDate}} est bloquée car {{blockedReason}}"
+          }
+        }
+      },
+      "controllers": {
+        "multimedia": {
+          "addImage": "Ajouter une image",
+          "addImages": "Ajouter des images"
+        }
+      },
+      "listItems": {
+        "status": {
+          "undefined": "Indéfini",
+          "pending": "En attente",
+          "inProgress": "En cours",
+          "completed": "Terminée"
+        }
+      }
     }
   }
 }

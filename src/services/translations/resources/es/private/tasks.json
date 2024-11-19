@@ -1,0 +1,35 @@
+{
+    "Tasks": {
+        "screenTitle": "$t(menu:Menu.menu.items.tasks.title) {{count}}",
+        "description": "$t(menu:Menu.menu.items.tasks.description)",
+        "controllers": {
+            "searchInputLabel": "Buscar tareas por título, descripción o prioridad"
+        }
+    },
+    "Task": {
+        "add": {
+            "screenTitle": "Agregar tarea",
+            "description": "Crea una nueva tarea, agrega adjuntos y define propiedades."
+        },
+        "edit": {
+            "screenTitle": "Editar tarea",
+            "description": "Modifica una tarea existente, actualiza propiedades y compártela con otros."
+        },
+        "controllers": {
+            "title": "Título",
+            "description": "Descripción",
+            "status": "Estado",
+            "statusDescription": "Selecciona un estado",
+            "priority": "Prioridad",
+            "dueDate": "Fecha de vencimiento",
+            "dueDateDescription": "Asigna una fecha de vencimiento para esta tarea",
+            "createdDate": "Fecha de creación",
+            "lastUpdateDate": "Fecha de última actualización",
+            "instructor": "Instructor",
+            "instructorComments": "Comentarios del instructor",
+            "grade": "Calificación",
+            "submitAdd": "Crear",
+            "submitEdit": "Actualizar"
+        }
+    }
+}

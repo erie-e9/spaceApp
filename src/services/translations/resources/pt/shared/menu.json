@@ -71,6 +71,10 @@
     },
     "menu": {
       "items": {
+        "tasks": {
+          "title": "Tarefas",
+          "description": "Gerencie tarefas definidas e crie novas. Você também pode rastrear tarefas de professores atribuídas a você."
+        },
         "untrustedDevice": {
           "title": "Alerta de segurança",
           "description": "Esta tela aparece se você usar o app em um dispositivo não autorizado."
@@ -79,9 +83,9 @@
           "title": "Tela de erro",
           "description": "Exibe uma tela amigável em caso de erro."
         },
-        "feedbackAndSharing": {
-          "title": "Feedback e compartilhamento",
-          "description": "Você acha que podemos melhorar algo ou quer compartilhar este aplicativo?"
+        "feedback": {
+          "title": "Feedback",
+          "description": "Você acha que podemos melhorar alguma coisa?"
         }
       }
     }
@@ -134,15 +138,6 @@
           "short-description": "Encontrou um bug? Relate.",
           "founddBug": "Se você encontrou um bug ou algo que podemos melhorar, envie seu feedback e nos ajude a melhorar.",
           "form": {
-            "bugDescription": {
-              "name": "Descrição",
-              "validations": {
-                "min": "A descrição deve ter pelo menos 3 caracteres.",
-                "max": "A descrição não deve exceder 255 caracteres.",
-                "matches": "Insira apenas letras e números.",
-                "required": "Inclua uma descrição do que aconteceu."
-              }
-            },
             "attachMultimedia": {
               "name": "Anexe imagens ou vídeos",
               "required": "Inclua evidências para apoiar o relatório."

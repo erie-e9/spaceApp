@@ -1,28 +1,33 @@
-import React, { forwardRef, Fragment, memo, useCallback, useMemo } from 'react';
+import React, { forwardRef, Fragment, memo, useCallback, useMemo, useState } from 'react';
 import { getDate } from '@utils/functions';
 import { useToast, useModal } from '@hooks';
 import { testProperties } from '@utils/functions';
-import { formatDate } from '@utils/formatters';
+import { dayjs, formatDate } from '@utils/formatters';
 import { labels } from '@utils/forms/labels';
-import { FieldInputMask } from '@components/molecules';
+import { CloseButton, FieldInputMask } from '@components/molecules';
 import useAutoFocus from '@components/molecules/TextInput/hooks/useAutoFocus';
 import Calendar from './components/Calendar';
 import DateDropdown from './components/DateDropdown';
-import { StyledButton, StyledElementContainer, StyledText } from './styles';
+import { StyledButton, StyledElementContainer, StyledText, Container } from './styles';
 
 interface DatePickerProps {
   testID?: string;
   label: string;
+  title: string;
+  description: string;
+  mode: 'calendar' | 'dropdown';
   value?: string;
+  maxDate?: string;
+  minDate?: string;
   required?: boolean;
   placeholder?: string;
   minimunDate?: string;
-  error: string;
+  error?: string;
   touched?: boolean;
   editable?: boolean;
-  onSelect: (item: string) => void;
   maintainFocus?: boolean;
-  mode?: 'calendar' | 'dropdown';
+  onSelect: (date: string) => void;
+  rightIconHandler?: () => void;
 }
 
 export const DatePicker: React.FC<DatePickerProps> = forwardRef(
@@ -31,18 +36,24 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
       testID,
       label,
       value,
+      maxDate,
+      minDate,
+      title,
+      description,
+      mode,
       required,
       placeholder = 'Select a date',
       error,
       touched,
       editable = true,
       minimunDate,
-      onSelect,
       maintainFocus,
-      mode,
+      onSelect,
+      rightIconHandler
     },
     ref,
   ) => {
+      const [date, setDate] = useState<string | null>(null);
     const { showModal, hideModal } = useModal();
     const { focused } = useAutoFocus(
       () => null,
@@ -60,7 +71,9 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
     }, [focused]);
 
     const onSelectHandler = useCallback((date: any) => {
-      onSelect(formatDate(mode === 'calendar' ? date.dateString : date, 'DD/MM/YYYY'));
+      const value = formatDate(mode === 'calendar' ? date.dateString : date, 'DD/MM/YYYY');
+      onSelect(value);
+      setDate(value);
       hideModal();
     }, []);
 
@@ -71,18 +84,28 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
       });
     }, []);
 
+    const maxDateValue = useMemo(() => {
+      return '2024-11-30'
+    }, []);
+
+    const minDateValue = useMemo(() => {
+      return dayjs(new Date).format('YYYY-MM-DD')
+    }, []);
+
+
     const toggleDatePicker = useCallback(() => {
       showModal({
         type: mode === 'calendar' ? 'alert' : 'bottomsheet',
-        title: 'signup:SignUp.form.fields.dateOfBirth.name',
-        description: 'signup:SignUp.form.fields.dateOfBirth.placeholder',
+        title,
+        description,
         body: (
           <Fragment>
             {mode === 'calendar' ? (
               <Calendar
-                current={today18Ago}
-                selected={today18Ago}
-                maxDate={today18Ago}
+                current={minDate || minDateValue}
+                selected={minDate || minDateValue}
+                maxDate={maxDate}
+                minDate={minDate || minDateValue}
                 onSelect={onSelectHandler}
                 today={today}
                 monthNames={monthNames}
@@ -95,7 +118,7 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
               <DateDropdown
                 selected={value}
                 monthNames={monthNames}
-                maxDate={today18Ago}
+                maxDate={'2026-11-30'}
                 onSelect={onSelectHandler}
                 onInvalidDate={invalidDateHandler}
               />
@@ -114,7 +137,7 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
     return (
       <FieldInputMask
         {...testProperties(testID || 'DatePickerID')}
-        value={value}
+        value={date || value}
         required={required}
         label={label}
         maintainFocus={maintainFocus || !!value}
@@ -123,14 +146,20 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
         editable={editable}
         focused={focused || !!value}
       >
-        <StyledButton ref={ref} onPress={toggleDatePicker}>
+        <Container>
           <StyledElementContainer error={value !== '' && !!error} hasValue={!!value}>
-            <StyledText type="Caption" error={value !== '' && !!error} hasValue={!!value}>
-              {value || placeholder}
-              {required && !value ? '*' : ''}
-            </StyledText>
+            <StyledButton ref={ref} onPress={toggleDatePicker}>
+                <StyledText type="Caption" error={value !== '' && !!error} hasValue={!!value}>
+                  {value || placeholder}
+                  {required && !value ? '*' : ''}
+                </StyledText>
+            </StyledButton>
           </StyledElementContainer>
-        </StyledButton>
+          {rightIconHandler && value &&  (
+              <CloseButton onPress={rightIconHandler} />
+            )
+          }
+        </Container>
       </FieldInputMask>
     );
   },

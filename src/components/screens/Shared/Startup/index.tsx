@@ -3,8 +3,9 @@ import { CommonActions } from '@react-navigation/native';
 import { Logger } from '@services';
 import { useDeviceSecurity, useAppPreferences, useCheckNet, useTheme, getDeviceInfo } from '@hooks';
 import { type ApplicationScreenProps } from '@types';
-import { type Language } from '@slices/types/appPreferences';
-import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
+import { type Language } from '@slices/types';
+import { loadLocale } from '@utils/formatters';
+// import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
 import { InterpolateColorAnimation } from '@components/animated';
 import { Loader } from '@components/molecules';
 import { ScreenBackground } from '@components/atoms';
@@ -18,7 +19,7 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
   const { checkIsReliableDevice } = useDeviceSecurity();
   const { isOnline } = useCheckNet();
   const { Images } = useTheme();
-  const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
+  // const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
   const { switchLanguage, saveLanguages, language } = useAppPreferences();
 
   const preInit = async (): Promise<void> => {
@@ -29,8 +30,8 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
     ];
     const results = await Promise.all(promises);
     if (!results.includes(false)) {
-        await fetchLanguage('en');
       if (isOnline.isConnected) {
+        // await fetchLanguage('en');
       }
       await navigation.dispatch(
         CommonActions.reset({
@@ -43,14 +44,14 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
 
   const init = async () => {
     const deviceInfo = await getDeviceInfo();
-    Logger.log('Startup init', { deviceInfo });
-
+    Logger.log('Startup init', { deviceInfo, language });
     await new Promise((resolve) =>
       setTimeout(() => {
         resolve(true);
       }, 3000),
     );
     await preInit();
+    await loadLocale(language);
     language !== null && (await switchLanguage(language as Language));
   };
 

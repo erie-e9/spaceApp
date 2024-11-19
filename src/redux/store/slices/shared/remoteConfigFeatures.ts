@@ -34,7 +34,7 @@ export const initialState: RemoteConfigFeatures = {
 
   // help center
   helpCenter: { status: 'on' },
-  feedbackAndSharing: { status: 'on' },
+  feedback: { status: 'on' },
   bugReporter: { status: 'on' },
   untrustedDevice: { status: 'on' },
   errorCatcher: { status: 'on' },

@@ -195,6 +195,20 @@ export const labels = () => {
     ];
   }, []);
 
+  const undefinedStatus = getCopyValue('common:forms.fields.listItems.status.undefined');
+  const pendingStatus = getCopyValue('common:forms.fields.listItems.status.pending');
+  const inProgressStatus = getCopyValue('common:forms.fields.listItems.status.inProgress');
+  const completeStatus = getCopyValue('common:forms.fields.listItems.status.completed');
+
+  const statusList = useMemo(() => {
+    return [
+      { value: '0', label: undefinedStatus },
+      { value: '1', label: pendingStatus },
+      { value: '2', label: inProgressStatus },
+      { value: '3', label: completeStatus }
+    ]
+  }, []);
+
   return {
     genres,
     today,
@@ -202,5 +216,10 @@ export const labels = () => {
     monthNamesShort,
     dayNames,
     dayNamesShort,
+    statusList,
+    undefinedStatus,
+    pendingStatus,
+    inProgressStatus,
+    completeStatus,
   };
 };

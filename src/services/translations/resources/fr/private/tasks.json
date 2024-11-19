@@ -1,0 +1,35 @@
+{
+    "Tasks": {
+        "screenTitle": "$t(menu:Menu.menu.items.tasks.title) {{count}}",
+        "description": "$t(menu:Menu.menu.items.tasks.description)",
+        "controllers": {
+            "searchInputLabel": "Rechercher des tâches par titre, description ou priorité"
+        }
+    },
+    "Task": {
+        "add": {
+            "screenTitle": "Ajouter une tâche",
+            "description": "Créez une nouvelle tâche, ajoutez des pièces jointes et définissez des propriétés."
+        },
+        "edit": {
+            "screenTitle": "Modifier la tâche",
+            "description": "Modifiez une tâche existante, mettez à jour les propriétés et partagez-la avec d'autres."
+        },
+        "controllers": {
+            "title": "Titre",
+            "description": "Description",
+            "status": "Statut",
+            "statusDescription": "Sélectionnez un statut",
+            "priority": "Priorité",
+            "dueDate": "Date d'échéance",
+            "dueDateDescription": "Attribuer une date limite pour cette tâche",
+            "createdDate": "Date de création",
+            "lastUpdateDate": "Date de dernière mise à jour",
+            "instructor": "Instructeur",
+            "instructorComments": "Commentaires de l'instructeur",
+            "grade": "Note",
+            "submitAdd": "Créer",
+            "submitEdit": "Mettre à jour"
+        }
+    }
+}

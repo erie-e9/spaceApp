@@ -2,13 +2,27 @@ import React, { Fragment, memo, useCallback, useEffect, useMemo, useRef, useStat
 import { FlatList } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { SwipeableMethods } from 'react-native-gesture-handler/ReanimatedSwipeable';
-import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import LottieView from 'lottie-react-native';
+import truncate from 'lodash/truncate';
 import { Logger, useCopy } from '@services';
 import { useResponseHandler } from '@hooks';
 import { BackButton, Loader, TextInput } from '@components/molecules';
 import Item from './components/Item';
-import { ListContainer, LoaderContainer, Container, ScrollToTopContainer, ScrollToTopButtonContainer, FloatingButton, ButtonsContainer } from './styles';
+import {
+  ListContainer,
+  LoaderContainer,
+  Container,
+  ScrollToTopContainer,
+  ScrollToTopButtonContainer,
+  FloatingButton,
+  ButtonsContainer,
+} from './styles';
 
 export interface ListProps {
   data: Array<any>;
@@ -67,7 +81,10 @@ const List: React.FC<ListProps> = ({
   const extraPaddingTop = useSharedValue(0);
   const items = useMemo(() => data, [data]);
   const searchTextLabel = useMemo(() => {
-    return getCopyValue(searchLabel ? searchLabel : 'common:controllers.inputs.search')
+    return truncate(getCopyValue(searchLabel ? searchLabel : 'common:forms.fields.inputs.search'), {
+      length: 45,
+      omission: '...',
+    });
   }, [searchLabel]);
 
   const getInitialPositions = useCallback(() => {
@@ -127,10 +144,6 @@ const List: React.FC<ListProps> = ({
 
   const onSwipeableWillOpen = useCallback(
     (direction: 'left' | 'right', current: SwipeableMethods | null) => {
-      // if (direction === 'left') {
-      //   console.warn('REMOVER');
-      // }
-
       if (swipeableRef.current) {
         swipeableRef.current.close();
       }
@@ -139,12 +152,12 @@ const List: React.FC<ListProps> = ({
     [swipeableRef.current],
   );
 
-    const handleScrollToTop = () => {
+  const handleScrollToTop = () => {
     ref.current?.scrollToOffset({ animated: true, offset: 0 });
   };
 
   useEffect(() => {
-    setShowScrollButton(offsetY > 500); // Mostrar botón al hacer scroll hacia abajo
+    setShowScrollButton(offsetY > 500);
   }, [offsetY]);
 
   const buttonStyle = useAnimatedStyle(() => ({
@@ -168,19 +181,18 @@ const List: React.FC<ListProps> = ({
           draggable={draggable}
           onSwipeableWillOpen={(direction) => onSwipeableWillOpen(direction, current)}
           renderRightActions={renderRightActions}
-          renderRightAction={(item) => {            
-            swipeableRef?.current?.close();
-            renderRightAction?.(item)
-            }
-          }
+          renderRightAction={(item) => {
+            // swipeableRef?.current?.close();
+            renderRightAction?.(item);
+          }}
           renderLeftActions={renderLeftActions}
-          renderLeftAction={(item) => {            
-            swipeableRef?.current?.close();
-            renderLeftAction?.(item)}
-          }/>
+          renderLeftAction={(item) => {
+            // swipeableRef?.current?.close();
+            renderLeftAction?.(item);
+          }}
+        />
       );
     },
-    // [renderLeftActions, renderRightActions, renderRightAction, renderLeftAction],
     [
       renderItem,
       onSwipeableWillOpen,
@@ -193,9 +205,10 @@ const List: React.FC<ListProps> = ({
       renderRightAction,
       renderLeftActions,
       renderLeftAction,
-    ]);
+    ],
+  );
 
-    const ListComponent = useFlashList ? FlashList : FlatList;
+  const ListComponent = useFlashList ? FlashList : FlatList;
 
   return (
     <Fragment>
@@ -212,7 +225,7 @@ const List: React.FC<ListProps> = ({
           // debug={true}
           initialNumToRender={15}
           maxToRenderPerBatch={15}
-          removeClippedSubviews={true}
+          // removeClippedSubviews={true}
           numColumns={horizontal ? 1 : numColumns}
           scrollEnabled={scrollEnabled}
           onScroll={({ nativeEvent }) => {
@@ -244,16 +257,24 @@ const List: React.FC<ListProps> = ({
           contentContainerStyle={
             containerStyle ? containerStyle : (draggable || refreshHandler) && contentContainerStyle
           }
-        estimatedItemSize={itemHeight}
+          estimatedItemSize={itemHeight}
         />
       </ListContainer>
       <ButtonsContainer>
-          <ScrollToTopContainer style={[buttonStyle]}>
+        <ScrollToTopContainer style={[buttonStyle]}>
           <ScrollToTopButtonContainer>
             <BackButton onPress={handleScrollToTop} colorRowInverted />
           </ScrollToTopButtonContainer>
         </ScrollToTopContainer>
-        {extraFunction && (<FloatingButton onPress={extraFunction} type="Icon" icon='add' iconType='svg' opposingIconColor></FloatingButton>)}
+        {extraFunction && (
+          <FloatingButton
+            onPress={extraFunction}
+            type="Icon"
+            icon="add"
+            iconType="svg"
+            fontWeight={3}
+          ></FloatingButton>
+        )}
       </ButtonsContainer>
     </Fragment>
   );

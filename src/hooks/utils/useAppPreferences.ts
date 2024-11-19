@@ -13,8 +13,8 @@ import {
   type Language,
   type Mode,
   type Theme,
-} from '@slices/types/appPreferences';
-import { type LanguagesState } from '@slices/types/languages';
+  type LanguagesState,
+} from '@slices/types';
 
 export const useAppPreferences = (): {
   theme: Theme;

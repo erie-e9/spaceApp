@@ -12,7 +12,7 @@ import {
   getBundleId as getBundleIdInfo,
 } from 'react-native-device-info';
 import { Logger } from '@services';
-import { Language } from '@slices/types/appPreferences';
+import { Language } from '@slices/types';
 
 export const getUniqueId = (): Promise<string> => {
   return getUniqueIdDeviceInfo();
@@ -69,7 +69,7 @@ export const getDeviceLanguage = (): Language => {
 
     return validLanguages.includes(languageCode as Language) ? (languageCode as Language) : 'en';
   } catch (e) {
-    console.error('Failed to get device language', e);
+    Logger.error('Failed to get device language', e);
     return 'en';
   }
 };

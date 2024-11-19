@@ -28,11 +28,11 @@
 
       UIUserInterfaceStyle userInterfaceStyle = UITraitCollection.currentTraitCollection.userInterfaceStyle;
       UIColor *backgroundColor;
-       if (userInterfaceStyle == UIUserInterfaceStyleDark) {
-           backgroundColor = [UIColor colorFromHex:@"#181725"];
-       } else {
-           backgroundColor = [UIColor colorFromHex:@"#FFFFFF"];
-       }
+      if (userInterfaceStyle == UIUserInterfaceStyleDark) {
+          backgroundColor = [UIColor colorFromHex:@"#181725"];
+      } else {
+        backgroundColor = [UIColor colorFromHex:@"#FFFFFF"];
+      }
       rootView.backgroundColor = backgroundColor;
 
       NSString *lottieName = (userInterfaceStyle == UIUserInterfaceStyleDark) ? @"spaceapp_dark" : @"spaceapp_light";
@@ -40,8 +40,8 @@
       Dynamic *t = [Dynamic new];
       
       UIView *animationUIView = (UIView *)[t createAnimationViewWithRootView:rootView lottieName:lottieName];
-   
-      // register LottieSplashScreen to RNSplashScreen
+  
+    // register LottieSplashScreen to RNSplashScreen
       [RNSplashScreen showLottieSplash:animationUIView inRootView:rootView];
       // casting UIView type to LottieAnimationView type
       LottieAnimationView *animationView = (LottieAnimationView *) animationUIView;
@@ -50,7 +50,7 @@
       // If you want the animation layout to be forced to remove when hide is called, use this code
       [RNSplashScreen setAnimationFinished:true];
     }
-   
+  
     return success;
 }
 

@@ -53,6 +53,16 @@
       "buttons": {
         "buttonOne": "$t(authentication:Authentication.form.submitButtons.logInText)"
       }
+    },
+    "crudActions": {
+      "delete": {
+        "title": "Are you sure?",
+        "description": "This action is not reversible.",
+        "options": {
+          "confirmButton": "Confirm delete",
+          "cancelButton": "Cancel"
+        }
+      }
     }
   },
   "bottomsheets": {
@@ -72,6 +82,25 @@
         "success": {
           "title": "Thanks for your feedback!"
         }
+      }
+    }
+  },
+  "toasts": {
+    "crudActions": {
+      "create": {
+        "success": "Created successfully",
+        "failure": "Failed to create new one",
+        "noWifi": "No wifi is available but will be create when connection is back"
+      },
+      "update": {
+        "success": "Updated successfully",
+        "failure": "Failed updating",
+        "noWifi": "No wifi is available but will be update when connection is back"
+      },
+      "delete": {
+        "success": "Deleted successfully",
+        "failure": "Failed deleting",
+        "noWifi": "No wifi is available but will be delete when connection is back"
       }
     }
   },
@@ -140,9 +169,54 @@
       }
     }
   },
-  "controllers": {
-    "inputs": {
-      "search": "Search {{seachPlaceholder}}"
+  "forms": {
+    "fields": {
+      "inputs": {
+        "search": "Search {{seachPlaceholder}}",
+        "title": {
+          "name": "Title",
+          "validations": {
+            "required": "Title is necessary.",
+            "matches": "Enter only letters, numbers and underscores.",
+            "min": "Enter at least 3 characters.",
+            "max": "Title must not exceed 100 characters."
+          }
+        },
+        "description": {
+          "name": "Description",
+          "validations": {
+            "min": "Description must have at least 3 characters.",
+            "max": "Description must not exceed 255 characters.",
+            "matches": "Please enter only letters and numbers.",
+            "required": "Include a description of what happened."
+          }
+        },
+        "date": {
+          "name": "Date",
+          "placeholder": "Select a date",
+          "validations": {
+            "required": "Date is necessary.",
+            "matches": "Please enter a valid date."
+          },
+          "messages": {
+            "blockedDate": "{{blockedDate}} is blocked because {{blockedReason}}"
+          }
+        }
+      },
+      "controllers": {
+        "multimedia": {
+          "addImage": "Add image",
+          "addImages": "Add images"
+        }
+      },
+      "listItems": {
+        "status": {
+          "undefined": "Undefined",
+          "pending": "Pending",
+          "inProgress": "In progress",
+          "completed": "Completed"
+        }
+      }
     }
   }
 }

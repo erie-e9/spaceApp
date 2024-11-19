@@ -71,6 +71,10 @@
     },
     "menu": {
       "items": {
+        "tasks": {
+          "title": "Tareas",
+          "description": "Gestiona tareas definidas y crea nuevas. También puedes darle seguimiento a las asignadas por tus instructores."
+        },
         "untrustedDevice": {
           "title": "Alerta de seguridad",
           "description": "Esta pantalla aparece si usas la aplicación en un dispositivo no autorizado."
@@ -79,9 +83,9 @@
           "title": "Pantalla de errores",
           "description": "Muestra una pantalla amigable cuando ocurre un error."
         },
-        "feedbackAndSharing": {
-          "title": "Retroalimentación y compartir",
-          "description": "¿Piensas que podemos mejorar algo o deseas compartir esta aplicación?"
+        "feedback": {
+          "title": "Retroalimentación",
+          "description": "¿Piensas que podemos mejorar algo?"
         }
       }
     }
@@ -134,15 +138,6 @@
           "short-description": "¿Encontraste un error? Repórtalo.",
           "founddBug": "Si encontraste un error o algo que podamos mejorar, envíanos tus comentarios y ayúdanos a mejorar.",
           "form": {
-            "bugDescription": {
-              "name": "Descripción",
-              "validations": {
-                "min": "Descripción debe tener al menos 3 caracteres.",
-                "max": "Descripción no debe exceder los 255 caracteres.",
-                "matches": "Por favor, ingresa solo letras y números.",
-                "required": "Incluye una descripción de lo ocurrido."
-              }
-            },
             "attachMultimedia": {
               "name": "Adjunta imagenes o vídeos",
               "required": "Por favor, incluye evidencia que apoye al reporte."

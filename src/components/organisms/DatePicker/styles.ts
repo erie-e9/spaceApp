@@ -4,7 +4,6 @@ import {
   getNormalizedHorizontalSize,
   getNormalizedVerticalSize,
   responsiveFontSize,
-  screen_height,
 } from '@utils/functions';
 import { Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
@@ -39,15 +38,16 @@ export const StyledText = styled(Typography) <StyledTextProps>`
   font-size: ${responsiveFontSize(13)}px;
 `;
 
-export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>``;
+export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>`
+  height: 100%;
+`;
 
 export const StyledElementContainer = styled.View<StyledButtonProps>`
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
+  width: ${({ hasValue }) => hasValue ? '70%' : '100%'}; // pending
   height: auto;
   border-radius: ${getNormalizedVerticalSize(15)}px;
-  background-color: transparent;
 `;
 
 export const DropdownTypeButton = styled(TouchableWithoutFeedback) <StyledButtonProps>``;
@@ -113,7 +113,6 @@ export const ButtonContainer = styled.View`
   justify-items: flex-end;
   align-self: center;
   z-index: 1000;
-  /* background-color: #c8d62dd7; */
 `;
 
 export const StyledDropdownButton = styled(ActionButton) <StyledButtonProps>`
@@ -122,6 +121,16 @@ export const StyledDropdownButton = styled(ActionButton) <StyledButtonProps>`
 `;
 
 export const CalendarContainer = styled.View`
-  padding-horizontal: ${getNormalizedHorizontalSize(10)}px;
-  min-height: ${getNormalizedVerticalSize(360)}px;
+  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(10)}px;
+  min-height: auto;
+  width: 100%;
+`;
+
+export const Container = styled.View`
+  flex-direction: row;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(3)}px;
+  min-height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
 `;

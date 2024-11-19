@@ -9,6 +9,7 @@ import authentication from '@services/translations/resources/de/auth/authenticat
 import signup from '@services/translations/resources/de/auth/signup.json';
 import profile from '@services/translations/resources/de/private/profile.json';
 import editProfile from '@services/translations/resources/de/private/editProfile.json';
+import tasks from '@services/translations/resources/de/private/tasks.json';
 
 export default {
   common,
@@ -22,4 +23,5 @@ export default {
   signup,
   profile,
   editProfile,
+  tasks,
 };

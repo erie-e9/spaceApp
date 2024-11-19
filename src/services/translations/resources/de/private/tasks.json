@@ -1,0 +1,35 @@
+{
+    "Tasks": {
+        "screenTitle": "$t(menu:Menu.menu.items.tasks.title) {{count}}",
+        "description": "$t(menu:Menu.menu.items.tasks.description)",
+        "controllers": {
+            "searchInputLabel": "Aufgaben nach Titel, Beschreibung oder Priorität suchen"
+        }
+    },
+    "Task": {
+        "add": {
+            "screenTitle": "Aufgabe hinzufügen",
+            "description": "Erstellen Sie eine neue Aufgabe, fügen Sie Anhänge hinzu und definieren Sie Eigenschaften."
+        },
+        "edit": {
+            "screenTitle": "Aufgabe bearbeiten",
+            "description": "Bestehende Aufgabe ändern, Eigenschaften aktualisieren und mit anderen teilen."
+        },
+        "controllers": {
+            "title": "Titel",
+            "description": "Beschreibung",
+            "status": "Status",
+            "statusDescription": "Wählen Sie einen Status aus",
+            "priority": "Priorität",
+            "dueDate": "Fälligkeitsdatum",
+            "dueDateDescription": "Legen Sie eine Frist für diese Aufgabe fest",
+            "createdDate": "Erstellungsdatum",
+            "lastUpdateDate": "Datum der letzten Aktualisierung",
+            "instructor": "Lehrer",
+            "instructorComments": "Kommentare des Lehrers",
+            "grade": "Note",
+            "submitAdd": "Erstellen",
+            "submitEdit": "Aktualisieren"
+        }
+    }
+}

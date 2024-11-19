@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react';
 import { testProperties } from '@utils/functions';
 import { HeaderTemplate, ScreenBackground } from '@components/atoms';
 import { Dropdown, Switch, TextInput } from '@components/molecules';
-import { MultiStep, DatePicker, ButtonImagePicker } from '@components/organisms';
+import { MultiStep, DatePicker, MultimediaPicker } from '@components/organisms';
 import StepIndicator from '@components/organisms/MultiStep/components/StepIndicator';
 import { PointsContainer } from '@components/organisms/MultiStep/styles';
 import { StyledContainer, BodyContainer, StepContainer, StepItemContainer } from './styles';
@@ -158,6 +158,7 @@ const MultiStepper: React.FC<Props> = ({
                             <Dropdown
                               key={i}
                               {...sharedProps}
+                              description={item.description}
                               data={item.items}
                               placeholder={item.label}
                               bottomSheet={item.bottomSheet}
@@ -180,10 +181,9 @@ const MultiStepper: React.FC<Props> = ({
                           );
                         case 'camera-image':
                           return (
-                            <ButtonImagePicker
+                            <MultimediaPicker
                               key={i}
                               {...sharedProps}
-                              placeholder={item.label}
                               origin={item.origin}
                               mediaType={item.mediaType}
                               selectionLimit={item.selectionLimit}
@@ -195,6 +195,9 @@ const MultiStepper: React.FC<Props> = ({
                             <DatePicker
                               key={i}
                               {...sharedProps}
+                              mode={item.mode}
+                              title={item.title}
+                              description={item.description}
                               placeholder={item.label}
                               onSelect={hookHandler.handleChange(item.name)}
                             />

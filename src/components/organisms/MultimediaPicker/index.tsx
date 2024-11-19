@@ -13,6 +13,7 @@ import {
   StyledButton,
   DeleteIcon,
   AddPanelContainer,
+  AttachmentTitleContainer,
   Title,
 } from './styles';
 
@@ -115,13 +116,18 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
     <>
       {panel ? (
         <AttachmentContainer>
-          <Title type="Body2" weight={900} color="tertiary500">
-            {`${images?.length > 0 ? 'common:controllers.multimedia.addImages' : ''} ${images?.length}/${selectionLimit}`}{' '}
-          </Title>
+          <AttachmentTitleContainer>
+            <Title type="Body2" weight={900} color="tertiary600">
+              {images?.length > 0 ? 'common:forms:fields.controllers.multimedia.addImages': ''}
+            </Title>
+            <Title type="Body4" weight={900} color="tertiary600">
+              {`(${images?.length}/${selectionLimit})`}
+            </Title>
+          </AttachmentTitleContainer>
           <AttatchContainer alignItems={images.length > 0 ? 'flex-start' : 'center'}>
             {images.length >= 1 && (
               <AddButton onPress={toggleAddRemove ? handleClearAll : imagePickerHandler}>
-                {toggleAddRemove ? <SVGIcon icon="remove" /> : <SVGIcon icon="add" />}
+                {toggleAddRemove ? <SVGIcon icon="remove" iconColor="tertiary600"/> : <SVGIcon icon="add"iconColor="tertiary600" />}
               </AddButton>
             )}
             {images.map((image, index) => (
@@ -140,9 +146,9 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
             {images.length === 0 && (
               <AddButton fullSize onPress={imagePickerHandler}>
                 <AddPanelContainer>
-                  <SVGIcon icon="add" iconColor="tertiary500" />
-                  <Title type="Body2" weight={900} color="tertiary500">
-                    {selectionLimit > 1 ? 'common:controllers.multimedia.addImages' : 'common:controllers.multimedia.addImage'}
+                  <SVGIcon icon="add" iconColor="tertiary600" />
+                  <Title type="Body2" weight={900} color="tertiary600">
+                    {selectionLimit > 1 ? 'common:forms:fields.controllers.multimedia.addImages' : 'common:forms:fields.controllers.multimedia.addImage'}
                   </Title>
                 </AddPanelContainer>
               </AddButton>

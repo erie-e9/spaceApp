@@ -1,4 +1,4 @@
-package com.spaceApp
+package com.spaceapp
 
 import android.os.Bundle
 import com.facebook.react.ReactActivity
@@ -7,6 +7,7 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnable
 import com.facebook.react.defaults.DefaultReactActivityDelegate
 import org.devio.rn.splashscreen.SplashScreen
 import android.content.res.Configuration
+// import com.toyberman.RNSslPinningPackage
 
 class MainActivity : ReactActivity() {
 

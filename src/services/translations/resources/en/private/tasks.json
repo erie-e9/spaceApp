@@ -1,0 +1,35 @@
+{
+    "Tasks": {
+        "screenTitle": "$t(menu:Menu.menu.items.tasks.title) {{count}}",
+        "description": "$t(menu:Menu.menu.items.tasks.description)",
+        "controllers": {
+            "searchInputLabel": "Search tasks by title, description or priority"
+        }
+    },
+    "Task": {
+        "add": {
+            "screenTitle": "Add task",
+            "description": "Create a new task, add attatchments and define properties."
+        },
+        "edit": {
+            "screenTitle": "Edit task",
+            "description": "Modify existing task, update properties and share it with others.",
+        },
+        "controllers": {
+            "title": "Title",
+            "description": "Description",
+            "status": "Status",
+            "statusDescription": "Select a status",
+            "priority": "Priority",
+            "dueDate": "Due Date",
+            "dueDateDescription": "Assign a deadline for this task",
+            "createdDate": "Created Date",
+            "lastUpdateDate": "Last Update date",
+            "instructor": "Instructor",
+            "instructorComments": "Instructor's comments",
+            "grade": "Grade",
+            "submitAdd": "Create",
+            "submitEdit": "Update"
+        }
+    }
+}

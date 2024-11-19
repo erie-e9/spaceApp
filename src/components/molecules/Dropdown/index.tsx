@@ -26,6 +26,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
     {
       testID,
       label,
+      description,
       value,
       required,
       placeholder = 'Select an item',
@@ -86,7 +87,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
         showModal({
           type: 'bottomsheet',
           title: label,
-          description: 'signup:SignUp.form.fields.genre.placeholder',
+          description,
           list: {
             data: data,
             onPressItem: (item: { value: any; label: any }) => handleSelect(item),
@@ -176,7 +177,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
               keyExtractor={(item) => item.value}
               renderItem={({ item, index }) => (
                 <ListItemContainer width={width}>
-                  <Item key={index} width={width} onPress={() => handleSelect(item)}>
+                  <Item key={index} onPress={() => handleSelect(item)}>
                     <ItemText>{item.label || ''}</ItemText>
                   </Item>
                 </ListItemContainer>

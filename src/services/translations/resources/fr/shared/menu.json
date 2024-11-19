@@ -71,6 +71,10 @@
     },
     "menu": {
       "items": {
+        "tasks": {
+          "title": "Tâches",
+          "description": "Gérez les tâches définies et créez-en de nouvelles. Vous pouvez également suivre les tâches des enseignants qui vous sont assignées."
+        },
         "untrustedDevice": {
           "title": "Alerte de sécurité",
           "description": "Cet écran apparaît si vous utilisez l'application sur un appareil non autorisé."
@@ -79,9 +83,9 @@
           "title": "Écran d'erreur",
           "description": "Affiche un écran convivial en cas d'erreur."
         },
-        "feedbackAndSharing": {
-          "title": "Commentaires et partage",
-          "description": "Pensez-vous que nous pouvons améliorer quelque chose ou souhaitez-vous partager cette application?"
+        "feedback": {
+          "title": "Commentaires",
+          "description": "Pensez-vous que nous pouvons améliorer quelque chose?"
         }
       }
     }
@@ -134,15 +138,6 @@
           "short-description": "Vous avez trouvé un bug ? Signalez-le.",
           "founddBug": "Si vous avez trouvé un bug ou quelque chose que nous pouvons améliorer, envoyez-nous vos commentaires et aidez-nous à nous améliorer.",
           "form": {
-            "bugDescription": {
-              "name": "Description",
-              "validations": {
-                "min": "La description doit comporter au moins 3 caractères.",
-                "max": "La description ne doit pas dépasser 255 caractères.",
-                "matches": "Veuillez saisir uniquement des lettres et des chiffres.",
-                "required": "Inclure une description de ce qui s'est passé."
-              }
-            },
             "attachMultimedia": {
               "name": "Joindre des images ou des vidéos",
               "required": "Veuillez inclure des preuves à l'appui du rapport."
