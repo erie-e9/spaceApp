@@ -1,6 +1,8 @@
 import React, { memo } from 'react';
 import { RouteProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
+import truncate from 'lodash/truncate';
+import { useCopy } from '@services';
 import { PrivateParamsList } from '@navigators/Private';
 import { ApplicationStackParamList } from '@types';
 import { testProperties } from '@utils/functions';
@@ -26,6 +28,7 @@ export interface TaskProps {
 export const Task: React.FC<TaskProps> = ({ navigation, route }) => {
   const useTaskHook = useTask({ navigation, route });
   const id = route?.params?.task?.id;
+  const { getCopyValue } = useCopy();
 
   return (
     <CallToAction
@@ -39,10 +42,10 @@ export const Task: React.FC<TaskProps> = ({ navigation, route }) => {
           <FeaturesContainer>
             <FeatureButton
               onPress={useTaskHook.removeTask}
-              type={'Icon'}
-              buttonType="Secondary"
+              type="Icon"
               iconType="svg"
               icon="remove"
+              textColor="typography800"
             />
           </FeaturesContainer>
         )
@@ -116,10 +119,16 @@ export const Task: React.FC<TaskProps> = ({ navigation, route }) => {
                 <DatePicker
                   {...testProperties('taskDatePicker')}
                   mode="calendar"
-                  label="tasks:Task.controllers.dueDate"
+                  label={truncate(getCopyValue('tasks:Task.controllers.dueDate'), {
+                    length: 17,
+                    omission: '...',
+                  })}
                   title="tasks:Task.controllers.dueDate"
                   description="tasks:Task.controllers.dueDateDescription"
-                  placeholder="tasks:Task.controllers.dueDate"
+                  placeholder={truncate(getCopyValue('tasks:Task.controllers.dueDate'), {
+                    length: 17,
+                    omission: '...',
+                  })}
                   value={useTaskHook?.values?.due_date}
                   error={useTaskHook?.errors?.due_date}
                   touched={useTaskHook?.touched?.due_date}

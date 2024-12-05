@@ -1,5 +1,4 @@
-import React, { forwardRef, Fragment, memo, useCallback, useMemo, useState } from 'react';
-import { getDate } from '@utils/functions';
+import { FC, forwardRef, Fragment, memo, useCallback, useMemo, useState } from 'react';
 import { useToast, useModal } from '@hooks';
 import { testProperties } from '@utils/functions';
 import { dayjs, formatDate } from '@utils/formatters';
@@ -21,7 +20,6 @@ interface DatePickerProps {
   minDate?: string;
   required?: boolean;
   placeholder?: string;
-  minimunDate?: string;
   error?: string;
   touched?: boolean;
   editable?: boolean;
@@ -30,7 +28,7 @@ interface DatePickerProps {
   rightIconHandler?: () => void;
 }
 
-export const DatePicker: React.FC<DatePickerProps> = forwardRef(
+export const DatePicker: FC<DatePickerProps> = forwardRef(
   (
     {
       testID,
@@ -46,29 +44,19 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
       error,
       touched,
       editable = true,
-      minimunDate,
       maintainFocus,
       onSelect,
-      rightIconHandler
+      rightIconHandler,
     },
     ref,
   ) => {
-      const [date, setDate] = useState<string | null>(null);
+    const [date, setDate] = useState<string | null>(null);
     const { showModal, hideModal } = useModal();
     const { focused } = useAutoFocus(
       () => null,
       () => null,
     );
     const { monthNames, today, monthNamesShort, dayNames, dayNamesShort } = labels();
-
-    const today18Ago = useMemo(() => {
-      const [year, month, day] = getDate(null, 'YYYY/MM/DD').split('/').map(Number);
-      const year18Ago = `${year - 18}-${String(month).padStart(2, '0')}-${String(day).padStart(
-        2,
-        '0',
-      )}`;
-      return year18Ago;
-    }, [focused]);
 
     const onSelectHandler = useCallback((date: any) => {
       const value = formatDate(mode === 'calendar' ? date.dateString : date, 'DD/MM/YYYY');
@@ -84,14 +72,9 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
       });
     }, []);
 
-    const maxDateValue = useMemo(() => {
-      return '2024-11-30'
-    }, []);
-
     const minDateValue = useMemo(() => {
-      return dayjs(new Date).format('YYYY-MM-DD')
+      return dayjs(new Date()).format('YYYY-MM-DD');
     }, []);
-
 
     const toggleDatePicker = useCallback(() => {
       showModal({
@@ -149,16 +132,13 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
         <Container>
           <StyledElementContainer error={value !== '' && !!error} hasValue={!!value}>
             <StyledButton ref={ref} onPress={toggleDatePicker}>
-                <StyledText type="Caption" error={value !== '' && !!error} hasValue={!!value}>
-                  {value || placeholder}
-                  {required && !value ? '*' : ''}
-                </StyledText>
+              <StyledText type="Caption" error={value !== '' && !!error} hasValue={!!value}>
+                {value || placeholder}
+                {required && !value ? '*' : ''}
+              </StyledText>
             </StyledButton>
           </StyledElementContainer>
-          {rightIconHandler && value &&  (
-              <CloseButton onPress={rightIconHandler} />
-            )
-          }
+          {rightIconHandler && value && <CloseButton onPress={rightIconHandler} />}
         </Container>
       </FieldInputMask>
     );

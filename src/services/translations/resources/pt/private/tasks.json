@@ -7,8 +7,8 @@
         }
     },
     "Task": {
-        "add": {
-            "screenTitle": "Adicionar tarefa",
+        "new": {
+            "screenTitle": "Nova tarefa",
             "description": "Crie uma nova tarefa, adicione anexos e defina propriedades."
         },
         "edit": {

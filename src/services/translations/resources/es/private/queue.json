@@ -1,0 +1,17 @@
+{
+    "Queue": {
+        "title": "En cola",
+        "screenTitle": "$t(queue:Queue.title) {{count}}",
+        "description": "Actualiza o elimina elementos de la cola antes de que vuelva el internet.",
+        "controllers": {
+            "searchInputLabel": "Busca elementos en la cola por categoría o acción"
+        },
+        "httpVerbs": {
+            "get": "Obtener",
+            "post": "Nuevo",
+            "put": "Actualizar",
+            "patch": "Actualizar",
+            "delete": "Eliminar"
+        }
+    }
+}

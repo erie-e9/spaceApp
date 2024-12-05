@@ -3,12 +3,12 @@
         "screenTitle": "$t(menu:Menu.menu.items.tasks.title) {{count}}",
         "description": "$t(menu:Menu.menu.items.tasks.description)",
         "controllers": {
-            "searchInputLabel": "Buscar tareas por título, descripción o prioridad"
+            "searchInputLabel": "Busca tareas por título, descripción o prioridad"
         }
     },
     "Task": {
-        "add": {
-            "screenTitle": "Agregar tarea",
+        "new": {
+            "screenTitle": "Nueva tarea",
             "description": "Crea una nueva tarea, agrega adjuntos y define propiedades."
         },
         "edit": {

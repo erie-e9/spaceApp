@@ -1,0 +1,17 @@
+{
+    "Queue": {
+        "title": "Queue",
+        "screenTitle": "$t(queue:Queue.title) {{count}}",
+        "description": "Update or remove queue items before internet back.",
+        "controllers": {
+            "searchInputLabel": "Search queue items by category or action"
+        },
+        "httpVerbs": {
+            "get": "Get",
+            "post": "New",
+            "put": "Update",
+            "patch": "Update",
+            "delete": "Remove"
+        }
+    }
+}

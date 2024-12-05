@@ -140,7 +140,11 @@ export const descriptionNoMandatory = yup
 
 export const status = yup
   .number()
-  .max(3)
+  .nullable()
+  .notRequired()
+  .min(1, 'common:forms.fields.inputs.status.validations.min')
+  .max(3, 'common:forms.fields.inputs.status.validations.max')
+  .typeError('common:forms.fields.inputs.status.validations.matches')
 
 export const dateNoMandatory = yup
   .string()

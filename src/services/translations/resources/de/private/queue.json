@@ -1,0 +1,17 @@
+{
+    "Queue": {
+        "title": "Warteschlange",
+        "screenTitle": "$t(queue:Queue.title) {{count}}",
+        "description": "Aktualisieren oder entfernen Sie Elemente aus der Warteschlange, bevor das Internet zurückkehrt.",
+        "controllers": {
+            "searchInputLabel": "Warteschlangenelemente nach Kategorie oder Aktion suchen"
+        },
+        "httpVerbs": {
+            "get": "Abrufen",
+            "post": "Neu",
+            "put": "Aktualisieren",
+            "patch": "Aktualisieren",
+            "delete": "Entfernen"
+        }
+    }
+}

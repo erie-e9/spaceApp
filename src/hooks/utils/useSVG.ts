@@ -62,6 +62,7 @@ import Check from '@assets/shared/svg/check.svg';
 import Checks from '@assets/shared/svg/checks.svg';
 import Tasks from '@assets/shared/svg/tasks.svg';
 import ArrowBack from '@assets/shared/svg/arrow-back.svg';
+import Queue from '@assets/shared/svg/queue.svg';
 
 interface SvgObject {
   [key: string]: React.FC<SvgProps> | {
@@ -133,6 +134,7 @@ const svgLibrary: SvgObject = {
   checks: Checks,
   tasks: Tasks,
   arrowback: ArrowBack,
+  queue: Queue,
 };
 
 export const useSVG = (svgName: string): React.FC<SvgProps> => {

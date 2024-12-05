@@ -3,13 +3,14 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "Keine Verbindung, erneuter Versuch.",
+    "noConnection": "Wiederverbindung...",
     "features": {
       "unavailable": {
         "title": "Funktion nicht verfügbar",
         "body": "Leider ist diese Funktion momentan nicht zugänglich. Bitte versuchen Sie es später erneut."
       }
-    }
+    },
+    "clearCache": "Cache leeren"
   },
   "errors": {
     "boundaries": {
@@ -62,7 +63,27 @@
           "confirmButton": "Löschen bestätigen",
           "cancelButton": "Abbrechen"
         }
+      },
+      "changeDeleteToUpdate": {
+        "title": "Ausstehende Aktion",
+        "description": "Dieses Element hat eine Löschaktion in der Warteschlange. Wenn Sie es jetzt aktualisieren, wird es nicht gelöscht, sondern stattdessen aktualisiert.",
+        "options": {
+          "confirmButton": "Fortfahren",
+          "cancelButton": "Abbrechen"
+        }
+      },
+      "deletePending": {
+        "title": "Ausstehende Aktion",
+        "description": "Dies entfernt nur die Aktion aus der Warteschlange für dieses Element, löscht jedoch nicht den Datensatz. Diese Aktion ist nicht umkehrbar.",
+        "options": {
+          "confirmButton": "Löschen",
+          "cancelButton": "Abbrechen"
+        }
       }
+    },
+    "clearCache": {
+      "title": "Sind Sie sicher, dass Sie die ausstehenden Aktionen im Cache löschen möchten?",
+      "description": "Diese Aktion ist nicht umkehrbar."
     }
   },
   "bottomsheets": {
@@ -80,7 +101,7 @@
       "skipButton": "Frag mich später",
       "toast": {
         "success": {
-          "title": "Danke für deine Meinung!!"
+          "title": "Danke für deine Meinung!"
         }
       }
     }
@@ -90,17 +111,23 @@
       "create": {
         "success": "Erfolgreich erstellt",
         "failure": "Fehler beim Erstellen",
-        "noWifi": "Kein WLAN verfügbar, wird erstellt, wenn die Verbindung wiederhergestellt ist"
+        "noConnection": "Wird erstellt, wenn die Verbindung wiederhergestellt ist"
       },
       "update": {
         "success": "Erfolgreich aktualisiert",
         "failure": "Fehler beim Aktualisieren",
-        "noWifi": "Kein WLAN verfügbar, wird aktualisiert, wenn die Verbindung wiederhergestellt ist"
+        "noConnection": "Wird aktualisiert, wenn die Verbindung wiederhergestellt ist"
       },
       "delete": {
         "success": "Erfolgreich gelöscht",
         "failure": "Fehler beim Löschen",
-        "noWifi": "Kein WLAN verfügbar, wird gelöscht, wenn die Verbindung wiederhergestellt ist"
+        "noConnection": "Wird gelöscht, wenn die Verbindung wiederhergestellt ist"
+      },
+      "actionWillBeTriggered": {
+        "message": "Wird ausgeführt, wenn online"
+      },
+      "queueUpdated": {
+        "message": "Das in der Warteschlange befindliche Element wurde aktualisiert"
       }
     }
   },
@@ -200,6 +227,14 @@
           },
           "messages": {
             "blockedDate": "{{blockedDate}} ist gesperrt, weil {{blockedReason}}"
+          }
+        },
+        "status": {
+          "name": "Status",
+          "validations": {
+            "min": "Status muss mindestens 1 Zeichen haben.",
+            "max": "Status darf nicht länger als 3 Zeichen sein.",
+            "matches": "Bitte wählen Sie einen Status."
           }
         }
       },

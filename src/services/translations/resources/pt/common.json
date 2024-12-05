@@ -3,13 +3,14 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "A conexão não foi estabelecida, tentando novamente.",
+    "noConnection": "Reconnecting...",
     "features": {
       "unavailable": {
         "title": "Função não disponível",
         "body": "Infelizmente, esse recurso não está acessível no momento. Por favor, tente novamente mais tarde."
       }
-    }
+    },
+    "clearCache": "Limpar cache"
   },
   "errors": {
     "boundaries": {
@@ -59,10 +60,30 @@
         "title": "Tem certeza?",
         "description": "Esta ação não pode ser desfeita.",
         "options": {
-          "confirmButton": "Confirmar exclusão",
+          "confirmButton": "Exclusão",
+          "cancelButton": "Cancelar"
+        }
+      },
+      "changeDeleteToUpdate": {
+        "title": "Ação Pendente",
+        "description": "Este item possui uma ação de exclusão na fila. Se você atualizá-lo agora, ele não será excluído, mas sim atualizado.",
+        "options": {
+          "confirmButton": "Continuar",
+          "cancelButton": "Cancelar"
+        }
+      },
+      "deletePending": {
+        "title": "Ação Pendente",
+        "description": "Isso removerá apenas a ação na fila para este item, mas não excluirá o registro. Esta ação é irreversível.",
+        "options": {
+          "confirmButton": "Excluir",
           "cancelButton": "Cancelar"
         }
       }
+    },
+    "clearCache": {
+      "title": "Tem certeza de que deseja limpar as ações pendentes do cache?",
+      "description": "Esta ação é irreversível."
     }
   },
   "bottomsheets": {
@@ -90,17 +111,23 @@
       "create": {
         "success": "Criada com sucesso",
         "failure": "Falha ao criar um novo",
-        "noWifi": "Sem wifi disponível, mas será criado quando a conexão retornar"
+        "noConnection": "Será criado quando a conexão retornar"
       },
       "update": {
         "success": "Atualizada com sucesso",
         "failure": "Falha ao atualizar",
-        "noWifi": "Sem wifi disponível, mas será atualizado quando a conexão retornar"
+        "noConnection": "Será atualizado quando a conexão retornar"
       },
       "delete": {
         "success": "Excluída com sucesso",
         "failure": "Falha ao excluir",
-        "noWifi": "Sem wifi disponível, mas será excluído quando a conexão retornar"
+        "noConnection": "Será excluído quando a conexão retornar"
+      },
+      "actionWillBeTriggered": {
+        "message": "Será concluída quando online"
+      },
+      "queueUpdated": {
+        "message": "O item na fila foi atualizado"
       }
     }
   },
@@ -172,7 +199,7 @@
   "forms": {
     "fields": {
       "inputs": {
-        "search": "Buscar {{seachPlaceholder}}",
+        "search": "Pesquise {{seachPlaceholder}}",
         "title": {
           "name": "Título",
           "validations": {
@@ -188,7 +215,7 @@
             "min": "Deve ter pelo menos 3 caracteres.",
             "max": "Não pode exceder 255 caracteres.",
             "matches": "Apenas letras e números permitidos.",
-            "required": "Inclua uma descrição."
+            "required": "Inclua uma descrição, por favor."
           }
         },
         "date": {
@@ -200,6 +227,14 @@
           },
           "messages": {
             "blockedDate": "{{blockedDate}} está bloqueada porque {{blockedReason}}"
+          }
+        },
+        "status": {
+          "name": "Status",
+          "validations": {
+            "min": "O status deve ter pelo menos 1 caractere.",
+            "max": "O status não deve exceder 3 caracteres.",
+            "matches": "Selecione um status."
           }
         }
       },

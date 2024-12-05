@@ -108,6 +108,8 @@ const Application = () => {
           <ErrorBoundary FallbackComponent={CustomFallback} onError={handleJSErrorForErrorBoundary}>
             <GestureHandlerRootView style={gestureHandlerRootViewStyle}>
               <StatusBar />
+              <Modal />
+              <Toast />
               <Navigator
                 initialRouteName={'Startup'}
                 screenOptions={{
@@ -178,8 +180,6 @@ const Application = () => {
                   />
                 )}
               </Navigator>
-              <Modal />
-              <Toast />
             </GestureHandlerRootView>
           </ErrorBoundary>
         </NavigationContainer>

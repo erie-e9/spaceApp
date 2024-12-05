@@ -3,13 +3,14 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "Can't connect, retrying.",
+    "noConnection": "Reconnecting...",
     "features": {
       "unavailable": {
         "title": "Feature unavailable",
         "body": "Unfortunately this feature is not accessible at the moment. Please try again later."
       }
-    }
+    },
+    "clearCache": "Clear cache"
   },
   "errors": {
     "boundaries": {
@@ -59,10 +60,30 @@
         "title": "Are you sure?",
         "description": "This action is not reversible.",
         "options": {
-          "confirmButton": "Confirm delete",
+          "confirmButton": "Delete",
+          "cancelButton": "Cancel"
+        }
+      },
+      "changeDeleteToUpdate": {
+        "title": "Pending Action",
+        "description": "This item has a delete action in the queue. If you update it now, it will not be deleted but updated instead.",
+        "options": {
+          "confirmButton": "Continue",
+          "cancelButton": "Cancel"
+        }
+      },
+      "deletePending": {
+        "title": "Pending Action",
+        "description": "This will only remove the queued action for this item, but it will not delete the record. This action is irreversible.",
+        "options": {
+          "confirmButton": "Delete",
           "cancelButton": "Cancel"
         }
       }
+    },
+    "clearCache": {
+      "title": "Are you sure you want to clear pending actions from the cache?",
+      "description": "This action is irreversible."
     }
   },
   "bottomsheets": {
@@ -90,17 +111,23 @@
       "create": {
         "success": "Created successfully",
         "failure": "Failed to create new one",
-        "noWifi": "No wifi is available but will be create when connection is back"
+        "noConnection": "Will be create when connection is back"
       },
       "update": {
         "success": "Updated successfully",
-        "failure": "Failed updating",
-        "noWifi": "No wifi is available but will be update when connection is back"
+        "failure": "Failed updating it",
+        "noConnection": "Will be update when connection is back"
       },
       "delete": {
         "success": "Deleted successfully",
-        "failure": "Failed deleting",
-        "noWifi": "No wifi is available but will be delete when connection is back"
+        "failure": "Failed deleting it",
+        "noConnection": "Will be delete when connection is back"
+      },
+      "actionWillBeTriggered": {
+        "message": "Will complete when online"
+      },
+      "queueUpdated": {
+        "message": "Enqueued item was updated"
       }
     }
   },
@@ -188,7 +215,7 @@
             "min": "Description must have at least 3 characters.",
             "max": "Description must not exceed 255 characters.",
             "matches": "Please enter only letters and numbers.",
-            "required": "Include a description of what happened."
+            "required": "Please include a description."
           }
         },
         "date": {
@@ -200,6 +227,14 @@
           },
           "messages": {
             "blockedDate": "{{blockedDate}} is blocked because {{blockedReason}}"
+          }
+        },
+        "status": {
+          "name": "Status",
+          "validations": {
+            "min": "Status must have at least 1 character.",
+            "max": "Status must not exceed 3 characters.",
+            "matches": "Please select a status."
           }
         }
       },

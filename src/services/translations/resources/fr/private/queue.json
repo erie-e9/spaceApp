@@ -1,0 +1,17 @@
+{
+    "Queue": {
+        "title": "File d'attente",
+        "screenTitle": "$t(queue:Queue.title) {{count}}",
+        "description": "Mettez à jour ou supprimez des éléments de la file d'attente avant le retour d'internet.",
+        "controllers": {
+            "searchInputLabel": "Recherchez des éléments de la file par catégorie ou action"
+        },
+        "httpVerbs": {
+            "get": "Obtenir",
+            "post": "Nouveau",
+            "put": "Mettre à jour",
+            "patch": "Mettre à jour",
+            "delete": "Supprimer"
+        }
+    }
+}

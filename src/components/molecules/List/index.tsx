@@ -1,6 +1,16 @@
-import React, { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  Fragment,
+  lazy,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { FlatList } from 'react-native';
-import { FlashList } from '@shopify/flash-list';
+// import FlashList from '@shopify/flash-list/src/FlashList';
+const FlashList = lazy(() => import('@shopify/flash-list/src/FlashList'));
 import { SwipeableMethods } from 'react-native-gesture-handler/ReanimatedSwipeable';
 import Animated, {
   Easing,
@@ -39,12 +49,14 @@ export interface ListProps {
   containerStyle?: any;
   filterBy?: string | string[];
   listEmptyComponent?: React.ReactElement;
+  searchLabel?: string;
+  showsHorizontalScrollIndicator?: boolean;
+  showsVerticalScrollIndicator?: boolean;
   renderRightAction?: (item: any) => void;
   renderRightActions?: (item: any) => JSX.Element;
   renderLeftAction?: (item: any) => void;
   renderLeftActions?: (item: any) => JSX.Element;
   extraFunction?: () => void;
-  searchLabel?: string;
 }
 
 const List: React.FC<ListProps> = ({
@@ -62,12 +74,14 @@ const List: React.FC<ListProps> = ({
   containerStyle,
   filterBy,
   listEmptyComponent,
+  searchLabel,
+  showsHorizontalScrollIndicator = false,
+  showsVerticalScrollIndicator = false,
   renderRightAction,
   renderRightActions,
   renderLeftAction,
   renderLeftActions,
   extraFunction,
-  searchLabel,
 }) => {
   const ref = useRef<FlatList>(null);
   const animationRef = useRef<LottieView>(null);
@@ -79,6 +93,7 @@ const List: React.FC<ListProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filteredUsers, setFilteredUsers] = useState<Array<any>>(data);
   const extraPaddingTop = useSharedValue(0);
+
   const items = useMemo(() => data, [data]);
   const searchTextLabel = useMemo(() => {
     return truncate(getCopyValue(searchLabel ? searchLabel : 'common:forms.fields.inputs.search'), {
@@ -109,10 +124,13 @@ const List: React.FC<ListProps> = ({
 
   useEffect(() => {
     if (searchQuery) {
-      const updatedItems = data.filter((item) =>
-        (Array.isArray(filterBy) ? filterBy : [filterBy || 'id']).some((key) =>
-          String(item[key])?.toLowerCase().includes(searchQuery.toLowerCase()),
-        ),
+      const updatedItems = data.filter(
+        (item) =>
+          typeof item === 'object' &&
+          item !== null &&
+          (Array.isArray(filterBy) ? filterBy : [filterBy || 'id']).some((key) =>
+            String(item[key])?.toLowerCase().includes(searchQuery.toLowerCase()),
+          ),
       );
       setFilteredUsers(updatedItems);
     } else {
@@ -214,10 +232,21 @@ const List: React.FC<ListProps> = ({
     <Fragment>
       {filterBy && (
         <Container>
-          <TextInput label={searchTextLabel} value={searchQuery} onChangeText={setSearchQuery} />
+          <TextInput
+            label={searchTextLabel}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            rightIcon="clear"
+            rightIconHandler={() => setSearchQuery('')}
+          />
         </Container>
       )}
       <ListContainer>
+        <ScrollToTopContainer style={[buttonStyle]}>
+          <ScrollToTopButtonContainer>
+            <BackButton onPress={handleScrollToTop} />
+          </ScrollToTopButtonContainer>
+        </ScrollToTopContainer>
         <ListComponent
           ref={ref}
           data={filteredUsers}
@@ -250,8 +279,8 @@ const List: React.FC<ListProps> = ({
             let current: SwipeableMethods | null = null;
             return renderItemHandler({ item, index, current });
           }}
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={showsHorizontalScrollIndicator}
+          showsVerticalScrollIndicator={showsVerticalScrollIndicator}
           horizontal={horizontal}
           ListFooterComponent={footerComponent}
           contentContainerStyle={
@@ -261,11 +290,6 @@ const List: React.FC<ListProps> = ({
         />
       </ListContainer>
       <ButtonsContainer>
-        <ScrollToTopContainer style={[buttonStyle]}>
-          <ScrollToTopButtonContainer>
-            <BackButton onPress={handleScrollToTop} colorRowInverted />
-          </ScrollToTopButtonContainer>
-        </ScrollToTopContainer>
         {extraFunction && (
           <FloatingButton
             onPress={extraFunction}

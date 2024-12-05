@@ -1,7 +1,6 @@
-import { ViewStyle } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
+import { getNormalizedHorizontalSize, getNormalizedVerticalSize, screen_width } from '@utils/functions';
 import { Image, Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
@@ -9,9 +8,7 @@ export const StyledList = styled(Animated.FlatList)`
   width: 100%;
 `;
 
-export const ListContainer = styled.View<{
-  alignItems?: ViewStyle['alignItems'];
-}>`
+export const ListContainer = styled.View`
   flex: 1;
   width: 100%;
   height: 100%;
@@ -54,21 +51,20 @@ export const ItemImage = styled(Image) <{
 `;
 
 export const ScrollToTopContainer = styled(Animated.View)`
-  height: 40px;
-  width: 40px;
-  border-radius: 30px;
-  justify-content: center;
-  align-items: center;
+  z-index: 1000;
+  position: absolute;
+  right: ${screen_width / 2}px;
 `;
 
 export const ScrollToTopButtonContainer = styled.View`
+  position: absolute;
   height: ${getNormalizedVerticalSize(40)}px;
   width: ${getNormalizedHorizontalSize(40)}px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
   transform: rotate(90deg);
-  background-color: ${({ theme }) => theme.tokens.colors.secondary950};
+  background-color: ${({ theme }) => theme.tokens.colors.tertiary200};
 `;
 
 export const DescriptionContainer = styled.View`

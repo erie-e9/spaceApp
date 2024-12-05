@@ -1,36 +1,16 @@
-import styled, { DefaultTheme } from 'styled-components/native';
-import Animated from 'react-native-reanimated';
+import styled from 'styled-components/native';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
+import { Skeleton } from '@components/animated';
 import { Touchable, Typography } from '@components/atoms';
+import Animated from 'react-native-reanimated'
 
+const AnimatedTypography = Animated.createAnimatedComponent(Typography)
 export interface TaskContentComplete {
   isComplete?: boolean;
 }
-
 export interface TaskContent extends TaskContentComplete {
   itemHeight?: number;
 }
-
-export const SwipeButton = styled.TouchableOpacity<{
-  backgroundColor?: keyof DefaultTheme['tokens']['colors'];
-}>`
-  height: 100%;
-  width: 60px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0px;
-  opacity: 1;
-  background-color: ${({ theme, backgroundColor }) => backgroundColor ? theme.tokens.colors[backgroundColor] : 'transparent'};
-`;
-
-export const AnimatedView = styled(Animated.View)`
-  flex-direction: row;
-`;
-
-export const SwipeableFullContainer = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.tokens.colors.primary500};
-`;
 
 export const TaskItemContainer = styled.View <TaskContent>`
   height: ${({ itemHeight }) => (itemHeight && `${itemHeight}px`) || 'auto'};
@@ -53,7 +33,7 @@ export const TaskContentContainer = styled.View<TaskContent>`
   align-items: flex-start;
   height: 100%;
   width: 100%;
-  opacity: ${({ isComplete }) => isComplete ? 0.7 : 1};
+  opacity: ${({ isComplete }) => isComplete ? 1 : 1};
 `;
 
 export const TaskContentData = styled.View`
@@ -63,12 +43,12 @@ export const TaskContentData = styled.View`
   width: 80%;
 `;
 
-export const TaskTitleText = styled(Typography) <TaskContentComplete>`
-  text-decoration: ${({ theme, isComplete }) => isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null};
+export const TaskTitleText = styled(AnimatedTypography) <TaskContentComplete>`
+  /* text-decoration: ${({ theme, isComplete }) => isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null}; */
 `;
 
-export const TaskDescriptionText = styled(Typography) <TaskContentComplete>`
-  text-decoration: ${({ theme, isComplete }) => isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null};
+export const TaskDescriptionText = styled(AnimatedTypography) <TaskContentComplete>`
+  /* text-decoration: ${({ theme, isComplete }) => isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null}; */
 `;
 
 export const CreatedAtContainer = styled.View`
@@ -76,7 +56,7 @@ export const CreatedAtContainer = styled.View`
   align-items: flex-end;
 `;
 
-export const CreatedAtText = styled(Typography)`
+export const CreatedAtText = styled(AnimatedTypography)`
 `;
 
 export const DueDateContainer = styled.View`
@@ -84,5 +64,8 @@ export const DueDateContainer = styled.View`
   align-items: flex-end;
 `;
 
-export const DueDateText = styled(Typography)`
+export const DueDateText = styled(AnimatedTypography)`
+`;
+
+export const StyledSkeleton = styled(Skeleton)`
 `;

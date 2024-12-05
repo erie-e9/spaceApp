@@ -7,9 +7,9 @@
         }
     },
     "Task": {
-        "add": {
-            "screenTitle": "Aufgabe hinzufügen",
-            "description": "Erstellen Sie eine neue Aufgabe, fügen Sie Anhänge hinzu und definieren Sie Eigenschaften."
+        "new": {
+            "screenTitle": "Neue aufgabe",
+            "description": "Erstellen Sie eine neue aufgabe, fügen Sie Anhänge hinzu und definieren Sie Eigenschaften."
         },
         "edit": {
             "screenTitle": "Aufgabe bearbeiten",

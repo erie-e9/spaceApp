@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { type ApplicationStackParamList, type Task as TypeTask } from '@types';
-import { Profile, Notifications, Tasks, Task } from '@components/screens/Private';
+import { Profile, Notifications, Tasks, Task, Queue } from '@components/screens/Private';
 
 export type PrivateParamsList = {
   Profile: undefined;
@@ -10,6 +10,7 @@ export type PrivateParamsList = {
   Task: {
     task: TypeTask;
   };
+  Queue: undefined;
 };
 
 const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
@@ -20,7 +21,7 @@ export const PrivateNavigator = () => {
       initialRouteName="Profile"
       screenOptions={{
         gestureEnabled: true,
-        freezeOnBlur: true,
+        freezeOnBlur: false,
         headerShown: false,
         headerMode: 'screen',
         headerTransparent: true,
@@ -54,6 +55,14 @@ export const PrivateNavigator = () => {
         key="Task"
         name="Task"
         component={Task}
+        options={{
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      />
+      <Screen
+        key="Queue"
+        name="Queue"
+        component={Queue}
         options={{
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}

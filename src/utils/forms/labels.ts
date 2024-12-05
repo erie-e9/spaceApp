@@ -5,6 +5,7 @@
 
 import { useMemo } from 'react';
 import { useCopy } from '@services';
+import { type QueueMethodType, type QueueURLType } from '@types';
 
 export const labels = () => {
   const { getCopyValue } = useCopy();
@@ -209,6 +210,22 @@ export const labels = () => {
     ]
   }, []);
 
+  const queueMethod: { [key in QueueMethodType]: string } = useMemo(() => {
+    return {
+      GET: 'queue:Queue.httpVerbs.get',
+      POST: 'queue:Queue.httpVerbs.post',
+      PUT: 'queue:Queue.httpVerbs.put',
+      PATCH: 'queue:Queue.httpVerbs.patch',
+      DELETE: 'queue:Queue.httpVerbs.delete',
+    };
+  }, []);
+
+  const queueEndpoints: { [key in QueueURLType]: string } = useMemo(() => {
+    return {
+      tasks: 'menu:Menu.menu.items.tasks.title',
+    };
+  }, []);
+
   return {
     genres,
     today,
@@ -221,5 +238,7 @@ export const labels = () => {
     pendingStatus,
     inProgressStatus,
     completeStatus,
+    queueMethod,
+    queueEndpoints
   };
 };

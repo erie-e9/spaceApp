@@ -29,6 +29,7 @@ export const FeatureButton = styled(ActionButton)`
     border-width: 0px;
     margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
+    /* background-color: ${({ theme }) => theme.tokens.colors.tertiary200}; */
 `;
 
 export const RowContainer = styled.View`

@@ -28,10 +28,10 @@ interface StyledTextProps {
 export const StyledText = styled(Typography) <StyledTextProps>`
   ${({ error, theme, hasValue }) => css`
     color: ${() => {
-      const color = hasValue ? theme.tokens.colors.secondary950 : theme.tokens.colors.secondary500;
+      const color = hasValue ? theme.tokens.colors.typography900 : theme.tokens.colors.typography700;
       const colorFocused = error
         ? theme.tokens.colors.danger_status
-        : theme.tokens.colors.tertiary950;
+        : theme.tokens.colors.typography700;
       return error ? colorFocused : color;
     }};
   `};
@@ -45,8 +45,8 @@ export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>
 export const StyledElementContainer = styled.View<StyledButtonProps>`
   justify-content: center;
   align-items: flex-start;
-  width: ${({ hasValue }) => hasValue ? '70%' : '100%'}; // pending
   height: auto;
+  width: ${({ hasValue }) => hasValue ? '70%' : '100%'};
   border-radius: ${getNormalizedVerticalSize(15)}px;
 `;
 
@@ -62,12 +62,12 @@ export const DateDropdownContainer = styled.View`
 
 export const DropdownsContainer = styled.View`
   flex-direction: row;
+  height: ${getNormalizedVerticalSize(130)}px;
   width: 100%;
   align-items: flex-start;
   background-color: transparent;
   align-self: flex-start;
   justify-content: space-evenly;
-  height: ${getNormalizedVerticalSize(130)}px;
 `;
 
 export const DropdownButton = styled.TouchableOpacity`

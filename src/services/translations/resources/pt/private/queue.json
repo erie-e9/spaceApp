@@ -1,0 +1,17 @@
+{
+    "Queue": {
+        "title": "Fila",
+        "screenTitle": "$t(queue:Queue.title) {{count}}",
+        "description": "Atualize ou remova itens da fila antes que a internet volte.",
+        "controllers": {
+            "searchInputLabel": "Pesquise itens da fila por categoria ou ação"
+        },
+        "httpVerbs": {
+            "get": "Obter",
+            "post": "Novo",
+            "put": "Atualizar",
+            "patch": "Atualizar",
+            "delete": "Remover"
+        }
+    }
+}

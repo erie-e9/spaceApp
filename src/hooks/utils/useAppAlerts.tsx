@@ -2,10 +2,10 @@ import { useCallback } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Logger, useCopy } from '@services';
-import { useModal, useResponseHandler, useToast } from '@hooks';
-import { OTPInput } from '@components/molecules';
 import { type ApplicationScreenProps } from '@types';
 import { testProperties } from '@utils/functions';
+import { useModal, useResponseHandler, useToast } from '@hooks';
+import { OTPInput } from '@components/molecules';
 
 export const useAppAlerts = (): {
   showFeatureUnavailableToast: (callback?: () => void) => void;
@@ -15,12 +15,16 @@ export const useAppAlerts = (): {
   showSendOTPAlert: (callback: (value?: string) => void) => void;
   showAskForAuthAlert: () => void;
   showItemCreateActionToastSuccess: (callback?: () => void) => void;
-  showItemCreateActionToastFailure: (callback?: () => void) => void;
-  showItemEditedActionToastSuccess: (callback?: () => void) => void;
-  showItemEditedActionToastFailure: (callback?: () => void) => void;
-  showItemRemovedActionToastSuccess: (callback?: () => void) => void;
-  showItemRemovedActionToastFailure: (callback?: () => void) => void;
+  showCreateItemActionToastFailure: (callback?: () => void) => void;
+  showUpdateItemActionToastSuccess: (callback?: () => void) => void;
+  showUpdateItemActionToastFailure: (callback?: () => void) => void;
+  showRemoveItemActionToastSuccess: (callback?: () => void) => void;
+  showRemoveItemActionToastFailure: (callback?: () => void) => void;
   confirmRemoveActionAlert: (callback?: () => void) => Promise<void>;
+  showActionWillBeTriggeredToast: (callback?: () => void) => void;
+  showQueueUpdatedToast: (callback?: () => void) => void;
+  confirmChangeQueueAlert: (callback?: () => void) => Promise<void>;
+  confirmRemoveQueueActionAlert: (callback?: () => void) => Promise<void>;
 } => {
   const { showModal, hideModal } = useModal();
   const { getCopyValue } = useCopy();
@@ -28,7 +32,7 @@ export const useAppAlerts = (): {
   const navigation: ApplicationScreenProps = useNavigation();
 
   const showFeatureUnavailableToast = useCallback((callback?: () => void): void => {
-    useToast.error({
+    useToast.warning({
       message: 'common:messages.features.unavailable.title',
       duration: 3000,
     });
@@ -85,10 +89,6 @@ export const useAppAlerts = (): {
       type: 'alert',
       showCancelIcon: true,
       title: 'authentication:Authentication.otp.alert.title',
-      // onModalHide: () => {
-      //   setPrimaryButtonLoading(false);
-      //   setDisableContinueButton(false);
-      // },
       description: 'authentication:Authentication.otp.alert.description',
       body: (
         <OTPInput
@@ -103,6 +103,8 @@ export const useAppAlerts = (): {
         {
           text: 'authentication:Authentication.otp.alert.buttons.primaryButton',
           handler: sendSignUpCode,
+          isSimpleButton: false,
+          color: 'typography50',
         },
       ],
     });
@@ -140,7 +142,7 @@ export const useAppAlerts = (): {
     callback?.();
   }, []);
 
-  const showItemCreateActionToastFailure = useCallback((callback?: () => void): void => {
+  const showCreateItemActionToastFailure = useCallback((callback?: () => void): void => {
     useToast.error({
       message: 'common:toasts.crudActions.create.failure',
       duration: 3000,
@@ -148,7 +150,7 @@ export const useAppAlerts = (): {
     callback?.();
   }, []);
 
-  const showItemEditedActionToastSuccess = useCallback((callback?: () => void): void => {
+  const showUpdateItemActionToastSuccess = useCallback((callback?: () => void): void => {
     useToast.success({
       message: 'common:toasts.crudActions.update.success',
       duration: 3000,
@@ -156,7 +158,7 @@ export const useAppAlerts = (): {
     callback?.();
   }, []);
 
-  const showItemEditedActionToastFailure = useCallback((callback?: () => void): void => {
+  const showUpdateItemActionToastFailure = useCallback((callback?: () => void): void => {
     useToast.error({
       message: 'common:toasts.crudActions.update.failure',
       duration: 3000,
@@ -164,7 +166,7 @@ export const useAppAlerts = (): {
     callback?.();
   }, []);
 
-  const showItemRemovedActionToastSuccess = useCallback((callback?: () => void): void => {
+  const showRemoveItemActionToastSuccess = useCallback((callback?: () => void): void => {
     useToast.success({
       message: 'common:toasts.crudActions.delete.success',
       duration: 3000,
@@ -172,7 +174,7 @@ export const useAppAlerts = (): {
     callback?.();
   }, []);
 
-  const showItemRemovedActionToastFailure = useCallback((callback?: () => void): void => {
+  const showRemoveItemActionToastFailure = useCallback((callback?: () => void): void => {
     useToast.error({
       message: 'common:toasts.crudActions.delete.failure',
       duration: 3000,
@@ -201,7 +203,7 @@ export const useAppAlerts = (): {
             await setLoading(false);
           },
           isSimpleButton: true,
-          color: 'secondary950',
+          color: 'typography950',
         },
         {
           text: 'common:alerts.crudActions.delete.options.confirmButton',
@@ -217,6 +219,99 @@ export const useAppAlerts = (): {
     });
   }, []);
 
+  const showActionWillBeTriggeredToast = useCallback((callback?: () => void): void => {
+    useToast.warning({
+      message: 'common:toasts.crudActions.actionWillBeTriggered.message',
+      duration: 3000,
+    });
+    callback?.();
+  }, []);
+
+  const showQueueUpdatedToast = useCallback((callback?: () => void): void => {
+    useToast.info({
+      message: 'common:toasts.crudActions.queueUpdated',
+      duration: 3000,
+    });
+    callback?.();
+  }, []);
+
+  const confirmChangeQueueAlert = useCallback(async (callback?: () => void): Promise<void> => {
+    await setLoading(true);
+    await showModal({
+      type: 'alert',
+      title: 'common:alerts.crudActions.changeDeleteToUpdate.title',
+      description: 'common:alerts.crudActions.changeDeleteToUpdate.description',
+      showCancelIcon: true,
+      onCloseIcon: () => setLoading(false),
+      buttonsStyles: {
+        direction: 'row',
+        alignment: 'right',
+      },
+      lockBackdrop: true,
+      options: [
+        {
+          text: 'common:alerts.crudActions.changeDeleteToUpdate.options.cancelButton',
+          handler: async () => {
+            await hideModal();
+            await setLoading(false);
+          },
+          isSimpleButton: true,
+          color: 'typography950',
+        },
+        {
+          text: 'common:alerts.crudActions.changeDeleteToUpdate.options.confirmButton',
+          handler: async () => {
+            await callback?.();
+            await setLoading(false);
+            await hideModal();
+          },
+          isSimpleButton: true,
+          color: 'warning_status',
+        },
+      ],
+    });
+  }, []);
+
+  const confirmRemoveQueueActionAlert = useCallback(
+    async (callback?: () => void): Promise<void> => {
+      await setLoading(true);
+      await showModal({
+        type: 'alert',
+        title: 'common:alerts.crudActions.deletePending.title',
+        description: 'common:alerts.crudActions.deletePending.description',
+        showCancelIcon: true,
+        onCloseIcon: () => setLoading(false),
+        buttonsStyles: {
+          direction: 'row',
+          alignment: 'right',
+        },
+        lockBackdrop: true,
+        options: [
+          {
+            text: 'common:alerts.crudActions.deletePending.options.cancelButton',
+            handler: async () => {
+              await hideModal();
+              await setLoading(false);
+            },
+            isSimpleButton: true,
+            color: 'typography950',
+          },
+          {
+            text: 'common:alerts.crudActions.deletePending.options.confirmButton',
+            handler: async () => {
+              await callback?.();
+              await setLoading(false);
+              await hideModal();
+            },
+            isSimpleButton: true,
+            color: 'danger_status',
+          },
+        ],
+      });
+    },
+    [],
+  );
+
   return {
     showFeatureUnavailableToast,
     showFeatureUnavailableAlert,
@@ -225,11 +320,15 @@ export const useAppAlerts = (): {
     showSendOTPAlert,
     showAskForAuthAlert,
     showItemCreateActionToastSuccess,
-    showItemCreateActionToastFailure,
-    showItemEditedActionToastSuccess,
-    showItemEditedActionToastFailure,
-    showItemRemovedActionToastSuccess,
-    showItemRemovedActionToastFailure,
+    showCreateItemActionToastFailure,
+    showUpdateItemActionToastSuccess,
+    showUpdateItemActionToastFailure,
+    showRemoveItemActionToastSuccess,
+    showRemoveItemActionToastFailure,
     confirmRemoveActionAlert,
+    showActionWillBeTriggeredToast,
+    showQueueUpdatedToast,
+    confirmChangeQueueAlert,
+    confirmRemoveQueueActionAlert,
   };
 };

@@ -3,13 +3,14 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "Sin conexión a internet, reintentando.",
+    "noConnection": "Reconectando...",
     "features": {
       "unavailable": {
         "title": "Función no disponible",
         "body": "Lamentablemente, esta función no está disponible en este momento. Por favor, inténtalo de nuevo más tarde."
       }
-    }
+    },
+    "clearCache": "Limpiar caché"
   },
   "errors": {
     "boundaries": {
@@ -59,10 +60,30 @@
         "title": "¿Estás seguro?",
         "description": "Esta acción no es reversible.",
         "options": {
-          "confirmButton": "Confirmar eliminación",
+          "confirmButton": "Eliminar",
+          "cancelButton": "Cancelar"
+        }
+      },
+      "changeDeleteToUpdate": {
+        "title": "Acción pendiente",
+        "description": "Este elemento tiene una acción de borrado en cola. Si lo actualizas ahora, no se eliminará y en su lugar solo se actualizará.",
+        "options": {
+          "confirmButton": "Continuar",
+          "cancelButton": "Cancelar"
+        }
+      },
+      "deletePending": {
+        "title": "Acción pendiente",
+        "description": "Esto eliminará sólo la acción en cola para este elemento, más no borrará el registro. Esta acción no es reversible.",
+        "options": {
+          "confirmButton": "Eliminar",
           "cancelButton": "Cancelar"
         }
       }
+    },
+    "clearCache": {
+      "title": "¿Estás seguro de limpiar las acciones pendientes en caché?",
+      "description": "Esta acción no es reversible."
     }
   },
   "bottomsheets": {
@@ -88,19 +109,25 @@
   "toasts": {
     "crudActions": {
       "create": {
-        "success": "Creada exitosamente",
-        "failure": "Error al crear uno nueva tarea",
-        "noWifi": "No hay wifi disponible, pero se creará cuando la conexión vuelva"
+        "success": "Creación exitosa",
+        "failure": "Algo salió mal al crear",
+        "noConnection": "Se creará cuando la conexión a internet vuelva"
       },
       "update": {
-        "success": "Actualizada exitosamente",
-        "failure": "Error al actualizar",
-        "noWifi": "No hay wifi disponible, pero se actualizará cuando la conexión vuelva"
+        "success": "Actualización exitosa",
+        "failure": "Algo salió mal al actualizar",
+        "noConnection": "Se actualizará cuando la conexión a internet vuelva"
       },
       "delete": {
         "success": "Eliminada exitosamente",
-        "failure": "Error al eliminar",
-        "noWifi": "No hay wifi disponible, pero se eliminará cuando la conexión vuelva"
+        "failure": "Algo salió mal al eliminar",
+        "noConnection": "Se eliminará cuando la conexión a internet vuelva"
+      },
+      "actionWillBeTriggered": {
+        "message": "Se completará al volver el internet"
+      },
+      "queueUpdated": {
+        "message": "Elemento en cola ha sido actualizado"
       }
     }
   },
@@ -188,7 +215,7 @@
             "min": "Debe tener al menos 3 caracteres.",
             "max": "No debe superar los 255 caracteres.",
             "matches": "Usa solo letras y números.",
-            "required": "Incluye una descripción."
+            "required": "Incluye una descripción por favor."
           }
         },
         "date": {
@@ -200,6 +227,14 @@
           },
           "messages": {
             "blockedDate": "{{blockedDate}} está bloqueada porque {{blockedReason}}"
+          }
+        },
+        "status": {
+          "name": "Estado",
+          "validations": {
+            "min": "El estado debe tener al menos 1 carácter.",
+            "max": "El estado no debe superar los 3 caracteres.",
+            "matches": "Seleccione un estado."
           }
         }
       },

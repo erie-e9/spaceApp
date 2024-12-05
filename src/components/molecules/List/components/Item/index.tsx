@@ -1,10 +1,10 @@
-import React, { forwardRef, memo, useCallback, useImperativeHandle } from 'react';
+import React, { forwardRef, memo, useCallback } from 'react';
 import { SharedValue, useSharedValue } from 'react-native-reanimated';
 import { useTheme } from 'styled-components';
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { ListItem } from '@components/molecules';
 import AnimatedListItem from '../AnimatedListItem';
-import SwipeableItems from '../SwipeableItems';
+import SwipeableItem from '../SwipeableItem';
 import { NullableNumber } from '../types';
 import { ListProps } from '../..';
 
@@ -16,10 +16,6 @@ interface Props extends Partial<ListProps> {
   onSwipeableWillOpen: (direction: SwipeDirection) => void;
   currentPositions: SharedValue<any>;
   filteredUsers: Array<Record<string, any>>;
-  renderRightActions?: (item: any) => JSX.Element;
-  renderRightAction?: (item: any) => void;
-  renderLeftActions?: (item: any) => JSX.Element;
-  renderLeftAction?: (item: any) => void;
 }
 
 const Item: React.FC<Props> = forwardRef(
@@ -56,11 +52,11 @@ const Item: React.FC<Props> = forwardRef(
     };
 
     const rightAction = useCallback(() => {
-      renderRightAction?.(item);
+      renderRightAction?.({ index, ...item });
     }, [item]);
 
     const leftAction = useCallback(() => {
-      renderLeftAction?.(item);
+      renderLeftAction?.({ index, ...item });
     }, [item]);
 
     return (
@@ -70,27 +66,33 @@ const Item: React.FC<Props> = forwardRef(
             ref={ref}
             overshootFriction={3}
             onSwipeableWillOpen={handleSwipeableWillOpen}
-            renderLeftActions={(progress, dragX) =>
-              renderLeftActions?.(item) || (
-                <SwipeableItems
-                  icon="heart"
-                  opposingColor
-                  prog={progress}
-                  drag={dragX}
-                  onPress={leftAction}
-                />
-              )
+            renderLeftActions={
+              renderLeftActions === undefined
+                ? undefined
+                : (progress, dragX) =>
+                    renderLeftActions?.({ index, ...item }) || (
+                      <SwipeableItem
+                        icon="heart"
+                        opposingColor
+                        prog={progress}
+                        drag={dragX}
+                        onPress={leftAction}
+                      />
+                    )
             }
-            renderRightActions={(progress, dragX) =>
-              renderRightActions?.(item) || (
-                <SwipeableItems
-                  icon="remove"
-                  prog={progress}
-                  drag={dragX}
-                  backgroundColor={theme.tokens.colors.danger_status}
-                  onPress={rightAction}
-                />
-              )
+            renderRightActions={
+              renderRightActions
+                ? (progress, dragX) =>
+                    renderRightActions?.({ index, ...item }) || (
+                      <SwipeableItem
+                        icon="remove"
+                        prog={progress}
+                        drag={dragX}
+                        backgroundColor="danger_status"
+                        onPress={rightAction}
+                      />
+                    )
+                : undefined
             }
             containerStyle={{
               backgroundColor: theme.tokens.colors.tertiary200,
@@ -109,7 +111,9 @@ const Item: React.FC<Props> = forwardRef(
             currentPositions={currentPositions}
             itemsLength={filteredUsers.length}
             itemHeight={itemHeight}
-          />
+          >
+            {renderedItem}
+          </AnimatedListItem>
         ) : (
           renderedItem
         )}
