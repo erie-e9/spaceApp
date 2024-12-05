@@ -5,3 +5,4 @@ export * from '@utils/types/buttons';
 export * from '@utils/types/theme';
 export * from '@utils/types/background';
 export * from '@utils/types/task';
+export * from '@utils/types/queue';

@@ -1,5 +1,4 @@
 import { api } from '@hooks/api';
-import { Logger } from '@services';
 import { type Task } from '@utils/types';
 
 export const apiTasks = api({
@@ -9,12 +8,24 @@ export const apiTasks = api({
     // keepUnusedDataFor: 90,
     endpoints: (builder) => ({
         getTasks: builder.query<Array<Task>, void>({
-            query: () => `tasks`,
+            query: () => ({
+                url: `tasks`,
+                method: 'GET',
+                enqueueable: false,
+                retries: 3,
+                retryDelay: 3000,
+            }),
             // providesTags: ['CREATE', 'REMOVE'],
         }),
 
         getTaskById: builder.query<Task, Pick<Task, 'id'>>({
-            query: (task) => `tasks/${task.id}`,
+            query: (task) => ({
+                url: `tasks/${task.id}`,
+                method: 'GET',
+                enqueueable: false,
+                retries: 3,
+                retryDelay: 1000,
+            }),
         }),
 
         addTask: builder.mutation<Task, Partial<Task>>({
@@ -22,9 +33,12 @@ export const apiTasks = api({
                 url: 'tasks',
                 method: 'POST',
                 body: {
-                    user_id: 1,
+                    user_id: 1, //! pending 
                     ...task
                 },
+                enqueueable: true,
+                retries: 3,
+                retryDelay: 1000,
             }),
             // invalidatesTags: ['CREATE'],
         }),
@@ -35,6 +49,9 @@ export const apiTasks = api({
                     url: `tasks/${task.id}`,
                     method: 'PUT',
                     body: task,
+                    enqueueable: true,
+                    retries: 3,
+                    retryDelay: 1000,
                 })
             },
             async onQueryStarted(task, { dispatch, queryFulfilled }) {
@@ -50,17 +67,47 @@ export const apiTasks = api({
                         })
                     );
                 } catch (error) {
-                    Logger.error('Error updating cache:', { error: error.error?.data });
-                    throw error?.error?.data?.message
+                    throw error;
                 }
             },
             // invalidatesTags: ['EDIT'],
+        }),
+
+        patchTask: builder.mutation<Task, Partial<Task>>({
+            query: (task) => ({
+                url: `tasks/${task.id}`,
+                method: 'PATCH',
+                body: task,
+                enqueueable: true,
+                retries: 3,
+                retryDelay: 1000,
+            }),
+            async onQueryStarted(task, { dispatch, queryFulfilled }) {
+                try {
+                    const { data: patchedTask } = await queryFulfilled;
+                    dispatch(
+                        apiTasks.util.updateQueryData('getTasks', task, (draft: any) => {
+                            const index = draft.findIndex((task: Task) => task.id === patchedTask.id);
+                            if (index !== -1) {
+                                draft[index] = patchedTask;
+                                return draft;
+                            }
+                        })
+                    );
+                } catch (error) {
+                    throw error;
+                }
+            },
+            // invalidatesTags: ['PATCH'],
         }),
 
         deleteTask: builder.mutation<Task, Pick<Task, 'id'>>({
             query: ({ id }) => ({
                 url: `tasks/${id}`,
                 method: 'DELETE',
+                enqueueable: true,
+                retries: 3,
+                retryDelay: 1000,
             }),
             async onQueryStarted({ id }, { dispatch, queryFulfilled }) {
                 try {
@@ -75,7 +122,6 @@ export const apiTasks = api({
                         })
                     );
                 } catch (error) {
-                    Logger.error('Error deleting task:', error);
                     throw error;
                 }
             },
@@ -89,6 +135,7 @@ export const {
     useGetTaskByIdQuery,
     useAddTaskMutation,
     useUpdateTaskMutation,
+    usePatchTaskMutation,
     useDeleteTaskMutation,
 } = apiTasks;
 
