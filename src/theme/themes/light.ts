@@ -1,4 +1,4 @@
-import { type Themes } from '@store/slices/types/appPreferences';
+import type { Themes } from '@slices/types';
 import themes from '@theme/themes/themes.json';
 
 export const lightMode = (theme: Themes) => {

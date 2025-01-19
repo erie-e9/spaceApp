@@ -5,7 +5,7 @@
 
 import { useMemo } from 'react';
 import { useCopy } from '@services';
-import { type QueueMethodType, type QueueURLType } from '@types';
+import type { QueueMethodType, QueueURLType } from '@types';
 
 export const labels = () => {
   const { getCopyValue } = useCopy();
@@ -196,10 +196,10 @@ export const labels = () => {
     ];
   }, []);
 
-  const undefinedStatus = getCopyValue('common:forms.fields.listItems.status.undefined');
-  const pendingStatus = getCopyValue('common:forms.fields.listItems.status.pending');
-  const inProgressStatus = getCopyValue('common:forms.fields.listItems.status.inProgress');
-  const completeStatus = getCopyValue('common:forms.fields.listItems.status.completed');
+  const undefinedStatus = getCopyValue('common:form.fields.listItems.status.undefined');
+  const pendingStatus = getCopyValue('common:form.fields.listItems.status.pending');
+  const inProgressStatus = getCopyValue('common:form.fields.listItems.status.inProgress');
+  const completeStatus = getCopyValue('common:form.fields.listItems.status.completed');
 
   const statusList = useMemo(() => {
     return [

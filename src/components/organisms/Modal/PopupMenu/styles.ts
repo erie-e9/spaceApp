@@ -31,7 +31,7 @@ export const MenuItem = styled.TouchableOpacity`
 `;
 
 export const MenuItemTextContainer = styled.View`
-    padding: 0px 0px 0px ${getNormalizedHorizontalSize(10)}px;
+    padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const MenuItemText = styled(Typography)`

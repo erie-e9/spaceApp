@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from 'react';
-import { type MenuItemProps } from '@types';
+import type { MenuItemProps } from '@types';
 import { testProperties } from '@utils/functions';
 import { MenuItem } from '@components/organisms/MenuList/components/MenuItem';
 import { BodyContainer, StyledList } from './styles';
@@ -26,9 +26,6 @@ const MenuList: React.FC<MenuListProps> = ({
         renderItem={({ item, index }: { item: MenuItemProps; index: React.Key }) => (
           <MenuItem key={index} {...item} />
         )}
-        // keyExtractor={(item: unknown, index: React.Key): string =>
-        //   `key${index}`
-        // }
       />
     </BodyContainer>
   );

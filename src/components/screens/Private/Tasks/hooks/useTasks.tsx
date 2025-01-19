@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useMemo } from 'react';
-import { type Task } from '@types';
+import { useCallback, useMemo, Fragment } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import type { Task } from '@types';
 import { Logger, useCopy } from '@services';
 import { useGetTasksQuery } from '@hooks/api/rest';
 import {
@@ -9,40 +10,55 @@ import {
   useMMKVStorageArray,
   useAppAlerts,
 } from '@hooks';
+import { Skeleton } from '@components/animated';
 import { SVGIcon } from '@components/atoms';
+import TaskItem from '../components/TaskItem';
 import { TasksProps } from '..';
-import { SwipeButton, SwipeableFullContainer, AnimatedView } from '../styles';
+import {
+  SwipeButton,
+  SwipeableFullContainer,
+  AnimatedView,
+  SkeletonContainer,
+  RightSkeletonContainer,
+  LeftContentData,
+} from '../styles';
 
 export const useTasks = ({ navigation }: TasksProps) => {
   const { getCopyValue } = useCopy();
   const { showModal } = useModal();
-  const { shareMessage, shareCustomContent } = useShare();
+  const { shareMessage } = useShare();
   const { confirmChangeQueueAlert } = useAppAlerts();
-  const { data, deleteTaskHook, updateTaskHook, clearLocalTasks } = useTasksHook();
-  const { data: items, isLoading, refetch } = useGetTasksQuery({});
+  const {
+    data,
+    deleteTaskHook,
+    updateTaskHook,
+    clearLocalTasks,
+    isLoading: tasksHookLoading,
+  } = useTasksHook();
+  const { isFetching, refetch } = useGetTasksQuery({});
   const { getMMKVItem, updateMMKVItem } = useMMKVStorageArray<any>({
     key: 'requestQueue',
     defaultValue: [],
   });
-  const nullExtraLoading: Array<null> | undefined = isLoading ? [null, null] : undefined; // extra items to indicate loading more items
 
-  const itemList = useMemo((): Array<Task | null | undefined> => {
-    return data.length > 0 ? [...(data || items), ...(nullExtraLoading || [])] : [];
-  }, [data, items, isLoading]);
+  // extra items to indicate loading more items
+  const itemList = useMemo((): Array<Task> => data, [data]);
 
   const filterBy = useMemo(() => {
-    return itemList.length > 0 ? ['title', 'description', 'priority'] : undefined;
+    return itemList.length > 0 ? ['title', 'description'] : undefined;
   }, [itemList]);
 
-  useEffect(() => {
-    refetch();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      refetch();
+    }, [tasksHookLoading]),
+  );
 
   const tasksHeaderTitle = useMemo((): string => {
     return getCopyValue('tasks:Tasks.screenTitle', {
       count:
         itemList.length > 0 && itemList[0] !== null && itemList[0] !== undefined
-          ? `(${itemList.length - (nullExtraLoading?.length || 0)})`
+          ? `(${itemList.length})`
           : '',
     });
   }, [itemList]);
@@ -163,9 +179,44 @@ export const useTasks = ({ navigation }: TasksProps) => {
     });
   }, []);
 
+  const renderItemComponent = useCallback(
+    ({ item }: { item: Task }) => <TaskItem item={item} itemHeight={70} onPress={taskForm} />,
+    [isFetching, tasksHookLoading],
+  );
+
+  const TaskSkeleton = useMemo(() => {
+    return isFetching || tasksHookLoading ? (
+      <Fragment>
+        {Array.from({ length: itemList.length > 0 ? 1 : 3 }).map((_, index) => {
+          const skeletonProps = {
+            show: true,
+            // animationType: 'shiver' as AnimationType,
+            duration: 1200,
+            backgroundColor: 'tertiary200',
+          };
+          return (
+            <SkeletonContainer key={index}>
+              <LeftContentData>
+                <Skeleton {...skeletonProps} height={12} width={100} borderRadius={5} />
+                <Skeleton {...skeletonProps} height={12} width={200} borderRadius={5} />
+                <Skeleton {...skeletonProps} height={10} width={60} borderRadius={5} />
+              </LeftContentData>
+              <RightSkeletonContainer>
+                <Skeleton {...skeletonProps} height={12} width={40} borderRadius={5} />
+                <Skeleton {...skeletonProps} height={10} width={30} borderRadius={5} />
+              </RightSkeletonContainer>
+            </SkeletonContainer>
+          );
+        })}
+      </Fragment>
+    ) : (
+      <Fragment></Fragment>
+    );
+  }, [isFetching, tasksHookLoading]);
+
   return {
     itemList,
-    isLoading,
+    isLoading: isFetching || tasksHookLoading,
     filterBy,
     taskForm,
     tasksHeaderTitle,
@@ -173,5 +224,7 @@ export const useTasks = ({ navigation }: TasksProps) => {
     renderRightActions,
     renderLeftActions,
     showPopUp,
+    renderItemComponent,
+    TaskSkeleton,
   };
 };

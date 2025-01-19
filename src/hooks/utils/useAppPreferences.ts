@@ -8,13 +8,7 @@ import {
   toggleBiometrics,
   storeLanguages,
 } from '@slices/shared';
-import {
-  type AppPreferencesState,
-  type Language,
-  type Mode,
-  type Theme,
-  type LanguagesState,
-} from '@slices/types';
+import type { AppPreferencesState, Language, Mode, Theme, LanguagesState } from '@slices/types';
 
 export const useAppPreferences = (): {
   theme: Theme;

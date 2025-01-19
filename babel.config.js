@@ -1,4 +1,9 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
+
+const ReactCompilerConfig = {
+  target: '18' // '17' | '18' | '19'
+};
+
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
   plugins: [
@@ -44,6 +49,7 @@ module.exports = {
     ],
     'inline-dotenv',
     'react-native-reanimated/plugin', // needs to be last
+    ['babel-plugin-react-compiler', ReactCompilerConfig],
   ],
   env: {
     development: {},

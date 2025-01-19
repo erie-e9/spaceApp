@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
-import { AlignHeaderType } from '@slices/types/modal';
+import type { AlignHeaderType } from '@slices/types';
 
 export const ModalHeaderContainer = styled.View<{ alignHeader: AlignHeaderType }>`
   align-items: ${({ alignHeader }) => alignHeader || 'center'};
@@ -18,7 +18,7 @@ export const ModalHeaderContainer = styled.View<{ alignHeader: AlignHeaderType }
 export const TitleContainer = styled.View`
   width: auto;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
+    ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px;
   background-color: transparent;
 `;
 
@@ -27,7 +27,7 @@ export const DescriptionContainer = styled.View`
   justify-content: center;
   width: auto;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
+    ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(0)}px;
   background-color: transparent;
 `;
 

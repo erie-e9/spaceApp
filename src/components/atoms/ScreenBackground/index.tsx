@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useMemo } from 'react';
 import { Platform, StyleSheet, useWindowDimensions } from 'react-native';
 import { useTheme } from 'styled-components/native';
-import { type ScreenBackgroundProps } from '@types';
+import type { ScreenBackgroundProps } from '@types';
 import { InterpolateColorAnimation } from '@components/animated';
 import { BlurEffect, Lava } from '@components/atoms';
 import AnimatedImageLoop from './components/AnimatedImageLoop';
@@ -22,7 +22,7 @@ export const ScreenBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingTop: Platform.OS === 'ios' ? 50 : 50,
+    paddingTop: Platform.OS === 'ios' ? 50 : 30,
     paddingHorizontal: 20,
     paddingBottom: 15,
   };

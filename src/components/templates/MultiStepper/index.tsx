@@ -1,12 +1,18 @@
 import React, { memo, useMemo } from 'react';
 import { testProperties } from '@utils/functions';
+import { useTheme } from '@hooks';
 import { HeaderTemplate, ScreenBackground } from '@components/atoms';
 import { Dropdown, Switch, TextInput } from '@components/molecules';
 import { MultiStep, DatePicker, MultimediaPicker } from '@components/organisms';
 import StepIndicator from '@components/organisms/MultiStep/components/StepIndicator';
-import { PointsContainer } from '@components/organisms/MultiStep/styles';
-import { StyledContainer, BodyContainer, StepContainer, StepItemContainer } from './styles';
-import { useTheme } from '@hooks';
+import {
+  PointsContainer,
+  StyledContainer,
+  StyledKeyboardAvoidingView,
+  BodyContainer,
+  StepContainer,
+  StepItemContainer,
+} from './styles';
 
 export interface StepsProps {
   title: string;
@@ -83,143 +89,146 @@ const MultiStepper: React.FC<Props> = ({
             backButton={backButton}
           />
         )}
-        {showProgress && (
-          <PointsContainer>
-            <StepIndicator
-              size={9}
-              currentStepIndex={currentStepIndex + 1}
-              totalSteps={steps.length}
-            />
-          </PointsContainer>
-        )}
-        <BodyContainer testID={bodyTestID}>
-          <MultiStep
-            currentStepIndex={currentStepIndex}
-            prevStepButtonTitle={'signup:SignUp.submitButtons.previousText'}
-            nextStepButtonTitle={'signup:SignUp.submitButtons.continueText'}
-            submitButtonTitle={submitButtonTitle || 'signup:SignUp.submitButtons.finishText'}
-            nextStepButtonDisabled={nextStepButtonDisabled}
-            extraElementLastStep={extraElementLastStep}
-            prevStepButtonHandler={prevStepButtonHandler}
-            nextStepButtonHandler={nextStepButtonHandler}
-            submitButtonHandler={submitButtonHandler}
-          >
-            {steps.map((step, index) => (
-              <MultiStep.Step key={index}>
-                <StepContainer>
-                  <StepItemContainer>
-                    {step.items.map((item, i) => {
-                      const sharedProps = {
-                        ref: item.ref,
-                        label: item.label,
-                        name: item.name,
-                        value: values[item.name],
-                        error: errors?.[item.name],
-                        touched: touched?.[item.name],
-                        editable: item.editable,
-                        required: item.required,
-                      };
+        <StyledKeyboardAvoidingView>
+          {showProgress && (
+            <PointsContainer>
+              <StepIndicator
+                size={9}
+                currentStepIndex={currentStepIndex + 1}
+                totalSteps={steps.length}
+              />
+            </PointsContainer>
+          )}
+          <BodyContainer testID={bodyTestID}>
+            <MultiStep
+              currentStepIndex={currentStepIndex}
+              prevStepButtonTitle={'signup:SignUp.submitButtons.previousText'}
+              nextStepButtonTitle={'signup:SignUp.submitButtons.continueText'}
+              submitButtonTitle={submitButtonTitle || 'signup:SignUp.submitButtons.finishText'}
+              nextStepButtonDisabled={nextStepButtonDisabled}
+              extraElementLastStep={extraElementLastStep}
+              prevStepButtonHandler={prevStepButtonHandler}
+              nextStepButtonHandler={nextStepButtonHandler}
+              submitButtonHandler={submitButtonHandler}
+            >
+              {steps.map((step, index) => (
+                <MultiStep.Step key={index}>
+                  <StepContainer>
+                    <StepItemContainer>
+                      {step.items.map((item, i) => {
+                        const sharedProps = {
+                          ref: item.ref,
+                          label: item.label,
+                          name: item.name,
+                          value: values[item.name],
+                          error: errors?.[item.name],
+                          touched: touched?.[item.name],
+                          editable: item.editable,
+                          required: item.required,
+                        };
 
-                      switch (item.type) {
-                        case 'textinput':
-                          return (
-                            <TextInput
-                              key={i}
-                              {...sharedProps}
-                              secureTextEntry={item.secureTextEntry}
-                              maxLength={item?.maxLength}
-                              maintainFocus={item.maintainFocus}
-                              keyboardType={item.keyboardType}
-                              importantForAutofill="yes"
-                              showPasswordStrength={item.showPasswordStrength}
-                              removeBlankSpaces={item.removeBlankSpaces}
-                              editable={item.editable}
-                              autoCapitalize={item.autoCapitalize}
-                              textContentType={item.textContentType}
-                              multiline={item.multiline}
-                              rightIcon={item.secureTextEntry ? 'passwordToggle' : 'clear'}
-                              onBlur={hookHandler?.handleBlur(item.name)}
-                              onChangeText={item.onChange || hookHandler.handleChange(item.name)}
-                              rightIconHandler={() =>
-                                item.secureTextEntry
-                                  ? hookHandler.setShowPassword(!hookHandler.showPassword)
-                                  : hookHandler.clearInputHandler(item.name)
-                              }
-                              autoComplete="off"
-                              autoCorrect={item.autoCorrect}
-                              onSubmitEditing={item.onSubmitEditing}
-                              returnKeyType={item.returnKeyType}
-                              returnKeyLabel={item.returnKeyLabel}
-                              enablesReturnKeyAutomatically
-                            />
-                          );
-                        case 'dropdown':
-                          return (
-                            <Dropdown
-                              key={i}
-                              {...sharedProps}
-                              description={item.description}
-                              data={item.items}
-                              placeholder={item.label}
-                              bottomSheet={item.bottomSheet}
-                              showButton={item.showButton}
-                              dropdownHeight={item.dropdownHeight}
-                              width="100%"
-                              onSelect={hookHandler.handleChange(item.name)}
-                            />
-                          );
-                        case 'switch':
-                          return (
-                            <Switch
-                              activated={values[item.name]}
-                              {...sharedProps}
-                              color={'primary500'}
-                              size={25}
-                              showIndicators={!false}
-                              onChange={(value) => hookHandler.fieldValueHandler(item.name, value)}
-                            />
-                          );
-                        case 'camera-image':
-                          return (
-                            <MultimediaPicker
-                              key={i}
-                              {...sharedProps}
-                              origin={item.origin}
-                              mediaType={item.mediaType}
-                              selectionLimit={item.selectionLimit}
-                              onSelect={(value) => hookHandler.fieldValueHandler(item.name, value)}
-                            />
-                          );
-                        case 'date-picker':
-                          return (
-                            <DatePicker
-                              key={i}
-                              {...sharedProps}
-                              mode={item.mode}
-                              title={item.title}
-                              description={item.description}
-                              placeholder={item.label}
-                              onSelect={hookHandler.handleChange(item.name)}
-                            />
-                          );
-                        case 'radiobutton':
-                          return <></>;
-                        case 'checkbox':
-                          return <></>;
-                        case 'slider':
-                          return <></>;
-                        case 'file-selector':
-                          return <></>;
-                        default:
-                          return null;
-                      }
-                    })}
-                  </StepItemContainer>
-                </StepContainer>
-              </MultiStep.Step>
-            ))}
-          </MultiStep>
-        </BodyContainer>
+                        switch (item.type) {
+                          case 'textinput':
+                            return (
+                              <TextInput
+                                key={i}
+                                {...sharedProps}
+                                secureTextEntry={item.secureTextEntry}
+                                maxLength={item?.maxLength}
+                                maintainFocus={item.maintainFocus}
+                                keyboardType={item.keyboardType}
+                                importantForAutofill="yes"
+                                showPasswordStrength={item.showPasswordStrength}
+                                removeBlankSpaces={item.removeBlankSpaces}
+                                editable={item.editable}
+                                autoCapitalize={item.autoCapitalize}
+                                textContentType={item.textContentType}
+                                multiline={item.multiline}
+                                onBlur={hookHandler?.handleBlur(item.name)}
+                                onChangeText={item.onChange || hookHandler.handleChange(item.name)}
+                                rightIcon={item.secureTextEntry ? 'passwordToggle' : 'close'}
+                                rightIconHandler={() => hookHandler.clearInputHandler(item.name)}
+                                autoComplete="off"
+                                autoCorrect={item.autoCorrect}
+                                onSubmitEditing={item.onSubmitEditing}
+                                returnKeyType={item.returnKeyType}
+                                returnKeyLabel={item.returnKeyLabel}
+                                enablesReturnKeyAutomatically
+                              />
+                            );
+                          case 'dropdown':
+                            return (
+                              <Dropdown
+                                key={i}
+                                {...sharedProps}
+                                description={item.description}
+                                data={item.items}
+                                placeholder={item.label}
+                                bottomSheet={item.bottomSheet}
+                                showButton={item.showButton}
+                                dropdownHeight={item.dropdownHeight}
+                                width="100%"
+                                onSelect={hookHandler.handleChange(item.name)}
+                              />
+                            );
+                          case 'switch':
+                            return (
+                              <Switch
+                                activated={values[item.name]}
+                                {...sharedProps}
+                                color={'primary500'}
+                                size={25}
+                                showIndicators={!false}
+                                onChange={(value) =>
+                                  hookHandler.fieldValueHandler(item.name, value)
+                                }
+                              />
+                            );
+                          case 'camera-image':
+                            return (
+                              <MultimediaPicker
+                                key={i}
+                                {...sharedProps}
+                                origin={item.origin}
+                                mediaType={item.mediaType}
+                                selectionLimit={item.selectionLimit}
+                                onSelect={(value) =>
+                                  hookHandler.fieldValueHandler(item.name, value)
+                                }
+                              />
+                            );
+                          case 'date-picker':
+                            return (
+                              <DatePicker
+                                key={i}
+                                {...sharedProps}
+                                mode={item.mode}
+                                title={item.title}
+                                description={item.description}
+                                placeholder={item.label}
+                                onSelect={hookHandler.handleChange(item.name)}
+                                rightIconHandler={() => hookHandler.clearInputHandler(item.name)}
+                              />
+                            );
+                          case 'radiobutton':
+                            return <></>;
+                          case 'checkbox':
+                            return <></>;
+                          case 'slider':
+                            return <></>;
+                          case 'file-selector':
+                            return <></>;
+                          default:
+                            return null;
+                        }
+                      })}
+                    </StepItemContainer>
+                  </StepContainer>
+                </MultiStep.Step>
+              ))}
+            </MultiStep>
+          </BodyContainer>
+        </StyledKeyboardAvoidingView>
       </StyledContainer>
     </ScreenBackground>
   );

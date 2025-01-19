@@ -43,10 +43,11 @@ export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>
 `;
 
 export const StyledElementContainer = styled.View<StyledButtonProps>`
+  flex: 1;
   justify-content: center;
   align-items: flex-start;
   height: auto;
-  width: ${({ hasValue }) => hasValue ? '70%' : '100%'};
+  width: ${({ hasValue }) => hasValue ? '80%' : '100%'};
   border-radius: ${getNormalizedVerticalSize(15)}px;
 `;
 
@@ -107,7 +108,7 @@ export const ButtonContainer = styled.View`
   height: auto;
   width: 100%;
   position: absolute;
-  bottom: ${getNormalizedVerticalSize(140)}px;
+  bottom: ${getNormalizedVerticalSize(150)}px;
   justify-content: flex-end;
   justify-self: flex-end;
   justify-items: flex-end;
@@ -124,13 +125,4 @@ export const CalendarContainer = styled.View`
   padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(10)}px;
   min-height: auto;
   width: 100%;
-`;
-
-export const Container = styled.View`
-  flex-direction: row;
-  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(3)}px;
-  min-height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: flex-start;
 `;

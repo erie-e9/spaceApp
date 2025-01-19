@@ -1,16 +1,14 @@
-import React, { Fragment, forwardRef, memo, useCallback, useMemo, useState } from 'react';
-import { useTheme } from 'styled-components';
+import React, { forwardRef, memo, useCallback, useMemo, useRef, useState } from 'react';
+import { useTheme } from 'styled-components/native';
 import { useCopy } from '@services';
-import { type InputProps } from '@types';
+import type { InputProps } from '@types';
 import { removeBlankSpaces as removeBlankSpacesHandler, testProperties } from '@utils/functions';
-import { usePasswordStrength } from '@hooks';
-import useAutoFocus from './hooks/useAutoFocus';
-import { StrengthLevelProps } from '@hooks/utils/usePasswordStrength';
+import { usePasswordStrength, StrengthLevelProps } from '@hooks';
 import { PasswordStrengthAnimation } from '@components/animated';
-import { FieldInputMask, CloseButton, EyeButton } from '@components/molecules';
+import { FieldInputMask } from '@components/molecules';
+import useAutoFocus from './hooks/useAutoFocus';
 import {
   LeftIcon,
-  RightIconStyled,
   StyledTextInput,
   FooterContainer,
   FooterTextContainer,
@@ -28,7 +26,6 @@ export const TextInput: React.FC<InputProps> = forwardRef(
       error,
       touched,
       maintainFocus,
-      name,
       autoCapitalize,
       secureTextEntry,
       fontSize,
@@ -55,35 +52,62 @@ export const TextInput: React.FC<InputProps> = forwardRef(
     const { focused, onFocus } = useAutoFocus(onFocused, onFocusOut);
 
     const [showPassword, setShowPassword] = useState<boolean>(false);
-    const [passwordStrength, setPasswordStrength] = useState<StrengthLevelProps>('weak');
+    const passwordStrength = useRef<StrengthLevelProps>('weak');
 
-    const handlePasswordChange = useCallback((text: string) => {
-      const strenth: StrengthLevelProps = getPasswordStrength(text);
-      setPasswordStrength(strenth);
-    }, []);
+    const handlePasswordChange = useCallback(
+      (text: string) => {
+        const strength: StrengthLevelProps = getPasswordStrength(text);
+        passwordStrength.current = strength;
+      },
+      [getPasswordStrength],
+    );
 
-    const handleChangeTextInput = useCallback((text: string) => {
-      if (secureTextEntry) {
-        handlePasswordChange(text);
-      }
-      if (onChangeText) {
-        onChangeText(removeBlankSpaces ? removeBlankSpacesHandler(text) : text);
-      }
-    }, []);
+    const handleChangeTextInput = useCallback(
+      (text: string) => {
+        if (secureTextEntry) {
+          handlePasswordChange(text);
+        }
+        if (onChangeText) {
+          onChangeText(removeBlankSpaces ? removeBlankSpacesHandler(text) : text);
+        }
+      },
+      [secureTextEntry, handlePasswordChange, onChangeText, removeBlankSpaces],
+    );
 
-    const placeholderTextColor = useMemo(() => {
-      return value === '' && !!error
-        ? theme.tokens.colors.danger_status
-        : theme.tokens.colors.secondary500;
-    }, [value, error]);
+    const placeholderTextColor = useMemo(
+      () =>
+        value === '' && !!error
+          ? theme.tokens.colors.danger_status
+          : theme.tokens.colors.typography700,
+      [value, error, theme.tokens.colors],
+    );
 
     const autoCapitalizeDefault = autoCapitalize || 'none';
     const placeholderText = placeholder || label;
-    const autoCompleteType = props.keyboardType === 'phone-pad' ? 'telephoneNumber' : autoComplete;
+
+    const togglePassword = useCallback(() => {
+      setShowPassword(!showPassword);
+    }, [showPassword]);
+
+    const footerComponent = useMemo(() => {
+      if (showPasswordStrength && value !== '') {
+        return (
+          <FooterContainer>
+            <PasswordStrengthAnimation passwordStrength={passwordStrength.current} />
+            <FooterTextContainer>
+              <StyledText type="Label" font="Primary" color="typography700" textAlign="justify">
+                {`signup:SignUp.form.fields.password.validations.status.${passwordStrength.current}`}
+              </StyledText>
+            </FooterTextContainer>
+          </FooterContainer>
+        );
+      }
+      return null;
+    }, [showPasswordStrength, value]);
 
     return (
       <FieldInputMask
-        {...testProperties(testID || 'FieldInputMaslTextInputID')}
+        {...testProperties(testID || 'FieldInputMaskTextInputID')}
         value={value}
         required={required}
         label={label}
@@ -93,20 +117,10 @@ export const TextInput: React.FC<InputProps> = forwardRef(
         editable={props.editable}
         focused={focused || !!value}
         heightExpansible={false}
-        footerComponent={
-          showPasswordStrength &&
-          passwordStrength !== null &&
-          value !== '' && (
-            <FooterContainer>
-              <PasswordStrengthAnimation passwordStrength={passwordStrength} />
-              <FooterTextContainer>
-                <StyledText type="Label" font="Primary" color="typography700" textAlign="justify">
-                  {`signup:SignUp.form.fields.password.validations.status.${passwordStrength}`}
-                </StyledText>
-              </FooterTextContainer>
-            </FooterContainer>
-          )
-        }
+        booleanToogle={showPassword}
+        rightIcon={rightIcon}
+        rightIconHandler={rightIcon === 'passwordToggle' ? togglePassword : rightIconHandler}
+        footerComponent={footerComponent}
         characterCounter={
           props.maxLength ? `${(value && String(value).length) || 0}/${props.maxLength}` : undefined
         }
@@ -116,46 +130,30 @@ export const TextInput: React.FC<InputProps> = forwardRef(
         <StyledTextInput
           ref={ref}
           {...testProperties(testID || 'TextInputID')}
-          name={name}
           multiline={multiline}
           colorTextOpposing
           autoCapitalize={autoCapitalizeDefault}
           error={!!error}
           value={String(value || '')}
-          onChangeText={(text: string) => handleChangeTextInput(text)}
+          onChangeText={handleChangeTextInput}
           placeholder={
             getCopyValue(
               String(!focused ? placeholderText : placeholder !== undefined ? placeholder : ''),
             ) + `${required && !focused ? '*' : ''}`
           }
           placeholderTextColor={placeholderTextColor}
+          selectionColor={theme.tokens.colors.typography800}
           onFocus={onFocus}
           fontSize={fontSize}
           secureTextEntry={secureTextEntry ? !showPassword : false}
           styledFocus={styledFocus}
-          textTextInputContainerType={autoCompleteType}
           textContentType={textContentType || 'none'}
           {...props}
         />
-
-        {rightIcon && !!value && (
-          <RightIconStyled multiline={String(value).length > 35 && multiline}>
-            {rightIcon === 'clear' ? (
-              <CloseButton onPress={rightIconHandler} />
-            ) : rightIcon === 'passwordToggle' ? (
-              <EyeButton
-                size={25}
-                visible={showPassword}
-                onPress={() => setShowPassword(!showPassword)}
-              />
-            ) : (
-              <Fragment></Fragment>
-            )}
-          </RightIconStyled>
-        )}
       </FieldInputMask>
     );
   },
 );
 
+TextInput.displayName = 'TextInput';
 export default memo(TextInput);

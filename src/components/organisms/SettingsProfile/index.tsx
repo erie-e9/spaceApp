@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useCallback, useEffect, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
-import { type ApplicationScreenProps } from '@types';
+import type { ApplicationScreenProps } from '@types';
 import { useAuthenticationHook } from '@hooks';
 import { isEmpty } from '@utils/functions';
 import { TransformAnimation } from '@components/animated';
@@ -72,7 +72,7 @@ const SettingsProfile = () => {
                 </StyledText>
                 <ProfileDetailHorizontalContainer>
                   <ProfileButton onPress={navigationHandler}>
-                    <SVGIcon icon="edit" />
+                    <SVGIcon icon="edit" width={18} height={18} />
                   </ProfileButton>
                   {username && (
                     <ProfileDetailText type="Body3" color="typography300">

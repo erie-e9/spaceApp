@@ -7,7 +7,7 @@ interface UseShareResult {
   shareImage: (url: string) => Promise<void>;
   shareFile: (filePath: string, fileType: string) => Promise<void>;
   shareUrl: (url: string, title?: string) => Promise<void>;
-  shareToSocial: (url: string, social: Social) => Promise<void>;
+  shareToSocialNetwork: (url: string, social: Social) => Promise<void>;
   shareCustomContent: (url: string, title: string, message: string, icon: string) => Promise<void>;
 }
 
@@ -66,7 +66,7 @@ export const useShare = (): UseShareResult => {
   };
 
   // Function to share content directly to a specific social app
-  const shareToSocial = async (url: string, social: Social, whatsAppNumber?: string) => {
+  const shareToSocialNetwork = async (url: string, social: Social, whatsAppNumber?: string) => {
     const options = {
       // Share WhatsAp
       title: 'Share via',
@@ -87,7 +87,7 @@ export const useShare = (): UseShareResult => {
     try {
       await Share.shareSingle(options);
     } catch (error) {
-      Logger.error(`useShare - shareToSocial sharing in ${social}`, { error });
+      Logger.error(`useShare - shareToSocialNetwork sharing in ${social}`, { error });
     }
   };
 
@@ -151,7 +151,7 @@ export const useShare = (): UseShareResult => {
     shareImage,
     shareFile,
     shareUrl,
-    shareToSocial,
+    shareToSocialNetwork,
     shareCustomContent,
   };
 };

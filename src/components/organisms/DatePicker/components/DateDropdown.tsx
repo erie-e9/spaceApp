@@ -80,7 +80,11 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
   ) => {
     const dropdownHeight = 180;
     const dropdownWidth = screen_width / 3.3;
-    const [openDropdown, setOpenDropdown] = useState<object>({
+    const [openDropdown, setOpenDropdown] = useState<{
+      day: boolean;
+      month: boolean;
+      year: boolean;
+    }>({
       day: false,
       month: false,
       year: false,
@@ -174,7 +178,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
 
     const defaultYears = useMemo(() => {
       return Array.from({ length: 100 }, (_, i) => {
-        const year = currentYear - i;
+        const year = (maxDateValues?.year ? maxDateValues?.year : currentYear) - i;
         return {
           value: year,
           label: year.toString(),
@@ -219,9 +223,9 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
             data={days}
             onSelect={(item: number) => handleSelectDay(item)}
             value={selectedDay}
-            label={`signup:SignUp.form.fields.dateOfBirth.labels.day`}
+            label={`common:form.fields.inputs.date.labels.day`}
             isNumeric
-            openDropdown={openDropdown.day}
+            openDropdown={openDropdown?.day}
             setOpenDropdown={(isOpen) =>
               setOpenDropdown({ day: isOpen, month: false, year: false })
             }
@@ -240,7 +244,8 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
             })}
             onSelect={handleSelectMonth}
             value={selectedMonth}
-            label={`signup:SignUp.form.fields.dateOfBirth.labels.month`}
+            maxValueLength={7}
+            label={`common:form.fields.inputs.date.labels.month`}
             openDropdown={openDropdown.month}
             setOpenDropdown={(isOpen) =>
               setOpenDropdown({ day: false, month: isOpen, year: false })
@@ -255,7 +260,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
             data={defaultYears}
             onSelect={handleSelectYear}
             value={selectedYear}
-            label={`signup:SignUp.form.fields.dateOfBirth.labels.year`}
+            label={`common:form.fields.inputs.date.labels.year`}
             isNumeric
             openDropdown={openDropdown.year}
             setOpenDropdown={(isOpen) =>
@@ -270,7 +275,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
           <ButtonContainer>
             <StyledDropdownButton
               {...testProperties(`${testID}DateDropdownSubmit`)}
-              title={`signup:SignUp.form.fields.dateOfBirth.labels.submit`}
+              title={`common:form.fields.inputs.date.labels.submit`}
               onPress={handleSubmit}
             />
           </ButtonContainer>
@@ -280,5 +285,6 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
   },
 );
 
+DateDropdown.displayName = 'DateDropdown';
 export default memo(DateDropdown);
 export { DateDropdown };

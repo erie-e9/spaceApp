@@ -1,7 +1,7 @@
 import React, { memo, useRef } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SharedParamsList } from '@navigators/Shared';
-import { removeBlankSpaces, testProperties } from '@utils/functions';
+import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { TextInput } from '@components/molecules';
@@ -54,7 +54,7 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
               </LabelContainer>
               <TextInput
                 {...testProperties('bugReporterDescription')}
-                label={`common:forms.fields.inputs.description.name`}
+                label={`common:form.fields.inputs.description.name`}
                 name={'reporteBugInput'}
                 multiline
                 value={userBugReporterHook?.values?.bugDescription}
@@ -66,7 +66,7 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
                 // maintainFocus={!!userBugReporterHook?.dataUser?.phonenumber_email}
                 onChangeText={userBugReporterHook.handleChange('bugDescription')}
                 rightIconHandler={() => userBugReporterHook.clearInputHandler('bugDescription')}
-                rightIcon="clear"
+                rightIcon="close"
                 editable={true}
                 keyboardType={'default'}
                 importantForAutofill="yes"
@@ -78,7 +78,11 @@ export const BugReporter: React.FC<BugReporterProps> = ({ navigation }) => {
                 enablesReturnKeyAutomatically={true}
               />
 
-              <MultimediaPicker selectionLimit={2} onSelect={(items) => console.log(items)} />
+              <MultimediaPicker
+                origin="library"
+                selectionLimit={2}
+                onSelect={(items) => console.log(items)}
+              />
             </SubDescriptionContainer>
           </BodyContainer>
         </StyledScrollView>

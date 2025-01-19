@@ -2,14 +2,14 @@ import { useCallback, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { authSocialNetworks, Logger, ProviderType } from '@services';
-import { type TouchableProps } from '@types';
+import type { ApplicationScreenProps, TouchableProps } from '@types';
 import { isEmpty } from '@utils/functions';
 import { useAuthenticationHook, useIsAppInstalled, useResponseHandler } from '@hooks';
 import { useCheckPendingProcess } from './useCheckPendingProcess';
 
 export const useSocialMediaAuth = () => {
   const [socialNetworkButtons, setSocialNetworkButtons] = useState<Array<TouchableProps>>([]);
-  const navigation = useNavigation();
+  const navigation: ApplicationScreenProps = useNavigation();
   const { loading, setLoading } = useResponseHandler();
   const { isAppInstalledByName } = useIsAppInstalled();
   const { checkPendingFormAlert } = useCheckPendingProcess();

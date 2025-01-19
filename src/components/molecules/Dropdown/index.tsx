@@ -2,7 +2,8 @@ import React, { memo, useEffect, useState, useCallback, useRef, forwardRef } fro
 import { FlatList } from 'react-native';
 import { useTheme } from 'styled-components/native';
 import { useSharedValue } from 'react-native-reanimated';
-import { type DropDownProps } from '@types';
+import truncate from 'lodash/truncate';
+import type { DropDownProps } from '@types';
 import { testProperties } from '@utils/functions';
 import { useModal } from '@hooks';
 import useAutoFocus from '../TextInput/hooks/useAutoFocus';
@@ -15,8 +16,6 @@ import {
   ItemText,
   DropdownsContainer,
   ItemsContainer,
-  RightIconButton,
-  SelectorContainer,
   ListItemContainer,
   StyledTextInput,
 } from './styles';
@@ -44,7 +43,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
       setOpenDropdown,
       disableInput,
       bottomSheet,
-      showButton = true,
+      maxValueLength,
     },
     ref,
   ) => {
@@ -57,7 +56,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
     const dropdownHeightValue = useSharedValue(0);
     const listRef = useRef<FlatList>(null);
 
-    const [selectedLabel, setSelectedLabel] = useState(
+    const [selectedLabel, setSelectedLabel] = useState<string>(
       data.find((option: { value: any }) => option.value === value)?.label,
     );
 
@@ -118,6 +117,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
     return (
       <DropdownsContainer {...testProperties(testID || 'DropdownID')}>
         <FieldInputMask
+          {...testProperties(testID || 'FieldInputMaskDropdownID')}
           value={selectedLabel || ''}
           required={required}
           label={label}
@@ -126,9 +126,11 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
           touched={touched}
           editable={editable}
           focused={focused || !!value}
+          rightIcon={'arrow'}
+          rightIconHandler={toggleDropdown}
           style={{ width }}
         >
-          <SelectorContainer>
+          <>
             {type === 'textinput' ? (
               <StyledTextInput
                 ref={ref}
@@ -144,29 +146,24 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
                 editable={!disableInput}
               />
             ) : (
-              <StyledButton ref={ref} onPress={toggleDropdown} width="30%">
+              <StyledButton onPress={toggleDropdown} width="100%">
                 <StyledElementContainer error={selectedLabel && !!error} hasValue={!!selectedLabel}>
                   <StyledText
                     type="Caption"
                     error={selectedLabel && !!error}
                     hasValue={!!selectedLabel}
                   >
-                    {selectedLabel || placeholder || ''}
+                    {maxValueLength
+                      ? truncate(selectedLabel, {
+                          length: maxValueLength,
+                        })
+                      : selectedLabel || placeholder || ''}
                     {required && !selectedLabel ? '*' : ''}
                   </StyledText>
                 </StyledElementContainer>
               </StyledButton>
             )}
-          </SelectorContainer>
-          {showButton && (
-            <RightIconButton
-              ref={ref}
-              onPress={toggleDropdown}
-              hitSlop={{ top: 25, bottom: 25, left: 25, right: 0 }}
-            >
-              <ItemText type="Label">{openDropdown ? '▲' : '▼'}</ItemText>
-            </RightIconButton>
-          )}
+          </>
         </FieldInputMask>
 
         {openDropdown && (
@@ -174,7 +171,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
             <FlatList
               ref={listRef}
               data={data}
-              keyExtractor={(item) => item.value}
+              keyExtractor={({ item, index }) => index}
               renderItem={({ item, index }) => (
                 <ListItemContainer width={width}>
                   <Item key={index} onPress={() => handleSelect(item)}>
@@ -191,4 +188,5 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
   },
 );
 
+Dropdown.displayName = 'Dropdown';
 export default memo(Dropdown);

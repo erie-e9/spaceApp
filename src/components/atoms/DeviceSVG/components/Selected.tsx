@@ -53,6 +53,8 @@ const SelectedSvgComponent = (props: SelectedSVG, ref: Ref<SVGSVGElement>) => {
     </Svg>
   );
 };
+
+SelectedSvgComponent.displayName = 'SelectedSvgComponent';
 const ForwardRef = forwardRef(SelectedSvgComponent);
 const SelectedSVG = memo(ForwardRef);
 export default memo(SelectedSVG);

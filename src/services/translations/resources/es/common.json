@@ -196,7 +196,7 @@
       }
     }
   },
-  "forms": {
+  "form": {
     "fields": {
       "inputs": {
         "search": "Buscar {{seachPlaceholder}}",
@@ -224,6 +224,12 @@
           "validations": {
             "required": "La fecha es obligatoria.",
             "matches": "Introduce una fecha válida."
+          },
+          "labels": {
+            "day": "Día",
+            "month": "Mes",
+            "year": "Año",
+            "submit": "Seleccionar"
           },
           "messages": {
             "blockedDate": "{{blockedDate}} está bloqueada porque {{blockedReason}}"
@@ -253,5 +259,6 @@
         }
       }
     }
-  }
+  },
+  "emptyList": "Sin elementos"
 }

@@ -1,92 +1,89 @@
-import {
-  setInternetCredentials,
-  hasInternetCredentials,
-  resetInternetCredentials,
-  Result,
-  ACCESS_CONTROL,
-  ACCESSIBLE,
-} from 'react-native-keychain';
-import { Logger } from '@services';
-import { getBundleId } from '@hooks';
+// import {
+//   setInternetCredentials,
+//   hasInternetCredentials,
+//   resetInternetCredentials,
+//   Result,
+//   ACCESS_CONTROL,
+//   ACCESSIBLE,
+// } from 'react-native-keychain';
+// import { Logger } from '@services';
+// import { getBundleId } from '@hooks';
 
 interface keyChainCredential {
   username: string;
   password: string;
 }
 
-export const useKeyChainStore = (): {
-  setCredentials: ({ username, password }: keyChainCredential) => Promise<void>;
-  hasCredentials: () => Promise<Result | boolean>;
-  removeCredentials: () => Promise<void>;
-} => {
-  const bundleId = getBundleId();
-  const { API_REST_BASE } = process.env;
-  const server = API_REST_BASE + bundleId;
+// export const useKeyChainStore = (): {
+//   setCredentials: ({ username, password }: keyChainCredential) => Promise<void>;
+//   hasCredentials: () => Promise<Result | boolean>;
+//   removeCredentials: () => Promise<void>;
+// } => {
+//   const bundleId = getBundleId();
+//   const { API_REST_BASE } = process.env;
+//   const server = API_REST_BASE + bundleId;
 
-  const setCredentials = async ({ username, password }: keyChainCredential): Promise<void> => {
-    try {
-      await setInternetCredentials(server, username, password, {
-        accessControl: ACCESS_CONTROL.USER_PRESENCE,
-        accessible: ACCESSIBLE.WHEN_UNLOCKED,
-      });
-      Logger.log('Stored credentials');
-    } catch (error) {
-      Logger.log(`Could not save credentials: ${error}`);
-    }
-  };
+//   const setCredentials = async ({ username, password }: keyChainCredential): Promise<void> => {
+//     try {
+//       await setInternetCredentials(server, username, password, {
+//         accessControl: ACCESS_CONTROL.USER_PRESENCE,
+//         accessible: ACCESSIBLE.WHEN_UNLOCKED,
+//       });
+//       Logger.log('Stored credentials');
+//     } catch (error) {
+//       Logger.log(`Could not save credentials: ${error}`);
+//     }
+//   };
 
-  const hasCredentials = async (): Promise<Result | boolean> => {
-    const appHasCredentials = await hasInternetCredentials(server);
-    return appHasCredentials;
-  };
+//   const hasCredentials = async (): Promise<Result | boolean> => {
+//     const appHasCredentials = await hasInternetCredentials(server);
+//     return appHasCredentials;
+//   };
 
-  const removeCredentials = async (): Promise<void> => {
-    await resetInternetCredentials(server);
-  };
+//   const removeCredentials = async (): Promise<void> => {
+//     await resetInternetCredentials(server);
+//   };
 
-  return {
-    setCredentials,
-    hasCredentials,
-    removeCredentials,
-  };
-};
+//   return {
+//     setCredentials,
+//     hasCredentials,
+//     removeCredentials,
+//   };
+// };
 
-/**
- * 
- import * as Keychain from 'react-native-keychain';
-
+import * as Keychain from 'react-native-keychain';
 // Function to check if biometric authentication is supported
 const isBiometrySupported = async () => {
   try {
     const biometryType = await Keychain.getSupportedBiometryType();
     console.log('getSupportedBiometryType', biometryType);
-    alert(biometryType);
+    // Alert.alert(biometryType);
     return !!biometryType;
   } catch (error) {
-    console.log('Error checking biometry support:', error.message);
-    alert(JSON.stringify(error.message));
+    console.log('Error checking biometry support:', error?.message);
+    // Alert.alert(JSON.stringify(error?.message));
     return false;
   }
 };
 
 // Function to save credentials with biometric protection
-const saveCredentialsWithBiometry = async (username, password) => {
+const saveCredentialsWithBiometry = async (username: string, password: string) => {
   try {
     await Keychain.setGenericPassword(username, password, {
       accessControl: Keychain.ACCESS_CONTROL.BIOMETRY_ANY,
       accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED,
     });
     console.log('Credentials saved successfully with biometry protection in keychain');
-    alert(JSON.stringify('Credentials saved successfully with biometry protection in keychain'));
+    // Alert.alert(JSON.stringify('Credentials saved successfully with biometry protection in keychain'));
   } catch (error) {
-    console.log('Error saving credentials:', error.message);
+    console.log('Error saving credentials:', error?.message);
     // Handle specific errors (e.g., user canceled biometric enrollment)
-    if (error.name === 'BiometryEnrollmentCancel') {
+    if (error?.name === 'BiometryEnrollmentCancel') {
       console.log('Biometric enrollment canceled by the user.');
-      alert(JSON.stringify('Biometric enrollment canceled by the user.'));
+      // Alert.alert(JSON.stringify('Biometric enrollment canceled by the user.'));
     } else {
       console.log('Unknown error:', error);
-      alert(JSON.stringify(error.message));
+      // Alert.alert(JSON.stringify(error?.message));
     }
   }
 };
@@ -99,15 +96,15 @@ const getCredentialsWithBiometry = async () => {
     });
     return credentials;
   } catch (error) {
-    console.log('Error retrieving credentials:', error.message);
-    alert(JSON.stringify(error.message));
+    console.log('Error retrieving credentials:', error?.message);
+    // Alert.alert(JSON.stringify(error?.message));
     // Handle specific errors (e.g., biometric authentication failed)
-    if (error.message.includes('authentication failed')) {
+    if (error?.message.includes('authentication failed')) {
       console.log('Biometric authentication failed.');
-      alert(JSON.stringify('Biometric authentication failed.'));
+      // Alert.alert(JSON.stringify('Biometric authentication failed.'));
     } else {
       console.log('Unknown error:', error);
-      alert(JSON.stringify(error));
+      // Alert.alert(JSON.stringify(error));
     }
     return null;
   }
@@ -127,17 +124,15 @@ const callBiometric = async () => {
     if (credentials) {
       console.log('Username:', credentials.username);
       console.log('Password:', credentials.password);
-      alert(JSON.stringify(credentials.username + credentials.password));
+      // Alert.alert(JSON.stringify(credentials.username + credentials.password));
     } else {
       console.log('Biometric authentication failed or credentials not found.');
-      alert(JSON.stringify('Biometric authentication failed or credentials not found.'));
+      // Alert.alert(JSON.stringify('Biometric authentication failed or credentials not found.'));
     }
   } else {
     console.log('Biometry not supported on this device.');
-    alert('Biometry not supported on this device.');
+    // Alert.alert('Biometry not supported on this device.');
   }
 };
 
 export default callBiometric;
-👋 
- * **/

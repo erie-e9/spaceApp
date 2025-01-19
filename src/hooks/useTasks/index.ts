@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { type Task, type TaskState } from '@utils/types';
+import type { Task, TaskState } from '@types';
 import { Logger } from '@services';
 import { useGetTaskByIdQuery, useAddTaskMutation, useUpdateTaskMutation, usePatchTaskMutation, useDeleteTaskMutation } from '@hooks/api/rest';
 import { clearTasks, updateTask as updateTaskSlice, deleteTask as deleteTaskSlice } from '@slices/private';
@@ -8,10 +8,10 @@ import { useAppAlerts } from '@hooks';
 
 export const useTasks = () => {
     const dispatch = useDispatch();
-    const [addTask, { isSuccess: isAddSuccess, isError: isAddError, error: addError }] = useAddTaskMutation();
-    const [updateTask, { isSuccess: isUpdateSuccess, isError: isUpdateError, error: updateError }] = useUpdateTaskMutation();
-    const [patchTask, { isSuccess: isPatchSuccess, isError: isPatchError, error: patchError }] = usePatchTaskMutation();
-    const [deleteTask, { isSuccess: isDeleteSuccess, isError: isDeleteError, error: deleteError }] = useDeleteTaskMutation();
+    const [addTask, { isSuccess: isAddSuccess, isError: isAddError, error: addError, isLoading: addLoading }] = useAddTaskMutation();
+    const [updateTask, { isSuccess: isUpdateSuccess, isError: isUpdateError, error: updateError, isLoading: updateLoading }] = useUpdateTaskMutation();
+    const [patchTask, { isSuccess: isPatchSuccess, isError: isPatchError, error: patchError, isLoading: patchLoading }] = usePatchTaskMutation();
+    const [deleteTask, { isSuccess: isDeleteSuccess, isError: isDeleteError, error: deleteError, isLoading: deleteLoading }] = useDeleteTaskMutation();
 
     const { showItemCreateActionToastSuccess, showCreateItemActionToastFailure,
         showUpdateItemActionToastSuccess, showUpdateItemActionToastFailure,
@@ -47,7 +47,7 @@ export const useTasks = () => {
             } else {
                 await showCreateItemActionToastFailure();
             }
-            Logger.error('[useTasks] addTask:', { error });
+            Logger.error('[useTasks] addTask:', { error, data: error?.data });
         }
     }, [dispatch, showItemCreateActionToastSuccess, showCreateItemActionToastFailure]);
 
@@ -87,7 +87,6 @@ export const useTasks = () => {
 
     const deleteTaskHookAction = useCallback(async (id: Pick<Task, 'id'>, callback?: () => void) => {
         try {
-            // await deleteTaskSlice 
             const payload = await deleteTask(id).unwrap();
             await showRemoveItemActionToastSuccess();
             await callback?.();
@@ -121,6 +120,7 @@ export const useTasks = () => {
         patchTaskHook,
         deleteTaskHook,
         clearLocalTasks,
+        isLoading: addLoading || updateLoading || patchLoading || deleteLoading,
         getTaskByIdHook
     };
 };

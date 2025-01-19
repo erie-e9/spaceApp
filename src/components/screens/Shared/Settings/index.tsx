@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import { type ApplicationStackParamList } from '@types';
+import type { ApplicationStackParamList } from '@types';
 import { HelpCenterNavigator, HelpCenterParamsList } from '@components/screens/Shared';
 import { CustomFallback, Menu, SettingsMenu } from '@components/screens/Shared';
 

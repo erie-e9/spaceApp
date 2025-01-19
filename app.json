@@ -1,4 +1,25 @@
 {
   "name": "spaceApp",
-  "displayName": "spaceApp"
+  "displayName": "spaceApp",
+  "plugins": [
+    [
+      "react-native-share",
+      {
+        "ios": [
+          "fb",
+          "whatsapp",
+          "instagram",
+          "twitter",
+          "telegram"
+        ],
+        "android": [
+          "com.facebook.katana",
+          "com.whatsapp",
+          "com.instagram.android",
+          "com.twitter.android",
+          "org.telegram.messenger"
+        ]
+      }
+    ]
+  ]
 }

@@ -1,5 +1,5 @@
-import React, { JSXElementConstructor, ReactElement } from 'react';
-import { useTheme } from 'styled-components';
+import React, { forwardRef, JSXElementConstructor, ReactElement } from 'react';
+import { useTheme } from 'styled-components/native';
 import { PhoneStyledTextInput } from './styles';
 
 interface Props {
@@ -55,6 +55,6 @@ const CustomPhoneTextInput: React.FC<Props> = (
   );
 };
 
-const PhoneTextInput = React.forwardRef(CustomPhoneTextInput as never);
-
+CustomPhoneTextInput.displayName = 'CustomPhoneTextInput';
+const PhoneTextInput = forwardRef(CustomPhoneTextInput as never);
 export default PhoneTextInput;

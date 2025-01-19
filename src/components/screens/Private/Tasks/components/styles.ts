@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
-import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
-import { Skeleton } from '@components/animated';
-import { Touchable, Typography } from '@components/atoms';
 import Animated from 'react-native-reanimated'
+import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
+import { Touchable, Typography } from '@components/atoms';
 
-const AnimatedTypography = Animated.createAnimatedComponent(Typography)
+const AnimatedTypography = Animated.createAnimatedComponent(Typography);
+
 export interface TaskContentComplete {
   isComplete?: boolean;
 }
@@ -56,16 +56,11 @@ export const CreatedAtContainer = styled.View`
   align-items: flex-end;
 `;
 
-export const CreatedAtText = styled(AnimatedTypography)`
-`;
+export const CreatedAtText = styled(AnimatedTypography)``;
 
 export const DueDateContainer = styled.View`
   width: auto;
   align-items: flex-end;
 `;
 
-export const DueDateText = styled(AnimatedTypography)`
-`;
-
-export const StyledSkeleton = styled(Skeleton)`
-`;
+export const DueDateText = styled(AnimatedTypography)``;

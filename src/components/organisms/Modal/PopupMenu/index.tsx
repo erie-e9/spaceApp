@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import { Dimensions } from 'react-native';
 import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
-import { type ModalProps } from '@slices/types';
+import type { ModalProps } from '@slices/types';
 import { useModal } from '@hooks';
 import { SVGIcon } from '@components/atoms';
 import { Container, AnimatedMenu, MenuItem, MenuItemText, MenuItemTextContainer } from './styles';

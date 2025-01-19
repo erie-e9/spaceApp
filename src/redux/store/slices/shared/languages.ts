@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { type LanguagesState, type LanguagesPayload } from '@slices/types/languages';
+import type { LanguagesState, LanguagesPayload } from '@slices/types';
 
 const initialState: LanguagesState = {
   content: {},

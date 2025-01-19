@@ -2,7 +2,7 @@ import { useState, useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { getReadableVersion } from 'react-native-device-info';
 import { Logger } from '@services';
-import { type MenuItemProps, type ApplicationScreenProps } from '@types';
+import type { MenuItemProps, ApplicationScreenProps } from '@types';
 import { useAuthenticationHook, useRatingModal, useResponseHandler } from '@hooks';
 import { isEmpty } from '@utils/functions';
 
@@ -20,7 +20,7 @@ export const useMenu = (): {
   const { token, removeToken } = useAuthenticationHook();
   const [disableContinueButton, setDisableContinueButton] = useState<boolean>(false);
   const navigation = useNavigation<ApplicationScreenProps>();
-  const { ratingModal } = useRatingModal({ navigation });
+  const { ratingModal } = useRatingModal();
 
   const isAuthenticated = !isEmpty(token);
 
@@ -38,7 +38,7 @@ export const useMenu = (): {
       appFeatures.push({
         testID: 'menuTasksButton',
         title: 'menu:Menu.menu.items.tasks.title',
-        rightIcon: 'right',
+        rightIcon: 'arrow',
         leftIcon: 'tasks',
         onPress: () => {
           navigation.navigate('Private', { screen: 'Tasks' });
@@ -47,12 +47,26 @@ export const useMenu = (): {
       });
     }
 
+    if (isAuthenticated) {
+      appFeatures.push({
+        testID: 'menuNotificationsButton',
+        title: 'menu:privateSettings.notificationsCenter.screenTitle',
+        rightIcon: 'arrow',
+        leftIcon: 'bell',
+        onPress: () =>
+          navigation.navigate('Private', {
+            screen: 'Notifications',
+          } as never),
+        remoteFeatureFlags: ['notificatsionCenter'],
+      });
+    }
+
     const appPreferences: MenuItemProps['items'] = [
       {
         testID: 'settingsMenuButton',
         title: 'menu:Menu.screenTitle',
         // description: 'menu:Menu.settings.items.security.description',
-        rightIcon: 'right',
+        rightIcon: 'arrow',
         leftIcon: 'settings',
         onPress: () => navigateToScreen('SettingsMenu'),
         remoteFeatureFlags: ['settingsMenu'],
@@ -63,7 +77,7 @@ export const useMenu = (): {
       {
         testID: 'menuHelpCenterButton',
         title: 'menu:helpCenter.screenTitle',
-        rightIcon: 'right',
+        rightIcon: 'arrow',
         leftIcon: 'info',
         onPress: () => navigateToScreen('HelpCenter'),
         remoteFeatureFlags: ['helpCenter'],
@@ -71,7 +85,7 @@ export const useMenu = (): {
       {
         testID: 'menuAppVersionButton',
         title: `${process.env.APP_NAME} v${getReadableVersion()}`, //! pending
-        // rightIcon: 'right',
+        // rightIcon: 'arrow',
         leftIcon: 'versions',
         // onPress: () => navigateToScreen('CustomFallback'), //! pending
         remoteFeatureFlags: ['versionApp'],
@@ -79,16 +93,18 @@ export const useMenu = (): {
     ];
 
     if (isAuthenticated) {
-      appFeatures.push({
-        testID: 'menuNotificationsButton',
-        title: 'menu:privateSettings.notificationsCenter.screenTitle',
-        rightIcon: 'right',
-        leftIcon: 'bell',
-        onPress: () =>
-          navigation.navigate('Private', {
-            screen: 'Notifications',
-          } as never),
-        remoteFeatureFlags: ['notificatsionCenter'],
+      helpCenterItems.push({
+        testID: 'menuFeedbackButton',
+        title: 'menu:Menu.menu.items.feedback.title',
+        rightIcon: 'arrow',
+        leftIcon: 'hearthandshake',
+        onPress: () => {
+          ratingModal({
+            feature_name: 'User auth',
+            feedback_request_id: '1',
+          });
+        },
+        remoteFeatureFlags: ['feedback'],
       });
     }
 
@@ -99,7 +115,7 @@ export const useMenu = (): {
           title: 'menu:Menu.menu.items.untrustedDevice.title',
           // description:
           //   'menu:Menu.menu.items.untrustedDevice.description',
-          rightIcon: 'right',
+          rightIcon: 'arrow',
           leftIcon: 'alerttriangle',
           onPress: () => navigateToScreen('Warning'), // needs change value on Application.tsx
           remoteFeatureFlags: ['untrustedDevice'],
@@ -109,28 +125,12 @@ export const useMenu = (): {
           title: 'menu:Menu.menu.items.errorCatcher.title',
           // description:
           //   'menu:Menu.menu.items.errorCatcher.description',
-          rightIcon: 'right',
+          rightIcon: 'arrow',
           leftIcon: 'bug',
           onPress: () => navigateToScreen('CustomFallback'),
           remoteFeatureFlags: ['errorCatcher'],
         },
       );
-    }
-
-    if (isAuthenticated) {
-      helpCenterItems.push({
-        testID: 'menuFeedbackButton',
-        title: 'menu:Menu.menu.items.feedback.title',
-        rightIcon: 'right',
-        leftIcon: 'hearthandshake',
-        onPress: () => {
-          ratingModal({
-            feature_name: 'User auth',
-            feedback_request_id: '1',
-          });
-        },
-        remoteFeatureFlags: ['feedback'],
-      });
     }
 
     return [

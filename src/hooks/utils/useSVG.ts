@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { SvgProps } from 'react-native-svg';
 import { useTheme } from 'styled-components/native';
 import AlertTriangle from '@assets/shared/svg/alerttriangle.svg';
@@ -34,7 +35,7 @@ import Map from '@assets/shared/svg/map.svg';
 import Phone from '@assets/shared/svg/phone.svg';
 import QRCode from '@assets/shared/svg/qrcode.svg';
 import Reload from '@assets/shared/svg/reload.svg';
-import Right from '@assets/shared/svg/right.svg';
+import Arrow from '@assets/shared/svg/arrow.svg';
 import Settings from '@assets/shared/svg/settings.svg';
 import Share from '@assets/shared/svg/share.svg';
 import ShieldLock from '@assets/shared/svg/shieldlock.svg';
@@ -63,12 +64,14 @@ import Checks from '@assets/shared/svg/checks.svg';
 import Tasks from '@assets/shared/svg/tasks.svg';
 import ArrowBack from '@assets/shared/svg/arrow-back.svg';
 import Queue from '@assets/shared/svg/queue.svg';
+import Caret from '@assets/shared/svg/caret.svg';
+import WifiOff from '@assets/shared/svg/wifi-off.svg';
 
 interface SvgObject {
-  [key: string]: React.FC<SvgProps> | {
-    [key: string]: React.FC<SvgProps>;
-    light: React.FC<SvgProps>;
-    dark: React.FC<SvgProps>;
+  [key: string]: FC<SvgProps> | {
+    [key: string]: FC<SvgProps>;
+    light: FC<SvgProps>;
+    dark: FC<SvgProps>;
   };
 }
 
@@ -83,7 +86,8 @@ const svgLibrary: SvgObject = {
   camera: Camera,
   cellphone: CellPhone,
   chat: Chat,
-  close: Close, darkmode: DarkMode,
+  close: Close,
+  darkmode: DarkMode,
   edit: Edit,
   email: Email,
   exclamationcircle: ExclamationCircle,
@@ -106,7 +110,7 @@ const svgLibrary: SvgObject = {
   phone: Phone,
   qrcode: QRCode,
   reload: Reload,
-  right: Right,
+  arrow: Arrow,
   settings: Settings,
   share: Share,
   shieldlock: ShieldLock,
@@ -135,6 +139,8 @@ const svgLibrary: SvgObject = {
   tasks: Tasks,
   arrowback: ArrowBack,
   queue: Queue,
+  caret: Caret,
+  wifioff: WifiOff,
 };
 
 export const useSVG = (svgName: string): React.FC<SvgProps> => {

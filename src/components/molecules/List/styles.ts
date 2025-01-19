@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { getNormalizedHorizontalSize, getNormalizedVerticalSize, screen_width } from '@utils/functions';
+import { getNormalizedHorizontalSize, getNormalizedVerticalSize, screen_height, screen_width } from '@utils/functions';
 import { Image, Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
@@ -12,6 +12,8 @@ export const ListContainer = styled.View`
   flex: 1;
   width: 100%;
   height: 100%;
+  align-self: center;
+  justify-content: center;
 `;
 
 export const AnimatedItemContainer = styled(Animated.View)`
@@ -45,14 +47,15 @@ export const ChildrenContainer = styled.View`
 export const ItemImage = styled(Image) <{
   size: number;
 }>`
-  width: ${({ size }) => getNormalizedVerticalSize(size)}px;
   height: ${({ size }) => getNormalizedVerticalSize(size)}px;
+  width: ${({ size }) => getNormalizedHorizontalSize(size)}px;
   border-radius: ${({ size }) => size / 2}px;
 `;
 
 export const ScrollToTopContainer = styled(Animated.View)`
   z-index: 1000;
   position: absolute;
+  top: ${getNormalizedVerticalSize(0)}px;
   right: ${screen_width / 2}px;
 `;
 
@@ -64,7 +67,7 @@ export const ScrollToTopButtonContainer = styled.View`
   justify-content: center;
   align-items: center;
   transform: rotate(90deg);
-  background-color: ${({ theme }) => theme.tokens.colors.tertiary200};
+  background-color: ${({ theme }) => theme.tokens.colors.tertiary100};
 `;
 
 export const DescriptionContainer = styled.View`
@@ -91,4 +94,14 @@ export const FloatingButton = styled(ActionButton)`
   margin-top: 10px;
   border-width: 0;
   background-color: ${({ theme }) => theme.tokens.colors.primary500};
-`
+`;
+
+export const EmptyContainer = styled.View`
+    flex: 1;
+    width: 100%;
+    height: ${screen_height / 2}px;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const EmptyText = styled(Typography)``;

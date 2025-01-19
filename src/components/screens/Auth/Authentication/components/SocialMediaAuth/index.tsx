@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
+import React, { Fragment, Key, memo } from 'react';
 import { useTheme } from '@hooks';
-import { type TouchableProps } from '@types';
+import type { TouchableProps } from '@types';
 import { OpacityAnimation } from '@components/animated';
 import { useSocialMediaAuth } from '../../hooks/useSocialMediaAuth';
 import {
@@ -21,9 +21,9 @@ export const SocialMediaAuth: React.FC<Props> = ({ hookHandler }) => {
   const useSocialMediaAuthHook = useSocialMediaAuth();
 
   return (
-    <>
+    <SocialMediaContainer>
       {useSocialMediaAuthHook.socialNetworksAuth && (
-        <SocialMediaContainer>
+        <Fragment>
           <SocialMediaFooterTextContainer>
             <SocialMediaFooterText
               type="Subtitle2"
@@ -37,7 +37,7 @@ export const SocialMediaAuth: React.FC<Props> = ({ hookHandler }) => {
           </SocialMediaFooterTextContainer>
           <SocialMediaButtonsContainer>
             {useSocialMediaAuthHook.socialNetworksAuth.map(
-              (button: TouchableProps, index: React.Key | null | undefined) => {
+              (button: TouchableProps, index: Key | null | undefined) => {
                 return (
                   <SocialMediaButtonContainer key={index}>
                     <OpacityAnimation
@@ -75,9 +75,9 @@ export const SocialMediaAuth: React.FC<Props> = ({ hookHandler }) => {
               },
             )}
           </SocialMediaButtonsContainer>
-        </SocialMediaContainer>
+        </Fragment>
       )}
-    </>
+    </SocialMediaContainer>
   );
 };
 

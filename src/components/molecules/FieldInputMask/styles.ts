@@ -1,8 +1,8 @@
+import { PixelRatio } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { InterpolateColorAnimation } from '@components/animated';
-import { Typography } from '@components/atoms';
-import { PixelRatio } from 'react-native';
+import { Touchable, Typography } from '@components/atoms';
 
 export const TextInputContainer = styled.View`
   flex-direction: column;
@@ -11,7 +11,7 @@ export const TextInputContainer = styled.View`
   z-index: 100;
   margin-top: ${getNormalizedVerticalSize(5)}px;
   min-height: ${PixelRatio.roundToNearestPixel(70)}px;
-  background-color: transparent;
+
 `;
 
 export const LabelColorAnimationContainer = styled(InterpolateColorAnimation)`
@@ -26,7 +26,7 @@ export const LabelColorAnimationContainer = styled(InterpolateColorAnimation)`
 
 export const CounterColorAnimationContainer = styled(InterpolateColorAnimation)`
   position: absolute;
-  bottom: 15px;
+  bottom: ${getNormalizedVerticalSize(12)}px;
   width: auto;
   right: ${getNormalizedHorizontalSize(15)}px;
   border-radius: 5px;
@@ -73,8 +73,8 @@ export const Wrapper = styled.View<WrapperProps>`
   min-height: ${PixelRatio.roundToNearestPixel(45)}px; // change mutual height's here
   max-height: ${({ heightExpansible }) => heightExpansible ? 'auto' : PixelRatio.roundToNearestPixel(45) + 'px'};
   background-color: transparent;
-  padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(20)}px;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px;
   border-radius: ${getNormalizedHorizontalSize(25)}px;
   ${({ theme, error, focused, editable, maintainFocus }) =>
     theme.mode === 'dark'
@@ -116,14 +116,34 @@ export const FooterContainer = styled.View`
 `;
 
 export const ErrorContainer = styled.View`
-  /* position: absolute; */
-  /* top: -7px; */
   width: auto;
-  /* right: ${getNormalizedHorizontalSize(0)}px; */
   align-items: flex-start;
   align-self: flex-start;
   border-radius: 5px;
   z-index: 1000;
   bottom: ${getNormalizedVerticalSize(-5)}px;
   left: ${getNormalizedHorizontalSize(10)}px;
+`;
+
+export const RightIconStyled = styled.View<{
+  multiline?: boolean;
+}>`
+  justify-self: center;
+  width: ${getNormalizedHorizontalSize(20)}px;
+  background-color: transparent;
+`;
+
+export const RightButtonPressable = styled(Touchable)`
+  width: ${getNormalizedHorizontalSize(20)}px;
+  min-height: ${getNormalizedVerticalSize(20)}px;
+  z-index: 100;
+`;
+
+export const RightButtonContainer = styled.View`
+  padding: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(2)}px
+    ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(2)}px;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(90deg);
 `;

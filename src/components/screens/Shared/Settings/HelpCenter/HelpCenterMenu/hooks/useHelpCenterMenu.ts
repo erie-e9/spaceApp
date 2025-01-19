@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { type ApplicationScreenProps, type MenuItemProps } from '@types';
+import type { ApplicationScreenProps, MenuItemProps } from '@types';
 
 export const useHelpCenterMenu = (): {
   listItems: Array<MenuItemProps>;
@@ -24,7 +24,7 @@ export const useHelpCenterMenu = (): {
             title: 'menu:helpCenter.info.items.aboutUs.title',
             description: 'menu:helpCenter.info.items.aboutUs.description',
             leftIcon: 'infocircle',
-            rightIcon: 'right',
+            rightIcon: 'arrow',
             onPress: () => navigateToScreen('Info', { type: 'aboutUs' }),
             remoteFeatureFlags: ['aboutUs'],
           },
@@ -33,7 +33,7 @@ export const useHelpCenterMenu = (): {
             title: 'menu:helpCenter.info.items.termsOfUse.title',
             description: 'menu:helpCenter.info.items.termsOfUse.description',
             leftIcon: 'layersintersect',
-            rightIcon: 'right',
+            rightIcon: 'arrow',
             onPress: () => navigateToScreen('Info', { type: 'termsOfUse' }),
             remoteFeatureFlags: ['termsOfUse'],
           },
@@ -42,7 +42,7 @@ export const useHelpCenterMenu = (): {
             title: 'menu:helpCenter.info.items.privacyPolicy.title',
             description: 'menu:helpCenter.info.items.privacyPolicy.description',
             leftIcon: 'fileprivacy',
-            rightIcon: 'right',
+            rightIcon: 'arrow',
             onPress: () => navigateToScreen('Info', { type: 'privacyPolicy' }),
             remoteFeatureFlags: ['privacyPolicy'],
           },
@@ -50,7 +50,7 @@ export const useHelpCenterMenu = (): {
             testID: 'appPermissonsButton',
             title: 'menu:helpCenter.info.items.appPermissions.title',
             description: 'menu:helpCenter.info.items.appPermissions.description',
-            rightIcon: 'right',
+            rightIcon: 'arrow',
             leftIcon: 'advice',
             onPress: () => navigateToScreen('FAQs'), //! pending
             remoteFeatureFlags: ['appPermissions'],
@@ -65,7 +65,7 @@ export const useHelpCenterMenu = (): {
             title: 'menu:helpCenter.support.items.contactUs.title',
             description: 'menu:helpCenter.support.items.contactUs.description',
             leftIcon: 'chat',
-            rightIcon: 'right',
+            rightIcon: 'arrow',
             onPress: () => navigateToScreen('ContactUs'),
             remoteFeatureFlags: ['contactUs'],
           },
@@ -74,7 +74,7 @@ export const useHelpCenterMenu = (): {
             title: 'menu:helpCenter.support.items.faqs.title',
             description: 'menu:helpCenter.support.items.faqs.description',
             leftIcon: 'help',
-            rightIcon: 'right',
+            rightIcon: 'arrow',
             onPress: () => navigateToScreen('FAQs'),
             remoteFeatureFlags: ['faqs'],
           },
@@ -82,7 +82,7 @@ export const useHelpCenterMenu = (): {
             testID: 'bugReporterButton',
             title: 'menu:helpCenter.support.items.bugReporter.title',
             description: 'menu:helpCenter.support.items.bugReporter.short-description',
-            rightIcon: 'right',
+            rightIcon: 'arrow',
             leftIcon: 'bugfinder',
             onPress: () => navigateToScreen('BugReporter'),
             remoteFeatureFlags: ['bugReporter'],

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { type ApplicationScreenProps } from '@types';
+import type { ApplicationScreenProps } from '@types';
 import { useTheme } from '@hooks';
 import { OpacityAnimation } from '@components/animated';
 import { ScreenBackground } from '@components/atoms';

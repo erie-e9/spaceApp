@@ -1,8 +1,8 @@
 import React, { memo, useMemo } from 'react';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { testProperties } from '@utils/functions';
-import { type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
-import { type TouchableProps } from '@types';
+import type { RemoteConfigFeatures } from '@slices/types';
+import type { TouchableProps } from '@types';
 import { useAppAlerts, useGetFeatureStatus as getStatus } from '@hooks';
 import { StyledTouchable, TappableText } from './styles';
 
@@ -96,13 +96,13 @@ export const Touchable: React.FC<TouchableProps> = ({
 
   return (
     <Tappable
-      disabledButton={off || disabled}
       {...testProperties(testID || 'animatedButton')}
       style={style}
       minHeight={minHeight}
       accessible={true}
       accessibilityLabel={title}
       accessibilityRole={accessibilityRole || 'button'}
+      disabled={off || disabled}
       disabledColor={disabledColor || 'primary200'}
       onPress={onPressType === 'onPress' ? onTap : undefined}
       onPressIn={onPressType === 'onPressIn' ? onTap : undefined}

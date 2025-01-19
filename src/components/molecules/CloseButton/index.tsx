@@ -10,7 +10,7 @@ interface Props {
 
 export const CloseButton: React.FC<Props> = ({ testID = 'CloseButtonID', onPress = undefined }) => {
   const pressHandler = useCallback(() => {
-    if (onPress) onPress();
+    onPress?.();
   }, []);
 
   return (

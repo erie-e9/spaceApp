@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { showModal as showModalSlice, hideModal as hideModalSlice } from '@slices/shared/modal';
-import { type ModalProps } from '@slices/types';
+import { showModal as showModalSlice, hideModal as hideModalSlice } from '@slices/shared';
+import type { ModalProps } from '@slices/types';
 
 export const useModal = (): {
   showModal: (params: ModalProps) => void;

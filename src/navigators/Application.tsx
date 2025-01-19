@@ -11,13 +11,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ErrorBoundary from 'react-native-error-boundary';
 import { lightMode } from '@theme/themes/light';
 import { darkMode } from '@theme/themes/dark';
-import { type ApplicationStackParamList } from '@types';
+import type { ApplicationStackParamList } from '@types';
 import { initAppCheck, Logger } from '@services';
 import { isEmpty } from '@utils/functions';
 import {
   useTheme,
   useToast,
-  useCheckNet,
+  useCheckNetwork,
   useAuthenticationHook,
   useAppPreferences,
   useDeviceSecurity,
@@ -37,13 +37,13 @@ import { SafeAreaViewProvider, ScreenBackground, StatusBar } from '@components/a
 import { Toast } from '@components/molecules';
 import { Modal } from '@components/organisms';
 
-const { Navigator, Screen } = createStackNavigator<ApplicationStackParamList>();
+const { Navigator, Screen, Group } = createStackNavigator<ApplicationStackParamList>();
 
 const Application = () => {
   const { token } = useAuthenticationHook();
   const { darkMode: darkModeApp, NavigationTheme } = useTheme();
   const { theme: themeApp } = useAppPreferences();
-  const { isOnline } = useCheckNet();
+  const { isOnline } = useCheckNetwork();
   const gestureHandlerRootViewStyle = { flex: 1 };
   const isAuthenticated: boolean = !isEmpty(token);
   const { checkIsReliableDevice } = useDeviceSecurity();
@@ -144,30 +144,35 @@ const Application = () => {
                     ) : (
                       <Screen key="Auth" name="Auth" component={AuthNavigator} />
                     )}
-                    <Screen // All accesible screens even if user is authenticated or not, both cases.
-                      key="Shared"
-                      name="Shared"
-                      component={SharedNavigator}
-                      options={{
-                        cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
-                      }}
-                    />
-                    <Screen
-                      key="FieldEditor"
-                      name="FieldEditor"
-                      component={FieldEditor}
-                      options={{
-                        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                      }}
-                    />
-                    <Screen
-                      key="Info"
-                      name="Info"
-                      component={Info}
-                      options={{
-                        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-                      }}
-                    />
+                    <Group
+                      // All accesible screens even if user is authenticated or not, both cases.
+                      navigationKey={isAuthenticated ? 'user' : 'guest'}
+                    >
+                      <Screen
+                        key="Shared"
+                        name="Shared"
+                        component={SharedNavigator}
+                        options={{
+                          cardStyleInterpolator: CardStyleInterpolators.forScaleFromCenterAndroid,
+                        }}
+                      />
+                      <Screen
+                        key="FieldEditor"
+                        name="FieldEditor"
+                        component={FieldEditor}
+                        options={{
+                          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                        }}
+                      />
+                      <Screen
+                        key="Info"
+                        name="Info"
+                        component={Info}
+                        options={{
+                          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+                        }}
+                      />
+                    </Group>
                   </>
                 ) : (
                   <Screen

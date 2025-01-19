@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoadingState, setErrorState } from '@slices/shared';
-import { type ResponseHandlerState } from '@slices/types/responseHandler';
+import type { ResponseHandlerState } from '@slices/types';
 
 export const useResponseHandler = (): {
   loading: boolean;

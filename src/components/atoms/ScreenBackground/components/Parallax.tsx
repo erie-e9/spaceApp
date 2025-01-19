@@ -6,14 +6,9 @@ import {
   withSpring,
   useAnimatedStyle,
 } from 'react-native-reanimated';
-import { ScreenBackgroundProps } from '@types';
+import type { ScreenBackgroundProps } from '@types';
 import { testProperties } from '@utils/functions';
-import {
-  BackgroundImage,
-  ForegroundContainer,
-  ContentContainer,
-  StyledBackgroundContainer,
-} from './styles';
+import { BackgroundImage, ContentContainer, StyledBackgroundContainer } from './styles';
 
 const Parallax: React.FC<Partial<ScreenBackgroundProps>> = ({
   testID,

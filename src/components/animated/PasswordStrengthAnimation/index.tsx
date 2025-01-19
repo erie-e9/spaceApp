@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo } from 'react';
 import { Easing, useSharedValue, withTiming, useAnimatedStyle } from 'react-native-reanimated';
-import { useTheme } from 'styled-components';
-import { PasswordStrengthProps } from '@hooks/utils/usePasswordStrength';
+import { useTheme } from 'styled-components/native';
+import { PasswordStrengthProps } from '@hooks';
 import { Container, StrengthBar } from './styles';
 
 const PasswordStrengthAnimation: React.FC<PasswordStrengthProps> = ({ passwordStrength }) => {

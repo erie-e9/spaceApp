@@ -174,6 +174,7 @@ const DeviceSVGComponent = (props: DeviceSVGProps, ref: Ref<SVGSVGElement>) => {
   );
 };
 
+DeviceSVGComponent.displayName = 'DeviceSVGComponent';
 const ForwardRef = forwardRef(DeviceSVGComponent);
 const DeviceSVG = memo(ForwardRef);
 export default memo(DeviceSVG);

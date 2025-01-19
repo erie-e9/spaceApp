@@ -1,5 +1,5 @@
 import { api } from '@hooks/api';
-import { type Task } from '@utils/types';
+import type { Task } from '@types';
 
 export const apiTasks = api({
     baseUrl: process.env.API_REST_BASE || '',

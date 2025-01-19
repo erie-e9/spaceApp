@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { type RefreshTokenState, type RefreshTokenPayload } from '@slices/types/refreshToken';
+import type { RefreshTokenState, RefreshTokenPayload } from '@slices/types';
 
 const initialState: RefreshTokenState = {
   content: {},

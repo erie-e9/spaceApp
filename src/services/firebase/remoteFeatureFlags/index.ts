@@ -1,7 +1,7 @@
 import remoteFeatureFlags from '@react-native-firebase/remote-config';
 import { Logger } from '@services';
-import { initialState } from '@slices/shared/remoteConfigFeatures';
-import { type RemoteConfigFeatures, type FeatureStatus } from '@slices/types/remoteConfigFeatures';
+import { initialState } from '@slices/shared';
+import type { RemoteConfigFeatures, FeatureStatus } from '@slices/types';
 
 const firebaseRemoteConfig = {} as Record<keyof RemoteConfigFeatures, string | number>;
 

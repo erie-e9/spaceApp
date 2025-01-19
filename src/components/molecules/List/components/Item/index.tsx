@@ -1,11 +1,12 @@
-import React, { forwardRef, memo, useCallback } from 'react';
+import React, { forwardRef, memo, useCallback, useMemo } from 'react';
 import { SharedValue, useSharedValue } from 'react-native-reanimated';
-import { useTheme } from 'styled-components';
-import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
+import { useTheme } from 'styled-components/native';
+// import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import { ListItem } from '@components/molecules';
 import AnimatedListItem from '../AnimatedListItem';
 import SwipeableItem from '../SwipeableItem';
-import { NullableNumber } from '../types';
+import type { NullableNumber } from '../types';
 import { ListProps } from '../..';
 
 type SwipeDirection = 'left' | 'right';
@@ -41,23 +42,30 @@ const Item: React.FC<Props> = forwardRef(
     const isDragging = useSharedValue(0);
     const draggedItemId = useSharedValue<NullableNumber>(null);
 
-    const renderedItem = renderItem ? (
-      <>{renderItem({ item, index })}</>
-    ) : (
-      <ListItem title={item.username} subtitle={item.post_title} />
+    const renderedItem = useMemo(
+      () =>
+        renderItem ? (
+          renderItem({ item, index })
+        ) : (
+          <ListItem title={item.username} subtitle={item.post_title} />
+        ),
+      [renderItem],
     );
 
-    const handleSwipeableWillOpen = (direction: SwipeDirection) => {
-      onSwipeableWillOpen(direction);
-    };
+    const handleSwipeableWillOpen = useCallback(
+      (direction: SwipeDirection) => {
+        onSwipeableWillOpen(direction);
+      },
+      [onSwipeableWillOpen],
+    );
 
     const rightAction = useCallback(() => {
       renderRightAction?.({ index, ...item });
-    }, [item]);
+    }, [renderRightAction, item, index]);
 
     const leftAction = useCallback(() => {
       renderLeftAction?.({ index, ...item });
-    }, [item]);
+    }, [renderLeftAction, item, index]);
 
     return (
       <>
@@ -122,4 +130,5 @@ const Item: React.FC<Props> = forwardRef(
   },
 );
 
+Item.displayName = 'Item';
 export default memo(Item);

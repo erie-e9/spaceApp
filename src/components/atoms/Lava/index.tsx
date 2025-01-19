@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { BackdropFilter, Blur, CircleProps, Fill } from '@shopify/react-native-skia';
 import randomcolor from 'randomcolor';
-import { type ScreenBackgroundProps } from '@types';
+import type { ScreenBackgroundProps } from '@types';
 import { getRandomNumber, getRandonColorRGB, screen_height, screen_width } from '@utils/functions';
 import {
   Easing,

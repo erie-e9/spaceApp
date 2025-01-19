@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components/native';
 import { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 import LottieView from 'lottie-react-native';
 import { testProperties } from '@utils/functions';
-import { type TouchableProps } from '@types';
+import type { TouchableProps } from '@types';
 import { LoaderDots, Lottie, SVGIcon } from '@components/atoms';
 import {
   AnimatedContainer,
@@ -163,7 +163,7 @@ const ActionButton: React.FC<TouchableProps> = ({
       setAsyncDisabled(true);
     }
     if (onPress) {
-      onPress();
+      onPress?.();
     }
   }, [onPress, asyncDisabled]);
 
@@ -220,7 +220,16 @@ const ActionButton: React.FC<TouchableProps> = ({
         )}
         {!loading && icon && iconType === 'svg' && (
           <IconContainer>
-            {typeof icon === 'string' ? <SVGIcon icon={icon || ''} opposingColor={opposingIconColor} strokeWidth={fontWeight || 1.5} /> : icon}
+            {typeof icon === 'string' ? (
+              <SVGIcon
+                icon={icon || ''}
+                opposingColor={opposingIconColor}
+                strokeWidth={fontWeight || 1.5}
+                iconColor={textColor}
+              />
+            ) : (
+              icon
+            )}
           </IconContainer>
         )}
         {!loading && icon && iconType === 'lottie' && (

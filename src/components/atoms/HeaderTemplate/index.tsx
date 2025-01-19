@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
-import { BackButton } from '@components/molecules';
 import { useNavigation } from '@react-navigation/native';
-import { type ApplicationScreenProps } from '@types';
+import type { ApplicationScreenProps } from '@types';
+import { BackButton } from '@components/molecules';
 import {
   HeaderContainer,
   BackButtonContainer,

@@ -2,30 +2,12 @@ import { useCallback } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Logger, useCopy } from '@services';
-import { type ApplicationScreenProps } from '@types';
+import type { ApplicationScreenProps } from '@types';
 import { testProperties } from '@utils/functions';
 import { useModal, useResponseHandler, useToast } from '@hooks';
 import { OTPInput } from '@components/molecules';
 
-export const useAppAlerts = (): {
-  showFeatureUnavailableToast: (callback?: () => void) => void;
-  showFeatureUnavailableAlert: (callback?: () => void) => void;
-  showBlockedPermissionAlert: (callback?: () => void) => void;
-  showDeniedPermissionAlert: (callback?: () => void) => void;
-  showSendOTPAlert: (callback: (value?: string) => void) => void;
-  showAskForAuthAlert: () => void;
-  showItemCreateActionToastSuccess: (callback?: () => void) => void;
-  showCreateItemActionToastFailure: (callback?: () => void) => void;
-  showUpdateItemActionToastSuccess: (callback?: () => void) => void;
-  showUpdateItemActionToastFailure: (callback?: () => void) => void;
-  showRemoveItemActionToastSuccess: (callback?: () => void) => void;
-  showRemoveItemActionToastFailure: (callback?: () => void) => void;
-  confirmRemoveActionAlert: (callback?: () => void) => Promise<void>;
-  showActionWillBeTriggeredToast: (callback?: () => void) => void;
-  showQueueUpdatedToast: (callback?: () => void) => void;
-  confirmChangeQueueAlert: (callback?: () => void) => Promise<void>;
-  confirmRemoveQueueActionAlert: (callback?: () => void) => Promise<void>;
-} => {
+export const useAppAlerts = () => {
   const { showModal, hideModal } = useModal();
   const { getCopyValue } = useCopy();
   const { setLoading } = useResponseHandler();
@@ -88,12 +70,16 @@ export const useAppAlerts = (): {
     showModal({
       type: 'alert',
       showCancelIcon: true,
+      isVisible: true,
       title: 'authentication:Authentication.otp.alert.title',
       description: 'authentication:Authentication.otp.alert.description',
       body: (
         <OTPInput
           length={4}
-          onSuccess={callback}
+          onSuccess={async () => {
+            await hideModal();
+            await callback();
+          }}
           {...testProperties('OTPInput')}
           // error={errorCode}
           code={'1234'}
@@ -125,7 +111,7 @@ export const useAppAlerts = (): {
               index: 2,
               routes: [
                 { name: 'Shared', params: { screen: 'Home' } },
-                { name: 'Shared', params: { screen: 'Settings' } },
+                { name: 'Shared', params: { screen: 'Menu' } },
                 { name: 'Auth', params: { screen: 'Authentication' } },
               ],
             }),

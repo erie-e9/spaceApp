@@ -1,5 +1,5 @@
 export { default as Modal } from '@components/organisms/Modal';
-export { default as OptionSelectorDrawer } from '@components/organisms/OptionSelectorDrawer';
+export { default as OptionSelectorDrawer, type OptionSelectorItemProps } from '@components/organisms/OptionSelectorDrawer';
 export { default as MenuList } from '@components/organisms/MenuList';
 export { default as MultiStep } from '@components/organisms/MultiStep';
 export { default as DatePicker } from '@components/organisms/DatePicker';

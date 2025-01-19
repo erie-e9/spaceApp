@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { type ApplicationScreenProps } from '@types';
 import { Logger } from '@services';
-import { RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
+import type { ApplicationScreenProps } from '@types';
+import type { RemoteConfigFeatures } from '@slices/types';
 import { useLinking } from '@hooks';
 
 interface ContactItem {

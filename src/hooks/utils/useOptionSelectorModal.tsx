@@ -1,8 +1,7 @@
 import React from 'react';
 import { useCallback } from 'react';
 import { useModal } from '@hooks';
-import { OptionSelectorDrawer } from '@components/organisms';
-import { OptionSelectorItemProps } from '@components/organisms/OptionSelectorDrawer';
+import { OptionSelectorDrawer, type OptionSelectorItemProps } from '@components/organisms';
 
 interface OptionsSelectorProps {
   title: string;

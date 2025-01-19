@@ -26,7 +26,7 @@ export const FeaturesContainer = styled.View`
 `;
 
 export const FeatureButton = styled(ActionButton)`
-    border-width: 0px;
+    border-width: ${getNormalizedHorizontalSize(0)}px;
     margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
     /* background-color: ${({ theme }) => theme.tokens.colors.tertiary200}; */

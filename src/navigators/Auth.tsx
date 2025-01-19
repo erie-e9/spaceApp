@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { TransitionPresets, createStackNavigator } from '@react-navigation/stack';
-import { type ApplicationStackParamList } from '@types';
+import type { ApplicationStackParamList } from '@types';
 import { Authentication, SignUp, OnBoarding } from '@components/screens/Auth';
 
 export type signUpMethod = 'form' | 'socialMedia';

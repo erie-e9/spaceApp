@@ -70,18 +70,6 @@ export const LeftIcon = styled.View`
   padding-left: ${getNormalizedHorizontalSize(10)}px;
 `;
 
-export const RightIconStyled = styled.View<{
-  multiline?: boolean;
-}>`
-  justify-self: center;
-  justify-content: flex-start;
-  margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
-  width: ${getNormalizedHorizontalSize(20)}px;
-  height: ${({ multiline }) => (multiline ? '100%' : 'auto')};
-  background-color: transparent;
-`;
-
 export const FooterContainer = styled.View`
   flex-direction: row;
   position: absolute;

@@ -1,8 +1,7 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Logger } from '@services';
-import { type ApplicationScreenProps } from '@types';
 import { email, password } from '@utils/forms/validators/fields';
 import {
   useModal,
@@ -11,14 +10,9 @@ import {
   useResponseHandler,
   useBiometrics,
 } from '@hooks';
-import { phoneNumberOrEmailRegEx, trimValues } from '@utils/functions';
+import { isEmpty, phoneNumberOrEmailRegEx, trimValues } from '@utils/functions';
 import { useCheckPendingProcess } from './useCheckPendingProcess';
-
-type NavigationType = ApplicationScreenProps;
-
-export interface Props {
-  navigation: NavigationType;
-}
+import { Props } from '..';
 
 type FormType = 'logIn' | 'signUp' | 'accountRecovery';
 
@@ -131,7 +125,7 @@ export const useAuthentication = ({ navigation }: Props) => {
 
   const formik = useFormik({
     initialValues: {
-      phoneNumberOrEmail: '6182908181',
+      phoneNumberOrEmail: '',
       email: '',
       password: '',
     },
@@ -140,7 +134,7 @@ export const useAuthentication = ({ navigation }: Props) => {
     validateOnBlur: false,
     onSubmit: async (values) => {
       try {
-        setLoading(true);
+
         const cleanedValues = trimValues(values);
 
         if (toggleForm !== 'logIn') {
@@ -151,25 +145,25 @@ export const useAuthentication = ({ navigation }: Props) => {
           );
         } else {
           if (!loggedOnDevice) {
-            await storeToken(
-              'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQyZDQ0NGNmOGM1ZTNhZTgzODZkNjZhMTNhMzE2OTc2YWEzNjk5OTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMjQ5NDQwMTQyOTItcTV0aWpmZTVkM2hjNDdtMXFhNmxmdjFxZDAxaXF1MXIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIxMjQ5NDQwMTQyOTItdm1rdDhyY2ZvOW5tMTAxanAwNm01bmNzZG8wNDQ0azguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDEzNjUwNTM4NTEwNjUxMDUwNTYiLCJlbWFpbCI6ImVyaWN0b3JyZXNhbmRyYWRlLjFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ6MnVoUUVoYVNRdlczVmphSkxrS29nIiwibm9uY2UiOiIzaHU5d2xuUVZrVWlNUUdpeDNjWjhXelUxa0lJUTFMMEpOWDZ3emltekZZIiwibmFtZSI6IkVyaWMgVG9ycmVzIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0x1d2RDY190eHh6TFh1bUttbGNyZ1ZGVnpVSXZKTDQwWnA0ZG1YZ2FwZ2dkUHlhOWZNPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkVyaWMiLCJmYW1pbHlfbmFtZSI6IlRvcnJlcyIsImlhdCI6MTcyNDAwNjgwNCwiZXhwIjoxNzI0MDEwNDA0fQ.l5wnLgKevjUjSVmtIrI_i6hHl0m239-UBt9DHz0L5i2EYNi6RH8cLNeKTc80LHHX07QgT98A7ExYZ7fjaI1H50LyiXHouKfiJjGilEabWcFCcejkIvcGukRkdVueIQEu5k5GLvM83eruYw2e8bQMplBk3kPYN22BAPOn4VjwkJ4fcrfNukNA5A3024w83f-X3-PwoCaLt5XYiAUlXuvIX6sRnwjWI9vSZ5qhT939txZ6yIMME5nA3Ll4WfLPGLfOafESWkHCqLPHnmxEOiKXXyrZYBryNpzG7rdaW5PcZyzXcKzrw4MftHaMpENvsbwUZwX7L64GlnQuJOZ_Z3gAKQ',
-            );
-            await setTimeout(async () => {
-              await navigation.navigate('Settings', {
+            await setTimeout(() => {
+              storeToken(
+                'soy.un.token',
+              );
+              navigation.navigate('MenuNavigator', {
                 screen: 'Menu',
               } as never);
-            }, 5000);
+            }, 3500);
           } else {
             // was logged on this device //! awaiting for API
-            setTimeout(async () => {
-              await storeToken(
-                'eyJhbGciOiJSUzI1NiIsImtpZCI6ImQyZDQ0NGNmOGM1ZTNhZTgzODZkNjZhMTNhMzE2OTc2YWEzNjk5OTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIxMjQ5NDQwMTQyOTItcTV0aWpmZTVkM2hjNDdtMXFhNmxmdjFxZDAxaXF1MXIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIxMjQ5NDQwMTQyOTItdm1rdDhyY2ZvOW5tMTAxanAwNm01bmNzZG8wNDQ0azguYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDEzNjUwNTM4NTEwNjUxMDUwNTYiLCJlbWFpbCI6ImVyaWN0b3JyZXNhbmRyYWRlLjFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJ6MnVoUUVoYVNRdlczVmphSkxrS29nIiwibm9uY2UiOiIzaHU5d2xuUVZrVWlNUUdpeDNjWjhXelUxa0lJUTFMMEpOWDZ3emltekZZIiwibmFtZSI6IkVyaWMgVG9ycmVzIiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS9hL0FDZzhvY0x1d2RDY190eHh6TFh1bUttbGNyZ1ZGVnpVSXZKTDQwWnA0ZG1YZ2FwZ2dkUHlhOWZNPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkVyaWMiLCJmYW1pbHlfbmFtZSI6IlRvcnJlcyIsImlhdCI6MTcyNDAwNjgwNCwiZXhwIjoxNzI0MDEwNDA0fQ.l5wnLgKevjUjSVmtIrI_i6hHl0m239-UBt9DHz0L5i2EYNi6RH8cLNeKTc80LHHX07QgT98A7ExYZ7fjaI1H50LyiXHouKfiJjGilEabWcFCcejkIvcGukRkdVueIQEu5k5GLvM83eruYw2e8bQMplBk3kPYN22BAPOn4VjwkJ4fcrfNukNA5A3024w83f-X3-PwoCaLt5XYiAUlXuvIX6sRnwjWI9vSZ5qhT939txZ6yIMME5nA3Ll4WfLPGLfOafESWkHCqLPHnmxEOiKXXyrZYBryNpzG7rdaW5PcZyzXcKzrw4MftHaMpENvsbwUZwX7L64GlnQuJOZ_Z3gAKQ',
+            setTimeout(() => {
+              storeToken(
+                'soy.un.token',
               );
-              await navigation.navigate('Settings', {
+              navigation.navigate('MenuNavigator', {
                 screen: 'Menu',
               } as never);
               // await setLoading(false);
-            }, 5000);
+            }, 3500);
           }
         }
       } catch (error) {
@@ -255,12 +249,18 @@ export const useAuthentication = ({ navigation }: Props) => {
     setEnableBiometrics((prevState) => !prevState);
   }, []);
 
+  useEffect(() => {
+    if (!isEmpty(formik.errors) && loading) {
+      setLoading(false);
+    }
+  }, [formik.errors, loading]);
+
   const primaryButtonHandler = useCallback(() => {
-    // if (isEmpty(formik.errors)) {
-    setLoading(false);
+    setLoading(true);
+
     formik.handleSubmit();
-    // }
-  }, [formik.errors]);
+  }, [formik]);
+
 
   const primaryButton = useMemo(() => {
     const titleMap = {

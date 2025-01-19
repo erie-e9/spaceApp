@@ -98,10 +98,10 @@
       "tertiary800": "#D5D8E2",
       "tertiary900": "#F6F7F9",
       "tertiary950": "#F9FAFB",
-      "success_status": "#36F2AE",
-      "danger_status": "#FF4255",
-      "warning_status": "#FEBC16",
-      "info_status": "#1A9AFC"
+      "success_status": "#2CC88E",
+      "danger_status": "#CD3140",
+      "warning_status": "#ECB21E",
+      "info_status": "#167DCD"
     }
   },
   "theme1": {
@@ -203,10 +203,10 @@
       "tertiary800": "#D1D1D1",
       "tertiary900": "#E7E7E7",
       "tertiary950": "#F6F6F6",
-      "success_status": "#36F2AE",
-      "danger_status": "#FF4255",
-      "warning_status": "#FEBC16",
-      "info_status": "#1A9AFC"
+      "success_status": "#2CC88E",
+      "danger_status": "#CD3140",
+      "warning_status": "#ECB21E",
+      "info_status": "#167DCD"
     }
   },
   "theme2": {
@@ -308,10 +308,10 @@
       "tertiary800": "#FFF288",
       "tertiary900": "#FFFBC2",
       "tertiary950": "#FEFCE8",
-      "success_status": "#36F2AE",
-      "danger_status": "#FF4255",
-      "warning_status": "#FEBC16",
-      "info_status": "#1A9AFC"
+      "success_status": "#2CC88E",
+      "danger_status": "#CD3140",
+      "warning_status": "#ECB21E",
+      "info_status": "#167DCD"
     }
   },
   "theme3": {
@@ -413,10 +413,10 @@
       "tertiary800": "#CACAFB",
       "tertiary900": "#E2E2FD",
       "tertiary950": "#EFEFFE",
-      "success_status": "#36F2AE",
-      "danger_status": "#FF4255",
-      "warning_status": "#FEBC16",
-      "info_status": "#1A9AFC"
+      "success_status": "#2CC88E",
+      "danger_status": "#CD3140",
+      "warning_status": "#ECB21E",
+      "info_status": "#167DCD"
     }
   },
   "theme4": {
@@ -518,10 +518,10 @@
       "tertiary800": "#AAF5F7",
       "tertiary900": "#D2FBFB",
       "tertiary950": "#EDFEFE",
-      "success_status": "#36F2AE",
-      "danger_status": "#FF4255",
-      "warning_status": "#FEBC16",
-      "info_status": "#1A9AFC"
+      "success_status": "#2CC88E",
+      "danger_status": "#CD3140",
+      "warning_status": "#ECB21E",
+      "info_status": "#167DCD"
     }
   }
 }

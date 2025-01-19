@@ -1,6 +1,6 @@
 import React, { ReactElement, memo } from 'react';
 import { Platform } from 'react-native';
-import { type Language } from '@slices/types/appPreferences';
+import type { Language } from '@slices/types';
 import { testProperties } from '@utils/functions';
 import languagesList from '@assets/shared/languagesList.json';
 import { useCopy } from '@services';
@@ -22,7 +22,7 @@ export const ModalItem = ({
 }: ModalItemProps): ReactElement => {
   const { getCopyValue } = useCopy();
   const onPressHandler = () => {
-    if (onPress) onPress();
+    onPress?.();
   };
 
   return (

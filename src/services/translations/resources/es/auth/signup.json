@@ -119,12 +119,6 @@
           "validations": {
             "required": "La fecha de nacimiento es necesaria.",
             "matches": "Por favor, ingresa una fecha de nacimiento válida."
-          },
-          "labels": {
-            "day": "Día",
-            "month": "Mes",
-            "year": "Año",
-            "submit": "Seleccionar"
           }
         },
         "genre": {

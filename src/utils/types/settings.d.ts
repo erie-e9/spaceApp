@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
+import type { RemoteConfigFeatures } from '@slices/types';
 
 export type InfoType = 'aboutUs' | 'termsOfUse' | 'privacyPolicy';
 

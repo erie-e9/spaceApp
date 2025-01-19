@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Keyboard } from 'react-native';
 import { useFormik } from 'formik';
-import { type Task } from '@types';
+import type { Task } from '@types';
 import { Logger } from '@services';
 import { dayjs, formatDate } from '@utils/formatters';
 import { labels } from '@utils/forms/labels';
@@ -58,27 +58,26 @@ export const useTask = ({ navigation, route }: TaskProps) => {
     onSubmit: async (values) => {
       try {
         setLoading(true);
-        const formatedstatus: number | null = Number(values.status) > 0 ? Number(values.status) : null;
+        const formatedstatus: number = Number(values.status);
         const existLocalItem = await getMMKVItem(id);
         const timestamp = new Date().toISOString();
         const dueDate = values.due_date !== undefined ? `${formatDate(values.due_date, 'YYYY-MM-DD')}T${timestamp.split('T')[1]}` : undefined;
 
-        if (existLocalItem || index > 0 || method) {
+        if (existLocalItem || Number(index) > 0 || method) {
           if (method === 'DELETE') {
             await confirmChangeQueueAlert(async () => {
-              await updateMMKVItem(id || index, { ...values, status: formatedstatus, due_date: dueDate, timestamp: timestamp, method: 'PUT' })
-              await navigation.goBack();
+              await updateMMKVItem(id || Number(index), { ...values, status: formatedstatus, due_date: dueDate, timestamp: timestamp, method: 'PUT' })
             });
           } else if (method === 'PUT' || method === 'PATCH' || method === 'POST') {
-            await updateMMKVItem(id || index, { id, ...values, status: formatedstatus, due_date: dueDate, timestamp: timestamp, method, user_id: 1 });
-            await navigation.goBack();
+            await updateMMKVItem(id || Number(index), { id, ...values, status: formatedstatus, due_date: dueDate, timestamp: timestamp, method, user_id: 1 });
           }
+          await navigation.goBack();
         } else {
           if (id) {
             await updateTaskHook({ id, ...values, status: formatedstatus, due_date: dueDate });
           } else {
             await navigation.goBack();
-            await addTaskHook({ ...values, status: formatedstatus });
+            await addTaskHook({ ...values, status: formatedstatus, due_date: dueDate });
           }
         }
       } catch (error) {

@@ -54,7 +54,7 @@ export const Form: React.FC<Props> = ({ hookHandler }) => {
           keyboardType={hookHandler.toggleForm === 'signUp' ? 'phone-pad' : 'email-address'}
           importantForAutofill="yes"
           textContentType={hookHandler.toggleForm === 'signUp' ? 'telephoneNumber' : 'emailAddress'}
-          rightIcon="clear"
+          rightIcon="close"
           rightIconHandler={() => hookHandler.clearInputHandler('phoneNumberOrEmail')}
           autoCorrect={false}
           onSubmitEditing={hookHandler.toggleForm === 'logIn' ? focusOnPassword : submitHandler}
@@ -81,7 +81,7 @@ export const Form: React.FC<Props> = ({ hookHandler }) => {
           textContentType="emailAddress"
           autoCorrect={false}
           onSubmitEditing={submitHandler}
-          rightIcon="clear"
+          rightIcon="close"
           rightIconHandler={() => hookHandler.clearInputHandler('email')}
           returnKeyType="send"
           returnKeyLabel="send"
@@ -106,9 +106,6 @@ export const Form: React.FC<Props> = ({ hookHandler }) => {
           importantForAutofill="yes"
           textContentType="password"
           rightIcon="passwordToggle"
-          rightIconHandler={() => {
-            hookHandler.passwordVisibleHandler(!hookHandler.passwordVisible);
-          }}
           onSubmitEditing={submitHandler}
           returnKeyType="send"
           returnKeyLabel="send"

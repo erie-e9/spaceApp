@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import {
-  ColorMatrix,
   Fill,
   Image,
   ImageShader,
@@ -11,9 +10,9 @@ import {
   useVideo,
   vec,
 } from '@shopify/react-native-skia';
-import { useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
-import { testProperties, getRandonColorRGB } from '@utils/functions';
-import { ScreenBackgroundProps } from '@types';
+import { useSharedValue } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
+import type { ScreenBackgroundProps } from '@types';
 import { useTheme } from '@hooks';
 import { ContentContainer, SkiaCanvas, StyledBackgroundContainer } from './styles';
 

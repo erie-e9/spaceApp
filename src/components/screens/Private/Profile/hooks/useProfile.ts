@@ -1,10 +1,10 @@
 import { useCallback, useMemo } from 'react';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import { type User } from '@slices/types';
-import { type ApplicationScreenProps, type MenuItemProps } from '@types';
-import { labels } from '@utils/forms/labels';
+import type { User } from '@slices/types';
+import type { ApplicationScreenProps, MenuItemProps } from '@types';
 import { useAuthenticationHook, useModal, useResponseHandler } from '@hooks';
+import { labels } from '@utils/forms/labels';
 
 export const useProfile = (): {
   user: User;
@@ -211,7 +211,7 @@ export const useProfile = (): {
             await setLoading(false);
           },
           isSimpleButton: true,
-          color: 'secondary950',
+          color: 'typography950',
         },
         {
           text: 'profile:Profile.alerts.deleteAccount.options.confirmButton',

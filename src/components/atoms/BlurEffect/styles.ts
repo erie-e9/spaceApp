@@ -9,12 +9,6 @@ export const StyledBackgroundContainer = styled.View`
 
 export const StyledTextContainer = styled(Animated.Text)``;
 
-export const ContentContainer = styled.View`
-  flex: 1;
-  width: 100%;
-  height: 100%;
-`;
-
 export const SkiaCanvas = styled(Canvas)`
   flex: 1;
   position: absolute;

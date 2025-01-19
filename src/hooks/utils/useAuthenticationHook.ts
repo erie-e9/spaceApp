@@ -1,6 +1,7 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Logger, validateTokenStructure } from '@services';
-import { type User, type TokenState } from '@slices/types';
+import type { User, TokenState } from '@slices/types';
 import {
   storeToken as storeTokenSlice,
   removeToken as removeTokenSlice,
@@ -13,7 +14,7 @@ import {
 
 export const useAuthenticationHook = (): {
   token: string;
-  storeToken: (token: string) => Promise<void>;
+  storeToken: (token: string) => void;
   removeToken: () => void;
   storeRefreshToken: (token: string) => void;
   removeRefreshToken: () => void;
@@ -24,12 +25,11 @@ export const useAuthenticationHook = (): {
 } => {
   const dispatch = useDispatch();
   const token = useSelector((state: { token: TokenState }) => state.token.content);
-
   const user = useSelector((state: { user: User }) => state.user);
 
-  const storeToken = async (token: string): Promise<void> => {
+  const storeToken = useCallback(async (token: string): void => {
     try {
-      // const { validToken } = await validateTokenStructure(token);
+      const { validToken } = await validateTokenStructure(token);
       // if (validToken) {
       dispatch(storeTokenSlice({ content: token }));
       // }
@@ -37,7 +37,7 @@ export const useAuthenticationHook = (): {
       Logger.error('[useAuthenticationHook] storeToken:', { error });
       throw error;
     }
-  };
+  }, [dispatch]);
 
   const removeToken = (): void => {
     try {
@@ -72,14 +72,14 @@ export const useAuthenticationHook = (): {
     }
   };
 
-  const updateUser = (user: Partial<User>): void => {
+  const updateUser = useCallback((user: Partial<User>): void => {
     try {
       dispatch(updateUserSlice(user));
     } catch (error) {
       Logger.error('[useAuthenticationHook] storeUser:', { error });
       throw error;
     }
-  };
+  }, [dispatch]);
 
   const removeUser = (): void => {
     try {
@@ -88,6 +88,7 @@ export const useAuthenticationHook = (): {
       Logger.error('[useAuthenticationHook] removeUser:', { error });
     }
   };
+
   return {
     token,
     storeToken,

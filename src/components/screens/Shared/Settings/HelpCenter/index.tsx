@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import { type ApplicationStackParamList } from '@types';
+import type { ApplicationStackParamList } from '@types';
 import { FAQs, HelpCenterMenu, BugReporter } from '@components/screens/Shared';
 
 export type HelpCenterParamsList = {
@@ -15,7 +15,6 @@ export const HelpCenterNavigator = (): React.JSX.Element => {
     <Navigator
       initialRouteName="HelpCenterMenu"
       screenOptions={{
-        animationEnabled: true,
         headerShown: false,
         ...TransitionPresets.SlideFromRightIOS,
       }}

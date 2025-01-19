@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { LayoutChangeEvent } from 'react-native';
 import {
   cancelAnimation,
   Easing,
@@ -13,7 +14,6 @@ import { SkeletonProps } from '..';
 export const useSkeleton = ({ animationType, direction, duration }: Partial<SkeletonProps>) => {
   const isXDirectionAnimation = direction === 'leftToRight' || direction === 'rightToLeft';
   const isYDirectionAnimation = direction === 'topToBottom' || direction === 'bottomToTop';
-
   const translatex = useSharedValue(0);
   const translatey = useSharedValue(0);
   const opacity = useSharedValue(1);
@@ -122,6 +122,32 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
     }
   }, [animationType]);
 
+  const handleParentLayout = useCallback((event: LayoutChangeEvent) => {
+    if (parentDimensions.width === -1 && animationType === 'shiver') {
+      setParentDimensions({
+        width: event.nativeEvent.layout.width,
+        height: event.nativeEvent.layout.height,
+      });
+    }
+  }, [parentDimensions, animationType, setParentDimensions]);
+
+  const handleGradientLayout = useCallback((event: LayoutChangeEvent) => {
+    if (gradientDimensions.width === -1) {
+      setGradientDimensions({
+        width: event.nativeEvent.layout.width,
+        height: event.nativeEvent.layout.height,
+      });
+    }
+  }, [gradientDimensions, setGradientDimensions]);
+
+  const gradientStyle = useMemo(
+    () => [
+      isXDirectionAnimation && animatedStyleX,
+      isYDirectionAnimation && animatedStyleY,
+      { width: isXDirectionAnimation ? '80%' : '100%' },
+    ],
+    [isXDirectionAnimation, isYDirectionAnimation, animatedStyleX, animatedStyleY],
+  );
   return {
     parentDimensions,
     setParentDimensions,
@@ -133,5 +159,8 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
     isYDirectionAnimation,
     animatedStyleY,
     coordinates,
+    handleParentLayout,
+    handleGradientLayout,
+    gradientStyle,
   };
 };

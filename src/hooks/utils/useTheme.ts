@@ -1,13 +1,8 @@
 import { useColorScheme } from 'react-native';
 import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { Common, Images, Animations, themes, DefaultVariables } from '@theme';
-import { type Mode } from '@slices/types/appPreferences';
-import {
-  type ThemeVariables,
-  type Theme,
-  type ThemeNavigationTheme,
-  type ThemeNavigationColors,
-} from '@types';
+import type { Mode } from '@slices/types';
+import type { ThemeVariables, Theme, ThemeNavigationTheme, ThemeNavigationColors } from '@types';
 import { useAppPreferences } from '@hooks';
 
 export const useTheme = () => {

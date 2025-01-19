@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
+import type { RemoteConfigFeatures } from '@slices/types';
 
 export const initialState: RemoteConfigFeatures = {
   // shared

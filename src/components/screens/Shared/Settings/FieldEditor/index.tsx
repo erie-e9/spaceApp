@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { RouteProp } from '@react-navigation/core';
-import { type ApplicationScreenProps, type ApplicationStackParamList } from '@types';
+import type { RouteProp } from '@react-navigation/core';
+import type { ApplicationScreenProps, ApplicationStackParamList } from '@types';
 import { useFieldEditor } from './hooks/useFieldEditor';
 import { MultiStepper } from '@components/templates';
 

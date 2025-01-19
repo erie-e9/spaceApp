@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
-import { type OptionsMap, type AlertButtonsProps } from '@slices/types/modal';
-import { useCopy } from '@services';
 import truncate from 'lodash/truncate';
+import { useCopy } from '@services';
+import type { OptionsMap, AlertButtonsProps } from '@slices/types';
 import { testProperties } from '@utils/functions';
 import {
   StyledButton,
@@ -16,7 +16,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
   options,
   handleClose,
   handlerAction,
-  primaryButtonTheme = 'Primary',
+  buttonTheme = 'Primary',
   actions = true,
   buttonsStyles,
 }) => {
@@ -30,9 +30,9 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
         alignment={buttonsStyles?.alignment || 'center'}
       >
         <StyledActionButton
-          title={truncate(getCopyValue(item.text), {length: 16, omission: '...'})}
+          title={truncate(getCopyValue(item.text), { length: 16, omission: '...' })}
           widthButton="auto"
-          textColor={item.color}
+          textColor={item.color || 'typography950'}
           type={item.isSimpleButton ? 'Text' : 'Button'}
           onPress={() => {
             if (item.handler) item.handler();
@@ -48,12 +48,7 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
   return (
     <ActionsWrapper {...testProperties(testID)} optionsLenght={options.length}>
       {!actions && (
-        <StyledButton
-          type="Button"
-          buttonTheme={primaryButtonTheme}
-          onPress={handleClose}
-          title="Ok"
-        />
+        <StyledButton type="Button" buttonTheme={buttonTheme} onPress={handleClose} title="Ok" />
       )}
       <StyledList
         data={options}
@@ -65,7 +60,6 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
           // width: '65%', //! check
           alignItems: 'center',
         }}
-        alignItems={(options.length > 1 && 'flex-end') || undefined}
       />
     </ActionsWrapper>
   );

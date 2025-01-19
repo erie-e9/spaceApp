@@ -1,18 +1,9 @@
 import React, { memo } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SharedParamsList } from '@navigators/Shared';
-import { type Task } from '@utils/types';
-import { Loader } from '@components/molecules';
 import { CallToAction } from '@components/templates';
 import { useTasks } from './hooks/useTasks';
-import TaskItem from './components/TaskItem';
-import {
-  BodyContainer,
-  FeatureButton,
-  FeaturesContainer,
-  ListItems,
-  LoaderContainer,
-} from './styles';
+import { BodyContainer, FeatureButton, FeaturesContainer, ListItems } from './styles';
 
 export interface TasksProps {
   navigation: StackNavigationProp<SharedParamsList>;
@@ -41,34 +32,24 @@ export const Tasks: React.FC<TasksProps> = ({ navigation }) => {
       }
       body={
         <BodyContainer>
-          {useTasksHook.isLoading ? (
-            <Loader width={150} height={75} />
-          ) : (
-            <ListItems
-              data={
-                useTasksHook.itemList.length > 0
-                  ? useTasksHook.itemList
-                  : Array.from({ length: 7 }).map((_) => null)
-              }
-              searchLabel={useTasksHook.tasksSearcher}
-              scrollEnabled={true}
-              useFlashList
-              filterBy={useTasksHook.filterBy}
-              draggable={!true}
-              swipeable={true}
-              renderRightActions={!useTasksHook.isLoading && useTasksHook.renderRightActions}
-              renderLeftActions={!useTasksHook.isLoading && useTasksHook.renderLeftActions}
-              listEmptyComponent={
-                <LoaderContainer>
-                  <Loader width={150} height={75} />
-                </LoaderContainer>
-              }
-              // extraFunction={() => navigation.navigate('Private', { screen: 'Task' })}
-              renderItem={({ item }: { item: Task }) => {
-                return <TaskItem item={item} itemHeight={70} onPress={useTasksHook.taskForm} />;
-              }}
-            />
-          )}
+          <ListItems
+            data={useTasksHook.itemList}
+            searchLabel={useTasksHook.tasksSearcher}
+            filterBy={useTasksHook.filterBy}
+            showEmptyData={!useTasksHook.isLoading && useTasksHook.itemList.length === 0}
+            scrollEnabled={true}
+            useFlashList={true}
+            draggable={!true}
+            swipeable={true}
+            renderRightActions={
+              useTasksHook.itemList.length > 0 ? useTasksHook.renderRightActions : undefined
+            }
+            renderLeftActions={
+              useTasksHook.itemList.length > 0 ? useTasksHook.renderLeftActions : undefined
+            }
+            renderItem={useTasksHook.renderItemComponent}
+            footerComponent={useTasksHook.TaskSkeleton}
+          />
         </BodyContainer>
       }
     />

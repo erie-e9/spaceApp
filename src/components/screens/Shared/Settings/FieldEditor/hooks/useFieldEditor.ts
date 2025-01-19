@@ -4,7 +4,7 @@ import { useFormik } from 'formik';
 import { useIsFocused } from '@react-navigation/native';
 import * as yup from 'yup';
 import { Logger, useCopy } from '@services';
-import { type User } from '@slices/types';
+import type { User } from '@slices/types';
 import { useAuthenticationHook, useToast } from '@hooks';
 import { isEmpty, trimValues } from '@utils/functions';
 import { formSchemas } from '@utils/forms/validators/schemas';
@@ -40,7 +40,7 @@ import {
   country as countryValidator,
 } from '@utils/forms/validators/fields';
 import { labels } from '@utils/forms/labels';
-import { type FieldEditorProps } from '..';
+import type { FieldEditorProps } from '..';
 
 export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
   const { fieldId, fieldName } = route.params;

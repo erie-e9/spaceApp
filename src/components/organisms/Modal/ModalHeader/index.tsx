@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { testProperties } from '@utils/functions';
-import { type ModalProps } from '@slices/types';
+import type { ModalProps } from '@slices/types';
 import { ModalHeaderContainer, TitleContainer, DescriptionContainer, StyledText } from './styles';
 
 export const ModalHeader: React.FC<Partial<ModalProps>> = ({
@@ -23,7 +23,7 @@ export const ModalHeader: React.FC<Partial<ModalProps>> = ({
       )}
       {description && (
         <DescriptionContainer>
-          <StyledText type="Subtitle2" color="typography800">
+          <StyledText type="Subtitle2" color="typography700">
             {description}
           </StyledText>
         </DescriptionContainer>

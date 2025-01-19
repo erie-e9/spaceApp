@@ -1,6 +1,6 @@
 import { StyleProp, ViewStyle } from 'react-native';
 import { AnimatedStyle } from 'react-native-reanimated';
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components/native';
 
 export type ScreenBackgroundType = 'solid' | 'gradient' | 'blur' | 'lava' | 'parallax' | 'loop';
 export type BackgroundType = 'image' | 'video';

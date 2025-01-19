@@ -80,4 +80,5 @@ export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
   );
 });
 
+Lottie.displayName = 'Lottie';
 export default memo(Lottie);

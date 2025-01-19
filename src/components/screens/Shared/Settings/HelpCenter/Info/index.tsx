@@ -1,7 +1,7 @@
 import React, { memo, useLayoutEffect, useMemo } from 'react';
-import { RouteProp } from '@react-navigation/core';
 import { useCopy } from '@services';
-import { type ApplicationStackParamList, type ApplicationScreenProps } from '@types';
+import type { RouteProp } from '@react-navigation/core';
+import type { ApplicationStackParamList, ApplicationScreenProps } from '@types';
 import { CallToAction } from '@components/templates';
 import Body from './components/Body';
 

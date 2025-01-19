@@ -20,9 +20,11 @@ export const AnimatedBottomSheet = styled(Animated.View)`
   z-index: 1000;
   overflow: hidden;
   border-radius: ${getNormalizedHorizontalSize(30)}px;
+  padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px
+  ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
   background-color: ${({ theme }) => theme.tokens.colors.backgroundColor};
-  padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(15)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(15)}px;
+
+
 `;
 
 export const CloseBottomSheetButton = styled(Touchable)`
@@ -34,10 +36,13 @@ export const BodyContainer = styled.View<{ dropdownOptions?: any }>`
   max-height: ${({ dropdownOptions }) =>
     dropdownOptions.height ? getNormalizedVerticalSize(dropdownOptions.height) + 'px' : 'auto'};
   align-items: center;
+  align-self: center;
+  width: 100%;
   justify-content: ${({ dropdownOptions }) => dropdownOptions.justifContent};
+  background-color: transparent;
 `;
 
-export const ListContainer = styled.View<{ dropdownOptions?: any }>`
+export const ListContainer = styled.View`
 `;
 
 export const PanGestureHandlerView = styled.View`
@@ -74,11 +79,10 @@ export const FooterContainer = styled.View<FooterContainerProps>`
   flex: 0.1;
   align-items: center;
   justify-content: center;
-  width: 100%;
+
   position: absolute;
   top: ${({ position }) => position - 65}px;
   z-index: 100;
 `;
 
 export const ActionSubmitButton = styled(ActionButton)``;
-

@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
 import { testProperties } from '@utils/functions';
 import { dayjs } from '@utils/formatters';
 import {

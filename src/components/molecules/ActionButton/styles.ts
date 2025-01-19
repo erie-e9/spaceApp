@@ -1,15 +1,14 @@
-import { PixelRatio } from 'react-native';
+import { PixelRatio, TextStyle } from 'react-native';
 import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { type TouchableProps } from '@types';
-import type * as CSS from 'csstype';
+import type { TouchableProps } from '@types';
 import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Touchable, Typography, Image } from '@components/atoms';
 
 export interface StyleButtonTextProps {
   readonly color?: keyof DefaultTheme['tokens']['colors'];
-  textTransform?: CSS.StandardProperties['textTransform'];
-  fontWeight?: CSS.StandardProperties['fontWeight'];
+  textTransform?: TextStyle['textTransform'];
+  fontWeight?: TextStyle['fontWeight'];
   fontSize?: string | number;
   readonly disabledColor?: keyof DefaultTheme['colors'];
   disabled?: boolean;

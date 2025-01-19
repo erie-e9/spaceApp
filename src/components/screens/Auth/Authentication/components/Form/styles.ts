@@ -17,24 +17,24 @@ export interface SendCodeButtonProps {
   disabledColor?: keyof DefaultTheme['tokens']['colors'];
 }
 
-export const SendCodeButton = styled(Touchable)<SendCodeButtonProps>`
+export const SendCodeButton = styled(Touchable) <SendCodeButtonProps>`
   justify-content: center;
   align-items: center;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px;
   border-radius: ${PixelRatio.roundToNearestPixel(12)}px;
-  border-width: 0px;
+  border-width: ${getNormalizedHorizontalSize(0)}px;
   ${({ theme, disabled, disabledColor }) =>
     theme.mode === 'dark'
       ? css`
           border-color: ${() =>
-            disabled
-              ? disabledColor || theme.tokens.colors.tertiaryL1
-              : theme.tokens.colors.secondary100};
+          disabled
+            ? disabledColor || theme.tokens.colors.tertiaryL1
+            : theme.tokens.colors.secondary100};
         `
       : css`
           border-color: ${() =>
-            disabled
-              ? disabledColor || theme.tokens.colors.tertiaryL2
-              : theme.tokens.colors.primary300};
+          disabled
+            ? disabledColor || theme.tokens.colors.tertiaryL2
+            : theme.tokens.colors.primary300};
         `};
 `;

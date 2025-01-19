@@ -3,9 +3,16 @@ import '@services/translations';
 import React, { useLayoutEffect } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { store, persistor } from '@store';
 import ApplicationNavigator from '@navigators/Application';
 import { useRemoteConfig } from '@hooks';
+
+// This is the default configuration
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.error,
+  strict: true, // Reanimated runs in strict mode by default
+});
 
 const App = () => {
   const { getRemoteFeatures } = useRemoteConfig(store.dispatch);

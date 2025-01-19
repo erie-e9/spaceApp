@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
+import type { RemoteConfigFeatures } from '@slices/types';
 
 export const useRemoteFeaturesSelectorHook = (): RemoteConfigFeatures =>
   useSelector(

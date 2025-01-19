@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
-import { type ApplicationStackParamList, type Task as TypeTask } from '@types';
+import type { ApplicationStackParamList, Task as TypeTask } from '@types';
 import { Profile, Notifications, Tasks, Task, Queue } from '@components/screens/Private';
 
 export type PrivateParamsList = {

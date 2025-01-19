@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
+import { useModal } from '@hooks';
 import { OptionSelectorItemProps } from '..';
 import { OptionButton, OptionButtonContainer, OptionContainer, OptionButtonLabel } from './styles';
-import { useModal } from '@hooks';
 
 interface OptionSelectorItemPropsExtended {}
 
@@ -14,6 +14,11 @@ export const OptionSelectorItem: React.FC<
     hideModal();
   }, []);
 
+  const onPressHandler = useCallback(() => {
+    onPress?.();
+    closeBottomSheet();
+  }, []);
+
   return (
     <OptionContainer>
       <OptionButtonContainer>
@@ -22,10 +27,7 @@ export const OptionSelectorItem: React.FC<
           icon={icon}
           buttonTheme="Primary"
           onPressType="onPress"
-          onPress={() => {
-            if (onPress) onPress();
-            closeBottomSheet();
-          }}
+          onPress={onPressHandler}
           remoteFeatureFlags={remoteFeatureFlags}
         />
         {title && <OptionButtonLabel textAlign="center">{title}</OptionButtonLabel>}

@@ -1,7 +1,7 @@
 import React, { Fragment, memo, useCallback, useRef } from 'react';
-import { RouteProp } from '@react-navigation/core';
+import type { RouteProp } from '@react-navigation/core';
+import type { ApplicationStackParamList } from '@types';
 import { Logger } from '@services';
-import { type ApplicationStackParamList } from '@types';
 import WebViewHeader from './components/WebViewHeader';
 import { StyledWebView } from './styles';
 

@@ -1,5 +1,6 @@
-import React, { useState, useRef, memo, useCallback } from 'react';
+import React, { useState, useRef, memo, useCallback, useMemo, useEffect } from 'react';
 import { TextInput } from 'react-native';
+import { useTheme } from 'styled-components/native';
 import {
   Easing,
   useSharedValue,
@@ -21,9 +22,18 @@ export interface OTPInputProps {
 
 const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps) => {
   const { hideModal } = useModal();
-  const [otp, setOtp] = useState<Array<any>>(Array(length).fill(''));
+  const theme = useTheme();
+  const [otp, setOtp] = useState<Array<string>>(Array(length).fill(''));
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(0);
   const inputs = useRef<TextInput[]>([]);
   const shakeAnimation = useSharedValue(0);
+  const [isError, setIsError] = useState(!!error);
+
+  useEffect(() => {
+    if (inputs.current[0]) {
+      inputs.current[0].focus();
+    }
+  }, []);
 
   const handleChangeText = (text: string, index: number) => {
     if (text.length === 1) {
@@ -49,6 +59,7 @@ const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps)
       const newOtp = [...otp];
       newOtp[index] = '';
       setOtp(newOtp);
+      setIsError(false);
       for (let i = index + 1; i < length; i++) {
         newOtp[i] = '';
       }
@@ -65,6 +76,7 @@ const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps)
         onSuccess(enteredOtp);
         hideModal();
       } else {
+        setIsError(true);
         shakeInputs();
       }
     },
@@ -98,12 +110,16 @@ const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps)
             onKeyPress={(e) => handleKeyPress(e, index)}
             keyboardType="numeric"
             maxLength={1}
+            selectionColor={theme.tokens.colors.typography800}
             onFocus={() => {
               const newOtp = [...otp];
               newOtp[index] = '';
               setOtp(newOtp);
+              setFocusedIndex(index);
             }}
-            error={!!error}
+            onBlur={() => setFocusedIndex(null)}
+            error={isError && otp.join('').length === length}
+            focused={focusedIndex === index}
             textContentType="oneTimeCode"
             cursorColor="secondary950"
           />

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useGesture } from '../hooks/useGesture';
-import { TListItem } from './types';
+import type { TListItem } from './types';
 import { Image, SVGIcon } from '@components/atoms';
 import {
   AnimatedDraggerContainer,

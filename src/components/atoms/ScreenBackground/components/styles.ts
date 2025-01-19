@@ -30,10 +30,6 @@ export const BackgroundImage = styled(Animated.Image)`
     height: ${screen_height * 1.3}px 
 `;
 
-export const ForegroundContainer = styled(Animated.View)`
-  z-index: 1000;
-`;
-
 export const AnimatedBackgroundImage = styled(Animated.Image)`
   position: absolute;
   width: 1200px;

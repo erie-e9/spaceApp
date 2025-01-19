@@ -9,7 +9,7 @@ import {
   withRepeat,
 } from 'react-native-reanimated';
 import { testProperties } from '@utils/functions';
-import { ScreenBackgroundProps } from '@types';
+import type { ScreenBackgroundProps } from '@types';
 import { AnimatedBackgroundImage, ContentContainer, StyledBackgroundContainer } from './styles';
 
 const AnimatedImageLoop: React.FC<Partial<ScreenBackgroundProps>> = ({

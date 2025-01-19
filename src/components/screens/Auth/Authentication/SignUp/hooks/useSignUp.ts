@@ -1,12 +1,14 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { Keyboard } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Logger } from '@services';
-import { type User } from '@slices/types';
-import { useAuthenticationHook, useToast, useAppAlerts } from '@hooks';
+import type { User } from '@slices/types';
+import type { ApplicationScreenProps } from '@types';
 import { isEmpty, trimValues } from '@utils/functions';
 import { formSchemas } from '@utils/forms/validators/schemas';
+import { useAuthenticationHook, useToast, useAppAlerts, useResponseHandler } from '@hooks';
 import {
   phoneNumber,
   username,
@@ -25,11 +27,12 @@ import {
 } from '@utils/forms/fields';
 import { labels } from '@utils/forms/labels';
 import { StepsProps } from '@components/templates/MultiStepper';
-import { type SignUpProps } from '../../SignUp';
 
-export const useSignUp = ({ navigation }: SignUpProps) => {
+export const useSignUp = () => {
   const [nextStepButtonDisabled, setNextStepButtonDisabled] = useState<boolean>(true);
   const { storeToken, updateUser, user } = useAuthenticationHook();
+  const { setLoading } = useResponseHandler();
+  const navigation: ApplicationScreenProps = useNavigation();
   const { showSendOTPAlert } = useAppAlerts();
   const { accountSchema, accountWithSocialMediaSchema } = formSchemas();
   const step1Filled = !!((user.phoneNumber || user.email) && user.username);
@@ -48,36 +51,20 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
       step1Filled
         ? user
         : {
-          // phoneNumber: '',
-          // username: '',
-          // email: '',
-          // // photo: null,
-          // password: '',
-          // confirmPassword: '',
-          // firstName: '',
-          // lastName: '',
-          // dateOfBirth: '',
-          // genre: '',
-          // streetAddressLine1: '',
-          // streetAddressLine2: '',
-          // zipCode: '',
-          // city: '',
-          // country: '',
-
-          username: 'Erie_e9',
-          email: 'erictorresandrade.1@gmail.com',
-          // photo: null,
-          password: 'qwerty.1Lovegun@0o0o',
-          confirmPassword: 'qwerty.1Lovegun@0o0o',
-          firstName: 'Eric',
-          lastName: 'Torres',
-          dateOfBirth: '27/04/1992',
-          genre: 'man',
-          streetAddressLine1: 'Calle Washington, col. Universal 203, Durango, Dgo.',
-          streetAddressLine2: 'A una calle de blvd. Dolores del Río.',
-          zipCode: '34000',
-          city: 'Durango',
-          country: 'México',
+          phoneNumber: '',
+          username: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          firstName: '',
+          lastName: '',
+          dateOfBirth: '',
+          genre: '',
+          streetAddressLine1: '',
+          streetAddressLine2: '',
+          zipCode: '',
+          city: '',
+          country: '',
           loggedOnDevice: false,
         },
     [user],
@@ -159,18 +146,21 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
                   loggedOnDevice: true,
                 },
             );
+
             useToast.success({
               message: 'signup:SignUp.alerts.signUpSuccess.toastTitle',
               duration: 3000,
             });
             setTimeout(() => {
               navigation.navigate('Private', { screen: 'Profile' } as never);
-            }, 500);
+            }, 5000);
           }
         }
       } catch (error) {
         Logger.log('Error on onSubmit', error);
         throw error;
+      } finally {
+        await setLoading(false);
       }
     },
   });
@@ -206,10 +196,10 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
         : (accountWithSocialMediaSchema[index] as yup.ObjectSchema<any>),
       formik.values,
     );
+
     if (!isEmpty(errors)) {
       formik.setErrors(errors);
-    }
-    if (index < 1 && user.signUpMethod === 'socialMedia') {
+    } else if (index < 1 && user.signUpMethod === 'socialMedia') {
       // phoneNumber is in index 0 and shown for social media
       showSendOTPAlert(() => {
         updateUser({
@@ -293,13 +283,11 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
                 ref: (r: any) => (refs.current.username = r),
                 onSubmitEditing: () =>
                   onSubmitEditingNext('username', user.email !== '' ? 'button' : 'textinput'),
-              },
-              user.email === '' && {
+              }, {
                 ...email,
                 ref: (r: any) => (refs.current.email = r),
                 onSubmitEditing: () => onSubmitEditingNext('email', 'textinput'),
-              }, //? change it to 'button' if photo is available
-              // { ...photo, ref: (r: any) => refs.current.photo = r, },
+              },
               {
                 ...password,
                 ref: (r: any) => (refs.current.password = r),
@@ -361,8 +349,7 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
               },
             ],
           },
-        ]
-        : [
+        ] : [
           // social media
           {
             title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
@@ -427,8 +414,9 @@ export const useSignUp = ({ navigation }: SignUpProps) => {
     ...formik,
     index,
     steps,
-    nextStepButtonDisabled,
     fieldValueHandler,
+    onSubmitHandler,
+    nextStepButtonDisabled,
     prevStepButtonHandler,
     nextStepButtonHandler,
     clearInputHandler,

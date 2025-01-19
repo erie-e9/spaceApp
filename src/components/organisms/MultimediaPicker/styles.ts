@@ -22,7 +22,7 @@ export const AttachmentContainer = styled.View`
   height: auto;
   width: 100%;
   align-items: flex-start;
-  padding: 10px 5px;
+  padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(5)}px;
   border-radius: 15px;
   background-color: ${({ theme }) => theme.tokens.colors.tertiary100};
 `;
@@ -35,15 +35,15 @@ export const AttatchContainer = styled.View<AttatchContainerProps>`
 `;
 
 export const ImagePreview = styled(Animated.View)`
-  margin: 5px;
+  margin: ${getNormalizedVerticalSize(5)}px;
   border-radius: 8px;
   overflow: hidden;
   position: relative;
 `;
 
 export const ImageThumbnail = styled(Image)`
-  width: 70px;
-  height: 70px;
+  width: ${getNormalizedHorizontalSize(70)}px;
+  height: ${getNormalizedVerticalSize(70)}px;
 `;
 
 interface AddButtonProps {
@@ -51,13 +51,13 @@ interface AddButtonProps {
 }
 
 export const AddButton = styled.TouchableOpacity<AddButtonProps>`
+  flex-direction: row;
   width: ${({ fullSize }) => (fullSize ? '100%' : '70px')};
   height: ${({ fullSize }) => (fullSize ? '120px' : '70px')};
-  border-radius: 8px;
   justify-content: center;
   align-items: center;
-  margin: 5px;
-  flex-direction: row;
+  border-radius: 8px;
+  margin: ${getNormalizedVerticalSize(5)}px;
   background-color: ${({ theme }) => theme.tokens.colors.tertiary200};
 `;
 
@@ -65,10 +65,10 @@ export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>
 
 export const DeleteIcon = styled.TouchableOpacity`
   position: absolute;
-  top: 4px;
-  right: 3px;
-  width: 20px;
-  height: 20px;
+  top: ${getNormalizedVerticalSize(2.5)}px;
+  left: ${getNormalizedVerticalSize(1.5)}px;
+  width:  ${getNormalizedHorizontalSize(20)}px;
+  height: ${getNormalizedVerticalSize(20)}px;
   align-items: center;
   justify-content: center;
   border-radius: 50px;

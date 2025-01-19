@@ -8,7 +8,7 @@ import isLeapYear from 'dayjs/plugin/isLeapYear';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import * as RNLocalize from 'react-native-localize';
 import { Logger } from '@services';
-import { Language } from '@slices/types';
+import type { Language } from '@slices/types';
 
 const localesMap: Record<string, () => void> = {
     de: () => require('dayjs/locale/de'),
@@ -20,7 +20,6 @@ const localesMap: Record<string, () => void> = {
 
 export function loadLocale(language?: Language): void {
     try {
-
         const { languageCode } = RNLocalize.getLocales()[0];
         const locale = language || languageCode;
         if (localesMap[locale]) {
@@ -36,8 +35,6 @@ export function loadLocale(language?: Language): void {
         dayjs.locale('en');
     }
 }
-
-loadLocale();
 
 dayjs.extend(relativeTime);
 dayjs.extend(isSameOrBefore);

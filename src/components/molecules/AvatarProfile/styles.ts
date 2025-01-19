@@ -34,7 +34,7 @@ export const ImagePickerButtonContainer = styled.View`
   padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(5)}px
     ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(5)}px;
   border-radius: 20px;
-  border-width: 0.5px;
+  border-width: ${getNormalizedHorizontalSize(0.5)}px;
   border-color: #767676;
   background-color: ${({ theme }) => `${theme.tokens.colors.tertiary50 + 'ab'}`};
 `;

@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { Platform } from 'react-native';
-import { type ApplicationScreenProps, type InfoType } from '@types';
+import type { ApplicationScreenProps, InfoType } from '@types';
 import { InfoHeader } from '@components/molecules';
 import { BodyContainer, StyledScrollView, InfoContainer, StyledText } from './styles';
 

@@ -7,16 +7,18 @@ interface StyledButtonProps {
   disabled?: boolean;
 }
 
-export const StyledButton = styled(ActionButton)<StyledButtonProps>`
+export const StyledButton = styled(ActionButton) <StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const SocialMediaContainer = styled.View`
   flex-direction: column;
-  justify-content: center;
-  background-color: transparent;
+  justify-content: flex-start;
+
   width: 100%;
+  height: ${getNormalizedVerticalSize(80)}px;
+  background-color: transparent;
   padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(0)}px;
 `;
@@ -24,6 +26,8 @@ export const SocialMediaContainer = styled.View`
 export const SocialMediaButtonsContainer = styled.View`
   flex-direction: row;
   justify-content: center;
+  align-items: center;
+  height: ${getNormalizedVerticalSize(60)}px;
   background-color: transparent;
 `;
 
@@ -51,7 +55,7 @@ export const FooterButtonsContainer = styled.View`
   justify-content: center;
   align-items: center;
   height: ${getNormalizedVerticalSize(80)}px;
-  background-color: transparent;
+  background-color: red;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
 `;

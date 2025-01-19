@@ -1,7 +1,7 @@
-import BlurCircle from './BlurCircle';
-import { BlurMask, Canvas } from '@shopify/react-native-skia';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useWindowDimensions } from 'react-native';
+import { BlurMask, Canvas } from '@shopify/react-native-skia';
+import BlurCircle from './BlurCircle';
 
 const BlurBackground = (): JSX.Element => {
   const { width, height } = useWindowDimensions();
@@ -15,7 +15,6 @@ const BlurBackground = (): JSX.Element => {
   return (
     <Canvas style={{ flex: 1 }}>
       <BlurMask blur={0} style="normal" />
-
       {circles.map((_, index) => (
         <BlurCircle
           key={index}

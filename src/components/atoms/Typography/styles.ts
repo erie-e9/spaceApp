@@ -81,17 +81,17 @@ export const Headline5 = createFontStyle(20, 26, 0, 400);
 export const Headline6 = createFontStyle(18, 24, 0.15, 400);
 
 export const Subtitle1 = createFontStyle(16, 24, 0.15, 400);
-export const Subtitle2 = createFontStyle(14, 21, 0.1, 500);
-export const Subtitle3 = createFontStyle(12, 18, 0.4, 400);
+export const Subtitle2 = createFontStyle(14, 18, 0.1, 500);
+export const Subtitle3 = createFontStyle(12, 16, 0.4, 400);
 
 export const Body1 = createFontStyle(16, 24, 0.5, 400);
 export const Body2 = createFontStyle(15, 20, 0.25, 400);
 export const Body3 = createFontStyle(14, 20, 0.25, 400);
 export const Body4 = createFontStyle(13, 18, 0.05, 400);
 
-export const Button = createFontStyle(14, 20, 1.25, 500);
-export const Caption = createFontStyle(12, 16, 0.4, 400);
-export const Label = createFontStyle(11, 16, 0.5, 400);
+export const Button = createFontStyle(13, 17, 0.25, 500);
+export const Caption = createFontStyle(12, 16, 0.3, 400);
+export const Label = createFontStyle(11, 16, 0.2, 400);
 
 export const Text = styled(NativeText) <TextProps>`
   padding-top: ${({ paddingTop }) => getNormalizedVerticalSize(paddingTop || 0)}px;

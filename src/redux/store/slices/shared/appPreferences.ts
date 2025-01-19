@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { type AppPreferencesState, type AppPreferencesPayload } from '@slices/types';
+import type { AppPreferencesState, AppPreferencesPayload } from '@slices/types';
 
 const initialState: Partial<AppPreferencesState> = {
   theme: 'default',

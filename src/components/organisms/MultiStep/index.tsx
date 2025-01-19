@@ -66,4 +66,5 @@ const MultiStep = memo(
 
 MultiStep.Step = Step;
 
+MultiStepBase.displayName = 'MultiStepBase';
 export default MultiStep;

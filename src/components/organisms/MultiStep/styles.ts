@@ -28,29 +28,11 @@ export const ButtonsContainer = styled.View`
   background-color: transparent;
 `;
 
-export const ButtonContainer = styled.View`
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(2)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(2)}px;
-`;
-
 interface StyledButtonProps {
   disabled?: boolean;
 }
 
-export const StyledButton = styled(ActionButton)<StyledButtonProps>``;
-
-export const PointsContainer = styled.View`
-  flex-direction: row;
-  width: 100%;
-  justify-content: flex-end;
-  align-items: center;
-  padding: ${getNormalizedVerticalSize(2.5)}px ${getNormalizedHorizontalSize(0)}px
-    ${getNormalizedVerticalSize(2.5)}px ${getNormalizedHorizontalSize(0)}px;
-  background-color: transparent;
-`;
+export const StyledButton = styled(ActionButton) <StyledButtonProps>``;
 
 // Points
 
@@ -84,16 +66,16 @@ export const CirclePoint = styled.View<{
     color && String(color).includes('#')
       ? color
       : isFilled
-      ? theme.tokens.colors.secondary950
-      : theme.tokens.colors[color || 'primary500']};
+        ? theme.tokens.colors.secondary950
+        : theme.tokens.colors[color || 'primary500']};
   background-color: ${({ theme, activated, isFilled, color }) =>
     activated && !isFilled
       ? color && String(color).includes('#')
         ? color
         : theme.tokens.colors[color || 'primary500']
       : isFilled && !activated
-      ? 'transparent'
-      : theme.tokens.colors.secondary950};
+        ? 'transparent'
+        : theme.tokens.colors.secondary950};
 `;
 
 export const TouchablePoints = styled.TouchableHighlight.attrs({
@@ -104,6 +86,7 @@ export const TouchablePoints = styled.TouchableHighlight.attrs({
   justify-content: center;
   align-items: center;
 `;
+
 export const ProgressBarContainer = styled.View`
   width: 100%;
   padding-horizontal: ${getNormalizedHorizontalSize(5)}px;
@@ -116,7 +99,7 @@ export const ProgressBarBackground = styled.View`
   overflow: hidden;
 `;
 
-export const ProgressBarFill = styled(Animated.View)<{
+export const ProgressBarFill = styled(Animated.View) <{
   color?: string | keyof DefaultTheme['tokens']['colors'];
 }>`
   height: 100%;

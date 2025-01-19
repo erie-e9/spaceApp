@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { QueueMethodType } from '@types';
+import type { QueueMethodType } from '@types';
 import { CallToAction } from '@components/templates';
 import { useQueue } from './hooks/useQueue';
 import QueueItem from './components/QueueItem';
@@ -10,7 +10,7 @@ export interface IQueueItem {
   method: QueueMethodType;
   body: any;
   timestamp?: string;
-  index?: number;
+  index?: React.Key;
 }
 
 export const Queue: React.FC = () => {
@@ -44,8 +44,9 @@ export const Queue: React.FC = () => {
             scrollEnabled={true}
             draggable={!true}
             swipeable={true}
+            showEmptyData
             useFlashList
-            filterBy={['title', 'description', 'priority']}
+            filterBy={useQueueHook.filterBy}
             renderRightActions={useQueueHook.renderRightActions}
             renderItem={({ item, index }: { item: IQueueItem; index: React.Key }) => {
               return <QueueItem key={index} item={{ ...item, index }} itemHeight={70} />;

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { type TokenState, type TokenPayload } from '@slices/types/token';
+import type { TokenState, TokenPayload } from '@slices/types';
 
-const initialState: TokenState = {
+const initialState: Partial<TokenState> = {
   content: '',
 };
 
@@ -13,7 +13,7 @@ const slice = createSlice({
       state.content = content;
     },
     removeToken: (state) => {
-      state.content = {};
+      state.content = '';
     },
   },
 });

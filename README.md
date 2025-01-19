@@ -1,79 +1,177 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## 🚀 spaceApp | React Native Boilerplate
 
-# Getting Started
+A modern, **state-of-the-art React Native + TypeScript boilerplate** crafted for performance, scalability, and maintainability. Pre-configured project setup that saves time. _(Note: Special flows are not included)_.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+Powered by:
+<img src="src/assets/shared/svg/brands/react.svg" alt="React icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/redux.svg" alt="Redux icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/typescript.svg" alt="Typescript icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/styledcomponents.svg" alt="Styledcomponents icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/firebase.svg" alt="Firebase icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/lottie.webp" alt="Lottie icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/facebook.svg" alt="Facebook icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/google.svg" alt="Google icon" style="width:2.5%; height:auto;">
+Hermes
 
-## Step 1: Start the Metro Server
+### Key Features ✨
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+#### 🛠️ Core Architecture
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- **New Architecture & Fabric**: Built on the latest React Native architecture for enhanced performance and flexibility.
+- **Code Methodologies**: The codebase follows SOLID principles, Atomic Design, KISS, DRY, and Clean Code methodologies.
+- **Redux Toolkit**: Efficient and maintainable state management.
 
-```bash
-# using npm
-npm start
+#### 🗄️ User Experience (UX/UI)
 
-# OR using Yarn
-yarn start
+- **Animated Splash Screen**: Beautifully animated splash screen using Lottie, with support for dark and light modes.
+- **Multi-Theme Support**: Fully customizable themes, including light and dark modes.
+- **Multi-Animated Backgrounds**: Dynamic and animated background styles.
+- **Smooth UI Animations**: Leveraging Lottie and Reanimated for seamless animations.
+- **SVG & WebP Support**: Enhanced image format support for rich visuals.
+- **React-Native-Skia**: High-performance 2D graphics.
+- **Multi-Step Form**: A reusable component with UI styles, supporting complex forms.
+
+#### 🔥 Performance & Optimization Techniques
+
+- **Image Caching**: Optimized image handling for improved performance using `react-native-fast-image`.
+- **Offline Functionality**: Ensures a seamless user experience.
+- **List Performance**: High-performance list handling for large datasets using `flash-list`.
+- **Android Optimization**: Includes Proguard, tree shaking, split builds, and `useLegacyPackaging` for faster build times.
+- **Nitro Modules and New Architecture-Based Libraries**: Preference for updated, smaller, and well-optimized packages.
+- **Render Techniques**: Utilizes React hooks to optimize rendering and minimize re-renders.
+
+#### 🔐 Security
+
+- **SSL Pinning**: Establishes a secure link between a web server and the app, enabling an encrypted connection.
+- **Device Trust Check**: Detects potentially hacked or untrusted devices, installed apps, or insecure environments.
+- **Code Obfuscation**: Android Proguard obfuscates the code.
+- **Encrypted Storage**: Provides secure and fast storage using `react-native-mmkv`.
+- **Keychain Integration**: Implements Keychain on iOS devices for storing sensitive values securely.
+
+#### 🧩 Additional Features
+
+- **Multilingual Support (GE | EN | ES | FR | PO)**: Integrated with i18next for seamless localization; the app starts with the device's language.
+- **Authentication**: Includes form-based authentication.
+- **Social Media Authentication**: Simplified login via popular social media platforms.
+- **In-App Web Viewer**: Embedded browser for enhanced user experience.
+- **Custom Hooks & Components**: Built for maintainability and reusability.
+- **Responsive UI Support**: Consistent experience across screen sizes.
+- **API Integration with Queue and Retry actions**: Simplified network request implementation. It includes a better user experience with enqueue and retry API request features.
+- **Firebase Remote Config**: Remotely enable or disable features using the Firebase console.
+- **Biometrics**: Supports authentication and action confirmation via biometrics.
+
+---
+
+### Getting Started
+
+#### Requirements
+
+- Node.js 18+ and npm/yarn
+- React Native CLI
+- Xcode (for iOS development)
+- Android Studio (for Android development)
+
+#### Quick start
+
+1. To create a new project using the boilerplate simply run:
+   ```bash
+   npx @react-native-community/cli@latest init MyApp --template @erie_e9/react-native-spaceApp
+   ```
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
+3. Run the project:
+   - Start Metro:
+     ```bash
+     yarn start
+     ```
+   - Select platform:
+     - iOS:
+     ```bash
+     yarn ios
+     ```
+     - Android:
+     ```bash
+     yarn android
+     ```
+
+---
+
+### Project Structure
+
+```plaintext
+spaceApp/
+├── src/
+│   ├── assets/       # Static assets like images, svgs, fonts, etc.
+│   ├── components/   # Reusable UI components (Atomic Design)
+│   ├── hooks/        # Custom React hooks
+│   ├── navigators/   # Navigation setup (React Navigation)
+│   ├── redux/        # Slices and types for state management
+│   ├── services/     # Firebase, utilities, language files, etc.
+│   ├── theme/        # Theme definitions
+│   ├── utils/        # Utility functions and helpers
+│   └── App.tsx       # Main application entry point
+├── android/          # Android-specific configuration
+├── ios/              # iOS-specific configuration
+└── package.json      # Project dependencies
 ```
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+### Demo
 
-### For Android
+#### Authentication: Sign-In and Sign-Up
 
-```bash
-# using npm
-npm run android
+<div style="display: flex; justify-content: space-around;">
+  <img src="src/assets/screenshots/auth.gif" alt="Sign-In" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/signup.gif" alt="Sign-Up" style="width:40%; height:auto;">
+</div>
 
-# OR using Yarn
-yarn android
-```
+#### Home and Help (Report a Bug)
 
-### For iOS
+<div style="display: flex; justify-content: space-around;">
+  <img src="src/assets/screenshots/home.gif" alt="Home" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/help.gif" alt="Help" style="width:40%; height:auto;">
+</div>
 
-```bash
-# using npm
-npm run ios
+#### Menu and Preferences
 
-# OR using Yarn
-yarn ios
-```
+<div style="display: flex; justify-content: space-around;">
+  <img src="src/assets/screenshots/menu.gif" alt="Menu" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/preferences.gif" alt="Preferences" style="width:40%; height:auto;">
+</div>
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+#### CRUD: Tasks and Offline Features
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+<div style="display: flex; justify-content: space-around;">
+  <img src="src/assets/screenshots/tasks.gif" alt="Tasks" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/offline.gif" alt="Offline Features" style="width:40%; height:auto;">
+</div>
 
-## Step 3: Modifying your App
+#### Hacked Device Warning and Fallback Screen
 
-Now that you have successfully run the app, let's modify it.
+<div style="display: flex; justify-content: space-around;">
+  <img src="src/assets/screenshots/hackeddevice.gif" alt="Hacked Device Warning" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/fallback.gif" alt="Fallback Screen" style="width:40%; height:auto;">
+</div>
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### Storage packages comparation
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+## ![alt text](src/assets/screenshots/mmkv.png)
 
-## Congratulations! :tada:
+### TODO
 
-You've successfully run and modified your React Native App. :partying_face:
+- **Push Notifications**: Integrated push notifications for real-time updates.
+- **Background fetch**: Updates meanwhile app is closed.
+- **Performance**: Integrate react-compiler-runtime to provide a whole app helper with re-renders and app interaction.
 
-### Now what?
+### License
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+This project is licensed under the [MIT License](LICENSE).
 
-# Troubleshooting
+---
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+### Acknowledgments
 
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- ❤️ Built with love using React Native-CLI.

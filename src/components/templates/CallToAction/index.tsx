@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components/native';
 import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
-import { type TouchableProps, type ScreenBackgroundProps } from '@types';
+import type { TouchableProps, ScreenBackgroundProps } from '@types';
 import { HeaderTemplate, ScreenBackground } from '@components/atoms';
 import {
   StyledContainer,
@@ -26,7 +26,6 @@ interface CallToActionProps {
   primaryButton?: TouchableProps;
   secondaryButton?: TouchableProps;
   tertiaryButton?: TouchableProps;
-  arrayInlineButtons?: Array<TouchableProps>;
   arrayInlineButtonsFooterText?: JSX.Element | string;
   footer?: JSX.Element;
   backButton?: boolean;
@@ -48,7 +47,6 @@ const CallToAction: React.FC<CallToActionProps & Partial<ScreenBackgroundProps>>
   primaryButton,
   secondaryButton,
   tertiaryButton,
-  arrayInlineButtons,
   arrayInlineButtonsFooterText,
   footer,
   backButton = false,

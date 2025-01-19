@@ -1,6 +1,6 @@
 import React, { Fragment, memo } from 'react';
 import { useModalSelectorHook } from '@redux/hooks';
-import { type ModalProps } from '@slices/types';
+import type { ModalProps } from '@slices/types';
 import Alert from '@components/organisms/Modal/Alert';
 import BottomSheet from '@components/organisms/Modal/BottomSheet';
 import PopupMenu from '@components/organisms/Modal/PopupMenu';

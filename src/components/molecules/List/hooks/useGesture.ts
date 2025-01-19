@@ -11,8 +11,8 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { Gesture } from 'react-native-gesture-handler';
-import { useTheme } from 'styled-components';
-import { NullableNumber, TSongPositions, TItem } from '../components/types';
+import { useTheme } from 'styled-components/native';
+import type { NullableNumber, TSongPositions, TItem } from '../components/types';
 
 export const ANIMATION_DURATION = 600;
 export const useGesture = ({

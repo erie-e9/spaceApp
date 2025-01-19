@@ -13,8 +13,10 @@ export const HeaderContainer = styled.View<HeaderStyle>`
   width: auto;
   justify-content: flex-start;
   min-height: ${({ headerStyle }) =>
-    getNormalizedVerticalSize(headerStyle === 'Primary' ? 80 : 45)}px;
-  /* background-color: ${({ theme }) => theme.tokens.colors.tertiary700}; */
+    getNormalizedVerticalSize(headerStyle === 'Primary' ? 90 : 45)}px;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
+  ${({ headerStyle }) => headerStyle === 'Primary' ? 10 : 0}px ${getNormalizedHorizontalSize(0)}px;
+  background-color: transparent;
 `;
 
 export const HeaderWrapper = styled.View`
@@ -45,7 +47,7 @@ export const BackButtonContainer = styled.View<HeaderStyle>`
   background-color: transparent;
 `;
 
-export const TitleTextContainer = styled.View<HeaderStyle>`
+export const TitleTextContainer = styled.Pressable<HeaderStyle>`
   width: ${({ backButton }) => backButton ? 90 : 100}%;
   justify-content: center;
   min-height: ${({ headerStyle }) =>
@@ -64,7 +66,7 @@ export const HeaderRightContainer = styled.View`
   justify-content: center;
   width: auto;
   height: 100%;
-  background-color: transparent;
+  opacity: 1;
 `;
 
 export const DescriptionContainer = styled.View<HeaderStyle>`

@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { type SettingsRenderItemProps } from '@types';
+import type { SettingsRenderItemProps } from '@types';
 import { testProperties } from '@utils/functions';
 import { SVGIcon } from '@components/atoms';
 import {
@@ -35,7 +35,7 @@ const MenuButton: React.FC<SettingsRenderItemProps> = ({
   hasParent,
 }) => {
   const onPressHandler = useCallback(() => {
-    if (onPress) onPress();
+    onPress?.();
   }, []);
 
   return (
@@ -88,7 +88,7 @@ const MenuButton: React.FC<SettingsRenderItemProps> = ({
                     )}
                     {!rightIcon && !rightBody && selectedOption && (
                       <SelectedOptionContainer>
-                        <SelectedOptionText type="Body3" color="typography950">
+                        <SelectedOptionText type="Button" color="typography950">
                           {selectedOption}
                         </SelectedOptionText>
                       </SelectedOptionContainer>

@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     es6: true,
   },
@@ -27,6 +28,7 @@ module.exports = {
     '@typescript-eslint',
     'prettier',
     'import',
+    'eslint-plugin-react-compiler',
     // 'unused-imports',
     // 'autofix',
   ],
@@ -71,7 +73,8 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'error',
     'import/no-webpack-loader-syntax': 'off',
     'react/default-props-match-prop-types': 'off',
-    'import/no-unresolved': 'error'
+    'import/no-unresolved': 'error',
+    'react-compiler/react-compiler': 'error',
   },
   settings: {
     "import/parsers": {

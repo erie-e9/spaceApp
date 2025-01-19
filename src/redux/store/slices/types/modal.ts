@@ -2,7 +2,6 @@ import { ReactElement } from 'react';
 import { ModalProps as RNModalProps, StyleProp, ViewStyle } from 'react-native';
 import { DefaultTheme } from 'styled-components/native';
 
-
 export type AlignHeaderType = ViewStyle['alignItems'];
 export interface ButtonContainerProps {
   alignment: 'left' | 'center' | 'right';
@@ -20,6 +19,7 @@ export interface OptionsMap {
   text: string;
   minWidth?: number;
   isSimpleButton?: boolean;
+  icon?: JSX.Element | string | any;
   color?: keyof DefaultTheme['tokens']['colors'];
   fontWeight?: number | 'bold' | 'semi-bold' | 'normal';
   handler?: () => void | Promise<void>;
@@ -29,12 +29,12 @@ export interface OptionsMap {
 export interface AlertButtonsProps extends ModalProps {
   testID?: string;
   options: OptionsMap[];
-  handleClose: () => void;
-  handlers?: (() => void)[];
-  handlerAction?: () => void;
-  primaryButtonTheme?: 'Primary' | 'Secondary' | 'Dark';
+  buttonTheme?: 'Primary' | 'Secondary' | 'Dark';
   actions?: boolean;
   buttonsStyles?: ButtonContainerProps;
+  handlers?: (() => void)[];
+  handleClose: () => void;
+  handlerAction?: () => void;
 }
 
 export interface BottomSheetOptions extends RNModalProps {
@@ -71,7 +71,7 @@ export interface ModalProps {
   list?: Partial<ListProps>;
   expandable?: boolean;
   timeout?: number;
-  type?: 'alert' | 'bottomsheet' | null;
+  type?: 'alert' | 'bottomsheet' | 'popup' | null;
   dropdownOptions?: Partial<BottomSheetOptions>;
   status?: 'success' | 'info' | 'warn' | 'error';
   showCancelIcon?: boolean;
@@ -86,4 +86,6 @@ export interface ModalProps {
   onModalHide?: () => void;
   onCloseIcon?: () => void;
   callback?: () => void;
+  triggerButtonPosition?: { x: number; y: number; width: number; height: number };
+  scrollBodyEnabled?: boolean;
 }

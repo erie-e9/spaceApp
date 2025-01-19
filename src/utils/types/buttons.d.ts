@@ -1,6 +1,5 @@
-import { PressableProps } from 'react-native';
-import { DefaultTheme } from 'styled-components';
-import type * as CSS from 'csstype';
+import { PressableProps, TextStyle } from 'react-native';
+import { DefaultTheme } from 'styled-components/native';
 
 export type ButtonType = 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon' | string | null;
 
@@ -19,15 +18,15 @@ export interface TouchableProps extends PressableProps {
   disabledColor?: keyof DefaultTheme['colors'];
   loading?: boolean;
   grouped?: boolean;
-  fontWeight?: CSS.StandardProperties['fontWeight'];
-  lineHeight?: CSS.StandardProperties['lineHeight'];
+  fontWeight?: TextStyle['fontWeight'];
+  lineHeight?: TextStyle['lineHeight'];
   widthButton?: string | number;
   widthIcon?: number;
   heightIcon?: number;
   startFrameAnimation?: number;
   endFrameAnimation?: number;
   buttonType?: string;
-  textTransform?: CSS.StandardProperties['textTransform'] | undefined;
+  textTransform?: TextStyle['textTransform'] | undefined;
   remoteFeatureFlags?: Array<string>;
   minHeight?: number;
   titleFontSize?: number;

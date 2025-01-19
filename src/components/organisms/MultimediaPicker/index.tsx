@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { Fragment, memo, ReactNode, useCallback, useState } from 'react';
 import { LinearTransition, FadeIn, FadeOut } from 'react-native-reanimated';
 import { ImagePickerResponse } from 'react-native-image-picker';
-import { type User } from '@slices/types';
+import type { User } from '@slices/types';
 import { usePhotoLibraryCamera, Type, MediaType, usePermission, useModal } from '@hooks';
 import { SVGIcon } from '@components/atoms';
 import {
@@ -22,7 +22,7 @@ interface ImagePickerProps {
   mediaType?: MediaType;
   selectionLimit?: number;
   panel?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
   onSelect: (response?: User['photo'] | Array<User['photo']>) => void;
 }
 
@@ -113,21 +113,25 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
   };
 
   return (
-    <>
+    <Fragment>
       {panel ? (
         <AttachmentContainer>
           <AttachmentTitleContainer>
-            <Title type="Body2" weight={900} color="tertiary600">
-              {images?.length > 0 ? 'common:forms:fields.controllers.multimedia.addImages': ''}
+            <Title type="Body2" weight={500} color="tertiary600">
+              {images?.length > 0 ? 'common:form.fields.controllers.multimedia.addImages' : ''}{' '}
             </Title>
-            <Title type="Body4" weight={900} color="tertiary600">
+            <Title type="Body4" weight={500} color="tertiary600">
               {`(${images?.length}/${selectionLimit})`}
             </Title>
           </AttachmentTitleContainer>
           <AttatchContainer alignItems={images.length > 0 ? 'flex-start' : 'center'}>
             {images.length >= 1 && (
               <AddButton onPress={toggleAddRemove ? handleClearAll : imagePickerHandler}>
-                {toggleAddRemove ? <SVGIcon icon="remove" iconColor="tertiary600"/> : <SVGIcon icon="add"iconColor="tertiary600" />}
+                {toggleAddRemove ? (
+                  <SVGIcon icon="remove" iconColor="tertiary600" />
+                ) : (
+                  <SVGIcon icon="add" iconColor="tertiary600" />
+                )}
               </AddButton>
             )}
             {images.map((image, index) => (
@@ -139,7 +143,7 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
               >
                 <ImageThumbnail resizeMode="cover" source={{ uri: image?.uri }} />
                 <DeleteIcon onPress={() => handleRemoveImage(index)}>
-                  <SVGIcon icon="close" iconColor="#FFFFFF" />
+                  <SVGIcon icon="close" iconColor="#FFFFFF" width={18} height={18} />
                 </DeleteIcon>
               </ImagePreview>
             ))}
@@ -147,8 +151,10 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
               <AddButton fullSize onPress={imagePickerHandler}>
                 <AddPanelContainer>
                   <SVGIcon icon="add" iconColor="tertiary600" />
-                  <Title type="Body2" weight={900} color="tertiary600">
-                    {selectionLimit > 1 ? 'common:forms:fields.controllers.multimedia.addImages' : 'common:forms:fields.controllers.multimedia.addImage'}
+                  <Title type="Body2" weight={500} color="tertiary600">
+                    {selectionLimit > 1
+                      ? 'common:form.fields.controllers.multimedia.addImages'
+                      : 'common:form.fields.controllers.multimedia.addImage'}
                   </Title>
                 </AddPanelContainer>
               </AddButton>
@@ -158,7 +164,7 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
       ) : (
         <StyledButton onPress={imagePickerHandler}>{children}</StyledButton>
       )}
-    </>
+    </Fragment>
   );
 };
 

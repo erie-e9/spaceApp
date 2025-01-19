@@ -3,7 +3,7 @@ export * from '@hooks/utils/useAppPreferences';
 export * from '@hooks/utils/useBlockScreen';
 export * from '@hooks/utils/useSVG';
 export * from '@hooks/utils/useDeviceSecurity';
-export * from '@hooks/utils/useCheckNet';
+export * from '@hooks/utils/useCheckNetwork';
 export * from '@hooks/utils/useDeviceInfo';
 export * from '@hooks/utils/useToast';
 export * from '@hooks/utils/useNativeActions';

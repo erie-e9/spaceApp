@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import { RouteProp } from '@react-navigation/core';
-import { type ApplicationStackParamList, type ApplicationScreenProps } from '@types';
+import type { RouteProp } from '@react-navigation/core';
+import type { ApplicationStackParamList, ApplicationScreenProps } from '@types';
 import { useProfile } from './hooks/useProfile';
 import { OpacityAnimation, TransformAnimation } from '@components/animated';
 import { AvatarProfile } from '@components/molecules';

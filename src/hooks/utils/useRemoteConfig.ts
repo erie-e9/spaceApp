@@ -1,10 +1,9 @@
-import { useCallback } from 'react';
-import { AnyAction, Dispatch } from 'redux';
-import { updateRemoteConfigFeatures } from '@slices/shared/remoteConfigFeatures';
+import { Dispatch, useCallback } from 'react';
+import { updateRemoteConfigFeatures } from '@slices/shared';
 import { remoteConfigFeatures, Logger } from '@services';
 
 export const useRemoteConfig = (
-  dispatch: Dispatch<AnyAction>,
+  dispatch: Dispatch<any>,
 ): {
   getRemoteFeatures(): Promise<any>;
 } => {

@@ -1,4 +1,12 @@
-import React, { Fragment, memo, useCallback, useEffect, useImperativeHandle, useMemo } from 'react';
+import {
+  forwardRef,
+  Fragment,
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+} from 'react';
 import { ActivityIndicator, ScrollView } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -9,8 +17,8 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { type ModalProps } from '@slices/types';
-import { type Language } from '@slices/types/appPreferences';
+import type { ModalProps } from '@slices/types';
+import type { Language } from '@slices/types';
 import { screen_height, testProperties } from '@utils/functions';
 import { loadLocale } from '@utils/formatters';
 import { changeLanguage as changeLanguageApp } from '@services';
@@ -38,7 +46,7 @@ export interface BottomSheetRefProps {
   isActive: () => boolean;
 }
 
-const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
+const BottomSheet = forwardRef<BottomSheetRefProps, ModalProps>(
   (
     {
       testID = 'BottomSheetID',
@@ -53,6 +61,7 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
       expandable,
       loading,
       lockBackdrop,
+      scrollBodyEnabled = true,
       dropdownOptions,
     },
     ref,
@@ -62,16 +71,12 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
     const { useNativeBackButton } = useNativeActions();
     const translateY = useSharedValue(0);
     const active = useSharedValue(false);
-    const items = useMemo(() => list?.data, [list?.data]);
+    const items = useMemo(() => list?.data ?? [], [list?.data]);
 
     const scrollTo = useCallback((destination: number) => {
       'worklet';
       active.value = destination !== 0;
-
-      translateY.value = withSpring(destination, {
-        stiffness: 200,
-        damping: 25,
-      });
+      translateY.value = withSpring(destination, { stiffness: 200, damping: 25 });
     }, []);
 
     const isActive = useCallback(() => active.value, []);
@@ -80,10 +85,8 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
 
     const handleClose = useCallback(() => {
       scrollTo(100);
-      setTimeout(() => {
-        hideModal();
-      }, 500);
-    }, [translateY.value]);
+      hideModal();
+    }, [scrollTo, hideModal]);
 
     const context = useSharedValue({ y: 0 });
     const gesture = Gesture.Pan()
@@ -140,9 +143,9 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
             switchLanguage(item);
             loadLocale(item);
           } else {
-            const deviceLanguange = await getDeviceLanguage();
+            const deviceLanguage = await getDeviceLanguage();
             switchLanguage(null as Language);
-            changeLanguageApp(deviceLanguange);
+            changeLanguageApp(deviceLanguage);
           }
         }
         if (dropdownOptions?.autoCloseOnSelect) {
@@ -171,18 +174,24 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
               description={description || ''}
               alignHeader={alignHeader}
             />
-            <ScrollView>
+            <ScrollView
+              contentContainerStyle={{
+                flex: 1,
+                alignItems: 'center',
+              }}
+              scrollEnabled={scrollBodyEnabled}
+            >
               {body && <BodyContainer dropdownOptions={dropdownOptions}>{body}</BodyContainer>}
             </ScrollView>
             {loading ? (
-              <ActivityIndicator size={25} />
+              <ActivityIndicator size="small" color="#737373" />
             ) : (
               list &&
               items && (
                 <ListContainer>
                   <StyledList
                     data={items || []}
-                    numColumns={dropdownOptions ? dropdownOptions.numColumns : 1}
+                    numColumns={dropdownOptions?.numColumns || 1}
                     renderItem={({ item }) => (
                       <ModalItem
                         item={item}
@@ -201,8 +210,9 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
                   type="Button"
                   title={'common:bottomsheets.rating.tellUsMore.sumbitButton'}
                   // onPress={submitHandler}
-                  buttonTheme="Primary"
+
                   // disabled={limitExceeded}
+                  buttonTheme="Primary"
                 />
               </FooterContainer>
             )}
@@ -213,4 +223,5 @@ const BottomSheet = React.forwardRef<BottomSheetRefProps, ModalProps>(
   },
 );
 
+BottomSheet.displayName = 'BottomSheet';
 export default memo(BottomSheet);

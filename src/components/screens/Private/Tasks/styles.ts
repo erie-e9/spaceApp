@@ -1,7 +1,7 @@
 
 import styled, { DefaultTheme } from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { screen_height, getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { ActionButton, List } from '@components/molecules';
 
 export const BodyContainer = styled.View`
@@ -10,20 +10,11 @@ export const BodyContainer = styled.View`
     align-items: center;
 `;
 
-export const LoaderContainer = styled.View`
-    flex: 1;
-    width: 100%;
-    height: ${screen_height * 0.6}px;
-    align-items: center;
-    justify-content: center;
-`;
-
 export const ListItems = styled(List)``;
 
 export const FeaturesContainer = styled.View`
     flex-direction: row;
     min-width: auto;
-    /* justify-content: space-around; */
     justify-content: flex-end;
     background-color: transparent;
 `;
@@ -31,17 +22,16 @@ export const FeaturesContainer = styled.View`
 export const FeatureButton = styled(ActionButton) <{
     backgroundColor?: keyof DefaultTheme['tokens']['colors'];
 }>`
-    border-width: 0px;
+    border-width: ${getNormalizedHorizontalSize(0)}px;
     margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
-    /* background-color: ${({ theme, backgroundColor }) => theme.tokens.colors[backgroundColor || 'tertiary200']}; */
 `;
 
 export const SwipeButton = styled.TouchableOpacity<{
     backgroundColor?: keyof DefaultTheme['tokens']['colors'];
 }>`
     height: 100%;
-    width: 60px;
+    width: ${getNormalizedHorizontalSize(60)}px;
     align-items: center;
     justify-content: center;
     border-radius: 0px;
@@ -53,7 +43,25 @@ export const AnimatedView = styled(Animated.View)`
     flex-direction: row;
 `;
 
-export const SwipeableFullContainer = styled.View`
-    /* flex: 1;
-    background-color: ${({ theme }) => theme.tokens.colors.primary500}; */
+export const SwipeableFullContainer = styled.View``;
+
+export const SkeletonContainer = styled.View`
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: ${getNormalizedVerticalSize(10)}px;
+`;
+
+export const LeftContentData = styled.View`
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 100%;
+    width: auto;
+`;
+
+export const RightSkeletonContainer = styled.View`
+    width: auto;
+    align-items: flex-end;
 `;

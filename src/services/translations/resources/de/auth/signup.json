@@ -122,12 +122,6 @@
           },
           "messages": {
             "blockedDate": "{{blockedDate}} ist blockiert, weil {{blockedReason}}"
-          },
-          "labels": {
-            "day": "Tag",
-            "month": "Monat",
-            "year": "Jahr",
-            "submit": "Einreichen"
           }
         },
         "genre": {

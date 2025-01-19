@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { type ApplicationScreenProps } from '@types';
+import type { ApplicationScreenProps } from '@types';
 import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';

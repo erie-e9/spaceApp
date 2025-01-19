@@ -196,7 +196,7 @@
       }
     }
   },
-  "forms": {
+  "form": {
     "fields": {
       "inputs": {
         "search": "Search {{seachPlaceholder}}",
@@ -224,6 +224,12 @@
           "validations": {
             "required": "Date is necessary.",
             "matches": "Please enter a valid date."
+          },
+          "labels": {
+            "day": "Day",
+            "month": "Month",
+            "year": "Year",
+            "submit": "Submit"
           },
           "messages": {
             "blockedDate": "{{blockedDate}} is blocked because {{blockedReason}}"
@@ -253,5 +259,6 @@
         }
       }
     }
-  }
+  },
+  "emptyList": "No items"
 }

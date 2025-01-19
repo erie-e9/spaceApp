@@ -2,7 +2,7 @@ import { useCallback, useMemo } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useCopy } from '@services';
-import { type ApplicationScreenProps, type MenuItemProps } from '@types';
+import type { ApplicationScreenProps, MenuItemProps } from '@types';
 import { isEmpty, screen_height } from '@utils/functions';
 import {
   useAppAlerts,
@@ -164,7 +164,7 @@ export const useSettingsMenu = (): {
         testID: 'preferencesNotificationsButton',
         title: 'menu:Menu.settings.items.appPreferences.items.notifications.title',
         description: 'menu:Menu.settings.items.appPreferences.items.notifications.description',
-        rightIcon: 'right',
+        rightIcon: 'arrow',
         leftIcon: 'bellsettings',
         onPress: () =>
           linkingHandler({
@@ -191,7 +191,7 @@ export const useSettingsMenu = (): {
         title: 'menu:Menu.settings.items.security.items.authentication.items.changePassword.title',
         description:
           'menu:Menu.settings.items.security.items.authentication.items.changePassword.description',
-        rightIcon: 'right',
+        rightIcon: 'arrow',
         leftIcon: 'password',
         onPress: () =>
           verifyAuthHandler(() => editFieldHandler({ fieldId: 'password', fieldName: 'password' })),
@@ -212,7 +212,7 @@ export const useSettingsMenu = (): {
       //   testID: 'securitySafetyTipsButton',
       //   title: 'menu:Menu.settings.items.security.items.info.items.safetyTips.title',
       //   description: 'menu:Menu.settings.items.security.items.info.items.safetyTips.description',
-      //   rightIcon: 'right',
+      //   rightIcon: 'arrow',
       //   leftIcon: 'locksquare',
       //   onPress: () => buttonHandler('contactUs'), //! pending
       //   remoteFeatureFlags: ['safetyTips'],

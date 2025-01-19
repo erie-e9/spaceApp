@@ -1,8 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
-import {
-  GoogleSignin, User, isCancelledResponse, isSuccessResponse, statusCodes,
-} from '@react-native-google-signin/google-signin';
+import { GoogleSignin, User, isCancelledResponse, isSuccessResponse, statusCodes } from '@react-native-google-signin/google-signin';
 import { Logger } from '@services';
 import { AuthResponseProps } from '.';
 
@@ -15,7 +13,7 @@ export const useGoogleAuth = () => {
         'https://www.googleapis.com/auth/userinfo.profile',
         'https://www.googleapis.com/auth/userinfo.email',
       ],
-      webClientId: '124944014292-vmkt8rcfo9nm101jp06m5ncsdo0444k8.apps.googleusercontent.com',
+      webClientId: '842236542831-2rtpsq0na77kv8jo3p50qko200kkvvm6.apps.googleusercontent.com',
       offlineAccess: true,
     });
   }, []);

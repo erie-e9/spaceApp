@@ -9,6 +9,9 @@ export interface CommonControllerProps {
   touched?: boolean;
   editable?: boolean;
   maintainFocus?: boolean;
+  booleanToogle?: boolean;
+  rightIcon?: 'close' | 'passwordToggle' | 'arrow';
+  rightIconHandler?: () => void;
 }
 
 export interface InputProps extends CommonControllerProps, TextInputProps {
@@ -39,5 +42,6 @@ export interface DropDownProps extends CommonControllerProps {
   bottomSheet?: boolean;
   showButton?: boolean;
   onSelect: (item: any) => void;
+  maxValueLength?: number;
   setOpenDropdown?: (isOpen: boolean) => void;
 }

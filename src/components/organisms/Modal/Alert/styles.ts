@@ -1,11 +1,7 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 import styled, { css } from 'styled-components/native';
-import {
-  screen_width,
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
-import { type ButtonContainerProps } from '@store/slices/types/modal';
+import { screen_width, getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
+import type { ButtonContainerProps } from '@slices/types';
 import { ActionButton, List } from '@components/molecules';
 
 export const MODAL_STYLE: ViewStyle = {
@@ -30,9 +26,11 @@ export const ModalBodyContainer = styled.View`
 
 export const Wrapper = styled.View<{ width?: number }>`
   min-height: auto;
-  width: ${({ width }) => width || screen_width - 20 + 'px'};
+  width: ${({ width }) => width || screen_width - 40 + 'px'};
+  max-width: ${getNormalizedHorizontalSize(340)}px;
   z-index: 1000;
-  border-radius: ${getNormalizedHorizontalSize(15)}px;
+  align-self: center;
+  border-radius: ${getNormalizedHorizontalSize(10)}px;
   shadow-color: #000;
   shadow-opacity: 0.25;
   shadow-radius: 10px;
@@ -78,6 +76,7 @@ export const ActionsWrapper = styled.View<{ optionsLenght: number }>`
   margin-top: ${getNormalizedVerticalSize(0)}px;
   align-self: ${({ optionsLenght }) => (optionsLenght === 1 ? 'center' : 'flex-end')};
   padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(10)}px;
+  background-color: transparent;
 `;
 
 export interface StyledButtonProps {
@@ -106,7 +105,7 @@ export const ButtonContainer = styled.View<ButtonContainerProps>`
   flex-direction: row;
   align-items: flex-end;
   justify-items: flex-end;
-  justify-content: flex-end;
+
   justify-content: ${({ alignment }) => {
     switch (alignment) {
       case 'left':

@@ -1,15 +1,13 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useLayoutEffect } from 'react';
 import { CommonActions } from '@react-navigation/native';
 import { Logger } from '@services';
-import { useDeviceSecurity, useAppPreferences, useCheckNet, useTheme, getDeviceInfo } from '@hooks';
-import { type ApplicationScreenProps } from '@types';
-import { type Language } from '@slices/types';
+import { useDeviceSecurity, useAppPreferences, useCheckNetwork, getDeviceInfo } from '@hooks';
+import type { ApplicationScreenProps } from '@types';
+import type { Language } from '@slices/types';
 import { loadLocale } from '@utils/formatters';
-// import { useLazyFetchLanguageQuery } from '@hooks/api/languages';
-import { InterpolateColorAnimation } from '@components/animated';
 import { Loader } from '@components/molecules';
 import { ScreenBackground } from '@components/atoms';
-import { Container, Brand } from './styles';
+import { Container } from './styles';
 
 export interface StartUpProps {
   navigation: ApplicationScreenProps;
@@ -17,10 +15,8 @@ export interface StartUpProps {
 
 export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
   const { checkIsReliableDevice } = useDeviceSecurity();
-  const { isOnline } = useCheckNet();
-  const { Images } = useTheme();
-  // const [fetchLanguage, { data, isSuccess }] = useLazyFetchLanguageQuery();
-  const { switchLanguage, saveLanguages, language } = useAppPreferences();
+  const { isOnline } = useCheckNetwork();
+  const { switchLanguage, language } = useAppPreferences();
 
   const preInit = async (): Promise<void> => {
     const promises = [
@@ -31,7 +27,6 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
     const results = await Promise.all(promises);
     if (!results.includes(false)) {
       if (isOnline.isConnected) {
-        // await fetchLanguage('en');
       }
       await navigation.dispatch(
         CommonActions.reset({
@@ -55,18 +50,13 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
     language !== null && (await switchLanguage(language as Language));
   };
 
-  useEffect(() => {
-    if (isSuccess) {
-      saveLanguages(data?.id);
-    } else {
-      init();
-    }
-  }, [isSuccess]);
+  useLayoutEffect(() => {
+    init();
+  }, []);
 
   return (
     <ScreenBackground testID="StartupID" type="solid">
       <Container>
-        {/* <Brand source={Images.logo} /> */}
         <Loader width={150} height={75} />
       </Container>
     </ScreenBackground>

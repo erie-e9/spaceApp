@@ -1,13 +1,7 @@
-import React, { memo, useCallback, useMemo } from 'react';
-import { type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
+import React, { memo, useMemo } from 'react';
+import type { RemoteConfigFeatures } from '@slices/types';
 import OptionSelectorItem from './components/OptionSelectorItem';
 import { OptionSelectorList } from './styles';
-import {
-  OptionButton,
-  OptionButtonContainer,
-  OptionButtonLabel,
-  OptionContainer,
-} from './components/styles';
 
 export interface OptionSelectorItemProps {
   title?: string;

@@ -1,6 +1,5 @@
 import { PixelRatio, TouchableWithoutFeedback, ViewStyle } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components/native';
 import {
   getNormalizedHorizontalSize,
@@ -8,7 +7,6 @@ import {
   responsiveFontSize,
 } from '@utils/functions';
 import { Typography } from '@components/atoms';
-import { TextInput } from '@components/molecules';
 
 interface StyledTextProps {
   error?: boolean;
@@ -21,10 +19,10 @@ interface StyledTextProps {
 export const StyledText = styled(Typography) <StyledTextProps>`
   ${({ error, theme, hasValue }) => css`
     color: ${() => {
-      const color = hasValue ? theme.tokens.colors.secondary950 : theme.tokens.colors.secondary500;
+      const color = hasValue ? theme.tokens.colors.typography950 : theme.tokens.colors.typography700;
       const colorFocused = error
         ? theme.tokens.colors.danger_status
-        : theme.tokens.colors.tertiary950;
+        : theme.tokens.colors.typography700;
       return error ? colorFocused : color;
     }};
   `};
@@ -42,26 +40,27 @@ export interface StyledButtonProps {
   width?: string | number;
 }
 
-export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>``;
+export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>`
+  height: 100%;
+`;
 
 export const StyledElementContainer = styled.View<StyledButtonProps>`
+  flex: 1;
   justify-content: center;
   align-items: flex-start;
-  min-height: 100%;
-  padding-horizontal: ${getNormalizedHorizontalSize(15)}px;
-  width: ${({ width }) => (width ? (String(width).includes('%') ? width : width + 'px') : '100%')};
+  min-height: ${PixelRatio.roundToNearestPixel(45)}px;
+  width: ${({ hasValue }) => hasValue ? '100%' : '100%'};
+  background-color: transparent;
 `;
 
-export const ItemText = styled(Typography) <StyledTextProps>`
-  color: ${({ theme }) => theme.tokens.colors.secondary950};
-`;
+export const ItemText = styled(Typography) <StyledTextProps>``;
 
 export const AnimatedDropdownContent = styled(Animated.View)`
   top: ${getNormalizedVerticalSize(50)}px;
   z-index: 1000;
-  overflow: hidden;
   border-width: 0px;
   position: absolute;
+  overflow: hidden;
   border-radius: ${getNormalizedHorizontalSize(10)}px;
   background-color: ${({ theme }) => theme.tokens.colors.secondary800};
 `;
@@ -70,7 +69,6 @@ export const ListItemContainer = styled.View<{
   width?: ViewStyle['width'];
 }>`
   height: auto;
-  /* padding: 15px 15px; */
   width: ${({ width }) => (typeof width === 'number' ? `${width}px` : width)};
 `;
 
@@ -83,8 +81,8 @@ export const Item = styled.TouchableOpacity`
 
 export const DropdownsContainer = styled.View`
   flex-direction: column;
-  align-self: center;
   height: ${getNormalizedVerticalSize(60)}px;
+  align-self: center;
 `;
 
 export const ItemsContainer = styled.View<{
@@ -102,26 +100,12 @@ export const ItemsContainer = styled.View<{
 
 export const SelectorContainer = styled.View`
   flex-direction: row;
+  align-self: center;
   width: 100%;
   min-height: ${PixelRatio.roundToNearestPixel(45)}px; // change mutual height's here
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   z-index: 100;
-`;
-export const RightIconButton = styled(TouchableOpacity)`
-  height: ${getNormalizedVerticalSize(30)}px;
-  width: ${getNormalizedHorizontalSize(15)}px;
-  right: ${getNormalizedHorizontalSize(15)}px;
-  position: fixed;
-  z-index: 1000;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-  justify-content: center;
-`;
-
-export const RightIconText = styled(Typography) <StyledTextProps>`
-  color: ${({ theme }) => theme.tokens.colors.secondary950};
 `;
 
 export const ButtonContainer = styled.View`

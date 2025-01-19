@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { type MenuItemProps, type SettingsRenderItemProps } from '@types';
+import type { MenuItemProps, SettingsRenderItemProps } from '@types';
 import { SVGIcon } from '@components/atoms';
 import { MenuButton } from '@components/molecules';
 import {

@@ -113,6 +113,7 @@ export const authSocialNetworks = () => {
         return response;
       } catch (error: any) {
         if (
+          error?.error !== undefined &&
           !(String(error?.error).includes('cancelled') || String(error?.error).includes('canceled'))
         ) {
           useToast.error({

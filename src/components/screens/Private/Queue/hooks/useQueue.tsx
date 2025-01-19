@@ -1,13 +1,14 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { Logger, useCopy } from '@services';
-import { useAppAlerts, useMMKVStorageArray, useTasks } from '@hooks';
+import { useAppAlerts, useMMKVStorageArray, useResponseHandler, useTasks } from '@hooks';
 import { SVGIcon } from '@components/atoms';
 import { SwipeButton } from '../styles';
 
 export const useQueue = () => {
   const [queue, setQueue] = useState<any[]>([]);
   const { getCopyValue } = useCopy();
+  const { setLoading } = useResponseHandler();
   const { confirmRemoveActionAlert, confirmRemoveQueueActionAlert } = useAppAlerts();
   const { getTaskByIdHook } = useTasks();
   const { getMMKVData, removeMMKVItem, clearMMKVData } = useMMKVStorageArray<any>({
@@ -18,7 +19,9 @@ export const useQueue = () => {
   const extractIdFromUrl = (url: string): string => url.split('/').pop() ?? '';
 
   const getRequestQueue = useCallback(() => {
+    setLoading(true);
     const items = getMMKVData() || [];
+    setLoading(false);
     return items.map((item: any) => {
       const id = Number(extractIdFromUrl(item.url));
       const taskData = getTaskByIdHook(id);
@@ -42,6 +45,10 @@ export const useQueue = () => {
   const itemList = useMemo(() => {
     return queue;
   }, [queue]);
+
+  const filterBy = useMemo(() => {
+    return itemList.length > 0 ? ['title', 'description'] : undefined;
+  }, [itemList]);
 
   const QueueHeaderTitle = useMemo((): string => {
     return getCopyValue('queue:Queue.screenTitle', {
@@ -79,6 +86,7 @@ export const useQueue = () => {
 
   return {
     itemList,
+    filterBy,
     clearQueue,
     QueueHeaderTitle,
     getRequestQueue,

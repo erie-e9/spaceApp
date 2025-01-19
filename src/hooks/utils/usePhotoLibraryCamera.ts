@@ -1,4 +1,3 @@
-import { Logger } from '@services';
 import { useCallback } from 'react';
 import {
   launchCamera,
@@ -8,8 +7,11 @@ import {
   Asset,
   ImagePickerResponse,
 } from 'react-native-image-picker';
+// import { openPicker, Config } from '@baronha/react-native-multiple-image-picker'
+import { Logger } from '@services';
 
 export type Type = 'library' | 'capture';
+// export type MediaType = 'image' | 'video' | 'all';
 export type MediaType = 'photo' | 'video' | 'mixed';
 
 export interface PickerOptions {
@@ -44,10 +46,23 @@ export const usePhotoLibraryCamera = (): {
       callback,
     }: PickerOptions): Promise<Asset[] | undefined> => {
       try {
+        // const config: Config = {
+        //   maxSelect: selectionLimit,
+        //   maxVideo: selectionLimit,
+        //   primaryColor: '#fb0071',
+        //   numberOfColumn: 4,
+        //   mediaType: mediaType || 'all',
+        //   selectBoxStyle: 'number',
+        //   selectMode: (selectionLimit || 10) > 1 ? 'multiple' : 'single',
+        //   language: 'system', // 🇻🇳 Vietnamese
+        //   theme: 'system',
+        //   isHiddenOriginalButton: !false,
+        //   allowSwipeToSelect: true,
+        // }
 
         let listImages: Asset[] | undefined = [];
         if (type === 'library') {
-          const images = await launchImageLibrary(
+          const { assets } = await launchImageLibrary(
             options
               ? options
               : ({
@@ -59,7 +74,8 @@ export const usePhotoLibraryCamera = (): {
               } as ImageLibraryOptions),
             callback,
           );
-          listImages = images.assets;
+          // const images = await openPicker(config);
+          listImages = assets
         } else {
           // camera
           const photos = await launchCamera(

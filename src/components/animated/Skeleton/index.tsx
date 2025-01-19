@@ -1,4 +1,5 @@
-import { memo } from 'react';
+import React, { Fragment, memo, ReactElement } from 'react';
+import { DefaultTheme } from 'styled-components/native';
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import { useSkeleton } from './hooks/useSkeleton';
 import { GradientView, ParentView } from './styles';
@@ -8,91 +9,78 @@ export type AnimationDirection = 'leftToRight' | 'rightToLeft' | 'topToBottom' |
 export type AnimationType = 'shiver' | 'pulse';
 
 export interface SkeletonProps {
+  show?: boolean;
   height: number;
   width: number;
   borderRadius?: number;
   style?: object;
-  backgroundColor?: string;
+  backgroundColor?: keyof DefaultTheme['tokens']['colors'];
   direction?: AnimationDirection;
   animationType?: AnimationType;
   gradientColors?: string[];
   duration?: number;
+  children?: string | ReactElement | ReactElement[];
 }
 
+const gradientColorsDefault = [
+  'rgba(255,255,255,0)',
+  'rgba(255,255,255,0.1)',
+  'rgba(255,255,255,0.2)',
+  'rgba(255,255,255,0.3)',
+  'rgba(255,255,255,0.3)',
+  'rgba(255,255,255,0.3)',
+  'rgba(255,255,255,0.2)',
+  'rgba(255,255,255,0.1)',
+  'rgba(255,255,255,0)',
+];
+
+const MemoizedGradient = memo(
+  ({ width = 30, height = 15, gradientColors = gradientColorsDefault }: Partial<SkeletonProps>) => (
+    <Canvas style={{ flex: 1 }}>
+      <Rect x={0} y={0} width={width} height={height}>
+        <LinearGradient start={vec(0, 0)} end={vec(width, 0)} colors={gradientColors} />
+      </Rect>
+    </Canvas>
+  ),
+);
+
 export const Skeleton: React.FC<SkeletonProps> = ({
+  show = false,
   height,
   width,
   borderRadius,
   style = {},
-  backgroundColor = '#DDEAF5',
+  backgroundColor = 'tertiary200',
   direction = 'leftToRight',
   animationType = 'pulse',
-  gradientColors = [
-    'rgba(255,255,255,0)',
-    'rgba(255,255,255,0.1)',
-    'rgba(255,255,255,0.2)',
-    'rgba(255,255,255,0.3)',
-    'rgba(255,255,255,0.3)',
-    'rgba(255,255,255,0.3)',
-    'rgba(255,255,255,0.2)',
-    'rgba(255,255,255,0.1)',
-    'rgba(255,255,255,0)',
-  ],
+  gradientColors,
   duration = 700,
+  children,
 }) => {
-  const {
-    parentDimensions,
-    setParentDimensions,
-    animatedStyleParent,
-    gradientDimensions,
-    setGradientDimensions,
-    isXDirectionAnimation,
-    animatedStyleX,
-    isYDirectionAnimation,
-    animatedStyleY,
-    coordinates,
-  } = useSkeleton({ direction, animationType, duration });
+  const { animatedStyleParent, handleParentLayout, handleGradientLayout, gradientStyle } =
+    useSkeleton({ direction, animationType, duration });
 
   return (
-    <ParentView
-      onLayout={(event) => {
-        if (parentDimensions.width === -1 && animationType === 'shiver') {
-          setParentDimensions({
-            width: event.nativeEvent.layout.width,
-            height: event.nativeEvent.layout.height,
-          });
-        }
-      }}
-      style={[style, animatedStyleParent]}
-      height={height}
-      width={width}
-      borderRadius={borderRadius}
-      backgroundColor={backgroundColor}
-    >
-      {animationType === 'shiver' && (
-        <GradientView
-          onLayout={(event) => {
-            if (gradientDimensions.width === -1) {
-              setGradientDimensions({
-                width: event.nativeEvent.layout.width,
-                height: event.nativeEvent.layout.height,
-              });
-            }
-          }}
-          style={[
-            isXDirectionAnimation && animatedStyleX,
-            isYDirectionAnimation && animatedStyleY,
-            { width: isXDirectionAnimation ? '80%' : '100%' },
-          ]}
+    <Fragment>
+      {show ? (
+        <ParentView
+          onLayout={handleParentLayout}
+          style={[style, animatedStyleParent]}
+          height={height}
+          width={width}
+          borderRadius={borderRadius}
+          background={backgroundColor}
         >
-          <Canvas style={{ flex: 1 }}>
-            <Rect x={0} y={0} width={width} height={height}>
-              <LinearGradient start={vec(0, 0)} end={vec(width, 0)} colors={gradientColors} />
-            </Rect>
-          </Canvas>
-        </GradientView>
+          {animationType === 'shiver' && (
+            <GradientView onLayout={handleGradientLayout} style={gradientStyle}>
+              <MemoizedGradient height={height} width={width} gradientColors={gradientColors} />
+            </GradientView>
+          )}
+        </ParentView>
+      ) : (
+        <>{children}</>
       )}
-    </ParentView>
+    </Fragment>
   );
 };
 

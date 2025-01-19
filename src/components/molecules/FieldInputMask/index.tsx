@@ -1,8 +1,9 @@
 import React, { ReactNode, memo, useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import { type CommonControllerProps } from '@types';
+import type { CommonControllerProps } from '@types';
 import { TransformAnimation } from '@components/animated';
-import { Tooltip } from '@components/atoms';
+import { SVGIcon, Tooltip } from '@components/atoms';
+import EyeButton from '../EyeButton';
 import {
   TextInputContainer,
   Wrapper,
@@ -11,6 +12,9 @@ import {
   CounterColorAnimationContainer,
   FooterContainer,
   ErrorContainer,
+  RightButtonPressable,
+  RightButtonContainer,
+  RightIconStyled,
 } from './styles';
 
 export interface Props extends Partial<CommonControllerProps> {
@@ -22,6 +26,7 @@ export interface Props extends Partial<CommonControllerProps> {
   footerComponent?: ReactNode;
   style?: StyleProp<ViewStyle>;
   heightExpansible?: boolean;
+  multiline?: boolean;
 }
 
 const FieldInputMask: React.FC<Props> = ({
@@ -40,8 +45,12 @@ const FieldInputMask: React.FC<Props> = ({
   footerComponent,
   heightExpansible,
   style,
+  booleanToogle,
+  rightIconHandler,
+  rightIcon = 'close',
+  multiline = false,
 }) => {
-  const hasValue = value !== null && value !== '';
+  const hasValue = value !== null && value !== '' && value !== undefined;
 
   const showError = useMemo(() => {
     return value === '' && touched && !!error;
@@ -87,6 +96,22 @@ const FieldInputMask: React.FC<Props> = ({
         heightExpansible={heightExpansible}
       >
         {children}
+        {focused && hasValue && rightIconHandler && (
+          <RightIconStyled multiline={String(value).length > 35 && multiline}>
+            {rightIcon === 'passwordToggle' ? (
+              <EyeButton size={25} visible={booleanToogle || false} onPress={rightIconHandler} />
+            ) : (
+              <RightButtonPressable
+                hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
+                onPress={rightIconHandler}
+              >
+                <RightButtonContainer>
+                  <SVGIcon icon={rightIcon} />
+                </RightButtonContainer>
+              </RightButtonPressable>
+            )}
+          </RightIconStyled>
+        )}
       </Wrapper>
       {focused && characterCounter && (
         <CounterColorAnimationContainer>

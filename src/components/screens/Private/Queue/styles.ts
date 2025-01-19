@@ -7,20 +7,21 @@ export const BodyContainer = styled.View`
     flex: 1;
     width: 100%;
     align-items: center;
+    justify-content: center;
 `;
 
 export const ListItems = styled(List)``;
 
 export const FeaturesContainer = styled.View`
     flex-direction: row;
-    /* width: ${getNormalizedHorizontalSize(100)}px; */
-    /* justify-content: space-around; */
+
+
     justify-content: flex-end;
     background-color: transparent;
 `;
 
 export const FeatureButton = styled(ActionButton)`
-    border-width: 0px;
+    border-width: ${getNormalizedHorizontalSize(0)}px;
     margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
     /* background-color: ${({ theme }) => theme.tokens.colors.tertiary200}; */

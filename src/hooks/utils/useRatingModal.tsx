@@ -3,13 +3,7 @@ import { Logger } from '@services';
 import { useModal, useToast } from '@hooks';
 import RatingModal from '@components/molecules/RatingModal';
 
-interface Props {
-  navigation: any;
-}
-
-const useRatingModal = ({
-  navigation,
-}: Props): {
+const useRatingModal = (): {
   ratingModal: ({ feature_name, feedback_request_id }: any) => void;
   handleAppRatingPushNotification: (payload: any) => Promise<void>;
 } => {
@@ -17,7 +11,6 @@ const useRatingModal = ({
   const { showModal, hideModal } = useModal();
 
   // Local Functions
-
   const handleRating = async (
     featureRequestId: string,
     rating: number,

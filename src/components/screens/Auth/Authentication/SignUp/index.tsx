@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, memo, useCallback, useMemo } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RouteProp } from '@react-navigation/core';
 import { CompositeNavigationProp } from '@react-navigation/native';
-import { AuthenticationParamsList } from '@navigators/Auth';
+import type { ApplicationStackParamList, InfoType } from '@types';
+import type { AuthenticationParamsList } from '@navigators/Auth';
 import { useCopy } from '@services';
-import { type ApplicationStackParamList, type InfoType } from '@types';
 import { useSignUp } from './hooks/useSignUp';
 import { LottieViewProps } from '@components/atoms';
 import { MultiStepper } from '@components/templates';
@@ -14,14 +13,14 @@ type NavigationType = CompositeNavigationProp<
   StackNavigationProp<AuthenticationParamsList, 'Authentication'>,
   StackNavigationProp<ApplicationStackParamList>
 >;
+
 export interface SignUpProps {
   navigation: NavigationType;
-  route: RouteProp<AuthenticationParamsList, 'SignUp'>;
 }
 
-export const SignUp: React.FC<SignUpProps> = ({ navigation, route }) => {
+export const SignUp: React.FC<SignUpProps> = ({ navigation }) => {
   const animationRef = useRef<LottieViewProps>(null);
-  const useSignUpHook = useSignUp({ navigation, route });
+  const useSignUpHook = useSignUp();
   const { getCopyValue } = useCopy();
 
   const navigatorHandler = useCallback((type: InfoType) => {
@@ -82,7 +81,7 @@ export const SignUp: React.FC<SignUpProps> = ({ navigation, route }) => {
       values={useSignUpHook.values}
       errors={useSignUpHook.errors}
       touched={useSignUpHook.touched}
-      submitButtonHandler={useSignUpHook.handleSubmit}
+      submitButtonHandler={useSignUpHook.onSubmitHandler}
       prevStepButtonHandler={useSignUpHook.prevStepButtonHandler}
       nextStepButtonHandler={useSignUpHook.nextStepButtonHandler}
       nextStepButtonDisabled={useSignUpHook.nextStepButtonDisabled}

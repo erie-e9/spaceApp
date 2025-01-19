@@ -1,6 +1,10 @@
 import React, { memo } from 'react';
 import { useTheme } from 'styled-components/native';
-import { Calendar as Calendars, LocaleConfig, CalendarProps as RNCalendarProps } from 'react-native-calendars';
+import {
+  Calendar as Calendars,
+  LocaleConfig,
+  CalendarProps as RNCalendarProps,
+} from 'react-native-calendars';
 import { getPropertyValues } from '@utils/functions';
 import { useAppPreferences } from '@hooks';
 import { dayjs, formatDate } from '@utils/formatters';
@@ -59,7 +63,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   };
 
   LocaleConfig.defaultLocale = language || 'en';
-  const todayValue = dayjs(new Date).format('YYYY-MM-DD')
+  const todayValue = dayjs(new Date()).format('YYYY-MM-DD');
 
   return (
     <CalendarContainer>

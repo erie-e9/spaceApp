@@ -1,8 +1,5 @@
 import React, { memo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
-import { ScreenBackgroundProps } from '@types';
-import { testProperties } from '@utils/functions';
-import { ContentContainer, SkiaCanvas, StyledBackgroundContainer } from './styles';
 import {
   add,
   BackdropFilter,
@@ -11,16 +8,16 @@ import {
   Fill,
   Image,
   ImageShader,
-  LinearGradient,
   mix,
-  Rect,
   sub,
   useImage,
   useVideo,
   vec,
-  Video,
 } from '@shopify/react-native-skia';
 import { useDerivedValue } from 'react-native-reanimated';
+import type { ScreenBackgroundProps } from '@types';
+import { testProperties } from '@utils/functions';
+import { SkiaCanvas, StyledBackgroundContainer } from './styles';
 
 const BlurEffect: React.FC<Partial<ScreenBackgroundProps>> = ({
   testID,

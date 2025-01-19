@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Platform } from 'react-native';
-import { type Mode } from '@slices/types/appPreferences';
+import type { Mode } from '@slices/types';
 import { useCopy } from '@services';
 import { useAppPreferences, useTheme } from '@hooks';
 import { DeviceSVG, DeviceSVGProps } from '@components/atoms';

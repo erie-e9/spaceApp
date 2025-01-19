@@ -17,30 +17,27 @@ export const OtpInputContainer = styled.View`
 `;
 
 export const InputContainer = styled(Animated.View)`
+  width: ${getNormalizedHorizontalSize(50)}px;
+  height: auto;
   margin: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(5)}px
     ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(5)}px;
-  width: ${getNormalizedHorizontalSize(50)}px;
-  height: ${getNormalizedVerticalSize(50)}px;
   justify-content: center;
   align-items: center;
 `;
 
-export const StyledTextInput = styled(TextInput)<Props>`
+export const StyledTextInput = styled(TextInput) <Props>`
   z-index: 5;
-  font-family: Armin Grotesk;
   width: ${PixelRatio.roundToNearestPixel(44)}px;
-  height: ${PixelRatio.roundToNearestPixel(50)}px;
+  height: ${PixelRatio.roundToNearestPixel(60)}px;
   border-radius: ${PixelRatio.roundToNearestPixel(10)}px;
   font-size: ${PixelRatio.roundToNearestPixel(17)}px;
-  color: ${({ theme }) => theme.tokens.colors.secondary950};
+  color: ${({ theme, error }) => !error ? theme.tokens.colors.secondary950 : theme.tokens.colors.danger_status};
   border-width: 1px;
-  border-color: ${({ theme }) => theme.tokens.colors.secondary950};
   margin-right: ${PixelRatio.roundToNearestPixel(7)}px;
   text-align: center;
   ${({ focused }) =>
-    focused &&
     css`
-      border-color: ${({ theme }) => theme.tokens.colors.primary500};
+      border-color: ${({ theme }) => focused ? theme.tokens.colors.tertiary600 : theme.tokens.colors.tertiary300};
     `}
   ${({ error }) =>
     error &&

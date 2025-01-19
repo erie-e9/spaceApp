@@ -1,9 +1,9 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { useAppPreferences } from '@hooks';
 import { RenderWhen } from '@components/atoms';
-import { type RemoteConfigFeatures } from '@slices/types/remoteConfigFeatures';
-import { type ButtonType } from '@types';
+import type { RemoteConfigFeatures } from '@slices/types';
+import type { ButtonType } from '@types';
 import {
   ModeButton,
   ModeButtonContainer,
@@ -35,6 +35,10 @@ export const ModeSelectorItem: React.FC<ModeSelectorItemProps> = ({
 
   const selectedItem: boolean = useMemo(() => mode === value, [mode, value]);
 
+  const onPressHandler = useCallback(() => {
+    onPress?.();
+  }, []);
+
   return (
     <RenderWhen isTrue={remoteConfigStatus !== 'hide'}>
       <ModeContainer>
@@ -42,9 +46,7 @@ export const ModeSelectorItem: React.FC<ModeSelectorItemProps> = ({
           <SelectedIndicator>
             <ModeButton
               selected={false}
-              onPress={() => {
-                if (onPress) onPress();
-              }}
+              onPress={onPressHandler}
               remoteFeatureFlags={remoteConfig ? [remoteConfig] : undefined}
             >
               {icon}

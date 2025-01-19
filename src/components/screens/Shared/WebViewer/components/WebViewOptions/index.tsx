@@ -45,7 +45,7 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
           <OptionButton
             type="Icon"
             buttonTheme="Primary"
-            onPress={() => shareHandler}
+            onPress={shareHandler}
             icon={<SVGIcon icon="share" />}
             remoteFeatureFlags={['webviewShare']}
           />

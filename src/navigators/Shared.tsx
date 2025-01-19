@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
-import { type User } from '@slices/types';
-import { type ApplicationStackParamList, type InfoType } from '@types';
+import type { User } from '@slices/types';
+import type { ApplicationStackParamList, InfoType } from '@types';
 import { Home, MenuNavigator, WebViewer, type MenuParamsList } from '@components/screens/Shared';
 
 export type SharedParamsList = {

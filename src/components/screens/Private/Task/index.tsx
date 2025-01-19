@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
-import { RouteProp } from '@react-navigation/core';
 import { StackNavigationProp } from '@react-navigation/stack';
 import truncate from 'lodash/truncate';
+import type { RouteProp } from '@react-navigation/core';
+import type { ApplicationStackParamList } from '@types';
 import { useCopy } from '@services';
 import { PrivateParamsList } from '@navigators/Private';
-import { ApplicationStackParamList } from '@types';
 import { testProperties } from '@utils/functions';
 import { Dropdown } from '@components/molecules';
 import { DatePicker } from '@components/organisms';
@@ -68,7 +68,7 @@ export const Task: React.FC<TaskProps> = ({ navigation, route }) => {
               keyboardType={'default'}
               importantForAutofill="yes"
               textContentType={'none'}
-              rightIcon="clear"
+              rightIcon="close"
               autoCorrect={false}
               // onSubmitEditing={submitHandler}
               returnKeyType={'next'}
@@ -88,7 +88,7 @@ export const Task: React.FC<TaskProps> = ({ navigation, route }) => {
               maxLength={255}
               onChangeText={useTaskHook.handleChange('description')}
               rightIconHandler={() => useTaskHook.clearInputHandler('description')}
-              rightIcon="clear"
+              rightIcon="close"
               editable={true}
               keyboardType={'default'}
               importantForAutofill="yes"
@@ -118,7 +118,7 @@ export const Task: React.FC<TaskProps> = ({ navigation, route }) => {
               <RowItemContainer>
                 <DatePicker
                   {...testProperties('taskDatePicker')}
-                  mode="calendar"
+                  mode="dropdown"
                   label={truncate(getCopyValue('tasks:Task.controllers.dueDate'), {
                     length: 17,
                     omission: '...',

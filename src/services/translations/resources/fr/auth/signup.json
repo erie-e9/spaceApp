@@ -119,12 +119,6 @@
           "validations": {
             "required": "La date de naissance est nécessaire.",
             "matches": "Veuillez entrer une date de naissance valide."
-          },
-          "labels": {
-            "day": "Jour",
-            "month": "Mois",
-            "year": "Année",
-            "submit": "Soumettre"
           }
         },
         "genre": {

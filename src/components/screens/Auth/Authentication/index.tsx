@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, memo, Fragment } from 'react';
-import { type ApplicationScreenProps } from '@types';
+import type { ApplicationScreenProps } from '@types';
 import { Logger, useCopy } from '@services';
 import { useTheme } from '@hooks';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
@@ -22,9 +22,8 @@ import {
   AnotherAccountContainer,
 } from './styles';
 
-type NavigationType = ApplicationScreenProps;
-interface Props {
-  navigation: NavigationType;
+export interface Props {
+  navigation: ApplicationScreenProps;
 }
 
 export const Authentication: React.FC<Props> = ({ navigation }) => {
@@ -89,9 +88,6 @@ export const Authentication: React.FC<Props> = ({ navigation }) => {
                     useAuthenticationHook.toggleForm === 'logIn' && (
                       <Fragment>
                         <Biometrics
-                          // text={
-                          //   'authentication:Authentication.biometrics.buttons.useFingerprint'
-                          // }
                           icon={
                             <Lottie
                               ref={animationRef}
@@ -106,9 +102,7 @@ export const Authentication: React.FC<Props> = ({ navigation }) => {
                           }
                           onSuccess={() => Logger.log('biometrics success')}
                         />
-                        <FormActionTouchable
-                          onPress={() => useAuthenticationHook.useBiometricsHandler()}
-                        >
+                        <FormActionTouchable onPress={useAuthenticationHook.useBiometricsHandler}>
                           <StyledText
                             type="Subtitle2"
                             font="Primary"
@@ -155,9 +149,7 @@ export const Authentication: React.FC<Props> = ({ navigation }) => {
                         >
                           {'authentication:Authentication.isNotYourAccount'}
                         </StyledText>
-                        <FormActionTouchable
-                          onPress={() => useAuthenticationHook.useAnotherAccountAlert()}
-                        >
+                        <FormActionTouchable onPress={useAuthenticationHook.useAnotherAccountAlert}>
                           <StyledText
                             type="Subtitle2"
                             font="Primary"

@@ -3,7 +3,7 @@
     "full": "spaceApp"
   },
   "messages": {
-    "noConnection": "Reconnecting...",
+    "noConnection": "Reconectando...",
     "features": {
       "unavailable": {
         "title": "Função não disponível",
@@ -196,7 +196,7 @@
       }
     }
   },
-  "forms": {
+  "form": {
     "fields": {
       "inputs": {
         "search": "Pesquise {{seachPlaceholder}}",
@@ -224,6 +224,12 @@
           "validations": {
             "required": "A data é obrigatória.",
             "matches": "Insira uma data válida."
+          },
+          "labels": {
+            "day": "Dia",
+            "month": "Mês",
+            "year": "Ano",
+            "submit": "Enviar"
           },
           "messages": {
             "blockedDate": "{{blockedDate}} está bloqueada porque {{blockedReason}}"
@@ -253,5 +259,6 @@
         }
       }
     }
-  }
+  },
+  "emptyList": "Nenhum item"
 }

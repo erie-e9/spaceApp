@@ -33,11 +33,11 @@ export const LogoContainer = styled.View<LogoProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-width: 0.3px;
+  border-width: ${getNormalizedHorizontalSize(0.3)}px;
   background-color: ${({ theme }) => theme.tokens.colors.secondary950};
 `;
 
-export const Logo = styled(Image)<LogoProps>`
+export const Logo = styled(Image) <LogoProps>`
   height: ${({ logoSize }) =>
     getNormalizedVerticalSize(Platform.OS === 'ios' ? logoSize : logoSize + 10)}px;
   width: ${({ logoSize }) => getNormalizedHorizontalSize(logoSize)}px;

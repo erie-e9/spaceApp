@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { jsonToArray } from '@utils/functions';
 import { storage } from '@redux/store';
-import { type MenuItemProps } from '@types';
+import type { MenuItemProps } from '@types';
 import faqs from '@services/translations/resources/es/shared/faqs.json';
 
 export const useFAQs = (): {

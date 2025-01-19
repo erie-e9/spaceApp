@@ -196,7 +196,7 @@
       }
     }
   },
-  "forms": {
+  "form": {
     "fields": {
       "inputs": {
         "search": "Suchen {{seachPlaceholder}}",
@@ -224,6 +224,12 @@
           "validations": {
             "required": "Datum ist erforderlich.",
             "matches": "Bitte ein gültiges Datum eingeben."
+          },
+          "labels": {
+            "day": "Tag",
+            "month": "Monat",
+            "year": "Jahr",
+            "submit": "Einreichen"
           },
           "messages": {
             "blockedDate": "{{blockedDate}} ist gesperrt, weil {{blockedReason}}"
@@ -253,5 +259,6 @@
         }
       }
     }
-  }
+  },
+  "emptyList": "Keine artikel"
 }

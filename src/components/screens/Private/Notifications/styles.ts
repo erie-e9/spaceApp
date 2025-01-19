@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
-import { InterpolateColorAnimation } from '@components/animated';
-import { Skeleton } from '@components/animated';
 import { Image, Touchable, Typography } from '@components/atoms';
-import { ActionButton, List } from '@components/molecules';
+import { Skeleton } from '@components/animated';
+import { List } from '@components/molecules';
 
 export interface NotificationContent {
   itemHeight?: number;
@@ -15,15 +14,13 @@ export const BodyContainer = styled.View`
   align-items: center;
 `;
 
-export const NotificationItemContainer = styled(InterpolateColorAnimation) <NotificationContent>`
+export const NotificationItemContainer = styled.View<NotificationContent>`
   height: ${({ itemHeight }) => (itemHeight && `${itemHeight}px`) || 'auto'};
   width: 100%;
   justify-content: center;
   align-items: flex-start;
   border-width: ${getNormalizedHorizontalSize(0)}px;
   border-color: #333;
-  /* padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px
-    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px; */
 `;
 
 export const NotificationContentContainer = styled.View<NotificationContent>`
@@ -43,30 +40,23 @@ export const NotificationContentData = styled.View`
 
 export const NotificationList = styled(List)``;
 
-export const NotificationTitleText = styled(Typography)`
-`;
+export const NotificationTitleText = styled(Typography)``;
 
 export const NotificationDescriptionText = styled(Typography)``;
 
-export const AvatarImage = styled(Image)`
-  height: ${getNormalizedVerticalSize(50)}px;
-  width: ${getNormalizedHorizontalSize(50)}px;
-  border-radius: 30px;
-`;
+export const AvatarImage = styled(Image)``;
 
-export const StyledSkeleton = styled(Skeleton)`
-  height: ${getNormalizedVerticalSize(50)}px;
-  width: ${getNormalizedHorizontalSize(50)}px;
-  border-radius: 30px;
-`;
-
-export const ItemButton = styled(Touchable)`
-`;
+export const ItemButton = styled(Touchable)``;
 
 export const RightTopContainer = styled.View`
   width: 20%;
   align-items: flex-end;
 `;
 
-export const RightTopText = styled(Typography)`
+export const RightTopText = styled(Typography)``;
+
+export const StyledSkeleton = styled(Skeleton)`
+  height: ${getNormalizedVerticalSize(50)}px;
+  width: ${getNormalizedHorizontalSize(50)}px;
+  border-radius: 30px;
 `;

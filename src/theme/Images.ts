@@ -1,4 +1,4 @@
-import { type ThemeVariables } from '@types';
+import type { ThemeVariables } from '@types';
 
 export default function ({ }: ThemeVariables) {
   return {

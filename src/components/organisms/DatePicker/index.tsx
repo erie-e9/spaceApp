@@ -1,13 +1,13 @@
-import { FC, forwardRef, Fragment, memo, useCallback, useMemo, useState } from 'react';
+import React, { forwardRef, Fragment, memo, useCallback, useMemo, useState } from 'react';
 import { useToast, useModal } from '@hooks';
 import { testProperties } from '@utils/functions';
 import { dayjs, formatDate } from '@utils/formatters';
 import { labels } from '@utils/forms/labels';
-import { CloseButton, FieldInputMask } from '@components/molecules';
+import { FieldInputMask } from '@components/molecules';
 import useAutoFocus from '@components/molecules/TextInput/hooks/useAutoFocus';
 import Calendar from './components/Calendar';
 import DateDropdown from './components/DateDropdown';
-import { StyledButton, StyledElementContainer, StyledText, Container } from './styles';
+import { StyledButton, StyledElementContainer, StyledText } from './styles';
 
 interface DatePickerProps {
   testID?: string;
@@ -28,7 +28,7 @@ interface DatePickerProps {
   rightIconHandler?: () => void;
 }
 
-export const DatePicker: FC<DatePickerProps> = forwardRef(
+export const DatePicker: React.FC<DatePickerProps> = forwardRef(
   (
     {
       testID,
@@ -81,6 +81,7 @@ export const DatePicker: FC<DatePickerProps> = forwardRef(
         type: mode === 'calendar' ? 'alert' : 'bottomsheet',
         title,
         description,
+        scrollBodyEnabled: false,
         body: (
           <Fragment>
             {mode === 'calendar' ? (
@@ -108,7 +109,7 @@ export const DatePicker: FC<DatePickerProps> = forwardRef(
             )}
           </Fragment>
         ),
-        expandable: !true,
+        expandable: false,
         dropdownOptions: {
           height: mode === 'calendar' ? 350 : 450,
           justifyContent: 'center',
@@ -128,21 +129,21 @@ export const DatePicker: FC<DatePickerProps> = forwardRef(
         touched={touched}
         editable={editable}
         focused={focused || !!value}
+        rightIcon="close"
+        rightIconHandler={value ? rightIconHandler : undefined}
       >
-        <Container>
+        <StyledButton onPress={toggleDatePicker}>
           <StyledElementContainer error={value !== '' && !!error} hasValue={!!value}>
-            <StyledButton ref={ref} onPress={toggleDatePicker}>
-              <StyledText type="Caption" error={value !== '' && !!error} hasValue={!!value}>
-                {value || placeholder}
-                {required && !value ? '*' : ''}
-              </StyledText>
-            </StyledButton>
+            <StyledText type="Caption" error={value !== '' && !!error} hasValue={!!value}>
+              {value || placeholder}
+              {required && !value ? '*' : ''}
+            </StyledText>
           </StyledElementContainer>
-          {rightIconHandler && value && <CloseButton onPress={rightIconHandler} />}
-        </Container>
+        </StyledButton>
       </FieldInputMask>
     );
   },
 );
 
+DatePicker.displayName = 'DatePicker';
 export default memo(DatePicker);

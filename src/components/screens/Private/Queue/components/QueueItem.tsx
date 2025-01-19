@@ -1,18 +1,13 @@
-import { FC, memo, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
 // import { labels } from '@utils/forms/labels';
 import { dayjs } from '@utils/formatters';
-import {
-  type QueueMethodType,
-  type ApplicationScreenProps,
-  type QueueURLType,
-  type Task,
-} from '@types';
+import type { QueueMethodType, ApplicationScreenProps, QueueURLType, Task } from '@types';
 import TaskItem from '@components/screens/Private/Tasks/components/TaskItem';
-import { QueueTagText, QueueItemContainer, QueueTagContainer, QueueMetaContainer } from './styles';
 import { IQueueItem } from '..';
+import { QueueTagText, QueueItemContainer, QueueTagContainer, QueueMetaContainer } from './styles';
 
 export interface QueueItemProps {
   testID?: string;
@@ -20,7 +15,7 @@ export interface QueueItemProps {
   itemHeight?: number | undefined;
 }
 
-export const QueueItem: FC<QueueItemProps> = ({ testID, item, itemHeight }) => {
+export const QueueItem: React.FC<QueueItemProps> = ({ testID, item, itemHeight }) => {
   const navigation: ApplicationScreenProps = useNavigation();
   // const { queueEndpoints, queueMethod } = labels();
   const { darkMode } = useTheme();
@@ -41,7 +36,7 @@ export const QueueItem: FC<QueueItemProps> = ({ testID, item, itemHeight }) => {
 
   const colorTagColor: { [key in QueueMethodType]: string } = useMemo(() => {
     return {
-      GET: darkMode ? 'secondary200' : 'typography900',
+      GET: darkMode ? 'secondary100' : 'typography900',
       POST: darkMode ? 'typography100' : 'typography900',
       PUT: darkMode ? 'typography900' : 'typography100',
       PATCH: darkMode ? 'typography900' : 'typography100',
@@ -66,15 +61,15 @@ export const QueueItem: FC<QueueItemProps> = ({ testID, item, itemHeight }) => {
   }, []);
 
   const groupLabel = useMemo(() => {
-    if (item.url.includes('/')) {
-      return item.url.split('/')[0];
+    if (item?.url && item?.url.includes('/')) {
+      return item?.url.split('/')[0];
     }
-    return item.url;
-  }, [item.url]);
+    return item?.url;
+  }, [item?.url]);
 
   const itemFormmated = useMemo((): Partial<IQueueItem> => {
-    const indexedItem = { ...item, ...item.body, id: item.method === 'POST' ? null : item.id };
-    // console.log('itemFormmated', { indexedItem });
+    const indexedItem = { ...item, ...item?.body, id: item?.method === 'POST' ? null : item?.id };
+
     return indexedItem;
   }, [item]);
 

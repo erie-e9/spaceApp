@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { DevSettings } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { type ApplicationScreenProps } from '@types';
+import type { ApplicationScreenProps } from '@types';
 import { useBlockScreen } from '@hooks';
 import { RotateAnimation } from '@components/animated';
 import { FallbackAnimation } from '@components/atoms';

@@ -4,7 +4,7 @@ export interface Task {
     title: string;
     description?: string;
     due_date?: string;
-    status?: number | null;
+    status?: number;
     priority?: number;
     attached_files?: Array<{
         fileName?: string;

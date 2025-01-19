@@ -12,7 +12,7 @@ import {
   getBundleId as getBundleIdInfo,
 } from 'react-native-device-info';
 import { Logger } from '@services';
-import { Language } from '@slices/types';
+import type { Language } from '@slices/types';
 
 export const getUniqueId = (): Promise<string> => {
   return getUniqueIdDeviceInfo();

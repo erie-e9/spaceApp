@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { type ResponseHandlerState } from '@slices/types/responseHandler';
+import type { ResponseHandlerState } from '@slices/types';
 
 const initialState: Partial<ResponseHandlerState> = {
   loading: false,

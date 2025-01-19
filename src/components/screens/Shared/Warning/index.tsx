@@ -1,6 +1,7 @@
 import React, { useEffect, memo, useRef, useCallback } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useCopy } from '@services';
+import type { ApplicationScreenProps } from '@types';
 import { useTheme, useBlockScreen } from '@hooks';
 import { Lottie, LottieViewProps } from '@components/atoms';
 import { CallToAction } from '@components/templates';
@@ -14,7 +15,7 @@ import {
 
 export const Warning: React.FC = () => {
   const animationRef = useRef<LottieViewProps>(null);
-  const navigation = useNavigation();
+  const navigation: ApplicationScreenProps = useNavigation();
   const { getCopyValue } = useCopy();
   useBlockScreen();
   const { Animations } = useTheme();

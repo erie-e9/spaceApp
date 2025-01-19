@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import { Keyboard } from 'react-native';
-import { type Task } from '@utils/types';
+import type { Task } from '@types';
 import { testProperties } from '@utils/functions';
 import { MultimediaPicker } from '@components/organisms';
 import { ContentWrapper, StyledInput } from './styles';
@@ -14,7 +14,6 @@ const TaskModal = ({ handleTask, title, description, id }: TaskModalParams): JSX
   const [_description, setDescription] = useState(description || '');
 
   const quantityLimit = 255;
-  const limitExceeded = title.length > quantityLimit;
 
   const submitHandler = useCallback(() => {
     Keyboard.dismiss();
@@ -40,7 +39,7 @@ const TaskModal = ({ handleTask, title, description, id }: TaskModalParams): JSX
         keyboardType={'default'}
         importantForAutofill="yes"
         textContentType={'none'}
-        rightIcon="clear"
+        rightIcon="close"
         autoCorrect={false}
         onSubmitEditing={submitHandler}
         returnKeyType={'send'}
@@ -60,7 +59,7 @@ const TaskModal = ({ handleTask, title, description, id }: TaskModalParams): JSX
         keyboardType={'default'}
         importantForAutofill="no"
         textContentType={'none'}
-        rightIcon="clear"
+        rightIcon="close"
         autoCorrect={false}
         onSubmitEditing={submitHandler}
         returnKeyType={'send'}

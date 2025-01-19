@@ -49,7 +49,7 @@ export const QueueTagContainer = styled.View<{
   height: auto;
   min-width: 50px;
   border-radius: 5px;
-  border-width: 0px;
+  border-width: ${getNormalizedHorizontalSize(0)}px;
   justify-content: center;
   align-items: center;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(3)}px;
