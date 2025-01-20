@@ -3,14 +3,14 @@
 A modern, **state-of-the-art React Native + TypeScript boilerplate** crafted for performance, scalability, and maintainability. Pre-configured project setup that saves time. _(Note: Special flows are not included)_.
 
 Powered by:
-<img src="src/assets/shared/svg/brands/react.svg" alt="React icon" style="width:2.5%; height:auto;">
-<img src="src/assets/shared/svg/brands/redux.svg" alt="Redux icon" style="width:2.5%; height:auto;">
-<img src="src/assets/shared/svg/brands/typescript.svg" alt="Typescript icon" style="width:2.5%; height:auto;">
-<img src="src/assets/shared/svg/brands/styledcomponents.svg" alt="Styledcomponents icon" style="width:2.5%; height:auto;">
-<img src="src/assets/shared/svg/brands/firebase.svg" alt="Firebase icon" style="width:2.5%; height:auto;">
-<img src="src/assets/shared/svg/brands/lottie.webp" alt="Lottie icon" style="width:2.5%; height:auto;">
-<img src="src/assets/shared/svg/brands/facebook.svg" alt="Facebook icon" style="width:2.5%; height:auto;">
-<img src="src/assets/shared/svg/brands/google.svg" alt="Google icon" style="width:2.5%; height:auto;">
+<img src="src/assets/shared/svg/brands/react.svg" alt="React icon" style="width:15px; height:auto;">
+<img src="src/assets/shared/svg/brands/redux.svg" alt="Redux icon" style="width:15px; height:auto;">
+<img src="src/assets/shared/svg/brands/typescript.svg" alt="Typescript icon" style="width:15px; height:auto;">
+<img src="src/assets/shared/svg/brands/styledcomponents.svg" alt="Styledcomponents icon" style="width:15px; height:auto;">
+<img src="src/assets/shared/svg/brands/firebase.svg" alt="Firebase icon" style="width:15px; height:auto;">
+<img src="src/assets/shared/svg/brands/lottie.webp" alt="Lottie icon" style="width:15px; height:auto;">
+<img src="src/assets/shared/svg/brands/facebook.svg" alt="Facebook icon" style="width:15px; height:auto;">
+<img src="src/assets/shared/svg/brands/google.svg" alt="Google icon" style="width:15px; height:auto;">
 Hermes
 
 ### Key Features ✨
@@ -124,36 +124,36 @@ spaceApp/
 #### Authentication: Sign-In and Sign-Up
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/auth.gif" alt="Sign-In" style="width:40%; height:auto;">
-  <img src="src/assets/screenshots/signup.gif" alt="Sign-Up" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/auth.gif" alt="Sign-In" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/signup.gif" alt="Sign-Up" style="width:60%; height:auto;">
 </div>
 
 #### Home and Help (Report a Bug)
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/home.gif" alt="Home" style="width:40%; height:auto;">
-  <img src="src/assets/screenshots/help.gif" alt="Help" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/home.gif" alt="Home" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/help.gif" alt="Help" style="width:60%; height:auto;">
 </div>
 
 #### Menu and Preferences
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/menu.gif" alt="Menu" style="width:40%; height:auto;">
-  <img src="src/assets/screenshots/preferences.gif" alt="Preferences" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/menu.gif" alt="Menu" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/preferences.gif" alt="Preferences" style="width:60%; height:auto;">
 </div>
 
 #### CRUD: Tasks and Offline Features
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/tasks.gif" alt="Tasks" style="width:40%; height:auto;">
-  <img src="src/assets/screenshots/offline.gif" alt="Offline Features" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/tasks.gif" alt="Tasks" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/offline.gif" alt="Offline Features" style="width:60%; height:auto;">
 </div>
 
 #### Hacked Device Warning and Fallback Screen
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/hackeddevice.gif" alt="Hacked Device Warning" style="width:40%; height:auto;">
-  <img src="src/assets/screenshots/fallback.gif" alt="Fallback Screen" style="width:40%; height:auto;">
+  <img src="src/assets/screenshots/hackeddevice.gif" alt="Hacked Device Warning" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/fallback.gif" alt="Fallback Screen" style="width:60%; height:auto;">
 </div>
 
 ### Storage packages comparation
