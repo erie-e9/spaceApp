@@ -28,49 +28,64 @@ export const useAppPreferences = (): {
     (state: { appPreferences: AppPreferencesState }) => state.appPreferences,
   );
 
-  const switchTheme = useCallback((themeParam: Theme): void => {
-    try {
-      dispatch(changeTheme({ theme: themeParam }));
-    } catch (error) {
-      Logger.error('[useAppPreferences] switchTheme:', { error });
-    }
-  }, []);
+  const switchTheme = useCallback(
+    (themeParam: Theme): void => {
+      try {
+        dispatch(changeTheme({ theme: themeParam }));
+      } catch (error) {
+        Logger.error('[useAppPreferences] switchTheme:', { error });
+      }
+    },
+    [dispatch],
+  );
 
-  const switchMode = useCallback((modeParam: Mode): void => {
-    try {
-      dispatch(changeMode({ mode: modeParam }));
-    } catch (error) {
-      Logger.error('[useAppPreferences] switchMode:', { error });
-    }
-  }, []);
+  const switchMode = useCallback(
+    (modeParam: Mode): void => {
+      try {
+        dispatch(changeMode({ mode: modeParam }));
+      } catch (error) {
+        Logger.error('[useAppPreferences] switchMode:', { error });
+      }
+    },
+    [dispatch],
+  );
 
   const languages = useSelector((state: { languages: LanguagesState }) => state.languages.content);
 
-  const switchLanguage = useCallback((languageParam: Language): void => {
-    try {
-      dispatch(changeLanguage({ language: languageParam }));
-    } catch (error) {
-      Logger.error('[useAppPreferences] switchLanguage:', { error });
-    } finally {
-      changeLanguageApp(languageParam);
-    }
-  }, []);
+  const switchLanguage = useCallback(
+    (languageParam: Language): void => {
+      try {
+        dispatch(changeLanguage({ language: languageParam }));
+      } catch (error) {
+        Logger.error('[useAppPreferences] switchLanguage:', { error });
+      } finally {
+        changeLanguageApp(languageParam);
+      }
+    },
+    [dispatch],
+  );
 
-  const saveLanguages = useCallback((languagesParam: object): void => {
-    try {
-      dispatch(storeLanguages({ content: languagesParam }));
-    } catch (error) {
-      Logger.error('[useAppPreferences] saveLanguages:', { error });
-    }
-  }, []);
+  const saveLanguages = useCallback(
+    (languagesParam: object): void => {
+      try {
+        dispatch(storeLanguages({ content: languagesParam }));
+      } catch (error) {
+        Logger.error('[useAppPreferences] saveLanguages:', { error });
+      }
+    },
+    [dispatch],
+  );
 
-  const switchBiometrics = useCallback((toogleBiometricsParam: boolean) => {
-    try {
-      dispatch(toggleBiometrics({ biometrics: toogleBiometricsParam }));
-    } catch (error) {
-      Logger.error('[useAppPreferences] switchBiometrics:', { error });
-    }
-  }, []);
+  const switchBiometrics = useCallback(
+    (toogleBiometricsParam: boolean) => {
+      try {
+        dispatch(toggleBiometrics({ biometrics: toogleBiometricsParam }));
+      } catch (error) {
+        Logger.error('[useAppPreferences] switchBiometrics:', { error });
+      }
+    },
+    [dispatch],
+  );
 
   return {
     theme,

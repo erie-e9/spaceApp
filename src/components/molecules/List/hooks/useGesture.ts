@@ -16,7 +16,6 @@ import type { NullableNumber, TSongPositions, TItem } from '../components/types'
 
 export const ANIMATION_DURATION = 600;
 export const useGesture = ({
-  item,
   id,
   isDragging,
   draggedItemId,
@@ -70,7 +69,6 @@ export const useGesture = ({
       }
     },
   );
-
 
   const isCurrentDraggingItem = useDerivedValue(() => {
     return isDraggingDerived.value && draggedItemIdDerived.value === id;
@@ -182,18 +180,18 @@ export const useGesture = ({
       ],
       backgroundColor: isCurrentDraggingItem.value
         ? interpolateColor(
-          isDraggingDerived.value,
-          [0, 1],
-          [theme.tokens.colors.tertiary50, theme.tokens.colors.tertiary50],
-        )
+            isDraggingDerived.value,
+            [0, 1],
+            [theme.tokens.colors.tertiary50, theme.tokens.colors.tertiary50],
+          )
         : 'transparent', // background by default
 
       shadowColor: isCurrentDraggingItem.value
         ? interpolateColor(
-          isDraggingDerived.value,
-          [0, 1],
-          [theme.tokens.colors.secondary950, theme.tokens.colors.secondary950],
-        )
+            isDraggingDerived.value,
+            [0, 1],
+            [theme.tokens.colors.secondary950, theme.tokens.colors.secondary950],
+          )
         : undefined,
       shadowOffset: {
         width: 0,

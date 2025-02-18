@@ -25,4 +25,4 @@ export interface User {
   country?: string;
   loggedOnDevice?: boolean;
   signUpMethod?: signUpMethod;
-};
+}

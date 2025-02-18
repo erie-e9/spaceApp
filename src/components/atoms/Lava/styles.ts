@@ -4,9 +4,9 @@ import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 
 export const LavaContainer = styled.View.attrs({
-    ...StyleSheet.absoluteFillObject
+  ...StyleSheet.absoluteFillObject,
 })`
-    /* background-color: blue */
+  /* background-color: blue */
 `;
 
 export const SkiaCanvas = styled(Canvas)`

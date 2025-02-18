@@ -38,6 +38,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({
   pressTitleHandler,
 }) => {
   const navigation: ApplicationScreenProps = useNavigation();
+
   const onPressTitleHandler = useCallback(() => {
     if (pressTitle && !pressTitleHandler) {
       if (pressTitle === 'back') {
@@ -47,7 +48,7 @@ export const HeaderTemplate: React.FC<HeaderTemplateProps> = ({
     } else if (pressTitleHandler && !pressTitle) {
       pressTitleHandler();
     }
-  }, [pressTitle, pressTitleHandler]);
+  }, [pressTitle, pressTitleHandler, navigation]);
 
   return (
     <HeaderContainer headerStyle={headerStyle}>

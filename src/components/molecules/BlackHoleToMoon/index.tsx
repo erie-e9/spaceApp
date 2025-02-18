@@ -1,11 +1,11 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { memo, ReactElement, useCallback, useEffect } from 'react';
 import { Circle, Group } from '@shopify/react-native-skia';
 import { useSharedValue, withTiming, withSpring } from 'react-native-reanimated';
 import { useTheme, useAppPreferences } from '@hooks';
 import { TransformAnimation, RotateAnimation } from '@components/animated';
 import { Container, Touchable, SkiaCanvas, ChildrenContainer } from './styles';
 interface BlackHoleToMoonProps {
-  children?: any | any[];
+  children?: ReactElement | ReactElement[];
   blackHole?: boolean;
 }
 
@@ -21,13 +21,13 @@ export const BlackHoleToMoon: React.FC<BlackHoleToMoonProps> = ({ children }) =>
     } else {
       radius.value = withSpring(95, { stiffness: 150, damping: 7 });
     }
-  }, [radius.value, darkMode]);
+  }, [switchMode, darkMode, radius]);
 
   useEffect(() => {
     radius.value = darkMode
       ? withTiming(105, { duration: 1500 })
       : withTiming(95, { duration: 1500 });
-  }, [darkMode]);
+  }, [darkMode, radius]);
 
   const craters = [
     { cx: 120, cy: 120, r: 5 },
@@ -70,7 +70,7 @@ export const BlackHoleToMoon: React.FC<BlackHoleToMoonProps> = ({ children }) =>
                   ))}
               </Group>
             </SkiaCanvas>
-            <ChildrenContainer>{children && children}</ChildrenContainer>
+            <ChildrenContainer>{children ?? null}</ChildrenContainer>
           </RotateAnimation>
         </Container>
       </TransformAnimation>

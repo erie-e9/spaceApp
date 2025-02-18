@@ -12,7 +12,6 @@ export const ModalHeaderContainer = styled.View<{ alignHeader: AlignHeaderType }
   z-index: 1;
   padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
-
 `;
 
 export const TitleContainer = styled.View`

@@ -33,7 +33,7 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
       animatedProps={backdropProps}
       style={backgroundAnimted}
     >
-      {children && children}
+      {children ?? null}
     </AnimatedBackgroundContainer>
   );
 };

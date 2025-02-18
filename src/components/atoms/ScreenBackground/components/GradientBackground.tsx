@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { Fragment, memo } from 'react';
 import { StyleSheet } from 'react-native';
 import {
   Fill,
@@ -10,10 +10,8 @@ import {
   useVideo,
   vec,
 } from '@shopify/react-native-skia';
-import { useSharedValue } from 'react-native-reanimated';
 import { testProperties } from '@utils/functions';
 import type { ScreenBackgroundProps } from '@types';
-import { useTheme } from '@hooks';
 import { ContentContainer, SkiaCanvas, StyledBackgroundContainer } from './styles';
 
 const GradientBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
@@ -43,11 +41,10 @@ const GradientBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
   const image = useImage(backgroundType === 'image' && backgroundSource ? backgroundSource : '');
   const width = canvasDimensions?.width || 200;
   const height = canvasDimensions?.height || 200;
-  const topColor = useSharedValue('#e9b6ff');
-  const top2Color = useSharedValue('#a0f5ff');
-  const bottomColor = useSharedValue('#7de9f5');
-  const bottom2Color = useSharedValue('#57c3cf');
-  const { Images } = useTheme();
+  // const topColor = useSharedValue('#e9b6ff');
+  // const top2Color = useSharedValue('#a0f5ff');
+  // const bottomColor = useSharedValue('#7de9f5');
+  // const bottom2Color = useSharedValue('#57c3cf');
 
   //   const colors = useDerivedValue(() => {
   //     return [topColor.value, top2Color.value, bottomColor.value, bottom2Color.value];
@@ -80,7 +77,7 @@ const GradientBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
     >
       <SkiaCanvas>
         {backgroundSource && (
-          <>
+          <Fragment>
             {backgroundType === 'image' ? (
               <Image image={image} x={0} y={0} width={width} height={height + 25} fit="fitHeight" />
             ) : (
@@ -95,7 +92,7 @@ const GradientBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
                 />
               </Fill>
             )}
-          </>
+          </Fragment>
         )}
 
         <Rect x={0} y={0} width={width} height={height + 25} opacity={layerOpacity || 0.9}>

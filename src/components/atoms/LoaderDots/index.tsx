@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
 import { testProperties } from '@utils/functions';
 import AnimatedDotItem from '@components/atoms/LoaderDots/AnimatedDotItem';
 import { LoaderDotsContainer } from './styles';

@@ -260,5 +260,6 @@
       }
     }
   },
-  "emptyList": "Sin elementos"
+  "emptyList": "Sin elementos",
+  "tryagain": "Intentar de nuevo"
 }

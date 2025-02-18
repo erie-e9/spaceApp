@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
 import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
 import type { TouchableProps, ScreenBackgroundProps } from '@types';
@@ -81,6 +81,7 @@ const CallToAction: React.FC<CallToActionProps & Partial<ScreenBackgroundProps>>
       disabled={button?.disabled}
       backgroundColor={button?.backgroundColor}
       remoteFeatureFlags={button?.remoteFeatureFlags}
+      gradientColors={button?.gradientColors}
     />
   );
 

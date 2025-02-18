@@ -1,4 +1,4 @@
-import React, { Fragment, memo, useEffect } from 'react';
+import React, { Fragment, memo, useCallback, useEffect } from 'react';
 import {
   interpolate,
   useAnimatedStyle,
@@ -59,9 +59,9 @@ export const FlipAnimation: React.FC<FlipAnimationProps> = ({
     };
   }, [spin.value]);
 
-  const spinTrigger = (): void => {
+  const spinTrigger = useCallback((): void => {
     spin.value = spin.value ? 0 : 1;
-  };
+  }, [spin]);
 
   useEffect(() => {
     const cleanup = () => {
@@ -81,7 +81,7 @@ export const FlipAnimation: React.FC<FlipAnimationProps> = ({
       cleanup();
       clearInterval(interval as number);
     };
-  }, [spin, withManualTrigger]);
+  }, [spin, spinTrigger, withManualTrigger]);
 
   return (
     <Fragment>

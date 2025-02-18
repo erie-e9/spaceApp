@@ -37,10 +37,10 @@ export const Tasks: React.FC<TasksProps> = ({ navigation }) => {
             searchLabel={useTasksHook.tasksSearcher}
             filterBy={useTasksHook.filterBy}
             showEmptyData={!useTasksHook.isLoading && useTasksHook.itemList.length === 0}
-            scrollEnabled={true}
-            useFlashList={true}
+            scrollEnabled
+            useFlashList
             draggable={!true}
-            swipeable={true}
+            swipeable
             renderRightActions={
               useTasksHook.itemList.length > 0 ? useTasksHook.renderRightActions : undefined
             }
@@ -49,6 +49,8 @@ export const Tasks: React.FC<TasksProps> = ({ navigation }) => {
             }
             renderItem={useTasksHook.renderItemComponent}
             footerComponent={useTasksHook.TaskSkeleton}
+            showReload
+            refreshHandler={useTasksHook.refetch}
           />
         </BodyContainer>
       }

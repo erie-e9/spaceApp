@@ -27,67 +27,79 @@ export const useAuthenticationHook = (): {
   const token = useSelector((state: { token: TokenState }) => state.token.content);
   const user = useSelector((state: { user: User }) => state.user);
 
-  const storeToken = useCallback(async (token: string): void => {
-    try {
-      const { validToken } = await validateTokenStructure(token);
-      // if (validToken) {
-      dispatch(storeTokenSlice({ content: token }));
-      // }
-    } catch (error) {
-      Logger.error('[useAuthenticationHook] storeToken:', { error });
-      throw error;
-    }
-  }, [dispatch]);
+  const storeToken = useCallback(
+    async (tokenParam: string): Promise<void> => {
+      try {
+        const {} = await validateTokenStructure(tokenParam);
+        // if (validToken) {
+        dispatch(storeTokenSlice({ content: tokenParam }));
+        // }
+      } catch (error) {
+        Logger.error('[useAuthenticationHook] storeToken:', { error });
+        throw error;
+      }
+    },
+    [dispatch],
+  );
 
-  const removeToken = (): void => {
+  const removeToken = useCallback((): void => {
     try {
       dispatch(removeTokenSlice());
     } catch (error) {
       Logger.error('[useAuthenticationHook] removeToken:', { error });
     }
-  };
+  }, [dispatch]);
 
-  const storeRefreshToken = (token: string): void => {
-    try {
-      dispatch(storeRefreshTokenSlice({ content: token }));
-    } catch (error) {
-      Logger.error('[useAuthenticationHook] storeRefreshToken:', { error });
-    }
-  };
+  const storeRefreshToken = useCallback(
+    (tokenParam: string): void => {
+      try {
+        dispatch(storeRefreshTokenSlice({ content: tokenParam }));
+      } catch (error) {
+        Logger.error('[useAuthenticationHook] storeRefreshToken:', { error });
+      }
+    },
+    [dispatch],
+  );
 
-  const removeRefreshToken = (): void => {
+  const removeRefreshToken = useCallback((): void => {
     try {
       dispatch(removeRefreshTokenSlice());
     } catch (error) {
       Logger.error('[useAuthenticationHook] removeRefreshToken:', { error });
     }
-  };
-
-  const storeUser = (user: User): void => {
-    try {
-      dispatch(storeUserSlice(user));
-    } catch (error) {
-      Logger.error('[useAuthenticationHook] storeUser:', { error });
-      throw error;
-    }
-  };
-
-  const updateUser = useCallback((user: Partial<User>): void => {
-    try {
-      dispatch(updateUserSlice(user));
-    } catch (error) {
-      Logger.error('[useAuthenticationHook] storeUser:', { error });
-      throw error;
-    }
   }, [dispatch]);
 
-  const removeUser = (): void => {
+  const storeUser = useCallback(
+    (userParam: User): void => {
+      try {
+        dispatch(storeUserSlice(userParam));
+      } catch (error) {
+        Logger.error('[useAuthenticationHook] storeUser:', { error });
+        throw error;
+      }
+    },
+    [dispatch],
+  );
+
+  const updateUser = useCallback(
+    (userParam: Partial<User>): void => {
+      try {
+        dispatch(updateUserSlice(userParam));
+      } catch (error) {
+        Logger.error('[useAuthenticationHook] storeUser:', { error });
+        throw error;
+      }
+    },
+    [dispatch],
+  );
+
+  const removeUser = useCallback((): void => {
     try {
       dispatch(removeUserSlice());
     } catch (error) {
       Logger.error('[useAuthenticationHook] removeUser:', { error });
     }
-  };
+  }, [dispatch]);
 
   return {
     token,

@@ -11,7 +11,6 @@ export const TextInputContainer = styled.View`
   z-index: 100;
   margin-top: ${getNormalizedVerticalSize(5)}px;
   min-height: ${PixelRatio.roundToNearestPixel(70)}px;
-
 `;
 
 export const LabelColorAnimationContainer = styled(InterpolateColorAnimation)`
@@ -34,7 +33,7 @@ export const CounterColorAnimationContainer = styled(InterpolateColorAnimation)`
   padding: ${getNormalizedVerticalSize(2)}px ${getNormalizedHorizontalSize(5)}px;
 `;
 
-export const StyledText = styled(Typography) <{
+export const StyledText = styled(Typography)<{
   focused?: boolean;
   error?: boolean;
   backgroundLabel?: string;
@@ -71,7 +70,8 @@ export const Wrapper = styled.View<WrapperProps>`
   align-items: center;
   justify-content: flex-end;
   min-height: ${PixelRatio.roundToNearestPixel(45)}px; // change mutual height's here
-  max-height: ${({ heightExpansible }) => heightExpansible ? 'auto' : PixelRatio.roundToNearestPixel(45) + 'px'};
+  max-height: ${({ heightExpansible }) =>
+    heightExpansible ? 'auto' : PixelRatio.roundToNearestPixel(45) + 'px'};
   background-color: transparent;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(20)}px;
@@ -80,26 +80,26 @@ export const Wrapper = styled.View<WrapperProps>`
     theme.mode === 'dark'
       ? css`
           border-color: ${() => {
-          const color =
-            (focused && editable) || maintainFocus
-              ? theme.tokens.colors.primary500
-              : theme.tokens.colors.secondary950;
-          return error ? theme.tokens.colors.danger_status : color;
-        }};
+            const color =
+              (focused && editable) || maintainFocus
+                ? theme.tokens.colors.primary500
+                : theme.tokens.colors.secondary950;
+            return error ? theme.tokens.colors.danger_status : color;
+          }};
           /* background-color: ${() =>
-          editable ? 'transparent' : theme.tokens.colors.secondary800}; */
+            editable ? 'transparent' : theme.tokens.colors.secondary800}; */
         `
       : css`
           // theme mode = 'light'
           border-color: ${() => {
-          const color =
-            (focused && editable) || maintainFocus
-              ? theme.tokens.colors.primary500
-              : theme.tokens.colors.secondary950;
-          return error ? theme.tokens.colors.danger_status : color;
-        }};
+            const color =
+              (focused && editable) || maintainFocus
+                ? theme.tokens.colors.primary500
+                : theme.tokens.colors.secondary950;
+            return error ? theme.tokens.colors.danger_status : color;
+          }};
           /* background-color: ${() =>
-          editable ? 'transparent' : theme.tokens.colors.secondary700}; */
+            editable ? 'transparent' : theme.tokens.colors.secondary700}; */
         `};
   ${({ error, focused, editable, maintainFocus }) => css`
     border-width: ${() => {

@@ -40,11 +40,19 @@ const AlertAndBottomSheet: React.FC = () => {
       break;
   }
 
-  if (!type) return <Fragment></Fragment>;
-  if (type === 'alert') return <Alert />;
-  if (type === 'bottomsheet') return <BottomSheet {...modalArgs} />;
-  if (type === 'popup') return <PopupMenu {...modalArgs} />;
-  return <Fragment></Fragment>;
+  if (!type) {
+    return <Fragment />;
+  }
+  if (type === 'alert') {
+    return <Alert />;
+  }
+  if (type === 'bottomsheet') {
+    return <BottomSheet {...modalArgs} />;
+  }
+  if (type === 'popup') {
+    return <PopupMenu {...modalArgs} />;
+  }
+  return <Fragment />;
 };
 
 export default memo(AlertAndBottomSheet);

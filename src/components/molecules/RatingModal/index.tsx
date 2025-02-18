@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react';
+import React, { Fragment, memo, useCallback, useState } from 'react';
 import { Keyboard } from 'react-native';
 import { useCopy } from '@services';
 import { testProperties } from '@utils/functions';
@@ -17,7 +17,7 @@ interface RatingModalParams {
   handleRating: (
     featureRequestId: string,
     rating: number,
-    message?: string,
+    feedback?: string,
     skipped?: boolean,
   ) => Promise<void>;
   featureName: string;
@@ -41,15 +41,15 @@ const RatingModal = ({
 
   const handlerAskMeLater = useCallback(async (): Promise<void> => {
     handleRating(featureRequestId, defaultRating, feedbackValue, true);
-  }, []);
+  }, [defaultRating, featureRequestId, feedbackValue, handleRating]);
 
   const submitHandler = useCallback(() => {
     Keyboard.dismiss();
     handlerAskMeLater();
-  }, []);
+  }, [handlerAskMeLater]);
 
   return (
-    <>
+    <Fragment>
       <HeaderContainer>
         <RatingTitle type="Headline5" color={limitExceeded ? 'danger_status' : 'typography900'}>
           {tellUsMoreVisible
@@ -70,7 +70,7 @@ const RatingModal = ({
         <ContentWrapper>
           <StyledInput
             {...testProperties('feedback-input')}
-            label={`common:bottomsheets.rating.tellUsMore.placeholder`}
+            label={'common:bottomsheets.rating.tellUsMore.placeholder'}
             name={'tellUsMore'}
             multiline
             required={true}
@@ -116,7 +116,7 @@ const RatingModal = ({
         onPressAsync={() => handlerAskMeLater()}
         buttonTheme="Secondary"
       />
-    </>
+    </Fragment>
   );
 };
 

@@ -8,7 +8,7 @@ export const ContactUs: React.FC = () => {
   // JSX Components
   return (
     <CallToAction
-      title={`menu:helpCenter.support.items.contactUs.title`}
+      title={'menu:helpCenter.support.items.contactUs.title'}
       headerStyle="Secondary"
       backButton
       body={

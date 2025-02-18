@@ -54,7 +54,7 @@ export const AnimatedDotItem = ({
       scaleUp();
       scaleYUp();
     }
-  }, [active, scaleDown, scaleUp]);
+  }, [active, scaleDown, scaleUp, scaleYDown, scaleYUp]);
 
   return (
     <AnimatedDot {...testProperties(testID)} style={[animatedStyles]} size={size} color={color} />

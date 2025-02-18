@@ -66,29 +66,29 @@ export const usePhotoLibraryCamera = (): {
             options
               ? options
               : ({
-                mediaType,
-                selectionLimit: selectionLimit || 1,
-                quality: quality || 0.8,
-                includeBase64: true,
-                includeExtra,
-              } as ImageLibraryOptions),
+                  mediaType,
+                  selectionLimit: selectionLimit || 1,
+                  quality: quality || 0.8,
+                  includeBase64: true,
+                  includeExtra,
+                } as ImageLibraryOptions),
             callback,
           );
           // const images = await openPicker(config);
-          listImages = assets
+          listImages = assets;
         } else {
           // camera
           const photos = await launchCamera(
             options
               ? options
               : ({
-                mediaType,
-                selectionLimit: selectionLimit || 1,
-                quality: quality || 0.8,
-                includeBase64: true,
-                includeExtra,
-                saveToPhotos: true,
-              } as CameraOptions),
+                  mediaType,
+                  selectionLimit: selectionLimit || 1,
+                  quality: quality || 0.8,
+                  includeBase64: true,
+                  includeExtra,
+                  saveToPhotos: true,
+                } as CameraOptions),
             callback,
           );
           listImages = photos.assets;
@@ -96,7 +96,7 @@ export const usePhotoLibraryCamera = (): {
 
         return listImages;
       } catch (error) {
-        Logger.log('[usePhotoLibraryCamera] pickImage:', { error })
+        Logger.log('[usePhotoLibraryCamera] pickImage:', { error });
       }
     },
     [],

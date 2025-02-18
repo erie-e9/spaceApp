@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { Fragment, memo, useMemo } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { testProperties } from '@utils/functions';
 import { useTheme } from '@hooks';
@@ -42,7 +42,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({ testID, item, itemHeight }
       PATCH: darkMode ? 'typography900' : 'typography100',
       DELETE: darkMode ? 'typography900' : 'typography100',
     };
-  }, []);
+  }, [darkMode]);
 
   const queueMethod: { [key in QueueMethodType]: string } = useMemo(() => {
     return {
@@ -76,11 +76,10 @@ export const QueueItem: React.FC<QueueItemProps> = ({ testID, item, itemHeight }
   return (
     <QueueItemContainer {...testProperties(testID || 'QueueItemID')}>
       {groupLabel === 'tasks' && (
-        <>
+        <Fragment>
           <TaskItem
             item={itemFormmated as Task}
             itemHeight={itemHeight}
-            // rightContent={formattedCreatedAt}
             onPress={() =>
               navigation.navigate('Private', {
                 screen: 'Task',
@@ -88,7 +87,7 @@ export const QueueItem: React.FC<QueueItemProps> = ({ testID, item, itemHeight }
               } as never)
             }
           />
-        </>
+        </Fragment>
       )}
       <QueueMetaContainer>
         <QueueTagContainer backgroundColor="tertiary200">

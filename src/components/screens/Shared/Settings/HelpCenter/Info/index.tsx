@@ -24,7 +24,7 @@ export const Info: React.FC<InfoProps> = ({ navigation, route }) => {
     navigation.setOptions({
       title: getCopyValue(headerTitle),
     });
-  }, []);
+  }, [getCopyValue, headerTitle, navigation]);
 
   return (
     <CallToAction

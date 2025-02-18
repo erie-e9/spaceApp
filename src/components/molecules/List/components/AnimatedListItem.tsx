@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { Fragment, memo } from 'react';
 import { GestureDetector } from 'react-native-gesture-handler';
 import { useGesture } from '../hooks/useGesture';
 import type { TListItem } from './types';
@@ -36,7 +36,7 @@ export const AnimatedListItem = ({
       {children ? (
         <ChildrenContainer>{children}</ChildrenContainer>
       ) : (
-        <>
+        <Fragment>
           <Image
             source={{
               uri: item.imageSrc,
@@ -45,7 +45,7 @@ export const AnimatedListItem = ({
           <DescriptionContainer>
             <StyledText>{item.title}</StyledText>
           </DescriptionContainer>
-        </>
+        </Fragment>
       )}
       <GestureDetector gesture={gesture}>
         <AnimatedDraggerContainer>

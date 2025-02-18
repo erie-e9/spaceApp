@@ -260,5 +260,6 @@
       }
     }
   },
-  "emptyList": "No items"
+  "emptyList": "No items",
+  "tryagain": "Try again"
 }

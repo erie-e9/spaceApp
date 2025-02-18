@@ -22,7 +22,7 @@ export const Warning: React.FC = () => {
 
   const primaryButtonHandler = useCallback(async (): Promise<void> => {
     navigation.navigate('ContactUs');
-  }, []);
+  }, [navigation]);
 
   useEffect(() => {
     const timeOut = setTimeout(() => {

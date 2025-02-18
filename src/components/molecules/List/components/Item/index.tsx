@@ -1,8 +1,7 @@
-import React, { forwardRef, memo, useCallback, useMemo } from 'react';
+import React, { forwardRef, Fragment, memo, useCallback, useMemo } from 'react';
 import { SharedValue, useSharedValue } from 'react-native-reanimated';
 import { useTheme } from 'styled-components/native';
-// import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { ListItem } from '@components/molecules';
 import AnimatedListItem from '../AnimatedListItem';
 import SwipeableItem from '../SwipeableItem';
@@ -49,7 +48,7 @@ const Item: React.FC<Props> = forwardRef(
         ) : (
           <ListItem title={item.username} subtitle={item.post_title} />
         ),
-      [renderItem],
+      [renderItem, item, index],
     );
 
     const handleSwipeableWillOpen = useCallback(
@@ -68,10 +67,11 @@ const Item: React.FC<Props> = forwardRef(
     }, [renderLeftAction, item, index]);
 
     return (
-      <>
+      <Fragment>
         {swipeable ? (
           <Swipeable
             ref={ref}
+            key={index}
             overshootFriction={3}
             onSwipeableWillOpen={handleSwipeableWillOpen}
             renderLeftActions={
@@ -125,7 +125,7 @@ const Item: React.FC<Props> = forwardRef(
         ) : (
           renderedItem
         )}
-      </>
+      </Fragment>
     );
   },
 );

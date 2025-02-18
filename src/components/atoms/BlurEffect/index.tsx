@@ -1,20 +1,15 @@
-import React, { memo } from 'react';
+import React, { Fragment, memo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
 import {
-  add,
   BackdropFilter,
   Blur,
   ColorMatrix,
   Fill,
   Image,
   ImageShader,
-  mix,
-  sub,
   useImage,
   useVideo,
-  vec,
 } from '@shopify/react-native-skia';
-import { useDerivedValue } from 'react-native-reanimated';
 import type { ScreenBackgroundProps } from '@types';
 import { testProperties } from '@utils/functions';
 import { SkiaCanvas, StyledBackgroundContainer } from './styles';
@@ -31,10 +26,10 @@ const BlurEffect: React.FC<Partial<ScreenBackgroundProps>> = ({
 }) => {
   const { width, height } = useWindowDimensions();
   // const progress = useLoop();
-  const c = vec(width / 2, (height / 2) * 0.5);
-  const r = c.x - 32;
-  const start = useDerivedValue(() => sub(c, vec(0, mix(0, r, r))), []);
-  const end = useDerivedValue(() => add(c, vec(0, mix(0, r, r / 2))), []);
+  // const c = vec(width / 2, (height / 2) * 0.5);
+  // const r = c.x - 32;
+  // const start = useDerivedValue(() => sub(c, vec(0, mix(0, r, r))), []);
+  // const end = useDerivedValue(() => add(c, vec(0, mix(0, r, r / 2))), []);
   const image = useImage(backgroundSource);
   const { currentFrame } = useVideo(
     backgroundType === 'video' && backgroundSource ? backgroundSource : '',
@@ -53,7 +48,7 @@ const BlurEffect: React.FC<Partial<ScreenBackgroundProps>> = ({
     >
       <SkiaCanvas>
         {backgroundSource && (
-          <>
+          <Fragment>
             {backgroundType === 'image' ? (
               <Image image={image} x={0} y={0} width={width} height={height} fit="fitHeight" />
             ) : (
@@ -68,7 +63,7 @@ const BlurEffect: React.FC<Partial<ScreenBackgroundProps>> = ({
                 />
               </Fill>
             )}
-          </>
+          </Fragment>
         )}
         {/* <Rect
           x={0}

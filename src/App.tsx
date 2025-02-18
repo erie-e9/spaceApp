@@ -19,7 +19,7 @@ const App = () => {
 
   useLayoutEffect(() => {
     getRemoteFeatures();
-  }, []);
+  }, [getRemoteFeatures]);
 
   return (
     <Provider store={store}>

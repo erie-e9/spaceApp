@@ -1,5 +1,5 @@
 import React, { Fragment, memo, ReactElement } from 'react';
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import { useSkeleton } from './hooks/useSkeleton';
 import { GradientView, ParentView } from './styles';
@@ -78,7 +78,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
           )}
         </ParentView>
       ) : (
-        <>{children}</>
+        <Fragment>{children}</Fragment>
       )}
     </Fragment>
   );

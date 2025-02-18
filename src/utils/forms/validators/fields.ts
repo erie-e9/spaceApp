@@ -111,32 +111,23 @@ export const country = yup
 
 export const bugDescription = yup
   .string()
-  .matches(
-    alphaNumericRegex,
-    'common:form.fields.inputs.description.validations.matches',
-  )
+  .matches(alphaNumericRegex, 'common:form.fields.inputs.description.validations.matches')
   .min(3, 'common:form.fields.inputs.description.validations.min')
   .max(255, 'common:form.fields.inputs.description.validations.max')
   .required('common:form.fields.inputs.description.validations.required');
 
 export const title = yup
   .string()
-  .matches(
-    alphaNumericRegex,
-    'common:form.fields.inputs.title.validations.matches',
-  )
+  .matches(alphaNumericRegex, 'common:form.fields.inputs.title.validations.matches')
   .min(3, 'common:form.fields.inputs.title.validations.min')
   .max(100, 'common:form.fields.inputs.title.validations.max')
   .required('common:form.fields.inputs.title.validations.required');
 
 export const descriptionNoMandatory = yup
   .string()
-  .matches(
-    alphaNumericRegex,
-    'common:form.fields.inputs.description.validations.matches',
-  )
+  .matches(alphaNumericRegex, 'common:form.fields.inputs.description.validations.matches')
   .min(3, 'common:form.fields.inputs.description.validations.min')
-  .max(255, 'common:form.fields.inputs.description.validations.max')
+  .max(255, 'common:form.fields.inputs.description.validations.max');
 
 export const status = yup
   .number()
@@ -144,8 +135,8 @@ export const status = yup
   .notRequired()
   .min(0, 'common:form.fields.inputs.status.validations.min')
   .max(3, 'common:form.fields.inputs.status.validations.max')
-  .typeError('common:form.fields.inputs.status.validations.matches')
+  .typeError('common:form.fields.inputs.status.validations.matches');
 
 export const dateNoMandatory = yup
   .string()
-  .matches(validDateRegex, 'common:form.fields.inputs.date.validations.matches')
+  .matches(validDateRegex, 'common:form.fields.inputs.date.validations.matches');

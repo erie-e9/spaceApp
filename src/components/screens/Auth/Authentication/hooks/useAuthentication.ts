@@ -47,12 +47,12 @@ export const useAuthentication = ({ navigation }: Props) => {
       toggleForm === 'logIn' && !loggedOnDevice && !enableBiometrics
         ? 'newLogin'
         : toggleForm === 'logIn' && loggedOnDevice && !enableBiometrics
-          ? 'logged'
-          : toggleForm === 'logIn' && loggedOnDevice && enableBiometrics
-            ? 'loggedBiometrics'
-            : toggleForm === 'signUp'
-              ? 'signUp'
-              : 'accountRecovery',
+        ? 'logged'
+        : toggleForm === 'logIn' && loggedOnDevice && enableBiometrics
+        ? 'loggedBiometrics'
+        : toggleForm === 'signUp'
+        ? 'signUp'
+        : 'accountRecovery',
     [toggleForm, loggedOnDevice, enableBiometrics],
   );
 
@@ -125,7 +125,7 @@ export const useAuthentication = ({ navigation }: Props) => {
 
   const formik = useFormik({
     initialValues: {
-      phoneNumberOrEmail: '',
+      phoneNumberOrEmail: '6182907121',
       email: '',
       password: '',
     },
@@ -134,7 +134,6 @@ export const useAuthentication = ({ navigation }: Props) => {
     validateOnBlur: false,
     onSubmit: async (values) => {
       try {
-
         const cleanedValues = trimValues(values);
 
         if (toggleForm !== 'logIn') {
@@ -146,9 +145,7 @@ export const useAuthentication = ({ navigation }: Props) => {
         } else {
           if (!loggedOnDevice) {
             await setTimeout(() => {
-              storeToken(
-                'soy.un.token',
-              );
+              storeToken('soy.un.token');
               navigation.navigate('MenuNavigator', {
                 screen: 'Menu',
               } as never);
@@ -156,9 +153,7 @@ export const useAuthentication = ({ navigation }: Props) => {
           } else {
             // was logged on this device //! awaiting for API
             setTimeout(() => {
-              storeToken(
-                'soy.un.token',
-              );
+              storeToken('soy.un.token');
               navigation.navigate('MenuNavigator', {
                 screen: 'Menu',
               } as never);
@@ -185,22 +180,29 @@ export const useAuthentication = ({ navigation }: Props) => {
     async (
       phoneNumberOrEmail: string,
       type: 'signUp' | 'accountRecovery',
-      email?: string,
+      emailParam?: string,
     ): Promise<void> => {
       if (toggleForm !== 'logIn' && formik.values.phoneNumberOrEmail !== '') {
         await setLoading(false);
-        await showSendOTPAlert(
+        showSendOTPAlert(
           type === 'signUp'
-            ? () => checkPendingFormAlert(phoneNumberOrEmail, email)
+            ? () => checkPendingFormAlert(phoneNumberOrEmail, emailParam)
             : () =>
-              editFieldHandler({
-                fieldId: 'password',
-                fieldName: 'signup:SignUp.form.fields.password.name',
-              }),
+                editFieldHandler({
+                  fieldId: 'password',
+                  fieldName: 'signup:SignUp.form.fields.password.name',
+                }),
         );
       }
     },
-    [formik.values.phoneNumberOrEmail, toggleForm, user],
+    [
+      checkPendingFormAlert,
+      editFieldHandler,
+      formik.values.phoneNumberOrEmail,
+      setLoading,
+      showSendOTPAlert,
+      toggleForm,
+    ],
   );
 
   const toggleFormHandler = useCallback(
@@ -221,13 +223,13 @@ export const useAuthentication = ({ navigation }: Props) => {
       promptMessage: 'authentication:Authentication.biometrics.logIn.promptMessage',
       callback: () => console.log('getBiometricsTokenHandler'),
     });
-  }, []);
+  }, [simpleBiometric]);
 
   const removeAccountHandler = useCallback(async () => {
     removeUser();
     removeToken();
     formik.resetForm();
-  }, []);
+  }, [formik, removeToken, removeUser]);
 
   const useAnotherAccountAlert = useCallback(() => {
     showModal({
@@ -243,7 +245,7 @@ export const useAuthentication = ({ navigation }: Props) => {
         },
       ],
     });
-  }, []);
+  }, [removeAccountHandler, showModal]);
 
   const useBiometricsHandler = useCallback(() => {
     setEnableBiometrics((prevState) => !prevState);
@@ -253,14 +255,13 @@ export const useAuthentication = ({ navigation }: Props) => {
     if (!isEmpty(formik.errors) && loading) {
       setLoading(false);
     }
-  }, [formik.errors, loading]);
+  }, [formik.errors, loading, setLoading]);
 
   const primaryButtonHandler = useCallback(() => {
     setLoading(true);
 
     formik.handleSubmit();
-  }, [formik]);
-
+  }, [formik, setLoading]);
 
   const primaryButton = useMemo(() => {
     const titleMap = {
@@ -274,6 +275,7 @@ export const useAuthentication = ({ navigation }: Props) => {
       disabled: loading,
       loading: loading,
       onPress: primaryButtonHandler,
+      gradientColors: ['#f3b2ff', '#94b2ff', '#7df5e9'],
     };
   }, [loading, toggleForm, primaryButtonHandler]);
 

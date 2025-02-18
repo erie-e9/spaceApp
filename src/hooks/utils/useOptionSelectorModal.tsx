@@ -24,7 +24,7 @@ export const useOptionSelectorModal = (): {
   const { showModal } = useModal();
 
   const optionSelectorModal = useCallback(
-    ({ title, listOptions, numColumns, centered, expandable }: OptionsSelectorProps) => {
+    ({ title, listOptions, numColumns, expandable }: OptionsSelectorProps) => {
       showModal({
         type: 'bottomsheet',
         title: title || '',
@@ -44,7 +44,7 @@ export const useOptionSelectorModal = (): {
         },
       });
     },
-    [],
+    [showModal],
   );
 
   return { optionSelectorModal };

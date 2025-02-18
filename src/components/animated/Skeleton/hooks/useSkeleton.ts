@@ -28,7 +28,7 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
       cancelAnimation(translatey);
       cancelAnimation(opacity);
     };
-  }, []);
+  }, [opacity, translatex, translatey]);
 
   useEffect(() => {
     switch (direction) {
@@ -61,7 +61,7 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
     opacity: opacity.value,
   }));
 
-  const animateAcrossXDirection = () => {
+  const animateAcrossXDirection = useCallback((): void => {
     const overflowOffset = parentDimensions.width;
     const leftMostEnd = -overflowOffset;
     const rightMostEnd = parentDimensions.width - gradientDimensions.width + overflowOffset;
@@ -77,9 +77,9 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
       ),
       -1,
     );
-  };
+  }, [direction, duration, gradientDimensions.width, parentDimensions.width, translatex]);
 
-  const animateAcrossYDirection = () => {
+  const animateAcrossYDirection = useCallback((): void => {
     const overflowOffset = parentDimensions.height;
     const topMostEnd = -overflowOffset;
     const bottomMostEnd = parentDimensions.height - gradientDimensions.height + overflowOffset;
@@ -95,7 +95,7 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
       ),
       -1,
     );
-  };
+  }, [direction, duration, gradientDimensions.height, parentDimensions.height, translatey]);
 
   useEffect(() => {
     if (
@@ -110,7 +110,14 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
         animateAcrossYDirection();
       }
     }
-  }, [parentDimensions, gradientDimensions, direction, isXDirectionAnimation]);
+  }, [
+    parentDimensions,
+    gradientDimensions,
+    direction,
+    isXDirectionAnimation,
+    animateAcrossXDirection,
+    animateAcrossYDirection,
+  ]);
 
   useEffect(() => {
     if (animationType === 'pulse') {
@@ -120,25 +127,31 @@ export const useSkeleton = ({ animationType, direction, duration }: Partial<Skel
         true,
       );
     }
-  }, [animationType]);
+  }, [animationType, opacity]);
 
-  const handleParentLayout = useCallback((event: LayoutChangeEvent) => {
-    if (parentDimensions.width === -1 && animationType === 'shiver') {
-      setParentDimensions({
-        width: event.nativeEvent.layout.width,
-        height: event.nativeEvent.layout.height,
-      });
-    }
-  }, [parentDimensions, animationType, setParentDimensions]);
+  const handleParentLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      if (parentDimensions.width === -1 && animationType === 'shiver') {
+        setParentDimensions({
+          width: event.nativeEvent.layout.width,
+          height: event.nativeEvent.layout.height,
+        });
+      }
+    },
+    [parentDimensions, animationType, setParentDimensions],
+  );
 
-  const handleGradientLayout = useCallback((event: LayoutChangeEvent) => {
-    if (gradientDimensions.width === -1) {
-      setGradientDimensions({
-        width: event.nativeEvent.layout.width,
-        height: event.nativeEvent.layout.height,
-      });
-    }
-  }, [gradientDimensions, setGradientDimensions]);
+  const handleGradientLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      if (gradientDimensions.width === -1) {
+        setGradientDimensions({
+          width: event.nativeEvent.layout.width,
+          height: event.nativeEvent.layout.height,
+        });
+      }
+    },
+    [gradientDimensions, setGradientDimensions],
+  );
 
   const gradientStyle = useMemo(
     () => [

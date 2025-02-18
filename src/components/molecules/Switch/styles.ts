@@ -1,4 +1,5 @@
-import styled, { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
+import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
@@ -19,7 +20,7 @@ export interface StyledSwitchProps {
 export const StyledSwitch = styled.View<StyledSwitchProps>`
   flex-direction: row;
   align-items: center;
-  height: ${({ size }) => (size && size) || 20}px;
+  height: ${({ size }) => size || 20}px;
   width: ${({ size }) => (size && size * 2) || 40}px;
   border-radius: ${({ size }) => (size && size / 2) || 9}px;
   border-width: 0.75px;
@@ -35,7 +36,7 @@ export interface IndicatorContainerProps {
 export const IndicatorContainer = styled.View<IndicatorContainerProps>`
   flex-direction: row;
   position: absolute;
-  height: ${({ size }) => (size && size) || 18}px;
+  height: ${({ size }) => size || 18}px;
   width: 100%;
   align-items: center;
   justify-content: space-between;
@@ -50,7 +51,7 @@ export interface StyledAnimatedContainerProps {
   color?: keyof DefaultTheme['tokens']['colors'];
 }
 
-export const StyledAnimatedContainer = styled(Animated.View)<StyledAnimatedContainerProps>`
+export const StyledAnimatedContainer = styled(Animated.View) <StyledAnimatedContainerProps>`
   height: ${({ size }) => (size && size * 0.9) || 18}px;
   width: ${({ size }) => (size && size * 0.9) || 18}px;
   justify-content: center;

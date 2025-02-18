@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import React, { Fragment, memo, useCallback, useEffect, useLayoutEffect, useState } from 'react';
 import {
   CardStyleInterpolators,
   TransitionPresets,
@@ -6,7 +6,8 @@ import {
 } from '@react-navigation/stack';
 import { NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import SplashScreen from '@attarchi/react-native-lottie-splash-screen';
-import { DefaultTheme, ThemeProvider } from 'styled-components';
+import { DefaultTheme } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import ErrorBoundary from 'react-native-error-boundary';
 import { lightMode } from '@theme/themes/light';
@@ -33,7 +34,7 @@ import {
   Info,
   ContactUs,
 } from '@components/screens/Shared';
-import { SafeAreaViewProvider, ScreenBackground, StatusBar } from '@components/atoms';
+import { SafeAreaViewProvider, StatusBar } from '@components/atoms';
 import { Toast } from '@components/molecules';
 import { Modal } from '@components/organisms';
 
@@ -78,28 +79,26 @@ const Application = () => {
     }
   }, [isOnline.isConnected, isOnline.type]);
 
-  const handleJSErrorForErrorBoundary = (error: any, stackTrace: string) => {
+  const handleJSErrorForErrorBoundary = (error: any, stackTrace: string): void => {
     Logger.log('handleJSErrorForErrorBoundary: ', { stackTrace, error });
   };
 
   const checkDevice = useCallback(async () => {
     const deviceReliable = await checkIsReliableDevice({});
     setIsReliableDevice(deviceReliable);
-  }, []);
+  }, [checkIsReliableDevice]);
 
   useLayoutEffect(() => {
     checkDevice();
-  }, []);
+  }, [checkDevice]);
 
-  const { Images } = useTheme();
-
-  const theme = {
-    ...NavigationTheme,
-    colors: {
-      ...NavigationTheme.colors,
-      // background: 'transparent',
-    },
-  };
+  // const theme = {
+  //   ...NavigationTheme,
+  //   colors: {
+  //     ...NavigationTheme.colors,
+  //     // background: 'transparent',
+  //   },
+  // };
 
   return (
     <ThemeProvider theme={mode}>
@@ -131,7 +130,7 @@ const Application = () => {
                   }}
                 />
                 {isReliableDevice ? (
-                  <>
+                  <Fragment>
                     {isAuthenticated ? ( // All accesible screens only if user is authenticated.
                       <Screen
                         key="Private"
@@ -173,7 +172,7 @@ const Application = () => {
                         }}
                       />
                     </Group>
-                  </>
+                  </Fragment>
                 ) : (
                   <Screen
                     key="Warning"

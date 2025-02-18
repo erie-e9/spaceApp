@@ -36,10 +36,7 @@ export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
     () => {
       return {
         play() {
-          animationRef?.current?.play(
-            props.startFrame && props.startFrame,
-            props.endFrame && props.endFrame,
-          );
+          animationRef?.current?.play(props?.startFrame, props?.endFrame);
         },
       };
     },
@@ -74,7 +71,6 @@ export const Lottie: React.FC<LottieProps> = forwardRef((props, ref) => {
       style={{
         width: props.width,
         height: props.height,
-        ...props.style,
       }}
     />
   );

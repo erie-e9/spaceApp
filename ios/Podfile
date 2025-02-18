@@ -43,11 +43,10 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'spaceApp' do
+target 'spaceApp1' do
   config = use_native_modules!
-  $FirebaseSDKVersion = '11.4.0'
-  $RNFirebaseAsStaticFramework = true
   use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -66,7 +65,7 @@ target 'spaceApp' do
       installer,
       config[:reactNativePath],
       :mac_catalyst_enabled => false,
-      :ccache_enabled => true
+      #:ccache_enabled => true
     )
   end
 end

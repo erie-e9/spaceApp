@@ -9,10 +9,17 @@ export const useCheckPendingProcess = () => {
   const navigation: ApplicationScreenProps = useNavigation();
 
   const fillFormHandler = useCallback(
-    async (isPrefilledForm: boolean, phoneNumberOrEmail: string, email?: string, continueForm?: boolean): Promise<void> => {
+    async (
+      isPrefilledForm: boolean,
+      phoneNumberOrEmail: string,
+      email?: string,
+      continueForm?: boolean,
+    ): Promise<void> => {
       await hideModal();
       if (!isPrefilledForm) {
-        if (!continueForm) { await removeUser() };
+        if (!continueForm) {
+          await removeUser();
+        }
         storeUser({
           phoneNumber: phoneNumberOrEmail,
           email: continueForm && user.email ? user.email : email,
@@ -21,7 +28,7 @@ export const useCheckPendingProcess = () => {
       }
       await navigation.navigate('Auth', { screen: 'SignUp' } as never);
     },
-    [user.signUpMethod],
+    [hideModal, navigation, removeUser, storeUser, user.email, user.signUpMethod],
   );
 
   const checkPendingFormAlert = useCallback(
@@ -49,17 +56,26 @@ export const useCheckPendingProcess = () => {
                 text: 'signup:SignUp.alerts.signUpPending.buttons.buttonTwo',
                 handler: () => fillFormHandler(false, phoneNumberOrEmail, email, true),
                 isSimpleButton: false,
-                color: 'typography50'
+                color: 'typography50',
               },
             ],
           });
-        }, 1000)
+        }, 1000);
       } else {
         await removeUser(); // if data doesn't match clear if exits.
         await fillFormHandler(false, phoneNumberOrEmail, email);
       }
     },
-    [user],
+    [
+      fillFormHandler,
+      removeUser,
+      showModal,
+      user.email,
+      user.loggedOnDevice,
+      user.phoneNumber,
+      user.signUpMethod,
+      user.username,
+    ],
   );
 
   return {

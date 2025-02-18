@@ -36,7 +36,7 @@ const MenuButton: React.FC<SettingsRenderItemProps> = ({
 }) => {
   const onPressHandler = useCallback(() => {
     onPress?.();
-  }, []);
+  }, [onPress]);
 
   return (
     <BodyContainer {...testProperties(testID)}>

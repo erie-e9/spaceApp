@@ -29,7 +29,7 @@ export const Form: React.FC<Props> = ({ hookHandler }) => {
   const submitHandler = useCallback(() => {
     Keyboard.dismiss();
     hookHandler.handleSubmit();
-  }, []);
+  }, [hookHandler]);
 
   return (
     <FormContainer>

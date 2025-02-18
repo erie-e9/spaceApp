@@ -1,7 +1,8 @@
 import React, { Fragment, memo } from 'react';
 import { StyleSheet, useColorScheme, Platform, StyleProp, ViewStyle } from 'react-native';
-import { DefaultTheme, useTheme } from 'styled-components/native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { DefaultTheme } from 'styled-components';
+import { useTheme } from 'styled-components/native';
+// import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   AnimatedStyle,
   interpolateColor,
@@ -39,7 +40,7 @@ export const InterpolateColorAnimation: React.FC<InterpolateColorAnimationProps>
   dimensions,
 }) => {
   const theme = useTheme();
-  const insets = useSafeAreaInsets();
+  // const insets = useSafeAreaInsets();
   const { NavigationProps, darkMode } = useThemeVariables();
   const { mode, theme: themeApp } = useAppPreferences();
   const colorScheme = useColorScheme();
@@ -104,11 +105,11 @@ export const InterpolateColorAnimation: React.FC<InterpolateColorAnimationProps>
         {...testProperties(testID)}
         style={[style, reanimatedViewStyle, isScreen && (dimensions ? dimensions : insetStyles)]}
       >
-        {children && children}
+        {children ?? null}
       </StyledBackgroundContainer>
     ) : (
       <StyledTextContainer {...testProperties(testID)} style={[reanimatedViewStyle]} {...props}>
-        {children && children}
+        {children ?? null}
       </StyledTextContainer>
     );
 

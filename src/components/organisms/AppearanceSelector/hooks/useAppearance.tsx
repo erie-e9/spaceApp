@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Platform } from 'react-native';
 import type { Mode } from '@slices/types';
 import { useCopy } from '@services';
@@ -31,12 +31,16 @@ type OutputJSON = {
   };
 };
 
-export const useAppearance = () => {
+export const useAppearance = (): {
+  transformJSON: (input: InputJSON) => OutputJSON;
+  listOptions: unknown;
+} => {
   const { switchMode } = useAppPreferences();
   const { darkMode } = useTheme();
   const { getCopyValue } = useCopy();
 
   const setMode = useCallback((modeParam: Mode) => switchMode(modeParam), [switchMode]);
+
   const transformJSON = (input: InputJSON): OutputJSON => {
     const output: OutputJSON = {};
 
@@ -199,7 +203,7 @@ export const useAppearance = () => {
         onPress: () => setMode(value as Mode),
       }),
     );
-  }, [darkMode, setMode]);
+  }, [darkMode, getCopyValue, renderDeviceSVG, setMode]);
 
   return {
     transformJSON,

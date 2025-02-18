@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components/native';
 import { useCopy } from '@services';
 import type { InputProps } from '@types';
 import { removeBlankSpaces as removeBlankSpacesHandler, testProperties } from '@utils/functions';
-import { usePasswordStrength, StrengthLevelProps } from '@hooks';
+import { usePasswordStrength, StrengthLevelProps, useWhyDidYouUpdate } from '@hooks';
 import { PasswordStrengthAnimation } from '@components/animated';
 import { FieldInputMask } from '@components/molecules';
 import useAutoFocus from './hooks/useAutoFocus';
@@ -15,7 +15,7 @@ import {
   StyledText,
 } from './styles';
 
-export const TextInput: React.FC<InputProps> = forwardRef(
+export const TextInput = forwardRef<typeof StyledTextInput, InputProps>(
   (
     {
       value,
@@ -26,14 +26,13 @@ export const TextInput: React.FC<InputProps> = forwardRef(
       error,
       touched,
       maintainFocus,
-      autoCapitalize,
+      autoCapitalize = 'none',
       secureTextEntry,
       fontSize,
       leftIcon,
       rightIcon,
       removeBlankSpaces,
       styledFocus,
-      autoComplete,
       showPasswordStrength = false,
       style,
       onFocused,
@@ -41,11 +40,12 @@ export const TextInput: React.FC<InputProps> = forwardRef(
       rightIconHandler,
       onChangeText,
       multiline,
-      textContentType,
+      textContentType = 'none',
       ...props
     },
     ref,
   ) => {
+    useWhyDidYouUpdate('TextInput', props);
     const theme = useTheme();
     const { getCopyValue } = useCopy();
     const { getPasswordStrength } = usePasswordStrength();
@@ -56,53 +56,55 @@ export const TextInput: React.FC<InputProps> = forwardRef(
 
     const handlePasswordChange = useCallback(
       (text: string) => {
-        const strength: StrengthLevelProps = getPasswordStrength(text);
-        passwordStrength.current = strength;
+        passwordStrength.current = getPasswordStrength(text);
       },
       [getPasswordStrength],
     );
 
-    const handleChangeTextInput = useCallback(
+    const handleChangeText = useCallback(
       (text: string) => {
         if (secureTextEntry) {
           handlePasswordChange(text);
         }
-        if (onChangeText) {
-          onChangeText(removeBlankSpaces ? removeBlankSpacesHandler(text) : text);
-        }
+        onChangeText?.(removeBlankSpaces ? removeBlankSpacesHandler(text) : text);
       },
       [secureTextEntry, handlePasswordChange, onChangeText, removeBlankSpaces],
     );
 
     const placeholderTextColor = useMemo(
       () =>
-        value === '' && !!error
+        value === '' && error
           ? theme.tokens.colors.danger_status
           : theme.tokens.colors.typography700,
       [value, error, theme.tokens.colors],
     );
 
-    const autoCapitalizeDefault = autoCapitalize || 'none';
-    const placeholderText = placeholder || label;
+    const placeholderText = useMemo(
+      () =>
+        getCopyValue(
+          String(!focused ? placeholder || label : placeholder !== undefined ? placeholder : ''),
+        ) + `${required && !focused ? '*' : ''}`,
 
-    const togglePassword = useCallback(() => {
-      setShowPassword(!showPassword);
-    }, [showPassword]);
+      [getCopyValue, focused, placeholder, label, required],
+    );
+
+    const togglePassword = useCallback(() => setShowPassword((prev) => !prev), []);
 
     const footerComponent = useMemo(() => {
-      if (showPasswordStrength && value !== '') {
-        return (
-          <FooterContainer>
-            <PasswordStrengthAnimation passwordStrength={passwordStrength.current} />
-            <FooterTextContainer>
-              <StyledText type="Label" font="Primary" color="typography700" textAlign="justify">
-                {`signup:SignUp.form.fields.password.validations.status.${passwordStrength.current}`}
-              </StyledText>
-            </FooterTextContainer>
-          </FooterContainer>
-        );
+      if (!showPasswordStrength || value === '') {
+        return null;
       }
-      return null;
+
+      return (
+        <FooterContainer>
+          <PasswordStrengthAnimation passwordStrength={passwordStrength.current} />
+          <FooterTextContainer>
+            <StyledText type="Label" font="Primary" color="typography700" textAlign="justify">
+              {`signup:SignUp.form.fields.password.validations.status.${passwordStrength.current}`}
+            </StyledText>
+          </FooterTextContainer>
+        </FooterContainer>
+      );
     }, [showPasswordStrength, value]);
 
     return (
@@ -121,9 +123,7 @@ export const TextInput: React.FC<InputProps> = forwardRef(
         rightIcon={rightIcon}
         rightIconHandler={rightIcon === 'passwordToggle' ? togglePassword : rightIconHandler}
         footerComponent={footerComponent}
-        characterCounter={
-          props.maxLength ? `${(value && String(value).length) || 0}/${props.maxLength}` : undefined
-        }
+        characterCounter={props.maxLength ? `${value?.length || 0}/${props.maxLength}` : undefined}
         style={style}
       >
         {leftIcon && <LeftIcon>{leftIcon}</LeftIcon>}
@@ -132,22 +132,18 @@ export const TextInput: React.FC<InputProps> = forwardRef(
           {...testProperties(testID || 'TextInputID')}
           multiline={multiline}
           colorTextOpposing
-          autoCapitalize={autoCapitalizeDefault}
+          autoCapitalize={autoCapitalize}
           error={!!error}
           value={String(value || '')}
-          onChangeText={handleChangeTextInput}
-          placeholder={
-            getCopyValue(
-              String(!focused ? placeholderText : placeholder !== undefined ? placeholder : ''),
-            ) + `${required && !focused ? '*' : ''}`
-          }
+          onChangeText={handleChangeText}
+          placeholder={getCopyValue(placeholderText)}
           placeholderTextColor={placeholderTextColor}
           selectionColor={theme.tokens.colors.typography800}
           onFocus={onFocus}
           fontSize={fontSize}
           secureTextEntry={secureTextEntry ? !showPassword : false}
           styledFocus={styledFocus}
-          textContentType={textContentType || 'none'}
+          textContentType={textContentType}
           {...props}
         />
       </FieldInputMask>

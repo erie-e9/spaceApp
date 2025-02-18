@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
 import { SharedValue } from 'react-native-reanimated';
 import { SVGIcon, type SVGIconProps } from '@components/atoms';
 import { SwipeableFullContainer, SwipeButton } from './styles';
@@ -15,8 +15,6 @@ interface Props extends SVGIconProps, SwipeableContainerProps {
 }
 
 const SwipeableItem: React.FC<Props> = ({
-  prog,
-  drag,
   onPress,
   icon,
   iconColor,

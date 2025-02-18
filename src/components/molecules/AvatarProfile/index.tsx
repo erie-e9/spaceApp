@@ -33,9 +33,9 @@ export const AvatarProfile: React.FC<AvatarProfile> = ({
         clearTimeout(timeOut);
       };
     }
-  }, []);
+  }, [trigger]);
 
-  const profileImageHandler = (image: any) => {
+  const profileImageHandler = (image: any): void => {
     updateUser({
       photo: {
         fileName: image.fileName,

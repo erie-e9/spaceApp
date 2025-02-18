@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo, useMemo, forwardRef } from 'react';
+import React, { useState, useEffect, useRef, memo, useMemo, forwardRef, useCallback } from 'react';
 import { TextInput, KeyboardAvoidingView } from 'react-native';
 import { dayjs } from '@utils/formatters';
 import { Dropdown } from '@components/molecules';
@@ -124,16 +124,19 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
     const monthInputRef = useRef<TextInput>(null);
     const yearInputRef = useRef<TextInput>(null);
 
-    const updateDays = (month: string, year: number) => {
-      const daysInMonth = getDaysInMonth(month, year);
-      if (selectedDay > daysInMonth) {
-        setSelectedDay(daysInMonth);
-      }
-    };
+    const updateDays = useCallback(
+      (month: string, year: number) => {
+        const daysInMonth = getDaysInMonth(month, year);
+        if (selectedDay > daysInMonth) {
+          setSelectedDay(daysInMonth);
+        }
+      },
+      [selectedDay],
+    );
 
     useEffect(() => {
       updateDays(selectedMonth, selectedYear);
-    }, [selectedMonth, selectedYear]);
+    }, [selectedMonth, selectedYear, updateDays]);
 
     const days = useMemo(() => {
       return Array.from({ length: getDaysInMonth(selectedMonth, selectedYear) }, (_, i) => ({
@@ -153,20 +156,20 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
         }
         return true;
       });
-    }, [selectedMonth, selectedYear]);
+    }, [maxDateValues, monthNames, selectedMonth, selectedYear]);
 
-    const handleSelectDay = (day: number) => {
+    const handleSelectDay = (day: number): void => {
       setSelectedDay(day);
       setOpenDropdown({ day: false, month: true, year: false });
     };
 
-    const handleSelectMonth = (month: string) => {
+    const handleSelectMonth = (month: string): void => {
       setSelectedMonth(month);
       updateDays(month, selectedYear);
       setOpenDropdown({ day: false, month: false, year: true });
     };
 
-    const handleSelectYear = (year: number) => {
+    const handleSelectYear = (year: number): void => {
       if (year >= currentYear - 99 && year <= currentYear) {
         setSelectedYear(year);
         updateDays(selectedMonth, year);
@@ -186,7 +189,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
       }).filter((year) => (maxDateValues ? year.value <= maxDateValues.year : true));
     }, [maxDateValues]);
 
-    const handleSubmit = () => {
+    const handleSubmit = (): void => {
       if (isFormValid) {
         const formatedSelectedMonth = Number(
           monthNames.findIndex((m) => m.value === selectedMonth) + 1,
@@ -223,7 +226,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
             data={days}
             onSelect={(item: number) => handleSelectDay(item)}
             value={selectedDay}
-            label={`common:form.fields.inputs.date.labels.day`}
+            label={'common:form.fields.inputs.date.labels.day'}
             isNumeric
             openDropdown={openDropdown?.day}
             setOpenDropdown={(isOpen) =>
@@ -245,7 +248,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
             onSelect={handleSelectMonth}
             value={selectedMonth}
             maxValueLength={7}
-            label={`common:form.fields.inputs.date.labels.month`}
+            label={'common:form.fields.inputs.date.labels.month'}
             openDropdown={openDropdown.month}
             setOpenDropdown={(isOpen) =>
               setOpenDropdown({ day: false, month: isOpen, year: false })
@@ -260,7 +263,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
             data={defaultYears}
             onSelect={handleSelectYear}
             value={selectedYear}
-            label={`common:form.fields.inputs.date.labels.year`}
+            label={'common:form.fields.inputs.date.labels.year'}
             isNumeric
             openDropdown={openDropdown.year}
             setOpenDropdown={(isOpen) =>
@@ -275,7 +278,7 @@ const DateDropdown: React.FC<DateDropdownProps> = forwardRef(
           <ButtonContainer>
             <StyledDropdownButton
               {...testProperties(`${testID}DateDropdownSubmit`)}
-              title={`common:form.fields.inputs.date.labels.submit`}
+              title={'common:form.fields.inputs.date.labels.submit'}
               onPress={handleSubmit}
             />
           </ButtonContainer>

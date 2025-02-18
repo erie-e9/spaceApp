@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useWindowDimensions } from 'react-native';
 import { BlurMask, Canvas } from '@shopify/react-native-skia';
 import BlurCircle from './BlurCircle';

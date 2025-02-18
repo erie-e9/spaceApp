@@ -1,4 +1,4 @@
-import { useCallback, useMemo, Fragment } from 'react';
+import React, { useCallback, useMemo, Fragment } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import type { Task } from '@types';
 import { Logger, useCopy } from '@services';
@@ -20,7 +20,7 @@ import {
   AnimatedView,
   SkeletonContainer,
   RightSkeletonContainer,
-  LeftContentData,
+  SkeletonLeftContentData,
 } from '../styles';
 
 export const useTasks = ({ navigation }: TasksProps) => {
@@ -51,7 +51,7 @@ export const useTasks = ({ navigation }: TasksProps) => {
   useFocusEffect(
     useCallback(() => {
       refetch();
-    }, [tasksHookLoading]),
+    }, [refetch]),
   );
 
   const tasksHeaderTitle = useMemo((): string => {
@@ -61,15 +61,18 @@ export const useTasks = ({ navigation }: TasksProps) => {
           ? `(${itemList.length})`
           : '',
     });
-  }, [itemList]);
+  }, [getCopyValue, itemList]);
 
   const tasksSearcher = useMemo((): string => {
     return 'tasks:Tasks.controllers.searchInputLabel';
   }, []);
 
-  const taskForm = useCallback((task?: Task) => {
-    navigation.navigate('Private', { screen: 'Task', params: { task: task } } as never);
-  }, []);
+  const taskForm = useCallback(
+    (task?: Task) => {
+      navigation.navigate('Private', { screen: 'Task', params: { task: task } } as never);
+    },
+    [navigation],
+  );
 
   const renderLeftAction = useCallback(
     async (task: Task) => {
@@ -95,24 +98,27 @@ export const useTasks = ({ navigation }: TasksProps) => {
         Logger.log('[SwipeableTaskOptions] renderLeftAction: ', { error });
       }
     },
-    [updateTaskHook, getMMKVItem],
+    [getMMKVItem, confirmChangeQueueAlert, updateMMKVItem, updateTaskHook],
   );
 
-  const renderLeftActions = useCallback((task: Task) => {
-    return (
-      <SwipeableFullContainer>
-        <SwipeButton
-          backgroundColor={task.status === 3 ? 'tertiary200' : 'primary500'}
-          onPress={() => renderLeftAction(task)}
-        >
-          <SVGIcon
-            icon={task.status === 3 ? 'arrowback' : 'check'}
-            strokeWidth={task.status === 3 ? 1.5 : 2}
-          />
-        </SwipeButton>
-      </SwipeableFullContainer>
-    );
-  }, []);
+  const renderLeftActions = useCallback(
+    (task: Task) => {
+      return (
+        <SwipeableFullContainer>
+          <SwipeButton
+            backgroundColor={task.status === 3 ? 'tertiary200' : 'primary500'}
+            onPress={() => renderLeftAction(task)}
+          >
+            <SVGIcon
+              icon={task.status === 3 ? 'arrowback' : 'check'}
+              strokeWidth={task.status === 3 ? 1.5 : 2}
+            />
+          </SwipeButton>
+        </SwipeableFullContainer>
+      );
+    },
+    [renderLeftAction],
+  );
 
   const renderRightAction = useCallback(
     (task: Task, type?: 'remove' | 'share') => {
@@ -125,24 +131,30 @@ export const useTasks = ({ navigation }: TasksProps) => {
         }
       }
     },
-    [deleteTaskHook],
+    [deleteTaskHook, shareMessage],
   );
 
-  const renderRightActions = useCallback((task: Task) => {
-    return (
-      <AnimatedView>
-        <SwipeButton
-          backgroundColor="danger_status"
-          onPress={() => renderRightAction(task, 'remove')}
-        >
-          <SVGIcon icon="remove" iconColor="#fff" />
-        </SwipeButton>
-        <SwipeButton backgroundColor="tertiary200" onPress={() => renderRightAction(task, 'share')}>
-          <SVGIcon icon="share" />
-        </SwipeButton>
-      </AnimatedView>
-    );
-  }, []);
+  const renderRightActions = useCallback(
+    (task: Task) => {
+      return (
+        <AnimatedView>
+          <SwipeButton
+            backgroundColor="danger_status"
+            onPress={() => renderRightAction(task, 'remove')}
+          >
+            <SVGIcon icon="remove" iconColor="#fff" />
+          </SwipeButton>
+          <SwipeButton
+            backgroundColor="tertiary200"
+            onPress={() => renderRightAction(task, 'share')}
+          >
+            <SVGIcon icon="share" />
+          </SwipeButton>
+        </AnimatedView>
+      );
+    },
+    [renderRightAction],
+  );
 
   const options = useMemo(
     () => [
@@ -166,7 +178,7 @@ export const useTasks = ({ navigation }: TasksProps) => {
         handler: () => clearLocalTasks(),
       },
     ],
-    [],
+    [clearLocalTasks, navigation],
   );
 
   const showPopUp = useCallback(() => {
@@ -177,11 +189,13 @@ export const useTasks = ({ navigation }: TasksProps) => {
       options: options,
       triggerButtonPosition: { x: 350, y: 90, width: 150, height: 0 },
     });
-  }, []);
+  }, [options, showModal]);
 
   const renderItemComponent = useCallback(
-    ({ item }: { item: Task }) => <TaskItem item={item} itemHeight={70} onPress={taskForm} />,
-    [isFetching, tasksHookLoading],
+    ({ item }: { item: Task }) => {
+      return <TaskItem item={item} itemHeight={70} onPress={taskForm} />;
+    },
+    [taskForm],
   );
 
   const TaskSkeleton = useMemo(() => {
@@ -196,11 +210,11 @@ export const useTasks = ({ navigation }: TasksProps) => {
           };
           return (
             <SkeletonContainer key={index}>
-              <LeftContentData>
+              <SkeletonLeftContentData>
                 <Skeleton {...skeletonProps} height={12} width={100} borderRadius={5} />
                 <Skeleton {...skeletonProps} height={12} width={200} borderRadius={5} />
                 <Skeleton {...skeletonProps} height={10} width={60} borderRadius={5} />
-              </LeftContentData>
+              </SkeletonLeftContentData>
               <RightSkeletonContainer>
                 <Skeleton {...skeletonProps} height={12} width={40} borderRadius={5} />
                 <Skeleton {...skeletonProps} height={10} width={30} borderRadius={5} />
@@ -210,9 +224,9 @@ export const useTasks = ({ navigation }: TasksProps) => {
         })}
       </Fragment>
     ) : (
-      <Fragment></Fragment>
+      <Fragment />
     );
-  }, [isFetching, tasksHookLoading]);
+  }, [isFetching, itemList.length, tasksHookLoading]);
 
   return {
     itemList,
@@ -226,5 +240,6 @@ export const useTasks = ({ navigation }: TasksProps) => {
     showPopUp,
     renderItemComponent,
     TaskSkeleton,
+    refetch,
   };
 };

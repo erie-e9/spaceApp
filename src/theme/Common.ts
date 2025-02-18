@@ -6,7 +6,7 @@
 import { StyleSheet } from 'react-native';
 import type { CommonParams } from '@types';
 
-export default function <C>({ }: CommonParams<C>) {
+export default function <C>({}: CommonParams<C>) {
   return {
     ...StyleSheet.create({
       textInput: {

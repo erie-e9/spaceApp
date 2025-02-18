@@ -2,12 +2,12 @@ import React, { memo, useCallback } from 'react';
 import { testProperties } from '@utils/functions';
 import { useModal, useResponseHandler } from '@hooks';
 import { useModalSelectorHook } from '@redux/hooks/useModalSelectorHook';
+import type { ModalProps } from '@slices/types';
 import { TransformAnimation, OpacityAnimation } from '@components/animated';
 import { RenderWhen } from '@components/atoms';
 import { CloseButton } from '@components/molecules';
 import ModalHeader from '@components/organisms/Modal/ModalHeader';
 import AlertButtons from '@components/organisms/Modal/Alert/components/AlertButtons';
-import type { ModalProps } from '@slices/types';
 import AnimatedBackground from '@components/organisms/Modal/AnimatedBackground';
 import {
   StyledModal,
@@ -44,15 +44,17 @@ export const Alert: React.FC = () => {
   const handleClose = useCallback((): void => {
     hideModal();
     setLoading(false);
-    if (onModalHide) onModalHide();
-    if (onCloseIcon) onCloseIcon();
-  }, []);
+    onModalHide?.();
+    onCloseIcon?.();
+  }, [hideModal, onCloseIcon, onModalHide, setLoading]);
 
   const onModalShow = useCallback((): void => {
-    if (callback) callback();
-  }, []);
+    callback?.();
+  }, [callback]);
 
-  if (!isVisible) return;
+  if (!isVisible) {
+    return;
+  }
 
   return (
     <StyledModal

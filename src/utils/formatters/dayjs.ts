@@ -11,29 +11,29 @@ import { Logger } from '@services';
 import type { Language } from '@slices/types';
 
 const localesMap: Record<string, () => void> = {
-    de: () => require('dayjs/locale/de'),
-    en: () => require('dayjs/locale/en'),
-    es: () => require('dayjs/locale/es'),
-    fr: () => require('dayjs/locale/fr'),
-    pt: () => require('dayjs/locale/pt'),
+  de: () => require('dayjs/locale/de'),
+  en: () => require('dayjs/locale/en'),
+  es: () => require('dayjs/locale/es'),
+  fr: () => require('dayjs/locale/fr'),
+  pt: () => require('dayjs/locale/pt'),
 };
 
 export function loadLocale(language?: Language): void {
-    try {
-        const { languageCode } = RNLocalize.getLocales()[0];
-        const locale = language || languageCode;
-        if (localesMap[locale]) {
-            localesMap[locale]();
-            dayjs.locale(locale);
-            Logger.log(`Locale "${locale}" loaded successfully.`);
-        } else {
-            Logger.warn(`Locale "${locale}" not supported. Falling back to default locale.`);
-            dayjs.locale('en');
-        }
-    } catch (error) {
-        Logger.error('Error loading locale:', error);
-        dayjs.locale('en');
+  try {
+    const { languageCode } = RNLocalize.getLocales()[0];
+    const locale = language || languageCode;
+    if (localesMap[locale]) {
+      localesMap[locale]();
+      dayjs.locale(locale);
+      Logger.log(`Locale "${locale}" loaded successfully.`);
+    } else {
+      Logger.warn(`Locale "${locale}" not supported. Falling back to default locale.`);
+      dayjs.locale('en');
     }
+  } catch (error) {
+    Logger.error('Error loading locale:', error);
+    dayjs.locale('en');
+  }
 }
 
 dayjs.extend(relativeTime);

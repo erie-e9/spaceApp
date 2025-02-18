@@ -1,6 +1,7 @@
-export const firstCapitalized = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+export const firstCapitalized = (text: string): string =>
+  text.charAt(0).toUpperCase() + text.slice(1);
 
-export const trimValues = (values: any) => {
+export const trimValues = (values: any): any => {
   const normalizedValues: any = {};
   Object.keys(values).forEach((key) => {
     if (typeof values[key] === 'string') {

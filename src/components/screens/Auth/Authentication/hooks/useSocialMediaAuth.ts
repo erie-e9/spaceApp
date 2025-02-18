@@ -1,10 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { authSocialNetworks, Logger, ProviderType } from '@services';
+import { Logger } from '@services';
 import type { ApplicationScreenProps, TouchableProps } from '@types';
 import { isEmpty } from '@utils/functions';
-import { useAuthenticationHook, useIsAppInstalled, useResponseHandler } from '@hooks';
+import {
+  useAuthenticationHook,
+  useIsAppInstalled,
+  useResponseHandler,
+  useAuthSocialNetworks,
+  ProviderType,
+} from '@hooks';
 import { useCheckPendingProcess } from './useCheckPendingProcess';
 
 export const useSocialMediaAuth = () => {
@@ -13,7 +19,7 @@ export const useSocialMediaAuth = () => {
   const { loading, setLoading } = useResponseHandler();
   const { isAppInstalledByName } = useIsAppInstalled();
   const { checkPendingFormAlert } = useCheckPendingProcess();
-  const { authHandler, loading: authSocialNetworkLoading } = authSocialNetworks();
+  const { authHandler, loading: authSocialNetworkLoading } = useAuthSocialNetworks();
   const { user, removeToken, storeUser, removeUser } = useAuthenticationHook();
 
   const signInSocialNetworksHandler = useCallback(
@@ -36,7 +42,9 @@ export const useSocialMediaAuth = () => {
             signUpMethod: 'socialMedia',
           });
           const signInCompleted = false; //! temp until API is finished
-          if (signInCompleted) navigation?.replace('Private', { screen: 'Profile' } as never);
+          if (signInCompleted) {
+            navigation?.replace('Private', { screen: 'Profile' } as never);
+          }
           if (user.email === data.email && user.phoneNumber && !signInCompleted) {
             await checkPendingFormAlert(user.phoneNumber, data.email);
           } else {
@@ -50,13 +58,22 @@ export const useSocialMediaAuth = () => {
         setLoading(authSocialNetworkLoading);
       }
     },
-    [authSocialNetworkLoading],
+    [
+      authHandler,
+      authSocialNetworkLoading,
+      checkPendingFormAlert,
+      navigation,
+      setLoading,
+      storeUser,
+      user.email,
+      user.phoneNumber,
+    ],
   );
 
   const clearStore = useCallback(async () => {
     await removeToken();
     await removeUser();
-  }, [user]);
+  }, [removeToken, removeUser]);
 
   const fetchSocialNetworkButtons = useCallback(async () => {
     const buttons: Array<TouchableProps> = [];
@@ -138,11 +155,17 @@ export const useSocialMediaAuth = () => {
     }
 
     setSocialNetworkButtons(buttons);
-  }, []);
+  }, [isAppInstalledByName, loading, signInSocialNetworksHandler]);
 
   useEffect(() => {
     fetchSocialNetworkButtons();
-  }, [loading, isAppInstalledByName, signInSocialNetworksHandler, clearStore]);
+  }, [
+    loading,
+    isAppInstalledByName,
+    signInSocialNetworksHandler,
+    clearStore,
+    fetchSocialNetworkButtons,
+  ]);
 
   return {
     socialNetworksAuth: socialNetworkButtons,

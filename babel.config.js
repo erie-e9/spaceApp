@@ -1,7 +1,7 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 
 const ReactCompilerConfig = {
-  target: '18' // '17' | '18' | '19'
+  target: '18', // '17' | '18' | '19'
 };
 
 module.exports = {

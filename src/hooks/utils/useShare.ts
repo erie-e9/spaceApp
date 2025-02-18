@@ -1,6 +1,6 @@
-import { Logger } from '@services';
 import { Platform } from 'react-native';
 import Share, { ShareOptions, Social } from 'react-native-share';
+import { Logger } from '@services';
 
 interface UseShareResult {
   shareMessage: (message: string) => Promise<void>;
@@ -13,7 +13,7 @@ interface UseShareResult {
 
 export const useShare = (): UseShareResult => {
   // Function to share a simple text
-  const shareMessage = async (message: string) => {
+  const shareMessage = async (message: string): Promise<void> => {
     const options: ShareOptions = {
       message,
     };
@@ -25,7 +25,7 @@ export const useShare = (): UseShareResult => {
   };
 
   // Function to share an image by URL
-  const shareImage = async (url: string) => {
+  const shareImage = async (url: string): Promise<void> => {
     const options: ShareOptions = {
       url,
       type: 'image/jpeg',
@@ -39,7 +39,7 @@ export const useShare = (): UseShareResult => {
   };
 
   // Function to share a file from a local path
-  const shareFile = async (filePath: string, fileType: string) => {
+  const shareFile = async (filePath: string, fileType: string): Promise<void> => {
     const options: ShareOptions = {
       url: `file://${filePath}`,
       type: fileType,
@@ -52,7 +52,7 @@ export const useShare = (): UseShareResult => {
   };
 
   // Function to share a URL with optional title
-  const shareUrl = async (url: string, title?: string) => {
+  const shareUrl = async (url: string, title?: string): Promise<void> => {
     const options: ShareOptions = {
       url,
       title,
@@ -66,7 +66,11 @@ export const useShare = (): UseShareResult => {
   };
 
   // Function to share content directly to a specific social app
-  const shareToSocialNetwork = async (url: string, social: Social, whatsAppNumber?: string) => {
+  const shareToSocialNetwork = async (
+    url: string,
+    social: Social,
+    whatsAppNumber?: string,
+  ): Promise<void> => {
     const options = {
       // Share WhatsAp
       title: 'Share via',
@@ -91,7 +95,12 @@ export const useShare = (): UseShareResult => {
     }
   };
 
-  const shareCustomContent = async (url: string, title: string, message: string, icon: string) => {
+  const shareCustomContent = async (
+    url: string,
+    title: string,
+    message: string,
+    icon: string,
+  ): Promise<void> => {
     // Define options for iOS and Android
     const options: ShareOptions = Platform.select({
       ios: {

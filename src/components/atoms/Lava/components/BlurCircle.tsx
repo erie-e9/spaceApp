@@ -29,17 +29,20 @@ const BlurCircle = ({
 }: Props): JSX.Element => {
   /** Randomly mixed circleColors */
   //   const circleColors = useRef([...BlurCircleColors].sort(() => Math.random() - 0.5)).current;
-  const circleColors =
-    colors ??
-    useMemo(() => {
-      return randomcolor({
-        count: length,
-        hue,
-        luminosity,
-        format: 'rgba',
-        alpha: 0.7,
-      });
-    }, [hue, length, colors]);
+  const circleColors = useMemo(() => {
+    if (colors) {
+      return colors;
+    }
+
+    return randomcolor({
+      count: length,
+      hue,
+      luminosity,
+      format: 'rgba',
+      alpha: 0.7,
+    });
+  }, [colors, length, hue, luminosity]);
+
   /** Time to animate all circleColors */
   const colorAnimationDuration = useRef(circleColors.length * 1500).current;
   /** Parameter responsible for color animation */
@@ -82,7 +85,7 @@ const BlurCircle = ({
         -1,
       ),
     );
-  }, [props.r, delay]);
+  }, [props.r, delay, radius, radiusAnimationSize, color, colorAnimationDuration]);
 
   return <Circle {...props} r={radius} color={animatedColor} />;
 };

@@ -17,5 +17,5 @@
         android:scaleType="centerCrop"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/spaceapp_light" />
+        app:lottie_rawRes="@raw/splashscreen_light" />
 </LinearLayout>

@@ -1,6 +1,10 @@
 import { PixelRatio } from 'react-native';
 import styled from 'styled-components/native';
-import { getNormalizedHorizontalSize, getNormalizedVerticalSize, screen_width } from '@utils/functions';
+import {
+  getNormalizedHorizontalSize,
+  getNormalizedVerticalSize,
+  screen_width,
+} from '@utils/functions';
 import { Typography } from '@components/atoms';
 import { ActionButton, TextInput } from '@components/molecules';
 
@@ -24,8 +28,7 @@ export const ContentWrapper = styled.View`
   width: ${screen_width - 50}px;
 `;
 
-export const StyledInput = styled(TextInput)`
-`;
+export const StyledInput = styled(TextInput)``;
 
 export const ActionSubmitButton = styled(ActionButton)``;
 
@@ -36,10 +39,8 @@ export const ActionSkipButton = styled(ActionButton)`
 export const RatingBarContainer = styled.View`
   flex-direction: row;
   justify-content: center;
-  padding: ${PixelRatio.roundToNearestPixel(20)}px
-    ${PixelRatio.roundToNearestPixel(10)}px
-    ${PixelRatio.roundToNearestPixel(30)}px
-    ${PixelRatio.roundToNearestPixel(10)}px;
+  padding: ${PixelRatio.roundToNearestPixel(20)}px ${PixelRatio.roundToNearestPixel(10)}px
+    ${PixelRatio.roundToNearestPixel(30)}px ${PixelRatio.roundToNearestPixel(10)}px;
 `;
 
 export const RatingButton = styled.TouchableOpacity`

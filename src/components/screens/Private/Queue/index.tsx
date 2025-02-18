@@ -19,7 +19,7 @@ export const Queue: React.FC = () => {
   return (
     <CallToAction
       testID="QueueID"
-      title={useQueueHook.QueueHeaderTitle}
+      title={useQueueHook.queueHeaderTitle}
       description={'queue:Queue.description'}
       numberOfLinesTitle={3}
       backButton
@@ -40,17 +40,20 @@ export const Queue: React.FC = () => {
         <BodyContainer>
           <ListItems
             data={useQueueHook.itemList}
-            searchLabel={'queue:Queue.controllers.searchInputLabel'}
-            scrollEnabled={true}
-            draggable={!true}
-            swipeable={true}
-            showEmptyData
-            useFlashList
+            searchLabel={useQueueHook.queueSearcher}
             filterBy={useQueueHook.filterBy}
+            showEmptyData={!useQueueHook.loading}
+            scrollEnabled
+            useFlashList
+            draggable={false}
+            swipeable
             renderRightActions={useQueueHook.renderRightActions}
             renderItem={({ item, index }: { item: IQueueItem; index: React.Key }) => {
               return <QueueItem key={index} item={{ ...item, index }} itemHeight={70} />;
             }}
+            footerComponent={useQueueHook.QueueSkeleton}
+            showReload
+            refreshHandler={useQueueHook.refetch}
           />
         </BodyContainer>
       }

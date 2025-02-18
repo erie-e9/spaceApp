@@ -1,14 +1,14 @@
 /** This hook allows these awesome features:
  *? ✅ Retry requests logic with delay.
  *? ✅ Request Queue Management: Handles optional queuing requests when offline or when specific error scenarios occur, ensuring reliable delivery when connectivity is restored.
-  *? Unique queue store, Unify/merge body for several UPDATE and PATCH request for same item.
-  *? DELETE priority (block new queue request if item has DELETE request stored).
+ *? Unique queue store, Unify/merge body for several UPDATE and PATCH request for same item.
+ *? DELETE priority (block new queue request if item has DELETE request stored).
  *? ✅ Custom SSL Implementation: Integrates SSL pinning for enhanced security in network requests using react-native-ssl-pinning.
  *? ✅ Network Connectivity Handling: Detects network status using @react-native-community/netinfo and dynamically enqueues or processes requests based on connectivity.
  *? ✅ Request Interception: Intercepts requests to handle scenarios like token expiration, offline mode, and fetch errors.
  *? ✅ Dynamic API Creation: Provides a reusable and flexible API generator with customizable endpoints, base URLs, and reducers.
  *? ✅ Debug Mode Compatibility: Differentiates between standard and debug modes for request handling, enabling a tailored development experience.
- *? ✅ Error Logging: Implements comprehensive logging using a Logger service to aid debugging and provide clarity on request failures. 
+ *? ✅ Error Logging: Implements comprehensive logging using a Logger service to aid debugging and provide clarity on request failures.
  * **/
 
 import {
@@ -34,7 +34,11 @@ export interface FetchArgsWithEnqueueable extends FetchArgs {
 
 // Defines the API configuration structure, allowing flexible customization of endpoints, reducers, and tags.
 interface ApiConfig<
-  BaseQuery extends BaseQueryFn = BaseQueryFn<string | FetchArgsWithEnqueueable, unknown, FetchBaseQueryError>,
+  BaseQuery extends BaseQueryFn = BaseQueryFn<
+    string | FetchArgsWithEnqueueable,
+    unknown,
+    FetchBaseQueryError
+  >,
   ReducerPath extends string = string,
   EntityTypes extends string = string,
 > {
@@ -57,8 +61,7 @@ const sslFetch = async (url: string, options: any) => {
 };
 
 // Creates the API with an optional SSL-enabled query layer.
-export const api = ({ baseUrl, reducerPath, tagTypes, endpoints }: ApiConfig) => {
-
+export const api = ({ baseUrl, reducerPath, tagTypes, endpoints }: ApiConfig): any => {
   // Default query setup using fetchBaseQuery.
   const baseQuery = fetchBaseQuery({
     baseUrl,
@@ -69,9 +72,11 @@ export const api = ({ baseUrl, reducerPath, tagTypes, endpoints }: ApiConfig) =>
   });
 
   // Query setup with SSL pinning.
-  const baseQuerySSL: BaseQueryFn<string | FetchArgsWithEnqueueable, unknown, FetchBaseQueryError> = async (
-    args,
-  ) => {
+  const baseQuerySSL: BaseQueryFn<
+    string | FetchArgsWithEnqueueable,
+    unknown,
+    FetchBaseQueryError
+  > = async (args) => {
     try {
       const { url, method, headers, body } = args as FetchArgsWithEnqueueable;
       const { data, status, json } = await sslFetch(`${baseUrl}${url}`, {
@@ -90,46 +95,51 @@ export const api = ({ baseUrl, reducerPath, tagTypes, endpoints }: ApiConfig) =>
     }
   };
 
-  const baseQueryWithInterceptor: BaseQueryFn<FetchArgsWithEnqueueable, unknown, unknown> =
-    async (args, api, extraOptions) => {
-      const { retries = 1, retryDelay = 1000 } = args
+  const baseQueryWithInterceptor: BaseQueryFn<FetchArgsWithEnqueueable, unknown, unknown> = async (
+    args,
+    apiParam,
+    extraOptions,
+  ) => {
+    const { retries = 1, retryDelay = 1000 } = args;
 
-      const { isConnected } = await NetInfo.fetch(); // Connection handler
-      const { DEBUGGER_MODE } = process.env;
-      const useSSL = !DEBUGGER_MODE;
+    const { isConnected } = await NetInfo.fetch(); // Connection handler
+    const { DEBUGGER_MODE } = process.env;
+    const useSSL = !DEBUGGER_MODE;
 
-      if (!isConnected) {
-        Logger.log('[Interceptor] Device is offline. Enqueuing request.');
-        enqueue(args as FetchArgsWithEnqueueable);
-        return { error: { status: 'OFFLINE', error: 'No internet connection' } };
-      } else {
+    if (!isConnected) {
+      Logger.log('[Interceptor] Device is offline. Enqueuing request.');
+      enqueue(args as FetchArgsWithEnqueueable);
+      return { error: { status: 'OFFLINE', error: 'No internet connection' } };
+    } else {
+      // Trigger queue requests when connection's back
+      await processQueue(useSSL ? baseQuerySSL : baseQuery);
 
-        // Trigger queue requests when connection's back
-        await processQueue(useSSL ? baseQuerySSL : baseQuery);
+      let result = useSSL
+        ? await baseQuerySSL(args, apiParam, extraOptions)
+        : await baseQuery(args, apiParam, extraOptions);
 
-        let result = useSSL
-          ? await baseQuerySSL(args, api, extraOptions)
-          : await baseQuery(args, api, extraOptions);
+      if (result.error) {
+        const { status } = result.error;
+        if (status === 401) {
+          Logger.log('[Interceptor] Unauthorized. Handling token refresh...');
+          // Token refresh logic here.
+        } else if (status === 'FETCH_ERROR' || status === 'PARSING_ERROR') {
+          Logger.log('[Interceptor] Fetch error. Retrying request.');
+          result = await retry(args, useSSL ? baseQuerySSL : baseQuery, {
+            retries: retries,
+            delay: retryDelay,
+          });
 
-        if (result.error) {
-          const { status } = result.error;
-          if (status === 401) {
-            Logger.log('[Interceptor] Unauthorized. Handling token refresh...');
-            // Token refresh logic here.
-          } else if (status === 'FETCH_ERROR' || status === 'PARSING_ERROR') {
-            Logger.log('[Interceptor] Fetch error. Retrying request.');
-            result = await retry(args, useSSL ? baseQuerySSL : baseQuery, { retries: retries, delay: retryDelay });
-
-            if (result.error) {
-              Logger.log(`[Interceptor] Fetch error after ${retries} times every ${retryDelay}mm.`);
-              enqueue(args as FetchArgsWithEnqueueable);
-            }
+          if (result.error) {
+            Logger.log(`[Interceptor] Fetch error after ${retries} times every ${retryDelay}mm.`);
+            enqueue(args as FetchArgsWithEnqueueable);
           }
         }
-
-        return result;
       }
-    };
+
+      return result;
+    }
+  };
 
   return createApi({
     baseQuery: baseQueryWithInterceptor,

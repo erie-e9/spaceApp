@@ -12,12 +12,12 @@ export const OptionSelectorItem: React.FC<
 
   const closeBottomSheet = useCallback(() => {
     hideModal();
-  }, []);
+  }, [hideModal]);
 
   const onPressHandler = useCallback(() => {
     onPress?.();
     closeBottomSheet();
-  }, []);
+  }, [closeBottomSheet, onPress]);
 
   return (
     <OptionContainer>

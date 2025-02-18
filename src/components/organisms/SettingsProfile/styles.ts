@@ -74,11 +74,11 @@ export const AuthButtonContainer = styled.View`
   justify-content: flex-end;
 `;
 
-export const AuthButton = styled(ActionButton) <StyledButtonProps>`
+export const AuthButton = styled(ActionButton)<StyledButtonProps>`
   width: ${getNormalizedHorizontalSize(100)}px;
   border-color: #15173b;
 `;
 
 export const StyledTextContainer = styled.View`
-  align-items: center;
+  align-items: flex-start;
 `;

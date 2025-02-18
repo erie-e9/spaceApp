@@ -260,5 +260,6 @@
       }
     }
   },
-  "emptyList": "Aucun article"
+  "emptyList": "Aucun article",
+  "tryagain": "Essayer à nouveau"
 }

@@ -12,7 +12,7 @@ export const StyledContainer = styled.View`
 
 export const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
   behavior: Platform.OS === 'ios' ? 'padding' : undefined,
-  keyboardVerticalOffset: Platform.OS === 'ios' ? 50 : 0
+  keyboardVerticalOffset: Platform.OS === 'ios' ? 50 : 0,
 })`
   flex: 1;
 `;

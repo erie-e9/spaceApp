@@ -9,7 +9,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, ViewToken } from 'react-native';
 const FlashList = lazy(() => import('@shopify/flash-list/src/FlashList'));
 import { SwipeableMethods } from 'react-native-gesture-handler/ReanimatedSwipeable';
 import Animated, {
@@ -22,7 +22,7 @@ import LottieView from 'lottie-react-native';
 import truncate from 'lodash/truncate';
 import { Logger, useCopy } from '@services';
 import { useResponseHandler, useTheme } from '@hooks';
-import { Lottie } from '@components/atoms';
+import { Lottie, SVGIcon } from '@components/atoms';
 import { BackButton, Loader, TextInput } from '@components/molecules';
 import Item from './components/Item';
 import {
@@ -35,6 +35,8 @@ import {
   ButtonsContainer,
   EmptyContainer,
   EmptyText,
+  ReloadButton,
+  ReloadText,
 } from './styles';
 
 export interface ListProps {
@@ -46,6 +48,7 @@ export interface ListProps {
   draggable?: boolean;
   swipeable?: boolean;
   renderItem?: ({ item }: any) => JSX.Element;
+  keyExtractor?: (item: T, index: number) => string;
   refreshHandler?: () => void;
   itemHeight?: number;
   footerComponent?: ReactElement;
@@ -56,11 +59,13 @@ export interface ListProps {
   showsHorizontalScrollIndicator?: boolean;
   showsVerticalScrollIndicator?: boolean;
   showEmptyData?: boolean;
+  showReload?: boolean;
   renderRightAction?: (item: any) => void;
   renderRightActions?: (item: any) => JSX.Element;
   renderLeftAction?: (item: any) => void;
   renderLeftActions?: (item: any) => JSX.Element;
   extraFunction?: () => void;
+  onViewableItemsChanged?: (viewableItems: ViewToken[]) => void;
 }
 
 const List: React.FC<ListProps> = ({
@@ -72,6 +77,7 @@ const List: React.FC<ListProps> = ({
   draggable = false,
   swipeable = false,
   renderItem,
+  keyExtractor,
   refreshHandler,
   itemHeight = 60,
   footerComponent,
@@ -82,11 +88,13 @@ const List: React.FC<ListProps> = ({
   showsHorizontalScrollIndicator = false,
   showsVerticalScrollIndicator = false,
   showEmptyData = false,
+  showReload = false,
   renderRightAction,
   renderRightActions,
   renderLeftAction,
   renderLeftActions,
   extraFunction,
+  onViewableItemsChanged,
 }) => {
   const ref = useRef<FlatList>(null);
   const animationRef = useRef<LottieView>(null);
@@ -106,7 +114,7 @@ const List: React.FC<ListProps> = ({
       length: 40,
       omission: '...',
     });
-  }, [searchLabel]);
+  }, [getCopyValue, searchLabel]);
 
   const getInitialPositions = useCallback(() => {
     let positions: any = {};
@@ -117,9 +125,14 @@ const List: React.FC<ListProps> = ({
       };
     });
     return positions;
-  }, [items]);
+  }, [itemHeight, items]);
 
   const currentPositions = useSharedValue(getInitialPositions());
+
+  const memoizedKeyExtractor = useCallback(
+    (item: T, index: number) => keyExtractor?.(item, index) ?? String(index),
+    [keyExtractor],
+  );
 
   const contentContainerStyle = useMemo(
     () => ({
@@ -173,10 +186,10 @@ const List: React.FC<ListProps> = ({
       }
       swipeableRef.current = current;
     },
-    [swipeableRef.current],
+    [],
   );
 
-  const handleScrollToTop = () => {
+  const handleScrollToTop = (): void => {
     ref.current?.scrollToOffset({ animated: true, offset: 0 });
   };
 
@@ -197,38 +210,40 @@ const List: React.FC<ListProps> = ({
         <Item
           ref={(swipeableItemRef: SwipeableMethods | null) => (current = swipeableItemRef)}
           item={item}
-          key={item}
+          key={index}
           index={index}
           renderItem={renderItem}
           currentPositions={currentPositions}
           itemHeight={itemHeight}
           swipeable={swipeable}
           draggable={draggable}
+          filteredUsers={items}
           onSwipeableWillOpen={(direction) => onSwipeableWillOpen(direction, current)}
           renderRightActions={renderRightActions}
-          renderRightAction={(item) => {
+          renderRightAction={(itemParam) => {
             // swipeableRef?.current?.close();
-            renderRightAction?.(item);
+            renderRightAction?.(itemParam);
           }}
           renderLeftActions={renderLeftActions}
-          renderLeftAction={(item) => {
+          renderLeftAction={(itemParam) => {
             // swipeableRef?.current?.close();
-            renderLeftAction?.(item);
+            renderLeftAction?.(itemParam);
           }}
         />
       );
     },
     [
+      loading,
       renderItem,
-      onSwipeableWillOpen,
+      currentPositions,
+      itemHeight,
       swipeable,
       draggable,
-      currentPositions,
-      filteredData,
-      itemHeight,
+      items,
       renderRightActions,
-      renderRightAction,
       renderLeftActions,
+      onSwipeableWillOpen,
+      renderRightAction,
       renderLeftAction,
     ],
   );
@@ -245,7 +260,13 @@ const List: React.FC<ListProps> = ({
         />
       </Container>
     );
-  }, [setSearchQuery, searchQuery]);
+  }, [searchTextLabel, searchQuery]);
+
+  const viewabilityConfigCallback = useRef(({ viewableItems }: { viewableItems: ViewToken[] }) => {
+    onViewableItemsChanged?.(viewableItems);
+  });
+
+  const viewabilityConfig = useMemo(() => ({ viewAreaCoveragePercentThreshold: 50 }), []);
 
   const ListComponent = useFlashList ? FlashList : FlatList;
 
@@ -264,20 +285,23 @@ const List: React.FC<ListProps> = ({
           <ListComponent
             ref={ref}
             data={filteredData}
-            keyExtractor={(item, index) => `key${index}`}
+            keyExtractor={memoizedKeyExtractor}
             // debug={true}
             windowSize={15}
-            initialNumToRender={15}
+            initialNumToRender={25}
             maxToRenderPerBatch={20}
-            updateCellsBatchingPeriod={30}
-            onEndReachedThreshold={0.5}
+            updateCellsBatchingPeriod={50}
+            onEndReachedThreshold={0.1}
             removeClippedSubviews={true} //  items who are not visible on the screen are not loaded into memory
-            getItemLayout={(data, index) => ({
+            getItemLayout={(_, index) => ({
+              // a fixed height, use getItemLayout to avoid measuring each item dynamically.
               length: itemHeight,
               offset: itemHeight * index,
               index,
             })}
             numColumns={horizontal ? 1 : numColumns}
+            viewabilityConfig={viewabilityConfig}
+            onViewableItemsChanged={viewabilityConfigCallback.current}
             scrollEnabled={scrollEnabled}
             onScroll={({ nativeEvent }) => {
               setOffsetY(nativeEvent.contentOffset.y);
@@ -300,11 +324,19 @@ const List: React.FC<ListProps> = ({
                         height={125}
                       />
                       <EmptyText type="Subtitle2">common:emptyList</EmptyText>
+                      {showReload && (
+                        <ReloadButton onPress={() => refreshHandler?.()}>
+                          <ReloadText type="Subtitle2" color="tertiary600">
+                            common:tryagain
+                          </ReloadText>
+                          <SVGIcon icon="reload" iconColor="tertiary600" width={20} />
+                        </ReloadButton>
+                      )}
                     </EmptyContainer>
                   )}
                 </Fragment>
               ) : (
-                <></>
+                <Fragment />
               )
             }
             ListHeaderComponent={
@@ -346,7 +378,7 @@ const List: React.FC<ListProps> = ({
             icon="add"
             iconType="svg"
             weight={3}
-          ></FloatingButton>
+          />
         )}
       </ButtonsContainer>
     </Fragment>

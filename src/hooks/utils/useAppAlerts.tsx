@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Logger, useCopy } from '@services';
@@ -21,80 +21,92 @@ export const useAppAlerts = () => {
     callback?.();
   }, []);
 
-  const showFeatureUnavailableAlert = useCallback((callback?: () => void): void => {
-    showModal({
-      type: 'alert',
-      title: 'common:messages.features.unavailable.title',
-      description: 'common:messages.features.unavailable.body',
-    });
-    callback?.();
-  }, []);
+  const showFeatureUnavailableAlert = useCallback(
+    (callback?: () => void): void => {
+      showModal({
+        type: 'alert',
+        title: 'common:messages.features.unavailable.title',
+        description: 'common:messages.features.unavailable.body',
+      });
+      callback?.();
+    },
+    [showModal],
+  );
 
-  const showBlockedPermissionAlert = useCallback((callback?: () => void) => {
-    showModal({
-      type: 'alert',
-      title: 'common:alerts.permissions.blocked.title',
-      showCancelIcon: true,
-      description: 'common:alerts.permissions.blocked.description',
-      options: [
-        {
-          text: 'common:alerts.permissions.blocked.buttons.buttonOne',
-          handler: callback && callback,
-        },
-      ],
-    });
-  }, []);
+  const showBlockedPermissionAlert = useCallback(
+    (callback?: () => void) => {
+      showModal({
+        type: 'alert',
+        title: 'common:alerts.permissions.blocked.title',
+        showCancelIcon: true,
+        description: 'common:alerts.permissions.blocked.description',
+        options: [
+          {
+            text: 'common:alerts.permissions.blocked.buttons.buttonOne',
+            handler: callback && callback,
+          },
+        ],
+      });
+    },
+    [showModal],
+  );
 
-  const showDeniedPermissionAlert = useCallback((callback?: () => void) => {
-    showModal({
-      type: 'alert',
-      title: 'common:alerts.permissions.denied.title',
-      showCancelIcon: true,
-      description: getCopyValue('common:alerts.permissions.denied.description', {
-        deviceName: Platform.OS === 'ios' ? 'iPhone' : 'Android',
-      }),
-      options: [
-        {
-          text: 'common:alerts.permissions.denied.buttons.buttonOne',
-          handler: callback && callback,
-        },
-      ],
-    });
-  }, []);
+  const showDeniedPermissionAlert = useCallback(
+    (callback?: () => void) => {
+      showModal({
+        type: 'alert',
+        title: 'common:alerts.permissions.denied.title',
+        showCancelIcon: true,
+        description: getCopyValue('common:alerts.permissions.denied.description', {
+          deviceName: Platform.OS === 'ios' ? 'iPhone' : 'Android',
+        }),
+        options: [
+          {
+            text: 'common:alerts.permissions.denied.buttons.buttonOne',
+            handler: callback && callback,
+          },
+        ],
+      });
+    },
+    [getCopyValue, showModal],
+  );
 
   const sendSignUpCode = useCallback(async () => {
     Logger.log('Resend code');
   }, []);
 
-  const showSendOTPAlert = useCallback((callback: (value?: string) => void) => {
-    showModal({
-      type: 'alert',
-      showCancelIcon: true,
-      isVisible: true,
-      title: 'authentication:Authentication.otp.alert.title',
-      description: 'authentication:Authentication.otp.alert.description',
-      body: (
-        <OTPInput
-          length={4}
-          onSuccess={async () => {
-            await hideModal();
-            await callback();
-          }}
-          {...testProperties('OTPInput')}
-          // error={errorCode}
-          code={'1234'}
-        />
-      ),
-      options: [
-        {
-          text: 'authentication:Authentication.otp.alert.buttons.primaryButton',
-          handler: sendSignUpCode,
-          isSimpleButton: false,
-          color: 'typography50',
-        },
-      ],
-    });
-  }, []);
+  const showSendOTPAlert = useCallback(
+    (callback: (value?: string) => void) => {
+      showModal({
+        type: 'alert',
+        showCancelIcon: true,
+        isVisible: true,
+        title: 'authentication:Authentication.otp.alert.title',
+        description: 'authentication:Authentication.otp.alert.description',
+        body: (
+          <OTPInput
+            length={4}
+            onSuccess={async () => {
+              await hideModal();
+              await callback();
+            }}
+            {...testProperties('OTPInput')}
+            // error={errorCode}
+            code={'1234'}
+          />
+        ),
+        options: [
+          {
+            text: 'authentication:Authentication.otp.alert.buttons.primaryButton',
+            handler: sendSignUpCode,
+            isSimpleButton: false,
+            color: 'typography50',
+          },
+        ],
+      });
+    },
+    [hideModal, sendSignUpCode, showModal],
+  );
 
   const showAskForAuthAlert = useCallback(() => {
     showModal({
@@ -118,7 +130,7 @@ export const useAppAlerts = () => {
         },
       ],
     });
-  }, []);
+  }, [navigation, showModal]);
 
   const showItemCreateActionToastSuccess = useCallback((callback?: () => void): void => {
     useToast.success({
@@ -168,42 +180,45 @@ export const useAppAlerts = () => {
     callback?.();
   }, []);
 
-  const confirmRemoveActionAlert = useCallback(async (callback?: () => void): Promise<void> => {
-    await setLoading(true);
-    await showModal({
-      type: 'alert',
-      title: 'common:alerts.crudActions.delete.title',
-      description: 'common:alerts.crudActions.delete.description',
-      showCancelIcon: true,
-      onCloseIcon: () => setLoading(false),
-      buttonsStyles: {
-        direction: 'row',
-        alignment: 'right',
-      },
-      lockBackdrop: true,
-      options: [
-        {
-          text: 'common:alerts.crudActions.delete.options.cancelButton',
-          handler: async () => {
-            await hideModal();
-            await setLoading(false);
-          },
-          isSimpleButton: true,
-          color: 'typography950',
+  const confirmRemoveActionAlert = useCallback(
+    async (callback?: () => void): Promise<void> => {
+      await setLoading(true);
+      await showModal({
+        type: 'alert',
+        title: 'common:alerts.crudActions.delete.title',
+        description: 'common:alerts.crudActions.delete.description',
+        showCancelIcon: true,
+        onCloseIcon: () => setLoading(false),
+        buttonsStyles: {
+          direction: 'row',
+          alignment: 'right',
         },
-        {
-          text: 'common:alerts.crudActions.delete.options.confirmButton',
-          handler: async () => {
-            await callback?.();
-            await setLoading(false);
-            await hideModal();
+        lockBackdrop: true,
+        options: [
+          {
+            text: 'common:alerts.crudActions.delete.options.cancelButton',
+            handler: async () => {
+              await hideModal();
+              await setLoading(false);
+            },
+            isSimpleButton: true,
+            color: 'typography950',
           },
-          isSimpleButton: true,
-          color: 'danger_status',
-        },
-      ],
-    });
-  }, []);
+          {
+            text: 'common:alerts.crudActions.delete.options.confirmButton',
+            handler: async () => {
+              await callback?.();
+              await setLoading(false);
+              await hideModal();
+            },
+            isSimpleButton: true,
+            color: 'danger_status',
+          },
+        ],
+      });
+    },
+    [hideModal, setLoading, showModal],
+  );
 
   const showActionWillBeTriggeredToast = useCallback((callback?: () => void): void => {
     useToast.warning({
@@ -215,48 +230,51 @@ export const useAppAlerts = () => {
 
   const showQueueUpdatedToast = useCallback((callback?: () => void): void => {
     useToast.info({
-      message: 'common:toasts.crudActions.queueUpdated',
+      message: 'common:toasts.crudActions.queueUpdated.message',
       duration: 3000,
     });
     callback?.();
   }, []);
 
-  const confirmChangeQueueAlert = useCallback(async (callback?: () => void): Promise<void> => {
-    await setLoading(true);
-    await showModal({
-      type: 'alert',
-      title: 'common:alerts.crudActions.changeDeleteToUpdate.title',
-      description: 'common:alerts.crudActions.changeDeleteToUpdate.description',
-      showCancelIcon: true,
-      onCloseIcon: () => setLoading(false),
-      buttonsStyles: {
-        direction: 'row',
-        alignment: 'right',
-      },
-      lockBackdrop: true,
-      options: [
-        {
-          text: 'common:alerts.crudActions.changeDeleteToUpdate.options.cancelButton',
-          handler: async () => {
-            await hideModal();
-            await setLoading(false);
-          },
-          isSimpleButton: true,
-          color: 'typography950',
+  const confirmChangeQueueAlert = useCallback(
+    async (callback?: () => void): Promise<void> => {
+      await setLoading(true);
+      await showModal({
+        type: 'alert',
+        title: 'common:alerts.crudActions.changeDeleteToUpdate.title',
+        description: 'common:alerts.crudActions.changeDeleteToUpdate.description',
+        showCancelIcon: true,
+        onCloseIcon: () => setLoading(false),
+        buttonsStyles: {
+          direction: 'row',
+          alignment: 'right',
         },
-        {
-          text: 'common:alerts.crudActions.changeDeleteToUpdate.options.confirmButton',
-          handler: async () => {
-            await callback?.();
-            await setLoading(false);
-            await hideModal();
+        lockBackdrop: true,
+        options: [
+          {
+            text: 'common:alerts.crudActions.changeDeleteToUpdate.options.cancelButton',
+            handler: async () => {
+              await hideModal();
+              await setLoading(false);
+            },
+            isSimpleButton: true,
+            color: 'typography950',
           },
-          isSimpleButton: true,
-          color: 'warning_status',
-        },
-      ],
-    });
-  }, []);
+          {
+            text: 'common:alerts.crudActions.changeDeleteToUpdate.options.confirmButton',
+            handler: async () => {
+              await callback?.();
+              await setLoading(false);
+              await hideModal();
+            },
+            isSimpleButton: true,
+            color: 'warning_status',
+          },
+        ],
+      });
+    },
+    [hideModal, setLoading, showModal],
+  );
 
   const confirmRemoveQueueActionAlert = useCallback(
     async (callback?: () => void): Promise<void> => {
@@ -295,7 +313,7 @@ export const useAppAlerts = () => {
         ],
       });
     },
-    [],
+    [hideModal, setLoading, showModal],
   );
 
   return {

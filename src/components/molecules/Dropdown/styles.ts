@@ -16,10 +16,12 @@ interface StyledTextProps {
 }
 
 //! se puede reusar
-export const StyledText = styled(Typography) <StyledTextProps>`
+export const StyledText = styled(Typography)<StyledTextProps>`
   ${({ error, theme, hasValue }) => css`
     color: ${() => {
-      const color = hasValue ? theme.tokens.colors.typography950 : theme.tokens.colors.typography700;
+      const color = hasValue
+        ? theme.tokens.colors.typography950
+        : theme.tokens.colors.typography700;
       const colorFocused = error
         ? theme.tokens.colors.danger_status
         : theme.tokens.colors.typography700;
@@ -40,7 +42,7 @@ export interface StyledButtonProps {
   width?: string | number;
 }
 
-export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>`
+export const StyledButton = styled(TouchableWithoutFeedback)<StyledButtonProps>`
   height: 100%;
 `;
 
@@ -49,11 +51,11 @@ export const StyledElementContainer = styled.View<StyledButtonProps>`
   justify-content: center;
   align-items: flex-start;
   min-height: ${PixelRatio.roundToNearestPixel(45)}px;
-  width: ${({ hasValue }) => hasValue ? '100%' : '100%'};
+  width: ${({ hasValue }) => (hasValue ? '100%' : '100%')};
   background-color: transparent;
 `;
 
-export const ItemText = styled(Typography) <StyledTextProps>``;
+export const ItemText = styled(Typography)<StyledTextProps>``;
 
 export const AnimatedDropdownContent = styled(Animated.View)`
   top: ${getNormalizedVerticalSize(50)}px;

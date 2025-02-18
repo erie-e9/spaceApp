@@ -44,7 +44,7 @@ export const Calendar: React.FC<CalendarProps> = ({
   monthNamesShort,
   dayNames,
   dayNamesShort,
-  onInvalidDate,
+
   maxDate,
   minDate,
   allowSelectionOutOfRange,

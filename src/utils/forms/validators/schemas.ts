@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useMemo } from 'react';
 import * as yup from 'yup';
 import {
@@ -7,7 +8,6 @@ import {
   photo,
   password,
   confirmPassword,
-  newPassword,
   firstName,
   lastName,
   dateOfBirth,
@@ -21,10 +21,10 @@ import {
   title,
   descriptionNoMandatory,
   status,
-  dateNoMandatory
+  dateNoMandatory,
 } from '@utils/forms/validators/fields'; // improve, pragmatic values instead of specific
 
-export const stepSchemas = () => {
+export const stepSchemas = (): any => {
   const accountDataSchema = useMemo(
     () =>
       yup.object().shape({
@@ -111,7 +111,7 @@ export const stepSchemas = () => {
 };
 
 // Schemas
-export const formSchemas = () => {
+export const formSchemas = (): any => {
   const {
     accountDataSchema,
     personalDetailsSchema,
@@ -123,7 +123,7 @@ export const formSchemas = () => {
   } = stepSchemas();
   const accountSchema = useMemo(
     () => [accountDataSchema, personalDetailsSchema, locationDetailsSchema],
-    [],
+    [accountDataSchema, locationDetailsSchema, personalDetailsSchema],
   );
 
   const accountWithSocialMediaSchema = useMemo(
@@ -132,7 +132,7 @@ export const formSchemas = () => {
       socialMediaMissingDataSchema,
       locationDetailsSchema,
     ],
-    [],
+    [locationDetailsSchema, socialMediaMissingDataPhoneNumberSchema, socialMediaMissingDataSchema],
   );
 
   return {

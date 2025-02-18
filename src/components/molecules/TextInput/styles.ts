@@ -35,23 +35,23 @@ export const StyledTextInput = styled.TextInput<{
     theme.mode === 'dark'
       ? css`
           color: ${() =>
-          error && !colorTextOpposing
-            ? theme.tokens.colors.danger_status
-            : error && colorTextOpposing
+            error && !colorTextOpposing
+              ? theme.tokens.colors.danger_status
+              : error && colorTextOpposing
               ? theme.tokens.colors.secondary950
               : theme.tokens.colors.secondary950};
         `
       : css`
           color: ${() =>
-          error && !colorTextOpposing
-            ? theme.tokens.colors.danger_status
-            : error && colorTextOpposing
+            error && !colorTextOpposing
+              ? theme.tokens.colors.danger_status
+              : error && colorTextOpposing
               ? theme.tokens.colors.secondary950
               : theme.tokens.colors.secondary950};
         `}
 `;
 
-export const StyledIconTouchable = styled(Touchable) <PropsStyled>`
+export const StyledIconTouchable = styled(Touchable)<PropsStyled>`
   border-radius: 16px;
   border: none;
   width: ${getNormalizedHorizontalSize(45)}px;

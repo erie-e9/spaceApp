@@ -7,7 +7,6 @@ import faqs from '@services/translations/resources/es/shared/faqs.json';
 export const useFAQs = (): {
   listItems: Array<MenuItemProps>;
 } => {
-
   useEffect(() => {
     // storage.delete('faqs');
     storage.set('faqs', JSON.stringify(faqs));
@@ -21,7 +20,7 @@ export const useFAQs = (): {
     }
 
     return [];
-  }, [faqs]);
+  }, []);
 
   const listItems = useMemo(() => {
     return [

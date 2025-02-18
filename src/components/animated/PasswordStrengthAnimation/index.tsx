@@ -13,6 +13,7 @@ const PasswordStrengthAnimation: React.FC<PasswordStrengthProps> = ({ passwordSt
       good: theme.tokens.colors.info_status,
       strong: theme.tokens.colors.success_status,
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const width = useSharedValue(0);
@@ -38,7 +39,7 @@ const PasswordStrengthAnimation: React.FC<PasswordStrengthProps> = ({ passwordSt
       duration: 500,
       easing: Easing.linear,
     });
-  }, [passwordStrength]);
+  }, [passwordStrength, width]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return passwordStrength !== null

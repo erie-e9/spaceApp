@@ -1,7 +1,6 @@
-import React, { memo, useEffect, useState, useCallback, useRef, forwardRef } from 'react';
+import React, { memo, useEffect, useState, useCallback, useRef, forwardRef, Fragment } from 'react';
 import { FlatList } from 'react-native';
 import { useTheme } from 'styled-components/native';
-import { useSharedValue } from 'react-native-reanimated';
 import truncate from 'lodash/truncate';
 import type { DropDownProps } from '@types';
 import { testProperties } from '@utils/functions';
@@ -53,7 +52,6 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
       () => null,
     );
     const { showModal } = useModal();
-    const dropdownHeightValue = useSharedValue(0);
     const listRef = useRef<FlatList>(null);
 
     const [selectedLabel, setSelectedLabel] = useState<string>(
@@ -71,7 +69,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
           });
         }
       }
-    }, [openDropdown, data]);
+    }, [openDropdown, data, selectedLabel]);
 
     const handleSelect = useCallback(
       (item: { value: any; label: any }) => {
@@ -100,15 +98,37 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
         });
       }
       setOpenDropdown && setOpenDropdown(!openDropdown);
-    }, [openDropdown, dropdownHeight, dropdownHeightValue, data]);
+    }, [
+      bottomSheet,
+      setOpenDropdown,
+      openDropdown,
+      showModal,
+      label,
+      description,
+      data,
+      dropdownHeight,
+      handleSelect,
+    ]);
 
-    const handleInputChange = useCallback((text: string) => {
-      if (isNumeric && isNaN(Number(text))) return;
-      onSelect(text);
-      setSelectedLabel(text);
-    }, []);
+    const handleInputChange = useCallback(
+      (text: string) => {
+        if (isNumeric && isNaN(Number(text))) {
+          return;
+        }
+        onSelect(text);
+        setSelectedLabel(text);
+      },
+      [isNumeric, onSelect],
+    );
 
-    const getItemLayout = (_: any, index: number) => ({
+    const getItemLayout = (
+      _: any,
+      index: number,
+    ): {
+      length: number;
+      offset: number;
+      index: number;
+    } => ({
       length: 40,
       offset: 40 * index,
       index,
@@ -130,7 +150,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
           rightIconHandler={toggleDropdown}
           style={{ width }}
         >
-          <>
+          <Fragment>
             {type === 'textinput' ? (
               <StyledTextInput
                 ref={ref}
@@ -163,7 +183,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
                 </StyledElementContainer>
               </StyledButton>
             )}
-          </>
+          </Fragment>
         </FieldInputMask>
 
         {openDropdown && (
@@ -171,7 +191,7 @@ export const Dropdown: React.FC<DropDownProps> = forwardRef(
             <FlatList
               ref={listRef}
               data={data}
-              keyExtractor={({ item, index }) => index}
+              keyExtractor={({ index }) => index}
               renderItem={({ item, index }) => (
                 <ListItemContainer width={width}>
                   <Item key={index} onPress={() => handleSelect(item)}>

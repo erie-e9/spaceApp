@@ -25,19 +25,21 @@ export const InputContainer = styled(Animated.View)`
   align-items: center;
 `;
 
-export const StyledTextInput = styled(TextInput) <Props>`
+export const StyledTextInput = styled(TextInput)<Props>`
   z-index: 5;
   width: ${PixelRatio.roundToNearestPixel(44)}px;
   height: ${PixelRatio.roundToNearestPixel(60)}px;
   border-radius: ${PixelRatio.roundToNearestPixel(10)}px;
   font-size: ${PixelRatio.roundToNearestPixel(17)}px;
-  color: ${({ theme, error }) => !error ? theme.tokens.colors.secondary950 : theme.tokens.colors.danger_status};
+  color: ${({ theme, error }) =>
+    !error ? theme.tokens.colors.secondary950 : theme.tokens.colors.danger_status};
   border-width: 1px;
   margin-right: ${PixelRatio.roundToNearestPixel(7)}px;
   text-align: center;
   ${({ focused }) =>
     css`
-      border-color: ${({ theme }) => focused ? theme.tokens.colors.tertiary600 : theme.tokens.colors.tertiary300};
+      border-color: ${({ theme }) =>
+        focused ? theme.tokens.colors.tertiary600 : theme.tokens.colors.tertiary300};
     `}
   ${({ error }) =>
     error &&

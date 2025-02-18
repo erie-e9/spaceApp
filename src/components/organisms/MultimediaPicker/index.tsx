@@ -41,16 +41,21 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
   const { pickImage } = usePhotoLibraryCamera();
   const { requestPhotoLibraryPermission } = usePermission();
 
-  const handleImageResponse = useCallback((response: ImagePickerResponse) => {
-    if (response.didCancel || !response.assets) return;
-    if (selectionLimit > 1 && images.length < selectionLimit) {
-      setImages((prev) => [...prev, ...response.assets!]);
-      onSelect(response.assets);
-    } else if (selectionLimit === 1) {
-      setImages(response.assets);
-      onSelect(response.assets[0]);
-    }
-  }, []);
+  const handleImageResponse = useCallback(
+    (response: ImagePickerResponse) => {
+      if (response.didCancel || !response.assets) {
+        return;
+      }
+      if (selectionLimit > 1 && images.length < selectionLimit) {
+        setImages((prev) => [...prev, ...response.assets!]);
+        onSelect(response.assets);
+      } else if (selectionLimit === 1) {
+        setImages(response.assets);
+        onSelect(response.assets[0]);
+      }
+    },
+    [images.length, onSelect, selectionLimit],
+  );
 
   const imageOrigin = useCallback(
     async (originParam: Type) => {
@@ -67,7 +72,7 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
         },
       });
     },
-    [mediaType, selectionLimit, images],
+    [hideModal, pickImage, handleImageResponse, mediaType, selectionLimit, images?.length],
   );
 
   const showLibraryOrCamAlert = useCallback(() => {
@@ -89,7 +94,7 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
         },
       ],
     });
-  }, []);
+  }, [imageOrigin, showModal]);
 
   const imagePickerHandler = useCallback(async () => {
     const permissionStatus = await requestPhotoLibraryPermission();
@@ -104,11 +109,11 @@ export const MultimediaPicker: React.FC<ImagePickerProps> = ({
     }
   }, [origin, imageOrigin, showLibraryOrCamAlert, requestPhotoLibraryPermission]);
 
-  const handleRemoveImage = (index: number) => {
+  const handleRemoveImage = (index: number): void => {
     setImages((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = (): void => {
     setImages([]);
   };
 

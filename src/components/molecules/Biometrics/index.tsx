@@ -17,7 +17,7 @@ export const Biometrics: React.FC<BiometricsProps> = ({ onSuccess, icon, text })
         textAlign="center"
         weight={400}
       >
-        {text && text}
+        {text ?? null}
       </TitleText>
     </BiometricsButtonContainer>
   );

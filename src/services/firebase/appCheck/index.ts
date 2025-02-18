@@ -44,7 +44,7 @@ const getAppCheckToken = async (): Promise<string> => {
     }
     throw new Error('Empty token');
   } catch (error) {
-    Logger.log('AppCheck verification failed');
+    Logger.log('AppCheck verification failed', { error });
     throw new Error('Empty token');
   }
 };

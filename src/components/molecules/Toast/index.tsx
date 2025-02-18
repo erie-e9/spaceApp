@@ -26,7 +26,7 @@ export interface ToastProps {
   vibration?: number | boolean;
 }
 
-export const Toast = () => {
+export const Toast: React.FC = () => {
   const hasNotch = getHasNotch();
   const { darkMode } = useThemeApp();
   const [{ message, type }, setToast] = useState<ToastProps>({
@@ -56,7 +56,7 @@ export const Toast = () => {
     warning: theme.tokens.colors.warning_status,
   };
 
-  const OnNewToast = (data: any) => {
+  const OnNewToast = (data: any): void => {
     if (data.duration) {
       setDuration(data.duration);
     }
@@ -77,7 +77,7 @@ export const Toast = () => {
       });
     }, 1000);
     clearInterval(timeOutRef.current);
-  }, [animatedOpacity.value]);
+  }, [animatedOpacity]);
 
   useEffect(() => {
     if (message && duration !== undefined) {
@@ -101,16 +101,18 @@ export const Toast = () => {
         duration: 300,
       });
     }
-  }, [message, animatedOpacity.value]);
+  }, [message, animatedOpacity.value, animatedOpacity]);
 
   useEffect(() => {
     DeviceEventEmitter.addListener('SHOW_TOAST_MESSAGE', OnNewToast);
     DeviceEventEmitter.addListener('HIDE_TOAST_MESSAGE', closeToast);
 
     return () => DeviceEventEmitter.removeAllListeners();
-  }, []);
+  }, [closeToast]);
 
-  if (!message) return;
+  if (!message) {
+    return;
+  }
 
   return (
     <StyledAnimatedContainer

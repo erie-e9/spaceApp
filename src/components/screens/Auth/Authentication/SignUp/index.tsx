@@ -23,9 +23,12 @@ export const SignUp: React.FC<SignUpProps> = ({ navigation }) => {
   const useSignUpHook = useSignUp();
   const { getCopyValue } = useCopy();
 
-  const navigatorHandler = useCallback((type: InfoType) => {
-    navigation.navigate('Info', { type: type } as never);
-  }, []);
+  const navigatorHandler = useCallback(
+    (type: InfoType) => {
+      navigation.navigate('Info', { type: type } as never);
+    },
+    [navigation],
+  );
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
@@ -66,7 +69,7 @@ export const SignUp: React.FC<SignUpProps> = ({ navigation }) => {
         </TermsPolicyText>
       </TermsPolicyContainer>
     );
-  }, []);
+  }, [getCopyValue, navigatorHandler]);
 
   return (
     <MultiStepper
@@ -81,7 +84,7 @@ export const SignUp: React.FC<SignUpProps> = ({ navigation }) => {
       values={useSignUpHook.values}
       errors={useSignUpHook.errors}
       touched={useSignUpHook.touched}
-      submitButtonHandler={useSignUpHook.onSubmitHandler}
+      submitButtonHandler={useSignUpHook.submitButtonHandler}
       prevStepButtonHandler={useSignUpHook.prevStepButtonHandler}
       nextStepButtonHandler={useSignUpHook.nextStepButtonHandler}
       nextStepButtonDisabled={useSignUpHook.nextStepButtonDisabled}

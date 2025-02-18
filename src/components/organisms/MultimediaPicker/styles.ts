@@ -32,6 +32,7 @@ export const AttatchContainer = styled.View<AttatchContainerProps>`
   flex-wrap: wrap;
   justify-content: ${({ alignItems }) => alignItems};
   align-items: center;
+  padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(10)}px;
 `;
 
 export const ImagePreview = styled(Animated.View)`
@@ -56,18 +57,18 @@ export const AddButton = styled.TouchableOpacity<AddButtonProps>`
   height: ${({ fullSize }) => (fullSize ? '120px' : '70px')};
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 10px;
   margin: ${getNormalizedVerticalSize(5)}px;
   background-color: ${({ theme }) => theme.tokens.colors.tertiary200};
 `;
 
-export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>``;
+export const StyledButton = styled(TouchableWithoutFeedback)<StyledButtonProps>``;
 
 export const DeleteIcon = styled.TouchableOpacity`
   position: absolute;
   top: ${getNormalizedVerticalSize(2.5)}px;
   left: ${getNormalizedVerticalSize(1.5)}px;
-  width:  ${getNormalizedHorizontalSize(20)}px;
+  width: ${getNormalizedHorizontalSize(20)}px;
   height: ${getNormalizedVerticalSize(20)}px;
   align-items: center;
   justify-content: center;

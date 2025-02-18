@@ -1,4 +1,4 @@
-import { Platform } from "react-native";
+import { Platform } from 'react-native';
 
 const debugger_mode = process.env.DEBUGGER_MODE;
 
@@ -24,7 +24,13 @@ const unixTime = (): string => getHour12H();
 export const Logger = {
   error: (message?: unknown, ...optionalParams: unknown[]): void => {
     if (debugger_mode) {
-      console.error('\n\n', unixTime(), `| ${Platform.OS.toUpperCase()} | `, message, optionalParams);
+      console.error(
+        '\n\n',
+        unixTime(),
+        `| ${Platform.OS.toUpperCase()} | `,
+        message,
+        optionalParams,
+      );
     }
   },
   log: (message?: unknown, ...optionalParams: unknown[]): void => {
@@ -34,7 +40,13 @@ export const Logger = {
   },
   warn: (message?: unknown, ...optionalParams: unknown[]): void => {
     if (debugger_mode) {
-      console.warn('\n\n', unixTime(), `| ${Platform.OS.toUpperCase()} | `, message, optionalParams);
+      console.warn(
+        '\n\n',
+        unixTime(),
+        `| ${Platform.OS.toUpperCase()} | `,
+        message,
+        optionalParams,
+      );
     }
   },
 };

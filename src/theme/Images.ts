@@ -1,6 +1,6 @@
 import type { ThemeVariables } from '@types';
 
-export default function ({ }: ThemeVariables) {
+export default function ({}: ThemeVariables) {
   return {
     logo: require('@assets/shared/images/AestheticSpace.webp'),
     sparkles: {

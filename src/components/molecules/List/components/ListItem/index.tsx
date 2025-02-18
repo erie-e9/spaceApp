@@ -1,5 +1,5 @@
 import React, { Fragment, memo } from 'react';
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
 import { testProperties } from '@utils/functions';
 import {
   Container,

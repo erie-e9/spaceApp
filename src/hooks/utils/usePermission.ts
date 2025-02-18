@@ -28,17 +28,22 @@ export const usePermission = (): PermissionStatus => {
     'unavailable' | 'denied' | 'limited' | 'granted' | 'blocked'
   >('unavailable');
 
-  const openAppSettings = () => {
+  const openAppSettings = (): void => {
     openSettings().catch(() => console.warn('cannot open settings'));
   };
 
-  const handlePermissionResponse = useCallback((result: string, permission: Permission) => {
-    if (result === RESULTS.BLOCKED) {
-      showBlockedPermissionAlert(openAppSettings);
-    } else if (result === RESULTS.DENIED) {
-      showDeniedPermissionAlert(() => requestPermission(permission));
-    }
-  }, []);
+  const handlePermissionResponse = useCallback(
+    (result: string, permission: Permission) => {
+      if (result === RESULTS.BLOCKED) {
+        showBlockedPermissionAlert(openAppSettings);
+      } else if (result === RESULTS.DENIED) {
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        showDeniedPermissionAlert(() => requestPermission(permission));
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    },
+    [showBlockedPermissionAlert, showDeniedPermissionAlert],
+  );
 
   const checkPermission = useCallback(async (permission: Permission) => {
     const result = await check(permission);
@@ -46,21 +51,24 @@ export const usePermission = (): PermissionStatus => {
     return result;
   }, []);
 
-  const requestPermission = useCallback(async (permissions: Permission | Array<Permission>) => {
-    let result;
-    if (Array.isArray(permissions)) {
-      result = await requestMultiple(permissions);
-    }
-    result = await request(permissions as Permission);
-    await setStatus(result);
-    await handlePermissionResponse(result, permissions as Permission);
-    return result;
-  }, []);
+  const requestPermission = useCallback(
+    async (permissions: Permission | Array<Permission>) => {
+      let result;
+      if (Array.isArray(permissions)) {
+        result = await requestMultiple(permissions);
+      }
+      result = await request(permissions as Permission);
+      await setStatus(result);
+      await handlePermissionResponse(result, permissions as Permission);
+      return result;
+    },
+    [handlePermissionResponse],
+  );
 
   const requestCameraPermission = useCallback(() => {
     const permission = Platform.OS === 'ios' ? PERMISSIONS.IOS.CAMERA : PERMISSIONS.ANDROID.CAMERA;
     requestPermission(permission);
-  }, []);
+  }, [requestPermission]);
 
   const requestPhotoLibraryPermission = useCallback(async (): Promise<string | void> => {
     const permission =
@@ -76,29 +84,32 @@ export const usePermission = (): PermissionStatus => {
     }
   }, [checkPermission, requestPermission]);
 
-  const requestLocationPermission = useCallback((useBackgroundLocationApproved: boolean) => {
-    if (Platform.OS === 'ios') {
-      return [PERMISSIONS.IOS.LOCATION_ALWAYS];
-    } else {
-      const permissions: Array<Permission> = [
-        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
-        PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
-      ];
+  const requestLocationPermission = useCallback(
+    (useBackgroundLocationApproved: boolean) => {
+      if (Platform.OS === 'ios') {
+        return [PERMISSIONS.IOS.LOCATION_ALWAYS];
+      } else {
+        const permissions: Array<Permission> = [
+          PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+          PERMISSIONS.ANDROID.ACCESS_COARSE_LOCATION,
+        ];
 
-      // For android we show a warning about using background location which the user needs to approve according to
-      // the play store guidelines
-      if (useBackgroundLocationApproved) {
-        permissions.push(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
+        // For android we show a warning about using background location which the user needs to approve according to
+        // the play store guidelines
+        if (useBackgroundLocationApproved) {
+          permissions.push(PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION);
+        }
+        requestPermission(permissions);
       }
-      requestPermission(permissions);
-    }
-  }, []);
+    },
+    [requestPermission],
+  );
 
   const requestMicrophonePermission = useCallback(() => {
     const permission =
       Platform.OS === 'ios' ? PERMISSIONS.IOS.MICROPHONE : PERMISSIONS.ANDROID.RECORD_AUDIO;
     requestPermission(permission);
-  }, []);
+  }, [requestPermission]);
 
   return {
     status,

@@ -12,11 +12,11 @@ export const useRemoteConfig = (
       const features = await remoteConfigFeatures();
       dispatch(updateRemoteConfigFeatures(features));
       return features;
-    } catch (err: unknown) {
-      Logger.warn(err);
+    } catch (error: unknown) {
+      Logger.warn(error);
     }
     return {};
-  }, []);
+  }, [dispatch]);
 
   return { getRemoteFeatures };
 };

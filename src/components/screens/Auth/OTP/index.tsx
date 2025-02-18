@@ -16,7 +16,7 @@ export const SettingsMenu: React.FC = () => {
       numberOfLinesTitle={3}
       backButton
       headerStyle="Secondary"
-      body={<BodyContainer></BodyContainer>}
+      body={<BodyContainer />}
       primaryButton={isAuthenticated ? settingsMenuHook.primaryButton : undefined}
     />
   );

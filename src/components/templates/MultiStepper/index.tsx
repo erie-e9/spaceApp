@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { testProperties } from '@utils/functions';
-import { useTheme } from '@hooks';
+import { useTheme, useWhyDidYouUpdate } from '@hooks';
 import { HeaderTemplate, ScreenBackground } from '@components/atoms';
 import { Dropdown, Switch, TextInput } from '@components/molecules';
 import { MultiStep, DatePicker, MultimediaPicker } from '@components/organisms';
@@ -10,8 +10,6 @@ import {
   StyledContainer,
   StyledKeyboardAvoidingView,
   BodyContainer,
-  StepContainer,
-  StepItemContainer,
 } from './styles';
 
 export interface StepsProps {
@@ -60,14 +58,16 @@ const MultiStepper: React.FC<Props> = ({
   prevStepButtonHandler,
   nextStepButtonHandler,
   extraElementLastStep,
+  ...props
 }) => {
+  useWhyDidYouUpdate('MultiStepper', props);
   const { Images } = useTheme();
   const headerLabels = useMemo(() => {
     return {
       title: steps[currentStepIndex]?.title,
       description: steps[currentStepIndex]?.description,
     };
-  }, [currentStepIndex]);
+  }, [currentStepIndex, steps]);
 
   return (
     <ScreenBackground
@@ -112,118 +112,111 @@ const MultiStepper: React.FC<Props> = ({
               submitButtonHandler={submitButtonHandler}
             >
               {steps.map((step, index) => (
-                <MultiStep.Step key={index}>
-                  <StepContainer>
-                    <StepItemContainer>
-                      {step.items.map((item, i) => {
-                        const sharedProps = {
-                          ref: item.ref,
-                          label: item.label,
-                          name: item.name,
-                          value: values[item.name],
-                          error: errors?.[item.name],
-                          touched: touched?.[item.name],
-                          editable: item.editable,
-                          required: item.required,
-                        };
+                <MultiStep.Step key={'step' + index}>
+                  {step.items.map((item, i) => {
+                    const sharedProps = {
+                      ref: item.ref,
+                      label: item.label,
+                      name: item.name,
+                      value: values[item.name],
+                      error: errors?.[item.name],
+                      touched: touched?.[item.name],
+                      editable: item.editable,
+                      required: item.required,
+                    };
 
-                        switch (item.type) {
-                          case 'textinput':
-                            return (
-                              <TextInput
-                                key={i}
-                                {...sharedProps}
-                                secureTextEntry={item.secureTextEntry}
-                                maxLength={item?.maxLength}
-                                maintainFocus={item.maintainFocus}
-                                keyboardType={item.keyboardType}
-                                importantForAutofill="yes"
-                                showPasswordStrength={item.showPasswordStrength}
-                                removeBlankSpaces={item.removeBlankSpaces}
-                                editable={item.editable}
-                                autoCapitalize={item.autoCapitalize}
-                                textContentType={item.textContentType}
-                                multiline={item.multiline}
-                                onBlur={hookHandler?.handleBlur(item.name)}
-                                onChangeText={item.onChange || hookHandler.handleChange(item.name)}
-                                rightIcon={item.secureTextEntry ? 'passwordToggle' : 'close'}
-                                rightIconHandler={() => hookHandler.clearInputHandler(item.name)}
-                                autoComplete="off"
-                                autoCorrect={item.autoCorrect}
-                                onSubmitEditing={item.onSubmitEditing}
-                                returnKeyType={item.returnKeyType}
-                                returnKeyLabel={item.returnKeyLabel}
-                                enablesReturnKeyAutomatically
-                              />
-                            );
-                          case 'dropdown':
-                            return (
-                              <Dropdown
-                                key={i}
-                                {...sharedProps}
-                                description={item.description}
-                                data={item.items}
-                                placeholder={item.label}
-                                bottomSheet={item.bottomSheet}
-                                showButton={item.showButton}
-                                dropdownHeight={item.dropdownHeight}
-                                width="100%"
-                                onSelect={hookHandler.handleChange(item.name)}
-                              />
-                            );
-                          case 'switch':
-                            return (
-                              <Switch
-                                activated={values[item.name]}
-                                {...sharedProps}
-                                color={'primary500'}
-                                size={25}
-                                showIndicators={!false}
-                                onChange={(value) =>
-                                  hookHandler.fieldValueHandler(item.name, value)
-                                }
-                              />
-                            );
-                          case 'camera-image':
-                            return (
-                              <MultimediaPicker
-                                key={i}
-                                {...sharedProps}
-                                origin={item.origin}
-                                mediaType={item.mediaType}
-                                selectionLimit={item.selectionLimit}
-                                onSelect={(value) =>
-                                  hookHandler.fieldValueHandler(item.name, value)
-                                }
-                              />
-                            );
-                          case 'date-picker':
-                            return (
-                              <DatePicker
-                                key={i}
-                                {...sharedProps}
-                                mode={item.mode}
-                                title={item.title}
-                                description={item.description}
-                                placeholder={item.label}
-                                onSelect={hookHandler.handleChange(item.name)}
-                                rightIconHandler={() => hookHandler.clearInputHandler(item.name)}
-                              />
-                            );
-                          case 'radiobutton':
-                            return <></>;
-                          case 'checkbox':
-                            return <></>;
-                          case 'slider':
-                            return <></>;
-                          case 'file-selector':
-                            return <></>;
-                          default:
-                            return null;
-                        }
-                      })}
-                    </StepItemContainer>
-                  </StepContainer>
+                    switch (item.type) {
+                      case 'textinput':
+                        return (
+                          <TextInput
+                            key={'stepitem' + i}
+                            {...sharedProps}
+                            secureTextEntry={item.secureTextEntry}
+                            maxLength={item?.maxLength}
+                            maintainFocus={item.maintainFocus}
+                            keyboardType={item.keyboardType}
+                            importantForAutofill="yes"
+                            showPasswordStrength={item.showPasswordStrength}
+                            removeBlankSpaces={item.removeBlankSpaces}
+                            editable={item.editable}
+                            autoCapitalize={item.autoCapitalize}
+                            textContentType={item.textContentType}
+                            multiline={item.multiline}
+                            onChangeText={item.onChange || hookHandler.handleChange(item.name)}
+                            rightIcon={item.secureTextEntry ? 'passwordToggle' : 'close'}
+                            rightIconHandler={() => hookHandler.clearInputHandler(item.name)}
+                            autoComplete="off"
+                            autoCorrect={item.autoCorrect}
+                            // onBlur={hookHandler?.handleBlur(item.name)}
+                            onSubmitEditing={item.onSubmitEditing}
+                            returnKeyType={item.returnKeyType}
+                            returnKeyLabel={item.returnKeyLabel}
+                            enablesReturnKeyAutomatically
+                          />
+                        );
+                      case 'dropdown':
+                        return (
+                          <Dropdown
+                            key={'stepitem' + i}
+                            {...sharedProps}
+                            description={item.description}
+                            data={item.items}
+                            placeholder={item.label}
+                            bottomSheet={item.bottomSheet}
+                            showButton={item.showButton}
+                            dropdownHeight={item.dropdownHeight}
+                            width="100%"
+                            onSelect={hookHandler.handleChange(item.name)}
+                          />
+                        );
+                      case 'switch':
+                        return (
+                          <Switch
+                            key={'stepitem' + i}
+                            activated={values[item.name]}
+                            {...sharedProps}
+                            color={'primary500'}
+                            size={25}
+                            showIndicators={!false}
+                            onChange={(value) => hookHandler.fieldValueHandler(item.name, value)}
+                          />
+                        );
+                      case 'camera-image':
+                        return (
+                          <MultimediaPicker
+                            key={'stepitem' + i}
+                            {...sharedProps}
+                            origin={item.origin}
+                            mediaType={item.mediaType}
+                            selectionLimit={item.selectionLimit}
+                            onSelect={(value) => hookHandler.fieldValueHandler(item.name, value)}
+                          />
+                        );
+                      case 'date-picker':
+                        return (
+                          <DatePicker
+                            key={'stepitem' + i}
+                            {...sharedProps}
+                            mode={item.mode}
+                            title={item.title}
+                            description={item.description}
+                            placeholder={item.label}
+                            onSelect={hookHandler.handleChange(item.name)}
+                            rightIconHandler={() => hookHandler.clearInputHandler(item.name)}
+                          />
+                        );
+                      // case 'radiobutton':
+                      //   return <></>;
+                      // case 'checkbox':
+                      //   return <></>;
+                      // case 'slider':
+                      //   return <></>;
+                      // case 'file-selector':
+                      //   return <></>;
+                      default:
+                        return null;
+                    }
+                  })}
                 </MultiStep.Step>
               ))}
             </MultiStep>

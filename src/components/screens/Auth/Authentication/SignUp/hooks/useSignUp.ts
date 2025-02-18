@@ -67,7 +67,7 @@ export const useSignUp = () => {
           country: '',
           loggedOnDevice: false,
         },
-    [user],
+    [step1Filled, user],
   );
 
   const refs = useRef({
@@ -101,10 +101,10 @@ export const useSignUp = () => {
         const response = { success: true, data: { token: 'soy.un.token', ...values } };
         const { success, data } = response;
         if (success && data) {
-          await storeToken(data.token);
+          storeToken(data.token);
 
           if (!isEmpty(data.token)) {
-            await updateUser(
+            updateUser(
               user.signUpMethod === 'form'
                 ? {
                   username: cleanedValues.username,
@@ -160,7 +160,7 @@ export const useSignUp = () => {
         Logger.log('Error on onSubmit', error);
         throw error;
       } finally {
-        await setLoading(false);
+        setLoading(false);
       }
     },
   });
@@ -185,7 +185,9 @@ export const useSignUp = () => {
   }, []);
 
   const prevStepButtonHandler = useCallback(() => {
-    if (index > 0) setIndex(index - 1);
+    if (index > 0) {
+      setIndex(index - 1);
+    }
     setNextStepButtonDisabled(false);
   }, [index]);
 
@@ -224,8 +226,20 @@ export const useSignUp = () => {
       updateUser(formik.values);
     }
 
-    await formik.setErrors(errors);
-  }, [index, formik.errors, formik.values, user.signUpMethod]);
+    formik.setErrors(errors);
+  }, [
+    validateStep,
+    user.signUpMethod,
+    user.email,
+    user.firstName,
+    user.lastName,
+    accountSchema,
+    index,
+    accountWithSocialMediaSchema,
+    formik,
+    showSendOTPAlert,
+    updateUser,
+  ]);
 
   const fieldValueHandler = useCallback(
     (elementName: string, value: boolean) => {
@@ -260,14 +274,14 @@ export const useSignUp = () => {
   }, [formik.errors]);
 
   const onNextStepHandler = useCallback(async () => {
-    await Keyboard.dismiss();
+    Keyboard.dismiss();
     await nextStepButtonHandler();
-  }, []);
+  }, [nextStepButtonHandler]);
 
-  const onSubmitHandler = useCallback(() => {
+  const submitButtonHandler = useCallback(async () => {
     Keyboard.dismiss();
     formik.handleSubmit();
-  }, []);
+  }, [formik]);
 
   const steps: Array<StepsProps> = useMemo(
     () =>
@@ -283,7 +297,8 @@ export const useSignUp = () => {
                 ref: (r: any) => (refs.current.username = r),
                 onSubmitEditing: () =>
                   onSubmitEditingNext('username', user.email !== '' ? 'button' : 'textinput'),
-              }, {
+              },
+              {
                 ...email,
                 ref: (r: any) => (refs.current.email = r),
                 onSubmitEditing: () => onSubmitEditingNext('email', 'textinput'),
@@ -345,11 +360,12 @@ export const useSignUp = () => {
               {
                 ...country,
                 ref: (r: any) => (refs.current.country = r),
-                onSubmitEditing: () => onSubmitHandler(),
+                onSubmitEditing: () => submitButtonHandler(),
               },
             ],
           },
-        ] : [
+        ]
+        : [
           // social media
           {
             title: `signup:SignUp.screenHeaders.step${index + 1}.title`,
@@ -402,12 +418,20 @@ export const useSignUp = () => {
               {
                 ...country,
                 ref: (r: any) => (refs.current.country = r),
-                onSubmitEditing: () => onSubmitHandler(),
+                onSubmitEditing: () => submitButtonHandler(),
               },
             ],
           },
         ],
-    [index, genres, user.signUpMethod],
+    [
+      user.signUpMethod,
+      user.email,
+      index,
+      genres,
+      onSubmitEditingNext,
+      onNextStepHandler,
+      submitButtonHandler,
+    ],
   );
 
   return {
@@ -415,7 +439,7 @@ export const useSignUp = () => {
     index,
     steps,
     fieldValueHandler,
-    onSubmitHandler,
+    submitButtonHandler,
     nextStepButtonDisabled,
     prevStepButtonHandler,
     nextStepButtonHandler,

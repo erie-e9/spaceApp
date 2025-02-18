@@ -11,7 +11,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export interface PopupMenuProps {}
 const PopupMenu = React.forwardRef<PopupMenuProps, ModalProps>(
-  ({ options, triggerButtonPosition, onClose, isVisible }, ref) => {
+  ({ options, triggerButtonPosition, isVisible }, ref) => {
     const translateY = useSharedValue(0);
     const opacity = useSharedValue(0);
     const { hideModal } = useModal();
@@ -23,7 +23,7 @@ const PopupMenu = React.forwardRef<PopupMenuProps, ModalProps>(
 
     useEffect(() => {
       if (triggerButtonPosition && isVisible) {
-        const { x, y, width, height } = triggerButtonPosition;
+        const { x, y, height } = triggerButtonPosition;
 
         // Determine if menu should open upwards or downwards
         const openUpwards = y + height + 150 > SCREEN_HEIGHT;
@@ -55,7 +55,7 @@ const PopupMenu = React.forwardRef<PopupMenuProps, ModalProps>(
         opacity.value = 0;
         hideModal();
       }
-    }, [onClose, opacity, translateY]);
+    }, [hideModal, isVisible, opacity, translateY]);
 
     const onPressHandler = useCallback(
       (onPress?: () => void) => {
@@ -65,7 +65,9 @@ const PopupMenu = React.forwardRef<PopupMenuProps, ModalProps>(
       [handleClose],
     );
 
-    if (!isVisible) return null;
+    if (!isVisible) {
+      return null;
+    }
 
     return (
       <Container onTouchEnd={handleClose}>

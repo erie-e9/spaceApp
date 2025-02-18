@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { useRemoteFeaturesSelectorHook } from '@redux/hooks';
 import { testProperties } from '@utils/functions';
 import type { RemoteConfigFeatures } from '@slices/types';
@@ -26,12 +26,13 @@ export const Touchable: React.FC<TouchableProps> = ({
   const { showFeatureUnavailableToast } = useAppAlerts();
   const remoteConfigFeatures = useRemoteFeaturesSelectorHook();
 
-  const getFeatureStatus = (
-    featureKey: keyof RemoteConfigFeatures,
-  ): [boolean, boolean, boolean] => {
-    const status = getStatus(featureKey, remoteConfigFeatures);
-    return [status === 'on', status === 'off', status === 'hide'];
-  };
+  const getFeatureStatus = useCallback(
+    (featureKey: keyof RemoteConfigFeatures): [boolean, boolean, boolean] => {
+      const status = getStatus(featureKey, remoteConfigFeatures);
+      return [status === 'on', status === 'off', status === 'hide'];
+    },
+    [remoteConfigFeatures],
+  );
 
   const [on, off, hide] = useMemo(() => {
     let [onR, offR, hideR] = [true, false, false];
@@ -63,18 +64,7 @@ export const Touchable: React.FC<TouchableProps> = ({
       }
     });
     return [onR, offR, hideR];
-  }, [remoteFeatureFlags]);
-
-  const onTap = (): void => {
-    let calls = [];
-    let proceed = true;
-    calls = [checkOn, checkOff];
-    calls.forEach((call): void => {
-      if (proceed) {
-        proceed = call();
-      }
-    });
-  };
+  }, [getFeatureStatus, remoteFeatureFlags]);
 
   const checkOn = (): boolean => {
     if (on && onPress) {
@@ -91,8 +81,20 @@ export const Touchable: React.FC<TouchableProps> = ({
     }
     return true;
   };
+  const onTap = (): void => {
+    let calls = [];
+    let proceed = true;
+    calls = [checkOn, checkOff];
+    calls.forEach((call): void => {
+      if (proceed) {
+        proceed = call();
+      }
+    });
+  };
 
-  if (hide) return undefined;
+  if (hide) {
+    return undefined;
+  }
 
   return (
     <Tappable

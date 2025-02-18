@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import Animated from 'react-native-reanimated'
+import Animated from 'react-native-reanimated';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { Touchable, Typography } from '@components/atoms';
 
@@ -12,7 +12,7 @@ export interface TaskContent extends TaskContentComplete {
   itemHeight?: number;
 }
 
-export const TaskItemContainer = styled.View <TaskContent>`
+export const TaskItemContainer = styled.View<TaskContent>`
   height: ${({ itemHeight }) => (itemHeight && `${itemHeight}px`) || 'auto'};
   width: 100%;
   justify-content: center;
@@ -24,7 +24,7 @@ export const TaskItemContainer = styled.View <TaskContent>`
 export const TaskItemButton = styled(Touchable)`
   height: 100%;
   padding: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(5)}px;
-  background-color: ${({ theme }) => theme.tokens.colors.tertiary50};
+  background-color: ${({ theme }) => theme.tokens.colors.backgroundColor};
 `;
 
 export const TaskContentContainer = styled.View<TaskContent>`
@@ -33,7 +33,7 @@ export const TaskContentContainer = styled.View<TaskContent>`
   align-items: flex-start;
   height: 100%;
   width: 100%;
-  opacity: ${({ isComplete }) => isComplete ? 1 : 1};
+  opacity: ${({ isComplete }) => (isComplete ? 1 : 1)};
 `;
 
 export const TaskContentData = styled.View`
@@ -43,12 +43,14 @@ export const TaskContentData = styled.View`
   width: 80%;
 `;
 
-export const TaskTitleText = styled(AnimatedTypography) <TaskContentComplete>`
-  /* text-decoration: ${({ theme, isComplete }) => isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null}; */
+export const TaskTitleText = styled(AnimatedTypography)<TaskContentComplete>`
+  /* text-decoration: ${({ theme, isComplete }) =>
+    isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null}; */
 `;
 
-export const TaskDescriptionText = styled(AnimatedTypography) <TaskContentComplete>`
-  /* text-decoration: ${({ theme, isComplete }) => isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null}; */
+export const TaskDescriptionText = styled(AnimatedTypography)<TaskContentComplete>`
+  /* text-decoration: ${({ theme, isComplete }) =>
+    isComplete ? `line-through ${theme.tokens.colors.tertiary800}` : null}; */
 `;
 
 export const CreatedAtContainer = styled.View`

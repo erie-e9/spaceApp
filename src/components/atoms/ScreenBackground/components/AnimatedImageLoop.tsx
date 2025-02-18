@@ -18,7 +18,6 @@ const AnimatedImageLoop: React.FC<Partial<ScreenBackgroundProps>> = ({
   backgroundType,
   backgroundSource,
   dimensions,
-  angleLoop = 45,
   speedLoop = 40000,
   style = { ...StyleSheet.absoluteFillObject },
 }) => {

@@ -1,10 +1,10 @@
 import React, { memo, useCallback, useMemo } from 'react';
-import { Easing, FadeIn, LinearTransition } from 'react-native-reanimated';
+import { FadeIn } from 'react-native-reanimated';
 import truncate from 'lodash/truncate';
+import type { Task } from '@types';
 import { testProperties } from '@utils/functions';
 import { dayjs } from '@utils/formatters';
 import { labels } from '@utils/forms/labels';
-import type { Task } from '@types';
 import {
   TaskItemButton,
   TaskContentContainer,
@@ -36,8 +36,10 @@ export const TaskItem: React.FC<TaskItemProps> = ({
   const { undefinedStatus, pendingStatus, inProgressStatus, completeStatus } = labels();
 
   const onPressHandler = useCallback(() => {
-    if (item) onPress?.(item);
-  }, [item]);
+    if (item) {
+      onPress?.(item);
+    }
+  }, [item, onPress]);
 
   const formattedCreatedAt = useMemo(() => {
     return item?.created_at ? `${dayjs(item.created_at).fromNow(true)}` : '';
@@ -54,7 +56,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
       2: inProgressStatus,
       3: completeStatus,
     };
-  }, [item?.status]);
+  }, [completeStatus, inProgressStatus, pendingStatus, undefinedStatus]);
 
   const animatedProps = {
     // layout: LinearTransition.easing(Easing.ease),
@@ -67,7 +69,7 @@ export const TaskItem: React.FC<TaskItemProps> = ({
         <TaskContentContainer isComplete={item?.status === 3}>
           <TaskContentData>
             <TaskTitleText {...animatedProps} isComplete={item?.status === 3} color="typography950">
-              {item?.title}
+              {item?.body?.title || item?.title}
             </TaskTitleText>
             {item?.description && (
               <TaskDescriptionText

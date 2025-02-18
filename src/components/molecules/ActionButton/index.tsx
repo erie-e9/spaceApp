@@ -32,11 +32,11 @@ const ActionButton: React.FC<TouchableProps> = ({
   icon,
   iconType = 'svg',
   widthButton,
+  heightButton = 45,
   widthIcon = 40,
   heightIcon = 40,
   startFrameAnimation,
   endFrameAnimation,
-  buttonType,
   buttonTheme = 'Primary',
   textTransform,
   remoteFeatureFlags = [],
@@ -62,11 +62,11 @@ const ActionButton: React.FC<TouchableProps> = ({
   }, []);
 
   const getButtonTheme = (): {
-    backgroundColor: string;
+    backgroundColorValue: string;
     buttonTextColor: string;
     hasBorder: boolean;
   } => {
-    let backgroundColor = 'primary500';
+    let backgroundColorValue = 'primary500';
     let buttonTextColor = 'secondary950';
     let hasBorder = false;
     const typeButton = type ?? 'Button';
@@ -115,7 +115,7 @@ const ActionButton: React.FC<TouchableProps> = ({
       case 'Button':
         buttonTextColor =
           disabled || asyncDisabled ? disableButtonTextColor : notDisableButtonTextColor;
-        backgroundColor = colorScheme === 'light' ? backgroundColorLight : backgroundColorDark;
+        backgroundColorValue = colorScheme === 'light' ? backgroundColorLight : backgroundColorDark;
         hasBorder = buttonTheme === 'Secondary';
         break;
       case 'Text':
@@ -127,30 +127,30 @@ const ActionButton: React.FC<TouchableProps> = ({
         } else {
           buttonTextColor = buttonTheme === 'Primary' ? 'secondary950' : 'primary500';
         }
-        backgroundColor = 'transparent';
+        backgroundColorValue = 'transparent';
         break;
       case 'Icon':
         hasBorder = true;
         if (buttonTheme === 'Secondary') {
           buttonTextColor = buttonTheme === 'Secondary' ? 'tertiary200' : 'primary500';
-          backgroundColor = 'transparent';
+          backgroundColorValue = 'transparent';
         } else if (buttonTheme === 'Dark') {
           buttonTextColor = buttonTheme === 'Dark' ? 'tertiary200' : 'primary500';
-          backgroundColor = 'transparent';
+          backgroundColorValue = 'transparent';
         } else {
           buttonTextColor = buttonTheme === 'Primary' ? 'tertiary200' : 'primary500';
-          backgroundColor = 'transparent';
+          backgroundColorValue = 'transparent';
         }
         break;
       default:
         buttonTextColor = buttonTheme === 'Dark' ? 'tertiary200' : 'primary500';
-        backgroundColor = 'tertiary50';
+        backgroundColorValue = 'tertiary50';
         hasBorder = buttonTheme === 'Secondary';
         break;
     }
 
     return {
-      backgroundColor,
+      backgroundColorValue,
       buttonTextColor,
       hasBorder,
     };
@@ -165,7 +165,7 @@ const ActionButton: React.FC<TouchableProps> = ({
     if (onPress) {
       onPress?.();
     }
-  }, [onPress, asyncDisabled]);
+  }, [onPressAsync, onPress]);
 
   const buttonAnimation = useAnimatedStyle(() => {
     return {
@@ -179,24 +179,30 @@ const ActionButton: React.FC<TouchableProps> = ({
         .then(() => setAsyncDisabled(false))
         .catch(() => setAsyncDisabled(false));
     }
-  }, [asyncDisabled]);
+  }, [asyncDisabled, onPressAsync]);
 
   useEffect(() => {
     if (loading) {
       width.value = withSpring('10%', { stiffness: 100, damping: 15 });
     } else {
-      width.value = withSpring(widthOfButton, {
+      width.value = withSpring(widthOfButton || 100, {
         stiffness: 100,
         damping: 15,
       });
     }
-  }, [loading]);
+  }, [loading, width, widthOfButton]);
 
   return (
     <AnimatedContainer {...testProperties(testID)} style={[buttonAnimation]}>
       <StyledButton
         onPress={handlePress}
-        backgroundColor={backgroundColor ? backgroundColor : customButtonTheme.backgroundColor}
+        backgroundColor={
+          !gradientColors
+            ? backgroundColor
+              ? backgroundColor
+              : customButtonTheme.backgroundColorValue
+            : null
+        }
         disabled={remoteFeatureFlags?.length === 0 ? disabled || asyncDisabled : false}
         colorScheme={colorScheme ?? 'light'}
         disabledColor={disabledColor}

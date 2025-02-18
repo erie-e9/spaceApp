@@ -35,14 +35,14 @@ export const AlertButtons: React.FC<AlertButtonsProps> = ({
           textColor={item.color || 'typography950'}
           type={item.isSimpleButton ? 'Text' : 'Button'}
           onPress={() => {
-            if (item.handler) item.handler();
-            if (handlerAction) handlerAction();
+            item?.handler?.();
+            handlerAction?.();
             handleClose();
           }}
         />
       </ButtonContainer>
     ),
-    [],
+    [buttonsStyles?.alignment, buttonsStyles?.direction, getCopyValue, handleClose, handlerAction],
   );
 
   return (

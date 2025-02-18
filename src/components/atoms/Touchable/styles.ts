@@ -1,4 +1,5 @@
-import styled, { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
+import styled from 'styled-components/native';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
 

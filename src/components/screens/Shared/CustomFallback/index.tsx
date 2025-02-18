@@ -30,7 +30,7 @@ export const CustomFallback: React.FC<CustomFallbackProps> = ({ error }) => {
 
   const secondaryButtonHandler = useCallback(async (): Promise<void> => {
     navigation.navigate('HelpCenter', { screen: 'BugReporter' } as never);
-  }, []);
+  }, [navigation]);
 
   return (
     <CallToAction

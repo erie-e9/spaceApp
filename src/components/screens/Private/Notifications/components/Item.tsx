@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import React, { Fragment, memo, useMemo } from 'react';
 import { useTheme } from 'styled-components/native';
 import { testProperties } from '@utils/functions';
 import { dayjs } from '@utils/formatters';
@@ -42,7 +42,6 @@ export const Item: React.FC<ItemProps> = ({
   onPress,
 }) => {
   const formattedTime = useMemo(() => {
-    // return dayjs('2024-11-07T21:09:14.517Z').fromNow();
     return `${dayjs(rightTop).fromNow()}`;
   }, [rightTop]);
 
@@ -88,7 +87,7 @@ export const Item: React.FC<ItemProps> = ({
                 {description}
               </NotificationDescriptionText>
             ) : (
-              <>
+              <Fragment>
                 <StyledSkeleton
                   width={200}
                   height={15}
@@ -97,7 +96,7 @@ export const Item: React.FC<ItemProps> = ({
                   direction="leftToRight"
                   backgroundColor={theme.tokens.colors.tertiary200}
                 />
-              </>
+              </Fragment>
             )}
           </NotificationContentData>
           {rightTop && (

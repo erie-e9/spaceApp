@@ -25,10 +25,12 @@ interface StyledTextProps {
 }
 
 //! se puede reusar
-export const StyledText = styled(Typography) <StyledTextProps>`
+export const StyledText = styled(Typography)<StyledTextProps>`
   ${({ error, theme, hasValue }) => css`
     color: ${() => {
-      const color = hasValue ? theme.tokens.colors.typography900 : theme.tokens.colors.typography700;
+      const color = hasValue
+        ? theme.tokens.colors.typography900
+        : theme.tokens.colors.typography700;
       const colorFocused = error
         ? theme.tokens.colors.danger_status
         : theme.tokens.colors.typography700;
@@ -38,7 +40,7 @@ export const StyledText = styled(Typography) <StyledTextProps>`
   font-size: ${responsiveFontSize(13)}px;
 `;
 
-export const StyledButton = styled(TouchableWithoutFeedback) <StyledButtonProps>`
+export const StyledButton = styled(TouchableWithoutFeedback)<StyledButtonProps>`
   height: 100%;
 `;
 
@@ -47,18 +49,20 @@ export const StyledElementContainer = styled.View<StyledButtonProps>`
   justify-content: center;
   align-items: flex-start;
   height: auto;
-  width: ${({ hasValue }) => hasValue ? '80%' : '100%'};
+  width: ${({ hasValue }) => (hasValue ? '80%' : '100%')};
   border-radius: ${getNormalizedVerticalSize(15)}px;
 `;
 
-export const DropdownTypeButton = styled(TouchableWithoutFeedback) <StyledButtonProps>``;
+export const DropdownTypeButton = styled(TouchableWithoutFeedback)<StyledButtonProps>``;
 
 export const DateDropdownContainer = styled.View`
   flex: 1;
   position: relative;
   justify-content: space-between;
   align-items: center;
-  padding-horizontal: ${getNormalizedHorizontalSize(15)}px; // update if padding screenbackground values changed
+  padding-horizontal: ${getNormalizedHorizontalSize(
+    15,
+  )}px; // update if padding screenbackground values changed
 `;
 
 export const DropdownsContainer = styled.View`
@@ -116,7 +120,7 @@ export const ButtonContainer = styled.View`
   z-index: 1000;
 `;
 
-export const StyledDropdownButton = styled(ActionButton) <StyledButtonProps>`
+export const StyledDropdownButton = styled(ActionButton)<StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(0)}px;
 `;

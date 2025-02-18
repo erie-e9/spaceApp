@@ -1,6 +1,11 @@
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-import { getNormalizedHorizontalSize, getNormalizedVerticalSize, screen_height, screen_width } from '@utils/functions';
+import {
+  getNormalizedHorizontalSize,
+  getNormalizedVerticalSize,
+  screen_height,
+  screen_width,
+} from '@utils/functions';
 import { Image, Typography } from '@components/atoms';
 import { ActionButton } from '@components/molecules';
 
@@ -97,11 +102,20 @@ export const FloatingButton = styled(ActionButton)`
 `;
 
 export const EmptyContainer = styled.View`
-    flex: 1;
-    width: 100%;
-    height: ${screen_height / 2}px;
-    align-items: center;
-    justify-content: center;
+  flex: 1;
+  width: 100%;
+  height: ${screen_height / 2}px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ReloadButton = styled.TouchableOpacity`
+  flex-direction: row;
+  padding: ${getNormalizedVerticalSize(6)}px 0px;
 `;
 
 export const EmptyText = styled(Typography)``;
+
+export const ReloadText = styled(Typography)`
+  padding: 0px ${getNormalizedHorizontalSize(5)}px;
+`;

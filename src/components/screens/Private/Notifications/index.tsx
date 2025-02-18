@@ -22,7 +22,7 @@ export const Notifications: React.FC = () => {
             data={
               notificationsHook.notificationsList.length > 0 && !notificationsHook.loading
                 ? notificationsHook.notificationsList
-                : Array.from({ length: 15 }).map((_) => null)
+                : Array.from({ length: 15 }).map(() => null)
             }
             scrollEnabled
             draggable={false}

@@ -220,14 +220,14 @@ export const useNotifications = () => {
 
   const getNotifications = useCallback(async (): Promise<Array<Notification>> => {
     return notificationsList;
-  }, []);
+  }, [notificationsList]);
 
   const primaryButtonHandler = useCallback(async (): Promise<void> => {
     setLoading(!loading);
     setTimeout(() => {
       setLoading(false);
     }, 2000);
-  }, [loading]);
+  }, [loading, setLoading]);
 
   const primaryButton = useMemo(() => {
     return {
@@ -237,7 +237,7 @@ export const useNotifications = () => {
       disabled: loading,
       loading: loading,
     };
-  }, [loading]);
+  }, [loading, primaryButtonHandler]);
 
   return {
     notificationsList,

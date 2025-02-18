@@ -23,15 +23,15 @@ const Parallax: React.FC<Partial<ScreenBackgroundProps>> = ({
     interval: 20,
   });
 
-  const foregroundParallaxChildrenStyle = useAnimatedStyle(() => {
-    const { pitch, roll } = rotation.sensor.value;
-    return {
-      transform: [
-        { translateX: withSpring(-roll * 50, { damping: 200 }) },
-        { translateY: withSpring(-pitch * 50, { damping: 200 }) },
-      ],
-    };
-  });
+  // const foregroundParallaxChildrenStyle = useAnimatedStyle(() => {
+  //   const { pitch, roll } = rotation.sensor.value;
+  //   return {
+  //     transform: [
+  //       { translateX: withSpring(-roll * 50, { damping: 200 }) },
+  //       { translateY: withSpring(-pitch * 50, { damping: 200 }) },
+  //     ],
+  //   };
+  // });
 
   const backgroundParallaxChildrenStyle = useAnimatedStyle(() => {
     const { pitch, roll } = rotation.sensor.value;

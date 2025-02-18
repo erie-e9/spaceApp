@@ -90,7 +90,7 @@ export const useHelpCenterMenu = (): {
         ],
       },
     ];
-  }, []);
+  }, [navigateToScreen]);
 
   return {
     listItems,

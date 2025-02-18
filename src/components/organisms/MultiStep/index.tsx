@@ -1,26 +1,40 @@
 import React, { memo, ReactElement, forwardRef, Fragment } from 'react';
 import Step from './components/Step';
 import { StepContainer } from './styles';
+import { TouchableProps } from '@utils/types/buttons';
 
-interface Props {
+export interface MultiStepProps extends Partial<TouchableProps> {
   children: ReactElement[] | any[];
-  currentStepIndex: string | number;
-  stepsLength?: number;
+  isLast?: boolean;
   submitButtonTitle?: string;
+  submitButtonTextTransform?: string;
+  submitButtonLoading?: string;
+  submitButtonDisabled?: string;
+  submitButtonBackgroundColor?: string;
+  submitButtonFeatureFlags?: string;
   submitButtonHandler: () => void;
   prevStepButtonTitle?: string;
+  prevStepButtonTextTransform?: string;
+  prevStepButtonloading?: string;
+  prevStepButtonDisabled?: string;
+  prevStepButtonBackgroundColor?: string;
+  prevStepButtonFeatureFlags?: string;
   prevStepButtonHandler?: () => void;
+  nextStepButtonTextTransform?: string;
+  nextStepButtonLoading?: string;
+  nextStepButtonBackgroundColor?: string;
+  nextStepButtonFeatureFlags?: string;
   nextStepButtonTitle?: string;
   nextStepButtonDisabled?: boolean;
   nextStepButtonHandler?: () => void;
   extraElementLastStep?: React.ReactNode | JSX.Element;
 }
 
-interface MultiStepProps extends React.FC<Props> {
+interface Props extends React.FC<MultiStepProps> {
   Step: typeof Step;
 }
 
-const MultiStepBase: React.FC<Props> = ({
+const MultiStepBase: React.FC<MultiStepProps> = ({
   children,
   currentStepIndex,
   submitButtonTitle,
@@ -40,7 +54,7 @@ const MultiStepBase: React.FC<Props> = ({
             <Fragment>
               {React.cloneElement(element, {
                 itemsLength: children.length,
-                currentIndex: currentStepIndex,
+                currentStepIndex: currentStepIndex,
                 isLast: currentStepIndex === children.length - 1,
                 submitButtonTitle,
                 submitButtonHandler,
@@ -61,8 +75,8 @@ const MultiStepBase: React.FC<Props> = ({
 };
 
 const MultiStep = memo(
-  forwardRef((props: Props, ref) => <MultiStepBase ref={ref} {...props} />),
-) as unknown as MultiStepProps;
+  forwardRef((props: any, ref) => <MultiStepBase ref={ref} {...props} />),
+) as unknown as Props;
 
 MultiStep.Step = Step;
 

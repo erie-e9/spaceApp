@@ -58,7 +58,7 @@ export const RotateAnimation: React.FC<Props> = ({
         ),
       );
     }
-  }, [trigger, duration, initialValue, finalValue, delay, repeat, reverse, rotate]);
+  }, [trigger, initialValue, rotate, delay, finalValue, duration, easing, repeat, reverse]);
 
   useEffect(() => {
     const cleanup = () => {
@@ -74,11 +74,11 @@ export const RotateAnimation: React.FC<Props> = ({
     return () => {
       cleanup();
     };
-  }, [rotate, trigger]);
+  }, [initialValue, rotate, trigger, triggerAnimate]);
 
   return (
     <StyledAnimatedContainer {...testProperties(testID)} style={[animatedStyles]}>
-      {children && children}
+      {children ?? null}
     </StyledAnimatedContainer>
   );
 };

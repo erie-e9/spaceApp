@@ -25,9 +25,9 @@ export const SkiaCanvas = styled(Canvas)`
 `;
 
 export const BackgroundImage = styled(Animated.Image)`
-    position: absolute;
-    width: ${screen_width * 1.3}px;
-    height: ${screen_height * 1.3}px 
+  position: absolute;
+  width: ${screen_width * 1.3}px;
+  height: ${screen_height * 1.3}px;
 `;
 
 export const AnimatedBackgroundImage = styled(Animated.Image)`

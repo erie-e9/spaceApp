@@ -260,5 +260,6 @@
       }
     }
   },
-  "emptyList": "Nenhum item"
+  "emptyList": "Nenhum item",
+  "tryagain": "Tentar novamente"
 }

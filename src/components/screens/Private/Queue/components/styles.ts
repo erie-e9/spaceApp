@@ -1,4 +1,5 @@
-import styled, { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
+import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { getNormalizedHorizontalSize, getNormalizedVerticalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
@@ -20,7 +21,8 @@ export const SwipeButton = styled.TouchableOpacity<{
   justify-content: center;
   border-radius: 0px;
   opacity: 1;
-  background-color: ${({ theme, backgroundColor }) => backgroundColor ? theme.tokens.colors[backgroundColor] : 'transparent'};
+  background-color: ${({ theme, backgroundColor }) =>
+    backgroundColor ? theme.tokens.colors[backgroundColor] : 'transparent'};
 `;
 
 export const AnimatedView = styled(Animated.View)`
@@ -54,5 +56,6 @@ export const QueueTagContainer = styled.View<{
   align-items: center;
   margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(3)}px;
   padding: ${getNormalizedVerticalSize(1.5)}px ${getNormalizedHorizontalSize(7)}px;
-  background-color: ${({ theme, backgroundColor }) => backgroundColor ? theme.tokens.colors[backgroundColor] : 'transparent'};
+  background-color: ${({ theme, backgroundColor }) =>
+    backgroundColor ? theme.tokens.colors[backgroundColor] : 'transparent'};
 `;

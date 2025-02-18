@@ -6,7 +6,6 @@ import { Text, TextProps } from './styles';
 
 interface TypographyProps extends TextProps, NativeTextProps {
   children: ReactNode | ReactNode[];
-  remoteFeatureFlags?: Array<any>;
 }
 
 const extractText = (
@@ -60,16 +59,14 @@ const renderChildren = (
   );
 };
 
-const Typography: React.FC<TypographyProps> = forwardRef(
-  ({ children, remoteFeatureFlags, ...restProps }, ref) => {
-    const { getCopyValue } = useCopy();
-    return (
-      <Text ref={ref} {...restProps}>
-        {renderChildren(children, getCopyValue, restProps, ref)}
-      </Text>
-    );
-  },
-);
+const Typography: React.FC<TypographyProps> = forwardRef(({ children, ...restProps }, ref) => {
+  const { getCopyValue } = useCopy();
+  return (
+    <Text ref={ref} {...restProps}>
+      {renderChildren(children, getCopyValue, restProps, ref)}
+    </Text>
+  );
+});
 
 Typography.displayName = 'Typography';
 export default memo(Typography);

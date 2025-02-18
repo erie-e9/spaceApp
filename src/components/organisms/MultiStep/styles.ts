@@ -1,4 +1,5 @@
-import styled, { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
+import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
@@ -12,6 +13,13 @@ export const StepContainer = styled.View`
   background-color: transparent;
 `;
 
+export const StepItemContainer = styled.View`
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: transparent;
+  width: 100%;
+`;
 export const StyledScrollView = styled.ScrollView`
   flex: 1;
   width: 100%;

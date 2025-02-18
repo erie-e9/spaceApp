@@ -1,15 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { BackdropFilter, Blur, CircleProps, Fill } from '@shopify/react-native-skia';
-import randomcolor from 'randomcolor';
 import type { ScreenBackgroundProps } from '@types';
 import { getRandomNumber, getRandonColorRGB, screen_height, screen_width } from '@utils/functions';
-import {
-  Easing,
-  useDerivedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from 'react-native-reanimated';
 import { useTheme } from 'styled-components/native';
 import BlurCircle from './components/BlurCircle';
 import { LavaContainer, SkiaCanvas } from './styles';
@@ -37,32 +29,19 @@ const Lava: React.FC<Partial<ScreenBackgroundProps> & Partial<CircleProps>> = ({
         y: Math.random() * (screen_height - radius * 2),
       };
     });
-  }, []);
+  }, [randomNumber]);
   const step = screen_height / circles.length;
 
-  const randomRotation = Math.random() * 360;
-
-  const rotation = useDerivedValue(() => {
-    return withRepeat(
-      withSequence(
-        withTiming(randomRotation, { duration: 0 }),
-        withTiming(randomRotation + 360, { duration: 7000, easing: Easing.linear }),
-      ),
-      -1,
-      false,
-    );
-  });
-
-  const transform = useDerivedValue(() => {
-    return [{ rotate: rotation.value }];
-  });
-
   const hue = tokens.colors.backgroundColor;
-  const background = randomcolor({
-    count: 1,
-    hue,
-    luminosity: isDarkMode ? 'dark' : 'light',
-  })[0];
+  // const transform = useDerivedValue(() => {
+  //   return [{ rotate: rotation.value }];
+  // });
+
+  // const background = randomcolor({
+  //   count: 1,
+  //   hue,
+  //   luminosity: isDarkMode ? 'dark' : 'light',
+  // })[0];
 
   return (
     <LavaContainer style={[style, dimensions]}>

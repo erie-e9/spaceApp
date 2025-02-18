@@ -30,7 +30,7 @@ const WebViewHeader: React.FC<WebViewHeaderProps> = ({
 
   const onCloseHandler = useCallback(() => {
     onClose?.();
-  }, []);
+  }, [onClose]);
 
   const onOpenBrowserHandler = useCallback(async () => {
     const supported = await Linking.canOpenURL(url);
@@ -50,7 +50,7 @@ const WebViewHeader: React.FC<WebViewHeaderProps> = ({
         height: 175,
       },
     });
-  }, []);
+  }, [onOpenBrowserHandler, onReload, showModal]);
 
   return (
     <WebViewHeaderContainer>

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, Fragment, useEffect } from 'react';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { DefaultTheme } from 'styled-components/native';
+import { Pressable } from 'react-native-gesture-handler';
+import { DefaultTheme } from 'styled-components';
 import { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
 import { Tooltip } from '@components/atoms';
 import {
@@ -58,7 +58,7 @@ export const Switch: React.FC<SwitchProps> = ({
 
   useEffect(() => {
     animation.value = !activated ? 0 : 1;
-  }, [animation.value, activated]);
+  }, [animation.value, activated, animation]);
 
   return (
     <Container>
@@ -69,7 +69,7 @@ export const Switch: React.FC<SwitchProps> = ({
           </StyledText>
         </DescriptionContainer>
       )}
-      <TouchableWithoutFeedback onPress={handlePress}>
+      <Pressable onPress={handlePress}>
         <Fragment>
           <StyledSwitch borderColor={borderColor} size={size}>
             <StyledAnimatedContainer color={color} size={size} style={[animatedStyle]} />
@@ -86,7 +86,7 @@ export const Switch: React.FC<SwitchProps> = ({
           </StyledSwitch>
           {error && <Tooltip visible message={error} duration={3000} />}
         </Fragment>
-      </TouchableWithoutFeedback>
+      </Pressable>
     </Container>
   );
 };

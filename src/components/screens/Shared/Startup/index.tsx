@@ -1,4 +1,4 @@
-import React, { memo, useLayoutEffect } from 'react';
+import React, { memo, useCallback, useLayoutEffect } from 'react';
 import { CommonActions } from '@react-navigation/native';
 import { Logger } from '@services';
 import { useDeviceSecurity, useAppPreferences, useCheckNetwork, getDeviceInfo } from '@hooks';
@@ -18,7 +18,7 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
   const { isOnline } = useCheckNetwork();
   const { switchLanguage, language } = useAppPreferences();
 
-  const preInit = async (): Promise<void> => {
+  const preInit = useCallback(async (): Promise<void> => {
     const promises = [
       checkIsReliableDevice({
         fallback: () => navigation.replace('Warning'),
@@ -35,9 +35,9 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
         }),
       );
     }
-  };
+  }, [checkIsReliableDevice, isOnline.isConnected, navigation]);
 
-  const init = async () => {
+  const init = useCallback(async () => {
     const deviceInfo = await getDeviceInfo();
     Logger.log('Startup init', { deviceInfo, language });
     await new Promise((resolve) =>
@@ -48,11 +48,11 @@ export const Startup: React.FC<StartUpProps> = ({ navigation }) => {
     await preInit();
     await loadLocale(language);
     language !== null && (await switchLanguage(language as Language));
-  };
+  }, [language, preInit, switchLanguage]);
 
   useLayoutEffect(() => {
     init();
-  }, []);
+  }, [init]);
 
   return (
     <ScreenBackground testID="StartupID" type="solid">

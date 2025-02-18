@@ -1,6 +1,7 @@
 import React, { ReactNode, memo, useMemo } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import type { CommonControllerProps } from '@types';
+import { useWhyDidYouUpdate } from '@hooks';
 import { TransformAnimation } from '@components/animated';
 import { SVGIcon, Tooltip } from '@components/atoms';
 import EyeButton from '../EyeButton';
@@ -49,7 +50,9 @@ const FieldInputMask: React.FC<Props> = ({
   rightIconHandler,
   rightIcon = 'close',
   multiline = false,
+  ...props
 }) => {
+  useWhyDidYouUpdate('FieldInputMask', props);
   const hasValue = value !== null && value !== '' && value !== undefined;
 
   const showError = useMemo(() => {
@@ -134,7 +137,7 @@ const FieldInputMask: React.FC<Props> = ({
             <Tooltip visible message={error} duration={3000000} />
           </ErrorContainer>
         )}
-        {footerComponent && footerComponent}
+        {footerComponent ?? null}
       </FooterContainer>
     </TextInputContainer>
   );

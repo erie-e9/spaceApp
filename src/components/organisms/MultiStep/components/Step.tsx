@@ -1,76 +1,107 @@
-import { memo } from 'react';
+import React, { Fragment, memo, useMemo } from 'react';
 import { useResponseHandler } from '@hooks';
 import { StepContainer, ButtonsContainer, StyledButton, StyledScrollView } from '../styles';
+import type { MultiStepProps } from '../index';
 
-export const Step = (props: any) => {
+interface StepsProps extends MultiStepProps {
+  currentStepIndex: number;
+  itemsLength: number;
+}
+
+export const Step: React.FC<StepsProps> = ({
+  children,
+  currentStepIndex,
+  itemsLength,
+  isLast,
+  submitButtonTitle,
+  submitButtonTextTransform,
+  submitButtonLoading,
+  submitButtonDisabled,
+  submitButtonBackgroundColor,
+  submitButtonFeatureFlags,
+  submitButtonHandler,
+  prevStepButtonTitle,
+  prevStepButtonTextTransform,
+  prevStepButtonloading,
+  prevStepButtonDisabled,
+  prevStepButtonBackgroundColor,
+  prevStepButtonFeatureFlags,
+  prevStepButtonHandler,
+  nextStepButtonTextTransform,
+  nextStepButtonLoading,
+  nextStepButtonBackgroundColor,
+  nextStepButtonFeatureFlags,
+  nextStepButtonTitle,
+  nextStepButtonDisabled,
+  nextStepButtonHandler,
+  extraElementLastStep,
+}) => {
   const { loading } = useResponseHandler();
-  const buttonSize =
-    (!props.nextStepButtonHandler && !props.prevStepButtonHandler) ||
-    props.itemsLength === 1 ||
-    props.currentIndex === 0
+  const buttonSize = useMemo(() => {
+    return (!nextStepButtonHandler && !prevStepButtonHandler) ||
+      itemsLength === 1 ||
+      currentStepIndex === 0
       ? '100%'
       : '50%';
+  }, [currentStepIndex, itemsLength, nextStepButtonHandler, prevStepButtonHandler]);
 
   return (
     <StepContainer>
-      <StyledScrollView>{props.children}</StyledScrollView>
-      <>{props.extraElementLastStep && props.isLast && props.extraElementLastStep}</>
+      <StyledScrollView>{children}</StyledScrollView>
+      <Fragment>{extraElementLastStep && isLast && extraElementLastStep}</Fragment>
       <ButtonsContainer>
-        {props.itemsLength > 1 &&
-          props.currentIndex > 0 &&
-          props.prevStepButtonHandler &&
-          !loading && (
-            <>
-              <StyledButton
-                testID={'prevStepperButtonID'}
-                title={props.prevStepButtonTitle || 'Previous'}
-                onPress={props.prevStepButtonHandler}
-                onPressAsync={props.prevStepButtonHandler}
-                onPressType="onPressIn"
-                textTransform={props.prevStepButtonTextTransform || 'capitalize'}
-                loading={props.prevStepButtonloading || false}
-                disabled={props.prevStepButtonDisabled || false}
-                backgroundColor={props.prevStepButtonBackgroundColor || undefined}
-                remoteFeatureFlags={props.prevStepButtonFeatureFlags || []}
-                widthButton={buttonSize}
-              />
-            </>
-          )}
-        <>
-          {props.isLast ? (
+        {itemsLength > 1 && currentStepIndex > 0 && prevStepButtonHandler && !loading && (
+          <Fragment>
+            <StyledButton
+              testID={'prevStepperButtonID'}
+              title={prevStepButtonTitle || 'Previous'}
+              onPress={prevStepButtonHandler}
+              onPressAsync={prevStepButtonHandler}
+              onPressType="onPressIn"
+              textTransform={prevStepButtonTextTransform || 'capitalize'}
+              loading={prevStepButtonloading || false}
+              disabled={prevStepButtonDisabled || false}
+              backgroundColor={prevStepButtonBackgroundColor || undefined}
+              remoteFeatureFlags={prevStepButtonFeatureFlags || []}
+              widthButton={buttonSize}
+            />
+          </Fragment>
+        )}
+        <Fragment>
+          {isLast ? (
             <StyledButton
               testID={'submitStepperButtonID'}
-              title={props.submitButtonTitle || 'Finish'}
-              onPress={props.submitButtonHandler}
-              // onPressAsync={props.submitButtonHandler}
+              title={submitButtonTitle || 'Finish'}
+              onPress={submitButtonHandler}
+              onPressAsync={submitButtonHandler}
               onPressType="onPressIn"
-              textTransform={props.submitButtonTextTransform || 'capitalize'}
-              loading={props.submitButtonLoading || loading || false}
-              disabled={props.submitButtonDisabled || loading || false}
-              backgroundColor={props.submitButtonBackgroundColor || undefined}
-              remoteFeatureFlags={props.submitButtonFeatureFlags || []}
+              textTransform={submitButtonTextTransform || 'capitalize'}
+              loading={submitButtonLoading || loading || false}
+              disabled={submitButtonDisabled || loading || false}
+              backgroundColor={submitButtonBackgroundColor || undefined}
+              remoteFeatureFlags={submitButtonFeatureFlags || []}
               widthButton={!loading ? buttonSize : undefined}
             />
           ) : (
-            <>
-              {props.nextStepButtonHandler && (
+            <Fragment>
+              {nextStepButtonHandler && (
                 <StyledButton
                   testID={'nextStepperButtonID'}
-                  title={props.nextStepButtonTitle || 'Next'}
-                  onPress={props.nextStepButtonHandler}
-                  onPressAsync={props.nextStepButtonHandler}
+                  title={nextStepButtonTitle || 'Next'}
+                  onPress={nextStepButtonHandler}
+                  onPressAsync={nextStepButtonHandler}
                   onPressType="onPressIn"
-                  textTransform={props.nextStepButtonTextTransform || 'capitalize'}
-                  loading={props.nextStepButtonLoading || false}
-                  disabled={props.nextStepButtonDisabled || false}
-                  backgroundColor={props.nextStepButtonBackgroundColor || undefined}
-                  remoteFeatureFlags={props.nextStepButtonFeatureFlags || []}
+                  textTransform={nextStepButtonTextTransform || 'capitalize'}
+                  loading={nextStepButtonLoading || false}
+                  disabled={nextStepButtonDisabled || false}
+                  backgroundColor={nextStepButtonBackgroundColor || undefined}
+                  remoteFeatureFlags={nextStepButtonFeatureFlags || []}
                   widthButton={buttonSize}
                 />
               )}
-            </>
+            </Fragment>
           )}
-        </>
+        </Fragment>
       </ButtonsContainer>
     </StepContainer>
   );

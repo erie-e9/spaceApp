@@ -63,7 +63,7 @@ export const OpacityAnimation: React.FC<Props> = ({
         ),
       );
     }
-  }, [trigger, duration, initialValue, finalValue, delay, repeat, reverse, opacity.value]);
+  }, [trigger, initialValue, finalValue, opacity, delay, duration, easing, repeat, reverse]);
 
   useEffect(() => {
     const cleanup = () => {
@@ -83,11 +83,11 @@ export const OpacityAnimation: React.FC<Props> = ({
     return () => {
       cleanup();
     };
-  }, [opacity, trigger]);
+  }, [initialValue, opacity, trigger, triggerAnimate]);
 
   return (
     <StyledAnimatedContainer {...testProperties(testID)} style={[style, animatedStyles]}>
-      {children && children}
+      {children ?? null}
     </StyledAnimatedContainer>
   );
 };

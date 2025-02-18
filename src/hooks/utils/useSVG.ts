@@ -68,11 +68,13 @@ import Caret from '@assets/shared/svg/caret.svg';
 import WifiOff from '@assets/shared/svg/wifi-off.svg';
 
 interface SvgObject {
-  [key: string]: FC<SvgProps> | {
-    [key: string]: FC<SvgProps>;
-    light: FC<SvgProps>;
-    dark: FC<SvgProps>;
-  };
+  [key: string]:
+    | FC<SvgProps>
+    | {
+        [key: string]: FC<SvgProps>;
+        light: FC<SvgProps>;
+        dark: FC<SvgProps>;
+      };
 }
 
 const svgLibrary: SvgObject = {

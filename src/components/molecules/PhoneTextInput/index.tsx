@@ -28,7 +28,6 @@ interface Props {
 const CustomPhoneTextInput: React.FC<Props> = (
   { placeholder, autoComplete, autoFocus, value, onChangeText, editable },
   ref,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): ReactElement<any, string | JSXElementConstructor<any>> => {
   const handleChangeText = (text: string): void => {
     if (text.replace(/[^0-9]/g, '').length < 17) {

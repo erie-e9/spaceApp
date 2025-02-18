@@ -110,7 +110,7 @@ export const useBiometrics = (): {
         throw error;
       }
     },
-    [],
+    [getCopyValue],
   );
 
   const deleteBiometricKeys = useCallback(async (): Promise<boolean> => {

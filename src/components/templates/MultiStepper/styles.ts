@@ -12,7 +12,7 @@ export const StyledContainer = styled.View`
 
 export const StyledKeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
   behavior: Platform.OS === 'ios' ? 'padding' : undefined,
-  keyboardVerticalOffset: Platform.OS === 'ios' ? 50 : 0
+  keyboardVerticalOffset: Platform.OS === 'ios' ? 50 : 0,
 })`
   flex: 1;
 `;
@@ -23,21 +23,6 @@ export const BodyContainer = styled.View`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-`;
-
-export const StepContainer = styled.View`
-  flex: 1;
-  min-height: ${getNormalizedVerticalSize(150)}px;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-export const StepItemContainer = styled.View`
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: transparent;
-  width: 100%;
 `;
 
 export const StyledList = styled(List)``;

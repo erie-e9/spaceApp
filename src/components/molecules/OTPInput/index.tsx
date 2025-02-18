@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useRef, memo, useCallback, useEffect } from 'react';
 import { TextInput } from 'react-native';
 import { useTheme } from 'styled-components/native';
 import {
@@ -20,7 +20,7 @@ export interface OTPInputProps {
   code?: string;
 }
 
-const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps) => {
+const OTPInput: React.FC<OTPInputProps> = ({ testID, length = 4, onSuccess, error, code }) => {
   const { hideModal } = useModal();
   const theme = useTheme();
   const [otp, setOtp] = useState<Array<string>>(Array(length).fill(''));
@@ -35,7 +35,51 @@ const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps)
     }
   }, []);
 
-  const handleChangeText = (text: string, index: number) => {
+  const handleKeyPress = (e: any, index: number): void => {
+    if (e.nativeEvent.key === 'Backspace') {
+      const newOtp = [...otp];
+      newOtp[index] = '';
+      setOtp(newOtp);
+      setIsError(false);
+      for (let i = index + 1; i < length; i++) {
+        newOtp[i] = '';
+      }
+      setOtp(newOtp);
+      if (index > 0) {
+        inputs.current[index - 1].focus();
+      }
+    }
+  };
+
+  const shakeInputs = useCallback(() => {
+    shakeAnimation.value = withSequence(
+      withTiming(-10, { duration: 50, easing: Easing.linear }),
+      withTiming(10, { duration: 50, easing: Easing.linear }),
+      withTiming(-10, { duration: 50, easing: Easing.linear }),
+      withTiming(10, { duration: 50, easing: Easing.linear }),
+      withTiming(0, { duration: 50, easing: Easing.linear }),
+    );
+  }, [shakeAnimation]);
+
+  const validateOtp = useCallback(
+    async (enteredOtp: string) => {
+      if (enteredOtp === code) {
+        onSuccess(enteredOtp);
+        hideModal();
+      } else {
+        setIsError(true);
+        shakeInputs();
+      }
+    },
+    [code, onSuccess, hideModal, shakeInputs],
+  );
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: shakeAnimation.value }],
+    };
+  });
+
+  const handleChangeText = (text: string, index: number): void => {
     if (text.length === 1) {
       const newOtp = [...otp];
       newOtp[index] = text;
@@ -54,60 +98,15 @@ const OTPInput = ({ testID, length = 4, onSuccess, error, code }: OTPInputProps)
     }
   };
 
-  const handleKeyPress = (e: any, index: number) => {
-    if (e.nativeEvent.key === 'Backspace') {
-      const newOtp = [...otp];
-      newOtp[index] = '';
-      setOtp(newOtp);
-      setIsError(false);
-      for (let i = index + 1; i < length; i++) {
-        newOtp[i] = '';
-      }
-      setOtp(newOtp);
-      if (index > 0) {
-        inputs.current[index - 1].focus();
-      }
-    }
-  };
-
-  const validateOtp = useCallback(
-    async (enteredOtp: string) => {
-      if (enteredOtp === code) {
-        onSuccess(enteredOtp);
-        hideModal();
-      } else {
-        setIsError(true);
-        shakeInputs();
-      }
-    },
-    [onSuccess, hideModal],
-  );
-
-  const shakeInputs = () => {
-    shakeAnimation.value = withSequence(
-      withTiming(-10, { duration: 50, easing: Easing.linear }),
-      withTiming(10, { duration: 50, easing: Easing.linear }),
-      withTiming(-10, { duration: 50, easing: Easing.linear }),
-      withTiming(10, { duration: 50, easing: Easing.linear }),
-      withTiming(0, { duration: 50, easing: Easing.linear }),
-    );
-  };
-
-  const animatedStyles = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: shakeAnimation.value }],
-    };
-  });
-
   return (
     <OtpInputContainer {...testProperties(testID || 'OTPInputID')}>
       {otp.map((digit, index) => (
         <InputContainer key={index} style={animatedStyles}>
           <StyledTextInput
-            ref={(el) => (inputs.current[index] = el!)}
+            ref={(el: TextInput) => (inputs.current[index] = el!)}
             value={digit}
-            onChangeText={(text) => handleChangeText(text, index)}
-            onKeyPress={(e) => handleKeyPress(e, index)}
+            onChangeText={(text: string) => handleChangeText(text, index)}
+            onKeyPress={(e: any) => handleKeyPress(e, index)}
             keyboardType="numeric"
             maxLength={1}
             selectionColor={theme.tokens.colors.typography800}

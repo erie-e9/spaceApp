@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { Fragment, memo, useCallback, useState } from 'react';
 import { Keyboard } from 'react-native';
 import type { Task } from '@types';
 import { testProperties } from '@utils/functions';
@@ -13,8 +13,6 @@ const TaskModal = ({ handleTask, title, description, id }: TaskModalParams): JSX
   const [_title, setTitle] = useState(title || '');
   const [_description, setDescription] = useState(description || '');
 
-  const quantityLimit = 255;
-
   const submitHandler = useCallback(() => {
     Keyboard.dismiss();
     handleTask({
@@ -22,7 +20,7 @@ const TaskModal = ({ handleTask, title, description, id }: TaskModalParams): JSX
       title: _title,
       description: _description,
     });
-  }, [_title, _description]);
+  }, [handleTask, id, _title, _description]);
 
   return (
     <ContentWrapper>
@@ -66,14 +64,14 @@ const TaskModal = ({ handleTask, title, description, id }: TaskModalParams): JSX
         returnKeyLabel={'send'}
         enablesReturnKeyAutomatically={true}
       />
-      <>
+      <Fragment>
         {/* <Title type="Body2">Add image(s)</Title> */}
         <MultimediaPicker
           origin="library"
           selectionLimit={5}
           onSelect={(items) => console.log('TaskModal', { items })}
         />
-      </>
+      </Fragment>
     </ContentWrapper>
   );
 };

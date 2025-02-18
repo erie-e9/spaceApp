@@ -21,22 +21,22 @@ const WebViewOptions: React.FC<WebViewOptionsProps> = ({
 
   const closeBottomSheet = useCallback(() => {
     hideModal();
-  }, []);
+  }, [hideModal]);
 
   const shareHandler = useCallback(() => {
     closeBottomSheet();
-    if (onShare) onShare();
-  }, []);
+    onShare?.();
+  }, [closeBottomSheet, onShare]);
 
   const reloadHandler = useCallback(() => {
     closeBottomSheet();
-    if (onReload) onReload();
-  }, []);
+    onReload?.();
+  }, [closeBottomSheet, onReload]);
 
   const openInBrowserHandler = useCallback(() => {
     closeBottomSheet();
-    if (onOpenBrowser) onOpenBrowser();
-  }, []);
+    onOpenBrowser?.();
+  }, [closeBottomSheet, onOpenBrowser]);
 
   return (
     <OptionsContainer>

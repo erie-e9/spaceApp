@@ -1,6 +1,7 @@
 import UIKit
 import Foundation
 import Lottie
+import react_native_lottie_splash_screen
 
 @objc class Dynamic: NSObject {
 
@@ -32,7 +33,7 @@ import Lottie
       toProgress: 1.0,
       loopMode: LottieLoopMode.loop,
       completion: { (success) in
-        RNSplashScreen.setAnimationFinished(true)
+        react_native_lottie_splash_screen.RNSplashScreen.setAnimationFinished(true)
       }
     )
   }

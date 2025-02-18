@@ -22,7 +22,14 @@ export const useDeviceSecurity = (): {
         ?.detectPotentiallyDangerousApps;
       const isExternalStorage = await JailMonkey?.isOnExternalStorage();
 
-      return !(isDevEnv || isJailbroken || isRooted || detectDangerousApps || isExternalStorage || trustDeviceFall);
+      return !(
+        isDevEnv ||
+        isJailbroken ||
+        isRooted ||
+        detectDangerousApps ||
+        isExternalStorage ||
+        trustDeviceFall
+      );
     } catch (error) {
       Logger.error('isDeviceSecure Error', { error });
       return false; // it's not reliable

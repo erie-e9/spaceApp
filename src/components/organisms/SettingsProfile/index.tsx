@@ -47,7 +47,7 @@ const SettingsProfile = () => {
         screen: 'Authentication',
       } as never);
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigation]);
 
   return (
     <Fragment>
@@ -83,7 +83,7 @@ const SettingsProfile = () => {
               </ProfileDetailContainer>
             </ProfileContainer>
           ) : (
-            <>
+            <Fragment>
               <StyledTextContainer>
                 <StyledText type="Body4" weight={300}>
                   {'common:banners.auth.invitation'}
@@ -95,7 +95,7 @@ const SettingsProfile = () => {
                   onPress={navigationHandler}
                 />
               </AuthButtonContainer>
-            </>
+            </Fragment>
           )}
         </CardContainer>
       </TransformAnimation>

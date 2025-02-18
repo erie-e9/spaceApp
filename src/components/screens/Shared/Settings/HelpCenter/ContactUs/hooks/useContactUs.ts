@@ -41,27 +41,34 @@ export const useContactUs = (): {
   const { linkingHandler } = useLinking();
   const navigation = useNavigation<ApplicationScreenProps>();
 
-  const handleOpenURL = useCallback(async (url: string) => {
-    if (!url) return;
-    try {
-      linkingHandler({
-        ios: {
-          action: url,
-        },
-        android: {
-          action: url,
-        },
-        fallback: () => Logger.log('handleOpenURL', { error: 'URL not supported', url }),
-      });
-    } catch (error) {
-      Logger.log('handleOpenURL', { error, url });
-    }
-  }, []);
+  const handleOpenURL = useCallback(
+    async (url: string) => {
+      if (!url) {
+        return;
+      }
+      try {
+        linkingHandler({
+          ios: {
+            action: url,
+          },
+          android: {
+            action: url,
+          },
+          fallback: () => Logger.log('handleOpenURL', { error: 'URL not supported', url }),
+        });
+      } catch (error) {
+        Logger.log('handleOpenURL', { error, url });
+      }
+    },
+    [linkingHandler],
+  );
 
   const wayOfContactHandler = useCallback(
     async (way: ContactWay) => {
       const contactUrl = CONTACT_URLS[way];
-      if (!contactUrl) return;
+      if (!contactUrl) {
+        return;
+      }
 
       const url = `${getUrlPrefix(way)}${contactUrl}`;
 
@@ -115,7 +122,7 @@ export const useContactUs = (): {
         remoteFeatureFlags: ['contactUsViaWhatsApp'],
       },
     ];
-  }, []);
+  }, [wayOfContactHandler]);
 
   return {
     listItems,

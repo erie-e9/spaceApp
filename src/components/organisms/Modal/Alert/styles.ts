@@ -1,6 +1,10 @@
 import { StyleSheet, ViewStyle } from 'react-native';
 import styled, { css } from 'styled-components/native';
-import { screen_width, getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
+import {
+  screen_width,
+  getNormalizedVerticalSize,
+  getNormalizedHorizontalSize,
+} from '@utils/functions';
 import type { ButtonContainerProps } from '@slices/types';
 import { ActionButton, List } from '@components/molecules';
 
@@ -83,7 +87,7 @@ export interface StyledButtonProps {
   minWidth?: number;
 }
 
-export const StyledButton = styled(ActionButton) <StyledButtonProps>`
+export const StyledButton = styled(ActionButton)<StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(10)}px ${getNormalizedHorizontalSize(3)}px
     ${getNormalizedVerticalSize(15)}px ${getNormalizedHorizontalSize(3)}px;
   align-self: center;

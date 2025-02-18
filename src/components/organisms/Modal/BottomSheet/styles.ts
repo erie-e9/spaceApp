@@ -21,10 +21,8 @@ export const AnimatedBottomSheet = styled(Animated.View)`
   overflow: hidden;
   border-radius: ${getNormalizedHorizontalSize(30)}px;
   padding: ${getNormalizedVerticalSize(5)}px ${getNormalizedHorizontalSize(0)}px
-  ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
+    ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
   background-color: ${({ theme }) => theme.tokens.colors.backgroundColor};
-
-
 `;
 
 export const CloseBottomSheetButton = styled(Touchable)`
@@ -42,8 +40,7 @@ export const BodyContainer = styled.View<{ dropdownOptions?: any }>`
   background-color: transparent;
 `;
 
-export const ListContainer = styled.View`
-`;
+export const ListContainer = styled.View``;
 
 export const PanGestureHandlerView = styled.View`
   height: ${getNormalizedVerticalSize(5)}px;
@@ -69,7 +66,7 @@ export const ListFooterComponentView = styled.View`
 `;
 
 export const StyledList = styled(List)`
-  flex: 1
+  flex: 1;
 `;
 
 interface FooterContainerProps {

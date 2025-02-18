@@ -110,7 +110,7 @@ export const Authentication: React.FC<Props> = ({ navigation }) => {
                             textAlign="center"
                             weight={500}
                           >
-                            {`authentication:Authentication.usePassword`}
+                            {'authentication:Authentication.usePassword'}
                           </StyledText>
                         </FormActionTouchable>
                       </Fragment>
@@ -131,7 +131,7 @@ export const Authentication: React.FC<Props> = ({ navigation }) => {
                             textAlign="right"
                             weight={500}
                           >
-                            {`authentication:Authentication.forgotPassword`}
+                            {'authentication:Authentication.forgotPassword'}
                           </StyledText>
                         </FormActionTouchable>
                       )}
@@ -157,7 +157,7 @@ export const Authentication: React.FC<Props> = ({ navigation }) => {
                             textAlign="center"
                             weight={500}
                           >
-                            {`authentication:Authentication.useAnotherAccount`}
+                            {'authentication:Authentication.useAnotherAccount'}
                           </StyledText>
                         </FormActionTouchable>
                       </AnotherAccountContainer>

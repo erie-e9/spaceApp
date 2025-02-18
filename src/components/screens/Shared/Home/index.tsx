@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { Fragment, memo } from 'react';
 import type { ApplicationScreenProps } from '@types';
 import { useTheme } from '@hooks';
 import { OpacityAnimation } from '@components/animated';
@@ -29,7 +29,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
       backgroundType="image"
       backgroundSource={Images.wallpapers.backgroundstar4}
     >
-      <>
+      <Fragment>
         <DecorationItems />
         <BodyContainer>
           <ContentContainer>
@@ -79,7 +79,7 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
             </OpacityAnimation>
           </FeaturesContainer>
         </BodyContainer>
-      </>
+      </Fragment>
     </ScreenBackground>
   );
 };

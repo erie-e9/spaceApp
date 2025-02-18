@@ -23,7 +23,7 @@ export const LoaderIndicatorContainer = styled.View<ImageProps>`
   z-index: 100;
 `;
 
-export const StyledImage = styled(FastImage) <ImageProps>`
+export const StyledImage = styled(FastImage)<ImageProps>`
   width: ${({ width }) => width}px;
   height: ${({ height }) => height}px;
   border-radius: ${({ borderRadius }) => borderRadius || 0}px;

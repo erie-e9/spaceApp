@@ -18,14 +18,17 @@ export const ScreenBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
 }) => {
   const { width, height } = useWindowDimensions();
   const theme = useTheme();
-  const dimensions = {
-    flex: 1,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingTop: Platform.OS === 'ios' ? 50 : 30,
-    paddingHorizontal: 20,
-    paddingBottom: 15,
-  };
+  const dimensions = useMemo(
+    () => ({
+      flex: 1,
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      paddingTop: Platform.OS === 'ios' ? 50 : 30,
+      paddingHorizontal: 20,
+      paddingBottom: 15,
+    }),
+    [],
+  );
 
   const backgroundRender = useMemo(() => {
     switch (type) {
@@ -82,7 +85,16 @@ export const ScreenBackground: React.FC<Partial<ScreenBackgroundProps>> = ({
       default:
         return <Fragment>{children}</Fragment>;
     }
-  }, [type, children]);
+  }, [
+    type,
+    dimensions,
+    props,
+    children,
+    colors,
+    width,
+    height,
+    theme.tokens.colors?.backgroundColor,
+  ]);
 
   return <ScreenBackgroundContainer style={style}>{backgroundRender}</ScreenBackgroundContainer>;
 };

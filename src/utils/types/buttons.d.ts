@@ -1,5 +1,5 @@
 import { PressableProps, TextStyle } from 'react-native';
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
 
 export type ButtonType = 'Button' | 'Fab' | 'Link' | 'Text' | 'Icon' | string | null;
 
@@ -9,6 +9,7 @@ export interface TouchableProps extends PressableProps {
   subtitle?: string;
   numberOfLines?: number;
   textColor?: keyof DefaultTheme['tokens']['colors'];
+  gradientColors?: Array<any>;
   backgroundColor?: keyof DefaultTheme['tokens']['colors'];
   onPressType?: 'onPress' | 'onPressIn' | 'onLongPress' | 'onPressOut';
   buttonTheme?: 'Primary' | 'Secondary' | 'Dark';
@@ -21,6 +22,7 @@ export interface TouchableProps extends PressableProps {
   fontWeight?: TextStyle['fontWeight'];
   lineHeight?: TextStyle['lineHeight'];
   widthButton?: string | number;
+  heightButton?: string | number;
   widthIcon?: number;
   heightIcon?: number;
   startFrameAnimation?: number;

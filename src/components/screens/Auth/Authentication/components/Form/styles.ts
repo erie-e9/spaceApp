@@ -17,7 +17,7 @@ export interface SendCodeButtonProps {
   disabledColor?: keyof DefaultTheme['tokens']['colors'];
 }
 
-export const SendCodeButton = styled(Touchable) <SendCodeButtonProps>`
+export const SendCodeButton = styled(Touchable)<SendCodeButtonProps>`
   justify-content: center;
   align-items: center;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(5)}px;
@@ -27,14 +27,14 @@ export const SendCodeButton = styled(Touchable) <SendCodeButtonProps>`
     theme.mode === 'dark'
       ? css`
           border-color: ${() =>
-          disabled
-            ? disabledColor || theme.tokens.colors.tertiaryL1
-            : theme.tokens.colors.secondary100};
+            disabled
+              ? disabledColor || theme.tokens.colors.tertiaryL1
+              : theme.tokens.colors.secondary100};
         `
       : css`
           border-color: ${() =>
-          disabled
-            ? disabledColor || theme.tokens.colors.tertiaryL2
-            : theme.tokens.colors.primary300};
+            disabled
+              ? disabledColor || theme.tokens.colors.tertiaryL2
+              : theme.tokens.colors.primary300};
         `};
 `;

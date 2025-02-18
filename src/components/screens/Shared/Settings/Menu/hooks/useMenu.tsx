@@ -147,7 +147,7 @@ export const useMenu = (): {
         items: helpCenterItems,
       },
     ];
-  }, [isAuthenticated, navigateToScreen]);
+  }, [isAuthenticated, navigateToScreen, navigation, ratingModal]);
 
   const primaryButtonHandler = useCallback(async () => {
     try {
@@ -161,7 +161,7 @@ export const useMenu = (): {
       Logger.log('useMenu - primaryButtonHandler: ', { error });
     } finally {
     }
-  }, [removeToken]);
+  }, [removeToken, setLoading]);
 
   const primaryButton = useMemo(() => {
     return {
@@ -171,7 +171,7 @@ export const useMenu = (): {
       loading: loading,
       onPress: primaryButtonHandler,
     };
-  }, [loading]);
+  }, [disableContinueButton, loading, primaryButtonHandler]);
 
   return {
     listItems,

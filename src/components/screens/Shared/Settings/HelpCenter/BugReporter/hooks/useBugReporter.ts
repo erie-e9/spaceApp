@@ -53,7 +53,7 @@ export const useBugReporter = ({ navigation }: BugReporterProps) => {
   const secondaryButtonHandler = useCallback((): void => {
     // navigation.navigate('HelpCenter', { screen: 'ContactUs' } as never);
     navigation.navigate('ContactUs');
-  }, [formik.errors, loading]);
+  }, [navigation]);
 
   const secondaryButton = useMemo(() => {
     return {
@@ -63,12 +63,12 @@ export const useBugReporter = ({ navigation }: BugReporterProps) => {
       loading: loading,
       onPress: secondaryButtonHandler,
     };
-  }, [loading]);
+  }, [loading, secondaryButtonHandler]);
 
   const primaryButtonHandler = useCallback((): void => {
-    // setLoading(!loading);
+    setLoading(!loading);
     formik.handleSubmit();
-  }, [formik.errors, loading]);
+  }, [formik, loading, setLoading]);
 
   const primaryButton = useMemo(() => {
     return {
@@ -78,7 +78,7 @@ export const useBugReporter = ({ navigation }: BugReporterProps) => {
       loading: loading,
       onPress: primaryButtonHandler,
     };
-  }, [loading]);
+  }, [loading, primaryButtonHandler]);
 
   return {
     ...formik,

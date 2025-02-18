@@ -34,7 +34,7 @@ Hermes
 #### 🔥 Performance & Optimization Techniques
 
 - **Image Caching**: Optimized image handling for improved performance using `react-native-fast-image`.
-- **Offline Functionality**: Ensures a seamless user experience.
+- **Offline Functionality**: Ensures a seamless user experience, allows trigger functions when connection isn't established.
 - **List Performance**: High-performance list handling for large datasets using `flash-list`.
 - **Android Optimization**: Includes Proguard, tree shaking, split builds, and `useLegacyPackaging` for faster build times.
 - **Nitro Modules and New Architecture-Based Libraries**: Preference for updated, smaller, and well-optimized packages.
@@ -43,14 +43,13 @@ Hermes
 #### 🔐 Security
 
 - **SSL Pinning**: Establishes a secure link between a web server and the app, enabling an encrypted connection.
-- **Device Trust Check**: Detects potentially hacked or untrusted devices, installed apps, or insecure environments.
+- **Device Trust Check**: Detects potentially hacked or untrusted devices, emulators, unwanted installed applications, insecure environments, and mocked locations.
 - **Code Obfuscation**: Android Proguard obfuscates the code.
 - **Encrypted Storage**: Provides secure and fast storage using `react-native-mmkv`.
-- **Keychain Integration**: Implements Keychain on iOS devices for storing sensitive values securely.
 
 #### 🧩 Additional Features
 
-- **Multilingual Support (GE | EN | ES | FR | PO)**: Integrated with i18next for seamless localization; the app starts with the device's language.
+- **Multilingual Support (GE | EN | SP | FR | PO)**: Integrated with i18next for seamless localization. The app starts by default with the device's language.
 - **Authentication**: Includes form-based authentication.
 - **Social Media Authentication**: Simplified login via popular social media platforms.
 - **In-App Web Viewer**: Embedded browser for enhanced user experience.
@@ -59,6 +58,7 @@ Hermes
 - **API Integration with Queue and Retry actions**: Simplified network request implementation. It includes a better user experience with enqueue and retry API request features.
 - **Firebase Remote Config**: Remotely enable or disable features using the Firebase console.
 - **Biometrics**: Supports authentication and action confirmation via biometrics.
+- **Error Boundaries**: A friendly error screen to display error messages for users, instead of a blank and incomprehensible screen.
 
 ---
 
@@ -75,7 +75,7 @@ Hermes
 
 1. To create a new project using the boilerplate simply run:
    ```bash
-   npx @react-native-community/cli@latest init MyApp --template @erie_e9/react-native-spaceApp
+   npx @react-native-community/cli@latest init MyApp --template @erie_e9/react-native-spaceApp-boilerplate
    ```
 2. Install dependencies:
    ```bash
@@ -124,36 +124,36 @@ spaceApp/
 #### Authentication: Sign-In and Sign-Up
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/auth.gif" alt="Sign-In" style="width:60%; height:auto;">
-  <img src="src/assets/screenshots/signup.gif" alt="Sign-Up" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/auth.gif" alt="Sign-In" style="width:250px; height:auto;">
+  <img src="src/assets/screenshots/signup.gif" alt="Sign-Up" style="width:250px; height:auto;">
 </div>
 
 #### Home and Help (Report a Bug)
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/home.gif" alt="Home" style="width:60%; height:auto;">
-  <img src="src/assets/screenshots/help.gif" alt="Help" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/home.gif" alt="Home" style="width:250px; height:auto;">
+  <img src="src/assets/screenshots/help.gif" alt="Help" style="width:250px; height:auto;">
 </div>
 
 #### Menu and Preferences
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/menu.gif" alt="Menu" style="width:60%; height:auto;">
-  <img src="src/assets/screenshots/preferences.gif" alt="Preferences" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/menu.gif" alt="Menu" style="width:250px; height:auto;">
+  <img src="src/assets/screenshots/preferences.gif" alt="Preferences" style="width:250px; height:auto;">
 </div>
 
 #### CRUD: Tasks and Offline Features
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/tasks.gif" alt="Tasks" style="width:60%; height:auto;">
-  <img src="src/assets/screenshots/offline.gif" alt="Offline Features" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/tasks.gif" alt="Tasks" style="width:250px; height:auto;">
+  <img src="src/assets/screenshots/offline.gif" alt="Offline Features" style="width:250px; height:auto;">
 </div>
 
 #### Hacked Device Warning and Fallback Screen
 
 <div style="display: flex; justify-content: space-around;">
-  <img src="src/assets/screenshots/hackeddevice.gif" alt="Hacked Device Warning" style="width:60%; height:auto;">
-  <img src="src/assets/screenshots/fallback.gif" alt="Fallback Screen" style="width:60%; height:auto;">
+  <img src="src/assets/screenshots/hackeddevice.gif" alt="Hacked Device Warning" style="width:250px; height:auto;">
+  <img src="src/assets/screenshots/fallback.gif" alt="Fallback Screen" style="width:250px; height:auto;">
 </div>
 
 ### Storage packages comparation
@@ -162,9 +162,21 @@ spaceApp/
 
 ### TODO
 
-- **Push Notifications**: Integrated push notifications for real-time updates.
+- **Push Notifications**: Integrate push notifications for real-time updates.
 - **Background fetch**: Updates meanwhile app is closed.
-- **Performance**: Integrate react-compiler-runtime to provide a whole app helper with re-renders and app interaction.
+- **Well-performanced compiler**: Integrate react-compiler-runtime to provide a whole app helper with re-renders and app interaction.
+- **EAS update (similar to CodePush)**: Add cloud-based service that helps build, deploy, and manage React Native and Expo apps.
+- **Deep linking**: Open specific screens when a user clicks a link, either from a browser, another app, or a push notification.
+- **Tab navigator**: Screen bottom/top navigator for new flows.
+- **Inactivity checker**: Add behavior after a certain amount of time when the user has not interacted with the app.
+- **Update app checker**: Store-controlled app updates.
+- **Carousel UI**: Include an animated carousel UI component.
+- **Masonry layout of multimedia**: Images, videos, and UI content are displayed responsively and fluidly.
+- **Server-Driven UI (SDUI)**: An architectural approach where the server controls the UI structure and behavior, reducing the need for frequent app updates.
+- **Rive interactive animations**: An impressive library of high-performance interactive animations.
+- **Live activities**: Highly personalized, real-time interactive notifications.
+- **Sensitive data storage**: Implements Keychain on iOS devices and KeyStore on Android devices for storing sensitive values securely.
+- **Storybook**: A frontend workshop for building UI components and pages in isolation.
 
 ### License
 

@@ -1,8 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { ActionButton, TextInput } from '@components/molecules';
 
 export const BodyContainer = styled.View`
@@ -12,8 +9,7 @@ export const BodyContainer = styled.View`
   align-items: center;
 `;
 
-export const StyledInput = styled(TextInput)`
-`;
+export const StyledInput = styled(TextInput)``;
 
 export const StyledScrollView = styled.ScrollView`
   flex: 1;
@@ -21,21 +17,21 @@ export const StyledScrollView = styled.ScrollView`
 `;
 
 export const FeaturesContainer = styled.View`
-    flex-direction: row;
-    justify-content: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
 `;
 
 export const FeatureButton = styled(ActionButton)`
-    border-width: ${getNormalizedHorizontalSize(0)}px;
-    margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
+  border-width: ${getNormalizedHorizontalSize(0)}px;
+  margin: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
     ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px;
-    /* background-color: ${({ theme }) => theme.tokens.colors.tertiary200}; */
+  /* background-color: ${({ theme }) => theme.tokens.colors.tertiary200}; */
 `;
 
 export const RowContainer = styled.View`
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 `;
 
 export const RowItemContainer = styled.View`

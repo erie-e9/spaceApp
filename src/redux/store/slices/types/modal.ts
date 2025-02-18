@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { ModalProps as RNModalProps, StyleProp, ViewStyle } from 'react-native';
-import { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
 
 export type AlignHeaderType = ViewStyle['alignItems'];
 export interface ButtonContainerProps {

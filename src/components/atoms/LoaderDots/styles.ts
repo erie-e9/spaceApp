@@ -1,5 +1,6 @@
 import { PixelRatio } from 'react-native';
-import styled, { DefaultTheme } from 'styled-components/native';
+import { DefaultTheme } from 'styled-components';
+import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 
@@ -15,7 +16,7 @@ export interface AnimatedDotProps {
   color: keyof DefaultTheme['tokens']['colors'];
 }
 
-export const AnimatedDot = styled(Animated.View)<AnimatedDotProps>`
+export const AnimatedDot = styled(Animated.View) <AnimatedDotProps>`
   height: ${({ size }) => PixelRatio.roundToNearestPixel(size)}px;
   width: ${({ size }) => PixelRatio.roundToNearestPixel(size)}px;
   border-radius: ${({ size }) => PixelRatio.roundToNearestPixel(size / 2)}px;

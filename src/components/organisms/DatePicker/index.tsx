@@ -58,16 +58,22 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
     );
     const { monthNames, today, monthNamesShort, dayNames, dayNamesShort } = labels();
 
-    const onSelectHandler = useCallback((date: any) => {
-      const value = formatDate(mode === 'calendar' ? date.dateString : date, 'DD/MM/YYYY');
-      onSelect(value);
-      setDate(value);
-      hideModal();
-    }, []);
+    const onSelectHandler = useCallback(
+      (dateParam: any) => {
+        const Datevalue = formatDate(
+          mode === 'calendar' ? dateParam.dateString : dateParam,
+          'DD/MM/YYYY',
+        );
+        onSelect(Datevalue);
+        setDate(Datevalue);
+        hideModal();
+      },
+      [hideModal, mode, onSelect],
+    );
 
     const invalidDateHandler = useCallback(() => {
       useToast.error({
-        message: `signup:SignUp.form.fields.dateOfBirth.validations.matches`,
+        message: 'signup:SignUp.form.fields.dateOfBirth.validations.matches',
         duration: 3000,
       });
     }, []);
@@ -116,6 +122,7 @@ export const DatePicker: React.FC<DatePickerProps> = forwardRef(
           alignItems: 'center',
         },
       });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
 
     return (

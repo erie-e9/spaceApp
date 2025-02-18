@@ -11,22 +11,25 @@ import {
 } from './styles';
 
 export const MenuItem: React.FC<MenuItemProps> = ({ icon, title, items }) => {
-  const renderItem = useCallback(({ item }: { item: SettingsRenderItemProps }) => {
-    return (
-      <MenuButton
-        hasParent={!!title}
-        title={item.title}
-        description={item.description || undefined}
-        leftIcon={item.leftIcon}
-        rightIcon={item.rightIcon}
-        onPress={item.onPress}
-        selectedOption={item.selectedOption}
-        remoteFeatureFlags={item.remoteFeatureFlags}
-        disabled={item.disabled}
-        rightBody={item.rightBody}
-      />
-    );
-  }, []);
+  const renderItem = useCallback(
+    ({ item }: { item: SettingsRenderItemProps }) => {
+      return (
+        <MenuButton
+          hasParent={!!title}
+          title={item.title}
+          description={item.description || undefined}
+          leftIcon={item.leftIcon}
+          rightIcon={item.rightIcon}
+          onPress={item.onPress}
+          selectedOption={item.selectedOption}
+          remoteFeatureFlags={item.remoteFeatureFlags}
+          disabled={item.disabled}
+          rightBody={item.rightBody}
+        />
+      );
+    },
+    [title],
+  );
 
   return (
     <SettingItemContainer>

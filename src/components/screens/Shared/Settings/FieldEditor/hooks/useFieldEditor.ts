@@ -112,6 +112,7 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
       default:
         return {};
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fieldId, isFocused]);
 
   const formik = useFormik<User>({
@@ -171,7 +172,7 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
     if (!isEmpty(errors)) {
       formik.setErrors(errors);
     }
-  }, [validateStep, formik.values]);
+  }, [validateStep, accountSchema, formik]);
 
   const onSubmitEditingNext = useCallback(
     (currentFieldName: keyof User, nextFieldType: 'textinput' | 'button' = 'textinput') => {
@@ -193,12 +194,17 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
   const onSubmitHandler = useCallback(() => {
     Keyboard.dismiss();
     formik.handleSubmit();
-  }, [formik]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onBlurHandler = useCallback(() => {
+    console.log('onBlurHandler');
+  }, []);
 
   const steps = useMemo(() => {
     const elements: any[] = [];
 
-    const addField = (field: any, refName: keyof User) => {
+    const addField = (field: any, refName: keyof User): void => {
       elements.push({
         ...field,
         ref: (r: any) => (refs.current[refName] = r),
@@ -206,6 +212,7 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
           field.returnKeyType === 'send'
             ? () => onSubmitHandler()
             : () => onSubmitEditingNext(refName),
+        handleBlur: () => onBlurHandler(),
       });
     };
 
@@ -265,7 +272,8 @@ export const useFieldEditor = ({ navigation, route }: FieldEditorProps) => {
         items: elements,
       },
     ];
-  }, [route.params, genres, fieldValidator, isFocused]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fieldId, fieldName, onSubmitHandler, onSubmitEditingNext, genres, isFocused]);
 
   return {
     ...formik,

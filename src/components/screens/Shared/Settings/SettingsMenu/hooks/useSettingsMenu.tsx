@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useCopy } from '@services';
@@ -46,7 +46,7 @@ export const useSettingsMenu = (): {
     ({ fieldId, fieldName }: { fieldId: string; fieldName: string }) => {
       navigation.navigate('FieldEditor', { fieldId, fieldName } as never);
     },
-    [],
+    [navigation],
   );
 
   const verifyAuthHandler = useCallback(
@@ -57,7 +57,7 @@ export const useSettingsMenu = (): {
         showAskForAuthAlert();
       }
     },
-    [isAuthenticated],
+    [isAuthenticated, showAskForAuthAlert],
   );
 
   const showAppAppearanceModal = useCallback(() => {
@@ -115,7 +115,7 @@ export const useSettingsMenu = (): {
         }
       }
     },
-    [biometrics, switchBiometrics],
+    [authtBiometics, checkBiometrics, getCopyValue, switchBiometrics],
   );
 
   const SwitchElement = useMemo(() => {
@@ -229,7 +229,18 @@ export const useSettingsMenu = (): {
         items: securityItems,
       },
     ];
-  }, [biometrics, currentModeLabel, language, toggleBiometrics, isAuthenticated]);
+  }, [
+    currentModeLabel,
+    showAppAppearanceModal,
+    language,
+    getCopyValue,
+    showLanguageModal,
+    isAuthenticated,
+    SwitchElement,
+    linkingHandler,
+    verifyAuthHandler,
+    editFieldHandler,
+  ]);
 
   return {
     listItems,

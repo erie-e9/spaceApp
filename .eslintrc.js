@@ -4,11 +4,11 @@ module.exports = {
     es6: true,
   },
   extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'plugin:prettier/recommended',
+    '@react-native',
+    // 'airbnb',
+    // 'plugin:@typescript-eslint/recommended',
+    // 'prettier',
+    // 'plugin:prettier/recommended',
   ],
   globals: {
     Atomics: 'readonly',
@@ -23,24 +23,24 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
-    'react-hooks',
-    '@typescript-eslint',
-    'prettier',
-    'import',
+    // 'react',
+    // 'react-hooks',
+    // '@typescript-eslint',
+    // 'prettier',
+    // 'import',
     'eslint-plugin-react-compiler',
-    // 'unused-imports',
+    'unused-imports',
     // 'autofix',
   ],
   rules: {
-    camelcase: 'on',
-    'prettier/prettier': 'error',
+    // camelcase: 'on',
+    // 'prettier/prettier': 'error',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'off',
-    'react/jsx-filename-extension': [1, { extensions: ['.tsx','.d.ts', '.json'] }],
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.d.ts', '.json'] }],
     'import/prefer-default-export': 'off',
     'react/jsx-no-useless-fragment': 'off',
-    'react/no-unstable-nested-components': 'off',
+    'react/no-unstable-nested-components': 'warn',
     'react/function-component-definition': [
       2,
       {
@@ -48,7 +48,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    // 'unused-imports/no-unused-imports': 'warn',
+    'unused-imports/no-unused-imports': 'warn',
     // 'autofix/no-unused-vars': 'warn',
     '@typescript-eslint/explicit-function-return-type': [
       'error',
@@ -56,16 +56,16 @@ module.exports = {
         allowExpressions: true,
       },
     ],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
+    // 'import/extensions': [
+    //   'error',
+    //   'ignorePackages',
+    //   {
+    //     ts: 'never',
+    //     tsx: 'never',
+    //   },
+    // ],
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/no-use-before-define': ['warn'],
     'react/prop-types': 0,
     // '@typescript-eslint/no-explicit-any': 'error',
     'react/jsx-props-no-spreading': 0,
@@ -73,40 +73,41 @@ module.exports = {
     '@typescript-eslint/no-shadow': 'error',
     'import/no-webpack-loader-syntax': 'off',
     'react/default-props-match-prop-types': 'off',
-    'import/no-unresolved': 'error',
-    'react-compiler/react-compiler': 'error',
+    'import/no-unresolved': 'off',
+    // 'react-compiler/react-compiler': 'warn',
+
   },
   settings: {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
-    "import/resolver": {
+    'import/resolver': {
       'babel-module': {},
-      "typescript": {
-        "alwaysTryTypes": true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+      'typescript': {
+        'alwaysTryTypes': true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
 
         // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
 
         // use <root>/path/to/folder/tsconfig.json
-        "project": "path/to/folder",
+        'project': 'path/to/folder',
 
         // Multiple tsconfigs (Useful for monorepos)
 
         // use a glob pattern
-        "project": "packages/*/tsconfig.json",
+        // 'project': 'packages/*/tsconfig.json',
 
         // use an array
-        "project": [
-          "packages/module-a/tsconfig.json",
-          "packages/module-b/tsconfig.json"
-        ],
+        // 'project': [
+        //   'packages/module-a/tsconfig.json',
+        //   'packages/module-b/tsconfig.json',
+        // ],
 
         // use an array of glob patterns
-        "project": [
-          "packages/*/tsconfig.json",
-          "other-packages/*/tsconfig.json"
-        ]
-      }
-    }
+        // 'project': [
+        //   'packages/*/tsconfig.json',
+        //   'other-packages/*/tsconfig.json',
+        // ],
+      },
+    },
   },
 };

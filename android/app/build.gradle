@@ -88,9 +88,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.spaceapp"
+    namespace "com.spaceapp1"
     defaultConfig {
-        applicationId "com.spaceapp"
+        applicationId "com.spaceapp1"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode Integer.parseInt(VERSION_CODE)

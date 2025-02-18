@@ -1,8 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  getNormalizedVerticalSize,
-  getNormalizedHorizontalSize,
-} from '@utils/functions';
+import { getNormalizedVerticalSize, getNormalizedHorizontalSize } from '@utils/functions';
 import { Typography } from '@components/atoms';
 
 export const BodyContainer = styled.View`
@@ -23,7 +20,7 @@ export const SubDescriptionContainer = styled.View`
   width: 100%;
 `;
 
-export const LabelText = styled(Typography) <{
+export const LabelText = styled(Typography)<{
   underline?: boolean;
 }>`
   text-decoration: ${({ underline }) => (underline ? 'underline' : 'none')};

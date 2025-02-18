@@ -13,7 +13,9 @@ export const isEmptyObject = (arg: unknown): boolean => {
 
 export const isEmpty = (arg: unknown): boolean => {
   let isNullish = !arg;
-  if (isNullish) return true;
+  if (isNullish) {
+    return true;
+  }
   if (typeof arg === 'object') {
     isNullish = isEmptyObject(arg);
   }

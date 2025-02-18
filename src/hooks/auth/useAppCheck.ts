@@ -13,9 +13,9 @@ export const useAppCheck = (): {
     try {
       const newToken = await getToken();
       return newToken;
-    } catch (err: unknown) {
-      Logger.error(err);
-      throw err;
+    } catch (error: unknown) {
+      Logger.error(error);
+      throw error;
     }
   };
 

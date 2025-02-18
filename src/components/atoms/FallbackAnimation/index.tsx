@@ -1,7 +1,7 @@
 import React, { memo, useEffect } from 'react';
 import { Canvas, Circle, Group } from '@shopify/react-native-skia';
-import { testProperties } from '@utils/functions';
 import { useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
+import { testProperties } from '@utils/functions';
 
 interface Props {
   testID?: string;

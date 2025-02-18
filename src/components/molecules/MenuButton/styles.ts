@@ -30,7 +30,7 @@ export const ContentContainer = styled.View`
 
 export const LabelContainer = styled.View`
   flex: 1;
-  background-color: transparent
+  background-color: transparent;
 `;
 
 export const HeaderContainer = styled.View`
@@ -39,7 +39,7 @@ export const HeaderContainer = styled.View`
   min-height: 100%;
   align-items: center;
   justify-content: space-between;
-  background-color: transparent 
+  background-color: transparent;
 `;
 
 export const LeftContainer = styled.View`
@@ -100,8 +100,7 @@ export const SubTitleContainer = styled.View`
   background-color: transparent;
 `;
 
-export const StyledSubTitleText = styled(Typography)`
-`;
+export const StyledSubTitleText = styled(Typography)``;
 
 export const ArrowContainer = styled.View`
   width: ${getNormalizedHorizontalSize(10)}px;

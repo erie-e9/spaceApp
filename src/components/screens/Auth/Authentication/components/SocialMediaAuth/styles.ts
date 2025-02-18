@@ -7,7 +7,7 @@ interface StyledButtonProps {
   disabled?: boolean;
 }
 
-export const StyledButton = styled(ActionButton) <StyledButtonProps>`
+export const StyledButton = styled(ActionButton)<StyledButtonProps>`
   margin: ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px
     ${getNormalizedVerticalSize(3)}px ${getNormalizedHorizontalSize(10)}px;
 `;

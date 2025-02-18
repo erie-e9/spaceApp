@@ -5,18 +5,25 @@ import type { Task } from '@types';
 import { Logger } from '@services';
 import { dayjs, formatDate } from '@utils/formatters';
 import { labels } from '@utils/forms/labels';
-import { useTasks, useResponseHandler, useTheme, useAppAlerts, useMMKVStorageArray } from '@hooks';
+import { useTasks, useResponseHandler, useAppAlerts, useMMKVStorageArray } from '@hooks';
 import { formSchemas } from '@utils/forms/validators/schemas';
 import { TaskProps } from '..';
 import { IQueueItem } from '../../Queue';
 
-interface TaskExtraProps extends Task, IQueueItem { }
+interface TaskExtraProps extends Task, IQueueItem {}
 
 export const useTask = ({ navigation, route }: TaskProps) => {
   const params: TaskExtraProps = route?.params?.task || {};
-  const { id = 0, index = -1, title = '', description = '', due_date = '', status = '0', method } = params;
+  const {
+    id = 0,
+    index = -1,
+    title = '',
+    description = '',
+    due_date = '',
+    status = '0',
+    method,
+  } = params;
   const { confirmChangeQueueAlert, confirmRemoveQueueActionAlert } = useAppAlerts();
-  const { darkMode } = useTheme();
   const { loading, setLoading } = useResponseHandler();
   const { addTaskHook, updateTaskHook, deleteTaskHook } = useTasks();
   const { getMMKVItem, updateMMKVItem, removeMMKVItem } = useMMKVStorageArray<any>({
@@ -29,19 +36,19 @@ export const useTask = ({ navigation, route }: TaskProps) => {
   const isEditTask = useMemo(() => id || title, [id, title]);
 
   const taskHeaderTitle = useMemo((): string => {
-    return `tasks:Task.${isEditTask ? 'edit' : 'new'}.screenTitle`
-  }, []);
+    return `tasks:Task.${isEditTask ? 'edit' : 'new'}.screenTitle`;
+  }, [isEditTask]);
 
   const taskHeaderDescription = useMemo((): string => {
-    return `tasks:Task.${isEditTask ? 'edit' : 'new'}.description`
-  }, []);
+    return `tasks:Task.${isEditTask ? 'edit' : 'new'}.description`;
+  }, [isEditTask]);
 
   const maxDateDueDate = useMemo((): string => {
-    return '2025-01-30'
+    return '2025-01-30';
   }, []);
 
   const minDateDueDate = useMemo((): string => {
-    return dayjs(new Date).format('YYYY-MM-DD');
+    return dayjs(new Date()).format('YYYY-MM-DD');
   }, []);
 
   const formik = useFormik({
@@ -61,15 +68,32 @@ export const useTask = ({ navigation, route }: TaskProps) => {
         const formatedstatus: number = Number(values.status);
         const existLocalItem = await getMMKVItem(id);
         const timestamp = new Date().toISOString();
-        const dueDate = values.due_date !== undefined ? `${formatDate(values.due_date, 'YYYY-MM-DD')}T${timestamp.split('T')[1]}` : undefined;
+        const dueDate =
+          values.due_date !== undefined
+            ? `${formatDate(values.due_date, 'YYYY-MM-DD')}T${timestamp.split('T')[1]}`
+            : undefined;
 
         if (existLocalItem || Number(index) > 0 || method) {
           if (method === 'DELETE') {
             await confirmChangeQueueAlert(async () => {
-              await updateMMKVItem(id || Number(index), { ...values, status: formatedstatus, due_date: dueDate, timestamp: timestamp, method: 'PUT' })
+              await updateMMKVItem(id || Number(index), {
+                ...values,
+                status: formatedstatus,
+                due_date: dueDate,
+                timestamp: timestamp,
+                method: 'PUT',
+              });
             });
           } else if (method === 'PUT' || method === 'PATCH' || method === 'POST') {
-            await updateMMKVItem(id || Number(index), { id, ...values, status: formatedstatus, due_date: dueDate, timestamp: timestamp, method, user_id: 1 });
+            await updateMMKVItem(id || Number(index), {
+              id,
+              ...values,
+              status: formatedstatus,
+              due_date: dueDate,
+              timestamp: timestamp,
+              method,
+              user_id: 1,
+            });
           }
           await navigation.goBack();
         } else {
@@ -90,20 +114,20 @@ export const useTask = ({ navigation, route }: TaskProps) => {
 
   const clearInputHandler = useCallback(
     (field: string) => {
-      formik.setFieldValue(field, '')
+      formik.setFieldValue(field, '');
     },
-    [formik]
+    [formik],
   );
 
   const fieldValueHandler = useCallback(
     (field: string, value: any) => formik.setFieldValue(field, value),
-    [formik]
+    [formik],
   );
 
   const primaryButtonHandler = useCallback(async () => {
     Keyboard.dismiss();
     formik.handleSubmit();
-  }, [formik, getMMKVItem]);
+  }, [formik]);
 
   const primaryButton = useMemo(
     () => ({
@@ -113,7 +137,7 @@ export const useTask = ({ navigation, route }: TaskProps) => {
       loading: loading,
       onPress: primaryButtonHandler,
     }),
-    [id, darkMode, loading, primaryButtonHandler]
+    [isEditTask, loading, primaryButtonHandler],
   );
 
   const removeTask = useCallback(async (): Promise<void> => {
@@ -130,9 +154,9 @@ export const useTask = ({ navigation, route }: TaskProps) => {
         }
       }
     } catch (error) {
-
+      Logger.log('Error in removeTask task', { error });
     }
-  }, []);
+  }, [confirmRemoveQueueActionAlert, deleteTaskHook, getMMKVItem, id, navigation, removeMMKVItem]);
 
   return {
     ...formik,

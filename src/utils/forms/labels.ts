@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /*
     This file helps to manage array of labels who could be reused in whole application.
     Encourages to mantain and don't DRY (Don't Repeat Yourself).
@@ -74,7 +75,7 @@ export const labels = () => {
         label: getCopyValue('common:calendar.values.monthNames.december'),
       },
     ],
-    [],
+    [getCopyValue],
   );
 
   const monthNamesShort = useMemo(() => {
@@ -128,7 +129,7 @@ export const labels = () => {
         label: getCopyValue('common:calendar.values.monthNamesShort.december'),
       },
     ];
-  }, []);
+  }, [getCopyValue]);
 
   const dayNames = useMemo(() => {
     return [
@@ -161,7 +162,7 @@ export const labels = () => {
         label: getCopyValue('common:calendar.values.dayNames.saturday'),
       },
     ];
-  }, []);
+  }, [getCopyValue]);
 
   const dayNamesShort = useMemo(() => {
     return [
@@ -194,7 +195,7 @@ export const labels = () => {
         label: getCopyValue('common:calendar.values.dayNamesShort.sa'),
       },
     ];
-  }, []);
+  }, [getCopyValue]);
 
   const undefinedStatus = getCopyValue('common:form.fields.listItems.status.undefined');
   const pendingStatus = getCopyValue('common:form.fields.listItems.status.pending');
@@ -206,9 +207,9 @@ export const labels = () => {
       { value: '0', label: undefinedStatus },
       { value: '1', label: pendingStatus },
       { value: '2', label: inProgressStatus },
-      { value: '3', label: completeStatus }
-    ]
-  }, []);
+      { value: '3', label: completeStatus },
+    ];
+  }, [completeStatus, inProgressStatus, pendingStatus, undefinedStatus]);
 
   const queueMethod: { [key in QueueMethodType]: string } = useMemo(() => {
     return {
@@ -239,6 +240,6 @@ export const labels = () => {
     inProgressStatus,
     completeStatus,
     queueMethod,
-    queueEndpoints
+    queueEndpoints,
   };
 };

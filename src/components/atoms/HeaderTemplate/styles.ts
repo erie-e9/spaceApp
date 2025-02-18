@@ -15,7 +15,8 @@ export const HeaderContainer = styled.View<HeaderStyle>`
   min-height: ${({ headerStyle }) =>
     getNormalizedVerticalSize(headerStyle === 'Primary' ? 90 : 45)}px;
   padding: ${getNormalizedVerticalSize(0)}px ${getNormalizedHorizontalSize(0)}px
-  ${({ headerStyle }) => headerStyle === 'Primary' ? 10 : 0}px ${getNormalizedHorizontalSize(0)}px;
+    ${({ headerStyle }) => (headerStyle === 'Primary' ? 10 : 0)}px
+    ${getNormalizedHorizontalSize(0)}px;
   background-color: transparent;
 `;
 
@@ -48,7 +49,7 @@ export const BackButtonContainer = styled.View<HeaderStyle>`
 `;
 
 export const TitleTextContainer = styled.Pressable<HeaderStyle>`
-  width: ${({ backButton }) => backButton ? 90 : 100}%;
+  width: ${({ backButton }) => (backButton ? 90 : 100)}%;
   justify-content: center;
   min-height: ${({ headerStyle }) =>
     getNormalizedVerticalSize(

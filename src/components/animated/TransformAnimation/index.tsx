@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect } from 'react';
+import React, { Fragment, memo, useCallback, useEffect } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import {
   AnimatedStyle,
@@ -85,20 +85,21 @@ export const TransformAnimation: React.FC<Props> = ({
     }
   }, [
     trigger,
-    duration,
     initialXValue,
-    finalXValue,
     initialYValue,
-    finalYValue,
+    offSetX,
     delay,
+    finalXValue,
+    duration,
     repeat,
     reverse,
-    offSetX.value,
-    offSetY.value,
+    offSetY,
+    finalYValue,
+    easing,
   ]);
 
   useEffect(() => {
-    const cleanup = () => {
+    const cleanup = (): void => {
       cancelAnimation(offSetX);
       cancelAnimation(offSetY);
       offSetX.value = initialXValue || 0;
@@ -117,11 +118,11 @@ export const TransformAnimation: React.FC<Props> = ({
     return () => {
       cleanup();
     };
-  }, [offSetX, offSetY, trigger]);
+  }, [initialXValue, initialYValue, offSetX, offSetY, trigger, triggerAnimate]);
 
   return (
     <StyledAnimatedContainer {...testProperties(testID)} style={[style, animatedStyles]}>
-      <>{children}</>
+      <Fragment>{children}</Fragment>
     </StyledAnimatedContainer>
   );
 };

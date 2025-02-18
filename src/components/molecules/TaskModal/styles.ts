@@ -7,8 +7,7 @@ export const ContentWrapper = styled.View`
   width: 100%;
 `;
 
-export const StyledInput = styled(TextInput)`
-`;
+export const StyledInput = styled(TextInput)``;
 
 export const Title = styled(Typography)`
   padding-bottom: ${getNormalizedVerticalSize(5)}px;

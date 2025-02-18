@@ -33,7 +33,7 @@ export const BackButton: React.FC<Props> = ({
     } else {
       navigation.goBack();
     }
-  }, []);
+  }, [navigation, onPress]);
 
   return (
     <BackButtonPressable
@@ -64,7 +64,7 @@ export const BackButton: React.FC<Props> = ({
             },
           ]}
         />
-        {children && children}
+        {children ?? null}
       </BackButtonContainer>
     </BackButtonPressable>
   );

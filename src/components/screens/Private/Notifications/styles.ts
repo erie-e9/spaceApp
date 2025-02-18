@@ -34,7 +34,7 @@ export const NotificationContentContainer = styled.View<NotificationContent>`
 
 export const NotificationContentData = styled.View`
   justify-content: flex-start;
-  align-items: flex-start;  
+  align-items: flex-start;
   width: 60%;
 `;
 

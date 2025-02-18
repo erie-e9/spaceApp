@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+import { Container, Swipeable, TextContainer, StyledText } from './styles';
 
 interface SwiperProps {
   onSwipe: () => void;
@@ -42,39 +42,17 @@ export const Swiper: React.FC<SwiperProps> = ({
   }));
 
   return (
-    <View style={[styles.container, { width, height, backgroundColor }]}>
+    <Container width={width} height={height} backgroundColor={backgroundColor}>
       <GestureDetector gesture={gesture}>
-        <Animated.View style={[styles.swipeable, animatedStyle, { width: height, height }]}>
-          <Text style={[styles.text, { color: textColor }]}>▶</Text>
-        </Animated.View>
+        <Swipeable style={animatedStyle} height={height}>
+          <StyledText textColor={textColor}>▶</StyledText>
+        </Swipeable>
       </GestureDetector>
-      <View style={styles.textContainer}>
-        <Text style={[styles.text, { color: textColor }]}>{text}</Text>
-      </View>
-    </View>
+      <TextContainer>
+        <StyledText textColor={textColor}>{text}</StyledText>
+      </TextContainer>
+    </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    borderRadius: 25,
-    overflow: 'hidden',
-    justifyContent: 'center',
-  },
-  swipeable: {
-    position: 'absolute',
-    backgroundColor: '#00000033',
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontWeight: 'bold',
-  },
-});
 
 export default memo(Swiper);

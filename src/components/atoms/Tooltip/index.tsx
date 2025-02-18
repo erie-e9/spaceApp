@@ -32,7 +32,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
         });
         setTimeout(() => {
           setIsVisible(false);
-          if (onDismiss) onDismiss();
+          onDismiss?.();
         }, 300);
       }, duration);
       return () => clearTimeout(timer);
@@ -51,7 +51,9 @@ export const Tooltip: React.FC<TooltipProps> = ({
     };
   });
 
-  if (!isVisible) return null;
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <Fragment>

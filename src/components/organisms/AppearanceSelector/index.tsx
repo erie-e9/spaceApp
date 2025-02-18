@@ -44,16 +44,17 @@ const AppearanceSelector: React.FC<AppearanceSelectorProps> = ({ autoCloseOnSele
   const items = useMemo(() => useAppearanceHook.listOptions, [useAppearanceHook.listOptions]);
   const transformedJSON = useAppearanceHook.transformJSON(themes);
   const themeList = themeItems(transformedJSON, darkMode);
+
   const onPressHandler = useCallback(() => {
     if (autoCloseOnSelect) {
       hideModal();
     }
-  }, []);
+  }, [autoCloseOnSelect, hideModal]);
 
   return (
     <BodyContainer>
       <RenderWhen isTrue={remoteConfigFeatures?.changeMode?.status === 'on'}>
-        <>
+        <Fragment>
           <TitleContainer>
             <StyledTitle testID="list-title" type="Body2">
               {'menu:Menu.settings.items.appPreferences.items.changeAppearance.modes.title'}
@@ -82,7 +83,7 @@ const AppearanceSelector: React.FC<AppearanceSelectorProps> = ({ autoCloseOnSele
               )}
             />
           </ModeListContainer>
-        </>
+        </Fragment>
       </RenderWhen>
       <RenderWhen
         isTrue={
@@ -93,7 +94,7 @@ const AppearanceSelector: React.FC<AppearanceSelectorProps> = ({ autoCloseOnSele
         <Separator />
       </RenderWhen>
       <RenderWhen isTrue={remoteConfigFeatures?.changeTheme?.status === 'on'}>
-        <>
+        <Fragment>
           <TitleContainer>
             <StyledTitle type="Body2">
               {'menu:Menu.settings.items.appPreferences.items.changeAppearance.themes.title'}
@@ -144,7 +145,7 @@ const AppearanceSelector: React.FC<AppearanceSelectorProps> = ({ autoCloseOnSele
               }}
             />
           </ThemeListContainer>
-        </>
+        </Fragment>
       </RenderWhen>
     </BodyContainer>
   );

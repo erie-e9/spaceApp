@@ -37,7 +37,7 @@ export const ModeSelectorItem: React.FC<ModeSelectorItemProps> = ({
 
   const onPressHandler = useCallback(() => {
     onPress?.();
-  }, []);
+  }, [onPress]);
 
   return (
     <RenderWhen isTrue={remoteConfigStatus !== 'hide'}>

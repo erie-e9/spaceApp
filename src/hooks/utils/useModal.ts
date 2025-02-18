@@ -4,22 +4,27 @@ import { showModal as showModalSlice, hideModal as hideModalSlice } from '@slice
 import type { ModalProps } from '@slices/types';
 
 export const useModal = (): {
-  showModal: (params: ModalProps) => void;
   hideModal: () => void;
+  showModal: (params: ModalProps) => void;
 } => {
   const dispatch = useDispatch();
 
-  const showModal = useCallback((params: ModalProps): void => {
-    if (params.showCloseModalIcon) hideModal();
-    dispatch(showModalSlice(params));
-  }, []);
-
   const hideModal = useCallback((): void => {
     dispatch(hideModalSlice());
-  }, []);
+  }, [dispatch]);
+
+  const showModal = useCallback(
+    (params: ModalProps): void => {
+      if (params.showCloseModalIcon) {
+        hideModal();
+      }
+      dispatch(showModalSlice(params));
+    },
+    [dispatch, hideModal],
+  );
 
   return {
-    showModal,
     hideModal,
+    showModal,
   };
 };

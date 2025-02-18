@@ -1,4 +1,4 @@
-import {
+import React, {
   forwardRef,
   Fragment,
   memo,
@@ -73,13 +73,16 @@ const BottomSheet = forwardRef<BottomSheetRefProps, ModalProps>(
     const active = useSharedValue(false);
     const items = useMemo(() => list?.data ?? [], [list?.data]);
 
-    const scrollTo = useCallback((destination: number) => {
-      'worklet';
-      active.value = destination !== 0;
-      translateY.value = withSpring(destination, { stiffness: 200, damping: 25 });
-    }, []);
+    const scrollTo = useCallback(
+      (destination: number) => {
+        'worklet';
+        active.value = destination !== 0;
+        translateY.value = withSpring(destination, { stiffness: 200, damping: 25 });
+      },
+      [active, translateY],
+    );
 
-    const isActive = useCallback(() => active.value, []);
+    const isActive = useCallback(() => active.value, [active.value]);
 
     useImperativeHandle(ref, () => ({ scrollTo, isActive }), [scrollTo, isActive]);
 
@@ -130,7 +133,7 @@ const BottomSheet = forwardRef<BottomSheetRefProps, ModalProps>(
       if (isVisible) {
         bottomSheetSizeHandler();
       }
-    }, [isVisible]);
+    }, [bottomSheetSizeHandler, isVisible]);
 
     const onPressHandler = useCallback(
       async ({ item }: any) => {

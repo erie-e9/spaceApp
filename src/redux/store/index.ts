@@ -1,10 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import {
-  persistReducer,
-  persistStore,
-  Storage,
-} from 'redux-persist';
+import { persistReducer, persistStore, Storage } from 'redux-persist';
 import { MMKV, Mode } from 'react-native-mmkv';
 import { apiTasks } from '@hooks/api/rest';
 import { reducers } from '@store/reducers';
@@ -35,7 +31,15 @@ export const reduxStorage: Storage = {
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['appPreferences', 'auth', 'languages', 'remoteConfigFeatures', 'token', 'user', 'tasks'],
+  whitelist: [
+    'appPreferences',
+    'auth',
+    'languages',
+    'remoteConfigFeatures',
+    'token',
+    'user',
+    'tasks',
+  ],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -55,7 +59,7 @@ const store = configureStore({
 
     return middlewares;
   },
-  devTools: process.env.NODE_ENV !== 'production'
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 const persistor = persistStore(store);

@@ -1,4 +1,4 @@
-import { Dispatch, memo, SetStateAction, useCallback } from 'react';
+import React, { Dispatch, memo, SetStateAction, useCallback } from 'react';
 import { SVGIcon } from '@components/atoms';
 import { RatingBarContainer, RatingButton } from '../styles';
 
@@ -20,11 +20,12 @@ const RatingBar = ({
   const ratingHandler = useCallback(
     (score: number) => {
       setDefaultRating(score);
+      console.log('temp', { feedbackValue });
       setTimeout(async () => {
         await setTellUsMoreVisible(true);
       }, 1000);
     },
-    [feedbackValue, setDefaultRating],
+    [feedbackValue, setDefaultRating, setTellUsMoreVisible],
   );
 
   return (

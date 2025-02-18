@@ -85,7 +85,7 @@ export const Subtitle2 = createFontStyle(14, 18, 0.1, 500);
 export const Subtitle3 = createFontStyle(12, 16, 0.4, 400);
 
 export const Body1 = createFontStyle(16, 24, 0.5, 400);
-export const Body2 = createFontStyle(15, 20, 0.25, 400);
+export const Body2 = createFontStyle(15, 22, 0.2, 400);
 export const Body3 = createFontStyle(14, 20, 0.25, 400);
 export const Body4 = createFontStyle(13, 18, 0.05, 400);
 

@@ -29,14 +29,14 @@ export const useProfile = (): {
 
   const genreLabel = useMemo(
     () => genres.find((option: { value: any }) => option.value === user?.genre)?.label,
-    [],
+    [genres, user?.genre],
   );
 
   const editFieldHandler = useCallback(
     ({ fieldId, fieldName }: { fieldId: string; fieldName: string }) => {
       navigation.navigate('FieldEditor', { fieldId, fieldName } as never);
     },
-    [],
+    [navigation],
   );
 
   const listItemsSection1 = useMemo(() => {
@@ -84,7 +84,8 @@ export const useProfile = (): {
         ],
       },
     ];
-  }, [isFocused]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFocused, editFieldHandler, user.email, user.phoneNumber, user.username]);
 
   const listItemsSection2 = useMemo(() => {
     return [
@@ -130,7 +131,7 @@ export const useProfile = (): {
         ],
       },
     ];
-  }, []);
+  }, [editFieldHandler, genreLabel, user.dateOfBirth, user.firstName, user.lastName]);
 
   const listItemsSection3 = useMemo(() => {
     return [
@@ -188,7 +189,14 @@ export const useProfile = (): {
         ],
       },
     ];
-  }, []);
+  }, [
+    editFieldHandler,
+    user.city,
+    user.country,
+    user.streetAddressLine1,
+    user.streetAddressLine2,
+    user.zipCode,
+  ]);
 
   const primaryButtonHandler = useCallback(async (): Promise<void> => {
     await setLoading(true);
@@ -226,12 +234,12 @@ export const useProfile = (): {
         },
       ],
     });
-  }, [loading]);
+  }, [hideModal, removeToken, removeUser, setLoading, showModal]);
 
   const primaryButton = useMemo(() => {
     return {
       testID: 'profilePrimaryButton',
-      title: `profile:Profile.buttons.deleteAccount`,
+      title: 'profile:Profile.buttons.deleteAccount',
       disabled: loading,
       loading: loading,
       buttonTheme: 'Secondary',
@@ -243,7 +251,7 @@ export const useProfile = (): {
       textColor: 'danger_status',
       onPress: primaryButtonHandler,
     };
-  }, [loading]);
+  }, [loading, primaryButtonHandler, theme.tokens.colors.danger_status]);
 
   return {
     user,
