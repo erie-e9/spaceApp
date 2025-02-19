@@ -196,13 +196,7 @@ const ActionButton: React.FC<TouchableProps> = ({
     <AnimatedContainer {...testProperties(testID)} style={[buttonAnimation]}>
       <StyledButton
         onPress={handlePress}
-        backgroundColor={
-          !gradientColors
-            ? backgroundColor
-              ? backgroundColor
-              : customButtonTheme.backgroundColorValue
-            : null
-        }
+        backgroundColor={backgroundColor ? backgroundColor : customButtonTheme.backgroundColorValue}
         disabled={remoteFeatureFlags?.length === 0 ? disabled || asyncDisabled : false}
         colorScheme={colorScheme ?? 'light'}
         disabledColor={disabledColor}
